@@ -1,5 +1,7 @@
 # LeanAgent
 
+> **一句话**：不靠更强的模型、全靠 Agent 工程机制（输出契约 / 强制知识路由 / 撞钟总结续命 / 五层错误处理），让 GLM-5.2 端到端自动攻破真实 CTF pwn 题——32 题 30 胜（93.75%）、十连跑零翻车，最快 9 分钟拿 shell。
+
 基于 deepagents 的**二进制漏洞全自动利用** Agent（全程 GLM-5.2 驱动）。
 32 题真实 CTF pwn 题实测 **30/32 = 93.75%**，十连跑稳定性 10/10。
 架构详见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
