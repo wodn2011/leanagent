@@ -5,7 +5,7 @@ __pycache__/
 *.egg-info/
 ctf/
 ctf2/
-logs/
+/logs/
 test/
 _skills/
 squashfs-root/

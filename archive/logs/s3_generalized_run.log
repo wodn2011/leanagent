@@ -1,0 +1,17 @@
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+{
+  "error": "--context /work/test/stage2.json 未找到"
+}

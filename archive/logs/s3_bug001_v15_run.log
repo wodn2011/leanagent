@@ -1,0 +1,28 @@
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+[19:25:00] [hide] /work/0001-2020-1. ROP/exploit → /tmp/_leanagent_hidden/work_0001-2020-1. ROP_exploit
+[19:25:00] [hide] /work/0010-2021-30-fortunecookie1/exploit → /tmp/_leanagent_hidden/work_0010-2021-30-fortunecookie1_exploit
+[19:25:00] [hide] /work/0011-2021-31-fortunecookie2/exploit → /tmp/_leanagent_hidden/work_0011-2021-31-fortunecookie2_exploit
+
+=== impact (bug_id=BUG-001) ===
+[19:25:00]	[[impact:BUG-001]] → 调用 GLM...
+
+	[[impact:BUG-001]] ⚠ 墙钟超限(600s)，终止返回当前文本。
+[19:35:19] [impact] ✓ force-JSON PrimitiveReport 校验通过
+[19:35:19] [impact] force-JSON 报告未完成(status=interrupted，无 VERIFIED)——带总结重试 attempt 2/2
+[19:35:19] [impact] ⚠ 无有效 PrimitiveReport（原始: [INTERRUPTED_SUMMARY]
+[被中断（墙钟/预算超限）]）
+
+=== impact (bug_id=BUG-001) attempt 2/2 ===

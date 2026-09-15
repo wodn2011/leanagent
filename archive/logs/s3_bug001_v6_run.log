@@ -1,0 +1,19 @@
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+[15:21:25] [hide] /work/0001-2020-1. ROP/exploit → /tmp/_leanagent_hidden/work_0001-2020-1. ROP_exploit
+[15:21:25] [hide] /work/0010-2021-30-fortunecookie1/exploit → /tmp/_leanagent_hidden/work_0010-2021-30-fortunecookie1_exploit
+[15:21:25] [hide] /work/0011-2021-31-fortunecookie2/exploit → /tmp/_leanagent_hidden/work_0011-2021-31-fortunecookie2_exploit
+
+=== impact (bug_id=BUG-001) ===

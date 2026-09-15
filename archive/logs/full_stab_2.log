@@ -1,0 +1,1558 @@
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+
+=== recon (bug_id=-) ===
+[11:54:20]	[[recon]] → 调用 GLM...
+[11:54:23]	[[recon]] ← GLM 响应 (2.8s)
+	[[recon]] 我将首先并行收集基本的二进制信息：架构、安全机制、ELF 信息、libc 识别、sections、symbols、global vars 和 strings。
+[11:54:23]	[[recon]] → 工具 checksec({'binary': '/work/test/target'})
+[11:54:23]	[[recon]] → 工具 sections({'binary': '/work/test/target'})
+[11:54:23]	[[recon]] → 工具 elf_info({'binary': '/work/test/target'})
+[11:54:23]	[[recon]] → 工具 global_vars({'binary': '/work/test/target', 'max_lines': 100})
+[11:54:23]	[[recon]] → 工具 identify_libc({'binary': '/work/test/target'})
+[11:54:23]	[[recon]] → 工具 list_strings({'binary': '/work/test/target', 'max_lines': 200})
+[11:54:23]	[[recon]] ← [tool:list_strings] content='/lib64/ld-linux-x86-64.so.2\nmfUa\nexit\nfopen\n__isoc99_scanf\nputs\n__stack_chk_fail\nstdin\nstrdup\nprintf\ncalloc\nstdout\nstderr\nalarm\nfread\n__cxa_finalize\nsetvbuf\n__libc_start_main
+[11:54:23]	[[recon]] ← [tool:sections] content='There are 29 section headers, starting at offset 0x3d10:\n\nSection Headers:\n  [Nr] Name              Type             Address           Offset\n       Size              EntSize          Fla
+[11:54:23]	[[recon]] ← [tool:global_vars] content='    18: 0000000000004020     8 OBJECT  GLOBAL DEFAULT   24 stdout@GLIBC_2.2.5 (2)\n    20: 0000000000004030     8 OBJECT  GLOBAL DEFAULT   24 stdin@GLIBC_2.2.5 (2)\n    21: 0000000000004040  
+[11:54:23]	[[recon]] ← [tool:identify_libc] content='\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072344418c000)\n===LIBC VERSION===\nGNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39.\n' name='identify_libc' tool
+[11:54:23]	[[recon]] ← [tool:elf_info] content="/work/test/target: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=84dab319bf6fe22134cf0338cbd8071fd8bc06c2
+[11:54:23]	[[recon]] ← [tool:checksec] content="Warning: _curses.error: setupterm: could not find terminfo database\n\nTerminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).\n[*] 
+[11:54:23]	[[recon]] → 调用 GLM...
+[11:54:25]	[[recon]] ← GLM 响应 (2.5s)
+	[[recon]] 很好。这是一个“幸运饼干”菜单挑战。让我获取符号表、GOT/PLT、CFG，并反汇编关键函数。
+[11:54:25]	[[recon]] → 工具 symbols({'binary': '/work/test/target', 'filter': 'cookie,menu,main,read,edit,create,eat,_abort', 'max_lines': 100})
+[11:54:25]	[[recon]] → 工具 got_plt({'binary': '/work/test/target'})
+[11:54:25]	[[recon]] → 工具 cfg({'binary': '/work/test/target'})
+[11:54:25]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'main', 'lines': 80})
+[11:54:25]	[[recon]] ← [tool:disassemble] content='000000000000187f <main>:\n    187f:\tpush   rbp\n    1880:\tmov    rbp,rsp\n    1883:\tsub    rsp,0x10\n    1887:\tmov    rax,QWORD PTR fs:0x28\n    1890:\tmov    QWORD PTR [rbp-0x8],rax\n   
+[11:54:25]	[[recon]] ← [tool:symbols] content='<no output>' name='symbols' tool_call_id='call_3760201ad2ec4ead99b1c321'
+[11:54:25]	[[recon]] ← [tool:got_plt] content='[]\n' name='got_plt' tool_call_id='call_c324bfd2bd704408a02b0f73'
+[11:54:27]	[[recon]] ← [tool:cfg] content='[{"name": "_init", "addr": "0x401000", "blocks": 3, "calls": ["UnresolvableCallTarget"]}, {"name": "sub_401020", "addr": "0x401020", "blocks": 1, "calls": ["UnresolvableJumpTarget"]}, {"name"
+[11:54:27]	[[recon]] → 调用 GLM...
+[11:54:31]	[[recon]] ← GLM 响应 (4.2s)
+	[[recon]] 现在让我反汇编所有关键函数：init, create_cookie, eat_cookie, edit_cookie, read_cookie, menu, _abort。
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'init', 'lines': 120})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'edit_cookie', 'lines': 120})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'create_cookie', 'lines': 120})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'read_cookie', 'lines': 80})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'eat_cookie', 'lines': 120})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'menu', 'lines': 60})
+[11:54:31]	[[recon]] → 工具 disassemble({'binary': '/work/test/target', 'function': '_abort', 'lines': 30})
+[11:54:31]	[[recon]] ← [tool:disassemble] content='0000000000001232 <init>:\n    1232:\tpush   rbp\n    1233:\tmov    rbp,rsp\n    1236:\tsub    rsp,0x10\n    123a:\tmov    rax,QWORD PTR fs:0x28\n    1243:\tmov    QWORD PTR [rbp-0x8],rax\n   
+[11:54:31]	[[recon]] ← [tool:disassemble] content='0000000000001751 <read_cookie>:\n    1751:\tpush   rbp\n    1752:\tmov    rbp,rsp\n    1755:\tsub    rsp,0x10\n    1759:\tmov    rax,QWORD PTR fs:0x28\n    1762:\tmov    QWORD PTR [rbp-0x8],r
+[11:54:31]	[[recon]] ← [tool:disassemble] content='00000000000017fd <menu>:\n    17fd:\tpush   rbp\n    17fe:\tmov    rbp,rsp\n    1801:\tsub    rsp,0x10\n    1805:\tmov    rax,QWORD PTR fs:0x28\n    180e:\tmov    QWORD PTR [rbp-0x8],rax\n   
+[11:54:31]	[[recon]] ← [tool:disassemble] content='00000000000014e1 <eat_cookie>:\n    14e1:\tpush   rbp\n    14e2:\tmov    rbp,rsp\n    14e5:\tsub    rsp,0x10\n    14e9:\tmov    rax,QWORD PTR fs:0x28\n    14f2:\tmov    QWORD PTR [rbp-0x8],ra
+[11:54:31]	[[recon]] ← [tool:disassemble] content='0000000000001628 <edit_cookie>:\n    1628:\tpush   rbp\n    1629:\tmov    rbp,rsp\n    162c:\tsub    rsp,0x20\n    1630:\tmov    rax,QWORD PTR fs:0x28\n    1639:\tmov    QWORD PTR [rbp-0x8],r
+[11:54:31]	[[recon]] ← [tool:disassemble] content='0000000000001399 <create_cookie>:\n    1399:\tpush   rbp\n    139a:\tmov    rbp,rsp\n    139d:\tsub    rsp,0x20\n    13a1:\tmov    rax,QWORD PTR fs:0x28\n    13aa:\tmov    QWORD PTR [rbp-0x8]
+[11:54:31]	[[recon]] ← [tool:disassemble] content='00000000000011f5 <_abort>:\n    11f5:\tpush   rbp\n    11f6:\tmov    rbp,rsp\n    11f9:\tsub    rsp,0x20\n    11fd:\tmov    QWORD PTR [rbp-0x18],rdi\n    1201:\tmov    rax,QWORD PTR fs:0x28\n
+[11:54:31]	[[recon]] → 调用 GLM...
+[11:54:35]	[[recon]] ← GLM 响应 (4.0s)
+	[[recon]] 现在让我探测一下 I/O 以了解运行时行为，并获取用于 PLT/GOT 地址的 elf_plt_got。
+[11:54:35]	[[recon]] → 工具 probe_io({'binary': '/work/test/target', 'steps': '[{"recv_until": "5. exit", "send": "1"}, {"recv_until": "==", "send": "2"}]'})
+[11:54:35]	[[recon]] → 工具 elf_plt_got({'binary': '/work/test/target', 'symbols': 'free,puts,fread,__stack_chk_fail,printf,alarm,read,calloc,setvbuf,fopen,__isoc99_scanf,exit,strdup'})
+[11:54:35]	[[recon]] ← [tool:probe_io] content="RECV: b'==Fortune Cookie==\\n1. Eat one cookie!!\\n2. Make new cookie.\\n3. Edit cookie msg.\\n4. View cookie msg.\\n5. exit'\nSEND: '1'\nRECV: b'\\n=='\nSEND: '2'\nRECV_TAIL: b'=============
+[11:54:35]	[[recon]] ← [tool:elf_plt_got] content='{"plt": {"free": "0x1030", "puts": "0x1040", "fread": "0x1050", "__stack_chk_fail": "0x1060", "printf": "0x1070", "alarm": "0x1080", "read": "0x1090", "calloc": "0x10a0", "setvbuf": "0x10b0",
+[11:54:35]	[[recon]] → 调用 GLM...
+[11:55:53]	[[recon]] ← GLM 响应 (77.7s)
+	[[recon]] 我已经掌握了所需的所有信息。让我来整理最终的 S1 侦察报告。关键发现如下：
+
+1. **二进制文件**: Fortune Cookie 菜单挑战，PIE，Full RELRO，Canary，NX，未剥离符号，glibc 2.39
+2. **全局布局**: `msg[32]` (指针数组，256 字节，位于 0x4060)，`msg_size[32]` (int 数组，128 字节，位于 0x4160)，`cookie_num` (8 字节，位于 0x41e8)，`urandom` (FILE*，位于 0x41e0)
+3. **关键攻击面**:
+   - `edit_cookie`/`read
+[11:55:53] [recon] ✓ ReconReport 校验通过
+{
+  "stage": 1,
+  "binary": "/work/test/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"binary_info\":null,\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/test/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1110\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"fortunecookie.c\",\"buildid\":\"84dab319bf6fe22134cf0338cbd8071fd8bc06c2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"none\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\",\"distro\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[\"libc.so.6\",\"ld-linux-x86-64.so.2\"]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"Eat one cookie!!\",\"function\":\"eat_cookie\",\"address\":\"0x14e1\"},{\"option\":\"2\",\"label\":\"Make new cookie.\",\"function\":\"create_cookie\",\"address\":\"0x1399\"},{\"option\":\"3\",\"label\":\"Edit cookie msg.\",\"function\":\"edit_cookie\",\"address\":\"0x1628\"},{\"option\":\"4\",\"label\":\"View cookie msg.\",\"function\":\"read_cookie\",\"address\":\"0x1751\"},{\"option\":\"5\",\"label\":\"exit\",\"function\":\"exit\",\"address\":\"0x10e0\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%lld)\",\"function\":\"main\",\"type\":\"long long int\",\"controls\":\"dispatch to eat/create/edit/read/exit\"},{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"function\":\"create_cookie\",\"type\":\"long long int\",\"controls\":\"calloc size and read length\",\"check\":\"cmp rax,0x100; jle (size <= 256)\"},{\"name\":\"cookie_index_edit\",\"source\":\"scanf(%llu)\",\"function\":\"edit_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[] and msg_size[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"},{\"name\":\"cookie_index_read\",\"source\":\"scanf(%llu)\",\"function\":\"read_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1110\",\"size\":\"0x891\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x266\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f58\",\"size\":\"0xa8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xe0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x19a4\",\"size\":\"0x9\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d58\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x22e0\",\"size\":\"0x1e0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2268\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"msg\",\"address\":\"0x4060\",\"size\":256,\"section\":\".bss\",\"type\":\"pointer_array\",\"element_size\":8,\"count\":32,\"element_type\":\"char* (heap pointer)\"},{\"name\":\"msg_size\",\"address\":\"0x4160\",\"size\":128,\"section\":\".bss\",\"type\":\"int_array\",\"element_size\":4,\"count\":32,\"element_type\":\"int (message size)\"},{\"name\":\"urandom\",\"address\":\"0x41e0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (fopen of /dev/urandom)\"},{\"name\":\"cookie_num\",\"address\":\"0x41e8\",\"size\":8,\"section\":\".bss\",\"type\":\"long (current count of cookies, initialized to 5 by init)\"}],\"got\":[{\"offset\":\"0x3f70\",\"type\":\"free\",\"value\":\"0x1030\"},{\"offset\":\"0x3f78\",\"type\":\"puts\",\"value\":\"0x1040\"},{\"offset\":\"0x3f80\",\"type\":\"fread\",\"value\":\"0x1050\"},{\"offset\":\"0x3f88\",\"type\":\"__stack_chk_fail\",\"value\":\"0x1060\"},{\"offset\":\"0x3f90\",\"type\":\"printf\",\"value\":\"0x1070\"},{\"offset\":\"0x3f98\",\"type\":\"alarm\",\"value\":\"0x1080\"},{\"offset\":\"0x3fa0\",\"type\":\"read\",\"value\":\"0x1090\"},{\"offset\":\"0x3fa8\",\"type\":\"calloc\",\"value\":\"0x10a0\"},{\"offset\":\"0x3fb0\",\"type\":\"setvbuf\",\"value\":\"0x10b0\"},{\"offset\":\"0x3fb8\",\"type\":\"fopen\",\"value\":\"0x10c0\"},{\"offset\":\"0x3fc0\",\"type\":\"__isoc99_scanf\",\"value\":\"0x10d0\"},{\"offset\":\"0x3fc8\",\"type\":\"exit\",\"value\":\"0x10e0\"},{\"offset\":\"0x3fd0\",\"type\":\"strdup\",\"value\":\"0x10f0\"}],\"plt\":[{\"offset\":\"0x1030\",\"symbol\":\"free\"},{\"offset\":\"0x1040\",\"symbol\":\"puts\"},{\"offset\":\"0x1050\",\"symbol\":\"fread\"},{\"offset\":\"0x1060\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x1070\",\"symbol\":\"printf\"},{\"offset\":\"0x1080\",\"symbol\":\"alarm\"},{\"offset\":\"0x1090\",\"symbol\":\"read\"},{\"offset\":\"0x10a0\",\"symbol\":\"calloc\"},{\"offset\":\"0x10b0\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x10c0\",\"symbol\":\"fopen\"},{\"offset\":\"0x10d0\",\"symbol\":\"__isoc99_scanf\"},{\"offset\":\"0x10e0\",\"symbol\":\"exit\"},{\"offset\":\"0x10f0\",\"symbol\":\"strdup\"}]},\"functions\":[{\"name\":\"_abort\",\"address\":\"0x11f5\",\"callers\":[\"init\",\"create_cookie\",\"eat_cookie\",\"edit_cookie\",\"read_cookie\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"rdi\",\"source\":\"caller argument (error message string)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"]},{\"name\":\"init\",\"address\":\"0x1232\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[\"urandom != NULL (jne to continue, else _abort)\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"urandom (0x41e0)\",\"size\":8,\"description\":\"store fopen result\"},{\"operation\":\"WRITE\",\"destination\":\"msg[0] (0x4060)\",\"size\":8,\"description\":\"strdup(fortune_string_1)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[0] (0x4160)\",\"size\":4,\"value\":\"0x50\"},{\"operation\":\"WRITE\",\"destination\":\"msg[1] (0x4068)\",\"size\":8,\"description\":\"strdup(fortune_string_2)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[1] (0x4164)\",\"size\":4,\"value\":\"0x30\"},{\"operation\":\"WRITE\",\"destination\":\"msg[2] (0x4070)\",\"size\":8,\"description\":\"strdup(fortune_string_3)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[2] (0x4168)\",\"size\":4,\"value\":\"0x18\"},{\"operation\":\"WRITE\",\"destination\":\"msg[3] (0x4078)\",\"size\":8,\"description\":\"strdup(fortune_string_4)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[3] (0x416c)\",\"size\":4,\"value\":\"0x38\"},{\"operation\":\"WRITE\",\"destination\":\"msg[4] (0x4080)\",\"size\":8,\"description\":\"strdup(fortune_string_5)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[4] (0x4170)\",\"size\":4,\"value\":\"0x40\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num (0x41e8)\",\"size\":8,\"value\":\"5\"}],\"calls\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"]},{\"name\":\"create_cookie\",\"address\":\"0x1399\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x18\"},{\"name\":\"message_data\",\"source\":\"read(0, buf, message_length)\",\"type\":\"raw bytes\"}],\"checks\":[\"cookie_num <= 0x1f (31), else _abort (max 32 cookies)\",\"message_length <= 0x100 (256), else _abort (signed comparison, no lower bound check)\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"calloc(message_length, 1)\",\"description\":\"allocate heap buffer of user-specified size\"},{\"operation\":\"WRITE\",\"destination\":\"heap buffer\",\"size\":\"message_length\",\"description\":\"read(0, heap_buf, message_length)\"},{\"operation\":\"WRITE\",\"destination\":\"msg[cookie_num]\",\"size\":8,\"description\":\"store heap pointer into msg array\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[cookie_num]\",\"size\":4,\"description\":\"store message_length into msg_size array\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num += 1\"}],\"calls\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"eat_cookie\",\"address\":\"0x14e1\",\"callers\":[\"main\"],\"callees\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"random_byte\",\"source\":\"fread from /dev/urandom\",\"type\":\"char\",\"stored_at\":\"rbp-0xc\",\"description\":\"random index = random_byte % cookie_num\"}],\"checks\":[\"cookie_num != 0, else _abort\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[random_idx]\",\"size\":8,\"description\":\"load heap pointer at random index\"},{\"operation\":\"READ\",\"source\":\"msg[random_idx] (dereferenced)\",\"description\":\"printf format string uses msg[random_idx] as string argument\"},{\"operation\":\"FREE\",\"target\":\"msg[random_idx]\",\"description\":\"free(msg[random_idx])\"},{\"operation\":\"READ\",\"source\":\"msg[cookie_num-1]\",\"size\":8,\"description\":\"load last element pointer\"},{\"operation\":\"WRITE\",\"destination\":\"msg[random_idx]\",\"size\":8,\"description\":\"msg[random_idx] = msg[cookie_num-1] (swap last into freed slot)\"},{\"operation\":\"READ\",\"source\":\"msg_size[cookie_num-1]\",\"size\":4,\"description\":\"load last element size\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[random_idx]\",\"size\":4,\"description\":\"msg_size[random_idx] = msg_size[cookie_num-1] (swap size)\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num -= 1\"}],\"calls\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"]},{\"name\":\"edit_cookie\",\"address\":\"0x1628\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"},{\"name\":\"new_message\",\"source\":\"read(0, msg[idx], msg_size[idx]-1)\",\"type\":\"raw bytes\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg_size[idx]\",\"size\":4,\"description\":\"load size for index (msg_size[idx]-1 used as read length)\"},{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"WRITE\",\"destination\":\"msg[idx] (dereferenced heap buffer)\",\"size\":\"msg_size[idx]-1\",\"description\":\"read(0, msg[idx], msg_size[idx]-1) writes to heap buffer\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"read_cookie\",\"address\":\"0x1751\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"READ\",\"source\":\"msg[idx] (dereferenced)\",\"description\":\"printf uses msg[idx] as string argument to print cookie content\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"]},{\"name\":\"menu\",\"address\":\"0x17fd\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\",\"__stack_chk_fail\"]},{\"name\":\"main\",\"address\":\"0x187f\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"choice == 1: eat_cookie\",\"choice == 2: create_cookie\",\"choice == 3: edit_cookie\",\"choice == 4: read_cookie\",\"choice == 5: exit\",\"default: loop back to menu\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"]}],\"attack_surfaces\":[{\"function\":\"edit_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"WRITE to msg[idx] dereferenced heap buffer, size from msg_size[idx]-1\",\"risk\":\"HIGH\",\"reason\":\"Index read as unsigned long long with only upper-bound check (idx < cookie_num). No lower bound check. Negative values (large unsigned) pass the check and index into msg[] before 0x4060, potentially hitting urandom(0x41e0), cookie_num(0x41e8), or other BSS globals. msg_size[idx] for negative idx reads from before 0x4160. The read destination msg[idx] for negative idx loads an arbitrary 8-byte value as a heap pointer, and read() writes to that address.\"},{\"function\":\"read_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"READ msg[idx] dereferenced as string, printed via printf\",\"risk\":\"HIGH\",\"reason\":\"Same missing lower bound check as edit_cookie. Negative index loads msg[idx] as a pointer and printf prints the string at that address. Potential arbitrary read if attacker controls the pointer value at negative offset.\"},{\"function\":\"eat_cookie\",\"input\":\"random index from /dev/urandom\",\"operation\":\"FREE msg[random_idx], then swap msg[cookie_num-1] into msg[random_idx]\",\"risk\":\"MEDIUM\",\"reason\":\"After free(msg[random_idx]), the freed pointer is overwritten with msg[cookie_num-1]. However, if random_idx == cookie_num-1 (last element freed), the swap writes the freed pointer back into itself (msg[last] = msg[last]), leaving a dangling pointer in the array. This pointer can be reused via edit_cookie or read_cookie. The swap does not NULL out the source slot.\"},{\"function\":\"create_cookie\",\"input\":\"message_length (scanf %lld, signed long long)\",\"operation\":\"calloc(message_length, 1) then read(0, buf, message_length)\",\"risk\":\"MEDIUM\",\"reason\":\"Size checked with cmp rax,0x100; jle (signed <= 256). Negative values pass the check. calloc with negative size (interpreted as huge unsigned by calloc internally) may fail or return small allocation. read() then uses the original signed value as count, which on x86-64 syscall uses the 64-bit value directly.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is PIE, dynamically linked, not stripped, compiled with GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"msg[] is a char* array at 0x4060, 32 elements (256 bytes) in .bss\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"msg_size[] is an int array at 0x4160, 32 elements (128 bytes) in .bss, immediately after msg[]\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"cookie_num is a long at 0x41e8, initialized to 5 by init()\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"urandom (FILE*) is at 0x41e0, 8 bytes before cookie_num\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"init() creates 5 fortune cookies via strdup, stores pointers in msg[0..4], sizes in msg_size[0..4], sets cookie_num=5\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"create_cookie reads message_length via scanf(%lld), checks size <= 0x100 (signed jle), allocates calloc(size,1), reads data into heap buffer, stores pointer in msg[cookie_num] and size in msg_size[cookie_num], increments cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eat_cookie reads 1 byte from /dev/urandom, computes random_idx = byte % cookie_num, prints msg[random_idx], frees msg[random_idx], swaps msg[cookie_num-1] into msg[random_idx] and msg_size[cookie_num-1] into msg_size[random_idx], decrements cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"edit_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Reads msg_size[idx]-1 bytes into msg[idx] buffer via read(0, msg[idx], msg_size[idx]-1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"read_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Prints msg[idx] as string via printf\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"edit_cookie and read_cookie index check is 'cmp rdx,rax; jl' where rdx=user_idx (unsigned) and rax=cookie_num. jl is signed less-than. For negative values (bit 63 set), signed comparison treats them as negative, so they pass the < cookie_num check\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"eat_cookie swap: when random_idx == cookie_num-1, the code reads msg[cookie_num-1] and writes it back to msg[random_idx] which is the same slot, leaving the freed pointer in the array\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"GOT is at 0x3f58, size 0xa8, writable in ELF but Full RELRO means it is made read-only at runtime after relocation\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"alarm(60) called in init(), providing a 60-second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"create_cookie size check uses signed comparison (jle). A negative size value (e.g. -1) passes the <= 0x100 check. calloc(-1, 1) passes a huge value to calloc which likely returns NULL. read(0, NULL, -1) would then be called\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"Layout: msg[0x4060] (256B) -> msg_size[0x4160] (128B) -> gap (0x41e0-0x41e0=0) -> urandom[0x41e0] (8B) -> cookie_num[0x41e8] (8B). msg_size ends at 0x41e0, urandom starts at 0x41e0, contiguous\",\"source\":\"ELF\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie with negative index N: msg[N] is at 0x4060 + N*8. For N=-1, address = 0x4058 (in .data section, before .bss). For N=-2, address = 0x4050. msg_size[N] is at 0x4160 + N*4. For N=-1, address = 0x415c (within msg[] array region)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie, a negative index that lands msg[idx] on a controllable or known value would cause read() to write to that address (treating it as a heap pointer). A negative index that lands msg_size[idx] on a controllable value would control the read length\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether calloc with negative size returns NULL or a small allocation depends on glibc 2.39 internal behavior\",\"reason\":\"Need dynamic verification of calloc with negative/massive size argument\"},{\"id\":\"U002\",\"description\":\"Whether the eat_cookie self-swap (random_idx == cookie_num-1) actually leaves a usable dangling pointer depends on whether the freed chunk is immediately reused by subsequent allocations\",\"reason\":\"Need dynamic verification of heap behavior after free in eat_cookie\"},{\"id\":\"U003\",\"description\":\"CET (IBT/SHSTK) status cannot be determined from ELF alone; depends on kernel and CPU support at runtime\",\"reason\":\"No CET markers found in ELF, but runtime enforcement depends on kernel configuration\"},{\"id\":\"U004\",\"description\":\"ASLR status cannot be confirmed from static analysis\",\"reason\":\"ASLR is a kernel/runtime setting\"},{\"id\":\"U005\",\"description\":\"The exact heap layout and chunk sizes from the 5 initial strdup allocations in init() need dynamic verification\",\"reason\":\"strdup allocates strlen+1 bytes; exact sizes depend on string lengths which are known but heap allocator behavior (alignment, tcache) needs runtime confirmation\"}],\"raw\":{\"elf\":\"ELF64 LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=84dab319bf6fe22134cf0338cbd8071fd8bc06c2, not stripped. Entry=0x1110. 11 program headers, 29 sections.\",\"sections\":\".text@0x1110(0x891,AX) .rodata@0x2000(0x266,A) .data@0x4000(0x10,WA) .bss@0x4020(0x1d0,WA) .got@0x3f58(0xa8,WA) .plt@0x1020(0xe0,AX) .init@0x1000(0x17,AX) .fini@0x19a4(0x9,AX) .init_array@0x3d58(0x8,WA) .fini_array@0x3d60(0x8,WA) .eh_frame@0x22e0(0x1e0,A) .eh_frame_hdr@0x2268(0x74,A)\",\"symbols\":\"Key functions: _abort@0x11f5 init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd main@0x187f. Globals: msg@0x4060(256B) msg_size@0x4160(128B) urandom@0x41e0(8B) cookie_num@0x41e8(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040\",\"disassembly\":\"main: scanf(%lld)->switch(1=eat,2=create,3=edit,4=read,5=exit). create_cookie: scanf(%lld) size, check <=0x100(signed jle), calloc(size,1), read(0,buf,size), store in msg[cookie_num]/msg_size[cookie_num], cookie_num++. eat_cookie: fread urandom byte, idx=byte%cookie_num, printf(msg[idx]), free(msg[idx]), msg[idx]=msg[cookie_num-1], msg_size[idx]=msg_size[cookie_num-1], cookie_num--. edit_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), read(0,msg[idx],msg_size[idx]-1). read_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), printf(msg[idx]).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"bug_reports\":[],\"impact_reports\":[],\"strategy_reports\":[],\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/test/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1110",
+      "dynamic": true,
+      "stripped": false,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 10.2.0 (Debian 10.2.0-16)",
+      "source_file": "fortunecookie.c",
+      "buildid": "84dab319bf6fe22134cf0338cbd8071fd8bc06c2"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "none",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME",
+        "distro": "Ubuntu GLIBC 2.39-0ubuntu8.8"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "option": "1",
+          "label": "Eat one cookie!!",
+          "function": "eat_cookie",
+          "address": "0x14e1"
+        },
+        {
+          "option": "2",
+          "label": "Make new cookie.",
+          "function": "create_cookie",
+          "address": "0x1399"
+        },
+        {
+          "option": "3",
+          "label": "Edit cookie msg.",
+          "function": "edit_cookie",
+          "address": "0x1628"
+        },
+        {
+          "option": "4",
+          "label": "View cookie msg.",
+          "function": "read_cookie",
+          "address": "0x1751"
+        },
+        {
+          "option": "5",
+          "label": "exit",
+          "function": "exit",
+          "address": "0x10e0"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf(%lld)",
+          "function": "main",
+          "type": "long long int",
+          "controls": "dispatch to eat/create/edit/read/exit"
+        },
+        {
+          "name": "message_length",
+          "source": "scanf(%lld)",
+          "function": "create_cookie",
+          "type": "long long int",
+          "controls": "calloc size and read length",
+          "check": "cmp rax,0x100; jle (size <= 256)"
+        },
+        {
+          "name": "cookie_index_edit",
+          "source": "scanf(%llu)",
+          "function": "edit_cookie",
+          "type": "unsigned long long",
+          "controls": "index into msg[] and msg_size[]",
+          "check": "cmp rdx,rax; jl (idx < cookie_num), no lower bound"
+        },
+        {
+          "name": "cookie_index_read",
+          "source": "scanf(%llu)",
+          "function": "read_cookie",
+          "type": "unsigned long long",
+          "controls": "index into msg[]",
+          "check": "cmp rdx,rax; jl (idx < cookie_num), no lower bound"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1110",
+          "size": "0x891",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x266",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x4020",
+          "size": "0x1d0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x3f58",
+          "size": "0xa8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xe0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x17",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".fini",
+          "address": "0x19a4",
+          "size": "0x9",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d58",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d60",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x22e0",
+          "size": "0x1e0",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x2268",
+          "size": "0x74",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x4020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4030",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "msg",
+          "address": "0x4060",
+          "size": 256,
+          "section": ".bss",
+          "type": "pointer_array",
+          "element_size": 8,
+          "count": 32,
+          "element_type": "char* (heap pointer)"
+        },
+        {
+          "name": "msg_size",
+          "address": "0x4160",
+          "size": 128,
+          "section": ".bss",
+          "type": "int_array",
+          "element_size": 4,
+          "count": 32,
+          "element_type": "int (message size)"
+        },
+        {
+          "name": "urandom",
+          "address": "0x41e0",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (fopen of /dev/urandom)"
+        },
+        {
+          "name": "cookie_num",
+          "address": "0x41e8",
+          "size": 8,
+          "section": ".bss",
+          "type": "long (current count of cookies, initialized to 5 by init)"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3f70",
+          "type": "free",
+          "value": "0x1030"
+        },
+        {
+          "offset": "0x3f78",
+          "type": "puts",
+          "value": "0x1040"
+        },
+        {
+          "offset": "0x3f80",
+          "type": "fread",
+          "value": "0x1050"
+        },
+        {
+          "offset": "0x3f88",
+          "type": "__stack_chk_fail",
+          "value": "0x1060"
+        },
+        {
+          "offset": "0x3f90",
+          "type": "printf",
+          "value": "0x1070"
+        },
+        {
+          "offset": "0x3f98",
+          "type": "alarm",
+          "value": "0x1080"
+        },
+        {
+          "offset": "0x3fa0",
+          "type": "read",
+          "value": "0x1090"
+        },
+        {
+          "offset": "0x3fa8",
+          "type": "calloc",
+          "value": "0x10a0"
+        },
+        {
+          "offset": "0x3fb0",
+          "type": "setvbuf",
+          "value": "0x10b0"
+        },
+        {
+          "offset": "0x3fb8",
+          "type": "fopen",
+          "value": "0x10c0"
+        },
+        {
+          "offset": "0x3fc0",
+          "type": "__isoc99_scanf",
+          "value": "0x10d0"
+        },
+        {
+          "offset": "0x3fc8",
+          "type": "exit",
+          "value": "0x10e0"
+        },
+        {
+          "offset": "0x3fd0",
+          "type": "strdup",
+          "value": "0x10f0"
+        }
+      ],
+      "plt": [
+        {
+          "offset": "0x1030",
+          "symbol": "free"
+        },
+        {
+          "offset": "0x1040",
+          "symbol": "puts"
+        },
+        {
+          "offset": "0x1050",
+          "symbol": "fread"
+        },
+        {
+          "offset": "0x1060",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "offset": "0x1070",
+          "symbol": "printf"
+        },
+        {
+          "offset": "0x1080",
+          "symbol": "alarm"
+        },
+        {
+          "offset": "0x1090",
+          "symbol": "read"
+        },
+        {
+          "offset": "0x10a0",
+          "symbol": "calloc"
+        },
+        {
+          "offset": "0x10b0",
+          "symbol": "setvbuf"
+        },
+        {
+          "offset": "0x10c0",
+          "symbol": "fopen"
+        },
+        {
+          "offset": "0x10d0",
+          "symbol": "__isoc99_scanf"
+        },
+        {
+          "offset": "0x10e0",
+          "symbol": "exit"
+        },
+        {
+          "offset": "0x10f0",
+          "symbol": "strdup"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "_abort",
+        "address": "0x11f5",
+        "callers": [
+          "init",
+          "create_cookie",
+          "eat_cookie",
+          "edit_cookie",
+          "read_cookie"
+        ],
+        "callees": [
+          "printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "rdi",
+            "source": "caller argument (error message string)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf",
+          "exit"
+        ]
+      },
+      {
+        "name": "init",
+        "address": "0x1232",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm",
+          "fopen",
+          "_abort",
+          "strdup",
+          "__stack_chk_fail"
+        ],
+        "inputs": [],
+        "checks": [
+          "urandom != NULL (jne to continue, else _abort)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "urandom (0x41e0)",
+            "size": 8,
+            "description": "store fopen result"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[0] (0x4060)",
+            "size": 8,
+            "description": "strdup(fortune_string_1)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[0] (0x4160)",
+            "size": 4,
+            "value": "0x50"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[1] (0x4068)",
+            "size": 8,
+            "description": "strdup(fortune_string_2)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[1] (0x4164)",
+            "size": 4,
+            "value": "0x30"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[2] (0x4070)",
+            "size": 8,
+            "description": "strdup(fortune_string_3)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[2] (0x4168)",
+            "size": 4,
+            "value": "0x18"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[3] (0x4078)",
+            "size": 8,
+            "description": "strdup(fortune_string_4)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[3] (0x416c)",
+            "size": 4,
+            "value": "0x38"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[4] (0x4080)",
+            "size": 8,
+            "description": "strdup(fortune_string_5)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[4] (0x4170)",
+            "size": 4,
+            "value": "0x40"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num (0x41e8)",
+            "size": 8,
+            "value": "5"
+          }
+        ],
+        "calls": [
+          "setvbuf",
+          "alarm",
+          "fopen",
+          "_abort",
+          "strdup",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "create_cookie",
+        "address": "0x1399",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "_abort",
+          "__isoc99_scanf",
+          "calloc",
+          "read",
+          "puts",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "message_length",
+            "source": "scanf(%lld)",
+            "type": "long long int",
+            "stored_at": "rbp-0x18"
+          },
+          {
+            "name": "message_data",
+            "source": "read(0, buf, message_length)",
+            "type": "raw bytes"
+          }
+        ],
+        "checks": [
+          "cookie_num <= 0x1f (31), else _abort (max 32 cookies)",
+          "message_length <= 0x100 (256), else _abort (signed comparison, no lower bound check)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "calloc(message_length, 1)",
+            "description": "allocate heap buffer of user-specified size"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "heap buffer",
+            "size": "message_length",
+            "description": "read(0, heap_buf, message_length)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[cookie_num]",
+            "size": 8,
+            "description": "store heap pointer into msg array"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[cookie_num]",
+            "size": 4,
+            "description": "store message_length into msg_size array"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num",
+            "size": 8,
+            "description": "cookie_num += 1"
+          }
+        ],
+        "calls": [
+          "printf",
+          "_abort",
+          "__isoc99_scanf",
+          "calloc",
+          "read",
+          "puts",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "eat_cookie",
+        "address": "0x14e1",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "_abort",
+          "fread",
+          "printf",
+          "free",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "random_byte",
+            "source": "fread from /dev/urandom",
+            "type": "char",
+            "stored_at": "rbp-0xc",
+            "description": "random index = random_byte % cookie_num"
+          }
+        ],
+        "checks": [
+          "cookie_num != 0, else _abort"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "msg[random_idx]",
+            "size": 8,
+            "description": "load heap pointer at random index"
+          },
+          {
+            "operation": "READ",
+            "source": "msg[random_idx] (dereferenced)",
+            "description": "printf format string uses msg[random_idx] as string argument"
+          },
+          {
+            "operation": "FREE",
+            "target": "msg[random_idx]",
+            "description": "free(msg[random_idx])"
+          },
+          {
+            "operation": "READ",
+            "source": "msg[cookie_num-1]",
+            "size": 8,
+            "description": "load last element pointer"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[random_idx]",
+            "size": 8,
+            "description": "msg[random_idx] = msg[cookie_num-1] (swap last into freed slot)"
+          },
+          {
+            "operation": "READ",
+            "source": "msg_size[cookie_num-1]",
+            "size": 4,
+            "description": "load last element size"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size[random_idx]",
+            "size": 4,
+            "description": "msg_size[random_idx] = msg_size[cookie_num-1] (swap size)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num",
+            "size": 8,
+            "description": "cookie_num -= 1"
+          }
+        ],
+        "calls": [
+          "_abort",
+          "fread",
+          "printf",
+          "free",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "edit_cookie",
+        "address": "0x1628",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort",
+          "read",
+          "puts",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "cookie_index",
+            "source": "scanf(%llu)",
+            "type": "unsigned long long",
+            "stored_at": "rbp-0x10"
+          },
+          {
+            "name": "new_message",
+            "source": "read(0, msg[idx], msg_size[idx]-1)",
+            "type": "raw bytes"
+          }
+        ],
+        "checks": [
+          "idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "msg_size[idx]",
+            "size": 4,
+            "description": "load size for index (msg_size[idx]-1 used as read length)"
+          },
+          {
+            "operation": "READ",
+            "source": "msg[idx]",
+            "size": 8,
+            "description": "load heap pointer at index"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg[idx] (dereferenced heap buffer)",
+            "size": "msg_size[idx]-1",
+            "description": "read(0, msg[idx], msg_size[idx]-1) writes to heap buffer"
+          }
+        ],
+        "calls": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort",
+          "read",
+          "puts",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "read_cookie",
+        "address": "0x1751",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "cookie_index",
+            "source": "scanf(%llu)",
+            "type": "unsigned long long",
+            "stored_at": "rbp-0x10"
+          }
+        ],
+        "checks": [
+          "idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "msg[idx]",
+            "size": 8,
+            "description": "load heap pointer at index"
+          },
+          {
+            "operation": "READ",
+            "source": "msg[idx] (dereferenced)",
+            "description": "printf uses msg[idx] as string argument to print cookie content"
+          }
+        ],
+        "calls": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "menu",
+        "address": "0x17fd",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "__stack_chk_fail"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "puts",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "main",
+        "address": "0x187f",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "menu",
+          "__isoc99_scanf",
+          "eat_cookie",
+          "create_cookie",
+          "edit_cookie",
+          "read_cookie",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "choice",
+            "source": "scanf(%lld)",
+            "type": "long long int",
+            "stored_at": "rbp-0x10"
+          }
+        ],
+        "checks": [
+          "choice == 1: eat_cookie",
+          "choice == 2: create_cookie",
+          "choice == 3: edit_cookie",
+          "choice == 4: read_cookie",
+          "choice == 5: exit",
+          "default: loop back to menu"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "init",
+          "menu",
+          "__isoc99_scanf",
+          "eat_cookie",
+          "create_cookie",
+          "edit_cookie",
+          "read_cookie",
+          "exit"
+        ]
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "edit_cookie",
+        "input": "cookie_index (scanf %llu, unsigned long long)",
+        "operation": "WRITE to msg[idx] dereferenced heap buffer, size from msg_size[idx]-1",
+        "risk": "HIGH",
+        "reason": "Index read as unsigned long long with only upper-bound check (idx < cookie_num). No lower bound check. Negative values (large unsigned) pass the check and index into msg[] before 0x4060, potentially hitting urandom(0x41e0), cookie_num(0x41e8), or other BSS globals. msg_size[idx] for negative idx reads from before 0x4160. The read destination msg[idx] for negative idx loads an arbitrary 8-byte value as a heap pointer, and read() writes to that address."
+      },
+      {
+        "function": "read_cookie",
+        "input": "cookie_index (scanf %llu, unsigned long long)",
+        "operation": "READ msg[idx] dereferenced as string, printed via printf",
+        "risk": "HIGH",
+        "reason": "Same missing lower bound check as edit_cookie. Negative index loads msg[idx] as a pointer and printf prints the string at that address. Potential arbitrary read if attacker controls the pointer value at negative offset."
+      },
+      {
+        "function": "eat_cookie",
+        "input": "random index from /dev/urandom",
+        "operation": "FREE msg[random_idx], then swap msg[cookie_num-1] into msg[random_idx]",
+        "risk": "MEDIUM",
+        "reason": "After free(msg[random_idx]), the freed pointer is overwritten with msg[cookie_num-1]. However, if random_idx == cookie_num-1 (last element freed), the swap writes the freed pointer back into itself (msg[last] = msg[last]), leaving a dangling pointer in the array. This pointer can be reused via edit_cookie or read_cookie. The swap does not NULL out the source slot."
+      },
+      {
+        "function": "create_cookie",
+        "input": "message_length (scanf %lld, signed long long)",
+        "operation": "calloc(message_length, 1) then read(0, buf, message_length)",
+        "risk": "MEDIUM",
+        "reason": "Size checked with cmp rax,0x100; jle (signed <= 256). Negative values pass the check. calloc with negative size (interpreted as huge unsigned by calloc internally) may fail or return small allocation. read() then uses the original signed value as count, which on x86-64 syscall uses the 64-bit value directly."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is PIE, dynamically linked, not stripped, compiled with GCC 10.2.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "msg[] is a char* array at 0x4060, 32 elements (256 bytes) in .bss",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "msg_size[] is an int array at 0x4160, 32 elements (128 bytes) in .bss, immediately after msg[]",
+        "source": "ELF"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "cookie_num is a long at 0x41e8, initialized to 5 by init()",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "urandom (FILE*) is at 0x41e0, 8 bytes before cookie_num",
+        "source": "ELF"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "init() creates 5 fortune cookies via strdup, stores pointers in msg[0..4], sizes in msg_size[0..4], sets cookie_num=5",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "create_cookie reads message_length via scanf(%lld), checks size <= 0x100 (signed jle), allocates calloc(size,1), reads data into heap buffer, stores pointer in msg[cookie_num] and size in msg_size[cookie_num], increments cookie_num",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "eat_cookie reads 1 byte from /dev/urandom, computes random_idx = byte % cookie_num, prints msg[random_idx], frees msg[random_idx], swaps msg[cookie_num-1] into msg[random_idx] and msg_size[cookie_num-1] into msg_size[random_idx], decrements cookie_num",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "edit_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Reads msg_size[idx]-1 bytes into msg[idx] buffer via read(0, msg[idx], msg_size[idx]-1)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "read_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Prints msg[idx] as string via printf",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "edit_cookie and read_cookie index check is 'cmp rdx,rax; jl' where rdx=user_idx (unsigned) and rax=cookie_num. jl is signed less-than. For negative values (bit 63 set), signed comparison treats them as negative, so they pass the < cookie_num check",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "eat_cookie swap: when random_idx == cookie_num-1, the code reads msg[cookie_num-1] and writes it back to msg[random_idx] which is the same slot, leaving the freed pointer in the array",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "GOT is at 0x3f58, size 0xa8, writable in ELF but Full RELRO means it is made read-only at runtime after relocation",
+        "source": "ELF"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "alarm(60) called in init(), providing a 60-second timeout",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "create_cookie size check uses signed comparison (jle). A negative size value (e.g. -1) passes the <= 0x100 check. calloc(-1, 1) passes a huge value to calloc which likely returns NULL. read(0, NULL, -1) would then be called",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "Layout: msg[0x4060] (256B) -> msg_size[0x4160] (128B) -> gap (0x41e0-0x41e0=0) -> urandom[0x41e0] (8B) -> cookie_num[0x41e8] (8B). msg_size ends at 0x41e0, urandom starts at 0x41e0, contiguous",
+        "source": "ELF"
+      },
+      {
+        "id": "F019",
+        "type": "DERIVED",
+        "description": "For edit_cookie with negative index N: msg[N] is at 0x4060 + N*8. For N=-1, address = 0x4058 (in .data section, before .bss). For N=-2, address = 0x4050. msg_size[N] is at 0x4160 + N*4. For N=-1, address = 0x415c (within msg[] array region)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F020",
+        "type": "DERIVED",
+        "description": "For edit_cookie, a negative index that lands msg[idx] on a controllable or known value would cause read() to write to that address (treating it as a heap pointer). A negative index that lands msg_size[idx] on a controllable value would control the read length",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether calloc with negative size returns NULL or a small allocation depends on glibc 2.39 internal behavior",
+        "reason": "Need dynamic verification of calloc with negative/massive size argument"
+      },
+      {
+        "id": "U002",
+        "description": "Whether the eat_cookie self-swap (random_idx == cookie_num-1) actually leaves a usable dangling pointer depends on whether the freed chunk is immediately reused by subsequent allocations",
+        "reason": "Need dynamic verification of heap behavior after free in eat_cookie"
+      },
+      {
+        "id": "U003",
+        "description": "CET (IBT/SHSTK) status cannot be determined from ELF alone; depends on kernel and CPU support at runtime",
+        "reason": "No CET markers found in ELF, but runtime enforcement depends on kernel configuration"
+      },
+      {
+        "id": "U004",
+        "description": "ASLR status cannot be confirmed from static analysis",
+        "reason": "ASLR is a kernel/runtime setting"
+      },
+      {
+        "id": "U005",
+        "description": "The exact heap layout and chunk sizes from the 5 initial strdup allocations in init() need dynamic verification",
+        "reason": "strdup allocates strlen+1 bytes; exact sizes depend on string lengths which are known but heap allocator behavior (alignment, tcache) needs runtime confirmation"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=84dab319bf6fe22134cf0338cbd8071fd8bc06c2, not stripped. Entry=0x1110. 11 program headers, 29 sections.",
+      "sections": ".text@0x1110(0x891,AX) .rodata@0x2000(0x266,A) .data@0x4000(0x10,WA) .bss@0x4020(0x1d0,WA) .got@0x3f58(0xa8,WA) .plt@0x1020(0xe0,AX) .init@0x1000(0x17,AX) .fini@0x19a4(0x9,AX) .init_array@0x3d58(0x8,WA) .fini_array@0x3d60(0x8,WA) .eh_frame@0x22e0(0x1e0,A) .eh_frame_hdr@0x2268(0x74,A)",
+      "symbols": "Key functions: _abort@0x11f5 init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd main@0x187f. Globals: msg@0x4060(256B) msg_size@0x4160(128B) urandom@0x41e0(8B) cookie_num@0x41e8(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040",
+      "disassembly": "main: scanf(%lld)->switch(1=eat,2=create,3=edit,4=read,5=exit). create_cookie: scanf(%lld) size, check <=0x100(signed jle), calloc(size,1), read(0,buf,size), store in msg[cookie_num]/msg_size[cookie_num], cookie_num++. eat_cookie: fread urandom byte, idx=byte%cookie_num, printf(msg[idx]), free(msg[idx]), msg[idx]=msg[cookie_num-1], msg_size[idx]=msg_size[cookie_num-1], cookie_num--. edit_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), read(0,msg[idx],msg_size[idx]-1). read_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), printf(msg[idx])."
+    }
+  },
+  "binary_info": null,
+  "_saved": "/work/test/stage1.json"
+}
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+[11:55:56] [hide] /work/0001-2020-1. ROP/exploit → /tmp/_leanagent_hidden/work_0001-2020-1. ROP_exploit
+[11:55:56] [hide] /work/0010-2021-30-fortunecookie1/exploit → /tmp/_leanagent_hidden/work_0010-2021-30-fortunecookie1_exploit
+[11:55:56] [hide] /work/0011-2021-31-fortunecookie2/exploit → /tmp/_leanagent_hidden/work_0011-2021-31-fortunecookie2_exploit
+
+=== semantic (bug_id=-) ===
+[11:55:56]	[[semantic]] → 调用 GLM...
+[11:56:00]	[[semantic]] ← GLM 响应 (3.2s)
+	[[semantic]] 我将基于 S1 提供的二进制事实进行语义级漏洞分析。首先需要验证几个关键的反汇编细节，特别是边界检查的具体实现、索引的类型转换以及 eat_cookie 的 swap 逻辑。
+[11:56:00]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'read_cookie', 'lines': 80})
+[11:56:00]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'edit_cookie', 'lines': 120})
+[11:56:00]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'eat_cookie', 'lines': 120})
+[11:56:00]	[[semantic]] ← [tool:disassemble] content='0000000000001628 <edit_cookie>:\n    1628:\tpush   rbp\n    1629:\tmov    rbp,rsp\n    162c:\tsub    rsp,0x20\n    1630:\tmov    rax,QWORD PTR fs:0x28\n    1639:\tmov    QWORD PTR [rbp-0x8],r
+[11:56:00]	[[semantic]] ← [tool:disassemble] content='00000000000014e1 <eat_cookie>:\n    14e1:\tpush   rbp\n    14e2:\tmov    rbp,rsp\n    14e5:\tsub    rsp,0x10\n    14e9:\tmov    rax,QWORD PTR fs:0x28\n    14f2:\tmov    QWORD PTR [rbp-0x8],ra
+[11:56:00]	[[semantic]] ← [tool:disassemble] content='0000000000001751 <read_cookie>:\n    1751:\tpush   rbp\n    1752:\tmov    rbp,rsp\n    1755:\tsub    rsp,0x10\n    1759:\tmov    rax,QWORD PTR fs:0x28\n    1762:\tmov    QWORD PTR [rbp-0x8],r
+[11:56:00]	[[semantic]] → 调用 GLM...
+[11:56:02]	[[semantic]] ← GLM 响应 (2.2s)
+	[[semantic]] 现在让我验证 create_cookie 的反汇编，特别是 size 检查和 calloc/read 的类型处理：
+[11:56:02]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'create_cookie', 'lines': 120})
+[11:56:02]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'init', 'lines': 150})
+[11:56:02]	[[semantic]] ← [tool:disassemble] content='0000000000001232 <init>:\n    1232:\tpush   rbp\n    1233:\tmov    rbp,rsp\n    1236:\tsub    rsp,0x10\n    123a:\tmov    rax,QWORD PTR fs:0x28\n    1243:\tmov    QWORD PTR [rbp-0x8],rax\n   
+[11:56:02]	[[semantic]] ← [tool:disassemble] content='0000000000001399 <create_cookie>:\n    1399:\tpush   rbp\n    139a:\tmov    rbp,rsp\n    139d:\tsub    rsp,0x20\n    13a1:\tmov    rax,QWORD PTR fs:0x28\n    13aa:\tmov    QWORD PTR [rbp-0x8]
+[11:56:02]	[[semantic]] → 调用 GLM...
+[11:56:07]	[[semantic]] ← GLM 响应 (4.8s)
+	[[semantic]] 现在我已经有了所有关键函数的反汇编。让我验证几个关键点：
+
+1. **edit_cookie/read_cookie 的索引检查**：`cmp rdx,rax; jl` — rdx 是用户输入（scanf %llu 存为 unsigned long long），rax 是 cookie_num。`jl` 是有符号比较。当用户输入一个 bit63=1 的大值（如 0xFFFFFFFFFFFFFFFF = -1 有符号），有符号比较 -1 < 5 为真，通过检查。
+
+2. **edit_cookie 的数组访问**：`lea rdx,[rax*4+0x0]` + `lea rax,[rip+...
+[11:56:07]	[[semantic]] → 工具 disassemble({'binary': '/work/test/target', 'function': 'main', 'lines': 80})
+[11:56:07]	[[semantic]] → 工具 list_strings({'binary': '/work/test/target', 'filter': '%', 'max_lines': 30})
+[11:56:07]	[[semantic]] ← [tool:disassemble] content='000000000000187f <main>:\n    187f:\tpush   rbp\n    1880:\tmov    rbp,rsp\n    1883:\tsub    rsp,0x10\n    1887:\tmov    rax,QWORD PTR fs:0x28\n    1890:\tmov    QWORD PTR [rbp-0x8],rax\n   
+[11:56:07]	[[semantic]] ← [tool:list_strings] content='%lld\nWhich cookie?[0-%d]: \n%llu\n' name='list_strings' tool_call_id='call_8c563019f1c649ea97798b3a'
+[11:56:07]	[[semantic]] → 调用 GLM...
+[11:56:09]	[[semantic]] ← GLM 响应 (2.5s)
+	[[semantic]] 现在让我验证 BSS 布局和负索引的具体效果。我需要确认 .data 段的内容（0x4000-0x4010）以及负索引能访问到什么：
+[11:56:09]	[[semantic]] → 工具 global_vars({'binary': '/work/test/target', 'max_lines': 30})
+[11:56:09]	[[semantic]] → 工具 sections({'binary': '/work/test/target'})
+[11:56:09]	[[semantic]] ← [tool:sections] content='There are 29 section headers, starting at offset 0x3d10:\n\nSection Headers:\n  [Nr] Name              Type             Address           Offset\n       Size              EntSize          Fla
+[11:56:09]	[[semantic]] ← [tool:global_vars] content='    18: 0000000000004020     8 OBJECT  GLOBAL DEFAULT   24 stdout@GLIBC_2.2.5 (2)\n    20: 0000000000004030     8 OBJECT  GLOBAL DEFAULT   24 stdin@GLIBC_2.2.5 (2)\n    21: 0000000000004040  
+[11:56:09]	[[semantic]] → 调用 GLM...
+[11:56:15]	[[semantic]] ← GLM 响应 (5.2s)
+	[[semantic]] 现在我有了完整的内存布局。让我验证关键的负索引访问效果。我需要确认：
+
+1. **msg[] 负索引**：msg 在 0x4060，msg[-1] = 0x4058（在 .data 段），msg[-2] = 0x4050
+2. **msg_size[] 负索引**：msg_size 在 0x4160，msg_size[-1] = 0x415c（在 msg[] 数组内部，msg[31] 的高 4 字节）
+
+让我用 GDB 动态验证负索引的实际效果，确认边界检查确实被绕过：
+[11:56:15]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0x5c; run; x/4gx 0x4060; x/4gx 0x4150; x/4gx 0x41e0; info registers rdx rax', 'stdin': '3\)
+[11:56:15]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1684\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:15]	[[semantic]] → 调用 GLM...
+[11:56:20]	[[semantic]] ← GLM 响应 (5.4s)
+	[[semantic]] 断点命中了，说明负索引（-1 = 0xFFFFFFFFFFFFFFFF）确实通过了 `jl` 检查（-1 < 5 为真）。PIE 导致地址需要加基址。让我重新用正确的基址验证：
+[11:56:20]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0x5c; run; info proc mappings; x/4gx $rip-0x1684+0x4060; x/4gx $rip-0x1684+0x4150; x/4gx $)
+[11:56:20]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1684\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:20]	[[semantic]] → 调用 GLM...
+[11:56:28]	[[semantic]] ← GLM 响应 (7.7s)
+	[[semantic]] 断点命中了，确认了负索引 -1 (0xFFFFFFFFFFFFFFFF) 通过了 `jl` 检查。现在我可以看到：
+
+- `msg` 基址 = 0x555555558060
+- `msg[-1]` = 地址 0x555555558058（在 .data 段，`__dso_handle` 附近）
+- `msg_size` 基址 = 0x555555558160
+- `msg_size[-1]` = 地址 0x55555555815c（在 msg[] 数组内部，msg[31] 的高 4 字节 = 0x00000000）
+- `urandom` = 0x5555555581e0，`cookie_nu
+[11:56:28]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0x5c; run; ni; x/1i $rip; ni; x/1i $rip; ni; x/1i $rip; ni; x/1i $rip; ni; x/1i $rip; ni; )
+[11:56:28]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1684\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:28]	[[semantic]] → 调用 GLM...
+[11:56:35]	[[semantic]] ← GLM 响应 (6.7s)
+	[[semantic]] 关键发现！当 idx = -1 (0xFFFFFFFFFFFFFFFF) 时：
+
+- `msg_size[idx]` 的地址计算：`lea rdx,[rax*4+0x0]` → rdx = 0xFFFFFFFFFFFFFFFF * 4 = 0xFFFFFFFFFFFFFFFC (-4)，然后 `lea rax,[rip+...msg_size]` → rax = 0x555555558160，最终 `mov eax,[rdx+rax*1]` → 读取地址 0x555555558160 + (-4) = 0x55555555815c
+
+- `eax = 0` — 这意味着 `msg_size[-
+[11:56:35]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0xb6; run; info registers rax rdx rsi rdi; x/1gx $rsi', 'stdin': '3\n18446744073709551615\)
+[11:56:35]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16de\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:35]	[[semantic]] → 调用 GLM...
+[11:56:41]	[[semantic]] ← GLM 响应 (6.3s)
+	[[semantic]] 非常重要的发现！当 idx = -1 时：
+
+- `msg[-1]` 的值 = 0（.data 段中 0x4058 处的内容为 0）
+- `read(0, 0x0, 0xFFFFFFFFFFFFFFFF)` — read 的目标地址是 NULL (0x0)！
+
+这会导致 `read()` 尝试写入地址 0，触发 SIGSEGV（NULL pointer dereference）。但更重要的是，如果攻击者能控制 msg[-1] 处的值（即 .data 段中 0x4058 处的值），就能让 read 写入任意地址。
+
+让我检查 .data 段的实际内容，以及哪些负索引能命中可控制的值：
+[11:56:41]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0x5c; run; x/8gx $rip-0x1684+0x4000; x/8gx $rip-0x1684+0x4040; x/8gx $rip-0x1684+0x4050; x)
+[11:56:41]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1684\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:41]	[[semantic]] → 调用 GLM...
+[11:56:52]	[[semantic]] ← GLM 响应 (10.5s)
+	[[semantic]] 现在我看到了完整的内存布局。关键发现：
+
+- `msg[-1]` = 地址 0x4058 = 0x0000000000000000（NULL）
+- `msg[-2]` = 地址 0x4050 = 0x0000000000000000
+- `msg[-3]` = 地址 0x4048 = stderr 的值 (0x00007ffff7fa74e0) — 这是一个 FILE* 指针！
+- `msg[-4]` = 地址 0x4040 = 0x0000000000000000（stderr 的低 8 字节... 不对，stderr 在 0x4040）
+
+等等，让我重新看：
+- 0x4020: stdou
+[11:56:52]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *read_cookie+0x6a; run; info registers rdx rax; ni; x/1i $rip; ni; x/1i $rip; ni; x/1i $rip; ni; info r)
+[11:56:52]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x17bb\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:52]	[[semantic]] → 调用 GLM...
+[11:56:57]	[[semantic]] ← GLM 响应 (4.8s)
+	[[semantic]] 非常重要的发现！当 idx = -4 (0xFFFFFFFFFFFFFFFC) 时：
+
+- `read_cookie` 的边界检查 `cmp rdx,rax; jl` → rdx = -4 (有符号), rax = 5 → -4 < 5 = true，通过检查
+- `msg[-4]` = 地址 0x4040 = stderr FILE* 指针 = 0x00007ffff7fa74e0
+- printf 会把这个地址当作字符串打印，导致信息泄露（读取 FILE 结构体内容作为字符串）
+
+现在让我验证 create_cookie 的负 size 行为：
+[11:56:57]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; info registers rax; ni; x/1i $rip; ni; info registers rax rdi rsi', 'stdin': )
+[11:56:57]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:56:57]	[[semantic]] → 调用 GLM...
+[11:57:00]	[[semantic]] ← GLM 响应 (3.6s)
+	[[semantic]] 确认了！`create_cookie` 中 size = -1：
+- `cmp rax, 0x100; jle` → -1 <= 256 = true（有符号比较），通过检查
+- `calloc(-1, 1)` → rdi = 0xFFFFFFFFFFFFFFFF，这是一个巨大的值
+
+让我看 calloc 返回什么：
+[11:57:00]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; ni; ni; ni; ni; info registers rax rdi rsi; b *create_cookie+0x8a; c; info re)
+[11:57:00]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:00]	[[semantic]] → 调用 GLM...
+[11:57:06]	[[semantic]] ← GLM 响应 (5.1s)
+	[[semantic]] 重要发现！`create_cookie` 中 size = -1：
+
+1. `calloc(-1, 1)` → calloc 内部处理巨大 size，返回了一个非 NULL 的指针（0x555555556181，看起来是堆上的某个地址）。等等，让我重新看 — 实际上 rax=0x0 在 calloc 调用前，但 calloc 返回后...
+
+让我重新分析：断点在 0x1416（calloc 调用前），然后 ni 执行到 calloc 调用。但看起来 calloc 返回了 NULL（因为 SIGSEGV 发生在 `movzbl (%rax),%eax` 其中 rax=0xFFFFFFFFFFFF
+[11:57:06]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; ni; ni; ni; ni; ni; info registers rax', 'stdin': '2\n-1\n', 'timeout': 10})
+[11:57:06]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:06]	[[semantic]] → 调用 GLM...
+[11:57:08]	[[semantic]] ← GLM 响应 (2.3s)
+	[[semantic]] 等等，rax=0x14=20？这不对。让我更仔细地跟踪 calloc 的返回值：
+[11:57:08]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; ni; ni; ni; ni; ni; ni; ni; info registers rax rdi rsi rdx', 'stdin': '2\n-1\)
+[11:57:08]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:08]	[[semantic]] → 调用 GLM...
+[11:57:13]	[[semantic]] ← GLM 响应 (4.5s)
+	[[semantic]] 让我更精确地跟踪。我需要在 calloc 调用后立即检查返回值：
+[11:57:13]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; ni; ni; ni; ni; ni; ni; ni; ni; ni; info registers rax rdi rsi rdx', 'stdin':)
+[11:57:13]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:13]	[[semantic]] → 调用 GLM...
+[11:57:19]	[[semantic]] ← GLM 响应 (5.9s)
+	[[semantic]] 现在清楚了！在 `read(0, buf, size)` 调用前：
+- rax = 0x0 (buf = NULL，calloc 返回了 NULL)
+- rdx = 0xFFFFFFFFFFFFFFFF (size = -1)
+- rdi = 0x0 (fd = stdin)
+
+所以 `read(0, NULL, -1)` 被调用。read 系统调用会返回 -1（EFAULT），然后代码尝试 `movzbl (%rax),%eax` 其中 rax=-1，导致 SIGSEGV。
+
+但更重要的是，如果 calloc 返回非 NULL（比如对于较小的负值），read 会用原始的负 size 值写入。
+[11:57:19]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *create_cookie+0x7d; run; ni; ni; ni; ni; ni; ni; ni; ni; ni; info registers rax rdi rsi rdx', 'stdin':)
+[11:57:19]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1416\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:19]	[[semantic]] → 调用 GLM...
+[11:57:22]	[[semantic]] ← GLM 响应 (3.6s)
+	[[semantic]] calloc(-8, 1) 也返回 NULL。这是因为 calloc 内部会将 size 转换为 size_t（无符号），-8 变成 0xFFFFFFFFFFFFFFF8，这是一个巨大的值，calloc 分配失败返回 NULL。
+
+现在让我验证 eat_cookie 的 UAF 场景。关键问题是：当 random_idx == cookie_num-1 时，swap 是否会留下悬垂指针：
+[11:57:22]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0xae; run; info registers rax rdx rcx; x/1gx $rcx+$rax*1; x/1gx $rip-0x1587+0x4060; x/1gx $)
+[11:57:22]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x158f\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:57:22]	[[semantic]] → 调用 GLM...
+[11:57:32]	[[semantic]] ← GLM 响应 (9.6s)
+	[[semantic]] 断点位置不对。让我重新设置断点在 free 调用后、swap 操作处：
+[11:57:32]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x12; run; info registers rax; x/8gx $rip-0x14e1+0x4060; x/1gx $rip-0x14e1+0x41e8; ni; ni; )
+[11:57:32]	[[semantic]] ← [tool:gdb_run] content="t_cookie ()\n0x00005555555555fc in eat_cookie ()\n0x00005555555555ff in eat_cookie ()\n0x0000555555555606 in eat_cookie ()\n0x000055555555560a in eat_cookie ()\n0x0000555555555611 in eat_cook
+[11:57:32]	[[semantic]] → 调用 GLM...
+[11:57:58]	[[semantic]] ← GLM 响应 (25.6s)
+	[[semantic]] 好的，程序执行了两次 eat_cookie。让我更精确地分析 eat_cookie 的 swap 逻辑。关键代码在 0x1593-0x15c6：
+
+```
+1593: mov rax, [cookie_num]       ; rax = cookie_num
+159a: sub rax, 0x1                ; rax = cookie_num - 1
+159e: mov edx, [rbp-0xc]         ; edx = random_idx
+15a1: lea rcx,[rax*8+0x0]        ; rcx = (cookie_num-1)*8
+15
+[11:57:58]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x2f; run; x/8gx $rip-0x14e1+0x4060; x/1gx $rip-0x14e1+0x41e8; info registers rax; ni; ni; )
+[11:57:58]	[[semantic]] ← [tool:gdb_run] content='eing run.\nThe program is not being run.\nThe program is not being run.\nThe program is not being run.\nThe program is not being run.\nThe program is not being run.\nThe program is not being 
+[11:57:58]	[[semantic]] → 调用 GLM...
+[11:58:01]	[[semantic]] ← GLM 响应 (3.0s)
+	[[semantic]] 让我用更简洁的方式验证 eat_cookie 的 swap 逻辑。我需要在 free 之后、swap 之后检查 msg 数组的状态：
+[11:58:01]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; x/8gx $rip-0x1626+0x4060; x/1gx $rip-0x1626+0x41e8; info registers', 'stdin': ')
+[11:58:01]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:01]	[[semantic]] → 调用 GLM...
+[11:58:12]	[[semantic]] ← GLM 响应 (11.4s)
+	[[semantic]] 非常关键的发现！让我分析这次 eat_cookie 的执行：
+
+初始状态：cookie_num=5, msg[0..4] = {0x9480, 0x94e0, 0x9520, 0x9540, 0x9580}
+
+执行后：
+- msg[0] = 0x9580（原 msg[4] 的值，被 swap 到 msg[0]）
+- msg[1] = 0x94e0（不变）
+- msg[2] = 0x9520（不变）
+- msg[3] = 0x9540（不变）
+- msg[4] = 0x9580（原 msg[4] 的值，没有被清除！）
+- cookie_num = 4
+
+所以这次 random_idx=0（打印了
+[11:58:12]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; x/1gx $rip-0x1626+0x41e8; x/8gx $rip-0x1626+0x4060; c; x/1gx $rip-0x1626+0x41e8)
+[11:58:12]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:12]	[[semantic]] → 调用 GLM...
+[11:58:24]	[[semantic]] ← GLM 响应 (11.9s)
+	[[semantic]] 非常好！让我分析这 5 次 eat_cookie 的执行：
+
+**第 1 次** (cookie_num 5→4):
+- 打印 "Every 60 seconds..." → random_idx=1 (msg[1]=0x94e0)
+- free(msg[1]=0x94e0)
+- msg[1] = msg[4] = 0x9580
+- 结果：msg = [0x9480, 0x9580, 0x9520, 0x9540, 0x9580], cookie_num=4
+- msg[4]=0x9580 保留（但 cookie_num=4，所以 idx=4 不在有效范围内）
+
+**第 2 次** (cook
+[11:58:24]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:24]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:24]	[[semantic]] → 调用 GLM...
+[11:58:30]	[[semantic]] ← GLM 响应 (5.2s)
+	[[semantic]] 看起来 create_cookie 的第二个调用因为 "Too long!" 退出了。这是因为 stdin 中 "10" 被第一个 create_cookie 消费了，但 "AAAAAAAA" 被当作了第二个 create_cookie 的 size 输入。让我修正 stdin 序列：
+[11:58:30]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:30]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:30]	[[semantic]] → 调用 GLM...
+[11:58:34]	[[semantic]] ← GLM 响应 (4.2s)
+	[[semantic]] 看起来 "AAAA" 被当作了菜单选项而不是 size。让我用 probe_io 确认输入时序：
+[11:58:34]	[[semantic]] → 工具 probe_io({'binary': '/work/test/target', 'steps': '[{"recv_until": ">", "send": "2"}, {"recv_until": "?", "send": "10"}, {"recv_until": ":", "send": "BBBB"}]'})
+[11:58:34]	[[semantic]] ← [tool:probe_io] content="RECV: b'==Fortune Cookie==\\n1. Eat one cookie!!\\n2. Make new cookie.\\n3. Edit cookie msg.\\n4. View cookie msg.\\n5. exit\\n==================\\n>'\nSEND: '2'\nRECV: b'\\nHow long is the m
+[11:58:34]	[[semantic]] → 调用 GLM...
+[11:58:38]	[[semantic]] ← GLM 响应 (3.7s)
+	[[semantic]] 好的，输入时序清楚了。让我重新验证 UAF 场景 — 先吃掉所有 5 个 cookie，然后创建一个新的：
+[11:58:38]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:38]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:38]	[[semantic]] → 调用 GLM...
+[11:58:42]	[[semantic]] ← GLM 响应 (4.0s)
+	[[semantic]] 看起来 "BBBB" 被当作菜单选项了。问题是 read() 读取消息后，剩余的换行符或数据被下一个 scanf 消费了。让我用更长的消息来确保 read 消费掉所有输入：
+[11:58:42]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:42]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:42]	[[semantic]] → 调用 GLM...
+[11:58:48]	[[semantic]] ← GLM 响应 (5.6s)
+	[[semantic]] 问题是 read(0, buf, 10) 读取了 "1234567890" (10 字节)，但 scanf("%lld") 之前留下的换行符导致问题。让我用 hex 方式发送，确保输入格式正确：
+[11:58:48]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:48]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:48]	[[semantic]] → 调用 GLM...
+[11:58:55]	[[semantic]] ← GLM 响应 (7.3s)
+	[[semantic]] 问题是 read(0, buf, 10) 读取了 "AAAAAAAAAA" (10 字节)，但没有换行符，所以 scanf 下次读取时缓冲区为空。然后第二个 "2\n10\n..." 被当作菜单选项 "2" 和 size "10"，但 "AAAAAAAAAA" 之后没有换行符，导致 scanf 读取失败。
+
+让我用更精确的方式 — read 读取 10 字节后，需要确保后续的菜单选项能被 scanf 正确读取。问题是 read 消费了 "AAAAAAAAAA" 但没有消费换行符。让我调整：
+[11:58:55]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:58:55]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:58:55]	[[semantic]] → 调用 GLM...
+[11:59:00]	[[semantic]] ← GLM 响应 (5.0s)
+	[[semantic]] 好的，两个 create_cookie 都成功了（"Done!" 出现了两次），但第三个 "2\n10\nBBBBBBBBBB" 中的 "BBBBBBBBBB" 被当作了 size，导致 "Too long!"。让我简化 — 只创建一个 cookie：
+[11:59:00]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *eat_cookie+0x145; run; c; c; c; c; c; x/1gx $rip-0x1626+0x41e8; x/4gx $rip-0x1626+0x4060; b *create_co)
+[11:59:00]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x1626\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:00]	[[semantic]] → 调用 GLM...
+[11:59:13]	[[semantic]] ← GLM 响应 (12.9s)
+	[[semantic]] 问题是 read(0, buf, 10) 读取了 "AAAAAAAAAA" (10 字节)，但没有换行符。然后 scanf("%lld") 读取菜单选项时，缓冲区中是 "\n2\n10\n" — 但等等，read 读取了 10 字节 "AAAAAAAAAA"，没有换行符。然后下一个 scanf 应该读取 "\n2\n10\n..." 中的 "2"。
+
+但问题是 read 读取了 10 字节后，代码检查最后一个字节是否为 '\n'（0x0a）。"AAAAAAAAAA" 的最后一个字节是 'A' (0x41)，不是 '\n'，所以不会设置 NULL。然后程序继续到菜单，scanf 读取 "\n2\
+[11:59:13]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *read_cookie+0x6a; run; ni; ni; ni; ni; ni; info registers rax rsi rdi; x/s $rsi', 'stdin': '4\n1844674)
+[11:59:13]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x17bb\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:13]	[[semantic]] → 调用 GLM...
+[11:59:18]	[[semantic]] ← GLM 响应 (4.8s)
+	[[semantic]] 完美！这确认了信息泄露：
+
+- `read_cookie` 用 idx=-4 (0xFFFFFFFFFFFFFFFC) 通过了边界检查
+- `msg[-4]` = 地址 0x4040 = stderr FILE* 指针 = 0x7ffff7fa74e0
+- printf 将这个地址当作字符串打印，输出了 `_IO_2_1_stderr_` 结构体的内容
+
+这是一个明确的信息泄露（INFO_LEAK）— libc 地址被泄露。
+
+现在让我验证 edit_cookie 的负索引写入场景。当 idx=-4 时，msg[-4] = stderr FILE* 指针，read() 会写入这个地址：
+[11:59:18]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0xb6; run; info registers rax rdx rsi rdi; x/1gx $rsi', 'stdin': '3\n18446744073709551612\)
+[11:59:18]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16de\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:18]	[[semantic]] → 调用 GLM...
+[11:59:25]	[[semantic]] ← GLM 响应 (7.2s)
+	[[semantic]] 极其重要的发现！当 idx=-4 时：
+
+- `msg[-4]` = stderr FILE* 指针 = 0x7ffff7fa74e0
+- `msg_size[-4]` = 地址 0x4160 + (-4)*4 = 0x4160 - 16 = 0x4150，这是 msg[] 数组内部（msg[28] 和 msg[29] 之间的某个位置）
+- `msg_size[-4]` 的值 = 0（因为 msg[28..31] 未初始化为 0）
+- `msg_size[-4] - 1` = 0 - 1 = -1 (0xFFFFFFFF)
+- `movsxd rdx, eax` → rdx = 0xFFFFF
+[11:59:25]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0xb6; run; info registers rax rdx rsi rdi; x/1gx $rsi', 'stdin': '3\n18446744073709551613\)
+[11:59:25]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16de\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:25]	[[semantic]] → 调用 GLM...
+[11:59:30]	[[semantic]] ← GLM 响应 (4.3s)
+	[[semantic]] idx=-3: msg[-3] = 地址 0x4048 = 0（stderr 之后的填充），read(0, NULL, -1) → NULL deref。
+
+让我检查 idx=-5（指向 stdin）：
+[11:59:30]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0xb6; run; info registers rax rdx rsi rdi; x/1gx $rsi', 'stdin': '3\n18446744073709551611\)
+[11:59:30]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16de\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:30]	[[semantic]] → 调用 GLM...
+[11:59:33]	[[semantic]] ← GLM 响应 (3.3s)
+	[[semantic]] idx=-5: msg[-5] = 地址 0x4038 = 0（stdin 之后的填充），read(0, NULL, -1) → NULL deref。
+
+让我检查 idx=-6（指向 stdin FILE*）：
+[11:59:33]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0xb6; run; info registers rax rdx rsi rdi; x/1gx $rsi', 'stdin': '3\n18446744073709551610\)
+[11:59:33]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16de\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:33]	[[semantic]] → 调用 GLM...
+[11:59:38]	[[semantic]] ← GLM 响应 (4.7s)
+	[[semantic]] idx=-6: msg[-6] = 地址 0x4030 = stdin FILE* 指针 = 0x7ffff7fa68e0。read(0, stdin_FILE*, -1) — 尝试写入 stdin FILE 结构体！
+
+现在让我检查 msg_size 对应的负索引值，确认写入长度：
+[11:59:38]	[[semantic]] → 工具 gdb_run({'binary': '/work/test/target', 'commands': 'b *edit_cookie+0x8e; run; x/1wx $rip-0x16b6+0x4160-0x18; x/1wx $rip-0x16b6+0x4160-0x20; x/1wx $rip-0x16b6)
+[11:59:38]	[[semantic]] ← [tool:gdb_run] content='Breakpoint 1 at 0x16b6\n[Thread debugging using libthread_db enabled]\nUsing host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".\n==Fortune Cookie==\n1. Eat one cookie!!\n2. 
+[11:59:38]	[[semantic]] → 调用 GLM...
+[12:01:01]	[[semantic]] ← GLM 响应 (82.7s)
+	[[semantic]] 确认了！对于 idx=-6：
+- `msg_size[-6]` = 地址 0x4160 + (-6)*4 = 0x4160 - 24 = 0x4148，这是 msg[] 数组内部（msg[27] 的高 4 字节）
+- 值 = 0（未使用的 msg 槽位）
+- `msg_size[-6] - 1` = 0 - 1 = -1 (0xFFFFFFFF as int)
+- `movsxd rdx, eax` → rdx = 0xFFFFFFFFFFFFFFFF (-1 as int64)
+
+所以 read 的 count = -1 (0xFFFFFFFFFFFFFFFF)，这是一个巨大的值。read 
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [semantic] ✓ VulnerabilityReport 校验通过
+[12:01:01] [restore] /work/0001-2020-1. ROP/exploit
+[12:01:01] [restore] /work/0010-2021-30-fortunecookie1/exploit
+[12:01:01] [restore] /work/0011-2021-31-fortunecookie2/exploit
+{
+  "stage": 2,
+  "binary": "/work/test/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"binary_info\":null,\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/test/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1110\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"fortunecookie.c\",\"buildid\":\"84dab319bf6fe22134cf0338cbd8071fd8bc06c2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"none\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\",\"distro\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[\"libc.so.6\",\"ld-linux-x86-64.so.2\"]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"Eat one cookie!!\",\"function\":\"eat_cookie\",\"address\":\"0x14e1\"},{\"option\":\"2\",\"label\":\"Make new cookie.\",\"function\":\"create_cookie\",\"address\":\"0x1399\"},{\"option\":\"3\",\"label\":\"Edit cookie msg.\",\"function\":\"edit_cookie\",\"address\":\"0x1628\"},{\"option\":\"4\",\"label\":\"View cookie msg.\",\"function\":\"read_cookie\",\"address\":\"0x1751\"},{\"option\":\"5\",\"label\":\"exit\",\"function\":\"exit\",\"address\":\"0x10e0\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%lld)\",\"function\":\"main\",\"type\":\"long long int\",\"controls\":\"dispatch to eat/create/edit/read/exit\"},{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"function\":\"create_cookie\",\"type\":\"long long int\",\"controls\":\"calloc size and read length\",\"check\":\"cmp rax,0x100; jle (size <= 256)\"},{\"name\":\"cookie_index_edit\",\"source\":\"scanf(%llu)\",\"function\":\"edit_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[] and msg_size[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"},{\"name\":\"cookie_index_read\",\"source\":\"scanf(%llu)\",\"function\":\"read_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1110\",\"size\":\"0x891\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x266\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f58\",\"size\":\"0xa8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xe0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x19a4\",\"size\":\"0x9\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d58\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x22e0\",\"size\":\"0x1e0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2268\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"msg\",\"address\":\"0x4060\",\"size\":256,\"section\":\".bss\",\"type\":\"pointer_array\",\"element_size\":8,\"count\":32,\"element_type\":\"char* (heap pointer)\"},{\"name\":\"msg_size\",\"address\":\"0x4160\",\"size\":128,\"section\":\".bss\",\"type\":\"int_array\",\"element_size\":4,\"count\":32,\"element_type\":\"int (message size)\"},{\"name\":\"urandom\",\"address\":\"0x41e0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (fopen of /dev/urandom)\"},{\"name\":\"cookie_num\",\"address\":\"0x41e8\",\"size\":8,\"section\":\".bss\",\"type\":\"long (current count of cookies, initialized to 5 by init)\"}],\"got\":[{\"offset\":\"0x3f70\",\"type\":\"free\",\"value\":\"0x1030\"},{\"offset\":\"0x3f78\",\"type\":\"puts\",\"value\":\"0x1040\"},{\"offset\":\"0x3f80\",\"type\":\"fread\",\"value\":\"0x1050\"},{\"offset\":\"0x3f88\",\"type\":\"__stack_chk_fail\",\"value\":\"0x1060\"},{\"offset\":\"0x3f90\",\"type\":\"printf\",\"value\":\"0x1070\"},{\"offset\":\"0x3f98\",\"type\":\"alarm\",\"value\":\"0x1080\"},{\"offset\":\"0x3fa0\",\"type\":\"read\",\"value\":\"0x1090\"},{\"offset\":\"0x3fa8\",\"type\":\"calloc\",\"value\":\"0x10a0\"},{\"offset\":\"0x3fb0\",\"type\":\"setvbuf\",\"value\":\"0x10b0\"},{\"offset\":\"0x3fb8\",\"type\":\"fopen\",\"value\":\"0x10c0\"},{\"offset\":\"0x3fc0\",\"type\":\"__isoc99_scanf\",\"value\":\"0x10d0\"},{\"offset\":\"0x3fc8\",\"type\":\"exit\",\"value\":\"0x10e0\"},{\"offset\":\"0x3fd0\",\"type\":\"strdup\",\"value\":\"0x10f0\"}],\"plt\":[{\"offset\":\"0x1030\",\"symbol\":\"free\"},{\"offset\":\"0x1040\",\"symbol\":\"puts\"},{\"offset\":\"0x1050\",\"symbol\":\"fread\"},{\"offset\":\"0x1060\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x1070\",\"symbol\":\"printf\"},{\"offset\":\"0x1080\",\"symbol\":\"alarm\"},{\"offset\":\"0x1090\",\"symbol\":\"read\"},{\"offset\":\"0x10a0\",\"symbol\":\"calloc\"},{\"offset\":\"0x10b0\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x10c0\",\"symbol\":\"fopen\"},{\"offset\":\"0x10d0\",\"symbol\":\"__isoc99_scanf\"},{\"offset\":\"0x10e0\",\"symbol\":\"exit\"},{\"offset\":\"0x10f0\",\"symbol\":\"strdup\"}]},\"functions\":[{\"name\":\"_abort\",\"address\":\"0x11f5\",\"callers\":[\"init\",\"create_cookie\",\"eat_cookie\",\"edit_cookie\",\"read_cookie\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"rdi\",\"source\":\"caller argument (error message string)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"]},{\"name\":\"init\",\"address\":\"0x1232\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[\"urandom != NULL (jne to continue, else _abort)\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"urandom (0x41e0)\",\"size\":8,\"description\":\"store fopen result\"},{\"operation\":\"WRITE\",\"destination\":\"msg[0] (0x4060)\",\"size\":8,\"description\":\"strdup(fortune_string_1)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[0] (0x4160)\",\"size\":4,\"value\":\"0x50\"},{\"operation\":\"WRITE\",\"destination\":\"msg[1] (0x4068)\",\"size\":8,\"description\":\"strdup(fortune_string_2)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[1] (0x4164)\",\"size\":4,\"value\":\"0x30\"},{\"operation\":\"WRITE\",\"destination\":\"msg[2] (0x4070)\",\"size\":8,\"description\":\"strdup(fortune_string_3)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[2] (0x4168)\",\"size\":4,\"value\":\"0x18\"},{\"operation\":\"WRITE\",\"destination\":\"msg[3] (0x4078)\",\"size\":8,\"description\":\"strdup(fortune_string_4)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[3] (0x416c)\",\"size\":4,\"value\":\"0x38\"},{\"operation\":\"WRITE\",\"destination\":\"msg[4] (0x4080)\",\"size\":8,\"description\":\"strdup(fortune_string_5)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[4] (0x4170)\",\"size\":4,\"value\":\"0x40\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num (0x41e8)\",\"size\":8,\"value\":\"5\"}],\"calls\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"]},{\"name\":\"create_cookie\",\"address\":\"0x1399\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x18\"},{\"name\":\"message_data\",\"source\":\"read(0, buf, message_length)\",\"type\":\"raw bytes\"}],\"checks\":[\"cookie_num <= 0x1f (31), else _abort (max 32 cookies)\",\"message_length <= 0x100 (256), else _abort (signed comparison, no lower bound check)\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"calloc(message_length, 1)\",\"description\":\"allocate heap buffer of user-specified size\"},{\"operation\":\"WRITE\",\"destination\":\"heap buffer\",\"size\":\"message_length\",\"description\":\"read(0, heap_buf, message_length)\"},{\"operation\":\"WRITE\",\"destination\":\"msg[cookie_num]\",\"size\":8,\"description\":\"store heap pointer into msg array\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[cookie_num]\",\"size\":4,\"description\":\"store message_length into msg_size array\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num += 1\"}],\"calls\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"eat_cookie\",\"address\":\"0x14e1\",\"callers\":[\"main\"],\"callees\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"random_byte\",\"source\":\"fread from /dev/urandom\",\"type\":\"char\",\"stored_at\":\"rbp-0xc\",\"description\":\"random index = random_byte % cookie_num\"}],\"checks\":[\"cookie_num != 0, else _abort\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[random_idx]\",\"size\":8,\"description\":\"load heap pointer at random index\"},{\"operation\":\"READ\",\"source\":\"msg[random_idx] (dereferenced)\",\"description\":\"printf format string uses msg[random_idx] as string argument\"},{\"operation\":\"FREE\",\"target\":\"msg[random_idx]\",\"description\":\"free(msg[random_idx])\"},{\"operation\":\"READ\",\"source\":\"msg[cookie_num-1]\",\"size\":8,\"description\":\"load last element pointer\"},{\"operation\":\"WRITE\",\"destination\":\"msg[random_idx]\",\"size\":8,\"description\":\"msg[random_idx] = msg[cookie_num-1] (swap last into freed slot)\"},{\"operation\":\"READ\",\"source\":\"msg_size[cookie_num-1]\",\"size\":4,\"description\":\"load last element size\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[random_idx]\",\"size\":4,\"description\":\"msg_size[random_idx] = msg_size[cookie_num-1] (swap size)\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num -= 1\"}],\"calls\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"]},{\"name\":\"edit_cookie\",\"address\":\"0x1628\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"},{\"name\":\"new_message\",\"source\":\"read(0, msg[idx], msg_size[idx]-1)\",\"type\":\"raw bytes\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg_size[idx]\",\"size\":4,\"description\":\"load size for index (msg_size[idx]-1 used as read length)\"},{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"WRITE\",\"destination\":\"msg[idx] (dereferenced heap buffer)\",\"size\":\"msg_size[idx]-1\",\"description\":\"read(0, msg[idx], msg_size[idx]-1) writes to heap buffer\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"read_cookie\",\"address\":\"0x1751\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"READ\",\"source\":\"msg[idx] (dereferenced)\",\"description\":\"printf uses msg[idx] as string argument to print cookie content\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"]},{\"name\":\"menu\",\"address\":\"0x17fd\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\",\"__stack_chk_fail\"]},{\"name\":\"main\",\"address\":\"0x187f\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"choice == 1: eat_cookie\",\"choice == 2: create_cookie\",\"choice == 3: edit_cookie\",\"choice == 4: read_cookie\",\"choice == 5: exit\",\"default: loop back to menu\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"]}],\"attack_surfaces\":[{\"function\":\"edit_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"WRITE to msg[idx] dereferenced heap buffer, size from msg_size[idx]-1\",\"risk\":\"HIGH\",\"reason\":\"Index read as unsigned long long with only upper-bound check (idx < cookie_num). No lower bound check. Negative values (large unsigned) pass the check and index into msg[] before 0x4060, potentially hitting urandom(0x41e0), cookie_num(0x41e8), or other BSS globals. msg_size[idx] for negative idx reads from before 0x4160. The read destination msg[idx] for negative idx loads an arbitrary 8-byte value as a heap pointer, and read() writes to that address.\"},{\"function\":\"read_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"READ msg[idx] dereferenced as string, printed via printf\",\"risk\":\"HIGH\",\"reason\":\"Same missing lower bound check as edit_cookie. Negative index loads msg[idx] as a pointer and printf prints the string at that address. Potential arbitrary read if attacker controls the pointer value at negative offset.\"},{\"function\":\"eat_cookie\",\"input\":\"random index from /dev/urandom\",\"operation\":\"FREE msg[random_idx], then swap msg[cookie_num-1] into msg[random_idx]\",\"risk\":\"MEDIUM\",\"reason\":\"After free(msg[random_idx]), the freed pointer is overwritten with msg[cookie_num-1]. However, if random_idx == cookie_num-1 (last element freed), the swap writes the freed pointer back into itself (msg[last] = msg[last]), leaving a dangling pointer in the array. This pointer can be reused via edit_cookie or read_cookie. The swap does not NULL out the source slot.\"},{\"function\":\"create_cookie\",\"input\":\"message_length (scanf %lld, signed long long)\",\"operation\":\"calloc(message_length, 1) then read(0, buf, message_length)\",\"risk\":\"MEDIUM\",\"reason\":\"Size checked with cmp rax,0x100; jle (signed <= 256). Negative values pass the check. calloc with negative size (interpreted as huge unsigned by calloc internally) may fail or return small allocation. read() then uses the original signed value as count, which on x86-64 syscall uses the 64-bit value directly.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is PIE, dynamically linked, not stripped, compiled with GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"msg[] is a char* array at 0x4060, 32 elements (256 bytes) in .bss\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"msg_size[] is an int array at 0x4160, 32 elements (128 bytes) in .bss, immediately after msg[]\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"cookie_num is a long at 0x41e8, initialized to 5 by init()\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"urandom (FILE*) is at 0x41e0, 8 bytes before cookie_num\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"init() creates 5 fortune cookies via strdup, stores pointers in msg[0..4], sizes in msg_size[0..4], sets cookie_num=5\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"create_cookie reads message_length via scanf(%lld), checks size <= 0x100 (signed jle), allocates calloc(size,1), reads data into heap buffer, stores pointer in msg[cookie_num] and size in msg_size[cookie_num], increments cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eat_cookie reads 1 byte from /dev/urandom, computes random_idx = byte % cookie_num, prints msg[random_idx], frees msg[random_idx], swaps msg[cookie_num-1] into msg[random_idx] and msg_size[cookie_num-1] into msg_size[random_idx], decrements cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"edit_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Reads msg_size[idx]-1 bytes into msg[idx] buffer via read(0, msg[idx], msg_size[idx]-1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"read_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Prints msg[idx] as string via printf\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"edit_cookie and read_cookie index check is 'cmp rdx,rax; jl' where rdx=user_idx (unsigned) and rax=cookie_num. jl is signed less-than. For negative values (bit 63 set), signed comparison treats them as negative, so they pass the < cookie_num check\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"eat_cookie swap: when random_idx == cookie_num-1, the code reads msg[cookie_num-1] and writes it back to msg[random_idx] which is the same slot, leaving the freed pointer in the array\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"GOT is at 0x3f58, size 0xa8, writable in ELF but Full RELRO means it is made read-only at runtime after relocation\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"alarm(60) called in init(), providing a 60-second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"create_cookie size check uses signed comparison (jle). A negative size value (e.g. -1) passes the <= 0x100 check. calloc(-1, 1) passes a huge value to calloc which likely returns NULL. read(0, NULL, -1) would then be called\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"Layout: msg[0x4060] (256B) -> msg_size[0x4160] (128B) -> gap (0x41e0-0x41e0=0) -> urandom[0x41e0] (8B) -> cookie_num[0x41e8] (8B). msg_size ends at 0x41e0, urandom starts at 0x41e0, contiguous\",\"source\":\"ELF\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie with negative index N: msg[N] is at 0x4060 + N*8. For N=-1, address = 0x4058 (in .data section, before .bss). For N=-2, address = 0x4050. msg_size[N] is at 0x4160 + N*4. For N=-1, address = 0x415c (within msg[] array region)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie, a negative index that lands msg[idx] on a controllable or known value would cause read() to write to that address (treating it as a heap pointer). A negative index that lands msg_size[idx] on a controllable value would control the read length\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether calloc with negative size returns NULL or a small allocation depends on glibc 2.39 internal behavior\",\"reason\":\"Need dynamic verification of calloc with negative/massive size argument\"},{\"id\":\"U002\",\"description\":\"Whether the eat_cookie self-swap (random_idx == cookie_num-1) actually leaves a usable dangling pointer depends on whether the freed chunk is immediately reused by subsequent allocations\",\"reason\":\"Need dynamic verification of heap behavior after free in eat_cookie\"},{\"id\":\"U003\",\"description\":\"CET (IBT/SHSTK) status cannot be determined from ELF alone; depends on kernel and CPU support at runtime\",\"reason\":\"No CET markers found in ELF, but runtime enforcement depends on kernel configuration\"},{\"id\":\"U004\",\"description\":\"ASLR status cannot be confirmed from static analysis\",\"reason\":\"ASLR is a kernel/runtime setting\"},{\"id\":\"U005\",\"description\":\"The exact heap layout and chunk sizes from the 5 initial strdup allocations in init() need dynamic verification\",\"reason\":\"strdup allocates strlen+1 bytes; exact sizes depend on string lengths which are known but heap allocator behavior (alignment, tcache) needs runtime confirmation\"}],\"raw\":{\"elf\":\"ELF64 LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=84dab319bf6fe22134cf0338cbd8071fd8bc06c2, not stripped. Entry=0x1110. 11 program headers, 29 sections.\",\"sections\":\".text@0x1110(0x891,AX) .rodata@0x2000(0x266,A) .data@0x4000(0x10,WA) .bss@0x4020(0x1d0,WA) .got@0x3f58(0xa8,WA) .plt@0x1020(0xe0,AX) .init@0x1000(0x17,AX) .fini@0x19a4(0x9,AX) .init_array@0x3d58(0x8,WA) .fini_array@0x3d60(0x8,WA) .eh_frame@0x22e0(0x1e0,A) .eh_frame_hdr@0x2268(0x74,A)\",\"symbols\":\"Key functions: _abort@0x11f5 init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd main@0x187f. Globals: msg@0x4060(256B) msg_size@0x4160(128B) urandom@0x41e0(8B) cookie_num@0x41e8(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040\",\"disassembly\":\"main: scanf(%lld)->switch(1=eat,2=create,3=edit,4=read,5=exit). create_cookie: scanf(%lld) size, check <=0x100(signed jle), calloc(size,1), read(0,buf,size), store in msg[cookie_num]/msg_size[cookie_num], cookie_num++. eat_cookie: fread urandom byte, idx=byte%cookie_num, printf(msg[idx]), free(msg[idx]), msg[idx]=msg[cookie_num-1], msg_size[idx]=msg_size[cookie_num-1], cookie_num--. edit_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), read(0,msg[idx],msg_size[idx]-1). read_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), printf(msg[idx]).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"\",\"summary\":{},\"vulnerabilities\":[],\"non_vulnerabilities\":[],\"unresolved\":[]},\"primitive_reports\":[],\"target_bug\":\"\",\"bug_reports\":[],\"impact_reports\":[],\"strategy_reports\":[],\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "vulnerability_report": {
+    "schema": "VulnerabilityReport",
+    "version": "1.0",
+    "status": "",
+    "summary": {},
+    "vulnerabilities": [],
+    "non_vulnerabilities": [],
+    "unresolved": []
+  },
+  "_saved": "/work/test/stage2.json"
+}
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+[12:01:04] [hide] /work/0001-2020-1. ROP/exploit → /tmp/_leanagent_hidden/work_0001-2020-1. ROP_exploit
+[12:01:04] [hide] /work/0010-2021-30-fortunecookie1/exploit → /tmp/_leanagent_hidden/work_0010-2021-30-fortunecookie1_exploit
+[12:01:04] [hide] /work/0011-2021-31-fortunecookie2/exploit → /tmp/_leanagent_hidden/work_0011-2021-31-fortunecookie2_exploit
+[12:01:04] [restore] /work/0001-2020-1. ROP/exploit
+[12:01:04] [restore] /work/0010-2021-30-fortunecookie1/exploit
+[12:01:04] [restore] /work/0011-2021-31-fortunecookie2/exploit
+{
+  "stage": 3,
+  "binary": "/work/test/target",
+  "success": false,
+  "error": "ctx.vulnerability_report 为空（先 --stage 2）",
+  "ctx_json": "{\"binary_info\":null,\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/test/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1110\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"fortunecookie.c\",\"buildid\":\"84dab319bf6fe22134cf0338cbd8071fd8bc06c2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"none\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\",\"distro\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[\"libc.so.6\",\"ld-linux-x86-64.so.2\"]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"Eat one cookie!!\",\"function\":\"eat_cookie\",\"address\":\"0x14e1\"},{\"option\":\"2\",\"label\":\"Make new cookie.\",\"function\":\"create_cookie\",\"address\":\"0x1399\"},{\"option\":\"3\",\"label\":\"Edit cookie msg.\",\"function\":\"edit_cookie\",\"address\":\"0x1628\"},{\"option\":\"4\",\"label\":\"View cookie msg.\",\"function\":\"read_cookie\",\"address\":\"0x1751\"},{\"option\":\"5\",\"label\":\"exit\",\"function\":\"exit\",\"address\":\"0x10e0\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%lld)\",\"function\":\"main\",\"type\":\"long long int\",\"controls\":\"dispatch to eat/create/edit/read/exit\"},{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"function\":\"create_cookie\",\"type\":\"long long int\",\"controls\":\"calloc size and read length\",\"check\":\"cmp rax,0x100; jle (size <= 256)\"},{\"name\":\"cookie_index_edit\",\"source\":\"scanf(%llu)\",\"function\":\"edit_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[] and msg_size[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"},{\"name\":\"cookie_index_read\",\"source\":\"scanf(%llu)\",\"function\":\"read_cookie\",\"type\":\"unsigned long long\",\"controls\":\"index into msg[]\",\"check\":\"cmp rdx,rax; jl (idx < cookie_num), no lower bound\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1110\",\"size\":\"0x891\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x266\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f58\",\"size\":\"0xa8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xe0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x19a4\",\"size\":\"0x9\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d58\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x22e0\",\"size\":\"0x1e0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2268\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"msg\",\"address\":\"0x4060\",\"size\":256,\"section\":\".bss\",\"type\":\"pointer_array\",\"element_size\":8,\"count\":32,\"element_type\":\"char* (heap pointer)\"},{\"name\":\"msg_size\",\"address\":\"0x4160\",\"size\":128,\"section\":\".bss\",\"type\":\"int_array\",\"element_size\":4,\"count\":32,\"element_type\":\"int (message size)\"},{\"name\":\"urandom\",\"address\":\"0x41e0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (fopen of /dev/urandom)\"},{\"name\":\"cookie_num\",\"address\":\"0x41e8\",\"size\":8,\"section\":\".bss\",\"type\":\"long (current count of cookies, initialized to 5 by init)\"}],\"got\":[{\"offset\":\"0x3f70\",\"type\":\"free\",\"value\":\"0x1030\"},{\"offset\":\"0x3f78\",\"type\":\"puts\",\"value\":\"0x1040\"},{\"offset\":\"0x3f80\",\"type\":\"fread\",\"value\":\"0x1050\"},{\"offset\":\"0x3f88\",\"type\":\"__stack_chk_fail\",\"value\":\"0x1060\"},{\"offset\":\"0x3f90\",\"type\":\"printf\",\"value\":\"0x1070\"},{\"offset\":\"0x3f98\",\"type\":\"alarm\",\"value\":\"0x1080\"},{\"offset\":\"0x3fa0\",\"type\":\"read\",\"value\":\"0x1090\"},{\"offset\":\"0x3fa8\",\"type\":\"calloc\",\"value\":\"0x10a0\"},{\"offset\":\"0x3fb0\",\"type\":\"setvbuf\",\"value\":\"0x10b0\"},{\"offset\":\"0x3fb8\",\"type\":\"fopen\",\"value\":\"0x10c0\"},{\"offset\":\"0x3fc0\",\"type\":\"__isoc99_scanf\",\"value\":\"0x10d0\"},{\"offset\":\"0x3fc8\",\"type\":\"exit\",\"value\":\"0x10e0\"},{\"offset\":\"0x3fd0\",\"type\":\"strdup\",\"value\":\"0x10f0\"}],\"plt\":[{\"offset\":\"0x1030\",\"symbol\":\"free\"},{\"offset\":\"0x1040\",\"symbol\":\"puts\"},{\"offset\":\"0x1050\",\"symbol\":\"fread\"},{\"offset\":\"0x1060\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x1070\",\"symbol\":\"printf\"},{\"offset\":\"0x1080\",\"symbol\":\"alarm\"},{\"offset\":\"0x1090\",\"symbol\":\"read\"},{\"offset\":\"0x10a0\",\"symbol\":\"calloc\"},{\"offset\":\"0x10b0\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x10c0\",\"symbol\":\"fopen\"},{\"offset\":\"0x10d0\",\"symbol\":\"__isoc99_scanf\"},{\"offset\":\"0x10e0\",\"symbol\":\"exit\"},{\"offset\":\"0x10f0\",\"symbol\":\"strdup\"}]},\"functions\":[{\"name\":\"_abort\",\"address\":\"0x11f5\",\"callers\":[\"init\",\"create_cookie\",\"eat_cookie\",\"edit_cookie\",\"read_cookie\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"rdi\",\"source\":\"caller argument (error message string)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"]},{\"name\":\"init\",\"address\":\"0x1232\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[\"urandom != NULL (jne to continue, else _abort)\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"urandom (0x41e0)\",\"size\":8,\"description\":\"store fopen result\"},{\"operation\":\"WRITE\",\"destination\":\"msg[0] (0x4060)\",\"size\":8,\"description\":\"strdup(fortune_string_1)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[0] (0x4160)\",\"size\":4,\"value\":\"0x50\"},{\"operation\":\"WRITE\",\"destination\":\"msg[1] (0x4068)\",\"size\":8,\"description\":\"strdup(fortune_string_2)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[1] (0x4164)\",\"size\":4,\"value\":\"0x30\"},{\"operation\":\"WRITE\",\"destination\":\"msg[2] (0x4070)\",\"size\":8,\"description\":\"strdup(fortune_string_3)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[2] (0x4168)\",\"size\":4,\"value\":\"0x18\"},{\"operation\":\"WRITE\",\"destination\":\"msg[3] (0x4078)\",\"size\":8,\"description\":\"strdup(fortune_string_4)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[3] (0x416c)\",\"size\":4,\"value\":\"0x38\"},{\"operation\":\"WRITE\",\"destination\":\"msg[4] (0x4080)\",\"size\":8,\"description\":\"strdup(fortune_string_5)\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[4] (0x4170)\",\"size\":4,\"value\":\"0x40\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num (0x41e8)\",\"size\":8,\"value\":\"5\"}],\"calls\":[\"setvbuf\",\"alarm\",\"fopen\",\"_abort\",\"strdup\",\"__stack_chk_fail\"]},{\"name\":\"create_cookie\",\"address\":\"0x1399\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"message_length\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x18\"},{\"name\":\"message_data\",\"source\":\"read(0, buf, message_length)\",\"type\":\"raw bytes\"}],\"checks\":[\"cookie_num <= 0x1f (31), else _abort (max 32 cookies)\",\"message_length <= 0x100 (256), else _abort (signed comparison, no lower bound check)\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"calloc(message_length, 1)\",\"description\":\"allocate heap buffer of user-specified size\"},{\"operation\":\"WRITE\",\"destination\":\"heap buffer\",\"size\":\"message_length\",\"description\":\"read(0, heap_buf, message_length)\"},{\"operation\":\"WRITE\",\"destination\":\"msg[cookie_num]\",\"size\":8,\"description\":\"store heap pointer into msg array\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[cookie_num]\",\"size\":4,\"description\":\"store message_length into msg_size array\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num += 1\"}],\"calls\":[\"printf\",\"_abort\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"eat_cookie\",\"address\":\"0x14e1\",\"callers\":[\"main\"],\"callees\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"random_byte\",\"source\":\"fread from /dev/urandom\",\"type\":\"char\",\"stored_at\":\"rbp-0xc\",\"description\":\"random index = random_byte % cookie_num\"}],\"checks\":[\"cookie_num != 0, else _abort\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[random_idx]\",\"size\":8,\"description\":\"load heap pointer at random index\"},{\"operation\":\"READ\",\"source\":\"msg[random_idx] (dereferenced)\",\"description\":\"printf format string uses msg[random_idx] as string argument\"},{\"operation\":\"FREE\",\"target\":\"msg[random_idx]\",\"description\":\"free(msg[random_idx])\"},{\"operation\":\"READ\",\"source\":\"msg[cookie_num-1]\",\"size\":8,\"description\":\"load last element pointer\"},{\"operation\":\"WRITE\",\"destination\":\"msg[random_idx]\",\"size\":8,\"description\":\"msg[random_idx] = msg[cookie_num-1] (swap last into freed slot)\"},{\"operation\":\"READ\",\"source\":\"msg_size[cookie_num-1]\",\"size\":4,\"description\":\"load last element size\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size[random_idx]\",\"size\":4,\"description\":\"msg_size[random_idx] = msg_size[cookie_num-1] (swap size)\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"description\":\"cookie_num -= 1\"}],\"calls\":[\"_abort\",\"fread\",\"printf\",\"free\",\"__stack_chk_fail\"]},{\"name\":\"edit_cookie\",\"address\":\"0x1628\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"},{\"name\":\"new_message\",\"source\":\"read(0, msg[idx], msg_size[idx]-1)\",\"type\":\"raw bytes\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg_size[idx]\",\"size\":4,\"description\":\"load size for index (msg_size[idx]-1 used as read length)\"},{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"WRITE\",\"destination\":\"msg[idx] (dereferenced heap buffer)\",\"size\":\"msg_size[idx]-1\",\"description\":\"read(0, msg[idx], msg_size[idx]-1) writes to heap buffer\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"read\",\"puts\",\"__stack_chk_fail\"]},{\"name\":\"read_cookie\",\"address\":\"0x1751\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"cookie_index\",\"source\":\"scanf(%llu)\",\"type\":\"unsigned long long\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"idx < cookie_num (jl, signed comparison), else _abort (NO lower bound check)\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg[idx]\",\"size\":8,\"description\":\"load heap pointer at index\"},{\"operation\":\"READ\",\"source\":\"msg[idx] (dereferenced)\",\"description\":\"printf uses msg[idx] as string argument to print cookie content\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"]},{\"name\":\"menu\",\"address\":\"0x17fd\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"__stack_chk_fail\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\",\"__stack_chk_fail\"]},{\"name\":\"main\",\"address\":\"0x187f\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf(%lld)\",\"type\":\"long long int\",\"stored_at\":\"rbp-0x10\"}],\"checks\":[\"choice == 1: eat_cookie\",\"choice == 2: create_cookie\",\"choice == 3: edit_cookie\",\"choice == 4: read_cookie\",\"choice == 5: exit\",\"default: loop back to menu\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"]}],\"attack_surfaces\":[{\"function\":\"edit_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"WRITE to msg[idx] dereferenced heap buffer, size from msg_size[idx]-1\",\"risk\":\"HIGH\",\"reason\":\"Index read as unsigned long long with only upper-bound check (idx < cookie_num). No lower bound check. Negative values (large unsigned) pass the check and index into msg[] before 0x4060, potentially hitting urandom(0x41e0), cookie_num(0x41e8), or other BSS globals. msg_size[idx] for negative idx reads from before 0x4160. The read destination msg[idx] for negative idx loads an arbitrary 8-byte value as a heap pointer, and read() writes to that address.\"},{\"function\":\"read_cookie\",\"input\":\"cookie_index (scanf %llu, unsigned long long)\",\"operation\":\"READ msg[idx] dereferenced as string, printed via printf\",\"risk\":\"HIGH\",\"reason\":\"Same missing lower bound check as edit_cookie. Negative index loads msg[idx] as a pointer and printf prints the string at that address. Potential arbitrary read if attacker controls the pointer value at negative offset.\"},{\"function\":\"eat_cookie\",\"input\":\"random index from /dev/urandom\",\"operation\":\"FREE msg[random_idx], then swap msg[cookie_num-1] into msg[random_idx]\",\"risk\":\"MEDIUM\",\"reason\":\"After free(msg[random_idx]), the freed pointer is overwritten with msg[cookie_num-1]. However, if random_idx == cookie_num-1 (last element freed), the swap writes the freed pointer back into itself (msg[last] = msg[last]), leaving a dangling pointer in the array. This pointer can be reused via edit_cookie or read_cookie. The swap does not NULL out the source slot.\"},{\"function\":\"create_cookie\",\"input\":\"message_length (scanf %lld, signed long long)\",\"operation\":\"calloc(message_length, 1) then read(0, buf, message_length)\",\"risk\":\"MEDIUM\",\"reason\":\"Size checked with cmp rax,0x100; jle (signed <= 256). Negative values pass the check. calloc with negative size (interpreted as huge unsigned by calloc internally) may fail or return small allocation. read() then uses the original signed value as count, which on x86-64 syscall uses the 64-bit value directly.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is PIE, dynamically linked, not stripped, compiled with GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"msg[] is a char* array at 0x4060, 32 elements (256 bytes) in .bss\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"msg_size[] is an int array at 0x4160, 32 elements (128 bytes) in .bss, immediately after msg[]\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"cookie_num is a long at 0x41e8, initialized to 5 by init()\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"urandom (FILE*) is at 0x41e0, 8 bytes before cookie_num\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"init() creates 5 fortune cookies via strdup, stores pointers in msg[0..4], sizes in msg_size[0..4], sets cookie_num=5\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"create_cookie reads message_length via scanf(%lld), checks size <= 0x100 (signed jle), allocates calloc(size,1), reads data into heap buffer, stores pointer in msg[cookie_num] and size in msg_size[cookie_num], increments cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eat_cookie reads 1 byte from /dev/urandom, computes random_idx = byte % cookie_num, prints msg[random_idx], frees msg[random_idx], swaps msg[cookie_num-1] into msg[random_idx] and msg_size[cookie_num-1] into msg_size[random_idx], decrements cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"edit_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Reads msg_size[idx]-1 bytes into msg[idx] buffer via read(0, msg[idx], msg_size[idx]-1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"read_cookie reads cookie_index via scanf(%llu), checks idx < cookie_num (signed jl), no lower bound check. Prints msg[idx] as string via printf\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"edit_cookie and read_cookie index check is 'cmp rdx,rax; jl' where rdx=user_idx (unsigned) and rax=cookie_num. jl is signed less-than. For negative values (bit 63 set), signed comparison treats them as negative, so they pass the < cookie_num check\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"eat_cookie swap: when random_idx == cookie_num-1, the code reads msg[cookie_num-1] and writes it back to msg[random_idx] which is the same slot, leaving the freed pointer in the array\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"GOT is at 0x3f58, size 0xa8, writable in ELF but Full RELRO means it is made read-only at runtime after relocation\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"alarm(60) called in init(), providing a 60-second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"create_cookie size check uses signed comparison (jle). A negative size value (e.g. -1) passes the <= 0x100 check. calloc(-1, 1) passes a huge value to calloc which likely returns NULL. read(0, NULL, -1) would then be called\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"Layout: msg[0x4060] (256B) -> msg_size[0x4160] (128B) -> gap (0x41e0-0x41e0=0) -> urandom[0x41e0] (8B) -> cookie_num[0x41e8] (8B). msg_size ends at 0x41e0, urandom starts at 0x41e0, contiguous\",\"source\":\"ELF\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie with negative index N: msg[N] is at 0x4060 + N*8. For N=-1, address = 0x4058 (in .data section, before .bss). For N=-2, address = 0x4050. msg_size[N] is at 0x4160 + N*4. For N=-1, address = 0x415c (within msg[] array region)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"For edit_cookie, a negative index that lands msg[idx] on a controllable or known value would cause read() to write to that address (treating it as a heap pointer). A negative index that lands msg_size[idx] on a controllable value would control the read length\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether calloc with negative size returns NULL or a small allocation depends on glibc 2.39 internal behavior\",\"reason\":\"Need dynamic verification of calloc with negative/massive size argument\"},{\"id\":\"U002\",\"description\":\"Whether the eat_cookie self-swap (random_idx == cookie_num-1) actually leaves a usable dangling pointer depends on whether the freed chunk is immediately reused by subsequent allocations\",\"reason\":\"Need dynamic verification of heap behavior after free in eat_cookie\"},{\"id\":\"U003\",\"description\":\"CET (IBT/SHSTK) status cannot be determined from ELF alone; depends on kernel and CPU support at runtime\",\"reason\":\"No CET markers found in ELF, but runtime enforcement depends on kernel configuration\"},{\"id\":\"U004\",\"description\":\"ASLR status cannot be confirmed from static analysis\",\"reason\":\"ASLR is a kernel/runtime setting\"},{\"id\":\"U005\",\"description\":\"The exact heap layout and chunk sizes from the 5 initial strdup allocations in init() need dynamic verification\",\"reason\":\"strdup allocates strlen+1 bytes; exact sizes depend on string lengths which are known but heap allocator behavior (alignment, tcache) needs runtime confirmation\"}],\"raw\":{\"elf\":\"ELF64 LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=84dab319bf6fe22134cf0338cbd8071fd8bc06c2, not stripped. Entry=0x1110. 11 program headers, 29 sections.\",\"sections\":\".text@0x1110(0x891,AX) .rodata@0x2000(0x266,A) .data@0x4000(0x10,WA) .bss@0x4020(0x1d0,WA) .got@0x3f58(0xa8,WA) .plt@0x1020(0xe0,AX) .init@0x1000(0x17,AX) .fini@0x19a4(0x9,AX) .init_array@0x3d58(0x8,WA) .fini_array@0x3d60(0x8,WA) .eh_frame@0x22e0(0x1e0,A) .eh_frame_hdr@0x2268(0x74,A)\",\"symbols\":\"Key functions: _abort@0x11f5 init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd main@0x187f. Globals: msg@0x4060(256B) msg_size@0x4160(128B) urandom@0x41e0(8B) cookie_num@0x41e8(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040\",\"disassembly\":\"main: scanf(%lld)->switch(1=eat,2=create,3=edit,4=read,5=exit). create_cookie: scanf(%lld) size, check <=0x100(signed jle), calloc(size,1), read(0,buf,size), store in msg[cookie_num]/msg_size[cookie_num], cookie_num++. eat_cookie: fread urandom byte, idx=byte%cookie_num, printf(msg[idx]), free(msg[idx]), msg[idx]=msg[cookie_num-1], msg_size[idx]=msg_size[cookie_num-1], cookie_num--. edit_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), read(0,msg[idx],msg_size[idx]-1). read_cookie: scanf(%llu) idx, check idx<cookie_num(signed jl, NO lower bound), printf(msg[idx]).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"\",\"summary\":{},\"vulnerabilities\":[],\"non_vulnerabilities\":[],\"unresolved\":[]},\"primitive_reports\":[],\"target_bug\":\"BUG-001\",\"bug_reports\":[],\"impact_reports\":[],\"strategy_reports\":[],\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [],
+  "verified_bug_ids": [],
+  "_saved": "/work/test/stage3.json"
+}
+/work/leanagent/schemas.py:25: UserWarning: Field name "schema" in "BinaryInfo" shadows an attribute in parent "BaseModel"
+  class BinaryInfo(BaseModel):
+/work/leanagent/schemas.py:42: UserWarning: Field name "schema" in "BugReport" shadows an attribute in parent "BaseModel"
+  class BugReport(BaseModel):
+/work/leanagent/schemas.py:80: UserWarning: Field name "schema" in "ImpactReport" shadows an attribute in parent "BaseModel"
+  class ImpactReport(BaseModel):
+/work/leanagent/schemas.py:97: UserWarning: Field name "schema" in "StrategyReport" shadows an attribute in parent "BaseModel"
+  class StrategyReport(BaseModel):
+/work/leanagent/schemas.py:111: UserWarning: Field name "schema" in "ReconReport" shadows an attribute in parent "BaseModel"
+  class ReconReport(BaseModel):
+/work/leanagent/schemas.py:135: UserWarning: Field name "schema" in "VulnerabilityReport" shadows an attribute in parent "BaseModel"
+  class VulnerabilityReport(BaseModel):
+/work/leanagent/schemas.py:153: UserWarning: Field name "schema" in "PrimitiveReport" shadows an attribute in parent "BaseModel"
+  class PrimitiveReport(BaseModel):
+=== Exploit Only: 从 _result.json 恢复，直接跑 S4 ===
+
+=== 从 /work/test/_result.json 恢复 ContextStore ===
+  bug_ids=None, verified=[]
+  impact_reports=[]
+
+=== S5 Exploit 结果 ===
+{
+  "success": false,
+  "final_exploit_path": "",
+  "error": "no verified bug to exploit",
+  "summary": ""
+}
+
+⚠ Exploit 未成功：no verified bug to exploit
