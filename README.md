@@ -28,37 +28,42 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-    subgraph L4["④ 编排层（orchestrator）—— 跨会话策略"]
-        A1["attempt 循环 ×8（S4 30min/attempt）"]
-        A2["BudgetExhausted 捕获<br/>→ 独立 LLM 总结（历史压缩，工具结果截断 1500 字符）<br/>→ '已验证发现清单' 注入新 attempt 续命"]
-        A3["全 attempt 用尽 → 判负收尾（失败也是结构化结论）"]
+    subgraph L4["④ 编排层 —— 跨会话策略"]
+        direction LR
+        A1["attempt 循环 ×8"]
+        A2["撞钟总结注入续命"]
+        A3["全用尽判负收尾"]
+        A1 --- A2 --- A3
     end
 
-    subgraph MW["③ Middleware 层 —— 会话内自愈（横切所有阶段）"]
+    subgraph MW["③ Middleware 层 —— 会话内自愈"]
         direction LR
-        M1["SubmitFinal<br/>schema 违约 →<br/>字段级反馈重调 ×3"]
-        M2["Retry<br/>无 submit 提醒<br/>jump_to ×5"]
-        M3["Budget<br/>墙钟/工具预算<br/>同参重复 >5 拒"]
-        M4["RouteGate<br/>未声明/失败未换线<br/>→ 拒绝提交"]
-        M5["GLM 软超时<br/>600s 强制中断<br/>（9 小时挂死 → 自愈）"]
+        M1["SubmitFinal<br/>违约重调 ×3"]
+        M2["Retry<br/>无 submit ×5"]
+        M3["Budget<br/>重复 >5 拒"]
+        M4["RouteGate<br/>失败未换线拒"]
+        M5["GLM 软超时 600s"]
+        M1 --- M2 --- M3 --- M4 --- M5
     end
 
     subgraph TL["② 工具层 —— 单次调用健壮性"]
         direction LR
-        T1["latin-1 replace<br/>防非 latin 崩进程"]
-        T2["isfile 前置检查<br/>防路径 typo"]
-        T3["子进程 RLIMIT 4GB<br/>+ 禁 core（OOM 根治）"]
-        T4["超时 + 自适应提示<br/>rc=-124 → 指引查 recv"]
+        T1["latin-1 容错"]
+        T2["isfile 检查"]
+        T3["RLIMIT 4GB 禁 core"]
+        T4["超时自适应提示"]
+        T1 --- T2 --- T3 --- T4
     end
 
     subgraph IL["① 基础设施层"]
         direction LR
-        I1["httpx 连接重试"]
-        I2["容器隔离<br/>target 崩溃不连带"]
-        I3["console log 双写<br/>drvfs 吞文件兜底"]
+        I1["httpx 重试"]
+        I2["容器隔离"]
+        I3["log 双写兜底"]
+        I1 --- I2 --- I3
     end
 
-    TL -->|"异常统一冒泡<br/>BudgetExhausted"| MW
+    TL -->|"异常冒泡"| MW
     MW -->|"超限上抛"| L4
     IL --> TL
 
