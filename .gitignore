@@ -7,7 +7,6 @@ ctf/
 ctf2/
 logs/
 test/
-archive/
 _skills/
 squashfs-root/
 docker/
@@ -15,3 +14,4 @@ leanagent.egg-info/
 ppt/assets/
 .env
 .claude/
+ws_test.log ws_test2.log
