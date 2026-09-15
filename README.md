@@ -7,15 +7,14 @@
 ## 编排总览：Contract-First 四阶段管线
 
 ```mermaid
-flowchart LR
-    direction TB
+flowchart TB
     subgraph PIPE["四阶段管线（每阶段独立 subagent · 结构化 JSON 上下文往返）"]
         direction LR
         S1["S1 侦察 Recon<br/>━━━━━━━━━━<br/>解决：这个二进制是什么、<br/>有什么保护、怎么交互？<br/><br/>· checksec 全防护识别（含 CET）<br/>· libc 运行时版本确认<br/>· 菜单/IO 时序实测（probe_io）<br/>· 攻击面清单 + 依赖链检查"]
         S2["S2 语义 Semantic<br/>━━━━━━━━━━<br/>解决：漏洞在哪、<br/>为什么是漏洞？<br/><br/>· root cause 语义分析<br/>· 跨边界调用审查原则<br/>· 每 bug 带独立 bug_id<br/>· 继承 S1 事实不重复侦察"]
         S3["S3 原语验证 Primitive<br/>━━━━━━━━━━<br/>解决：漏洞能实际利用到<br/>什么程度？<br/><br/>· per-bug PoC 生成+执行<br/>· VERIFIED/CANDIDATE 判定<br/>· 两级完成模型（半成品不收）<br/>· INFO_LEAK/ARB_WRITE 等实证"]
         S4["S4 利用 Exploit<br/>━━━━━━━━━━<br/>解决：怎么拿到 shell/flag？<br/><br/>· RouteGate 强制 skill 路由<br/>· 路线仲裁纪律<br/>· exploit.py 编写+执行<br/>· 失败必须换线再试"]
-        S1 ~~~ S2 ~~~ S3 ~~~ S4
+        S1 --- S2 --- S3 --- S4
     end
 
     CF["🧱 Contract First —— 结构化输出契约基座<br/>ReconReport · VulnerabilityReport · PrimitiveReport · ExploitReport<br/>（pydantic 严格校验 · submit_final_result 唯一交付通道 · stage{N}.json 落盘）"]
