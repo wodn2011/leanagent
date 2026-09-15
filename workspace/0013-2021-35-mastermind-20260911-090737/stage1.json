@@ -1,0 +1,1078 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0013-2021-35-mastermind-20260911-090737/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0013-2021-35-mastermind-20260911-090737/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1160\",\"dynamic\":true,\"stripped\":false},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":false,\"source\":\"ELF\"},\"shstk\":{\"value\":false,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"2.39\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"prompt\":\"Tell me the size of gameboard:\",\"function\":\"init\",\"input_type\":\"int (1-26)\"},{\"prompt\":\"[N] Guess(A-X){size}:\",\"function\":\"play_round\",\"input_type\":\"string of length size\"}],\"user_controlled_inputs\":[{\"name\":\"gameboard_size\",\"source\":\"stdin via read_int\",\"function\":\"init\",\"constraints\":\"1 <= size <= 26 (checked: jle abort if <=0 or >0x1a)\"},{\"name\":\"guess_input\",\"source\":\"stdin via read_all\",\"function\":\"play_round\",\"constraints\":\"expected length = context.size\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1160\",\"size\":\"0xcf1\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x126\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x40a8\",\"size\":\"0x10\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x40c0\",\"size\":\"0x70\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0xa8\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0x130\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3de8\",\"size\":\"0x8\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3df0\",\"size\":\"0x8\",\"writable\":true,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"context\",\"address\":\"0x4100\",\"size\":48,\"section\":\".bss\",\"layout\":[{\"offset\":0,\"name\":\"round_idx\",\"type\":\"int\",\"size\":4},{\"offset\":4,\"name\":\"max_rounds\",\"type\":\"int\",\"size\":4},{\"offset\":8,\"name\":\"board\",\"type\":\"pointer (array of pointers to round structs)\",\"size\":8},{\"offset\":16,\"name\":\"tokenset\",\"type\":\"pointer (heap string)\",\"size\":8},{\"offset\":24,\"name\":\"answer\",\"type\":\"pointer (heap string)\",\"size\":8},{\"offset\":32,\"name\":\"size\",\"type\":\"int (gameboard size)\",\"size\":4},{\"offset\":40,\"name\":\"urandom_fp\",\"type\":\"pointer (FILE*)\",\"size\":8}]},{\"name\":\"stdout\",\"address\":\"0x40c0\",\"size\":8,\"section\":\".bss\"},{\"name\":\"stdin\",\"address\":\"0x40d0\",\"size\":8,\"section\":\".bss\"},{\"name\":\"stderr\",\"address\":\"0x40e0\",\"size\":8,\"section\":\".bss\"}],\"got\":[{\"offset\":\"0x4018\",\"symbol\":\"putchar\"},{\"offset\":\"0x4020\",\"symbol\":\"strncpy\"},{\"offset\":\"0x4028\",\"symbol\":\"puts\"},{\"offset\":\"0x4030\",\"symbol\":\"fread\"},{\"offset\":\"0x4038\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x4040\",\"symbol\":\"printf\"},{\"offset\":\"0x4048\",\"symbol\":\"memset\"},{\"offset\":\"0x4050\",\"symbol\":\"alarm\"},{\"offset\":\"0x4058\",\"symbol\":\"read\"},{\"offset\":\"0x4060\",\"symbol\":\"strcmp\"},{\"offset\":\"0x4068\",\"symbol\":\"malloc\"},{\"offset\":\"0x4070\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x4078\",\"symbol\":\"fopen\"},{\"offset\":\"0x4080\",\"symbol\":\"atoi\"},{\"offset\":\"0x4088\",\"symbol\":\"sprintf\"},{\"offset\":\"0x4090\",\"symbol\":\"exit\"},{\"offset\":\"0x4098\",\"symbol\":\"strdup\"},{\"offset\":\"0x40a0\",\"symbol\":\"getc\"}],\"plt\":[{\"address\":\"0x1030\",\"symbol\":\"putchar\"},{\"address\":\"0x1040\",\"symbol\":\"strncpy\"},{\"address\":\"0x1050\",\"symbol\":\"puts\"},{\"address\":\"0x1060\",\"symbol\":\"fread\"},{\"address\":\"0x1070\",\"symbol\":\"__stack_chk_fail\"},{\"address\":\"0x1080\",\"symbol\":\"printf\"},{\"address\":\"0x1090\",\"symbol\":\"memset\"},{\"address\":\"0x10a0\",\"symbol\":\"alarm\"},{\"address\":\"0x10b0\",\"symbol\":\"read\"},{\"address\":\"0x10c0\",\"symbol\":\"strcmp\"},{\"address\":\"0x10d0\",\"symbol\":\"malloc\"},{\"address\":\"0x10e0\",\"symbol\":\"setvbuf\"},{\"address\":\"0x10f0\",\"symbol\":\"fopen\"},{\"address\":\"0x1100\",\"symbol\":\"atoi\"},{\"address\":\"0x1110\",\"symbol\":\"sprintf\"},{\"address\":\"0x1120\",\"symbol\":\"exit\"},{\"address\":\"0x1130\",\"symbol\":\"strdup\"},{\"address\":\"0x1140\",\"symbol\":\"getc\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1dcd\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"play\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"init\",\"play\"]},{\"name\":\"init\",\"address\":\"0x1651\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"puts\",\"printf\",\"read_int\",\"_abort\",\"fopen\",\"generate_tokenset\",\"generate_answer\",\"init_game\"],\"inputs\":[{\"name\":\"gameboard_size\",\"source\":\"read_int (stdin)\"}],\"checks\":[\"size > 0 (jle abort)\",\"size <= 0x1a/26 (jle ok, else abort)\",\"fopen result != NULL\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x20 (context.size)\",\"size\":4,\"value_source\":\"read_int return\"},{\"operation\":\"WRITE\",\"destination\":\"context+0x28 (context.urandom_fp)\",\"size\":8,\"value_source\":\"fopen(/dev/urandom)\"}],\"calls\":[\"setvbuf\",\"alarm\",\"read_int\",\"fopen\",\"generate_tokenset\",\"generate_answer\",\"init_game\"]},{\"name\":\"read_int\",\"address\":\"0x1273\",\"callers\":[\"init\"],\"callees\":[\"read\",\"_abort\",\"atoi\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"stdin input\",\"source\":\"read(0, buf[0xf], 0xf)\"}],\"checks\":[\"read return > 0\",\"canary check\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buf [rbp-0x20]\",\"size\":15,\"value_source\":\"stdin via read\"}],\"calls\":[\"read\",\"atoi\"]},{\"name\":\"read_all\",\"address\":\"0x12f5\",\"callers\":[\"play_round\"],\"callees\":[\"read\",\"_abort\",\"printf\",\"getc\"],\"inputs\":[{\"name\":\"size (edi)\",\"source\":\"caller (context.size)\"},{\"name\":\"buf (rsi)\",\"source\":\"caller (stack buffer)\"}],\"checks\":[\"read return > 0\",\"if read_bytes == size: NUL-terminate at buf[size]\",\"if read_bytes != size: printf warning, loop back to read again into SAME buf\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"buf (caller-provided stack buffer)\",\"size\":\"size (attacker-controlled via context.size, 1-26)\",\"value_source\":\"stdin via read(0, buf, size)\",\"note\":\"When read_bytes != expected_size, prints 'Your guess should be in lenght %d.' and re-reads into same buffer; only scans already-read portion for newlines\"},{\"operation\":\"WRITE\",\"destination\":\"buf[read_bytes-1] when newline found\",\"size\":1,\"value\":\"NUL (0x00)\"}],\"calls\":[\"read\",\"printf\",\"getc\"]},{\"name\":\"generate_answer\",\"address\":\"0x13ef\",\"callers\":[\"init\"],\"callees\":[\"memset\",\"fread\",\"strdup\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"urandom_fp\",\"source\":\"context+0x28\"},{\"name\":\"size\",\"source\":\"context+0x20\"}],\"checks\":[\"strdup result != NULL\",\"canary check\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buf [rbp-0x110] (256 bytes, memset 0)\",\"size\":\"size bytes\",\"value_source\":\"tokenset[fread_byte % size]\"},{\"operation\":\"WRITE\",\"destination\":\"context+0x18 (context.answer)\",\"size\":8,\"value_source\":\"strdup(stack buf)\"}],\"calls\":[\"memset\",\"fread\",\"strdup\"]},{\"name\":\"generate_tokenset\",\"address\":\"0x14e6\",\"callers\":[\"init\"],\"callees\":[\"strncpy\",\"strdup\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"size\",\"source\":\"context+0x20\"}],\"checks\":[\"strdup result != NULL\",\"canary check\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buf [rbp-0x110]\",\"size\":\"size bytes\",\"value_source\":\"strncpy from rodata 'ABCDE...' (0x2053)\"},{\"operation\":\"WRITE\",\"destination\":\"context+0x10 (context.tokenset)\",\"size\":8,\"value_source\":\"strdup(stack buf)\"}],\"calls\":[\"strncpy\",\"strdup\"]},{\"name\":\"init_game\",\"address\":\"0x1564\",\"callers\":[\"init\"],\"callees\":[\"malloc\",\"_abort\"],\"inputs\":[{\"name\":\"size\",\"source\":\"context+0x20\"}],\"checks\":[\"malloc result != NULL (both calls)\",\"loop i < max_rounds\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x0 (context.round_idx)\",\"size\":4,\"value\":\"0\"},{\"operation\":\"WRITE\",\"destination\":\"context+0x4 (context.max_rounds)\",\"size\":4,\"value\":\"(size+1)*2\"},{\"operation\":\"WRITE\",\"destination\":\"context+0x8 (context.board)\",\"size\":8,\"value_source\":\"malloc(max_rounds * 8)\"},{\"operation\":\"WRITE\",\"destination\":\"board[i] (heap)\",\"size\":8,\"value_source\":\"malloc(0x10) per iteration\"},{\"operation\":\"WRITE\",\"destination\":\"board[i]->field0 (int at +0)\",\"size\":4,\"value\":\"0\"},{\"operation\":\"WRITE\",\"destination\":\"board[i]->field4 (int at +4)\",\"size\":4,\"value\":\"0\"}],\"calls\":[\"malloc\"]},{\"name\":\"play\",\"address\":\"0x1d24\",\"callers\":[\"main\"],\"callees\":[\"print_board\",\"puts\",\"play_round\",\"exit\",\"putchar\"],\"inputs\":[],\"checks\":[\"if round_idx == max_rounds: exit(0)\",\"if play_round returns 1: win message, loop exits\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x0 (context.round_idx)\",\"size\":4,\"value\":\"round_idx + 1 (incremented each round)\"}],\"calls\":[\"print_board\",\"play_round\",\"exit\",\"putchar\"]},{\"name\":\"play_round\",\"address\":\"0x1b06\",\"callers\":[\"play\"],\"callees\":[\"printf\",\"read_all\",\"count\",\"strdup\",\"strcmp\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"guess\",\"source\":\"read_all(context.size, stack_buf [rbp-0x40])\"}],\"checks\":[\"canary check\",\"strcmp(guess, answer) == 0 -> return 1 (win)\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buf [rbp-0x40] (64 bytes on stack)\",\"size\":\"context.size bytes (1-26)\",\"value_source\":\"read_all -> read(0, buf, size)\",\"note\":\"Stack buffer is 0x40=64 bytes from rbp; read size is context.size (max 26). Buffer also used by count() and strdup().\"},{\"operation\":\"WRITE\",\"destination\":\"board[round_idx]->field0 (int at +0, heap)\",\"size\":4,\"value\":\"exact_match_count\"},{\"operation\":\"WRITE\",\"destination\":\"board[round_idx]->field4 (int at +4, heap)\",\"size\":4,\"value\":\"partial_match_count\"},{\"operation\":\"WRITE\",\"destination\":\"board[round_idx]->field8 (ptr at +8, heap)\",\"size\":8,\"value_source\":\"strdup(stack buf [rbp-0x40])\"}],\"calls\":[\"printf\",\"read_all\",\"count\",\"strdup\",\"strcmp\"]},{\"name\":\"count\",\"address\":\"0x13b4\",\"callers\":[\"play_round\"],\"callees\":[],\"inputs\":[{\"name\":\"str (rdi)\",\"source\":\"caller-provided string pointer\"},{\"name\":\"ch (esi)\",\"source\":\"byte to count\"}],\"checks\":[\"loop until NUL terminator\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"str[i]\",\"size\":1,\"note\":\"Counts occurrences of ch in NUL-terminated string\"}],\"calls\":[]},{\"name\":\"print_board\",\"address\":\"0x17a7\",\"callers\":[\"play\"],\"callees\":[\"pad\",\"sprintf\",\"printf\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"board data\",\"source\":\"context.board array and round structs\"}],\"checks\":[\"canary check\",\"loop i < round_idx\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buf [rbp-0x1090] (4256 bytes)\",\"size\":\"variable\",\"value_source\":\"sprintf with format strings and board data\",\"note\":\"Large stack buffer (0x10a0 bytes allocated). Uses sprintf with %s for strdup'd guess strings stored in round structs.\"}],\"calls\":[\"pad\",\"sprintf\",\"printf\"]},{\"name\":\"pad\",\"address\":\"0x175a\",\"callers\":[\"print_board\"],\"callees\":[\"memset\"],\"inputs\":[{\"name\":\"buf (rdi)\",\"source\":\"caller stack\"},{\"name\":\"ch (esi)\",\"source\":\"fill char\"},{\"name\":\"count (edx)\",\"source\":\"context.size - 5\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"buf\",\"size\":\"count\",\"value_source\":\"memset fill\"}],\"calls\":[\"memset\"]}],\"attack_surfaces\":[{\"function\":\"read_all\",\"input\":\"stdin via read(0, buf, size) where size = context.size (1-26)\",\"operation\":\"WRITE to stack buffer in play_round [rbp-0x40]\",\"risk\":\"MEDIUM\",\"reason\":\"read_all re-reads into the same buffer when input length != expected; the re-read loop logic and newline handling may allow writing beyond intended bounds or leaving stale data. The buffer is 64 bytes and max read is 26 bytes, so direct overflow is unlikely, but the re-read mechanism and NUL-termination at buf[size] when read_bytes==size deserves S2 analysis.\"},{\"function\":\"play_round\",\"input\":\"guess string via read_all into stack buf [rbp-0x40]\",\"operation\":\"strdup(stack_buf) stored to board[round_idx]->field8; strcmp(stack_buf, answer); count() called on stack_buf\",\"risk\":\"MEDIUM\",\"reason\":\"User-controlled string is strdup'd to heap and later printed by print_board via sprintf with %s. The guess string content is attacker-controlled and flows through strdup, strcmp, count, and sprintf. Potential for format string or buffer issues in print_board's sprintf usage needs S2 review.\"},{\"function\":\"print_board\",\"input\":\"board round data including strdup'd guess strings\",\"operation\":\"sprintf with format strings containing %s for attacker-controlled guess strings\",\"risk\":\"MEDIUM\",\"reason\":\"sprintf is used (not snprintf) with attacker-controlled string data from strdup'd guesses. The format strings are fixed but the %s arguments come from user input. Stack buffer is 0x10a0 bytes. S2 should verify if guess string length can cause sprintf overflow.\"},{\"function\":\"init\",\"input\":\"gameboard_size via read_int\",\"operation\":\"size stored to context+0x20, used as divisor in generate_answer (fread_byte % size), as strncpy length, as malloc multiplier\",\"risk\":\"LOW\",\"reason\":\"Size is checked 1-26, so no direct issue, but it controls many downstream buffer sizes and loop counts.\"},{\"function\":\"generate_answer\",\"input\":\"urandom data via fread\",\"operation\":\"fread_byte % size used as index into tokenset, written to stack buf then strdup'd\",\"risk\":\"LOW\",\"reason\":\"Index is bounded by modulo size. Stack buffer is 256 bytes, max write is 26 bytes.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 PIE, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian)\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY, no CET (IBT/SHSTK)\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6, loader at /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in ELF dynamic section; only NEEDED library is libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Global variable 'context' at 0x4100 (.bss), 48 bytes, holds game state: round_idx, max_rounds, board_ptr, tokenset_ptr, answer_ptr, size, urandom_fp\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"context.size is user-controlled via read_int, checked to be in range [1, 26]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"init_game sets max_rounds = (size+1)*2, mallocs board array of max_rounds*8 bytes, each element is malloc(0x10) = 16-byte round struct {int exact, int partial, char* guess_str}\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"read_all(size, buf) calls read(0, buf, size); if read_bytes != size, prints warning and re-reads into same buf; if read_bytes == size, NUL-terminates at buf[size]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"play_round reads guess into stack buffer [rbp-0x40] (64 bytes from rbp) via read_all(context.size, buf); max read size is 26 bytes\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"play_round stores strdup(guess) to board[round_idx]->guess_str (offset +8 in 16-byte heap struct)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"print_board uses sprintf (not snprintf) with fixed format strings containing %s for guess strings; stack buffer is 0x10a0 bytes (4256 bytes)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"generate_answer reads from /dev/urandom, uses fread_byte % size as index into tokenset, builds answer string on stack (256-byte buffer), strdup's to heap\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"generate_tokenset uses strncpy from rodata 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' (0x2053) with length=context.size, strdup's to heap as context.tokenset\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"count(str, ch) iterates NUL-terminated string counting occurrences of ch; called in play_round with both guess buf and answer/tokenset\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"alarm(0x258=600s) called in init as anti-hang timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"GOT is Partial RELRO (writable .got.plt at 0x4000), contains 18 JUMP_SLOT entries\",\"source\":\"ELF\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"play loop increments context.round_idx each round; exits via exit(0) when round_idx == max_rounds, or when play_round returns 1 (win/strcmp match)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"DERIVED\",\"description\":\"Round struct layout (16 bytes heap): {+0: int exact_match, +4: int partial_match, +8: char* guess_str (strdup'd)}. Board is array of pointers to these structs.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether read_all's re-read mechanism can be exploited to write more data than expected into the stack buffer in play_round\",\"reason\":\"The re-read loop reuses the same buffer, but read size is capped at context.size (max 26) and buffer is 64 bytes. Need S2 to trace exact data flow for edge cases.\"},{\"id\":\"U002\",\"description\":\"Whether sprintf in print_board can overflow the 4256-byte stack buffer\",\"reason\":\"sprintf uses %s for guess strings which are strdup'd from user input of max 26 chars. The format strings also include fixed padding. S2 needs to calculate total output length for max rounds.\"},{\"id\":\"U003\",\"description\":\"Whether the guess string content can contain special characters that affect count(), strcmp(), or sprintf() behavior\",\"reason\":\"read_all reads raw bytes from stdin; only newline (0x0a) is converted to NUL. Other bytes including format specifiers could pass through to sprintf.\"},{\"id\":\"U004\",\"description\":\"Exact heap layout and whether tcache/fastbin metadata could be corrupted\",\"reason\":\"init_game allocates max_rounds 16-byte chunks and one array chunk. play_round allocates strdup chunks each round. S2 needs to analyze heap state for potential exploitation.\"}],\"raw\":{\"elf\":\"ELF64 PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=3e40d041c8bc26de6a1935fff47c3055ca26200f, not stripped, GCC 10.2.0 (Debian), source: mastermind.c\",\"sections\":\"30 sections; .text@0x1160(0xcf1,RX), .rodata@0x2000(0x126,R), .data@0x40a8(0x10,RW), .bss@0x40c0(0x70,RW), .got@0x3fd8(0x28,RW), .got.plt@0x4000(0xa8,RW), .plt@0x1020(0x130,RX), .init_array@0x3de8(0x8,RW), .fini_array@0x3df0(0x8,RW)\",\"symbols\":\"Key functions: main@0x1dcd, init@0x1651, play@0x1d24, play_round@0x1b06, read_all@0x12f5, read_int@0x1273, count@0x13b4, generate_answer@0x13ef, generate_tokenset@0x14e6, init_game@0x1564, print_board@0x17a7, pad@0x175a, _abort@0x1245. Globals: context@0x4100(48B), stdout@0x40c0, stdin@0x40d0, stderr@0x40e0\",\"disassembly\":\"main: init(); play(). init: setvbuf x3, alarm(600), read_int->context.size (check 1-26), fopen(/dev/urandom)->context.urandom_fp, generate_tokenset, generate_answer, init_game. play: loop{print_board; if round==max exit(0); play_round; round_idx++; if win break}. play_round: printf prompt, read_all(size, [rbp-0x40]), count loop for matches, store to board[round], strdup(guess)->board[round]->+8, strcmp(guess,answer). read_all: read(0,buf,size); if bytes!=size: printf warning, re-read; if bytes==size: buf[size]=0; scan for newlines->NUL; getc(stdin). print_board: sprintf with %s for guess strings into 4256B stack buf.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0013-2021-35-mastermind-20260911-090737/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1160",
+      "dynamic": true,
+      "stripped": false
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": false,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": false,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "RUNTIME"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "version": "2.39"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "prompt": "Tell me the size of gameboard:",
+          "function": "init",
+          "input_type": "int (1-26)"
+        },
+        {
+          "prompt": "[N] Guess(A-X){size}:",
+          "function": "play_round",
+          "input_type": "string of length size"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "gameboard_size",
+          "source": "stdin via read_int",
+          "function": "init",
+          "constraints": "1 <= size <= 26 (checked: jle abort if <=0 or >0x1a)"
+        },
+        {
+          "name": "guess_input",
+          "source": "stdin via read_all",
+          "function": "play_round",
+          "constraints": "expected length = context.size"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1160",
+          "size": "0xcf1",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x126",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x40a8",
+          "size": "0x10",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x40c0",
+          "size": "0x70",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x3fd8",
+          "size": "0x28",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x4000",
+          "size": "0xa8",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0x130",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3de8",
+          "size": "0x8",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3df0",
+          "size": "0x8",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "context",
+          "address": "0x4100",
+          "size": 48,
+          "section": ".bss",
+          "layout": [
+            {
+              "offset": 0,
+              "name": "round_idx",
+              "type": "int",
+              "size": 4
+            },
+            {
+              "offset": 4,
+              "name": "max_rounds",
+              "type": "int",
+              "size": 4
+            },
+            {
+              "offset": 8,
+              "name": "board",
+              "type": "pointer (array of pointers to round structs)",
+              "size": 8
+            },
+            {
+              "offset": 16,
+              "name": "tokenset",
+              "type": "pointer (heap string)",
+              "size": 8
+            },
+            {
+              "offset": 24,
+              "name": "answer",
+              "type": "pointer (heap string)",
+              "size": 8
+            },
+            {
+              "offset": 32,
+              "name": "size",
+              "type": "int (gameboard size)",
+              "size": 4
+            },
+            {
+              "offset": 40,
+              "name": "urandom_fp",
+              "type": "pointer (FILE*)",
+              "size": 8
+            }
+          ]
+        },
+        {
+          "name": "stdout",
+          "address": "0x40c0",
+          "size": 8,
+          "section": ".bss"
+        },
+        {
+          "name": "stdin",
+          "address": "0x40d0",
+          "size": 8,
+          "section": ".bss"
+        },
+        {
+          "name": "stderr",
+          "address": "0x40e0",
+          "size": 8,
+          "section": ".bss"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x4018",
+          "symbol": "putchar"
+        },
+        {
+          "offset": "0x4020",
+          "symbol": "strncpy"
+        },
+        {
+          "offset": "0x4028",
+          "symbol": "puts"
+        },
+        {
+          "offset": "0x4030",
+          "symbol": "fread"
+        },
+        {
+          "offset": "0x4038",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "offset": "0x4040",
+          "symbol": "printf"
+        },
+        {
+          "offset": "0x4048",
+          "symbol": "memset"
+        },
+        {
+          "offset": "0x4050",
+          "symbol": "alarm"
+        },
+        {
+          "offset": "0x4058",
+          "symbol": "read"
+        },
+        {
+          "offset": "0x4060",
+          "symbol": "strcmp"
+        },
+        {
+          "offset": "0x4068",
+          "symbol": "malloc"
+        },
+        {
+          "offset": "0x4070",
+          "symbol": "setvbuf"
+        },
+        {
+          "offset": "0x4078",
+          "symbol": "fopen"
+        },
+        {
+          "offset": "0x4080",
+          "symbol": "atoi"
+        },
+        {
+          "offset": "0x4088",
+          "symbol": "sprintf"
+        },
+        {
+          "offset": "0x4090",
+          "symbol": "exit"
+        },
+        {
+          "offset": "0x4098",
+          "symbol": "strdup"
+        },
+        {
+          "offset": "0x40a0",
+          "symbol": "getc"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x1030",
+          "symbol": "putchar"
+        },
+        {
+          "address": "0x1040",
+          "symbol": "strncpy"
+        },
+        {
+          "address": "0x1050",
+          "symbol": "puts"
+        },
+        {
+          "address": "0x1060",
+          "symbol": "fread"
+        },
+        {
+          "address": "0x1070",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "address": "0x1080",
+          "symbol": "printf"
+        },
+        {
+          "address": "0x1090",
+          "symbol": "memset"
+        },
+        {
+          "address": "0x10a0",
+          "symbol": "alarm"
+        },
+        {
+          "address": "0x10b0",
+          "symbol": "read"
+        },
+        {
+          "address": "0x10c0",
+          "symbol": "strcmp"
+        },
+        {
+          "address": "0x10d0",
+          "symbol": "malloc"
+        },
+        {
+          "address": "0x10e0",
+          "symbol": "setvbuf"
+        },
+        {
+          "address": "0x10f0",
+          "symbol": "fopen"
+        },
+        {
+          "address": "0x1100",
+          "symbol": "atoi"
+        },
+        {
+          "address": "0x1110",
+          "symbol": "sprintf"
+        },
+        {
+          "address": "0x1120",
+          "symbol": "exit"
+        },
+        {
+          "address": "0x1130",
+          "symbol": "strdup"
+        },
+        {
+          "address": "0x1140",
+          "symbol": "getc"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x1dcd",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "play"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "init",
+          "play"
+        ]
+      },
+      {
+        "name": "init",
+        "address": "0x1651",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm",
+          "puts",
+          "printf",
+          "read_int",
+          "_abort",
+          "fopen",
+          "generate_tokenset",
+          "generate_answer",
+          "init_game"
+        ],
+        "inputs": [
+          {
+            "name": "gameboard_size",
+            "source": "read_int (stdin)"
+          }
+        ],
+        "checks": [
+          "size > 0 (jle abort)",
+          "size <= 0x1a/26 (jle ok, else abort)",
+          "fopen result != NULL"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x20 (context.size)",
+            "size": 4,
+            "value_source": "read_int return"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x28 (context.urandom_fp)",
+            "size": 8,
+            "value_source": "fopen(/dev/urandom)"
+          }
+        ],
+        "calls": [
+          "setvbuf",
+          "alarm",
+          "read_int",
+          "fopen",
+          "generate_tokenset",
+          "generate_answer",
+          "init_game"
+        ]
+      },
+      {
+        "name": "read_int",
+        "address": "0x1273",
+        "callers": [
+          "init"
+        ],
+        "callees": [
+          "read",
+          "_abort",
+          "atoi",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "stdin input",
+            "source": "read(0, buf[0xf], 0xf)"
+          }
+        ],
+        "checks": [
+          "read return > 0",
+          "canary check"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buf [rbp-0x20]",
+            "size": 15,
+            "value_source": "stdin via read"
+          }
+        ],
+        "calls": [
+          "read",
+          "atoi"
+        ]
+      },
+      {
+        "name": "read_all",
+        "address": "0x12f5",
+        "callers": [
+          "play_round"
+        ],
+        "callees": [
+          "read",
+          "_abort",
+          "printf",
+          "getc"
+        ],
+        "inputs": [
+          {
+            "name": "size (edi)",
+            "source": "caller (context.size)"
+          },
+          {
+            "name": "buf (rsi)",
+            "source": "caller (stack buffer)"
+          }
+        ],
+        "checks": [
+          "read return > 0",
+          "if read_bytes == size: NUL-terminate at buf[size]",
+          "if read_bytes != size: printf warning, loop back to read again into SAME buf"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "buf (caller-provided stack buffer)",
+            "size": "size (attacker-controlled via context.size, 1-26)",
+            "value_source": "stdin via read(0, buf, size)",
+            "note": "When read_bytes != expected_size, prints 'Your guess should be in lenght %d.' and re-reads into same buffer; only scans already-read portion for newlines"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "buf[read_bytes-1] when newline found",
+            "size": 1,
+            "value": "NUL (0x00)"
+          }
+        ],
+        "calls": [
+          "read",
+          "printf",
+          "getc"
+        ]
+      },
+      {
+        "name": "generate_answer",
+        "address": "0x13ef",
+        "callers": [
+          "init"
+        ],
+        "callees": [
+          "memset",
+          "fread",
+          "strdup",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "urandom_fp",
+            "source": "context+0x28"
+          },
+          {
+            "name": "size",
+            "source": "context+0x20"
+          }
+        ],
+        "checks": [
+          "strdup result != NULL",
+          "canary check"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buf [rbp-0x110] (256 bytes, memset 0)",
+            "size": "size bytes",
+            "value_source": "tokenset[fread_byte % size]"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x18 (context.answer)",
+            "size": 8,
+            "value_source": "strdup(stack buf)"
+          }
+        ],
+        "calls": [
+          "memset",
+          "fread",
+          "strdup"
+        ]
+      },
+      {
+        "name": "generate_tokenset",
+        "address": "0x14e6",
+        "callers": [
+          "init"
+        ],
+        "callees": [
+          "strncpy",
+          "strdup",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "size",
+            "source": "context+0x20"
+          }
+        ],
+        "checks": [
+          "strdup result != NULL",
+          "canary check"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buf [rbp-0x110]",
+            "size": "size bytes",
+            "value_source": "strncpy from rodata 'ABCDE...' (0x2053)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x10 (context.tokenset)",
+            "size": 8,
+            "value_source": "strdup(stack buf)"
+          }
+        ],
+        "calls": [
+          "strncpy",
+          "strdup"
+        ]
+      },
+      {
+        "name": "init_game",
+        "address": "0x1564",
+        "callers": [
+          "init"
+        ],
+        "callees": [
+          "malloc",
+          "_abort"
+        ],
+        "inputs": [
+          {
+            "name": "size",
+            "source": "context+0x20"
+          }
+        ],
+        "checks": [
+          "malloc result != NULL (both calls)",
+          "loop i < max_rounds"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x0 (context.round_idx)",
+            "size": 4,
+            "value": "0"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x4 (context.max_rounds)",
+            "size": 4,
+            "value": "(size+1)*2"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x8 (context.board)",
+            "size": 8,
+            "value_source": "malloc(max_rounds * 8)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[i] (heap)",
+            "size": 8,
+            "value_source": "malloc(0x10) per iteration"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[i]->field0 (int at +0)",
+            "size": 4,
+            "value": "0"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[i]->field4 (int at +4)",
+            "size": 4,
+            "value": "0"
+          }
+        ],
+        "calls": [
+          "malloc"
+        ]
+      },
+      {
+        "name": "play",
+        "address": "0x1d24",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "print_board",
+          "puts",
+          "play_round",
+          "exit",
+          "putchar"
+        ],
+        "inputs": [],
+        "checks": [
+          "if round_idx == max_rounds: exit(0)",
+          "if play_round returns 1: win message, loop exits"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x0 (context.round_idx)",
+            "size": 4,
+            "value": "round_idx + 1 (incremented each round)"
+          }
+        ],
+        "calls": [
+          "print_board",
+          "play_round",
+          "exit",
+          "putchar"
+        ]
+      },
+      {
+        "name": "play_round",
+        "address": "0x1b06",
+        "callers": [
+          "play"
+        ],
+        "callees": [
+          "printf",
+          "read_all",
+          "count",
+          "strdup",
+          "strcmp",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "guess",
+            "source": "read_all(context.size, stack_buf [rbp-0x40])"
+          }
+        ],
+        "checks": [
+          "canary check",
+          "strcmp(guess, answer) == 0 -> return 1 (win)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buf [rbp-0x40] (64 bytes on stack)",
+            "size": "context.size bytes (1-26)",
+            "value_source": "read_all -> read(0, buf, size)",
+            "note": "Stack buffer is 0x40=64 bytes from rbp; read size is context.size (max 26). Buffer also used by count() and strdup()."
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[round_idx]->field0 (int at +0, heap)",
+            "size": 4,
+            "value": "exact_match_count"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[round_idx]->field4 (int at +4, heap)",
+            "size": 4,
+            "value": "partial_match_count"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "board[round_idx]->field8 (ptr at +8, heap)",
+            "size": 8,
+            "value_source": "strdup(stack buf [rbp-0x40])"
+          }
+        ],
+        "calls": [
+          "printf",
+          "read_all",
+          "count",
+          "strdup",
+          "strcmp"
+        ]
+      },
+      {
+        "name": "count",
+        "address": "0x13b4",
+        "callers": [
+          "play_round"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "str (rdi)",
+            "source": "caller-provided string pointer"
+          },
+          {
+            "name": "ch (esi)",
+            "source": "byte to count"
+          }
+        ],
+        "checks": [
+          "loop until NUL terminator"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "str[i]",
+            "size": 1,
+            "note": "Counts occurrences of ch in NUL-terminated string"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "name": "print_board",
+        "address": "0x17a7",
+        "callers": [
+          "play"
+        ],
+        "callees": [
+          "pad",
+          "sprintf",
+          "printf",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "board data",
+            "source": "context.board array and round structs"
+          }
+        ],
+        "checks": [
+          "canary check",
+          "loop i < round_idx"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buf [rbp-0x1090] (4256 bytes)",
+            "size": "variable",
+            "value_source": "sprintf with format strings and board data",
+            "note": "Large stack buffer (0x10a0 bytes allocated). Uses sprintf with %s for strdup'd guess strings stored in round structs."
+          }
+        ],
+        "calls": [
+          "pad",
+          "sprintf",
+          "printf"
+        ]
+      },
+      {
+        "name": "pad",
+        "address": "0x175a",
+        "callers": [
+          "print_board"
+        ],
+        "callees": [
+          "memset"
+        ],
+        "inputs": [
+          {
+            "name": "buf (rdi)",
+            "source": "caller stack"
+          },
+          {
+            "name": "ch (esi)",
+            "source": "fill char"
+          },
+          {
+            "name": "count (edx)",
+            "source": "context.size - 5"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "buf",
+            "size": "count",
+            "value_source": "memset fill"
+          }
+        ],
+        "calls": [
+          "memset"
+        ]
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "read_all",
+        "input": "stdin via read(0, buf, size) where size = context.size (1-26)",
+        "operation": "WRITE to stack buffer in play_round [rbp-0x40]",
+        "risk": "MEDIUM",
+        "reason": "read_all re-reads into the same buffer when input length != expected; the re-read loop logic and newline handling may allow writing beyond intended bounds or leaving stale data. The buffer is 64 bytes and max read is 26 bytes, so direct overflow is unlikely, but the re-read mechanism and NUL-termination at buf[size] when read_bytes==size deserves S2 analysis."
+      },
+      {
+        "function": "play_round",
+        "input": "guess string via read_all into stack buf [rbp-0x40]",
+        "operation": "strdup(stack_buf) stored to board[round_idx]->field8; strcmp(stack_buf, answer); count() called on stack_buf",
+        "risk": "MEDIUM",
+        "reason": "User-controlled string is strdup'd to heap and later printed by print_board via sprintf with %s. The guess string content is attacker-controlled and flows through strdup, strcmp, count, and sprintf. Potential for format string or buffer issues in print_board's sprintf usage needs S2 review."
+      },
+      {
+        "function": "print_board",
+        "input": "board round data including strdup'd guess strings",
+        "operation": "sprintf with format strings containing %s for attacker-controlled guess strings",
+        "risk": "MEDIUM",
+        "reason": "sprintf is used (not snprintf) with attacker-controlled string data from strdup'd guesses. The format strings are fixed but the %s arguments come from user input. Stack buffer is 0x10a0 bytes. S2 should verify if guess string length can cause sprintf overflow."
+      },
+      {
+        "function": "init",
+        "input": "gameboard_size via read_int",
+        "operation": "size stored to context+0x20, used as divisor in generate_answer (fread_byte % size), as strncpy length, as malloc multiplier",
+        "risk": "LOW",
+        "reason": "Size is checked 1-26, so no direct issue, but it controls many downstream buffer sizes and loop counts."
+      },
+      {
+        "function": "generate_answer",
+        "input": "urandom data via fread",
+        "operation": "fread_byte % size used as index into tokenset, written to stack buf then strdup'd",
+        "risk": "LOW",
+        "reason": "Index is bounded by modulo size. Stack buffer is 256 bytes, max write is 26 bytes."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 PIE, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian)",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, Canary enabled, PIE enabled, no FORTIFY, no CET (IBT/SHSTK)",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6, loader at /lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in ELF dynamic section; only NEEDED library is libc.so.6",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Global variable 'context' at 0x4100 (.bss), 48 bytes, holds game state: round_idx, max_rounds, board_ptr, tokenset_ptr, answer_ptr, size, urandom_fp",
+        "source": "ELF"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "context.size is user-controlled via read_int, checked to be in range [1, 26]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "init_game sets max_rounds = (size+1)*2, mallocs board array of max_rounds*8 bytes, each element is malloc(0x10) = 16-byte round struct {int exact, int partial, char* guess_str}",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "read_all(size, buf) calls read(0, buf, size); if read_bytes != size, prints warning and re-reads into same buf; if read_bytes == size, NUL-terminates at buf[size]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "play_round reads guess into stack buffer [rbp-0x40] (64 bytes from rbp) via read_all(context.size, buf); max read size is 26 bytes",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "play_round stores strdup(guess) to board[round_idx]->guess_str (offset +8 in 16-byte heap struct)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "print_board uses sprintf (not snprintf) with fixed format strings containing %s for guess strings; stack buffer is 0x10a0 bytes (4256 bytes)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "generate_answer reads from /dev/urandom, uses fread_byte % size as index into tokenset, builds answer string on stack (256-byte buffer), strdup's to heap",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "generate_tokenset uses strncpy from rodata 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' (0x2053) with length=context.size, strdup's to heap as context.tokenset",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "count(str, ch) iterates NUL-terminated string counting occurrences of ch; called in play_round with both guess buf and answer/tokenset",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "alarm(0x258=600s) called in init as anti-hang timeout",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "GOT is Partial RELRO (writable .got.plt at 0x4000), contains 18 JUMP_SLOT entries",
+        "source": "ELF"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "play loop increments context.round_idx each round; exits via exit(0) when round_idx == max_rounds, or when play_round returns 1 (win/strcmp match)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "DERIVED",
+        "description": "Round struct layout (16 bytes heap): {+0: int exact_match, +4: int partial_match, +8: char* guess_str (strdup'd)}. Board is array of pointers to these structs.",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether read_all's re-read mechanism can be exploited to write more data than expected into the stack buffer in play_round",
+        "reason": "The re-read loop reuses the same buffer, but read size is capped at context.size (max 26) and buffer is 64 bytes. Need S2 to trace exact data flow for edge cases."
+      },
+      {
+        "id": "U002",
+        "description": "Whether sprintf in print_board can overflow the 4256-byte stack buffer",
+        "reason": "sprintf uses %s for guess strings which are strdup'd from user input of max 26 chars. The format strings also include fixed padding. S2 needs to calculate total output length for max rounds."
+      },
+      {
+        "id": "U003",
+        "description": "Whether the guess string content can contain special characters that affect count(), strcmp(), or sprintf() behavior",
+        "reason": "read_all reads raw bytes from stdin; only newline (0x0a) is converted to NUL. Other bytes including format specifiers could pass through to sprintf."
+      },
+      {
+        "id": "U004",
+        "description": "Exact heap layout and whether tcache/fastbin metadata could be corrupted",
+        "reason": "init_game allocates max_rounds 16-byte chunks and one array chunk. play_round allocates strdup chunks each round. S2 needs to analyze heap state for potential exploitation."
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=3e40d041c8bc26de6a1935fff47c3055ca26200f, not stripped, GCC 10.2.0 (Debian), source: mastermind.c",
+      "sections": "30 sections; .text@0x1160(0xcf1,RX), .rodata@0x2000(0x126,R), .data@0x40a8(0x10,RW), .bss@0x40c0(0x70,RW), .got@0x3fd8(0x28,RW), .got.plt@0x4000(0xa8,RW), .plt@0x1020(0x130,RX), .init_array@0x3de8(0x8,RW), .fini_array@0x3df0(0x8,RW)",
+      "symbols": "Key functions: main@0x1dcd, init@0x1651, play@0x1d24, play_round@0x1b06, read_all@0x12f5, read_int@0x1273, count@0x13b4, generate_answer@0x13ef, generate_tokenset@0x14e6, init_game@0x1564, print_board@0x17a7, pad@0x175a, _abort@0x1245. Globals: context@0x4100(48B), stdout@0x40c0, stdin@0x40d0, stderr@0x40e0",
+      "disassembly": "main: init(); play(). init: setvbuf x3, alarm(600), read_int->context.size (check 1-26), fopen(/dev/urandom)->context.urandom_fp, generate_tokenset, generate_answer, init_game. play: loop{print_board; if round==max exit(0); play_round; round_idx++; if win break}. play_round: printf prompt, read_all(size, [rbp-0x40]), count loop for matches, store to board[round], strdup(guess)->board[round]->+8, strcmp(guess,answer). read_all: read(0,buf,size); if bytes!=size: printf warning, re-read; if bytes==size: buf[size]=0; scan for newlines->NUL; getc(stdin). print_board: sprintf with %s for guess strings into 4256B stack buf."
+    }
+  }
+}

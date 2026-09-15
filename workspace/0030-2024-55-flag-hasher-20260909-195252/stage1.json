@@ -1,0 +1,684 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1260\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"buildid\":\"bfe415bae2ea5785bc83f99c636c45b6c50b35b8\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libcrypto.so.3\",\"path\":\"/lib/x86_64-linux-gnu/libcrypto.so.3\",\"version\":\"OpenSSL 3.0.13\",\"source\":\"RUNTIME\"},{\"name\":\"libc.so.6\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[\"1 - Compute sha256\",\"2 - Read Hash record\"],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf\",\"format\":\"%d\",\"address\":\"0x2167\",\"description\":\"Menu selection (1=compute, 2=read)\"},{\"name\":\"text_to_hash\",\"source\":\"read\",\"size\":1023,\"description\":\"Text input for SHA256 hashing\"},{\"name\":\"read_idx\",\"source\":\"scanf\",\"format\":\"%u\",\"address\":\"0x21dd\",\"description\":\"Index for reading hash record (unsigned, no upper bound check)\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1260\",\"size\":\"0x633\",\"permissions\":\"RX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x209\",\"permissions\":\"R\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x38\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x3f38\",\"size\":\"0xc8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".init_array\",\"address\":\"0x3d28\",\"size\":\"0x8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x3d30\",\"size\":\"0x8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false}],\"globals\":[{\"name\":\"stdin\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdout\",\"address\":\"0x4048\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"}],\"got\":[{\"offset\":\"0x3f50\",\"symbol\":\"printf\"},{\"offset\":\"0x3f58\",\"symbol\":\"memset\"},{\"offset\":\"0x3f60\",\"symbol\":\"puts\"},{\"offset\":\"0x3f68\",\"symbol\":\"exit\"},{\"offset\":\"0x3f70\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x3f78\",\"symbol\":\"putchar\"},{\"offset\":\"0x3f80\",\"symbol\":\"read\"},{\"offset\":\"0x3f88\",\"symbol\":\"clearenv\"},{\"offset\":\"0x3f90\",\"symbol\":\"strlen\"},{\"offset\":\"0x3f98\",\"symbol\":\"SHA256_Init\"},{\"offset\":\"0x3fa0\",\"symbol\":\"SHA256_Final\"},{\"offset\":\"0x3fa8\",\"symbol\":\"getenv\"},{\"offset\":\"0x3fb0\",\"symbol\":\"alarm\"},{\"offset\":\"0x3fb8\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x3fc0\",\"symbol\":\"__isoc99_scanf\"},{\"offset\":\"0x3fc8\",\"symbol\":\"SHA256_Update\"},{\"offset\":\"0x3fd0\",\"symbol\":\"calloc\"}],\"plt\":[{\"symbol\":\"printf\",\"address\":\"0x1150\"},{\"symbol\":\"memset\",\"address\":\"0x1160\"},{\"symbol\":\"puts\",\"address\":\"0x1170\"},{\"symbol\":\"exit\",\"address\":\"0x1180\"},{\"symbol\":\"setvbuf\",\"address\":\"0x1190\"},{\"symbol\":\"putchar\",\"address\":\"0x11a0\"},{\"symbol\":\"read\",\"address\":\"0x11b0\"},{\"symbol\":\"clearenv\",\"address\":\"0x11c0\"},{\"symbol\":\"strlen\",\"address\":\"0x11d0\"},{\"symbol\":\"SHA256_Init\",\"address\":\"0x11e0\"},{\"symbol\":\"SHA256_Final\",\"address\":\"0x11f0\"},{\"symbol\":\"getenv\",\"address\":\"0x1200\"},{\"symbol\":\"alarm\",\"address\":\"0x1210\"},{\"symbol\":\"__stack_chk_fail\",\"address\":\"0x1220\"},{\"symbol\":\"__isoc99_scanf\",\"address\":\"0x1230\"},{\"symbol\":\"SHA256_Update\",\"address\":\"0x1240\"},{\"symbol\":\"calloc\",\"address\":\"0x1250\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1521\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"getenv\",\"_abort\",\"compute_hash256\",\"clearenv\",\"memset\",\"menu\",\"__isoc99_scanf\",\"printf\",\"read\",\"puts\",\"putchar\"],\"inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf %d\",\"stack\":\"rbp-0x4b4\"},{\"name\":\"text_to_hash\",\"source\":\"read(0, buf, 0x3ff)\",\"stack\":\"rbp-0x410\"},{\"name\":\"read_idx\",\"source\":\"scanf %u\",\"stack\":\"rbp-0x4b0\"}],\"checks\":[\"menu_choice == 1 -> compute; == 2 -> read; else -> _abort('Unknown command')\",\"compute: loop idx 0..15 to find NULL slot; if idx==16 -> 'OUT-OF-MEMORY' puts + continue\",\"read: if hash_ptr[idx]==NULL -> _abort('Entry does not exist')\",\"NO upper bound check on read_idx before array indexing\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"hash_array[search_idx] = compute_hash256(text)\",\"stack\":\"rbp-0x490 + search_idx*8\",\"size\":8,\"destination_type\":\"stack_pointer_array\"},{\"operation\":\"READ\",\"destination\":\"hash_ptr = hash_array[read_idx]\",\"stack\":\"rbp-0x490 + read_idx*8\",\"size\":8,\"destination_type\":\"stack_pointer_array_dereference\",\"note\":\"read_idx from scanf %u, NO bounds check, attacker-controlled index reaches pointer dereference\"},{\"operation\":\"READ\",\"destination\":\"print 32 bytes from *hash_ptr\",\"size\":32,\"destination_type\":\"heap_pointer_dereference\",\"note\":\"prints 32 bytes (SHA256 digest) from dereferenced pointer via printf %02hhX loop\"}],\"calls\":[\"init\",\"getenv\",\"compute_hash256\",\"clearenv\",\"memset\",\"menu\",\"__isoc99_scanf\",\"printf\",\"read\",\"puts\",\"putchar\",\"_abort\"]},{\"name\":\"compute_hash256\",\"address\":\"0x137e\",\"callers\":[\"main\"],\"callees\":[\"calloc\",\"SHA256_Init\",\"strlen\",\"SHA256_Update\",\"SHA256_Final\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"text\",\"source\":\"rdi (caller stack buffer)\"}],\"checks\":[\"stack canary\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"calloc(0x20, 1) -> 32-byte heap buffer for SHA256 digest\",\"size\":32},{\"operation\":\"WRITE\",\"destination\":\"SHA256_Final(digest_buf, ctx) writes 32 bytes to heap buffer\"}],\"calls\":[\"calloc\",\"SHA256_Init\",\"strlen\",\"SHA256_Update\",\"SHA256_Final\"],\"note\":\"Returns pointer to 32-byte heap-allocated SHA256 digest\"},{\"name\":\"init\",\"address\":\"0x14b2\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"note\":\"setvbuf(stdin/stdout/stderr, NULL, _IONBF, 0); alarm(60)\"},{\"name\":\"menu\",\"address\":\"0x1420\",\"callers\":[\"main\"],\"callees\":[\"puts\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\"],\"note\":\"Prints ASCII banner and menu options\"},{\"name\":\"_abort\",\"address\":\"0x1349\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"note\":\"printf('%s', msg); exit(1)\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"read_idx (scanf %u at 0x17d8)\",\"operation\":\"READ: hash_array[read_idx] dereference + 32-byte print loop\",\"risk\":\"HIGH\",\"reason\":\"Attacker-controlled unsigned index with NO upper bound check reaches stack pointer array dereference at [rbp+rax*8-0x490]. idx 0..15 = valid hash slots; idx 16..145 = overlaps text buffer (zeros -> NULL -> abort); idx 146 = saved rbp (stack address leak CONFIRMED at runtime); idx 147 = return address; idx 0xffffffff = Bus error crash (OOB read beyond mapped memory). This is an out-of-bounds stack read primitive.\"},{\"function\":\"main\",\"input\":\"text_to_hash (read at 0x16a6)\",\"operation\":\"WRITE: read(0, rbp-0x410, 0x3ff) into stack buffer\",\"risk\":\"MEDIUM\",\"reason\":\"1023-byte read into 1024-byte stack buffer at rbp-0x410. Buffer is adjacent to hash pointer array (rbp-0x490) and canary (rbp-0x8). No overflow by itself (0x3ff < 0x400), but text buffer overlaps hash array indices 16..145.\"},{\"function\":\"main\",\"input\":\"flag environment variable\",\"operation\":\"getenv('flag') -> compute_hash256 -> stored at hash_array[0] -> clearenv()\",\"risk\":\"LOW\",\"reason\":\"Flag is hashed with SHA256 and stored at idx 0, then environment is cleared. The flag hash (not plaintext) is readable via Read Hash record idx 0.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is x86-64 PIE, dynamically linked, not stripped, GCC 11.4.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX, Canary, PIE, SHSTK+IBT (CET) enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"Runtime: glibc 2.39, OpenSSL 3.0.13, no RPATH/RUNPATH (system library paths only)\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Program requires environment variable 'flag' (lowercase) at startup; if missing, calls _abort('can\\\\'t find the flag!') and exits\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main stack frame: sub rsp,0x4c0. Hash pointer array at rbp-0x490 (16 entries, idx 0-15). Text buffer at rbp-0x410 (0x400 bytes). Canary at rbp-0x8.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"Read Hash record uses scanf('%u') at 0x17d8 to read index into rbp-0x4b0, then accesses hash_array[idx] at [rbp+rax*8-0x490] with NO upper bound check. Only NULL check on dereferenced pointer.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"Compute sha256 uses read(0, rbp-0x410, 0x3ff) for text input, calls compute_hash256, stores result pointer at first NULL slot in hash_array (search idx 0-15).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"compute_hash256 allocates 32-byte heap buffer via calloc(0x20,1), computes SHA256, returns heap pointer to digest\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Flag hash stored at hash_array[0] (idx 0) at startup; clearenv() called after to remove environment variables\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"Menu only accepts 1 (compute) and 2 (read); any other value calls _abort('Unknown command') and exit(1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Read idx 0 returns flag's SHA256 hash (32 hex bytes)\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Read idx 16-145 returns 'Entry does not exist' (text buffer is zeroed -> NULL pointer -> abort)\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Read idx 146 returns 32 bytes containing stack addresses (0x7ffc...) - saved rbp leak CONFIRMED. Two runs yielded different addresses (ASLR confirmed).\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Read idx 0xffffffff causes Bus error (SIGBUS, exit code 135) - OOB read beyond mapped memory\",\"source\":\"RUNTIME\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"init() calls alarm(60) - 60 second timeout, and setvbuf(_IONBF) on stdin/stdout/stderr\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"idx 146 = rbp-0x490+146*8 = rbp (saved rbp on stack). idx 147 = rbp+0x8 (return address). idx 16 = rbp-0x410 (text buffer start).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"The OOB read at idx 146 leaks saved rbp (stack address), enabling stack address disclosure. idx 147 would leak return address (potential PIE/libc leak).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; library search order: LD_LIBRARY_PATH > system paths. libcrypto.so.3 and libc.so.6 both resolve from /lib/x86_64-linux-gnu/\",\"source\":\"ELF\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact value at idx 147 (return address) - runtime test showed data but values did not cleanly parse as expected PIE/libc addresses; may need debugger to confirm exact layout at that offset\",\"reason\":\"Stack frame of __libc_start_main caller may have additional saved registers between saved rbp and return address\"},{\"id\":\"U002\",\"description\":\"Whether the OOB read can be leveraged beyond information disclosure (e.g., to leak canary, PIE base, libc base)\",\"reason\":\"S2 should determine which specific offsets leak canary (rbp-0x8 = idx ~145.875, not aligned), PIE base, and libc addresses\"},{\"id\":\"U003\",\"description\":\"Whether text buffer content (user-controlled via read) at idx 16-145 can be used to plant fake pointers for the read dereference\",\"reason\":\"Text buffer is memset to 0 after each compute, but during the compute flow the buffer contains user text before memset; the read flow uses a separate menu iteration\"}],\"raw\":{\"elf\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped. Entry=0x1260. 13 program headers, 31 sections.\",\"sections\":\".text@0x1260(0x633,RX) .rodata@0x2000(0x209,R) .data@0x4000(0x10,RW) .bss@0x4020(0x38,RW) .got@0x3f38(0xc8,RW) .init_array@0x3d28(0x8,RW) .fini_array@0x3d30(0x8,RW)\",\"symbols\":\"main@0x1521 compute_hash256@0x137e init@0x14b2 menu@0x1420 _abort@0x1349 _start@0x1260 _init@0x1000 _fini@0x1894\",\"disassembly\":\"main: sub rsp,0x4c0; hash_array@rbp-0x490(16 entries); text_buf@rbp-0x410(0x400); canary@rbp-0x8. Read path: scanf(%u)->idx@rbp-0x4b0; ptr=[rbp+rax*8-0x490]; if(!ptr)_abort; else print 32 bytes via printf(%02hhX) loop. NO bounds check on idx. Compute path: read(0,rbp-0x410,0x3ff); compute_hash256; store at first NULL slot. Flag: getenv(flag)->compute_hash256->array[0]->clearenv.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1260",
+      "dynamic": true,
+      "stripped": false,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)",
+      "buildid": "bfe415bae2ea5785bc83f99c636c45b6c50b35b8"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "unknown",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "RUNTIME"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libcrypto.so.3",
+          "path": "/lib/x86_64-linux-gnu/libcrypto.so.3",
+          "version": "OpenSSL 3.0.13",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "libc.so.6",
+          "path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "version": "glibc 2.39",
+          "source": "RUNTIME"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        "1 - Compute sha256",
+        "2 - Read Hash record"
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf",
+          "format": "%d",
+          "address": "0x2167",
+          "description": "Menu selection (1=compute, 2=read)"
+        },
+        {
+          "name": "text_to_hash",
+          "source": "read",
+          "size": 1023,
+          "description": "Text input for SHA256 hashing"
+        },
+        {
+          "name": "read_idx",
+          "source": "scanf",
+          "format": "%u",
+          "address": "0x21dd",
+          "description": "Index for reading hash record (unsigned, no upper bound check)"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1260",
+          "size": "0x633",
+          "permissions": "RX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x209",
+          "permissions": "R",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0x10",
+          "permissions": "RW",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".bss",
+          "address": "0x4020",
+          "size": "0x38",
+          "permissions": "RW",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".got",
+          "address": "0x3f38",
+          "size": "0xc8",
+          "permissions": "RW",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d28",
+          "size": "0x8",
+          "permissions": "RW",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d30",
+          "size": "0x8",
+          "permissions": "RW",
+          "writable": true,
+          "executable": false
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdin",
+          "address": "0x4020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stdout",
+          "address": "0x4048",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3f50",
+          "symbol": "printf"
+        },
+        {
+          "offset": "0x3f58",
+          "symbol": "memset"
+        },
+        {
+          "offset": "0x3f60",
+          "symbol": "puts"
+        },
+        {
+          "offset": "0x3f68",
+          "symbol": "exit"
+        },
+        {
+          "offset": "0x3f70",
+          "symbol": "setvbuf"
+        },
+        {
+          "offset": "0x3f78",
+          "symbol": "putchar"
+        },
+        {
+          "offset": "0x3f80",
+          "symbol": "read"
+        },
+        {
+          "offset": "0x3f88",
+          "symbol": "clearenv"
+        },
+        {
+          "offset": "0x3f90",
+          "symbol": "strlen"
+        },
+        {
+          "offset": "0x3f98",
+          "symbol": "SHA256_Init"
+        },
+        {
+          "offset": "0x3fa0",
+          "symbol": "SHA256_Final"
+        },
+        {
+          "offset": "0x3fa8",
+          "symbol": "getenv"
+        },
+        {
+          "offset": "0x3fb0",
+          "symbol": "alarm"
+        },
+        {
+          "offset": "0x3fb8",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "offset": "0x3fc0",
+          "symbol": "__isoc99_scanf"
+        },
+        {
+          "offset": "0x3fc8",
+          "symbol": "SHA256_Update"
+        },
+        {
+          "offset": "0x3fd0",
+          "symbol": "calloc"
+        }
+      ],
+      "plt": [
+        {
+          "symbol": "printf",
+          "address": "0x1150"
+        },
+        {
+          "symbol": "memset",
+          "address": "0x1160"
+        },
+        {
+          "symbol": "puts",
+          "address": "0x1170"
+        },
+        {
+          "symbol": "exit",
+          "address": "0x1180"
+        },
+        {
+          "symbol": "setvbuf",
+          "address": "0x1190"
+        },
+        {
+          "symbol": "putchar",
+          "address": "0x11a0"
+        },
+        {
+          "symbol": "read",
+          "address": "0x11b0"
+        },
+        {
+          "symbol": "clearenv",
+          "address": "0x11c0"
+        },
+        {
+          "symbol": "strlen",
+          "address": "0x11d0"
+        },
+        {
+          "symbol": "SHA256_Init",
+          "address": "0x11e0"
+        },
+        {
+          "symbol": "SHA256_Final",
+          "address": "0x11f0"
+        },
+        {
+          "symbol": "getenv",
+          "address": "0x1200"
+        },
+        {
+          "symbol": "alarm",
+          "address": "0x1210"
+        },
+        {
+          "symbol": "__stack_chk_fail",
+          "address": "0x1220"
+        },
+        {
+          "symbol": "__isoc99_scanf",
+          "address": "0x1230"
+        },
+        {
+          "symbol": "SHA256_Update",
+          "address": "0x1240"
+        },
+        {
+          "symbol": "calloc",
+          "address": "0x1250"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x1521",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "getenv",
+          "_abort",
+          "compute_hash256",
+          "clearenv",
+          "memset",
+          "menu",
+          "__isoc99_scanf",
+          "printf",
+          "read",
+          "puts",
+          "putchar"
+        ],
+        "inputs": [
+          {
+            "name": "menu_choice",
+            "source": "scanf %d",
+            "stack": "rbp-0x4b4"
+          },
+          {
+            "name": "text_to_hash",
+            "source": "read(0, buf, 0x3ff)",
+            "stack": "rbp-0x410"
+          },
+          {
+            "name": "read_idx",
+            "source": "scanf %u",
+            "stack": "rbp-0x4b0"
+          }
+        ],
+        "checks": [
+          "menu_choice == 1 -> compute; == 2 -> read; else -> _abort('Unknown command')",
+          "compute: loop idx 0..15 to find NULL slot; if idx==16 -> 'OUT-OF-MEMORY' puts + continue",
+          "read: if hash_ptr[idx]==NULL -> _abort('Entry does not exist')",
+          "NO upper bound check on read_idx before array indexing"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "hash_array[search_idx] = compute_hash256(text)",
+            "stack": "rbp-0x490 + search_idx*8",
+            "size": 8,
+            "destination_type": "stack_pointer_array"
+          },
+          {
+            "operation": "READ",
+            "destination": "hash_ptr = hash_array[read_idx]",
+            "stack": "rbp-0x490 + read_idx*8",
+            "size": 8,
+            "destination_type": "stack_pointer_array_dereference",
+            "note": "read_idx from scanf %u, NO bounds check, attacker-controlled index reaches pointer dereference"
+          },
+          {
+            "operation": "READ",
+            "destination": "print 32 bytes from *hash_ptr",
+            "size": 32,
+            "destination_type": "heap_pointer_dereference",
+            "note": "prints 32 bytes (SHA256 digest) from dereferenced pointer via printf %02hhX loop"
+          }
+        ],
+        "calls": [
+          "init",
+          "getenv",
+          "compute_hash256",
+          "clearenv",
+          "memset",
+          "menu",
+          "__isoc99_scanf",
+          "printf",
+          "read",
+          "puts",
+          "putchar",
+          "_abort"
+        ]
+      },
+      {
+        "name": "compute_hash256",
+        "address": "0x137e",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "calloc",
+          "SHA256_Init",
+          "strlen",
+          "SHA256_Update",
+          "SHA256_Final",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "text",
+            "source": "rdi (caller stack buffer)"
+          }
+        ],
+        "checks": [
+          "stack canary"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "calloc(0x20, 1) -> 32-byte heap buffer for SHA256 digest",
+            "size": 32
+          },
+          {
+            "operation": "WRITE",
+            "destination": "SHA256_Final(digest_buf, ctx) writes 32 bytes to heap buffer"
+          }
+        ],
+        "calls": [
+          "calloc",
+          "SHA256_Init",
+          "strlen",
+          "SHA256_Update",
+          "SHA256_Final"
+        ],
+        "note": "Returns pointer to 32-byte heap-allocated SHA256 digest"
+      },
+      {
+        "name": "init",
+        "address": "0x14b2",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm"
+        ],
+        "note": "setvbuf(stdin/stdout/stderr, NULL, _IONBF, 0); alarm(60)"
+      },
+      {
+        "name": "menu",
+        "address": "0x1420",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "puts"
+        ],
+        "note": "Prints ASCII banner and menu options"
+      },
+      {
+        "name": "_abort",
+        "address": "0x1349",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "rdi"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf",
+          "exit"
+        ],
+        "note": "printf('%s', msg); exit(1)"
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "read_idx (scanf %u at 0x17d8)",
+        "operation": "READ: hash_array[read_idx] dereference + 32-byte print loop",
+        "risk": "HIGH",
+        "reason": "Attacker-controlled unsigned index with NO upper bound check reaches stack pointer array dereference at [rbp+rax*8-0x490]. idx 0..15 = valid hash slots; idx 16..145 = overlaps text buffer (zeros -> NULL -> abort); idx 146 = saved rbp (stack address leak CONFIRMED at runtime); idx 147 = return address; idx 0xffffffff = Bus error crash (OOB read beyond mapped memory). This is an out-of-bounds stack read primitive."
+      },
+      {
+        "function": "main",
+        "input": "text_to_hash (read at 0x16a6)",
+        "operation": "WRITE: read(0, rbp-0x410, 0x3ff) into stack buffer",
+        "risk": "MEDIUM",
+        "reason": "1023-byte read into 1024-byte stack buffer at rbp-0x410. Buffer is adjacent to hash pointer array (rbp-0x490) and canary (rbp-0x8). No overflow by itself (0x3ff < 0x400), but text buffer overlaps hash array indices 16..145."
+      },
+      {
+        "function": "main",
+        "input": "flag environment variable",
+        "operation": "getenv('flag') -> compute_hash256 -> stored at hash_array[0] -> clearenv()",
+        "risk": "LOW",
+        "reason": "Flag is hashed with SHA256 and stored at idx 0, then environment is cleared. The flag hash (not plaintext) is readable via Read Hash record idx 0."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is x86-64 PIE, dynamically linked, not stripped, GCC 11.4.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, NX, Canary, PIE, SHSTK+IBT (CET) enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "Runtime: glibc 2.39, OpenSSL 3.0.13, no RPATH/RUNPATH (system library paths only)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "Program requires environment variable 'flag' (lowercase) at startup; if missing, calls _abort('can\\'t find the flag!') and exits",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "main stack frame: sub rsp,0x4c0. Hash pointer array at rbp-0x490 (16 entries, idx 0-15). Text buffer at rbp-0x410 (0x400 bytes). Canary at rbp-0x8.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "Read Hash record uses scanf('%u') at 0x17d8 to read index into rbp-0x4b0, then accesses hash_array[idx] at [rbp+rax*8-0x490] with NO upper bound check. Only NULL check on dereferenced pointer.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "Compute sha256 uses read(0, rbp-0x410, 0x3ff) for text input, calls compute_hash256, stores result pointer at first NULL slot in hash_array (search idx 0-15).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "compute_hash256 allocates 32-byte heap buffer via calloc(0x20,1), computes SHA256, returns heap pointer to digest",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "Flag hash stored at hash_array[0] (idx 0) at startup; clearenv() called after to remove environment variables",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "Menu only accepts 1 (compute) and 2 (read); any other value calls _abort('Unknown command') and exit(1)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "Read idx 0 returns flag's SHA256 hash (32 hex bytes)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "Read idx 16-145 returns 'Entry does not exist' (text buffer is zeroed -> NULL pointer -> abort)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "Read idx 146 returns 32 bytes containing stack addresses (0x7ffc...) - saved rbp leak CONFIRMED. Two runs yielded different addresses (ASLR confirmed).",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "Read idx 0xffffffff causes Bus error (SIGBUS, exit code 135) - OOB read beyond mapped memory",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "init() calls alarm(60) - 60 second timeout, and setvbuf(_IONBF) on stdin/stdout/stderr",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "DERIVED",
+        "description": "idx 146 = rbp-0x490+146*8 = rbp (saved rbp on stack). idx 147 = rbp+0x8 (return address). idx 16 = rbp-0x410 (text buffer start).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "DERIVED",
+        "description": "The OOB read at idx 146 leaks saved rbp (stack address), enabling stack address disclosure. idx 147 would leak return address (potential PIE/libc leak).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in binary; library search order: LD_LIBRARY_PATH > system paths. libcrypto.so.3 and libc.so.6 both resolve from /lib/x86_64-linux-gnu/",
+        "source": "ELF"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Exact value at idx 147 (return address) - runtime test showed data but values did not cleanly parse as expected PIE/libc addresses; may need debugger to confirm exact layout at that offset",
+        "reason": "Stack frame of __libc_start_main caller may have additional saved registers between saved rbp and return address"
+      },
+      {
+        "id": "U002",
+        "description": "Whether the OOB read can be leveraged beyond information disclosure (e.g., to leak canary, PIE base, libc base)",
+        "reason": "S2 should determine which specific offsets leak canary (rbp-0x8 = idx ~145.875, not aligned), PIE base, and libc addresses"
+      },
+      {
+        "id": "U003",
+        "description": "Whether text buffer content (user-controlled via read) at idx 16-145 can be used to plant fake pointers for the read dereference",
+        "reason": "Text buffer is memset to 0 after each compute, but during the compute flow the buffer contains user text before memset; the read flow uses a separate menu iteration"
+      }
+    ],
+    "raw": {
+      "elf": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped. Entry=0x1260. 13 program headers, 31 sections.",
+      "sections": ".text@0x1260(0x633,RX) .rodata@0x2000(0x209,R) .data@0x4000(0x10,RW) .bss@0x4020(0x38,RW) .got@0x3f38(0xc8,RW) .init_array@0x3d28(0x8,RW) .fini_array@0x3d30(0x8,RW)",
+      "symbols": "main@0x1521 compute_hash256@0x137e init@0x14b2 menu@0x1420 _abort@0x1349 _start@0x1260 _init@0x1000 _fini@0x1894",
+      "disassembly": "main: sub rsp,0x4c0; hash_array@rbp-0x490(16 entries); text_buf@rbp-0x410(0x400); canary@rbp-0x8. Read path: scanf(%u)->idx@rbp-0x4b0; ptr=[rbp+rax*8-0x490]; if(!ptr)_abort; else print 32 bytes via printf(%02hhX) loop. NO bounds check on idx. Compute path: read(0,rbp-0x410,0x3ff); compute_hash256; store at first NULL slot. Flag: getenv(flag)->compute_hash256->array[0]->clearenv."
+    }
+  }
+}

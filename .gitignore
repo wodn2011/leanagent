@@ -1,0 +1,17 @@
+# 二进制/镜像/大文件——不提交
+core.*
+*.pyc
+__pycache__/
+*.egg-info/
+ctf/
+ctf2/
+logs/
+test/
+archive/
+_skills/
+squashfs-root/
+docker/
+leanagent.egg-info/
+ppt/assets/
+.env
+.claude/

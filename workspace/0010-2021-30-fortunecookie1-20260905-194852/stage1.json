@@ -1,0 +1,975 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1110\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"type\":\"DYN (PIE)\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"fortunecookie.c\",\"buildid\":\"84dab319bf6fe22134cf0338cbd8071fd8bc06c2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"none\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":\"none\",\"runpath\":\"none\",\"ld_library_path_priority\":\"LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[\"1. Eat one cookie!!\",\"2. Make new cookie.\",\"3. Edit cookie msg.\",\"4. View cookie msg.\",\"5. exit\"],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf_lld\",\"function\":\"main\",\"type\":\"int64\"},{\"name\":\"message_length\",\"source\":\"scanf_lld\",\"function\":\"create_cookie\",\"type\":\"int64\",\"max\":256},{\"name\":\"message_data\",\"source\":\"read_0_buf_len\",\"function\":\"create_cookie\",\"type\":\"bytes\"},{\"name\":\"cookie_index_edit\",\"source\":\"scanf_llu\",\"function\":\"edit_cookie\",\"type\":\"uint64\"},{\"name\":\"new_message\",\"source\":\"read_0_msg_idx_msg_size_idx_minus_1\",\"function\":\"edit_cookie\",\"type\":\"bytes\"},{\"name\":\"cookie_index_view\",\"source\":\"scanf_llu\",\"function\":\"read_cookie\",\"type\":\"uint64\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1110\",\"size\":\"0x891\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x266\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f58\",\"size\":\"0xa8\",\"flags\":\"WA\",\"writable\":false,\"executable\":false,\"readable\":true,\"note\":\"Full RELRO resolved read-only at runtime\"},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xe0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d58\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x3d68\",\"size\":\"0x1f0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x22e0\",\"size\":\"0x1e0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2268\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"msg\",\"address\":\"0x4060\",\"size\":256,\"section\":\".bss\",\"type\":\"pointer_array\",\"count\":32,\"element_size\":8,\"element_type\":\"char_ptr\",\"note\":\"cookie message pointer array\"},{\"name\":\"msg_size\",\"address\":\"0x4160\",\"size\":128,\"section\":\".bss\",\"type\":\"int_array\",\"count\":32,\"element_size\":4,\"element_type\":\"int32\",\"note\":\"per-cookie message size paired with msg[i]\"},{\"name\":\"urandom\",\"address\":\"0x41e0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\",\"note\":\"fopen dev urandom result\"},{\"name\":\"cookie_num\",\"address\":\"0x41e8\",\"size\":8,\"section\":\".bss\",\"type\":\"int64\",\"note\":\"current count of cookies init 5\"},{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"}],\"got\":[{\"offset\":\"0x3f70\",\"symbol\":\"free\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f78\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f80\",\"symbol\":\"fread\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f88\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f90\",\"symbol\":\"printf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f98\",\"symbol\":\"alarm\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa0\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa8\",\"symbol\":\"calloc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb0\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb8\",\"symbol\":\"fopen\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc0\",\"symbol\":\"__isoc99_scanf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc8\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fd0\",\"symbol\":\"strdup\",\"type\":\"JUMP_SLOT\"}],\"plt\":[{\"symbol\":\"free\",\"plt_entry\":\"0x1030\"},{\"symbol\":\"puts\",\"plt_entry\":\"0x1040\"},{\"symbol\":\"strdup\",\"plt_entry\":\"0x10f0\"},{\"symbol\":\"fread\",\"plt_entry\":\"0x1050\"},{\"symbol\":\"__stack_chk_fail\",\"plt_entry\":\"0x1060\"},{\"symbol\":\"printf\",\"plt_entry\":\"0x1070\"},{\"symbol\":\"alarm\",\"plt_entry\":\"0x1080\"},{\"symbol\":\"read\",\"plt_entry\":\"0x1090\"},{\"symbol\":\"calloc\",\"plt_entry\":\"0x10a0\"},{\"symbol\":\"setvbuf\",\"plt_entry\":\"0x10b0\"},{\"symbol\":\"fopen\",\"plt_entry\":\"0x10c0\"},{\"symbol\":\"__isoc99_scanf\",\"plt_entry\":\"0x10d0\"},{\"symbol\":\"exit\",\"plt_entry\":\"0x10e0\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x187f\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"__isoc99_scanf\",\"exit\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf_lld\"}],\"checks\":[\"choice==1 eat_cookie\",\"choice==2 create_cookie\",\"choice==3 edit_cookie\",\"choice==4 read_cookie\",\"choice==5 exit\",\"default loop\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"]},{\"name\":\"init\",\"address\":\"0x1232\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"fopen\",\"strdup\",\"_abort\"],\"inputs\":[],\"checks\":[\"urandom==NULL abort\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"urandom 0x41e0\",\"size\":8,\"value\":\"fopen result\"},{\"operation\":\"WRITE\",\"destination\":\"msg 0x4060 to 0x4080\",\"size\":8,\"value\":\"strdup fortune strings\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size 0x4160 to 0x416c\",\"size\":4,\"value\":\"0x50 0x30 0x18 0x38 0x40\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num 0x41e8\",\"size\":8,\"value\":\"5\"}],\"calls\":[\"setvbuf\",\"alarm\",\"fopen\",\"strdup\",\"_abort\"],\"note\":\"alarm 60 opens dev urandom pre-creates 5 fortune cookies via strdup\"},{\"name\":\"create_cookie\",\"address\":\"0x1399\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"length\",\"source\":\"scanf_lld\",\"type\":\"int64\"},{\"name\":\"message\",\"source\":\"read_0_buf_length\",\"type\":\"bytes\"}],\"checks\":[\"cookie_num > 0x1f abort Too many cookie\",\"length > 0x100 abort Too long\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"heap\",\"size\":\"length\",\"call\":\"calloc\"},{\"operation\":\"WRITE\",\"destination\":\"heap buffer\",\"size\":\"length\",\"call\":\"read\"},{\"operation\":\"WRITE\",\"destination\":\"msg cookie_num\",\"size\":8,\"value\":\"heap_ptr\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size cookie_num\",\"size\":4,\"value\":\"length\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"value\":\"cookie_num+1\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"_abort\"],\"note\":\"length checked le 0x100 signed no negative length check\"},{\"name\":\"edit_cookie\",\"address\":\"0x1628\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"read\",\"puts\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf_llu\",\"type\":\"uint64\"},{\"name\":\"new_message\",\"source\":\"read_0_msg_index_msg_size_index_minus_1\",\"type\":\"bytes\"}],\"checks\":[\"index >= cookie_num abort Invalid index\",\"NOTE no lower-bound check on index unsigned negative wraps\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg_size index\",\"size\":4,\"address_calc\":\"msg_size + index*4\"},{\"operation\":\"WRITE\",\"destination\":\"msg index deref heap buffer\",\"size\":\"msg_size index minus 1\",\"call\":\"read\",\"address_calc\":\"msg + index*8 then dereference\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"read\",\"puts\",\"_abort\"],\"note\":\"index uint64 only upper-bound checked via jl signed compare\"},{\"name\":\"read_cookie\",\"address\":\"0x1751\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf_llu\",\"type\":\"uint64\"}],\"checks\":[\"index >= cookie_num abort Invalid index\",\"NOTE no lower-bound check on index\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg index\",\"size\":8,\"address_calc\":\"msg + index*8\"},{\"operation\":\"READ\",\"destination\":\"printf\",\"source\":\"msg index deref string\",\"call\":\"printf\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\"],\"note\":\"prints cookie message string index only upper-bound checked via jl\"},{\"name\":\"eat_cookie\",\"address\":\"0x14e1\",\"callers\":[\"main\"],\"callees\":[\"fread\",\"printf\",\"free\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"random_byte\",\"source\":\"fread urandom\",\"type\":\"uint8\"}],\"checks\":[\"cookie_num==0 abort No cookie\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"urandom\",\"size\":1,\"value\":\"random byte idx rand mod cookie_num\"},{\"operation\":\"READ\",\"source\":\"msg idx\",\"size\":8},{\"operation\":\"READ\",\"destination\":\"printf\",\"source\":\"msg idx deref\",\"call\":\"printf\"},{\"operation\":\"FREE\",\"target\":\"msg idx\",\"call\":\"free\"},{\"operation\":\"READ\",\"source\":\"msg cookie_num minus 1\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"msg idx\",\"size\":8,\"value\":\"msg last moved into freed slot\"},{\"operation\":\"READ\",\"source\":\"msg_size cookie_num minus 1\",\"size\":4},{\"operation\":\"WRITE\",\"destination\":\"msg_size idx\",\"size\":4,\"value\":\"msg_size last\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"value\":\"cookie_num minus 1\"}],\"calls\":[\"fread\",\"printf\",\"free\",\"_abort\"],\"note\":\"random cookie freed last cookie pointer moved into freed slot last slot NOT cleared\"},{\"name\":\"menu\",\"address\":\"0x17fd\",\"callers\":[\"main\"],\"callees\":[\"puts\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\"],\"note\":\"prints 7 menu lines\"}],\"attack_surfaces\":[{\"function\":\"edit_cookie\",\"input\":\"cookie_index scanf llu unsigned no lower-bound check\",\"operation\":\"WRITE via read 0 msg index msg_size index minus 1 index dereferences msg and msg_size arrays\",\"risk\":\"HIGH\",\"reason\":\"attacker-controlled unsigned index only checked against upper bound idx less than cookie_num via signed jl negative value wraps to large uint64 passes check enabling OOB array access msg index dereferenced as write destination msg_size index as write length\"},{\"function\":\"read_cookie\",\"input\":\"cookie_index scanf llu unsigned no lower-bound check\",\"operation\":\"READ via printf percent s msg index index dereferences msg array\",\"risk\":\"HIGH\",\"reason\":\"attacker-controlled unsigned index only upper-bound checked via signed jl OOB index reads pointer from msg and printf prints as string potential info leak arbitrary read\"},{\"function\":\"eat_cookie\",\"input\":\"random index from dev urandom\",\"operation\":\"FREE msg idx then overwrite msg idx equals msg last last slot pointer not cleared\",\"risk\":\"MEDIUM\",\"reason\":\"after moving last pointer into freed slot original last slot still holds same pointer duplicate pointer potential UAF double-free surface for S2\"},{\"function\":\"create_cookie\",\"input\":\"message_length scanf lld signed\",\"operation\":\"calloc length 1 plus read 0 buf length\",\"risk\":\"MEDIUM\",\"reason\":\"length signed int64 only checked greater than 0x100 negative length could wrap calloc size argument S2 to assess\"},{\"function\":\"init\",\"input\":\"none static\",\"operation\":\"strdup creates 5 heap cookies alarm 60\",\"risk\":\"LOW\",\"reason\":\"sets up initial state alarm limits runtime no direct attacker input\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is PIE ELF64 amd64 dynamically linked not stripped GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Protections Full RELRO NX Canary PIE no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH RUNPATH only NEEDED lib is libc.so.6 LD_LIBRARY_PATH would precede system paths\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Global layout in bss msg 32 at 0x4060 256B char ptr array msg_size 32 at 0x4160 128B int32 array urandom at 0x41e0 FILE ptr cookie_num at 0x41e8 int64\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"init pre-creates 5 cookies via strdup with sizes 0x50 0x30 0x18 0x38 0x40 sets cookie_num 5 opens dev urandom alarm 60\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"create_cookie scanf lld length checks length le 0x100 calloc length 1 read 0 buf length stores ptr in msg cookie_num and size in msg_size cookie_num cookie_num increment\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"edit_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check read 0 msg index msg_size index minus 1\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"read_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check printf percent s msg index\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eat_cookie random idx fread urandom mod cookie_num printf msg idx free msg idx msg idx equals msg cookie_num minus 1 msg_size idx equals msg_size cookie_num minus 1 cookie_num decrement last slot NOT zeroed\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"edit_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"read_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"create_cookie length read with scanf lld signed long long compared with jle signed le against 0x100\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"GOT is Full RELRO read-only at runtime got at 0x3f58 marked WA in ELF but RELRO segment 0x3d58 to 0x4000 makes it read-only after relocation\",\"source\":\"ELF\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"msg array 0x4060 and msg_size array 0x4160 adjacent in bss msg has 32 ptr slots 256B msg_size has 32 int slots 128B msg_size starts exactly 0x100 after msg\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"edit_cookie and read_cookie use jl signed comparison on unsigned scanf value large unsigned index e.g. 0xffffffffffffffff is negative in signed view so jl cookie_num passes check enabling OOB array access\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"With OOB index in edit_cookie msg index reads pointer from out-of-bounds memory and msg_size index reads a size both used to drive read attacker may control write destination and length via adjacent globals\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"eat_cookie does not clear msg cookie_num minus 1 after copying to msg idx both slots hold same pointer until cookie_num decremented below old last index\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F019\",\"type\":\"FACT\",\"description\":\"Probe confirmed menu IO choice via scanf create asks How long is the message then Input your message view asks Which cookie 0 to N\",\"source\":\"RUNTIME\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether CET IBT SHSTK is enforced at runtime\",\"reason\":\"checksec did not report SHSTK IBT flags kernel hardware support not probed\"},{\"id\":\"U002\",\"description\":\"Whether ASLR is enabled in the execution environment\",\"reason\":\"Not confirmed at runtime PIE enabled but ASLR depends on kernel config\"},{\"id\":\"U003\",\"description\":\"Exact exploitability of signed unsigned index mismatch in edit_cookie read_cookie\",\"reason\":\"S1 records the fact jl on unsigned value S2 must determine concrete OOB reach and primitive\"},{\"id\":\"U004\",\"description\":\"Whether eat_cookie duplicate pointer leads to exploitable UAF double-free\",\"reason\":\"S1 records pointer not cleared S2 must confirm control flow allows reuse of stale slot\"},{\"id\":\"U005\",\"description\":\"Whether negative create_cookie length can cause calloc to return non-NULL with small allocation\",\"reason\":\"calloc with huge size arg likely returns NULL S2 to confirm behavior and subsequent read on NULL\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE x86-64 dyn linked interp /lib64/ld-linux-x86-64.so.2 BuildID 84dab319bf6fe22134cf0338cbd8071fd8bc06c2 not stripped source fortunecookie.c GCC 10.2.0\",\"sections\":\".text@0x1110(0x891 AX) .rodata@0x2000(0x266 A) .data@0x4000(0x10 WA) .bss@0x4020(0x1d0 WA) .got@0x3f58(0xa8 WA RELRO) .plt@0x1020(0xe0 AX) .init_array@0x3d58(0x8 WA) .fini_array@0x3d60(0x8 WA) .dynamic@0x3d68(0x1f0 WA) .eh_frame@0x22e0(0x1e0 A) .eh_frame_hdr@0x2268(0x74 A)\",\"symbols\":\"main@0x187f init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd _abort@0x11f5 msg@0x4060 msg_size@0x4160 urandom@0x41e0 cookie_num@0x41e8\",\"disassembly\":\"init setvbuf x3 alarm 60 fopen dev urandom strdup x5 cookies sizes 0x50 0x30 0x18 0x38 0x40 cookie_num 5. create_cookie scanf lld len check len le 0x100 calloc len 1 read 0 buf len msg cookie_num buf msg_size cookie_num len cookie_num++. edit_cookie scanf llu idx check idx lt cookie_num jl read 0 msg idx msg_size idx minus 1. read_cookie scanf llu idx check idx lt cookie_num jl printf s msg idx. eat_cookie idx fread urandom mod cookie_num printf msg idx free msg idx msg idx msg cookie_num minus 1 msg_size idx msg_size cookie_num minus 1 cookie_num minus minus last slot not zeroed.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1110",
+      "dynamic": true,
+      "stripped": false,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "type": "DYN (PIE)",
+      "compiler": "GCC 10.2.0 (Debian 10.2.0-16)",
+      "source_file": "fortunecookie.c",
+      "buildid": "84dab319bf6fe22134cf0338cbd8071fd8bc06c2"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "none",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "rpath": "none",
+          "runpath": "none",
+          "ld_library_path_priority": "LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)",
+          "source": "RUNTIME"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        "1. Eat one cookie!!",
+        "2. Make new cookie.",
+        "3. Edit cookie msg.",
+        "4. View cookie msg.",
+        "5. exit"
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf_lld",
+          "function": "main",
+          "type": "int64"
+        },
+        {
+          "name": "message_length",
+          "source": "scanf_lld",
+          "function": "create_cookie",
+          "type": "int64",
+          "max": 256
+        },
+        {
+          "name": "message_data",
+          "source": "read_0_buf_len",
+          "function": "create_cookie",
+          "type": "bytes"
+        },
+        {
+          "name": "cookie_index_edit",
+          "source": "scanf_llu",
+          "function": "edit_cookie",
+          "type": "uint64"
+        },
+        {
+          "name": "new_message",
+          "source": "read_0_msg_idx_msg_size_idx_minus_1",
+          "function": "edit_cookie",
+          "type": "bytes"
+        },
+        {
+          "name": "cookie_index_view",
+          "source": "scanf_llu",
+          "function": "read_cookie",
+          "type": "uint64"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1110",
+          "size": "0x891",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x266",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x4020",
+          "size": "0x1d0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x3f58",
+          "size": "0xa8",
+          "flags": "WA",
+          "writable": false,
+          "executable": false,
+          "readable": true,
+          "note": "Full RELRO resolved read-only at runtime"
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xe0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d58",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d60",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x3d68",
+          "size": "0x1f0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x22e0",
+          "size": "0x1e0",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x2268",
+          "size": "0x74",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "msg",
+          "address": "0x4060",
+          "size": 256,
+          "section": ".bss",
+          "type": "pointer_array",
+          "count": 32,
+          "element_size": 8,
+          "element_type": "char_ptr",
+          "note": "cookie message pointer array"
+        },
+        {
+          "name": "msg_size",
+          "address": "0x4160",
+          "size": 128,
+          "section": ".bss",
+          "type": "int_array",
+          "count": 32,
+          "element_size": 4,
+          "element_type": "int32",
+          "note": "per-cookie message size paired with msg[i]"
+        },
+        {
+          "name": "urandom",
+          "address": "0x41e0",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE_ptr",
+          "note": "fopen dev urandom result"
+        },
+        {
+          "name": "cookie_num",
+          "address": "0x41e8",
+          "size": 8,
+          "section": ".bss",
+          "type": "int64",
+          "note": "current count of cookies init 5"
+        },
+        {
+          "name": "stdout",
+          "address": "0x4020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE_ptr"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4030",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE_ptr"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE_ptr"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3f70",
+          "symbol": "free",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f78",
+          "symbol": "puts",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f80",
+          "symbol": "fread",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f88",
+          "symbol": "__stack_chk_fail",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f90",
+          "symbol": "printf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f98",
+          "symbol": "alarm",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fa0",
+          "symbol": "read",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fa8",
+          "symbol": "calloc",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fb0",
+          "symbol": "setvbuf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fb8",
+          "symbol": "fopen",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fc0",
+          "symbol": "__isoc99_scanf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fc8",
+          "symbol": "exit",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fd0",
+          "symbol": "strdup",
+          "type": "JUMP_SLOT"
+        }
+      ],
+      "plt": [
+        {
+          "symbol": "free",
+          "plt_entry": "0x1030"
+        },
+        {
+          "symbol": "puts",
+          "plt_entry": "0x1040"
+        },
+        {
+          "symbol": "strdup",
+          "plt_entry": "0x10f0"
+        },
+        {
+          "symbol": "fread",
+          "plt_entry": "0x1050"
+        },
+        {
+          "symbol": "__stack_chk_fail",
+          "plt_entry": "0x1060"
+        },
+        {
+          "symbol": "printf",
+          "plt_entry": "0x1070"
+        },
+        {
+          "symbol": "alarm",
+          "plt_entry": "0x1080"
+        },
+        {
+          "symbol": "read",
+          "plt_entry": "0x1090"
+        },
+        {
+          "symbol": "calloc",
+          "plt_entry": "0x10a0"
+        },
+        {
+          "symbol": "setvbuf",
+          "plt_entry": "0x10b0"
+        },
+        {
+          "symbol": "fopen",
+          "plt_entry": "0x10c0"
+        },
+        {
+          "symbol": "__isoc99_scanf",
+          "plt_entry": "0x10d0"
+        },
+        {
+          "symbol": "exit",
+          "plt_entry": "0x10e0"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x187f",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "menu",
+          "eat_cookie",
+          "create_cookie",
+          "edit_cookie",
+          "read_cookie",
+          "__isoc99_scanf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "choice",
+            "source": "scanf_lld"
+          }
+        ],
+        "checks": [
+          "choice==1 eat_cookie",
+          "choice==2 create_cookie",
+          "choice==3 edit_cookie",
+          "choice==4 read_cookie",
+          "choice==5 exit",
+          "default loop"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "init",
+          "menu",
+          "__isoc99_scanf",
+          "eat_cookie",
+          "create_cookie",
+          "edit_cookie",
+          "read_cookie",
+          "exit"
+        ]
+      },
+      {
+        "name": "init",
+        "address": "0x1232",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm",
+          "fopen",
+          "strdup",
+          "_abort"
+        ],
+        "inputs": [],
+        "checks": [
+          "urandom==NULL abort"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "urandom 0x41e0",
+            "size": 8,
+            "value": "fopen result"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg 0x4060 to 0x4080",
+            "size": 8,
+            "value": "strdup fortune strings"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size 0x4160 to 0x416c",
+            "size": 4,
+            "value": "0x50 0x30 0x18 0x38 0x40"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num 0x41e8",
+            "size": 8,
+            "value": "5"
+          }
+        ],
+        "calls": [
+          "setvbuf",
+          "alarm",
+          "fopen",
+          "strdup",
+          "_abort"
+        ],
+        "note": "alarm 60 opens dev urandom pre-creates 5 fortune cookies via strdup"
+      },
+      {
+        "name": "create_cookie",
+        "address": "0x1399",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "__isoc99_scanf",
+          "calloc",
+          "read",
+          "puts",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "length",
+            "source": "scanf_lld",
+            "type": "int64"
+          },
+          {
+            "name": "message",
+            "source": "read_0_buf_length",
+            "type": "bytes"
+          }
+        ],
+        "checks": [
+          "cookie_num > 0x1f abort Too many cookie",
+          "length > 0x100 abort Too long"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "heap",
+            "size": "length",
+            "call": "calloc"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "heap buffer",
+            "size": "length",
+            "call": "read"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg cookie_num",
+            "size": 8,
+            "value": "heap_ptr"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size cookie_num",
+            "size": 4,
+            "value": "length"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num",
+            "size": 8,
+            "value": "cookie_num+1"
+          }
+        ],
+        "calls": [
+          "printf",
+          "__isoc99_scanf",
+          "calloc",
+          "read",
+          "puts",
+          "_abort"
+        ],
+        "note": "length checked le 0x100 signed no negative length check"
+      },
+      {
+        "name": "edit_cookie",
+        "address": "0x1628",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "__isoc99_scanf",
+          "read",
+          "puts",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "index",
+            "source": "scanf_llu",
+            "type": "uint64"
+          },
+          {
+            "name": "new_message",
+            "source": "read_0_msg_index_msg_size_index_minus_1",
+            "type": "bytes"
+          }
+        ],
+        "checks": [
+          "index >= cookie_num abort Invalid index",
+          "NOTE no lower-bound check on index unsigned negative wraps"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "msg_size index",
+            "size": 4,
+            "address_calc": "msg_size + index*4"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg index deref heap buffer",
+            "size": "msg_size index minus 1",
+            "call": "read",
+            "address_calc": "msg + index*8 then dereference"
+          }
+        ],
+        "calls": [
+          "printf",
+          "__isoc99_scanf",
+          "read",
+          "puts",
+          "_abort"
+        ],
+        "note": "index uint64 only upper-bound checked via jl signed compare"
+      },
+      {
+        "name": "read_cookie",
+        "address": "0x1751",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "index",
+            "source": "scanf_llu",
+            "type": "uint64"
+          }
+        ],
+        "checks": [
+          "index >= cookie_num abort Invalid index",
+          "NOTE no lower-bound check on index"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "msg index",
+            "size": 8,
+            "address_calc": "msg + index*8"
+          },
+          {
+            "operation": "READ",
+            "destination": "printf",
+            "source": "msg index deref string",
+            "call": "printf"
+          }
+        ],
+        "calls": [
+          "printf",
+          "__isoc99_scanf",
+          "_abort"
+        ],
+        "note": "prints cookie message string index only upper-bound checked via jl"
+      },
+      {
+        "name": "eat_cookie",
+        "address": "0x14e1",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "fread",
+          "printf",
+          "free",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "random_byte",
+            "source": "fread urandom",
+            "type": "uint8"
+          }
+        ],
+        "checks": [
+          "cookie_num==0 abort No cookie"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "urandom",
+            "size": 1,
+            "value": "random byte idx rand mod cookie_num"
+          },
+          {
+            "operation": "READ",
+            "source": "msg idx",
+            "size": 8
+          },
+          {
+            "operation": "READ",
+            "destination": "printf",
+            "source": "msg idx deref",
+            "call": "printf"
+          },
+          {
+            "operation": "FREE",
+            "target": "msg idx",
+            "call": "free"
+          },
+          {
+            "operation": "READ",
+            "source": "msg cookie_num minus 1",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg idx",
+            "size": 8,
+            "value": "msg last moved into freed slot"
+          },
+          {
+            "operation": "READ",
+            "source": "msg_size cookie_num minus 1",
+            "size": 4
+          },
+          {
+            "operation": "WRITE",
+            "destination": "msg_size idx",
+            "size": 4,
+            "value": "msg_size last"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "cookie_num",
+            "size": 8,
+            "value": "cookie_num minus 1"
+          }
+        ],
+        "calls": [
+          "fread",
+          "printf",
+          "free",
+          "_abort"
+        ],
+        "note": "random cookie freed last cookie pointer moved into freed slot last slot NOT cleared"
+      },
+      {
+        "name": "menu",
+        "address": "0x17fd",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "puts"
+        ],
+        "note": "prints 7 menu lines"
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "edit_cookie",
+        "input": "cookie_index scanf llu unsigned no lower-bound check",
+        "operation": "WRITE via read 0 msg index msg_size index minus 1 index dereferences msg and msg_size arrays",
+        "risk": "HIGH",
+        "reason": "attacker-controlled unsigned index only checked against upper bound idx less than cookie_num via signed jl negative value wraps to large uint64 passes check enabling OOB array access msg index dereferenced as write destination msg_size index as write length"
+      },
+      {
+        "function": "read_cookie",
+        "input": "cookie_index scanf llu unsigned no lower-bound check",
+        "operation": "READ via printf percent s msg index index dereferences msg array",
+        "risk": "HIGH",
+        "reason": "attacker-controlled unsigned index only upper-bound checked via signed jl OOB index reads pointer from msg and printf prints as string potential info leak arbitrary read"
+      },
+      {
+        "function": "eat_cookie",
+        "input": "random index from dev urandom",
+        "operation": "FREE msg idx then overwrite msg idx equals msg last last slot pointer not cleared",
+        "risk": "MEDIUM",
+        "reason": "after moving last pointer into freed slot original last slot still holds same pointer duplicate pointer potential UAF double-free surface for S2"
+      },
+      {
+        "function": "create_cookie",
+        "input": "message_length scanf lld signed",
+        "operation": "calloc length 1 plus read 0 buf length",
+        "risk": "MEDIUM",
+        "reason": "length signed int64 only checked greater than 0x100 negative length could wrap calloc size argument S2 to assess"
+      },
+      {
+        "function": "init",
+        "input": "none static",
+        "operation": "strdup creates 5 heap cookies alarm 60",
+        "risk": "LOW",
+        "reason": "sets up initial state alarm limits runtime no direct attacker input"
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is PIE ELF64 amd64 dynamically linked not stripped GCC 10.2.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Protections Full RELRO NX Canary PIE no FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "No RPATH RUNPATH only NEEDED lib is libc.so.6 LD_LIBRARY_PATH would precede system paths",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Global layout in bss msg 32 at 0x4060 256B char ptr array msg_size 32 at 0x4160 128B int32 array urandom at 0x41e0 FILE ptr cookie_num at 0x41e8 int64",
+        "source": "ELF"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "init pre-creates 5 cookies via strdup with sizes 0x50 0x30 0x18 0x38 0x40 sets cookie_num 5 opens dev urandom alarm 60",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "create_cookie scanf lld length checks length le 0x100 calloc length 1 read 0 buf length stores ptr in msg cookie_num and size in msg_size cookie_num cookie_num increment",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "edit_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check read 0 msg index msg_size index minus 1",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "read_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check printf percent s msg index",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "eat_cookie random idx fread urandom mod cookie_num printf msg idx free msg idx msg idx equals msg cookie_num minus 1 msg_size idx equals msg_size cookie_num minus 1 cookie_num decrement last slot NOT zeroed",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "edit_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "read_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "create_cookie length read with scanf lld signed long long compared with jle signed le against 0x100",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "GOT is Full RELRO read-only at runtime got at 0x3f58 marked WA in ELF but RELRO segment 0x3d58 to 0x4000 makes it read-only after relocation",
+        "source": "ELF"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "msg array 0x4060 and msg_size array 0x4160 adjacent in bss msg has 32 ptr slots 256B msg_size has 32 int slots 128B msg_size starts exactly 0x100 after msg",
+        "source": "ELF"
+      },
+      {
+        "id": "F016",
+        "type": "DERIVED",
+        "description": "edit_cookie and read_cookie use jl signed comparison on unsigned scanf value large unsigned index e.g. 0xffffffffffffffff is negative in signed view so jl cookie_num passes check enabling OOB array access",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "DERIVED",
+        "description": "With OOB index in edit_cookie msg index reads pointer from out-of-bounds memory and msg_size index reads a size both used to drive read attacker may control write destination and length via adjacent globals",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "eat_cookie does not clear msg cookie_num minus 1 after copying to msg idx both slots hold same pointer until cookie_num decremented below old last index",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F019",
+        "type": "FACT",
+        "description": "Probe confirmed menu IO choice via scanf create asks How long is the message then Input your message view asks Which cookie 0 to N",
+        "source": "RUNTIME"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether CET IBT SHSTK is enforced at runtime",
+        "reason": "checksec did not report SHSTK IBT flags kernel hardware support not probed"
+      },
+      {
+        "id": "U002",
+        "description": "Whether ASLR is enabled in the execution environment",
+        "reason": "Not confirmed at runtime PIE enabled but ASLR depends on kernel config"
+      },
+      {
+        "id": "U003",
+        "description": "Exact exploitability of signed unsigned index mismatch in edit_cookie read_cookie",
+        "reason": "S1 records the fact jl on unsigned value S2 must determine concrete OOB reach and primitive"
+      },
+      {
+        "id": "U004",
+        "description": "Whether eat_cookie duplicate pointer leads to exploitable UAF double-free",
+        "reason": "S1 records pointer not cleared S2 must confirm control flow allows reuse of stale slot"
+      },
+      {
+        "id": "U005",
+        "description": "Whether negative create_cookie length can cause calloc to return non-NULL with small allocation",
+        "reason": "calloc with huge size arg likely returns NULL S2 to confirm behavior and subsequent read on NULL"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE x86-64 dyn linked interp /lib64/ld-linux-x86-64.so.2 BuildID 84dab319bf6fe22134cf0338cbd8071fd8bc06c2 not stripped source fortunecookie.c GCC 10.2.0",
+      "sections": ".text@0x1110(0x891 AX) .rodata@0x2000(0x266 A) .data@0x4000(0x10 WA) .bss@0x4020(0x1d0 WA) .got@0x3f58(0xa8 WA RELRO) .plt@0x1020(0xe0 AX) .init_array@0x3d58(0x8 WA) .fini_array@0x3d60(0x8 WA) .dynamic@0x3d68(0x1f0 WA) .eh_frame@0x22e0(0x1e0 A) .eh_frame_hdr@0x2268(0x74 A)",
+      "symbols": "main@0x187f init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd _abort@0x11f5 msg@0x4060 msg_size@0x4160 urandom@0x41e0 cookie_num@0x41e8",
+      "disassembly": "init setvbuf x3 alarm 60 fopen dev urandom strdup x5 cookies sizes 0x50 0x30 0x18 0x38 0x40 cookie_num 5. create_cookie scanf lld len check len le 0x100 calloc len 1 read 0 buf len msg cookie_num buf msg_size cookie_num len cookie_num++. edit_cookie scanf llu idx check idx lt cookie_num jl read 0 msg idx msg_size idx minus 1. read_cookie scanf llu idx check idx lt cookie_num jl printf s msg idx. eat_cookie idx fread urandom mod cookie_num printf msg idx free msg idx msg idx msg cookie_num minus 1 msg_size idx msg_size cookie_num minus 1 cookie_num minus minus last slot not zeroed."
+    }
+  }
+}

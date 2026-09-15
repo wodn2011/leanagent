@@ -1,0 +1,63 @@
+# [重建] 原始 full_run.log 丢失（0字节），由 console log 拼接恢复
+
+# ===== 来源: /work/ctf2/_run_0021_r2.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 ./target ===
+
+10:20:54 === Task Workspace: /work/workspace/0021-2022-37-echo-20260910-102054（target 已拷入） ===
+10:20:54 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+10:20:54 --- S1 Recon ---
+10:20:54 === recon (bug_id=-) ===
+10:23:22 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，17441 chars）
+10:23:29 [stage1] 保存 → /work/workspace/0021-2022-37-echo-20260910-102054/stage1.json
+10:23:29 --- S2 Semantic ---
+10:23:29 === semantic (bug_id=-) ===
+10:25:18 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，22550 chars）
+10:25:23 [stage2] 保存 → /work/workspace/0021-2022-37-echo-20260910-102054/stage2.json
+10:25:23 --- S3 Primitive（所有 bug） ---
+10:25:23 === impact (bug_id=BUG-001) ===
+10:29:46 [retry] 无 submit（1/5），原地重试...
+10:29:50 [retry] 无 submit（2/5），原地重试...
+10:29:53 [retry] 无 submit（3/5），原地重试...
+10:29:55 [retry] 无 submit（4/5），原地重试...
+10:33:29 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，22083 chars）
+10:33:35 === impact (bug_id=BUG-002) ===
+10:51:25 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，22786 chars）
+10:51:33 === impact (bug_id=BUG-003) ===
+11:05:34 [impact:BUG-003] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，17735 chars）
+11:05:50 === impact (bug_id=BUG-004) ===
+11:07:41 [retry] 无 submit（1/5），原地重试...
+11:14:57 [retry] 无 submit（2/5），原地重试...
+11:25:39 [impact:BUG-004] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，19457 chars）
+11:25:45 [stage3] 保存 → /work/workspace/0021-2022-37-echo-20260910-102054/stage3.json
+11:25:45 --- S4 Exploit ---
+11:25:45 === exploit (bug_id=-) ===
+11:29:40 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，11266 chars）
+11:29:50 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+11:29:50 [stage4] 保存 → /work/workspace/0021-2022-37-echo-20260910-102054/stage4.json
+11:30:23 📄 渗透报告：/work/workspace/0021-2022-37-echo-20260910-102054/report.md
+11:30:28 === 主 agent 汇总 ===
+分析完成，结果如下：
+
+## 漏洞分析结果
+
+| 项目 | 结果 |
+|------|------|
+| **二进制路径** | `/work/workspace/0021-2022-37-echo-20260910-102054/target` |
+| **Exploit 是否成功** | ✅ 成功 |
+| **Exploit 脚本** | `/work/workspace/0021-2022-37-echo-20260910-102054/exploit.py` |
+| **完整报告** | `/work/workspace/0021-2022-37-echo-20260910-102054/report.md` |
+| **工作目录** | `/work/workspace/0021-2022-37-echo-20260910-102054/` |
+
+### 总结
+
+完整 S1-S4 漏洞分析流程已跑通：
+- **S1 侦察** → 识别二进制类型与保护机制
+- **S2 语义** → 定位漏洞点
+- **S3 原语验证** → 确认可利用原语
+- **S4 exploit** → 成功生成并验证 exploit
+
+Exploit 已验证成功，生成的 `exploit.py` 可直接复现。如需查看详细漏洞分析与利用细节，可阅读 `report.md` 报告文件。

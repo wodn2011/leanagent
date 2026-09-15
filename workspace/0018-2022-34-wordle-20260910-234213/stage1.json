@@ -1,0 +1,1519 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0018-2022-34-wordle-20260910-234213/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0018-2022-34-wordle-20260910-234213/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x13e0\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB PIE executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped\",\"compiler\":\"GCC 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04)\",\"build_id\":\"4efb4819b79919f1ba790b10d21d75a8ecbfcab6\",\"source_file\":\"wordle.c\",\"os_abi\":\"UNIX - System V\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"not detected\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\",\"note\":\"PIE binary; ASLR active in observed runtime environment\"},\"seccomp\":{\"value\":\"not detected\",\"source\":\"ELF\"}},\"runtime\":{\"libc\":{\"version\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"needed\":true,\"source\":\"RUNTIME\"},{\"name\":\"linux-vdso.so.1\",\"resolved_path\":\"0x00007854a59ea000\",\"needed\":false,\"source\":\"RUNTIME\"}],\"rpath\":\"none\",\"runpath\":\"none\",\"library_search_order\":\"No RPATH/RUNPATH in ELF. Search order: LD_LIBRARY_PATH (if set) then system paths (/lib/x86_64-linux-gnu). Only libc.so.6 is NEEDED; no custom/stub libraries present in target directory.\",\"notes\":\"/etc/words.txt exists (33 bytes, 5 words). /dev/urandom exists. Program runs normally.\"},\"interface\":{\"entry_function\":\"main @ 0x233c\",\"input_sources\":[{\"source\":\"stdin\",\"functions\":[\"menu (scanf %d)\",\"importWords (scanf %lu + read)\",\"inputGuess (read 6 bytes)\",\"importWords continue prompt (scanf %c)\"],\"details\":\"Menu choice via scanf; word list size via scanf; word list content via read(0,buf,size); guess via read(0,buf,6)\"}],\"menu\":[{\"prompt\":\"Main Menu: 1=start new game, 2=load custom word list, 3=Game Rules, 0=End game\",\"handler\":\"main dispatches to gameLoop/importWords/help\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf %d in menu\",\"function\":\"menu\",\"type\":\"int\",\"range_check\":\"0<=choice<=3 (negative or >3 rejected, loops)\"},{\"name\":\"import_size\",\"source\":\"scanf %lu in importWords\",\"function\":\"importWords\",\"type\":\"unsigned long (size_t)\",\"range_check\":\"compared against importer->count (offset 0); if new_size < old_count, frees old buffer; NO upper bound check on size\"},{\"name\":\"import_data\",\"source\":\"read(0, buf, size) in importWords\",\"function\":\"importWords\",\"type\":\"raw bytes, length=import_size\",\"range_check\":\"none beyond size; buf[size-1] set to 0 after read\"},{\"name\":\"continue_yn\",\"source\":\"scanf %c in importWords\",\"function\":\"importWords\",\"type\":\"char\",\"range_check\":\"compared to 'Y'/'y' to loop\"},{\"name\":\"guess\",\"source\":\"read(0, buf, 6) in inputGuess\",\"function\":\"inputGuess\",\"type\":\"6 bytes to stack buffer rbp-0xe\",\"range_check\":\"strlen must ==5; all chars must be alpha (isalpha via __ctype_b_loc); trailing newline stripped\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x318\",\"size\":\"0x1c\",\"flags\":\"R\"},{\"name\":\".note.gnu.property\",\"address\":\"0x338\",\"size\":\"0x30\",\"flags\":\"R\"},{\"name\":\".note.gnu.build-id\",\"address\":\"0x368\",\"size\":\"0x24\",\"flags\":\"R\"},{\"name\":\".note.ABI-tag\",\"address\":\"0x38c\",\"size\":\"0x20\",\"flags\":\"R\"},{\"name\":\".gnu.hash\",\"address\":\"0x3b0\",\"size\":\"0x30\",\"flags\":\"R\"},{\"name\":\".dynsym\",\"address\":\"0x3e0\",\"size\":\"0x378\",\"flags\":\"R\"},{\"name\":\".dynstr\",\"address\":\"0x758\",\"size\":\"0x17e\",\"flags\":\"R\"},{\"name\":\".gnu.version\",\"address\":\"0x8d6\",\"size\":\"0x4a\",\"flags\":\"R\"},{\"name\":\".gnu.version_r\",\"address\":\"0x920\",\"size\":\"0x60\",\"flags\":\"R\"},{\"name\":\".rela.dyn\",\"address\":\"0x980\",\"size\":\"0xf0\",\"flags\":\"R\"},{\"name\":\".rela.plt\",\"address\":\"0xa70\",\"size\":\"0x2b8\",\"flags\":\"R\"},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x1b\",\"flags\":\"RX\"},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0x1e0\",\"flags\":\"RX\"},{\"name\":\".plt.got\",\"address\":\"0x1200\",\"size\":\"0x10\",\"flags\":\"RX\"},{\"name\":\".plt.sec\",\"address\":\"0x1210\",\"size\":\"0x1d0\",\"flags\":\"RX\"},{\"name\":\".text\",\"address\":\"0x13e0\",\"size\":\"0xfe8\",\"flags\":\"RX\"},{\"name\":\".fini\",\"address\":\"0x23c8\",\"size\":\"0xd\",\"flags\":\"RX\"},{\"name\":\".rodata\",\"address\":\"0x3000\",\"size\":\"0x498\",\"flags\":\"R\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x3498\",\"size\":\"0xb4\",\"flags\":\"R\"},{\"name\":\".eh_frame\",\"address\":\"0x3550\",\"size\":\"0x2b4\",\"flags\":\"R\"},{\"name\":\".init_array\",\"address\":\"0x4cd8\",\"size\":\"0x8\",\"flags\":\"RW\"},{\"name\":\".fini_array\",\"address\":\"0x4ce0\",\"size\":\"0x8\",\"flags\":\"RW\"},{\"name\":\".dynamic\",\"address\":\"0x4ce8\",\"size\":\"0x1f0\",\"flags\":\"RW\"},{\"name\":\".got\",\"address\":\"0x4ed8\",\"size\":\"0x128\",\"flags\":\"RW\",\"note\":\"Full RELRO: .got is in GNU_RELRO region (0x4cd8-0x5000), made read-only after relocation\"},{\"name\":\".data\",\"address\":\"0x5000\",\"size\":\"0x10\",\"flags\":\"RW\"},{\"name\":\".bss\",\"address\":\"0x5020\",\"size\":\"0x60\",\"flags\":\"RW\",\"note\":\"contains stdout, stderr, completed.0, context (32 bytes)\"}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x5020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x5040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x5048\",\"size\":1,\"section\":\".bss\",\"type\":\"flag\"},{\"name\":\"context\",\"address\":\"0x5060\",\"size\":32,\"section\":\".bss\",\"type\":\"struct { void* game; void* importer; char** word_list; size_t word_count; }\",\"layout\":\"[0x5060]=game_ptr(8B), [0x5068]=importer_ptr(8B), [0x5070]=word_list_ptr(8B), [0x5078]=word_count(8B)\"},{\"name\":\"__data_start\",\"address\":\"0x5000\",\"size\":8,\"section\":\".data\"},{\"name\":\"__dso_handle\",\"address\":\"0x5008\",\"size\":8,\"section\":\".data\",\"type\":\"hidden\"}],\"got\":[{\"offset\":\"0x4ef0\",\"symbol\":\"free@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4ef8\",\"symbol\":\"putchar@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f00\",\"symbol\":\"abort@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f08\",\"symbol\":\"strncmp@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f10\",\"symbol\":\"toupper@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f18\",\"symbol\":\"puts@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f20\",\"symbol\":\"fread@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f28\",\"symbol\":\"fclose@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f30\",\"symbol\":\"strlen@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f38\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f40\",\"symbol\":\"setbuf@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f48\",\"symbol\":\"printf@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f50\",\"symbol\":\"rewind@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f58\",\"symbol\":\"memset@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f60\",\"symbol\":\"alarm@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f68\",\"symbol\":\"read@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f70\",\"symbol\":\"srand@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f78\",\"symbol\":\"fprintf@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f80\",\"symbol\":\"ftell@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f88\",\"symbol\":\"tolower@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f90\",\"symbol\":\"malloc@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4f98\",\"symbol\":\"fseek@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fa0\",\"symbol\":\"realloc@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fa8\",\"symbol\":\"fopen@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fb0\",\"symbol\":\"strtok@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fb8\",\"symbol\":\"__isoc99_scanf@GLIBC_2.7\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fc0\",\"symbol\":\"strdup@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fc8\",\"symbol\":\"rand@GLIBC_2.2.5\",\"type\":\"R_X86_64_JUMP_SLOT\"},{\"offset\":\"0x4fd0\",\"symbol\":\"__ctype_b_loc@GLIBC_2.3\",\"type\":\"R_X86_64_JUMP_SLOT\"}],\"plt\":[{\"symbol\":\"free\",\"plt_sec\":\"0x1210\"},{\"symbol\":\"putchar\",\"plt_sec\":\"0x1220\"},{\"symbol\":\"abort\",\"plt_sec\":\"0x1230\"},{\"symbol\":\"strncmp\",\"plt_sec\":\"0x1240\"},{\"symbol\":\"toupper\",\"plt_sec\":\"0x1250\"},{\"symbol\":\"puts\",\"plt_sec\":\"0x1260\"},{\"symbol\":\"fread\",\"plt_sec\":\"0x1270\"},{\"symbol\":\"fclose\",\"plt_sec\":\"0x1280\"},{\"symbol\":\"strlen\",\"plt_sec\":\"0x1290\"},{\"symbol\":\"__stack_chk_fail\",\"plt_sec\":\"0x12a0\"},{\"symbol\":\"setbuf\",\"plt_sec\":\"0x12b0\"},{\"symbol\":\"printf\",\"plt_sec\":\"0x12c0\"},{\"symbol\":\"rewind\",\"plt_sec\":\"0x12d0\"},{\"symbol\":\"memset\",\"plt_sec\":\"0x12e0\"},{\"symbol\":\"alarm\",\"plt_sec\":\"0x12f0\"},{\"symbol\":\"read\",\"plt_sec\":\"0x1300\"},{\"symbol\":\"srand\",\"plt_sec\":\"0x1310\"},{\"symbol\":\"fprintf\",\"plt_sec\":\"0x1320\"},{\"symbol\":\"ftell\",\"plt_sec\":\"0x1330\"},{\"symbol\":\"tolower\",\"plt_sec\":\"0x1340\"},{\"symbol\":\"malloc\",\"plt_sec\":\"0x1350\"},{\"symbol\":\"fseek\",\"plt_sec\":\"0x1360\"},{\"symbol\":\"realloc\",\"plt_sec\":\"0x1370\"},{\"symbol\":\"fopen\",\"plt_sec\":\"0x1380\"},{\"symbol\":\"strtok\",\"plt_sec\":\"0x1390\"},{\"symbol\":\"__isoc99_scanf\",\"plt_sec\":\"0x13a0\"},{\"symbol\":\"strdup\",\"plt_sec\":\"0x13b0\"},{\"symbol\":\"rand\",\"plt_sec\":\"0x13c0\"},{\"symbol\":\"__ctype_b_loc\",\"plt_sec\":\"0x13d0\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x233c\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"setup\",\"menu\",\"gameLoop\",\"importWords\",\"help\"],\"inputs\":[{\"name\":\"argc\",\"source\":\"argv\"},{\"name\":\"argv\",\"source\":\"argv\"}],\"checks\":[\"loop while return_code != 0; menu returns 0-3 dispatch\"],\"memory_operations\":[],\"calls\":[\"init\",\"setup\",\"menu\",\"gameLoop\",\"importWords\",\"help\"],\"summary\":\"Calls init() then setup(); loops calling menu() and dispatching: 1->gameLoop, 2->importWords, 3->help, other->exit. Returns gameLoop result.\"},{\"name\":\"init\",\"address\":\"0x14c9\",\"callers\":[\"main\"],\"callees\":[\"setbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stdout buffer mode (setbuf(stdout, NULL))\",\"size\":\"n/a\"}],\"calls\":[\"setbuf\",\"alarm\"],\"summary\":\"Disables stdout buffering; sets alarm(0x258=600s).\"},{\"name\":\"setup\",\"address\":\"0x14f2\",\"callers\":[\"main\"],\"callees\":[\"newImporter\",\"fopen\",\"fread\",\"srand\",\"fseek\",\"ftell\",\"rewind\",\"malloc\",\"strdup\",\"strlen\",\"fclose\",\"fprintf\",\"abort\"],\"inputs\":[],\"checks\":[\"fopen /dev/urandom must succeed; fread 4 bytes must return 1; fopen /etc/words.txt must succeed; fread 6 bytes per word must return 6; strlen(word)==5\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x8 = newImporter() result (0x18 byte struct)\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"context+0x18 = word_count = filesize/6 (integer division via magic 0x2aaaaaaaaaaaaaab)\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"context+0x10 = malloc(word_count*8) word_list array\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"word_list[i] = strdup(word_buf) for i in 0..word_count-1\",\"size\":8,\"per_element\":true}],\"calls\":[\"newImporter\",\"fopen\",\"fread\",\"srand\",\"fseek\",\"ftell\",\"rewind\",\"malloc\",\"strdup\",\"strlen\",\"fclose\"],\"summary\":\"Seeds RNG from /dev/urandom; loads default word list from /etc/words.txt into context.word_list (array of char* via strdup). word_count = filesize/6. Each word read as 6 bytes, NUL-terminated at [5], strlen checked ==5.\"},{\"name\":\"menu\",\"address\":\"0x17bd\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"printf\",\"__isoc99_scanf\",\"fprintf\",\"abort\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf %d\",\"type\":\"int\"}],\"checks\":[\"scanf must return 1 else abort; 0<=choice<=3 else 'Invalid choice' and loop\"],\"memory_operations\":[],\"calls\":[\"puts\",\"printf\",\"__isoc99_scanf\",\"fprintf\",\"abort\"],\"summary\":\"Prints Main Menu, reads int choice via scanf. Validates 0-3. Returns choice.\"},{\"name\":\"gameLoop\",\"address\":\"0x1eec\",\"callers\":[\"main\"],\"callees\":[\"rand\",\"newGame\",\"runGame\",\"free\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x0 = newGame(rand() % word_count) result\",\"size\":8},{\"operation\":\"FREE\",\"destination\":\"context+0x0 (game struct)\",\"size\":\"0x108\"}],\"calls\":[\"rand\",\"newGame\",\"runGame\",\"free\"],\"summary\":\"Picks random word index = rand() % word_count; creates game via newGame; stores in context.game; runs game; frees game struct; returns runGame result.\"},{\"name\":\"newGame\",\"address\":\"0x18a1\",\"callers\":[\"gameLoop\"],\"callees\":[\"malloc\",\"memset\"],\"inputs\":[{\"name\":\"word_index\",\"source\":\"gameLoop (rand()%word_count)\",\"type\":\"int\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x108) game struct\",\"size\":264},{\"operation\":\"WRITE\",\"destination\":\"game+0x100 = word_list[word_index] (the answer string pointer)\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"game+0xc = 0 (won flag)\",\"size\":4},{\"operation\":\"WRITE\",\"destination\":\"game+0x8 = 0 (guess_count)\",\"size\":4},{\"operation\":\"WRITE\",\"destination\":\"game+0x10 .. game+0xff = memset(0) (guess records array, 0xf0 bytes)\",\"size\":240}],\"calls\":[\"malloc\",\"memset\"],\"summary\":\"Allocates 0x108-byte game struct. Layout: [0x8]=guess_count(int), [0xc]=won(int), [0x10..0xff]=guess records (0xf0 bytes = 30 entries of 8 bytes each, 5 guesses * 6 slots), [0x100]=answer pointer. Sets answer = word_list[word_index].\"},{\"name\":\"newImporter\",\"address\":\"0x1915\",\"callers\":[\"setup\"],\"callees\":[\"malloc\",\"memset\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x18) importer struct\",\"size\":24},{\"operation\":\"WRITE\",\"destination\":\"importer+0x0 = 0 (count)\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"importer+0x8 = memset(0) (8 bytes)\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"importer+0x10 = 0 (buffer ptr)\",\"size\":8}],\"calls\":[\"malloc\",\"memset\"],\"summary\":\"Allocates 0x18-byte importer struct. Layout: [0x0]=count(size_t), [0x8]=reserved(8B zeroed), [0x10]=buffer_ptr(char*).\"},{\"name\":\"importWords\",\"address\":\"0x20ff\",\"callers\":[\"main\"],\"callees\":[\"fprintf\",\"abort\",\"printf\",\"__isoc99_scanf\",\"free\",\"malloc\",\"read\",\"addWordsToList\",\"putchar\",\"puts\"],\"inputs\":[{\"name\":\"size\",\"source\":\"scanf %lu\",\"type\":\"size_t\",\"stored\":\"rbp-0x20\"},{\"name\":\"data\",\"source\":\"read(0, importer->buffer, size)\",\"type\":\"raw bytes\"}],\"checks\":[\"importer (context+0x8) must be non-NULL else abort; if new_size < importer->count: free old buffer and NULL it; NO upper bound on size\"],\"memory_operations\":[{\"operation\":\"FREE\",\"destination\":\"importer->buffer (offset 0x10) if new_size < old_count\",\"size\":\"n/a\"},{\"operation\":\"WRITE\",\"destination\":\"importer->count (offset 0x0) = new_size\",\"size\":8},{\"operation\":\"ALLOC\",\"destination\":\"importer->buffer = malloc(new_size) if buffer was NULL\",\"size\":\"new_size (user-controlled)\"},{\"operation\":\"WRITE\",\"destination\":\"importer->buffer via read(0, importer->buffer, new_size)\",\"size\":\"new_size (user-controlled, NO upper bound)\"},{\"operation\":\"WRITE\",\"destination\":\"importer->buffer[new_size - 1] = 0 (NUL terminate)\",\"size\":1}],\"calls\":[\"fprintf\",\"abort\",\"printf\",\"__isoc99_scanf\",\"free\",\"malloc\",\"read\",\"addWordsToList\",\"putchar\",\"puts\"],\"summary\":\"Reads user-controlled size via scanf(%lu). If size < importer->count, frees old buffer. Sets importer->count=size. If buffer NULL, malloc(size). Then read(0, buffer, size) with NO size limit. NUL-terminates at buffer[size-1]. Calls addWordsToList(buffer). Prompts Continue? (Y/N), loops on Y/y.\"},{\"name\":\"addWordsToList\",\"address\":\"0x1fec\",\"callers\":[\"importWords\"],\"callees\":[\"strtok\",\"strlen\",\"isAllAlpha\",\"realloc\",\"strToLower\",\"strdup\",\"puts\"],\"inputs\":[{\"name\":\"buffer\",\"source\":\"importWords read buffer\",\"type\":\"char*\"}],\"checks\":[\"strtok token length must ==5; isAllAlpha must be true; else skip token\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"context+0x18 (word_count) incremented by 1 per valid word\",\"size\":8},{\"operation\":\"REALLOC\",\"destination\":\"context+0x10 (word_list) = realloc(word_list, (word_count+1)*8)\",\"size\":\"(word_count+1)*8\"},{\"operation\":\"WRITE\",\"destination\":\"word_list[word_count-1] = strdup(strToLower(token))\",\"size\":8}],\"calls\":[\"strtok\",\"strlen\",\"isAllAlpha\",\"realloc\",\"strToLower\",\"strdup\",\"puts\"],\"summary\":\"Tokenizes buffer by ',' (strtok). For each 5-letter all-alpha token: increments word_count, reallocs word_list to (word_count)*8, strdup's lowercased token into word_list[word_count-1].\"},{\"name\":\"inputGuess\",\"address\":\"0x1c33\",\"callers\":[\"runGame\"],\"callees\":[\"printf\",\"read\",\"fprintf\",\"abort\",\"strlen\",\"__ctype_b_loc\",\"tolower\",\"strncmp\",\"saveGuess\"],\"inputs\":[{\"name\":\"game\",\"source\":\"runGame (context.game)\",\"type\":\"game struct ptr\"}],\"checks\":[\"read must not return -1 else abort; strlen(guess)==5 else reject; all 5 chars isalpha else reject; loops until valid\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buffer rbp-0xe via read(0, buf, 6)\",\"size\":6},{\"operation\":\"WRITE\",\"destination\":\"guess[i] = tolower(guess[i]) for i 0..4\",\"size\":1,\"per_element\":true},{\"operation\":\"WRITE\",\"destination\":\"game+0xc = (strncmp(guess, answer, 5)==0)\",\"size\":4}],\"calls\":[\"printf\",\"read\",\"fprintf\",\"abort\",\"strlen\",\"__ctype_b_loc\",\"tolower\",\"strncmp\",\"saveGuess\"],\"summary\":\"Reads 6 bytes guess into stack buffer. Strips trailing newline. Validates strlen==5 and all-alpha. Lowercases. Compares to answer (game+0x100) via strncmp 5. Sets game->won. Calls saveGuess(game, guess).\"},{\"name\":\"saveGuess\",\"address\":\"0x1aa2\",\"callers\":[\"inputGuess\"],\"callees\":[],\"inputs\":[{\"name\":\"game\",\"source\":\"inputGuess\",\"type\":\"game struct ptr\"},{\"name\":\"guess\",\"source\":\"inputGuess stack buffer\",\"type\":\"char* (5 bytes)\"}],\"checks\":[\"loop i 0..4 for char copy; loop i 0..4 for color computation; inner loop j 0..4\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"game record array indexed by game->guess_count (offset 0x8)\",\"size\":8,\"per_element\":true,\"index\":\"game->guess_count (offset 0x8)\",\"formula\":\"addr = game + (guess_count*6 + i + 2)*8, writes char at +4 and color int at +0\"},{\"operation\":\"READ\",\"destination\":\"game+0x100 (answer) indexed by i\",\"size\":1}],\"calls\":[],\"summary\":\"Saves guess into game record array. Record index = game->guess_count (offset 0x8). Each record is 8 bytes: [0]=color(int), [4]=char(byte). Array starts at game+0x10 (offset 2 in 8-byte units). Formula: record_addr = game + (guess_count*6 + i + 2)*8. Computes colors: green(2) if exact match, yellow(1) if char exists elsewhere and not already marked.\"},{\"name\":\"runGame\",\"address\":\"0x1df9\",\"callers\":[\"gameLoop\"],\"callees\":[\"fprintf\",\"abort\",\"printRecord\",\"inputGuess\",\"printf\"],\"inputs\":[],\"checks\":[\"context.game must be non-NULL else abort; loops while guess_count<=4 and not won\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"game+0x8 (guess_count) incremented by 1 each iteration\",\"size\":4}],\"calls\":[\"fprintf\",\"abort\",\"printRecord\",\"inputGuess\",\"printf\"],\"summary\":\"Main game loop. Up to 5 guesses (guess_count 0..4). Each iteration: printRecord, inputGuess, increment guess_count. If won, prints congratulations with guess count. If lost, prints answer string (game+0x100) via printf %s.\"},{\"name\":\"printRecord\",\"address\":\"0x1a02\",\"callers\":[\"runGame\"],\"callees\":[\"puts\",\"putchar\",\"printWord\"],\"inputs\":[{\"name\":\"game\",\"source\":\"runGame\",\"type\":\"game struct ptr\"}],\"checks\":[\"loops i 0..guess_count-1, j 0..4\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"game record array indexed by i (row) and j (col)\",\"size\":8,\"formula\":\"addr = game + (i*6 + j + 2)*8\"}],\"calls\":[\"puts\",\"putchar\",\"printWord\"],\"summary\":\"Prints guess records grid. Reads color+char from record array, calls printWord for each cell.\"},{\"name\":\"printWord\",\"address\":\"0x1966\",\"callers\":[\"printRecord\"],\"callees\":[\"toupper\",\"printf\"],\"inputs\":[{\"name\":\"record\",\"source\":\"printRecord (packed: low byte=char, high int=color)\",\"type\":\"8-byte value (int color + char)\"}],\"checks\":[\"switch on color: 0=gray, 1=yellow, 2=green\"],\"memory_operations\":[],\"calls\":[\"toupper\",\"printf\"],\"summary\":\"Prints a single character with ANSI color based on color code (0=gray,1=yellow,2=green).\"},{\"name\":\"strToLower\",\"address\":\"0x1f43\",\"callers\":[\"addWordsToList\"],\"callees\":[\"tolower\"],\"inputs\":[{\"name\":\"str\",\"source\":\"addWordsToList token\",\"type\":\"char*\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"str[i] = tolower(str[i]) in place\",\"size\":1,\"per_element\":true}],\"calls\":[\"tolower\"],\"summary\":\"Lowercases string in place.\"},{\"name\":\"isAllAlpha\",\"address\":\"0x1f8c\",\"callers\":[\"addWordsToList\"],\"callees\":[\"__ctype_b_loc\"],\"inputs\":[{\"name\":\"str\",\"source\":\"addWordsToList token\",\"type\":\"char*\"}],\"checks\":[\"each char isalpha via __ctype_b_loc; returns 0 on first non-alpha\"],\"memory_operations\":[],\"calls\":[\"__ctype_b_loc\"],\"summary\":\"Returns 1 if all chars alpha, 0 otherwise.\"},{\"name\":\"help\",\"address\":\"0x2313\",\"callers\":[\"main\"],\"callees\":[\"printf\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\"],\"summary\":\"Prints game rules (5-letter word, 5 tries, color hints).\"}],\"attack_surfaces\":[{\"function\":\"importWords\",\"input\":\"import_size (scanf %lu, user-controlled size_t)\",\"operation\":\"malloc(size) then read(0, buf, size) with NO upper bound; buf[size-1]=0\",\"risk\":\"HIGH\",\"reason\":\"Attacker-controlled size reaches malloc and read with no upper bound. read writes 'size' bytes into a heap buffer of exactly 'size' bytes. The NUL termination at buf[size-1] can overwrite the last byte. Combined with addWordsToList processing the buffer (strtok/strdup/realloc), this is the primary heap interaction surface. Size is fully attacker-controlled (scanf %lu).\"},{\"function\":\"importWords\",\"input\":\"import_data (read content)\",\"operation\":\"addWordsToList(buffer) -> strtok/strlen/isAllAlpha/realloc/strdup\",\"risk\":\"HIGH\",\"reason\":\"User-controlled raw bytes are tokenized and processed. realloc expands word_list based on token count. strdup allocates per-token. The interplay between importer->buffer (freed/realloc'd in importWords) and word_list (realloc'd in addWordsToList) creates heap churn. If size is set smaller than existing data, old buffer is freed but addWordsToList operates on new buffer.\"},{\"function\":\"importWords\",\"input\":\"import_size vs importer->count comparison\",\"operation\":\"if new_size < old_count: free(buffer); buffer=NULL; then malloc(new_size)\",\"risk\":\"MEDIUM\",\"reason\":\"The free+NULL+realloc sequence depends on comparison between user-controlled new_size and importer->count (which reflects previously imported word count). The logic: free old buffer only if new_size < old_count. This creates a conditional free path. S2 should analyze whether this leads to use-after-free or double-free scenarios when importWords is called repeatedly.\"},{\"function\":\"addWordsToList\",\"input\":\"tokenized words from import buffer\",\"operation\":\"realloc(word_list, word_count*8) then word_list[word_count-1]=strdup(token)\",\"risk\":\"MEDIUM\",\"reason\":\"word_count is incremented before realloc, so realloc size = (new_count)*8. The index word_list[word_count-1] writes to the last slot. If word_count grows large, many small allocations (strdup) and one growing realloc create heap fragmentation. S2 should verify the realloc size arithmetic and index bounds.\"},{\"function\":\"inputGuess\",\"input\":\"guess (read 6 bytes to stack buffer rbp-0xe)\",\"operation\":\"read(0, rbp-0xe, 6); strlen check; isalpha check\",\"risk\":\"LOW\",\"reason\":\"read is bounded to 6 bytes into a stack buffer. strlen==5 and isalpha checks are strict. Stack canary present. The buffer is at rbp-0xe (14 bytes from rbp), read writes 6 bytes, no overflow beyond buffer. Low risk.\"},{\"function\":\"saveGuess\",\"input\":\"game->guess_count (offset 0x8) as array index\",\"operation\":\"WRITE to game record array at (guess_count*6+i+2)*8\",\"risk\":\"MEDIUM\",\"reason\":\"guess_count is incremented in runGame and used as index in saveGuess. runGame loops while guess_count<=4 (max 5). The record array is 0xf0 bytes (game+0x10 to game+0xff). With 5 guesses * 6 slots * 8 bytes = 240 bytes = 0xf0, the array is exactly filled. S2 should verify no off-by-one allows writing past game+0xff into game+0x100 (answer pointer).\"},{\"function\":\"runGame\",\"input\":\"answer string (game+0x100)\",\"operation\":\"printf('%s', answer) on loss\",\"risk\":\"LOW\",\"reason\":\"answer pointer comes from word_list[rand()%word_count] which is a strdup'd string. Not directly attacker-controlled as a format string. However if word_list is corrupted, the pointer could be arbitrary. Low direct risk.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, compiled with GCC 11.3.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary, PIE, SHSTK+IBT (CET) enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in ELF; only NEEDED library is libc.so.6; no custom/stub .so files in target directory\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"context global at 0x5060 (32 bytes, .bss): [0x5060]=game_ptr, [0x5068]=importer_ptr, [0x5070]=word_list_ptr, [0x5078]=word_count\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"importer struct (0x18 bytes): [0x0]=count(size_t), [0x8]=reserved(8B), [0x10]=buffer_ptr(char*)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"game struct (0x108 bytes): [0x8]=guess_count(int), [0xc]=won(int), [0x10..0xff]=records(0xf0B=30*8B), [0x100]=answer_ptr(char*)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"importWords reads user-controlled size via scanf(%lu) into rbp-0x20, then read(0, importer->buffer, size) with NO upper bound check on size\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"importWords: if new_size < importer->count, frees importer->buffer and sets it NULL; then sets importer->count=new_size; if buffer NULL, malloc(new_size)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"importWords: after read, sets importer->buffer[size-1]=0 (NUL terminate at user-controlled offset)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"addWordsToList: increments context.word_count, reallocs word_list to word_count*8, stores strdup(token) at word_list[word_count-1]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"inputGuess: read(0, stack_buf_rbp-0xe, 6), strips trailing newline, validates strlen==5 and all-alpha, lowercases, strncmp vs answer\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"saveGuess writes to game record array at offset (guess_count*6+i+2)*8 from game base; loops i 0..4; record is 8 bytes [0]=color(int) [4]=char(byte)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"runGame loops while guess_count<=4 (max 5 guesses); increments guess_count after each inputGuess; on loss prints answer via printf %s\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"setup loads /etc/words.txt (exists, 33 bytes, 5 words); word_count=filesize/6=5; word_list=malloc(40); each word strdup'd\",\"source\":\"RUNTIME\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"init sets alarm(600) and setbuf(stdout, NULL)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"gameLoop: answer_index = rand() % word_count; newGame(answer_index); context.game = result; runGame(); free(context.game)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"GOT is in Full RELRO region (0x4cd8-0x5000 mapped R after relocation); GOT overwrite not feasible at runtime\",\"source\":\"ELF\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"importWords size parameter is fully attacker-controlled with no upper bound, enabling arbitrarily large heap allocation and read into that allocation\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"The record array in game struct spans game+0x10 to game+0xff (0xf0 bytes = 30 entries * 8 bytes = 5 guesses * 6 slots). saveGuess with guess_count=4 writes last record at game+(4*6+4+2)*8 = game+0xf8, within bounds. No off-by-one overflow into answer pointer at game+0x100.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F021\",\"type\":\"DERIVED\",\"description\":\"importWords can be called repeatedly (Continue? Y/N loop). Each call may free+realloc importer->buffer and addWordsToList reallocs word_list. Repeated calls create heap churn with attacker-controlled sizes.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether the importWords read(0, buf, size) with attacker-controlled size can be leveraged for heap overflow beyond the allocated buffer\",\"reason\":\"read writes exactly 'size' bytes into a buffer of 'size' bytes (malloc(size)). The write itself is in-bounds. However, the NUL termination at buf[size-1] and subsequent addWordsToList processing (strtok modifies buffer in place) may interact with heap metadata. S2 needs to analyze if size=0 or size=1 edge cases cause issues, and whether the free/malloc/realloc sequence across repeated importWords calls creates exploitable heap state.\"},{\"id\":\"U002\",\"description\":\"Whether repeated importWords calls with carefully chosen sizes can corrupt heap metadata via the free/malloc/realloc interplay\",\"reason\":\"importWords frees importer->buffer when new_size < old_count, then malloc(new_size). addWordsToList separately reallocs word_list. The two allocation streams (importer buffer vs word_list) may interleave on the heap. S2 should analyze the heap layout and whether tcache/fastbin corruption is achievable.\"},{\"id\":\"U003\",\"description\":\"Whether the word_list realloc in addWordsToList has any integer overflow or size miscalculation\",\"reason\":\"realloc(word_list, word_count*8) where word_count is incremented before the call. If word_count is very large (many tokens), word_count*8 could overflow. S2 should verify the multiplication and realloc behavior at scale.\"},{\"id\":\"U004\",\"description\":\"Runtime heap layout and allocator behavior under glibc 2.39\",\"reason\":\"glibc 2.39 has tcache and various hardening. The exact heap layout depends on allocation order and sizes chosen by attacker. S2/S3 should determine if tcache poisoning or other heap techniques are viable under this glibc version.\"},{\"id\":\"U005\",\"description\":\"Whether the first line of /etc/words.txt ('-e apple') being 8 bytes causes any issue in setup's fread(6) loop\",\"reason\":\"setup reads 6 bytes per iteration. First line '-e apple\\\\n' is 9 bytes. fread reads 6 bytes '-e app', strlen=5 (after NUL at [5]), strdup('-e app'). This is a non-alpha word but setup doesn't validate isalpha. It becomes a valid word_list entry. The remaining 'le\\\\n' shifts subsequent reads. S2 should verify if this corrupts the word list or is benign.\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID 4efb4819b79919f1ba790b10d21d75a8ecbfcab6, not stripped. Entry 0x13e0. 13 program headers, 31 sections. LOAD segments: R(0-0xd28), RX(0x1000-0x23d5), R(0x3000-0x3804), RW(0x4cd8-0x5080). GNU_RELRO 0x4cd8-0x5000. GNU_STACK RW (NX).\",\"sections\":\"31 sections. Key: .text@0x13e0(0xfe8,RX), .rodata@0x3000(0x498,R), .got@0x4ed8(0x128,RW,RELRO), .data@0x5000(0x10,RW), .bss@0x5020(0x60,RW). .init_array@0x4cd8, .fini_array@0x4ce0, .dynamic@0x4ce8.\",\"symbols\":\"Functions: main@0x233c, init@0x14c9, setup@0x14f2, menu@0x17bd, gameLoop@0x1eec, newGame@0x18a1, newImporter@0x1915, importWords@0x20ff, inputGuess@0x1c33, saveGuess@0x1aa2, runGame@0x1df9, addWordsToList@0x1fec, printWord@0x1966, printRecord@0x1a02, strToLower@0x1f43, isAllAlpha@0x1f8c, help@0x2313. Globals: context@0x5060(32B), stdout@0x5020, stderr@0x5040.\",\"disassembly\":\"importWords@0x20ff: scanf(%lu)->rbp-0x20=size; if size<importer->count: free(buffer),buffer=NULL; importer->count=size; if !buffer: buffer=malloc(size); read(0,buffer,size); buffer[size-1]=0; addWordsToList(buffer); Continue?Y/N. addWordsToList@0x1fec: strtok(buf,','); for each 5-char alpha token: word_count++, word_list=realloc(word_list,word_count*8), word_list[word_count-1]=strdup(lower(token)). inputGuess@0x1c33: read(0,rbp-0xe,6); strip newline; strlen==5; isalpha all; tolower; strncmp(guess,answer,5); saveGuess. saveGuess@0x1aa2: for i 0..4: game[(guess_count*6+i+2)*8+4]=guess[i], game[(guess_count*6+i+2)*8]=0; color computation vs answer. runGame@0x1df9: loop guess_count<=4: printRecord,inputGuess,guess_count++; if won print congrats else printf('%s',answer).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0018-2022-34-wordle-20260910-234213/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x13e0",
+      "dynamic": true,
+      "stripped": false,
+      "file_type": "ELF 64-bit LSB PIE executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped",
+      "compiler": "GCC 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04)",
+      "build_id": "4efb4819b79919f1ba790b10d21d75a8ecbfcab6",
+      "source_file": "wordle.c",
+      "os_abi": "UNIX - System V",
+      "interpreter": "/lib64/ld-linux-x86-64.so.2"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "not detected",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "RUNTIME",
+        "note": "PIE binary; ASLR active in observed runtime environment"
+      },
+      "seccomp": {
+        "value": "not detected",
+        "source": "ELF"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "needed": true,
+          "source": "RUNTIME"
+        },
+        {
+          "name": "linux-vdso.so.1",
+          "resolved_path": "0x00007854a59ea000",
+          "needed": false,
+          "source": "RUNTIME"
+        }
+      ],
+      "rpath": "none",
+      "runpath": "none",
+      "library_search_order": "No RPATH/RUNPATH in ELF. Search order: LD_LIBRARY_PATH (if set) then system paths (/lib/x86_64-linux-gnu). Only libc.so.6 is NEEDED; no custom/stub libraries present in target directory.",
+      "notes": "/etc/words.txt exists (33 bytes, 5 words). /dev/urandom exists. Program runs normally."
+    },
+    "interface": {
+      "entry_function": "main @ 0x233c",
+      "input_sources": [
+        {
+          "source": "stdin",
+          "functions": [
+            "menu (scanf %d)",
+            "importWords (scanf %lu + read)",
+            "inputGuess (read 6 bytes)",
+            "importWords continue prompt (scanf %c)"
+          ],
+          "details": "Menu choice via scanf; word list size via scanf; word list content via read(0,buf,size); guess via read(0,buf,6)"
+        }
+      ],
+      "menu": [
+        {
+          "prompt": "Main Menu: 1=start new game, 2=load custom word list, 3=Game Rules, 0=End game",
+          "handler": "main dispatches to gameLoop/importWords/help"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf %d in menu",
+          "function": "menu",
+          "type": "int",
+          "range_check": "0<=choice<=3 (negative or >3 rejected, loops)"
+        },
+        {
+          "name": "import_size",
+          "source": "scanf %lu in importWords",
+          "function": "importWords",
+          "type": "unsigned long (size_t)",
+          "range_check": "compared against importer->count (offset 0); if new_size < old_count, frees old buffer; NO upper bound check on size"
+        },
+        {
+          "name": "import_data",
+          "source": "read(0, buf, size) in importWords",
+          "function": "importWords",
+          "type": "raw bytes, length=import_size",
+          "range_check": "none beyond size; buf[size-1] set to 0 after read"
+        },
+        {
+          "name": "continue_yn",
+          "source": "scanf %c in importWords",
+          "function": "importWords",
+          "type": "char",
+          "range_check": "compared to 'Y'/'y' to loop"
+        },
+        {
+          "name": "guess",
+          "source": "read(0, buf, 6) in inputGuess",
+          "function": "inputGuess",
+          "type": "6 bytes to stack buffer rbp-0xe",
+          "range_check": "strlen must ==5; all chars must be alpha (isalpha via __ctype_b_loc); trailing newline stripped"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".interp",
+          "address": "0x318",
+          "size": "0x1c",
+          "flags": "R"
+        },
+        {
+          "name": ".note.gnu.property",
+          "address": "0x338",
+          "size": "0x30",
+          "flags": "R"
+        },
+        {
+          "name": ".note.gnu.build-id",
+          "address": "0x368",
+          "size": "0x24",
+          "flags": "R"
+        },
+        {
+          "name": ".note.ABI-tag",
+          "address": "0x38c",
+          "size": "0x20",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.hash",
+          "address": "0x3b0",
+          "size": "0x30",
+          "flags": "R"
+        },
+        {
+          "name": ".dynsym",
+          "address": "0x3e0",
+          "size": "0x378",
+          "flags": "R"
+        },
+        {
+          "name": ".dynstr",
+          "address": "0x758",
+          "size": "0x17e",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.version",
+          "address": "0x8d6",
+          "size": "0x4a",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.version_r",
+          "address": "0x920",
+          "size": "0x60",
+          "flags": "R"
+        },
+        {
+          "name": ".rela.dyn",
+          "address": "0x980",
+          "size": "0xf0",
+          "flags": "R"
+        },
+        {
+          "name": ".rela.plt",
+          "address": "0xa70",
+          "size": "0x2b8",
+          "flags": "R"
+        },
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x1b",
+          "flags": "RX"
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0x1e0",
+          "flags": "RX"
+        },
+        {
+          "name": ".plt.got",
+          "address": "0x1200",
+          "size": "0x10",
+          "flags": "RX"
+        },
+        {
+          "name": ".plt.sec",
+          "address": "0x1210",
+          "size": "0x1d0",
+          "flags": "RX"
+        },
+        {
+          "name": ".text",
+          "address": "0x13e0",
+          "size": "0xfe8",
+          "flags": "RX"
+        },
+        {
+          "name": ".fini",
+          "address": "0x23c8",
+          "size": "0xd",
+          "flags": "RX"
+        },
+        {
+          "name": ".rodata",
+          "address": "0x3000",
+          "size": "0x498",
+          "flags": "R"
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x3498",
+          "size": "0xb4",
+          "flags": "R"
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x3550",
+          "size": "0x2b4",
+          "flags": "R"
+        },
+        {
+          "name": ".init_array",
+          "address": "0x4cd8",
+          "size": "0x8",
+          "flags": "RW"
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x4ce0",
+          "size": "0x8",
+          "flags": "RW"
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x4ce8",
+          "size": "0x1f0",
+          "flags": "RW"
+        },
+        {
+          "name": ".got",
+          "address": "0x4ed8",
+          "size": "0x128",
+          "flags": "RW",
+          "note": "Full RELRO: .got is in GNU_RELRO region (0x4cd8-0x5000), made read-only after relocation"
+        },
+        {
+          "name": ".data",
+          "address": "0x5000",
+          "size": "0x10",
+          "flags": "RW"
+        },
+        {
+          "name": ".bss",
+          "address": "0x5020",
+          "size": "0x60",
+          "flags": "RW",
+          "note": "contains stdout, stderr, completed.0, context (32 bytes)"
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x5020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "stderr",
+          "address": "0x5040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x5048",
+          "size": 1,
+          "section": ".bss",
+          "type": "flag"
+        },
+        {
+          "name": "context",
+          "address": "0x5060",
+          "size": 32,
+          "section": ".bss",
+          "type": "struct { void* game; void* importer; char** word_list; size_t word_count; }",
+          "layout": "[0x5060]=game_ptr(8B), [0x5068]=importer_ptr(8B), [0x5070]=word_list_ptr(8B), [0x5078]=word_count(8B)"
+        },
+        {
+          "name": "__data_start",
+          "address": "0x5000",
+          "size": 8,
+          "section": ".data"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x5008",
+          "size": 8,
+          "section": ".data",
+          "type": "hidden"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x4ef0",
+          "symbol": "free@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4ef8",
+          "symbol": "putchar@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f00",
+          "symbol": "abort@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f08",
+          "symbol": "strncmp@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f10",
+          "symbol": "toupper@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f18",
+          "symbol": "puts@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f20",
+          "symbol": "fread@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f28",
+          "symbol": "fclose@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f30",
+          "symbol": "strlen@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f38",
+          "symbol": "__stack_chk_fail@GLIBC_2.4",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f40",
+          "symbol": "setbuf@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f48",
+          "symbol": "printf@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f50",
+          "symbol": "rewind@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f58",
+          "symbol": "memset@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f60",
+          "symbol": "alarm@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f68",
+          "symbol": "read@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f70",
+          "symbol": "srand@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f78",
+          "symbol": "fprintf@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f80",
+          "symbol": "ftell@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f88",
+          "symbol": "tolower@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f90",
+          "symbol": "malloc@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4f98",
+          "symbol": "fseek@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fa0",
+          "symbol": "realloc@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fa8",
+          "symbol": "fopen@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fb0",
+          "symbol": "strtok@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fb8",
+          "symbol": "__isoc99_scanf@GLIBC_2.7",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fc0",
+          "symbol": "strdup@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fc8",
+          "symbol": "rand@GLIBC_2.2.5",
+          "type": "R_X86_64_JUMP_SLOT"
+        },
+        {
+          "offset": "0x4fd0",
+          "symbol": "__ctype_b_loc@GLIBC_2.3",
+          "type": "R_X86_64_JUMP_SLOT"
+        }
+      ],
+      "plt": [
+        {
+          "symbol": "free",
+          "plt_sec": "0x1210"
+        },
+        {
+          "symbol": "putchar",
+          "plt_sec": "0x1220"
+        },
+        {
+          "symbol": "abort",
+          "plt_sec": "0x1230"
+        },
+        {
+          "symbol": "strncmp",
+          "plt_sec": "0x1240"
+        },
+        {
+          "symbol": "toupper",
+          "plt_sec": "0x1250"
+        },
+        {
+          "symbol": "puts",
+          "plt_sec": "0x1260"
+        },
+        {
+          "symbol": "fread",
+          "plt_sec": "0x1270"
+        },
+        {
+          "symbol": "fclose",
+          "plt_sec": "0x1280"
+        },
+        {
+          "symbol": "strlen",
+          "plt_sec": "0x1290"
+        },
+        {
+          "symbol": "__stack_chk_fail",
+          "plt_sec": "0x12a0"
+        },
+        {
+          "symbol": "setbuf",
+          "plt_sec": "0x12b0"
+        },
+        {
+          "symbol": "printf",
+          "plt_sec": "0x12c0"
+        },
+        {
+          "symbol": "rewind",
+          "plt_sec": "0x12d0"
+        },
+        {
+          "symbol": "memset",
+          "plt_sec": "0x12e0"
+        },
+        {
+          "symbol": "alarm",
+          "plt_sec": "0x12f0"
+        },
+        {
+          "symbol": "read",
+          "plt_sec": "0x1300"
+        },
+        {
+          "symbol": "srand",
+          "plt_sec": "0x1310"
+        },
+        {
+          "symbol": "fprintf",
+          "plt_sec": "0x1320"
+        },
+        {
+          "symbol": "ftell",
+          "plt_sec": "0x1330"
+        },
+        {
+          "symbol": "tolower",
+          "plt_sec": "0x1340"
+        },
+        {
+          "symbol": "malloc",
+          "plt_sec": "0x1350"
+        },
+        {
+          "symbol": "fseek",
+          "plt_sec": "0x1360"
+        },
+        {
+          "symbol": "realloc",
+          "plt_sec": "0x1370"
+        },
+        {
+          "symbol": "fopen",
+          "plt_sec": "0x1380"
+        },
+        {
+          "symbol": "strtok",
+          "plt_sec": "0x1390"
+        },
+        {
+          "symbol": "__isoc99_scanf",
+          "plt_sec": "0x13a0"
+        },
+        {
+          "symbol": "strdup",
+          "plt_sec": "0x13b0"
+        },
+        {
+          "symbol": "rand",
+          "plt_sec": "0x13c0"
+        },
+        {
+          "symbol": "__ctype_b_loc",
+          "plt_sec": "0x13d0"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x233c",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "setup",
+          "menu",
+          "gameLoop",
+          "importWords",
+          "help"
+        ],
+        "inputs": [
+          {
+            "name": "argc",
+            "source": "argv"
+          },
+          {
+            "name": "argv",
+            "source": "argv"
+          }
+        ],
+        "checks": [
+          "loop while return_code != 0; menu returns 0-3 dispatch"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "init",
+          "setup",
+          "menu",
+          "gameLoop",
+          "importWords",
+          "help"
+        ],
+        "summary": "Calls init() then setup(); loops calling menu() and dispatching: 1->gameLoop, 2->importWords, 3->help, other->exit. Returns gameLoop result."
+      },
+      {
+        "name": "init",
+        "address": "0x14c9",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stdout buffer mode (setbuf(stdout, NULL))",
+            "size": "n/a"
+          }
+        ],
+        "calls": [
+          "setbuf",
+          "alarm"
+        ],
+        "summary": "Disables stdout buffering; sets alarm(0x258=600s)."
+      },
+      {
+        "name": "setup",
+        "address": "0x14f2",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "newImporter",
+          "fopen",
+          "fread",
+          "srand",
+          "fseek",
+          "ftell",
+          "rewind",
+          "malloc",
+          "strdup",
+          "strlen",
+          "fclose",
+          "fprintf",
+          "abort"
+        ],
+        "inputs": [],
+        "checks": [
+          "fopen /dev/urandom must succeed; fread 4 bytes must return 1; fopen /etc/words.txt must succeed; fread 6 bytes per word must return 6; strlen(word)==5"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x8 = newImporter() result (0x18 byte struct)",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x18 = word_count = filesize/6 (integer division via magic 0x2aaaaaaaaaaaaaab)",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "context+0x10 = malloc(word_count*8) word_list array",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "word_list[i] = strdup(word_buf) for i in 0..word_count-1",
+            "size": 8,
+            "per_element": true
+          }
+        ],
+        "calls": [
+          "newImporter",
+          "fopen",
+          "fread",
+          "srand",
+          "fseek",
+          "ftell",
+          "rewind",
+          "malloc",
+          "strdup",
+          "strlen",
+          "fclose"
+        ],
+        "summary": "Seeds RNG from /dev/urandom; loads default word list from /etc/words.txt into context.word_list (array of char* via strdup). word_count = filesize/6. Each word read as 6 bytes, NUL-terminated at [5], strlen checked ==5."
+      },
+      {
+        "name": "menu",
+        "address": "0x17bd",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "printf",
+          "__isoc99_scanf",
+          "fprintf",
+          "abort"
+        ],
+        "inputs": [
+          {
+            "name": "choice",
+            "source": "scanf %d",
+            "type": "int"
+          }
+        ],
+        "checks": [
+          "scanf must return 1 else abort; 0<=choice<=3 else 'Invalid choice' and loop"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "puts",
+          "printf",
+          "__isoc99_scanf",
+          "fprintf",
+          "abort"
+        ],
+        "summary": "Prints Main Menu, reads int choice via scanf. Validates 0-3. Returns choice."
+      },
+      {
+        "name": "gameLoop",
+        "address": "0x1eec",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "rand",
+          "newGame",
+          "runGame",
+          "free"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x0 = newGame(rand() % word_count) result",
+            "size": 8
+          },
+          {
+            "operation": "FREE",
+            "destination": "context+0x0 (game struct)",
+            "size": "0x108"
+          }
+        ],
+        "calls": [
+          "rand",
+          "newGame",
+          "runGame",
+          "free"
+        ],
+        "summary": "Picks random word index = rand() % word_count; creates game via newGame; stores in context.game; runs game; frees game struct; returns runGame result."
+      },
+      {
+        "name": "newGame",
+        "address": "0x18a1",
+        "callers": [
+          "gameLoop"
+        ],
+        "callees": [
+          "malloc",
+          "memset"
+        ],
+        "inputs": [
+          {
+            "name": "word_index",
+            "source": "gameLoop (rand()%word_count)",
+            "type": "int"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "malloc(0x108) game struct",
+            "size": 264
+          },
+          {
+            "operation": "WRITE",
+            "destination": "game+0x100 = word_list[word_index] (the answer string pointer)",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "game+0xc = 0 (won flag)",
+            "size": 4
+          },
+          {
+            "operation": "WRITE",
+            "destination": "game+0x8 = 0 (guess_count)",
+            "size": 4
+          },
+          {
+            "operation": "WRITE",
+            "destination": "game+0x10 .. game+0xff = memset(0) (guess records array, 0xf0 bytes)",
+            "size": 240
+          }
+        ],
+        "calls": [
+          "malloc",
+          "memset"
+        ],
+        "summary": "Allocates 0x108-byte game struct. Layout: [0x8]=guess_count(int), [0xc]=won(int), [0x10..0xff]=guess records (0xf0 bytes = 30 entries of 8 bytes each, 5 guesses * 6 slots), [0x100]=answer pointer. Sets answer = word_list[word_index]."
+      },
+      {
+        "name": "newImporter",
+        "address": "0x1915",
+        "callers": [
+          "setup"
+        ],
+        "callees": [
+          "malloc",
+          "memset"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "malloc(0x18) importer struct",
+            "size": 24
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer+0x0 = 0 (count)",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer+0x8 = memset(0) (8 bytes)",
+            "size": 8
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer+0x10 = 0 (buffer ptr)",
+            "size": 8
+          }
+        ],
+        "calls": [
+          "malloc",
+          "memset"
+        ],
+        "summary": "Allocates 0x18-byte importer struct. Layout: [0x0]=count(size_t), [0x8]=reserved(8B zeroed), [0x10]=buffer_ptr(char*)."
+      },
+      {
+        "name": "importWords",
+        "address": "0x20ff",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "fprintf",
+          "abort",
+          "printf",
+          "__isoc99_scanf",
+          "free",
+          "malloc",
+          "read",
+          "addWordsToList",
+          "putchar",
+          "puts"
+        ],
+        "inputs": [
+          {
+            "name": "size",
+            "source": "scanf %lu",
+            "type": "size_t",
+            "stored": "rbp-0x20"
+          },
+          {
+            "name": "data",
+            "source": "read(0, importer->buffer, size)",
+            "type": "raw bytes"
+          }
+        ],
+        "checks": [
+          "importer (context+0x8) must be non-NULL else abort; if new_size < importer->count: free old buffer and NULL it; NO upper bound on size"
+        ],
+        "memory_operations": [
+          {
+            "operation": "FREE",
+            "destination": "importer->buffer (offset 0x10) if new_size < old_count",
+            "size": "n/a"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer->count (offset 0x0) = new_size",
+            "size": 8
+          },
+          {
+            "operation": "ALLOC",
+            "destination": "importer->buffer = malloc(new_size) if buffer was NULL",
+            "size": "new_size (user-controlled)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer->buffer via read(0, importer->buffer, new_size)",
+            "size": "new_size (user-controlled, NO upper bound)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "importer->buffer[new_size - 1] = 0 (NUL terminate)",
+            "size": 1
+          }
+        ],
+        "calls": [
+          "fprintf",
+          "abort",
+          "printf",
+          "__isoc99_scanf",
+          "free",
+          "malloc",
+          "read",
+          "addWordsToList",
+          "putchar",
+          "puts"
+        ],
+        "summary": "Reads user-controlled size via scanf(%lu). If size < importer->count, frees old buffer. Sets importer->count=size. If buffer NULL, malloc(size). Then read(0, buffer, size) with NO size limit. NUL-terminates at buffer[size-1]. Calls addWordsToList(buffer). Prompts Continue? (Y/N), loops on Y/y."
+      },
+      {
+        "name": "addWordsToList",
+        "address": "0x1fec",
+        "callers": [
+          "importWords"
+        ],
+        "callees": [
+          "strtok",
+          "strlen",
+          "isAllAlpha",
+          "realloc",
+          "strToLower",
+          "strdup",
+          "puts"
+        ],
+        "inputs": [
+          {
+            "name": "buffer",
+            "source": "importWords read buffer",
+            "type": "char*"
+          }
+        ],
+        "checks": [
+          "strtok token length must ==5; isAllAlpha must be true; else skip token"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "context+0x18 (word_count) incremented by 1 per valid word",
+            "size": 8
+          },
+          {
+            "operation": "REALLOC",
+            "destination": "context+0x10 (word_list) = realloc(word_list, (word_count+1)*8)",
+            "size": "(word_count+1)*8"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "word_list[word_count-1] = strdup(strToLower(token))",
+            "size": 8
+          }
+        ],
+        "calls": [
+          "strtok",
+          "strlen",
+          "isAllAlpha",
+          "realloc",
+          "strToLower",
+          "strdup",
+          "puts"
+        ],
+        "summary": "Tokenizes buffer by ',' (strtok). For each 5-letter all-alpha token: increments word_count, reallocs word_list to (word_count)*8, strdup's lowercased token into word_list[word_count-1]."
+      },
+      {
+        "name": "inputGuess",
+        "address": "0x1c33",
+        "callers": [
+          "runGame"
+        ],
+        "callees": [
+          "printf",
+          "read",
+          "fprintf",
+          "abort",
+          "strlen",
+          "__ctype_b_loc",
+          "tolower",
+          "strncmp",
+          "saveGuess"
+        ],
+        "inputs": [
+          {
+            "name": "game",
+            "source": "runGame (context.game)",
+            "type": "game struct ptr"
+          }
+        ],
+        "checks": [
+          "read must not return -1 else abort; strlen(guess)==5 else reject; all 5 chars isalpha else reject; loops until valid"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack buffer rbp-0xe via read(0, buf, 6)",
+            "size": 6
+          },
+          {
+            "operation": "WRITE",
+            "destination": "guess[i] = tolower(guess[i]) for i 0..4",
+            "size": 1,
+            "per_element": true
+          },
+          {
+            "operation": "WRITE",
+            "destination": "game+0xc = (strncmp(guess, answer, 5)==0)",
+            "size": 4
+          }
+        ],
+        "calls": [
+          "printf",
+          "read",
+          "fprintf",
+          "abort",
+          "strlen",
+          "__ctype_b_loc",
+          "tolower",
+          "strncmp",
+          "saveGuess"
+        ],
+        "summary": "Reads 6 bytes guess into stack buffer. Strips trailing newline. Validates strlen==5 and all-alpha. Lowercases. Compares to answer (game+0x100) via strncmp 5. Sets game->won. Calls saveGuess(game, guess)."
+      },
+      {
+        "name": "saveGuess",
+        "address": "0x1aa2",
+        "callers": [
+          "inputGuess"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "game",
+            "source": "inputGuess",
+            "type": "game struct ptr"
+          },
+          {
+            "name": "guess",
+            "source": "inputGuess stack buffer",
+            "type": "char* (5 bytes)"
+          }
+        ],
+        "checks": [
+          "loop i 0..4 for char copy; loop i 0..4 for color computation; inner loop j 0..4"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "game record array indexed by game->guess_count (offset 0x8)",
+            "size": 8,
+            "per_element": true,
+            "index": "game->guess_count (offset 0x8)",
+            "formula": "addr = game + (guess_count*6 + i + 2)*8, writes char at +4 and color int at +0"
+          },
+          {
+            "operation": "READ",
+            "destination": "game+0x100 (answer) indexed by i",
+            "size": 1
+          }
+        ],
+        "calls": [],
+        "summary": "Saves guess into game record array. Record index = game->guess_count (offset 0x8). Each record is 8 bytes: [0]=color(int), [4]=char(byte). Array starts at game+0x10 (offset 2 in 8-byte units). Formula: record_addr = game + (guess_count*6 + i + 2)*8. Computes colors: green(2) if exact match, yellow(1) if char exists elsewhere and not already marked."
+      },
+      {
+        "name": "runGame",
+        "address": "0x1df9",
+        "callers": [
+          "gameLoop"
+        ],
+        "callees": [
+          "fprintf",
+          "abort",
+          "printRecord",
+          "inputGuess",
+          "printf"
+        ],
+        "inputs": [],
+        "checks": [
+          "context.game must be non-NULL else abort; loops while guess_count<=4 and not won"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "game+0x8 (guess_count) incremented by 1 each iteration",
+            "size": 4
+          }
+        ],
+        "calls": [
+          "fprintf",
+          "abort",
+          "printRecord",
+          "inputGuess",
+          "printf"
+        ],
+        "summary": "Main game loop. Up to 5 guesses (guess_count 0..4). Each iteration: printRecord, inputGuess, increment guess_count. If won, prints congratulations with guess count. If lost, prints answer string (game+0x100) via printf %s."
+      },
+      {
+        "name": "printRecord",
+        "address": "0x1a02",
+        "callers": [
+          "runGame"
+        ],
+        "callees": [
+          "puts",
+          "putchar",
+          "printWord"
+        ],
+        "inputs": [
+          {
+            "name": "game",
+            "source": "runGame",
+            "type": "game struct ptr"
+          }
+        ],
+        "checks": [
+          "loops i 0..guess_count-1, j 0..4"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "game record array indexed by i (row) and j (col)",
+            "size": 8,
+            "formula": "addr = game + (i*6 + j + 2)*8"
+          }
+        ],
+        "calls": [
+          "puts",
+          "putchar",
+          "printWord"
+        ],
+        "summary": "Prints guess records grid. Reads color+char from record array, calls printWord for each cell."
+      },
+      {
+        "name": "printWord",
+        "address": "0x1966",
+        "callers": [
+          "printRecord"
+        ],
+        "callees": [
+          "toupper",
+          "printf"
+        ],
+        "inputs": [
+          {
+            "name": "record",
+            "source": "printRecord (packed: low byte=char, high int=color)",
+            "type": "8-byte value (int color + char)"
+          }
+        ],
+        "checks": [
+          "switch on color: 0=gray, 1=yellow, 2=green"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "toupper",
+          "printf"
+        ],
+        "summary": "Prints a single character with ANSI color based on color code (0=gray,1=yellow,2=green)."
+      },
+      {
+        "name": "strToLower",
+        "address": "0x1f43",
+        "callers": [
+          "addWordsToList"
+        ],
+        "callees": [
+          "tolower"
+        ],
+        "inputs": [
+          {
+            "name": "str",
+            "source": "addWordsToList token",
+            "type": "char*"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "str[i] = tolower(str[i]) in place",
+            "size": 1,
+            "per_element": true
+          }
+        ],
+        "calls": [
+          "tolower"
+        ],
+        "summary": "Lowercases string in place."
+      },
+      {
+        "name": "isAllAlpha",
+        "address": "0x1f8c",
+        "callers": [
+          "addWordsToList"
+        ],
+        "callees": [
+          "__ctype_b_loc"
+        ],
+        "inputs": [
+          {
+            "name": "str",
+            "source": "addWordsToList token",
+            "type": "char*"
+          }
+        ],
+        "checks": [
+          "each char isalpha via __ctype_b_loc; returns 0 on first non-alpha"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "__ctype_b_loc"
+        ],
+        "summary": "Returns 1 if all chars alpha, 0 otherwise."
+      },
+      {
+        "name": "help",
+        "address": "0x2313",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf"
+        ],
+        "summary": "Prints game rules (5-letter word, 5 tries, color hints)."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "importWords",
+        "input": "import_size (scanf %lu, user-controlled size_t)",
+        "operation": "malloc(size) then read(0, buf, size) with NO upper bound; buf[size-1]=0",
+        "risk": "HIGH",
+        "reason": "Attacker-controlled size reaches malloc and read with no upper bound. read writes 'size' bytes into a heap buffer of exactly 'size' bytes. The NUL termination at buf[size-1] can overwrite the last byte. Combined with addWordsToList processing the buffer (strtok/strdup/realloc), this is the primary heap interaction surface. Size is fully attacker-controlled (scanf %lu)."
+      },
+      {
+        "function": "importWords",
+        "input": "import_data (read content)",
+        "operation": "addWordsToList(buffer) -> strtok/strlen/isAllAlpha/realloc/strdup",
+        "risk": "HIGH",
+        "reason": "User-controlled raw bytes are tokenized and processed. realloc expands word_list based on token count. strdup allocates per-token. The interplay between importer->buffer (freed/realloc'd in importWords) and word_list (realloc'd in addWordsToList) creates heap churn. If size is set smaller than existing data, old buffer is freed but addWordsToList operates on new buffer."
+      },
+      {
+        "function": "importWords",
+        "input": "import_size vs importer->count comparison",
+        "operation": "if new_size < old_count: free(buffer); buffer=NULL; then malloc(new_size)",
+        "risk": "MEDIUM",
+        "reason": "The free+NULL+realloc sequence depends on comparison between user-controlled new_size and importer->count (which reflects previously imported word count). The logic: free old buffer only if new_size < old_count. This creates a conditional free path. S2 should analyze whether this leads to use-after-free or double-free scenarios when importWords is called repeatedly."
+      },
+      {
+        "function": "addWordsToList",
+        "input": "tokenized words from import buffer",
+        "operation": "realloc(word_list, word_count*8) then word_list[word_count-1]=strdup(token)",
+        "risk": "MEDIUM",
+        "reason": "word_count is incremented before realloc, so realloc size = (new_count)*8. The index word_list[word_count-1] writes to the last slot. If word_count grows large, many small allocations (strdup) and one growing realloc create heap fragmentation. S2 should verify the realloc size arithmetic and index bounds."
+      },
+      {
+        "function": "inputGuess",
+        "input": "guess (read 6 bytes to stack buffer rbp-0xe)",
+        "operation": "read(0, rbp-0xe, 6); strlen check; isalpha check",
+        "risk": "LOW",
+        "reason": "read is bounded to 6 bytes into a stack buffer. strlen==5 and isalpha checks are strict. Stack canary present. The buffer is at rbp-0xe (14 bytes from rbp), read writes 6 bytes, no overflow beyond buffer. Low risk."
+      },
+      {
+        "function": "saveGuess",
+        "input": "game->guess_count (offset 0x8) as array index",
+        "operation": "WRITE to game record array at (guess_count*6+i+2)*8",
+        "risk": "MEDIUM",
+        "reason": "guess_count is incremented in runGame and used as index in saveGuess. runGame loops while guess_count<=4 (max 5). The record array is 0xf0 bytes (game+0x10 to game+0xff). With 5 guesses * 6 slots * 8 bytes = 240 bytes = 0xf0, the array is exactly filled. S2 should verify no off-by-one allows writing past game+0xff into game+0x100 (answer pointer)."
+      },
+      {
+        "function": "runGame",
+        "input": "answer string (game+0x100)",
+        "operation": "printf('%s', answer) on loss",
+        "risk": "LOW",
+        "reason": "answer pointer comes from word_list[rand()%word_count] which is a strdup'd string. Not directly attacker-controlled as a format string. However if word_list is corrupted, the pointer could be arbitrary. Low direct risk."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, compiled with GCC 11.3.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, NX enabled, Canary, PIE, SHSTK+IBT (CET) enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in ELF; only NEEDED library is libc.so.6; no custom/stub .so files in target directory",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "context global at 0x5060 (32 bytes, .bss): [0x5060]=game_ptr, [0x5068]=importer_ptr, [0x5070]=word_list_ptr, [0x5078]=word_count",
+        "source": "ELF"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "importer struct (0x18 bytes): [0x0]=count(size_t), [0x8]=reserved(8B), [0x10]=buffer_ptr(char*)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "game struct (0x108 bytes): [0x8]=guess_count(int), [0xc]=won(int), [0x10..0xff]=records(0xf0B=30*8B), [0x100]=answer_ptr(char*)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "importWords reads user-controlled size via scanf(%lu) into rbp-0x20, then read(0, importer->buffer, size) with NO upper bound check on size",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "importWords: if new_size < importer->count, frees importer->buffer and sets it NULL; then sets importer->count=new_size; if buffer NULL, malloc(new_size)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "importWords: after read, sets importer->buffer[size-1]=0 (NUL terminate at user-controlled offset)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "addWordsToList: increments context.word_count, reallocs word_list to word_count*8, stores strdup(token) at word_list[word_count-1]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "inputGuess: read(0, stack_buf_rbp-0xe, 6), strips trailing newline, validates strlen==5 and all-alpha, lowercases, strncmp vs answer",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "saveGuess writes to game record array at offset (guess_count*6+i+2)*8 from game base; loops i 0..4; record is 8 bytes [0]=color(int) [4]=char(byte)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "runGame loops while guess_count<=4 (max 5 guesses); increments guess_count after each inputGuess; on loss prints answer via printf %s",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "setup loads /etc/words.txt (exists, 33 bytes, 5 words); word_count=filesize/6=5; word_list=malloc(40); each word strdup'd",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "init sets alarm(600) and setbuf(stdout, NULL)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "gameLoop: answer_index = rand() % word_count; newGame(answer_index); context.game = result; runGame(); free(context.game)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "GOT is in Full RELRO region (0x4cd8-0x5000 mapped R after relocation); GOT overwrite not feasible at runtime",
+        "source": "ELF"
+      },
+      {
+        "id": "F019",
+        "type": "DERIVED",
+        "description": "importWords size parameter is fully attacker-controlled with no upper bound, enabling arbitrarily large heap allocation and read into that allocation",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F020",
+        "type": "DERIVED",
+        "description": "The record array in game struct spans game+0x10 to game+0xff (0xf0 bytes = 30 entries * 8 bytes = 5 guesses * 6 slots). saveGuess with guess_count=4 writes last record at game+(4*6+4+2)*8 = game+0xf8, within bounds. No off-by-one overflow into answer pointer at game+0x100.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F021",
+        "type": "DERIVED",
+        "description": "importWords can be called repeatedly (Continue? Y/N loop). Each call may free+realloc importer->buffer and addWordsToList reallocs word_list. Repeated calls create heap churn with attacker-controlled sizes.",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether the importWords read(0, buf, size) with attacker-controlled size can be leveraged for heap overflow beyond the allocated buffer",
+        "reason": "read writes exactly 'size' bytes into a buffer of 'size' bytes (malloc(size)). The write itself is in-bounds. However, the NUL termination at buf[size-1] and subsequent addWordsToList processing (strtok modifies buffer in place) may interact with heap metadata. S2 needs to analyze if size=0 or size=1 edge cases cause issues, and whether the free/malloc/realloc sequence across repeated importWords calls creates exploitable heap state."
+      },
+      {
+        "id": "U002",
+        "description": "Whether repeated importWords calls with carefully chosen sizes can corrupt heap metadata via the free/malloc/realloc interplay",
+        "reason": "importWords frees importer->buffer when new_size < old_count, then malloc(new_size). addWordsToList separately reallocs word_list. The two allocation streams (importer buffer vs word_list) may interleave on the heap. S2 should analyze the heap layout and whether tcache/fastbin corruption is achievable."
+      },
+      {
+        "id": "U003",
+        "description": "Whether the word_list realloc in addWordsToList has any integer overflow or size miscalculation",
+        "reason": "realloc(word_list, word_count*8) where word_count is incremented before the call. If word_count is very large (many tokens), word_count*8 could overflow. S2 should verify the multiplication and realloc behavior at scale."
+      },
+      {
+        "id": "U004",
+        "description": "Runtime heap layout and allocator behavior under glibc 2.39",
+        "reason": "glibc 2.39 has tcache and various hardening. The exact heap layout depends on allocation order and sizes chosen by attacker. S2/S3 should determine if tcache poisoning or other heap techniques are viable under this glibc version."
+      },
+      {
+        "id": "U005",
+        "description": "Whether the first line of /etc/words.txt ('-e apple') being 8 bytes causes any issue in setup's fread(6) loop",
+        "reason": "setup reads 6 bytes per iteration. First line '-e apple\\n' is 9 bytes. fread reads 6 bytes '-e app', strlen=5 (after NUL at [5]), strdup('-e app'). This is a non-alpha word but setup doesn't validate isalpha. It becomes a valid word_list entry. The remaining 'le\\n' shifts subsequent reads. S2 should verify if this corrupts the word list or is benign."
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID 4efb4819b79919f1ba790b10d21d75a8ecbfcab6, not stripped. Entry 0x13e0. 13 program headers, 31 sections. LOAD segments: R(0-0xd28), RX(0x1000-0x23d5), R(0x3000-0x3804), RW(0x4cd8-0x5080). GNU_RELRO 0x4cd8-0x5000. GNU_STACK RW (NX).",
+      "sections": "31 sections. Key: .text@0x13e0(0xfe8,RX), .rodata@0x3000(0x498,R), .got@0x4ed8(0x128,RW,RELRO), .data@0x5000(0x10,RW), .bss@0x5020(0x60,RW). .init_array@0x4cd8, .fini_array@0x4ce0, .dynamic@0x4ce8.",
+      "symbols": "Functions: main@0x233c, init@0x14c9, setup@0x14f2, menu@0x17bd, gameLoop@0x1eec, newGame@0x18a1, newImporter@0x1915, importWords@0x20ff, inputGuess@0x1c33, saveGuess@0x1aa2, runGame@0x1df9, addWordsToList@0x1fec, printWord@0x1966, printRecord@0x1a02, strToLower@0x1f43, isAllAlpha@0x1f8c, help@0x2313. Globals: context@0x5060(32B), stdout@0x5020, stderr@0x5040.",
+      "disassembly": "importWords@0x20ff: scanf(%lu)->rbp-0x20=size; if size<importer->count: free(buffer),buffer=NULL; importer->count=size; if !buffer: buffer=malloc(size); read(0,buffer,size); buffer[size-1]=0; addWordsToList(buffer); Continue?Y/N. addWordsToList@0x1fec: strtok(buf,','); for each 5-char alpha token: word_count++, word_list=realloc(word_list,word_count*8), word_list[word_count-1]=strdup(lower(token)). inputGuess@0x1c33: read(0,rbp-0xe,6); strip newline; strlen==5; isalpha all; tolower; strncmp(guess,answer,5); saveGuess. saveGuess@0x1aa2: for i 0..4: game[(guess_count*6+i+2)*8+4]=guess[i], game[(guess_count*6+i+2)*8]=0; color computation vs answer. runGame@0x1df9: loop guess_count<=4: printRecord,inputGuess,guess_count++; if won print congrats else printf('%s',answer)."
+    }
+  }
+}

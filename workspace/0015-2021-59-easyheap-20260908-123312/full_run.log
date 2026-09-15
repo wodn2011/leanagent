@@ -1,0 +1,47 @@
+# [重建] 原始 full_run.log 丢失（0字节），由 console log 拼接恢复
+
+# ===== 来源: /work/ctf2/_run_0015.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 /work/ctf2/0015-2021-59-easyheap/target ===
+
+12:33:12 === Task Workspace: /work/workspace/0015-2021-59-easyheap-20260908-123312（target 已拷入） ===
+12:33:12 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+12:33:12 --- S1 Recon ---
+12:33:12 === recon (bug_id=-) ===
+12:36:29 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，22421 chars）
+12:36:40 [stage1] 保存 → /work/workspace/0015-2021-59-easyheap-20260908-123312/stage1.json
+12:36:40 --- S2 Semantic ---
+12:36:40 === semantic (bug_id=-) ===
+12:38:25 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，16746 chars）
+12:38:31 [stage2] 保存 → /work/workspace/0015-2021-59-easyheap-20260908-123312/stage2.json
+12:38:31 --- S3 Primitive（所有 bug） ---
+12:38:31 === impact (bug_id=BUG-001) ===
+12:52:35 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，24007 chars）
+12:52:44 === impact (bug_id=BUG-002) ===
+12:58:43 [retry] 无 submit（1/5），原地重试...
+13:03:03 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，20248 chars）
+13:03:12 [stage3] 保存 → /work/workspace/0015-2021-59-easyheap-20260908-123312/stage3.json
+13:03:12 --- S4 Exploit ---
+13:03:12 === exploit (bug_id=-) ===
+13:31:32 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，18282 chars）
+13:31:44 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+13:31:44 [stage4] 保存 → /work/workspace/0015-2021-59-easyheap-20260908-123312/stage4.json
+13:32:03 📄 渗透报告：/work/workspace/0015-2021-59-easyheap-20260908-123312/report.md
+13:32:07 === 主 agent 汇总 ===
+分析完成！以下是结果摘要：
+
+## 漏洞分析结果
+
+| 项目 | 结果 |
+|------|------|
+| **二进制** | `/work/ctf2/0015-2021-59-easyheap/target` |
+| **Exploit 成功** | ✅ 是 |
+| **Exploit 路径** | `/work/workspace/0015-2021-59-easyheap-20260908-123312/exploit.py` |
+| **分析报告** | `/work/workspace/0015-2021-59-easyheap-20260908-123312/report.md` |
+| **Workspace** | `/work/workspace/0015-2021-59-easyheap-20260908-123312/` |
+| **错误** | 无 |
+
+完整 S1-S4 流程（侦察 → 语义 → 原语验证 → exploit）已全部跑通，exploit 成功生成并验证通过。详细分析报告和 exploit 脚本均已保存在 workspace 目录中，可随时查阅。

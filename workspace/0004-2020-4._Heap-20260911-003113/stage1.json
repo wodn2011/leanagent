@@ -1,0 +1,793 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0004-2020-4._Heap-20260905-040529/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x8d0\",\"dynamic\":true,\"stripped\":true,\"compiler\":\"GCC 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)\",\"buildid\":\"9bd4242e3275b5629e8727d80b25e94a4dcb8776\",\"interpreter\":\"/work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"rpath\":\"/work/ctf/0004-2020-4. Heap\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"false\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2)\",\"path\":\"/work/ctf/0004-2020-4. Heap/libc.so.6\",\"source\":\"STATIC\",\"note\":\"libc strings say GNU C Library (Ubuntu GLIBC 2.24-9ubuntu2.2) stable release version 2.24. ld file named ld-2.27.so but actual libc is 2.24. No tcache (tcache introduced in glibc 2.26). Uses fastbin/unsortedbin.\"},\"loader\":{\"path\":\"/work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"source\":\"STATIC\",\"note\":\"ld-2.27.so cannot load target binary (ELF load command alignment error). System ld 2.39 also fails (dl-call-libc-early-init assertion). Binary cannot run in current environment due to ld/libc version mismatch.\"},\"libraries\":[{\"name\":\"libc.so.6\",\"path\":\"/work/ctf/0004-2020-4. Heap/libc.so.6\",\"version\":\"2.24\",\"size\":1856752,\"stripped\":true,\"needed\":true}]},\"interface\":{\"entry_function\":\"main (0xec0)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"add\",\"function\":\"sub_b7b (0xb7b)\"},{\"option\":\"2\",\"label\":\"view\",\"function\":\"sub_e0d (0xe0d)\"},{\"option\":\"3\",\"label\":\"write\",\"function\":\"sub_c11 (0xc11)\"},{\"option\":\"4\",\"label\":\"remove\",\"function\":\"sub_d4b (0xd4b)\"},{\"option\":\"0\",\"label\":\"exit\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%1d)\",\"function\":\"main\"},{\"name\":\"block_index\",\"source\":\"scanf(%d)\",\"function\":\"sub_c11 (write), sub_d4b (remove), sub_e0d (view)\"},{\"name\":\"write_length\",\"source\":\"scanf(%d)\",\"function\":\"sub_c11 (write)\"},{\"name\":\"content\",\"source\":\"read(0, ptr, len)\",\"function\":\"sub_c11 (write) via sub_a56\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x8d0\",\"size\":\"0x7d2\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x10b0\",\"size\":\"0xf1\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".init_array\",\"address\":\"0x201d68\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x201d70\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x201f68\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":false,\"note\":\"Full RELRO, marked WA in section but GNU_RELRO segment makes read-only at runtime\"},{\"name\":\".data\",\"address\":\"0x202000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x202020\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".plt\",\"address\":\"0x800\",\"size\":\"0xc0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x202020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x202030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"ptrs (heap pointer array)\",\"address\":\"0x202040\",\"size\":\"0x78 (15*8)\",\"section\":\".bss\",\"type\":\"pointer_array\",\"count\":15,\"element_size\":8,\"element_type\":\"heap_pointer\",\"note\":\"Indices 0-14 used. Checked with cmp 0xe (<=14). Stores calloc return pointers.\"}],\"got\":[{\"offset\":\"0x201f80\",\"symbol\":\"free\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f88\",\"symbol\":\"__errno_location\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f90\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f98\",\"symbol\":\"write\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fa0\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fa8\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fb0\",\"symbol\":\"calloc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fb8\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fc0\",\"symbol\":\"atoi\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fc8\",\"symbol\":\"__isoc99_scanf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fd0\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"}],\"plt\":[{\"address\":\"0x810\",\"symbol\":\"free\"},{\"address\":\"0x820\",\"symbol\":\"__errno_location\"},{\"address\":\"0x830\",\"symbol\":\"puts\"},{\"address\":\"0x840\",\"symbol\":\"write\"},{\"address\":\"0x850\",\"symbol\":\"__stack_chk_fail\"},{\"address\":\"0x860\",\"symbol\":\"read\"},{\"address\":\"0x870\",\"symbol\":\"calloc\"},{\"address\":\"0x880\",\"symbol\":\"setvbuf\"},{\"address\":\"0x890\",\"symbol\":\"atoi\"},{\"address\":\"0x8a0\",\"symbol\":\"__isoc99_scanf\"},{\"address\":\"0x8b0\",\"symbol\":\"exit\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0xec0\",\"callers\":[\"_start (0x8d0) via __libc_start_main\"],\"callees\":[\"setvbuf\",\"puts\",\"write\",\"__isoc99_scanf\",\"exit\",\"sub_b7b (add)\",\"sub_e0d (view)\",\"sub_c11 (write)\",\"sub_d4b (remove)\"],\"inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%1d, &var)\"}],\"checks\":[\"scanf return != -1\",\"menu_choice != 0 (exit)\",\"menu_choice 1->add, 2->view, 3->write, 4->remove, else Invalid\"],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"puts\",\"write\",\"__isoc99_scanf\",\"exit\",\"sub_b7b\",\"sub_e0d\",\"sub_c11\",\"sub_d4b\"]},{\"name\":\"sub_b7b (add)\",\"address\":\"0xb7b\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"calloc\"],\"inputs\":[],\"checks\":[\"loop i=0..14, find first NULL slot in ptrs[]\",\"if no free slot (idx==0x3e7), print 'can not add now'\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"ptrs[idx] (0x202040 + idx*8)\",\"size\":8,\"destination_type\":\"global_array_element\"}],\"calls\":[\"puts\",\"calloc\"]},{\"name\":\"sub_c11 (write)\",\"address\":\"0xc11\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"__isoc99_scanf\",\"sub_a56 (read_wrapper)\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"scanf(%d)\"},{\"name\":\"write_length\",\"source\":\"scanf(%d)\"},{\"name\":\"content\",\"source\":\"read via sub_a56\"}],\"checks\":[\"block_index >= 0 (js check)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"ptrs[block_index] - 8 (chunk size field)\",\"size\":1,\"destination_type\":\"heap_chunk_header\",\"note\":\"Reads low byte of malloc chunk size field\"},{\"operation\":\"WRITE\",\"destination\":\"*ptrs[block_index] (heap chunk user data)\",\"size\":\"write_length (capped at 0x48)\",\"destination_type\":\"heap_pointer_dereference\",\"note\":\"read(0, ptrs[idx], length). Length logic: chunk_size_byte = *(ptrs[idx]-8); real_limit = (signed)chunk_size_byte - 8; if (write_length > real_limit) write_length = 0x48;\"}],\"calls\":[\"puts\",\"__isoc99_scanf\",\"sub_a56\"]},{\"name\":\"sub_d4b (remove)\",\"address\":\"0xd4b\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"sub_aca (readint)\",\"exit\",\"free\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"sub_aca (read 0x40 bytes, atoi)\"}],\"checks\":[\"block_index >= 0 (js)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL (else exit)\"],\"memory_operations\":[{\"operation\":\"FREE\",\"destination\":\"*ptrs[block_index]\",\"size\":0,\"destination_type\":\"heap_pointer\"},{\"operation\":\"WRITE\",\"destination\":\"ptrs[block_index]\",\"size\":8,\"destination_type\":\"global_array_element\",\"note\":\"Set to NULL after free (ptrs[idx]=0)\"}],\"calls\":[\"puts\",\"sub_aca\",\"exit\",\"free\"]},{\"name\":\"sub_e0d (view)\",\"address\":\"0xe0d\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"sub_aca (readint)\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"sub_aca (read 0x40 bytes, atoi)\"}],\"checks\":[\"block_index >= 0 (js)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"ptrs[block_index] - 8 (chunk size field)\",\"size\":1,\"destination_type\":\"heap_chunk_header\"},{\"operation\":\"READ\",\"destination\":\"*ptrs[block_index]\",\"size\":\"until NUL\",\"destination_type\":\"heap_pointer_dereference\",\"note\":\"puts(ptrs[idx]) outputs heap content as string\"}],\"calls\":[\"puts\",\"sub_aca\"]},{\"name\":\"sub_a56 (read_wrapper)\",\"address\":\"0xa56\",\"callers\":[\"sub_c11\"],\"callees\":[\"read\"],\"inputs\":[{\"name\":\"buf\",\"source\":\"rdi\"},{\"name\":\"len\",\"source\":\"esi\"}],\"checks\":[\"len > 0\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"buf\",\"size\":\"len\",\"destination_type\":\"parameter_pointer\"}],\"calls\":[\"read\"]},{\"name\":\"sub_aca (readint)\",\"address\":\"0xaca\",\"callers\":[\"sub_d4b\",\"sub_e0d\"],\"callees\":[\"sub_a56\",\"atoi\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"input\",\"source\":\"read(0, stack_buf, 0x40)\"}],\"checks\":[\"stack canary\"],\"memory_operations\":[],\"calls\":[\"sub_a56\",\"atoi\",\"__stack_chk_fail\"]},{\"name\":\"sub_9da (writeall)\",\"address\":\"0x9da\",\"callers\":[],\"callees\":[\"__errno_location\",\"write\"],\"inputs\":[{\"name\":\"fd\",\"source\":\"edi\"},{\"name\":\"buf\",\"source\":\"rsi\"}],\"checks\":[\"EAGAIN/EINTR retry\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"fd=1 (stdout)\",\"size\":\"len\",\"destination_type\":\"file_descriptor\"}],\"calls\":[\"__errno_location\",\"write\"]}],\"attack_surfaces\":[{\"function\":\"sub_c11 (write)\",\"input\":\"write_length (scanf %d, user-controlled)\",\"operation\":\"heap overflow via read(0, ptrs[idx], length)\",\"risk\":\"HIGH\",\"reason\":\"calloc allocates 0x40=64 bytes user area (chunk size 0x51). write function reads chunk size byte from ptr-8 (=0x51), computes real_limit=0x51-8=0x49. If user length > 0x49, length is set to 0x48=72. 72 > 64 bytes allocated -> heap overflow of 8 bytes into next chunk. This is the primary attack surface for S2.\"},{\"function\":\"sub_c11 (write)\",\"input\":\"block_index (scanf %d)\",\"operation\":\"array indexing ptrs[block_index]\",\"risk\":\"MEDIUM\",\"reason\":\"Index checked 0-14, properly bounded. No OOB via index.\"},{\"function\":\"sub_e0d (view)\",\"input\":\"block_index\",\"operation\":\"puts(ptrs[idx]) reads heap content as string\",\"risk\":\"MEDIUM\",\"reason\":\"Can leak heap content including potential heap metadata if chunk is overlapped/corrupted. Info leak candidate for S2.\"},{\"function\":\"sub_d4b (remove)\",\"input\":\"block_index\",\"operation\":\"free(ptrs[idx]) then ptrs[idx]=NULL\",\"risk\":\"LOW\",\"reason\":\"Pointer properly NULLed after free. No obvious UAF in remove itself.\"},{\"function\":\"dependency_resolution\",\"input\":\"RPATH=/work/ctf/0004-2020-4. Heap\",\"operation\":\"libc.so.6 loaded from RPATH directory\",\"risk\":\"LOW\",\"reason\":\"RPATH set to /work/ctf/0004-2020-4. Heap. libc.so.6 (glibc 2.24) and ld-2.27.so reside there. Only one NEEDED library (libc.so.6). No LD_LIBRARY_PATH manipulation needed since RPATH takes priority. No stub libraries.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, stripped. Entry 0x8d0. Interpreter /work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary found, PIE enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"RPATH = /work/ctf/0004-2020-4. Heap. Only NEEDED library is libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"libc.so.6 at /work/ctf/0004-2020-4. Heap/libc.so.6 is glibc 2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2). No tcache (tcache starts at glibc 2.26)\",\"source\":\"STATIC\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Global pointer array ptrs at 0x202040 in .bss, 15 elements (indices 0-14), 8 bytes each, stores heap chunk pointers from calloc\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"add function (0xb7b) calls calloc(0x40, 1) with fixed size 64 bytes, stores result in first free ptrs[] slot\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"write function (0xc11) reads chunk size byte from *(ptrs[idx]-8), computes real_limit = chunk_size_byte - 8, and if user-supplied length > real_limit, sets length = 0x48 (72)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"DERIVED\",\"description\":\"calloc(0x40,1) allocates 64-byte user area. malloc chunk size = 0x51 (0x40 + 0x10 header + 0x1 PREV_INUSE). Low byte at ptr-8 = 0x51. real_limit = 0x51 - 8 = 0x49. If user length > 0x49, length set to 0x48 = 72 bytes. 72 > 64 = 8-byte heap overflow\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"remove function (0xd4b) calls free(ptrs[idx]) then sets ptrs[idx] = NULL. No UAF in remove itself\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"view function (0xe0d) calls puts(ptrs[idx]) to output heap content as string. Also reads chunk size byte from ptr-8 but does not use it for output length\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Binary cannot run in current environment: ld-2.27.so fails with 'ELF load command address/offset not properly aligned', system ld 2.39 fails with dl-call-libc-early-init assertion. ld/libc version mismatch\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"libc key offsets: __free_hook=0x3c3788, __malloc_hook=0x3c1af0, system=0x456a0, puts=0x70920, free=0x86ce0, calloc=0x87550, read=0xf8880, write=0xf88e0, environ=0x3c3f38, /bin/sh string at 0x18ac40\",\"source\":\"STATIC\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"write function uses sub_a56 which calls read(0, buf, len) directly - no null termination, reads exactly len bytes\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Menu prompt uses write(1, ...) for menu items and scanf(%1d) for choice. No $ prompt character - menu items are written via write() syscall\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Cannot verify runtime behavior (menu interaction, heap layout) due to ld/libc incompatibility preventing execution\",\"reason\":\"ld-2.27.so cannot load binary (alignment error), system ld 2.39 incompatible with libc 2.24\"},{\"id\":\"U002\",\"description\":\"Exact heap overflow exploitation impact depends on glibc 2.24 fastbin/unsortedbin behavior which needs S2 dynamic analysis\",\"reason\":\"Static analysis confirms 8-byte overflow, but heap exploitation primitives require runtime verification\"},{\"id\":\"U003\",\"description\":\"CET (IBT/SHSTK) status unknown - cannot confirm from checksec output\",\"reason\":\"checksec did not report CET flags, binary compiled with GCC 7.5 which predates CET support\"},{\"id\":\"U004\",\"description\":\"ASLR status at runtime unknown\",\"reason\":\"Cannot run binary to verify ASLR. PIE is enabled which is prerequisite for ASLR.\"}],\"raw\":{\"elf\":\"Arch: amd64-64-little, RELRO: Full, Canary: yes, NX: yes, PIE: yes, RPATH: /work/ctf/0004-2020-4. Heap. Interpreter: /work/ctf/0004-2020-4. Heap/ld-2.27.so. Stripped. GCC 7.5.0. Entry 0x8d0.\",\"sections\":\".text 0x8d0 size 0x7d2 AX | .rodata 0x10b0 size 0xf1 A | .got 0x201f68 size 0x98 WA(relro) | .data 0x202000 size 0x10 WA | .bss 0x202020 size 0x98 WA | .plt 0x800 size 0xc0 AX\",\"symbols\":\"Stripped. dynsym: free, __errno_location, puts, write, __stack_chk_fail, read, calloc, setvbuf, atoi, __isoc99_scanf, exit, __libc_start_main, __cxa_finalize. OBJECT: stdout@0x202020, stdin@0x202030. Global ptrs array at 0x202040 (15 ptrs).\",\"disassembly\":\"main(0xec0): setvbuf stdout/stdin, menu loop scanf(%1d), dispatch 1->add(0xb7b) 2->view(0xe0d) 3->write(0xc11) 4->remove(0xd4b) 0->exit. add(0xb7b): find first NULL in ptrs[0..14], calloc(0x40,1), store. write(0xc11): scanf idx(0-14), check ptrs[idx]!=NULL, scanf length, read chunk_size_byte=*(ptrs[idx]-8), real_limit=chunk_size_byte-8, if len>real_limit len=0x48, read(0,ptrs[idx],len). remove(0xd4b): readint idx(0-14), check ptrs[idx]!=NULL, free(ptrs[idx]), ptrs[idx]=NULL. view(0xe0d): readint idx(0-14), check ptrs[idx]!=NULL, puts(ptrs[idx]).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0004-2020-4._Heap-20260905-040529/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x8d0",
+      "dynamic": true,
+      "stripped": true,
+      "compiler": "GCC 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)",
+      "buildid": "9bd4242e3275b5629e8727d80b25e94a4dcb8776",
+      "interpreter": "/work/ctf/0004-2020-4. Heap/ld-2.27.so",
+      "rpath": "/work/ctf/0004-2020-4. Heap"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "false",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2)",
+        "path": "/work/ctf/0004-2020-4. Heap/libc.so.6",
+        "source": "STATIC",
+        "note": "libc strings say GNU C Library (Ubuntu GLIBC 2.24-9ubuntu2.2) stable release version 2.24. ld file named ld-2.27.so but actual libc is 2.24. No tcache (tcache introduced in glibc 2.26). Uses fastbin/unsortedbin."
+      },
+      "loader": {
+        "path": "/work/ctf/0004-2020-4. Heap/ld-2.27.so",
+        "source": "STATIC",
+        "note": "ld-2.27.so cannot load target binary (ELF load command alignment error). System ld 2.39 also fails (dl-call-libc-early-init assertion). Binary cannot run in current environment due to ld/libc version mismatch."
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "path": "/work/ctf/0004-2020-4. Heap/libc.so.6",
+          "version": "2.24",
+          "size": 1856752,
+          "stripped": true,
+          "needed": true
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main (0xec0)",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "option": "1",
+          "label": "add",
+          "function": "sub_b7b (0xb7b)"
+        },
+        {
+          "option": "2",
+          "label": "view",
+          "function": "sub_e0d (0xe0d)"
+        },
+        {
+          "option": "3",
+          "label": "write",
+          "function": "sub_c11 (0xc11)"
+        },
+        {
+          "option": "4",
+          "label": "remove",
+          "function": "sub_d4b (0xd4b)"
+        },
+        {
+          "option": "0",
+          "label": "exit"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf(%1d)",
+          "function": "main"
+        },
+        {
+          "name": "block_index",
+          "source": "scanf(%d)",
+          "function": "sub_c11 (write), sub_d4b (remove), sub_e0d (view)"
+        },
+        {
+          "name": "write_length",
+          "source": "scanf(%d)",
+          "function": "sub_c11 (write)"
+        },
+        {
+          "name": "content",
+          "source": "read(0, ptr, len)",
+          "function": "sub_c11 (write) via sub_a56"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x8d0",
+          "size": "0x7d2",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x10b0",
+          "size": "0xf1",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".init_array",
+          "address": "0x201d68",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x201d70",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".got",
+          "address": "0x201f68",
+          "size": "0x98",
+          "flags": "WA",
+          "writable": false,
+          "note": "Full RELRO, marked WA in section but GNU_RELRO segment makes read-only at runtime"
+        },
+        {
+          "name": ".data",
+          "address": "0x202000",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".bss",
+          "address": "0x202020",
+          "size": "0x98",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".plt",
+          "address": "0x800",
+          "size": "0xc0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x202020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stdin",
+          "address": "0x202030",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "ptrs (heap pointer array)",
+          "address": "0x202040",
+          "size": "0x78 (15*8)",
+          "section": ".bss",
+          "type": "pointer_array",
+          "count": 15,
+          "element_size": 8,
+          "element_type": "heap_pointer",
+          "note": "Indices 0-14 used. Checked with cmp 0xe (<=14). Stores calloc return pointers."
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x201f80",
+          "symbol": "free",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201f88",
+          "symbol": "__errno_location",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201f90",
+          "symbol": "puts",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201f98",
+          "symbol": "write",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fa0",
+          "symbol": "__stack_chk_fail",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fa8",
+          "symbol": "read",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fb0",
+          "symbol": "calloc",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fb8",
+          "symbol": "setvbuf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fc0",
+          "symbol": "atoi",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fc8",
+          "symbol": "__isoc99_scanf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x201fd0",
+          "symbol": "exit",
+          "type": "JUMP_SLOT"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x810",
+          "symbol": "free"
+        },
+        {
+          "address": "0x820",
+          "symbol": "__errno_location"
+        },
+        {
+          "address": "0x830",
+          "symbol": "puts"
+        },
+        {
+          "address": "0x840",
+          "symbol": "write"
+        },
+        {
+          "address": "0x850",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "address": "0x860",
+          "symbol": "read"
+        },
+        {
+          "address": "0x870",
+          "symbol": "calloc"
+        },
+        {
+          "address": "0x880",
+          "symbol": "setvbuf"
+        },
+        {
+          "address": "0x890",
+          "symbol": "atoi"
+        },
+        {
+          "address": "0x8a0",
+          "symbol": "__isoc99_scanf"
+        },
+        {
+          "address": "0x8b0",
+          "symbol": "exit"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0xec0",
+        "callers": [
+          "_start (0x8d0) via __libc_start_main"
+        ],
+        "callees": [
+          "setvbuf",
+          "puts",
+          "write",
+          "__isoc99_scanf",
+          "exit",
+          "sub_b7b (add)",
+          "sub_e0d (view)",
+          "sub_c11 (write)",
+          "sub_d4b (remove)"
+        ],
+        "inputs": [
+          {
+            "name": "menu_choice",
+            "source": "scanf(%1d, &var)"
+          }
+        ],
+        "checks": [
+          "scanf return != -1",
+          "menu_choice != 0 (exit)",
+          "menu_choice 1->add, 2->view, 3->write, 4->remove, else Invalid"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "puts",
+          "write",
+          "__isoc99_scanf",
+          "exit",
+          "sub_b7b",
+          "sub_e0d",
+          "sub_c11",
+          "sub_d4b"
+        ]
+      },
+      {
+        "name": "sub_b7b (add)",
+        "address": "0xb7b",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "calloc"
+        ],
+        "inputs": [],
+        "checks": [
+          "loop i=0..14, find first NULL slot in ptrs[]",
+          "if no free slot (idx==0x3e7), print 'can not add now'"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "ptrs[idx] (0x202040 + idx*8)",
+            "size": 8,
+            "destination_type": "global_array_element"
+          }
+        ],
+        "calls": [
+          "puts",
+          "calloc"
+        ]
+      },
+      {
+        "name": "sub_c11 (write)",
+        "address": "0xc11",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "__isoc99_scanf",
+          "sub_a56 (read_wrapper)"
+        ],
+        "inputs": [
+          {
+            "name": "block_index",
+            "source": "scanf(%d)"
+          },
+          {
+            "name": "write_length",
+            "source": "scanf(%d)"
+          },
+          {
+            "name": "content",
+            "source": "read via sub_a56"
+          }
+        ],
+        "checks": [
+          "block_index >= 0 (js check)",
+          "block_index <= 14 (cmp 0xe)",
+          "ptrs[block_index] != NULL"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "ptrs[block_index] - 8 (chunk size field)",
+            "size": 1,
+            "destination_type": "heap_chunk_header",
+            "note": "Reads low byte of malloc chunk size field"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "*ptrs[block_index] (heap chunk user data)",
+            "size": "write_length (capped at 0x48)",
+            "destination_type": "heap_pointer_dereference",
+            "note": "read(0, ptrs[idx], length). Length logic: chunk_size_byte = *(ptrs[idx]-8); real_limit = (signed)chunk_size_byte - 8; if (write_length > real_limit) write_length = 0x48;"
+          }
+        ],
+        "calls": [
+          "puts",
+          "__isoc99_scanf",
+          "sub_a56"
+        ]
+      },
+      {
+        "name": "sub_d4b (remove)",
+        "address": "0xd4b",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "sub_aca (readint)",
+          "exit",
+          "free"
+        ],
+        "inputs": [
+          {
+            "name": "block_index",
+            "source": "sub_aca (read 0x40 bytes, atoi)"
+          }
+        ],
+        "checks": [
+          "block_index >= 0 (js)",
+          "block_index <= 14 (cmp 0xe)",
+          "ptrs[block_index] != NULL (else exit)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "FREE",
+            "destination": "*ptrs[block_index]",
+            "size": 0,
+            "destination_type": "heap_pointer"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "ptrs[block_index]",
+            "size": 8,
+            "destination_type": "global_array_element",
+            "note": "Set to NULL after free (ptrs[idx]=0)"
+          }
+        ],
+        "calls": [
+          "puts",
+          "sub_aca",
+          "exit",
+          "free"
+        ]
+      },
+      {
+        "name": "sub_e0d (view)",
+        "address": "0xe0d",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "sub_aca (readint)"
+        ],
+        "inputs": [
+          {
+            "name": "block_index",
+            "source": "sub_aca (read 0x40 bytes, atoi)"
+          }
+        ],
+        "checks": [
+          "block_index >= 0 (js)",
+          "block_index <= 14 (cmp 0xe)",
+          "ptrs[block_index] != NULL"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "ptrs[block_index] - 8 (chunk size field)",
+            "size": 1,
+            "destination_type": "heap_chunk_header"
+          },
+          {
+            "operation": "READ",
+            "destination": "*ptrs[block_index]",
+            "size": "until NUL",
+            "destination_type": "heap_pointer_dereference",
+            "note": "puts(ptrs[idx]) outputs heap content as string"
+          }
+        ],
+        "calls": [
+          "puts",
+          "sub_aca"
+        ]
+      },
+      {
+        "name": "sub_a56 (read_wrapper)",
+        "address": "0xa56",
+        "callers": [
+          "sub_c11"
+        ],
+        "callees": [
+          "read"
+        ],
+        "inputs": [
+          {
+            "name": "buf",
+            "source": "rdi"
+          },
+          {
+            "name": "len",
+            "source": "esi"
+          }
+        ],
+        "checks": [
+          "len > 0"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "buf",
+            "size": "len",
+            "destination_type": "parameter_pointer"
+          }
+        ],
+        "calls": [
+          "read"
+        ]
+      },
+      {
+        "name": "sub_aca (readint)",
+        "address": "0xaca",
+        "callers": [
+          "sub_d4b",
+          "sub_e0d"
+        ],
+        "callees": [
+          "sub_a56",
+          "atoi",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "input",
+            "source": "read(0, stack_buf, 0x40)"
+          }
+        ],
+        "checks": [
+          "stack canary"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "sub_a56",
+          "atoi",
+          "__stack_chk_fail"
+        ]
+      },
+      {
+        "name": "sub_9da (writeall)",
+        "address": "0x9da",
+        "callers": [],
+        "callees": [
+          "__errno_location",
+          "write"
+        ],
+        "inputs": [
+          {
+            "name": "fd",
+            "source": "edi"
+          },
+          {
+            "name": "buf",
+            "source": "rsi"
+          }
+        ],
+        "checks": [
+          "EAGAIN/EINTR retry"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "fd=1 (stdout)",
+            "size": "len",
+            "destination_type": "file_descriptor"
+          }
+        ],
+        "calls": [
+          "__errno_location",
+          "write"
+        ]
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "sub_c11 (write)",
+        "input": "write_length (scanf %d, user-controlled)",
+        "operation": "heap overflow via read(0, ptrs[idx], length)",
+        "risk": "HIGH",
+        "reason": "calloc allocates 0x40=64 bytes user area (chunk size 0x51). write function reads chunk size byte from ptr-8 (=0x51), computes real_limit=0x51-8=0x49. If user length > 0x49, length is set to 0x48=72. 72 > 64 bytes allocated -> heap overflow of 8 bytes into next chunk. This is the primary attack surface for S2."
+      },
+      {
+        "function": "sub_c11 (write)",
+        "input": "block_index (scanf %d)",
+        "operation": "array indexing ptrs[block_index]",
+        "risk": "MEDIUM",
+        "reason": "Index checked 0-14, properly bounded. No OOB via index."
+      },
+      {
+        "function": "sub_e0d (view)",
+        "input": "block_index",
+        "operation": "puts(ptrs[idx]) reads heap content as string",
+        "risk": "MEDIUM",
+        "reason": "Can leak heap content including potential heap metadata if chunk is overlapped/corrupted. Info leak candidate for S2."
+      },
+      {
+        "function": "sub_d4b (remove)",
+        "input": "block_index",
+        "operation": "free(ptrs[idx]) then ptrs[idx]=NULL",
+        "risk": "LOW",
+        "reason": "Pointer properly NULLed after free. No obvious UAF in remove itself."
+      },
+      {
+        "function": "dependency_resolution",
+        "input": "RPATH=/work/ctf/0004-2020-4. Heap",
+        "operation": "libc.so.6 loaded from RPATH directory",
+        "risk": "LOW",
+        "reason": "RPATH set to /work/ctf/0004-2020-4. Heap. libc.so.6 (glibc 2.24) and ld-2.27.so reside there. Only one NEEDED library (libc.so.6). No LD_LIBRARY_PATH manipulation needed since RPATH takes priority. No stub libraries."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, stripped. Entry 0x8d0. Interpreter /work/ctf/0004-2020-4. Heap/ld-2.27.so",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, NX enabled, Canary found, PIE enabled, no FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "RPATH = /work/ctf/0004-2020-4. Heap. Only NEEDED library is libc.so.6",
+        "source": "ELF"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "libc.so.6 at /work/ctf/0004-2020-4. Heap/libc.so.6 is glibc 2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2). No tcache (tcache starts at glibc 2.26)",
+        "source": "STATIC"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Global pointer array ptrs at 0x202040 in .bss, 15 elements (indices 0-14), 8 bytes each, stores heap chunk pointers from calloc",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "add function (0xb7b) calls calloc(0x40, 1) with fixed size 64 bytes, stores result in first free ptrs[] slot",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "write function (0xc11) reads chunk size byte from *(ptrs[idx]-8), computes real_limit = chunk_size_byte - 8, and if user-supplied length > real_limit, sets length = 0x48 (72)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "DERIVED",
+        "description": "calloc(0x40,1) allocates 64-byte user area. malloc chunk size = 0x51 (0x40 + 0x10 header + 0x1 PREV_INUSE). Low byte at ptr-8 = 0x51. real_limit = 0x51 - 8 = 0x49. If user length > 0x49, length set to 0x48 = 72 bytes. 72 > 64 = 8-byte heap overflow",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "remove function (0xd4b) calls free(ptrs[idx]) then sets ptrs[idx] = NULL. No UAF in remove itself",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "view function (0xe0d) calls puts(ptrs[idx]) to output heap content as string. Also reads chunk size byte from ptr-8 but does not use it for output length",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "Binary cannot run in current environment: ld-2.27.so fails with 'ELF load command address/offset not properly aligned', system ld 2.39 fails with dl-call-libc-early-init assertion. ld/libc version mismatch",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "libc key offsets: __free_hook=0x3c3788, __malloc_hook=0x3c1af0, system=0x456a0, puts=0x70920, free=0x86ce0, calloc=0x87550, read=0xf8880, write=0xf88e0, environ=0x3c3f38, /bin/sh string at 0x18ac40",
+        "source": "STATIC"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "write function uses sub_a56 which calls read(0, buf, len) directly - no null termination, reads exactly len bytes",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "Menu prompt uses write(1, ...) for menu items and scanf(%1d) for choice. No $ prompt character - menu items are written via write() syscall",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Cannot verify runtime behavior (menu interaction, heap layout) due to ld/libc incompatibility preventing execution",
+        "reason": "ld-2.27.so cannot load binary (alignment error), system ld 2.39 incompatible with libc 2.24"
+      },
+      {
+        "id": "U002",
+        "description": "Exact heap overflow exploitation impact depends on glibc 2.24 fastbin/unsortedbin behavior which needs S2 dynamic analysis",
+        "reason": "Static analysis confirms 8-byte overflow, but heap exploitation primitives require runtime verification"
+      },
+      {
+        "id": "U003",
+        "description": "CET (IBT/SHSTK) status unknown - cannot confirm from checksec output",
+        "reason": "checksec did not report CET flags, binary compiled with GCC 7.5 which predates CET support"
+      },
+      {
+        "id": "U004",
+        "description": "ASLR status at runtime unknown",
+        "reason": "Cannot run binary to verify ASLR. PIE is enabled which is prerequisite for ASLR."
+      }
+    ],
+    "raw": {
+      "elf": "Arch: amd64-64-little, RELRO: Full, Canary: yes, NX: yes, PIE: yes, RPATH: /work/ctf/0004-2020-4. Heap. Interpreter: /work/ctf/0004-2020-4. Heap/ld-2.27.so. Stripped. GCC 7.5.0. Entry 0x8d0.",
+      "sections": ".text 0x8d0 size 0x7d2 AX | .rodata 0x10b0 size 0xf1 A | .got 0x201f68 size 0x98 WA(relro) | .data 0x202000 size 0x10 WA | .bss 0x202020 size 0x98 WA | .plt 0x800 size 0xc0 AX",
+      "symbols": "Stripped. dynsym: free, __errno_location, puts, write, __stack_chk_fail, read, calloc, setvbuf, atoi, __isoc99_scanf, exit, __libc_start_main, __cxa_finalize. OBJECT: stdout@0x202020, stdin@0x202030. Global ptrs array at 0x202040 (15 ptrs).",
+      "disassembly": "main(0xec0): setvbuf stdout/stdin, menu loop scanf(%1d), dispatch 1->add(0xb7b) 2->view(0xe0d) 3->write(0xc11) 4->remove(0xd4b) 0->exit. add(0xb7b): find first NULL in ptrs[0..14], calloc(0x40,1), store. write(0xc11): scanf idx(0-14), check ptrs[idx]!=NULL, scanf length, read chunk_size_byte=*(ptrs[idx]-8), real_limit=chunk_size_byte-8, if len>real_limit len=0x48, read(0,ptrs[idx],len). remove(0xd4b): readint idx(0-14), check ptrs[idx]!=NULL, free(ptrs[idx]), ptrs[idx]=NULL. view(0xe0d): readint idx(0-14), check ptrs[idx]!=NULL, puts(ptrs[idx])."
+    }
+  }
+}

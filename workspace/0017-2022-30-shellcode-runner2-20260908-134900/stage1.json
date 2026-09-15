@@ -1,0 +1,524 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x401650\",\"dynamic\":false,\"stripped\":false},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"statically linked glibc (GNU/Linux 3.2.0)\",\"path\":\"builtin\",\"source\":\"STATIC\"},\"loader\":{\"path\":\"none (statically linked)\",\"source\":\"STATIC\"},\"libraries\":[]},\"interface\":{\"entry_function\":\"main (0x4018dd)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"prompt\":\"\\\\nInput your shellcode here (max: 100): \",\"function\":\"main\",\"via\":\"_IO_printf\"}],\"user_controlled_inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin\",\"function\":\"main\",\"read_via\":\"__libc_read(0, mmap_buf, 99)\",\"max_size\":99,\"buffer\":\"mmap RWX region at 0x13370000\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x4011c0\",\"size\":\"0x95518\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x498000\",\"size\":\"0x1cc2c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4c50e0\",\"size\":\"0x19e0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4c72a0\",\"size\":\"0x5980\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x4c4f68\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x4c5000\",\"size\":\"0xd8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".data.rel.ro\",\"address\":\"0x4c17e0\",\"size\":\"0x3788\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\"__libc_IO_vtables\",\"address\":\"0x4c6b20\",\"size\":\"0x768\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x4c17d0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x4c17d8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdin\",\"address\":\"0x4c56f8\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"stdout\",\"address\":\"0x4c56f0\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4c56e8\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"_IO_2_1_stdin_\",\"address\":\"0x4c5520\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_2_1_stdout_\",\"address\":\"0x4c5340\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_2_1_stderr_\",\"address\":\"0x4c5160\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_file_jumps\",\"address\":\"0x4c6fa0\",\"section\":\"__libc_IO_vtables\",\"type\":\"vtable\"}],\"got\":[],\"plt\":[]},\"functions\":[{\"name\":\"main\",\"address\":\"0x4018dd\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"__mmap64\",\"memset(0x401110)\",\"_IO_printf\",\"__libc_read\",\"is_all_upper\",\"_abort\"],\"inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin via __libc_read(0, buf, 99)\"}],\"checks\":[\"mmap return != -1\",\"read return != 0\",\"last byte == 0x0a -> replace with 0x00\",\"is_all_upper(buf) must return non-zero\"],\"memory_operations\":[{\"operation\":\"mmap\",\"destination\":\"0x13370000\",\"size\":100,\"prot\":\"RWX(7)\",\"flags\":\"MAP_PRIVATE|MAP_ANONYMOUS(0x22)\",\"comment\":\"fixed hint address 0x13370000\"},{\"operation\":\"memset\",\"destination\":\"0x13370000\",\"size\":100,\"value\":0},{\"operation\":\"read\",\"destination\":\"0x13370000\",\"size\":99,\"source\":\"stdin fd=0\"},{\"operation\":\"write\",\"destination\":\"mmap_buf[last]\",\"size\":1,\"value\":0,\"condition\":\"if last byte == 0x0a\"},{\"operation\":\"call\",\"destination\":\"0x13370000 (mmap_buf)\",\"type\":\"indirect call rax\",\"comment\":\"shellcode execution after is_all_upper passes\"}],\"calls\":[\"init\",\"__mmap64\",\"memset\",\"_IO_printf\",\"__libc_read\",\"is_all_upper\",\"_abort\"]},{\"name\":\"init\",\"address\":\"0x4017aa\",\"callers\":[\"main\"],\"callees\":[\"_IO_setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_IO_setvbuf\",\"alarm\"]},{\"name\":\"is_all_upper\",\"address\":\"0x401819\",\"callers\":[\"main\"],\"callees\":[\"__ctype_b_loc\",\"strlen\"],\"inputs\":[{\"name\":\"buf\",\"source\":\"mmap shellcode buffer\"}],\"checks\":[\"per-byte: isupper(c) via ctype 0x100\",\"per-byte: isdigit(c) via ctype 0x800\",\"per-byte: c == 0x20 (space)\",\"if none match -> return 0 (reject)\"],\"memory_operations\":[{\"operation\":\"read\",\"destination\":\"buf[i]\",\"size\":1,\"comment\":\"iterate strlen(buf) bytes\"}],\"calls\":[\"__ctype_b_loc\",\"strlen\"]},{\"name\":\"_abort\",\"address\":\"0x401775\",\"callers\":[\"main\"],\"callees\":[\"_IO_printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rodata string\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_IO_printf\",\"exit\"]}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"shellcode via stdin\",\"operation\":\"mmap RWX + read + call rax (shellcode execution)\",\"risk\":\"HIGH\",\"reason\":\"User-controlled data is read into an RWX mmap region at fixed address 0x13370000 and then executed via call rax. The is_all_upper filter restricts bytes to {0x20, 0x30-0x39, 0x41-0x5a} (space, digits, uppercase letters) but this is a constrained shellcode challenge, not a blocked one. S2 should analyze which syscalls/instructions are achievable with the allowed byte set.\"},{\"function\":\"is_all_upper\",\"input\":\"shellcode buffer\",\"operation\":\"byte filter using ctype_b_loc (isupper 0x100 OR isdigit 0x800 OR space 0x20)\",\"risk\":\"MEDIUM\",\"reason\":\"The filter name suggests uppercase-only but actually allows digits (0x800=_ISdigit not _ISalpha). S2 should verify the exact allowed byte set and whether it enables meaningful shellcode construction.\"},{\"function\":\"main\",\"input\":\"register state printed before execution\",\"operation\":\"register values leaked via printf before call rax\",\"risk\":\"LOW\",\"reason\":\"Register state (rax,rbx,rcx,rdx,rbp,rsp,rsi,rdi,r8-r13) is printed to stdout before shellcode execution, providing runtime addresses (stack, libc data pointers) to the shellcode. This is an information leak by design.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is statically linked ELF64 x86-64, not stripped, No PIE (base 0x400000)\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary enabled, No PIE, CET (IBT+SHSTK) enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"No dynamic section, no NEEDED libraries, no RPATH/RUNPATH - fully static link\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"main (0x4018dd) calls mmap(0x13370000, 0x64, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) creating a 100-byte RWX region at fixed hint 0x13370000\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main calls memset(mmap_buf, 0, 100) then read(0, mmap_buf, 99) to read shellcode from stdin\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"If last byte of read input is 0x0a (newline), it is replaced with 0x00 (NUL)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"is_all_upper (0x401819) filters shellcode bytes: each byte must satisfy isupper (ctype 0x100) OR isdigit (ctype 0x800) OR equal 0x20 (space). Allowed bytes: {0x20, 0x30-0x39, 0x41-0x5a}\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"If is_all_upper returns 0, _abort prints 'invalid shellcode!' and exits(1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"After filter passes, main prints all register values (rax-r13) then restores them and executes call rax (0x401b4b) jumping to shellcode at 0x13370000\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"init (0x4017aa) sets stdin/stdout/stderr to unbuffered (setvbuf _IONBF) and calls alarm(60)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Runtime confirmed: input 'AAAA' (all uppercase) passes filter and executes (SIGSEGV on invalid instructions). Input 'aaaa' (lowercase) is rejected. Input '1234' (digits) passes filter and executes.\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Register state leaked at runtime includes stack address (rsp/rbp) and libc data segment addresses (rbx points near 0x7fff...), providing ASLR bypass info to shellcode\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"No seccomp/prctl/sandbox calls found in binary - shellcode has full syscall access\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Shellcode max size is 99 bytes (read size = mmap_size - 1 = 0x64 - 1 = 99)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"DERIVED\",\"description\":\"Allowed shellcode byte set is 37 values: {0x20, 0x30-0x39, 0x41-0x5a}. This includes x86 instructions like PUSH imm (0x68 not allowed), but 0x41-0x4f are REX prefixes, 0x50-0x5a are PUSH reg, 0x30-0x39 include XOR/CMP opcodes. S2 should analyze constructable shellcode.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether mmap returns exactly 0x13370000 or a different address at runtime\",\"reason\":\"mmap hint is 0x13370000 but kernel may return different address; runtime probe showed rax=0x13370000 printed, suggesting hint is honored, but ASLR status unknown\"},{\"id\":\"U002\",\"description\":\"Whether CET (IBT/SHSTK) actually restricts shellcode execution at runtime\",\"reason\":\"IBT requires endbr64 at indirect call targets; the mmap region is filled with user data without endbr64 prefix. If IBT is enforced by kernel, call rax to non-endbr64 address would fault. Runtime showed SIGSEGV for 'AAAA' which could be IBT or invalid instruction - needs S2 dynamic verification\"},{\"id\":\"U003\",\"description\":\"ASLR status of the runtime environment\",\"reason\":\"Cannot confirm from static analysis; stack addresses observed at runtime differ between runs (0x7ffe... vs 0x7fff... vs 0x7ffd...) suggesting ASLR is on\"}],\"raw\":{\"elf\":\"ELF64 LSB executable, x86-64, statically linked, BuildID=c22fc68025fc661f111ab4feefce34fc2218c358, for GNU/Linux 3.2.0, not stripped. Entry=0x401650. 10 program headers. GNU_STACK=RW (NX enabled). GNU_RELRO present.\",\"sections\":\"32 sections. .text=0x4011c0 size 0x95518 (AX). .rodata=0x498000 size 0x1cc2c (A). .data=0x4c50e0 size 0x19e0 (WA). .bss=0x4c72a0 size 0x5980 (WA). .got=0x4c4f68 size 0x98 (WA). .got.plt=0x4c5000 size 0xd8 (WA). .data.rel.ro=0x4c17e0 size 0x3788 (WA). __libc_IO_vtables=0x4c6b20 size 0x768 (WA).\",\"symbols\":\"main=0x4018dd, init=0x4017aa, is_all_upper=0x401819, _abort=0x401775, __mmap64=0x450380, __libc_read=0x44f6d0, _IO_printf=0x40ba60, alarm=0x44ecc0, exit=0x40af30, __stack_chk_fail=0x452470. No PLT/GOT entries (static link, direct calls).\",\"disassembly\":\"main: endbr64; push regs; sub rsp,0x88; canary=fs:0x28; size=0x64; call init; mmap(0x13370000,0x64,7,0x22,-1,0); if(-1) abort; memset(buf,0,0x64); printf(prompt); read(0,buf,0x63); if(0) abort; if(buf[n-1]==0x0a) buf[n-1]=0; is_all_upper(buf); if(0) abort; save all regs to stack; printf(reg dump); restore all regs; call rax (0x401b4b); canary check; ret. is_all_upper: for i in 0..strlen(buf): if isupper(buf[i]) continue; if isdigit(buf[i]) continue; if buf[i]==0x20 continue; return 0; return 1. init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(60). _abort: printf('%s',msg); exit(1).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x401650",
+      "dynamic": false,
+      "stripped": false
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": false,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "unknown",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "statically linked glibc (GNU/Linux 3.2.0)",
+        "path": "builtin",
+        "source": "STATIC"
+      },
+      "loader": {
+        "path": "none (statically linked)",
+        "source": "STATIC"
+      },
+      "libraries": []
+    },
+    "interface": {
+      "entry_function": "main (0x4018dd)",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "prompt": "\\nInput your shellcode here (max: 100): ",
+          "function": "main",
+          "via": "_IO_printf"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "shellcode",
+          "source": "stdin",
+          "function": "main",
+          "read_via": "__libc_read(0, mmap_buf, 99)",
+          "max_size": 99,
+          "buffer": "mmap RWX region at 0x13370000"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x4011c0",
+          "size": "0x95518",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x498000",
+          "size": "0x1cc2c",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x4c50e0",
+          "size": "0x19e0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x4c72a0",
+          "size": "0x5980",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x4c4f68",
+          "size": "0x98",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x4c5000",
+          "size": "0xd8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data.rel.ro",
+          "address": "0x4c17e0",
+          "size": "0x3788",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": "__libc_IO_vtables",
+          "address": "0x4c6b20",
+          "size": "0x768",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x4c17d0",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x4c17d8",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdin",
+          "address": "0x4c56f8",
+          "size": 8,
+          "section": ".data",
+          "type": "FILE*"
+        },
+        {
+          "name": "stdout",
+          "address": "0x4c56f0",
+          "size": 8,
+          "section": ".data",
+          "type": "FILE*"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4c56e8",
+          "size": 8,
+          "section": ".data",
+          "type": "FILE*"
+        },
+        {
+          "name": "_IO_2_1_stdin_",
+          "address": "0x4c5520",
+          "section": ".data",
+          "type": "FILE"
+        },
+        {
+          "name": "_IO_2_1_stdout_",
+          "address": "0x4c5340",
+          "section": ".data",
+          "type": "FILE"
+        },
+        {
+          "name": "_IO_2_1_stderr_",
+          "address": "0x4c5160",
+          "section": ".data",
+          "type": "FILE"
+        },
+        {
+          "name": "_IO_file_jumps",
+          "address": "0x4c6fa0",
+          "section": "__libc_IO_vtables",
+          "type": "vtable"
+        }
+      ],
+      "got": [],
+      "plt": []
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x4018dd",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "__mmap64",
+          "memset(0x401110)",
+          "_IO_printf",
+          "__libc_read",
+          "is_all_upper",
+          "_abort"
+        ],
+        "inputs": [
+          {
+            "name": "shellcode",
+            "source": "stdin via __libc_read(0, buf, 99)"
+          }
+        ],
+        "checks": [
+          "mmap return != -1",
+          "read return != 0",
+          "last byte == 0x0a -> replace with 0x00",
+          "is_all_upper(buf) must return non-zero"
+        ],
+        "memory_operations": [
+          {
+            "operation": "mmap",
+            "destination": "0x13370000",
+            "size": 100,
+            "prot": "RWX(7)",
+            "flags": "MAP_PRIVATE|MAP_ANONYMOUS(0x22)",
+            "comment": "fixed hint address 0x13370000"
+          },
+          {
+            "operation": "memset",
+            "destination": "0x13370000",
+            "size": 100,
+            "value": 0
+          },
+          {
+            "operation": "read",
+            "destination": "0x13370000",
+            "size": 99,
+            "source": "stdin fd=0"
+          },
+          {
+            "operation": "write",
+            "destination": "mmap_buf[last]",
+            "size": 1,
+            "value": 0,
+            "condition": "if last byte == 0x0a"
+          },
+          {
+            "operation": "call",
+            "destination": "0x13370000 (mmap_buf)",
+            "type": "indirect call rax",
+            "comment": "shellcode execution after is_all_upper passes"
+          }
+        ],
+        "calls": [
+          "init",
+          "__mmap64",
+          "memset",
+          "_IO_printf",
+          "__libc_read",
+          "is_all_upper",
+          "_abort"
+        ]
+      },
+      {
+        "name": "init",
+        "address": "0x4017aa",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "_IO_setvbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "_IO_setvbuf",
+          "alarm"
+        ]
+      },
+      {
+        "name": "is_all_upper",
+        "address": "0x401819",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "__ctype_b_loc",
+          "strlen"
+        ],
+        "inputs": [
+          {
+            "name": "buf",
+            "source": "mmap shellcode buffer"
+          }
+        ],
+        "checks": [
+          "per-byte: isupper(c) via ctype 0x100",
+          "per-byte: isdigit(c) via ctype 0x800",
+          "per-byte: c == 0x20 (space)",
+          "if none match -> return 0 (reject)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "read",
+            "destination": "buf[i]",
+            "size": 1,
+            "comment": "iterate strlen(buf) bytes"
+          }
+        ],
+        "calls": [
+          "__ctype_b_loc",
+          "strlen"
+        ]
+      },
+      {
+        "name": "_abort",
+        "address": "0x401775",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "_IO_printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "rodata string"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "_IO_printf",
+          "exit"
+        ]
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "shellcode via stdin",
+        "operation": "mmap RWX + read + call rax (shellcode execution)",
+        "risk": "HIGH",
+        "reason": "User-controlled data is read into an RWX mmap region at fixed address 0x13370000 and then executed via call rax. The is_all_upper filter restricts bytes to {0x20, 0x30-0x39, 0x41-0x5a} (space, digits, uppercase letters) but this is a constrained shellcode challenge, not a blocked one. S2 should analyze which syscalls/instructions are achievable with the allowed byte set."
+      },
+      {
+        "function": "is_all_upper",
+        "input": "shellcode buffer",
+        "operation": "byte filter using ctype_b_loc (isupper 0x100 OR isdigit 0x800 OR space 0x20)",
+        "risk": "MEDIUM",
+        "reason": "The filter name suggests uppercase-only but actually allows digits (0x800=_ISdigit not _ISalpha). S2 should verify the exact allowed byte set and whether it enables meaningful shellcode construction."
+      },
+      {
+        "function": "main",
+        "input": "register state printed before execution",
+        "operation": "register values leaked via printf before call rax",
+        "risk": "LOW",
+        "reason": "Register state (rax,rbx,rcx,rdx,rbp,rsp,rsi,rdi,r8-r13) is printed to stdout before shellcode execution, providing runtime addresses (stack, libc data pointers) to the shellcode. This is an information leak by design."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is statically linked ELF64 x86-64, not stripped, No PIE (base 0x400000)",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, Canary enabled, No PIE, CET (IBT+SHSTK) enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "No dynamic section, no NEEDED libraries, no RPATH/RUNPATH - fully static link",
+        "source": "ELF"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "main (0x4018dd) calls mmap(0x13370000, 0x64, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) creating a 100-byte RWX region at fixed hint 0x13370000",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "main calls memset(mmap_buf, 0, 100) then read(0, mmap_buf, 99) to read shellcode from stdin",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "If last byte of read input is 0x0a (newline), it is replaced with 0x00 (NUL)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "is_all_upper (0x401819) filters shellcode bytes: each byte must satisfy isupper (ctype 0x100) OR isdigit (ctype 0x800) OR equal 0x20 (space). Allowed bytes: {0x20, 0x30-0x39, 0x41-0x5a}",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "If is_all_upper returns 0, _abort prints 'invalid shellcode!' and exits(1)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "After filter passes, main prints all register values (rax-r13) then restores them and executes call rax (0x401b4b) jumping to shellcode at 0x13370000",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "init (0x4017aa) sets stdin/stdout/stderr to unbuffered (setvbuf _IONBF) and calls alarm(60)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "Runtime confirmed: input 'AAAA' (all uppercase) passes filter and executes (SIGSEGV on invalid instructions). Input 'aaaa' (lowercase) is rejected. Input '1234' (digits) passes filter and executes.",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "Register state leaked at runtime includes stack address (rsp/rbp) and libc data segment addresses (rbx points near 0x7fff...), providing ASLR bypass info to shellcode",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "No seccomp/prctl/sandbox calls found in binary - shellcode has full syscall access",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "Shellcode max size is 99 bytes (read size = mmap_size - 1 = 0x64 - 1 = 99)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "DERIVED",
+        "description": "Allowed shellcode byte set is 37 values: {0x20, 0x30-0x39, 0x41-0x5a}. This includes x86 instructions like PUSH imm (0x68 not allowed), but 0x41-0x4f are REX prefixes, 0x50-0x5a are PUSH reg, 0x30-0x39 include XOR/CMP opcodes. S2 should analyze constructable shellcode.",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether mmap returns exactly 0x13370000 or a different address at runtime",
+        "reason": "mmap hint is 0x13370000 but kernel may return different address; runtime probe showed rax=0x13370000 printed, suggesting hint is honored, but ASLR status unknown"
+      },
+      {
+        "id": "U002",
+        "description": "Whether CET (IBT/SHSTK) actually restricts shellcode execution at runtime",
+        "reason": "IBT requires endbr64 at indirect call targets; the mmap region is filled with user data without endbr64 prefix. If IBT is enforced by kernel, call rax to non-endbr64 address would fault. Runtime showed SIGSEGV for 'AAAA' which could be IBT or invalid instruction - needs S2 dynamic verification"
+      },
+      {
+        "id": "U003",
+        "description": "ASLR status of the runtime environment",
+        "reason": "Cannot confirm from static analysis; stack addresses observed at runtime differ between runs (0x7ffe... vs 0x7fff... vs 0x7ffd...) suggesting ASLR is on"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB executable, x86-64, statically linked, BuildID=c22fc68025fc661f111ab4feefce34fc2218c358, for GNU/Linux 3.2.0, not stripped. Entry=0x401650. 10 program headers. GNU_STACK=RW (NX enabled). GNU_RELRO present.",
+      "sections": "32 sections. .text=0x4011c0 size 0x95518 (AX). .rodata=0x498000 size 0x1cc2c (A). .data=0x4c50e0 size 0x19e0 (WA). .bss=0x4c72a0 size 0x5980 (WA). .got=0x4c4f68 size 0x98 (WA). .got.plt=0x4c5000 size 0xd8 (WA). .data.rel.ro=0x4c17e0 size 0x3788 (WA). __libc_IO_vtables=0x4c6b20 size 0x768 (WA).",
+      "symbols": "main=0x4018dd, init=0x4017aa, is_all_upper=0x401819, _abort=0x401775, __mmap64=0x450380, __libc_read=0x44f6d0, _IO_printf=0x40ba60, alarm=0x44ecc0, exit=0x40af30, __stack_chk_fail=0x452470. No PLT/GOT entries (static link, direct calls).",
+      "disassembly": "main: endbr64; push regs; sub rsp,0x88; canary=fs:0x28; size=0x64; call init; mmap(0x13370000,0x64,7,0x22,-1,0); if(-1) abort; memset(buf,0,0x64); printf(prompt); read(0,buf,0x63); if(0) abort; if(buf[n-1]==0x0a) buf[n-1]=0; is_all_upper(buf); if(0) abort; save all regs to stack; printf(reg dump); restore all regs; call rax (0x401b4b); canary check; ret. is_all_upper: for i in 0..strlen(buf): if isupper(buf[i]) continue; if isdigit(buf[i]) continue; if buf[i]==0x20 continue; return 0; return 1. init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(60). _abort: printf('%s',msg); exit(1)."
+    }
+  }
+}

@@ -1,0 +1,568 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0004-2020-4._Heap-20260905-040529/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x8d0\",\"dynamic\":true,\"stripped\":true,\"compiler\":\"GCC 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)\",\"buildid\":\"9bd4242e3275b5629e8727d80b25e94a4dcb8776\",\"interpreter\":\"/work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"rpath\":\"/work/ctf/0004-2020-4. Heap\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"false\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2)\",\"path\":\"/work/ctf/0004-2020-4. Heap/libc.so.6\",\"source\":\"STATIC\",\"note\":\"libc strings say GNU C Library (Ubuntu GLIBC 2.24-9ubuntu2.2) stable release version 2.24. ld file named ld-2.27.so but actual libc is 2.24. No tcache (tcache introduced in glibc 2.26). Uses fastbin/unsortedbin.\"},\"loader\":{\"path\":\"/work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"source\":\"STATIC\",\"note\":\"ld-2.27.so cannot load target binary (ELF load command alignment error). System ld 2.39 also fails (dl-call-libc-early-init assertion). Binary cannot run in current environment due to ld/libc version mismatch.\"},\"libraries\":[{\"name\":\"libc.so.6\",\"path\":\"/work/ctf/0004-2020-4. Heap/libc.so.6\",\"version\":\"2.24\",\"size\":1856752,\"stripped\":true,\"needed\":true}]},\"interface\":{\"entry_function\":\"main (0xec0)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"add\",\"function\":\"sub_b7b (0xb7b)\"},{\"option\":\"2\",\"label\":\"view\",\"function\":\"sub_e0d (0xe0d)\"},{\"option\":\"3\",\"label\":\"write\",\"function\":\"sub_c11 (0xc11)\"},{\"option\":\"4\",\"label\":\"remove\",\"function\":\"sub_d4b (0xd4b)\"},{\"option\":\"0\",\"label\":\"exit\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%1d)\",\"function\":\"main\"},{\"name\":\"block_index\",\"source\":\"scanf(%d)\",\"function\":\"sub_c11 (write), sub_d4b (remove), sub_e0d (view)\"},{\"name\":\"write_length\",\"source\":\"scanf(%d)\",\"function\":\"sub_c11 (write)\"},{\"name\":\"content\",\"source\":\"read(0, ptr, len)\",\"function\":\"sub_c11 (write) via sub_a56\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x8d0\",\"size\":\"0x7d2\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x10b0\",\"size\":\"0xf1\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".init_array\",\"address\":\"0x201d68\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x201d70\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x201f68\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":false,\"note\":\"Full RELRO, marked WA in section but GNU_RELRO segment makes read-only at runtime\"},{\"name\":\".data\",\"address\":\"0x202000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x202020\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".plt\",\"address\":\"0x800\",\"size\":\"0xc0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x202020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x202030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"ptrs (heap pointer array)\",\"address\":\"0x202040\",\"size\":\"0x78 (15*8)\",\"section\":\".bss\",\"type\":\"pointer_array\",\"count\":15,\"element_size\":8,\"element_type\":\"heap_pointer\",\"note\":\"Indices 0-14 used. Checked with cmp 0xe (<=14). Stores calloc return pointers.\"}],\"got\":[{\"offset\":\"0x201f80\",\"symbol\":\"free\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f88\",\"symbol\":\"__errno_location\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f90\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201f98\",\"symbol\":\"write\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fa0\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fa8\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fb0\",\"symbol\":\"calloc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fb8\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fc0\",\"symbol\":\"atoi\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fc8\",\"symbol\":\"__isoc99_scanf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x201fd0\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"}],\"plt\":[{\"address\":\"0x810\",\"symbol\":\"free\"},{\"address\":\"0x820\",\"symbol\":\"__errno_location\"},{\"address\":\"0x830\",\"symbol\":\"puts\"},{\"address\":\"0x840\",\"symbol\":\"write\"},{\"address\":\"0x850\",\"symbol\":\"__stack_chk_fail\"},{\"address\":\"0x860\",\"symbol\":\"read\"},{\"address\":\"0x870\",\"symbol\":\"calloc\"},{\"address\":\"0x880\",\"symbol\":\"setvbuf\"},{\"address\":\"0x890\",\"symbol\":\"atoi\"},{\"address\":\"0x8a0\",\"symbol\":\"__isoc99_scanf\"},{\"address\":\"0x8b0\",\"symbol\":\"exit\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0xec0\",\"callers\":[\"_start (0x8d0) via __libc_start_main\"],\"callees\":[\"setvbuf\",\"puts\",\"write\",\"__isoc99_scanf\",\"exit\",\"sub_b7b (add)\",\"sub_e0d (view)\",\"sub_c11 (write)\",\"sub_d4b (remove)\"],\"inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%1d, &var)\"}],\"checks\":[\"scanf return != -1\",\"menu_choice != 0 (exit)\",\"menu_choice 1->add, 2->view, 3->write, 4->remove, else Invalid\"],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"puts\",\"write\",\"__isoc99_scanf\",\"exit\",\"sub_b7b\",\"sub_e0d\",\"sub_c11\",\"sub_d4b\"]},{\"name\":\"sub_b7b (add)\",\"address\":\"0xb7b\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"calloc\"],\"inputs\":[],\"checks\":[\"loop i=0..14, find first NULL slot in ptrs[]\",\"if no free slot (idx==0x3e7), print 'can not add now'\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"ptrs[idx] (0x202040 + idx*8)\",\"size\":8,\"destination_type\":\"global_array_element\"}],\"calls\":[\"puts\",\"calloc\"]},{\"name\":\"sub_c11 (write)\",\"address\":\"0xc11\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"__isoc99_scanf\",\"sub_a56 (read_wrapper)\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"scanf(%d)\"},{\"name\":\"write_length\",\"source\":\"scanf(%d)\"},{\"name\":\"content\",\"source\":\"read via sub_a56\"}],\"checks\":[\"block_index >= 0 (js check)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"ptrs[block_index] - 8 (chunk size field)\",\"size\":1,\"destination_type\":\"heap_chunk_header\",\"note\":\"Reads low byte of malloc chunk size field\"},{\"operation\":\"WRITE\",\"destination\":\"*ptrs[block_index] (heap chunk user data)\",\"size\":\"write_length (capped at 0x48)\",\"destination_type\":\"heap_pointer_dereference\",\"note\":\"read(0, ptrs[idx], length). Length logic: chunk_size_byte = *(ptrs[idx]-8); real_limit = (signed)chunk_size_byte - 8; if (write_length > real_limit) write_length = 0x48;\"}],\"calls\":[\"puts\",\"__isoc99_scanf\",\"sub_a56\"]},{\"name\":\"sub_d4b (remove)\",\"address\":\"0xd4b\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"sub_aca (readint)\",\"exit\",\"free\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"sub_aca (read 0x40 bytes, atoi)\"}],\"checks\":[\"block_index >= 0 (js)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL (else exit)\"],\"memory_operations\":[{\"operation\":\"FREE\",\"destination\":\"*ptrs[block_index]\",\"size\":0,\"destination_type\":\"heap_pointer\"},{\"operation\":\"WRITE\",\"destination\":\"ptrs[block_index]\",\"size\":8,\"destination_type\":\"global_array_element\",\"note\":\"Set to NULL after free (ptrs[idx]=0)\"}],\"calls\":[\"puts\",\"sub_aca\",\"exit\",\"free\"]},{\"name\":\"sub_e0d (view)\",\"address\":\"0xe0d\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"sub_aca (readint)\"],\"inputs\":[{\"name\":\"block_index\",\"source\":\"sub_aca (read 0x40 bytes, atoi)\"}],\"checks\":[\"block_index >= 0 (js)\",\"block_index <= 14 (cmp 0xe)\",\"ptrs[block_index] != NULL\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"ptrs[block_index] - 8 (chunk size field)\",\"size\":1,\"destination_type\":\"heap_chunk_header\"},{\"operation\":\"READ\",\"destination\":\"*ptrs[block_index]\",\"size\":\"until NUL\",\"destination_type\":\"heap_pointer_dereference\",\"note\":\"puts(ptrs[idx]) outputs heap content as string\"}],\"calls\":[\"puts\",\"sub_aca\"]},{\"name\":\"sub_a56 (read_wrapper)\",\"address\":\"0xa56\",\"callers\":[\"sub_c11\"],\"callees\":[\"read\"],\"inputs\":[{\"name\":\"buf\",\"source\":\"rdi\"},{\"name\":\"len\",\"source\":\"esi\"}],\"checks\":[\"len > 0\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"buf\",\"size\":\"len\",\"destination_type\":\"parameter_pointer\"}],\"calls\":[\"read\"]},{\"name\":\"sub_aca (readint)\",\"address\":\"0xaca\",\"callers\":[\"sub_d4b\",\"sub_e0d\"],\"callees\":[\"sub_a56\",\"atoi\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"input\",\"source\":\"read(0, stack_buf, 0x40)\"}],\"checks\":[\"stack canary\"],\"memory_operations\":[],\"calls\":[\"sub_a56\",\"atoi\",\"__stack_chk_fail\"]},{\"name\":\"sub_9da (writeall)\",\"address\":\"0x9da\",\"callers\":[],\"callees\":[\"__errno_location\",\"write\"],\"inputs\":[{\"name\":\"fd\",\"source\":\"edi\"},{\"name\":\"buf\",\"source\":\"rsi\"}],\"checks\":[\"EAGAIN/EINTR retry\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"fd=1 (stdout)\",\"size\":\"len\",\"destination_type\":\"file_descriptor\"}],\"calls\":[\"__errno_location\",\"write\"]}],\"attack_surfaces\":[{\"function\":\"sub_c11 (write)\",\"input\":\"write_length (scanf %d, user-controlled)\",\"operation\":\"heap overflow via read(0, ptrs[idx], length)\",\"risk\":\"HIGH\",\"reason\":\"calloc allocates 0x40=64 bytes user area (chunk size 0x51). write function reads chunk size byte from ptr-8 (=0x51), computes real_limit=0x51-8=0x49. If user length > 0x49, length is set to 0x48=72. 72 > 64 bytes allocated -> heap overflow of 8 bytes into next chunk. This is the primary attack surface for S2.\"},{\"function\":\"sub_c11 (write)\",\"input\":\"block_index (scanf %d)\",\"operation\":\"array indexing ptrs[block_index]\",\"risk\":\"MEDIUM\",\"reason\":\"Index checked 0-14, properly bounded. No OOB via index.\"},{\"function\":\"sub_e0d (view)\",\"input\":\"block_index\",\"operation\":\"puts(ptrs[idx]) reads heap content as string\",\"risk\":\"MEDIUM\",\"reason\":\"Can leak heap content including potential heap metadata if chunk is overlapped/corrupted. Info leak candidate for S2.\"},{\"function\":\"sub_d4b (remove)\",\"input\":\"block_index\",\"operation\":\"free(ptrs[idx]) then ptrs[idx]=NULL\",\"risk\":\"LOW\",\"reason\":\"Pointer properly NULLed after free. No obvious UAF in remove itself.\"},{\"function\":\"dependency_resolution\",\"input\":\"RPATH=/work/ctf/0004-2020-4. Heap\",\"operation\":\"libc.so.6 loaded from RPATH directory\",\"risk\":\"LOW\",\"reason\":\"RPATH set to /work/ctf/0004-2020-4. Heap. libc.so.6 (glibc 2.24) and ld-2.27.so reside there. Only one NEEDED library (libc.so.6). No LD_LIBRARY_PATH manipulation needed since RPATH takes priority. No stub libraries.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, stripped. Entry 0x8d0. Interpreter /work/ctf/0004-2020-4. Heap/ld-2.27.so\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX enabled, Canary found, PIE enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"RPATH = /work/ctf/0004-2020-4. Heap. Only NEEDED library is libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"libc.so.6 at /work/ctf/0004-2020-4. Heap/libc.so.6 is glibc 2.24 (Ubuntu GLIBC 2.24-9ubuntu2.2). No tcache (tcache starts at glibc 2.26)\",\"source\":\"STATIC\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Global pointer array ptrs at 0x202040 in .bss, 15 elements (indices 0-14), 8 bytes each, stores heap chunk pointers from calloc\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"add function (0xb7b) calls calloc(0x40, 1) with fixed size 64 bytes, stores result in first free ptrs[] slot\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"write function (0xc11) reads chunk size byte from *(ptrs[idx]-8), computes real_limit = chunk_size_byte - 8, and if user-supplied length > real_limit, sets length = 0x48 (72)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"DERIVED\",\"description\":\"calloc(0x40,1) allocates 64-byte user area. malloc chunk size = 0x51 (0x40 + 0x10 header + 0x1 PREV_INUSE). Low byte at ptr-8 = 0x51. real_limit = 0x51 - 8 = 0x49. If user length > 0x49, length set to 0x48 = 72 bytes. 72 > 64 = 8-byte heap overflow\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"remove function (0xd4b) calls free(ptrs[idx]) then sets ptrs[idx] = NULL. No UAF in remove itself\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"view function (0xe0d) calls puts(ptrs[idx]) to output heap content as string. Also reads chunk size byte from ptr-8 but does not use it for output length\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Binary cannot run in current environment: ld-2.27.so fails with 'ELF load command address/offset not properly aligned', system ld 2.39 fails with dl-call-libc-early-init assertion. ld/libc version mismatch\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"libc key offsets: __free_hook=0x3c3788, __malloc_hook=0x3c1af0, system=0x456a0, puts=0x70920, free=0x86ce0, calloc=0x87550, read=0xf8880, write=0xf88e0, environ=0x3c3f38, /bin/sh string at 0x18ac40\",\"source\":\"STATIC\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"write function uses sub_a56 which calls read(0, buf, len) directly - no null termination, reads exactly len bytes\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Menu prompt uses write(1, ...) for menu items and scanf(%1d) for choice. No $ prompt character - menu items are written via write() syscall\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Cannot verify runtime behavior (menu interaction, heap layout) due to ld/libc incompatibility preventing execution\",\"reason\":\"ld-2.27.so cannot load binary (alignment error), system ld 2.39 incompatible with libc 2.24\"},{\"id\":\"U002\",\"description\":\"Exact heap overflow exploitation impact depends on glibc 2.24 fastbin/unsortedbin behavior which needs S2 dynamic analysis\",\"reason\":\"Static analysis confirms 8-byte overflow, but heap exploitation primitives require runtime verification\"},{\"id\":\"U003\",\"description\":\"CET (IBT/SHSTK) status unknown - cannot confirm from checksec output\",\"reason\":\"checksec did not report CET flags, binary compiled with GCC 7.5 which predates CET support\"},{\"id\":\"U004\",\"description\":\"ASLR status at runtime unknown\",\"reason\":\"Cannot run binary to verify ASLR. PIE is enabled which is prerequisite for ASLR.\"}],\"raw\":{\"elf\":\"Arch: amd64-64-little, RELRO: Full, Canary: yes, NX: yes, PIE: yes, RPATH: /work/ctf/0004-2020-4. Heap. Interpreter: /work/ctf/0004-2020-4. Heap/ld-2.27.so. Stripped. GCC 7.5.0. Entry 0x8d0.\",\"sections\":\".text 0x8d0 size 0x7d2 AX | .rodata 0x10b0 size 0xf1 A | .got 0x201f68 size 0x98 WA(relro) | .data 0x202000 size 0x10 WA | .bss 0x202020 size 0x98 WA | .plt 0x800 size 0xc0 AX\",\"symbols\":\"Stripped. dynsym: free, __errno_location, puts, write, __stack_chk_fail, read, calloc, setvbuf, atoi, __isoc99_scanf, exit, __libc_start_main, __cxa_finalize. OBJECT: stdout@0x202020, stdin@0x202030. Global ptrs array at 0x202040 (15 ptrs).\",\"disassembly\":\"main(0xec0): setvbuf stdout/stdin, menu loop scanf(%1d), dispatch 1->add(0xb7b) 2->view(0xe0d) 3->write(0xc11) 4->remove(0xd4b) 0->exit. add(0xb7b): find first NULL in ptrs[0..14], calloc(0x40,1), store. write(0xc11): scanf idx(0-14), check ptrs[idx]!=NULL, scanf length, read chunk_size_byte=*(ptrs[idx]-8), real_limit=chunk_size_byte-8, if len>real_limit len=0x48, read(0,ptrs[idx],len). remove(0xd4b): readint idx(0-14), check ptrs[idx]!=NULL, free(ptrs[idx]), ptrs[idx]=NULL. view(0xe0d): readint idx(0-14), check ptrs[idx]!=NULL, puts(ptrs[idx]).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":2,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"HEAP_BUFFER_OVERFLOW_SIZE_DERIVATION_FROM_CHUNK_HEADER\",\"root_cause\":{\"type\":\"Size Calculation Error\",\"description\":\"In the write function (sub_c11 at 0xc11), the maximum write length is derived by reading the low byte of the malloc chunk size field at *(ptrs[idx]-8), then computing real_limit = chunk_size_byte - 8. For chunks allocated via calloc(0x40, 1), the chunk size is 0x51 (0x40 user data + 0x10 header + 0x1 PREV_INUSE flag). The low byte 0x51 yields real_limit = 0x51 - 8 = 0x49 = 73. When the user-supplied write_length exceeds 73, it is capped to 0x48 = 72 bytes. However, the actual user data area is only 64 bytes (0x40). The cap value 0x48 (72) exceeds the allocated user area by 8 bytes, causing an 8-byte heap buffer overflow into the next adjacent heap chunk's metadata (prev_size and size fields). The root cause is that the size limit is derived from the chunk header size field (which includes header + flags) rather than from the actual user-data allocation size, and the fallback cap 0x48 is hardcoded to a value larger than the 0x40 allocation.\"},\"affected_functions\":[\"sub_c11 (write, 0xc11)\",\"sub_a56 (read_wrapper, 0xa56)\"],\"affected_objects\":[\"ptrs[idx] heap chunk user data area (64 bytes / 0x40)\",\"adjacent heap chunk prev_size field (8 bytes overflow target)\",\"adjacent heap chunk size field (8 bytes overflow target)\"],\"attack_surface\":{\"input\":\"write_length (scanf %d, user-controlled integer) and content (read via sub_a56)\",\"entry_function\":\"sub_c11 (write, 0xc11)\",\"data_flow\":[\"User selects menu option 3 (write) in main loop\",\"sub_c11 prompts for block_index via scanf(%d) at 0xc38, stored in [rbp-0xc]\",\"block_index validated: >= 0 (js at 0xc42) and <= 14 (cmp 0xe, jle at 0xc4a)\",\"ptrs[block_index] loaded and checked != NULL (test rax,rax at 0xc75)\",\"User prompted for write_length via scanf(%d) at 0xcaa, stored in [rbp-0x8]\",\"ptrs[block_index] reloaded at 0xcd7, subtracted by 8 to point to chunk size field\",\"Low byte of chunk size read via movzx eax, BYTE PTR [rax] at 0xcdf\",\"Byte sign-extended via movsx eax, al at 0xce2\",\"real_limit = chunk_size_byte - 8 computed at 0xce8, stored in [rbp-0x4]\",\"Comparison: cmp [rbp-0x4], [rbp-0x8] (real_limit vs write_length) at 0xcef; jge 0xd09 if real_limit >= write_length\",\"If write_length > real_limit: [rbp-0x8] set to 0x48 (72) at 0xd02\",\"sub_a56 called with read(0, ptrs[block_index], write_length) at 0xd43\",\"read() writes write_length bytes into 64-byte user area, overflowing by up to 8 bytes\"]},\"security_check\":{\"expected\":\"The write length should be bounded by the actual user-data allocation size (0x40 = 64 bytes) to prevent writing beyond the allocated heap chunk boundary.\",\"actual\":\"The write length is bounded by a value derived from the malloc chunk size field's low byte minus 8 (0x51 - 8 = 0x49 = 73), with a fallback cap of 0x48 = 72. Both 73 and 72 exceed the 64-byte user data area.\",\"missing_or_incorrect\":\"The size limit derivation confuses the chunk size field (which includes the 16-byte header and PREV_INUSE flag) with the user-data size. The correct limit should be the calloc allocation size (0x40 = 64). The fallback cap 0x48 is also incorrect — it should be <= 0x40.\"},\"vulnerable_operation\":{\"operation\":\"WRITE\",\"address\":\"0xd43 (call to sub_a56 which calls read at 0xa9b)\",\"expression\":\"read(0, ptrs[block_index], write_length) where write_length can be up to 0x48 (72) but ptrs[block_index] points to a 0x40 (64) byte user area\",\"target\":\"Heap chunk user data area of calloc(0x40, 1) allocation, overflowing 8 bytes into the next adjacent heap chunk's prev_size and size metadata fields\",\"size\":\"Up to 72 bytes written into 64-byte buffer = 8-byte overflow\"},\"impact\":[{\"type\":\"HEAP_BUFFER_OVERFLOW\",\"status\":\"CANDIDATE\",\"reason\":\"Static analysis confirms that the write path can write up to 72 bytes into a 64-byte heap allocation, producing an 8-byte overflow into the next chunk's metadata. The overflow target is the adjacent chunk's prev_size (8 bytes) and size field, which are critical heap metadata. Overwriting the size field of an adjacent chunk can corrupt the heap allocator's internal state.\"},{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The 8-byte overflow writes attacker-controlled data (from stdin read) into the next heap chunk's prev_size and size fields. Corrupting these metadata fields can cause the glibc 2.24 heap allocator (fastbin/unsortedbin, no tcache) to mishandle subsequent free/malloc operations on the affected chunk, leading to heap metadata corruption.\"},{\"type\":\"DATA_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The overflow directly overwrites the adjacent chunk's prev_size and size fields with attacker-controlled bytes from the read() input, corrupting heap metadata that the allocator relies on for chunk boundary tracking.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"sub_b7b (add, 0xb7b)\",\"address\":\"0xbe5-0xbea\",\"description\":\"add function calls calloc(0x40, 1) — allocates 64 bytes of user data. Confirmed: mov esi,0x1; mov edi,0x40; call calloc@plt. All heap chunks in ptrs[] are 64-byte user allocations.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xcdb-0xce8\",\"description\":\"Write function reads chunk size byte: sub rax,0x8 (point to chunk header); movzx eax, BYTE PTR [rax] (read only low byte of size field); movsx eax, al (sign-extend byte); sub [rbp-0x4], 0x8 (real_limit = chunk_size_byte - 8). For calloc(0x40,1): chunk size=0x51, low byte=0x51, real_limit=0x51-8=0x49=73.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xcef-0xd02\",\"description\":\"Length capping logic: cmp [rbp-0x4], [rbp-0x8] (cmp real_limit, write_length); jge 0xd09 (skip if real_limit >= write_length); else mov DWORD PTR [rbp-0x8], 0x48 (set write_length = 72). The cap 0x48=72 exceeds the 64-byte user area by 8 bytes.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xd23-0xd43\",\"description\":\"Final write: mov edx, [rbp-0x8] (write_length as 3rd arg); loads ptrs[block_index] into rdi; call sub_a56 which calls read(0, ptrs[idx], write_length). read() writes exactly write_length bytes with no null termination.\"},{\"id\":\"E005\",\"type\":\"DERIVED\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xd02\",\"description\":\"Derived overflow calculation: calloc(0x40,1) → user area = 64 bytes. Chunk size = 0x51 (0x40 + 0x10 header + 0x1 PREV_INUSE). Low byte = 0x51. real_limit = 0x51 - 8 = 0x49 = 73. If user supplies write_length > 73, capped to 0x48 = 72. 72 - 64 = 8 bytes overflow into next chunk's prev_size (8 bytes) and potentially size field. The overflow is into adjacent heap chunk metadata.\"},{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"sub_a56 (read_wrapper, 0xa56)\",\"address\":\"0xa89-0xa9b\",\"description\":\"sub_a56 calls read(0, buf, len) directly with movsxd rdx, eax (sign-extend len to 64-bit). No null termination, no length re-validation. Reads exactly len bytes into the buffer.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Verify the exact heap layout at runtime to confirm that the 8-byte overflow lands on the next chunk's prev_size and size fields (requires running the binary with a compatible ld/libc)\",\"Confirm that glibc 2.24 fastbin/unsortedbin behavior allows the corrupted size field to cause exploitable heap corruption on subsequent free/malloc operations\",\"Verify whether the overflow can be used to corrupt the size field of an adjacent chunk to enable overlapping allocations or chunk consolidation attacks\"]},{\"bug_id\":\"BUG-002\",\"title\":\"HEAP_INFO_LEAK_VIA_NON_NULL_TERMINATED_PUTS\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"In the view function (sub_e0d at 0xe0d), heap content is output via puts(ptrs[block_index]). The puts() function outputs bytes until it encounters a NUL terminator. However, the write path (sub_c11 → sub_a56 → read()) does not null-terminate the data written to the heap buffer. Since calloc zero-initializes the buffer, the first write of N bytes leaves bytes N through 63 as NUL, so puts stops at byte N. But if the heap chunk's content is fully filled (e.g., 64 bytes of non-NUL data written via a 0x40-length write, or if the overflow writes non-NUL bytes into adjacent metadata), puts will read past the intended content boundary into adjacent heap metadata or adjacent chunk data until a NUL byte is found. This can leak heap metadata (chunk size, fd/bk pointers from freed chunks) and adjacent heap content.\"},\"affected_functions\":[\"sub_e0d (view, 0xe0d)\"],\"affected_objects\":[\"ptrs[idx] heap chunk content\",\"adjacent heap chunk metadata (fd/bk pointers, size fields)\"],\"attack_surface\":{\"input\":\"block_index (readint via sub_aca, user-controlled)\",\"entry_function\":\"sub_e0d (view, 0xe0d)\",\"data_flow\":[\"User selects menu option 2 (view) in main loop\",\"sub_e0d prompts for block_index via sub_aca (read 0x40 bytes, atoi) at 0xe21\",\"block_index validated: >= 0 (js at 0xe37) and <= 14 (cmp 0xe, jle at 0xe3d)\",\"ptrs[block_index] loaded and checked != NULL (test rax,rax at 0xe65)\",\"Chunk size byte read from ptr-8 at 0xe90-0xe9a (but NOT used for output length limiting)\",\"puts(ptrs[block_index]) called at 0xeb8 — outputs heap content as a C string until NUL\"]},\"security_check\":{\"expected\":\"The view function should limit output to the actual content length or the allocation size, preventing reads beyond the chunk boundary.\",\"actual\":\"The view function reads the chunk size byte from ptr-8 (at 0xe90-0xe9a) but does not use it to limit the puts() output. puts() reads until NUL with no length bound.\",\"missing_or_incorrect\":\"No length-bounded output function (e.g., write with explicit length) is used. The chunk size byte is read but discarded — it does not constrain the output.\"},\"vulnerable_operation\":{\"operation\":\"READ\",\"address\":\"0xeb8 (call to puts@plt)\",\"expression\":\"puts(ptrs[block_index]) — outputs heap content as C string with no length bound\",\"target\":\"Heap chunk user data and potentially adjacent heap metadata/data beyond the chunk boundary\",\"size\":\"Unbounded (until NUL byte encountered)\"},\"impact\":[{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"If a heap chunk is filled with non-NUL data (up to 64 bytes via write, or if the 8-byte overflow from BUG-001 writes non-NUL bytes into adjacent metadata), puts() will read past the chunk boundary into adjacent heap metadata. In glibc 2.24, freed chunks in fastbins/unsortedbins contain fd/bk pointers (heap addresses and potentially libc addresses). If a freed chunk is adjacent to a viewed chunk and contains non-NUL pointer data, puts() may leak these addresses. Additionally, if the overflow from BUG-001 corrupts the adjacent chunk's size field with non-NUL bytes, puts() on the overflowed chunk will read into the adjacent chunk's metadata.\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"sub_e0d (view, 0xe0d)\",\"address\":\"0xe90-0xeb8\",\"description\":\"View function reads chunk size byte at 0xe90 (sub rax,0x8; movzx eax, BYTE PTR [rax]; movsx eax, al) and stores in [rbp-0x4] at 0xe9a, but this value is never used to limit output. At 0xeb8, puts(ptrs[block_index]) is called with no length constraint.\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"sub_a56 (read_wrapper, 0xa56)\",\"address\":\"0xa9b\",\"description\":\"The write path uses read(0, buf, len) which does not null-terminate the buffer. Data written to heap chunks has no guaranteed NUL terminator at the end of written content.\"},{\"id\":\"E009\",\"type\":\"DERIVED\",\"function\":\"sub_e0d (view, 0xe0d)\",\"address\":\"0xeb8\",\"description\":\"calloc zero-initializes buffers, so initially puts() stops at the first unwritten byte. But if a chunk is fully filled with 64 non-NUL bytes (write_length=0x40), or if BUG-001's overflow writes non-NUL bytes into the adjacent chunk's prev_size/size fields, puts() will read past the 64-byte boundary into adjacent heap metadata, potentially leaking heap/libc addresses from freed chunk fd/bk pointers.\"}],\"confidence\":\"MEDIUM\",\"verification_required\":[\"Verify at runtime that filling a chunk with 64 non-NUL bytes causes puts() to read into adjacent metadata\",\"Confirm whether adjacent freed chunks contain non-NUL pointer data that would be leaked by puts()\",\"Verify whether the 8-byte overflow from BUG-001 can be arranged to place non-NUL bytes that bridge two chunks for a puts() read-past-boundary\"]}],\"non_vulnerabilities\":[{\"function\":\"sub_d4b (remove, 0xd4b)\",\"description\":\"The remove function calls free(ptrs[block_index]) and then immediately sets ptrs[block_index] = NULL (at 0xe02: mov QWORD PTR [rdx+rax*1], 0x0).\",\"reason\":\"The pointer is properly NULLed after free, preventing use-after-free via the ptrs[] array. Subsequent view/write/remove operations check ptrs[idx] != NULL before use, so a freed-and-NULLed slot cannot be accessed. No UAF in the remove function itself.\"},{\"function\":\"sub_c11 (write, 0xc11) — block_index bounds check\",\"description\":\"block_index is validated with test eax,eax; js (checks >= 0, signed) and cmp eax,0xe; jle (checks <= 14, signed). The ptrs[] array has 15 elements (indices 0-14).\",\"reason\":\"The index bounds check is correct: 0 <= block_index <= 14 matches the array bounds. The signed comparison is appropriate here because scanf(%d) produces a signed int, and both the lower bound (js = jump if sign/negative) and upper bound (cmp 0xe, jle) correctly reject out-of-range values. No OOB via index.\"},{\"function\":\"sub_d4b (remove, 0xd4b) and sub_e0d (view, 0xe0d) — block_index bounds check\",\"description\":\"Both functions validate block_index with the same pattern: cmp [rbp-0x4],0x0; js (>= 0) and cmp [rbp-0x4],0xe; jle (<= 14).\",\"reason\":\"Index bounds checks are correct and consistent with the ptrs[] array size of 15 elements. No OOB via index in remove or view.\"},{\"function\":\"sub_aca (readint, 0xaca)\",\"description\":\"readint reads 0x40 bytes into a stack buffer of 0x50 bytes (with stack canary protection), then calls atoi().\",\"reason\":\"The stack buffer (0x50 = 80 bytes) is larger than the read length (0x40 = 64 bytes), so no stack buffer overflow. Stack canary is present and checked at 0xb65-0xb74. atoi() return is used as a signed int for index validation.\"},{\"function\":\"Dependency resolution (RPATH)\",\"description\":\"Binary has RPATH=/work/ctf/0004-2020-4. Heap. Only NEEDED library is libc.so.6 (glibc 2.24). No stub libraries.\",\"reason\":\"RPATH is set to an absolute path that takes priority over LD_LIBRARY_PATH. The only NEEDED library (libc.so.6) is loaded from the RPATH directory. No dependency hijacking surface identified — there are no custom/stub .so libraries and no writable directory in the search path that an attacker could exploit.\"}],\"unresolved\":[{\"description\":\"Cannot verify runtime heap layout and glibc 2.24 allocator behavior due to ld/libc version mismatch preventing binary execution (ld-2.27.so fails with alignment error, system ld 2.39 fails with assertion).\",\"reason\":\"The binary's interpreter (ld-2.27.so) cannot load the binary, and the system loader is incompatible with the bundled libc 2.24. Static analysis confirms the 8-byte overflow, but the exact heap chunk adjacency and corruption effects require runtime verification.\",\"required_next_step\":\"S3 should set up a compatible runtime environment (e.g., patchelf to use a matching ld-2.24.so, or use a Docker container with glibc 2.24) to verify the heap overflow impact and info leak at runtime.\"},{\"description\":\"The exact impact of the 8-byte overflow on glibc 2.24 heap internals (fastbin/unsortedbin) cannot be fully determined statically.\",\"reason\":\"Whether the overflowed size field causes exploitable corruption depends on the specific heap state (which chunks are allocated/freed, fastbin vs unsortedbin layout) at the time of overflow and subsequent operations.\",\"required_next_step\":\"S3 should dynamically test different allocation/free sequences to determine which heap corruption scenarios are achievable with the 8-byte overflow.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":3,\"verified\":3,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"HEAP_METADATA_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Size Calculation Error: In write function (sub_c11 at 0xc11), the maximum write length is derived from the malloc chunk size field's low byte (0x51 for calloc(0x40,1)) minus 8 = 0x49 = 73. When user-supplied length exceeds 73, it is capped to 0x48 = 72. But the actual user data area is only 64 bytes (0x40). The cap value 0x48 (72) exceeds the allocated user area by 8 bytes, causing an 8-byte heap buffer overflow into the next adjacent heap chunk's prev_size metadata field.\",\"description\":\"The write function reads the low byte of the malloc chunk size field at *(ptrs[idx]-8), computes real_limit = chunk_size_byte - 8, and if user-supplied write_length > real_limit, sets write_length = 0x48 (72). For calloc(0x40,1): chunk size=0x51, real_limit=0x49=73, cap=0x48=72. 72 > 64 = 8-byte overflow into adjacent chunk's prev_size field.\"},\"chain\":[\"BUG-001\",\"Size derivation from chunk header (0x51-8=0x49, cap=0x48=72 > 0x40=64)\",\"read(0, ptrs[idx], 72) writes 72 bytes into 64-byte user area\",\"8 bytes overflow into adjacent chunk's prev_size field\",\"HEAP_METADATA_CONTROL\"],\"controlled_element\":{\"what\":\"The 8 overflow bytes (bytes 64-71 of the write) are fully attacker-controlled via stdin read() input. These bytes overwrite the adjacent heap chunk's prev_size field.\",\"how\":\"User selects menu option 3 (write), provides block_index (0-14), write_length (>73 to trigger cap to 0x48=72), then sends 72 bytes of content via read(0, buf, 72). Bytes 0-63 fill the user area; bytes 64-71 overflow into the next chunk's prev_size.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least one heap chunk must be allocated via add (menu option 1) so ptrs[idx] is non-NULL. calloc(0x40,1) allocates a 64-byte user area with chunk size 0x51.\",\"necessity\":\"The write function checks ptrs[idx] != NULL before proceeding. Without an allocated chunk, the write path is not reached.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"A second adjacent chunk must exist after the target chunk in the heap. This is naturally satisfied if two chunks are allocated consecutively via add.\",\"necessity\":\"The 8-byte overflow lands on the adjacent chunk's prev_size field. Without an adjacent chunk, the overflow hits the top chunk's prev_size (less useful).\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"User-supplied write_length must exceed 73 (0x49) to trigger the cap to 0x48 (72). Any value > 73 works (e.g., 100).\",\"necessity\":\"If write_length <= 73, the actual write_length is used as-is. Only when it exceeds 73 does the cap to 0x48=72 kick in, producing the 8-byte overflow.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The overflow content (bytes 64-71) must be provided by the attacker via stdin. read(0, buf, 72) reads exactly 72 bytes with no null termination.\",\"necessity\":\"The attacker controls the exact 8 bytes that overwrite prev_size.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"chunk_size_byte = *(uint8_t*)(ptrs[idx] - 8) = 0x51\",\"alias\":\"The low byte of the malloc chunk size field (0x51 = 0x40 user + 0x10 header + 0x1 PREV_INUSE) is used as the size limit basis instead of the actual allocation size (0x40).\",\"implication\":\"real_limit = 0x51 - 8 = 0x49 = 73. Cap = 0x48 = 72. Both exceed the 64-byte user area, producing 8-byte overflow.\"},{\"expression\":\"overflow_target = ptrs[idx] + 64 = adjacent_chunk_header (prev_size field)\",\"alias\":\"The 8 overflow bytes land exactly on the adjacent chunk's prev_size field (8 bytes before its size field).\",\"implication\":\"prev_size is overwritten with attacker-controlled data. The size field (at prev_size+8) is NOT reached by the 8-byte overflow.\"}],\"verification_plan\":{\"method\":\"GDB dynamic verification: set breakpoint at 0xd43 (call to sub_a56/read_wrapper) and 0xd48 (after read returns). Allocate 2 chunks, write 72 bytes to chunk 0 with attacker-controlled overflow value. Examine heap memory before and after the write to confirm prev_size overwrite.\",\"environment\":\"x86-64 Linux, glibc 2.39 (system libc, patched binary via patchelf). Original target uses glibc 2.24 (no tcache). The overflow bug is in the binary itself and is libc-independent.\",\"run_command\":\"python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"expected_evidence\":[\"GDB: rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes write length)\",\"GDB: After write, 0x555555a012e0 = 0xdeadbeefcafebabe (chunk1 prev_size OVERWRITTEN)\",\"GDB: 0x555555a012e8 = 0x0000000000000051 (chunk1 size field, unmodified)\"]},\"mitigations\":[{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"GOT is read-only at runtime. Does not affect heap metadata control primitive directly, but prevents GOT overwrite as a follow-up exploitation path.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"Stack/heap not executable. Does not affect heap metadata control primitive.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"Stack canary present. Does not affect heap overflow primitive (overflow targets heap, not stack).\"},{\"name\":\"PIE\",\"present\":true,\"primitive_impact\":\"Address randomization. Does not prevent the overflow itself but makes heap/libc addresses unpredictable without an info leak.\"},{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"Heap base address randomized. The overflow is relative to the chunk pointer, so ASLR does not prevent the overflow from hitting the adjacent chunk's prev_size.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xcdb-0xce8\",\"description\":\"Write function reads chunk size byte: sub rax,0x8; movzx eax,BYTE PTR [rax]; movsx eax,al; sub [rbp-0x4],0x8. For calloc(0x40,1): chunk size=0x51, real_limit=0x51-8=0x49=73.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xcef-0xd02\",\"description\":\"Length capping: cmp [rbp-0x4],[rbp-0x8]; jge 0xd09; else mov DWORD PTR [rbp-0x8],0x48. Cap 0x48=72 exceeds 64-byte user area by 8 bytes.\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xd43 (call sub_a56) / 0xd48 (after read)\",\"description\":\"GDB evidence (PIE base=0x555555400000, ASLR disabled): At 0x555555400d43: rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes). After read at 0x555555400d48: 0x555555a012e0=0xdeadbeefcafebabe (chunk1 prev_size OVERWRITTEN with attacker value), 0x555555a012e8=0x0000000000000051 (chunk1 size, intact). Confirms 8-byte overflow into prev_size only.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"sub_b7b (add, 0xb7b)\",\"address\":\"0xbe5-0xbea\",\"description\":\"GDB confirmed heap layout: calloc(0x40,1) produces 0x51-size chunks (0x40 user + 0x10 header + 0x1 PREV_INUSE). Two consecutive chunks at 0x555555a01290 (chunk0) and 0x555555a012e0 (chunk1), separated by exactly 0x50 bytes (64 user + 16 header).\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"written_value\":\"0xdeadbeefcafebabe\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"GDB (ASLR disabled, PIE base=0x555555400000): At call sub_a56 (0x555555400d43): rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes, capped from 100). After read returns (0x555555400d48): 0x555555a012e0=0xdeadbeefcafebabe (chunk1 prev_size overwritten with attacker-controlled value), 0x555555a012e8=0x0000000000000051 (chunk1 size field unmodified). Overflow is exactly 8 bytes into prev_size field only; size field not reached.\"},\"confidence\":\"HIGH\",\"notes\":\"The 8-byte overflow overwrites ONLY the adjacent chunk's prev_size field (8 bytes). The size field (at prev_size+8) is NOT corrupted. In glibc 2.24 (target environment, no tcache), prev_size is used during backward consolidation when a non-fastbin chunk is freed and its predecessor is also free. However, calloc(0x40,1) produces 0x51-size chunks which fall in the fastbin range (<=0x80 on 64-bit). Fastbin chunks do not consolidate on free and keep PREV_INUSE set. Therefore, the prev_size corruption alone does not directly cause chunk consolidation for fastbin-size chunks. The corruption is still valid as HEAP_METADATA_CONTROL: the prev_size field is overwritten with attacker-controlled data, which could be leveraged in combination with other operations (e.g., if chunks are later moved to unsortedbin via malloc_consolidate, or if the overflow is used to set up a fake prev_size for a poison null byte / overlapping chunk attack).\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"RELATIVE_WRITE\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Same as PRIM-001: Size derivation from chunk header produces a write length (0x48=72) that exceeds the allocated user area (0x40=64) by 8 bytes.\",\"description\":\"The write operation read(0, ptrs[idx], 72) writes 72 bytes into a 64-byte buffer. The overflow target (adjacent chunk's prev_size) is at a fixed offset relative to the source chunk's user data pointer. The write content is fully attacker-controlled, but the target address is fixed (relative to the chunk, not arbitrarily chosen by the attacker).\"},\"chain\":[\"BUG-001\",\"Size cap 0x48=72 > 0x40=64 (user area)\",\"read(0, ptrs[idx], 72) writes 72 bytes into 64-byte buffer\",\"8 bytes overflow at fixed offset (ptrs[idx]+64) into adjacent chunk prev_size\",\"RELATIVE_WRITE\"],\"controlled_element\":{\"what\":\"The 8 overflow bytes are attacker-controlled (content from stdin). The target address is ptrs[idx]+64, which is a fixed offset from the chunk's user data start — not arbitrarily chosen by the attacker.\",\"how\":\"User provides 72 bytes of content via read(). Bytes 0-63 fill the user area; bytes 64-71 overflow into the adjacent chunk's prev_size at the fixed offset ptrs[idx]+64.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least one chunk allocated (ptrs[idx] != NULL).\",\"necessity\":\"Write function checks ptrs[idx] != NULL.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"User-supplied write_length > 73 to trigger cap to 0x48=72.\",\"necessity\":\"Only when length > 73 does the cap produce the 8-byte overflow.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"Adjacent chunk exists at ptrs[idx]+0x50 (64 user + 16 header).\",\"necessity\":\"The overflow target is the adjacent chunk's prev_size at ptrs[idx]+64.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"overflow_offset = 64 (0x40) = user_area_size\",\"alias\":\"The overflow starts exactly at the boundary between the current chunk's user data and the next chunk's prev_size field.\",\"implication\":\"This is a RELATIVE_WRITE (fixed offset from chunk base), not an ARB_WRITE (target address not attacker-chosen).\"}],\"verification_plan\":{\"method\":\"Same GDB verification as PRIM-001. The 8-byte overflow is the same physical operation; classified as RELATIVE_WRITE because the target is at a fixed offset from the chunk pointer, not an arbitrary address.\",\"environment\":\"x86-64 Linux, glibc 2.39 (system), PIE+ASLR+NX+Canary+FullRELRO\",\"run_command\":\"python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"expected_evidence\":[\"GDB: 72 bytes written into 64-byte buffer (rsi=0x48 at read call)\",\"GDB: bytes 64-71 land on adjacent chunk prev_size (0x555555a012e0)\"]},\"mitigations\":[{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"Does not prevent the relative overflow (target is at fixed offset from chunk). Prevents absolute address prediction but the overflow is relative.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"No impact on heap overflow primitive.\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xd43\",\"description\":\"GDB: rsi=0x48 (72 bytes) at call to sub_a56. read(0, ptrs[0], 72) writes 72 bytes into 64-byte calloc buffer. 8 bytes overflow at fixed offset +64 into adjacent chunk prev_size.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"sub_c11 (write, 0xc11)\",\"address\":\"0xd48\",\"description\":\"GDB: After read, 0x555555a012e0 (ptrs[0]+64) = 0xdeadbeefcafebabe. Content at overflow offset is attacker-controlled. Target is at fixed offset from chunk base = RELATIVE_WRITE.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"written_value\":\"0xdeadbeefcafebabe\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"GDB: 72 bytes written into 64-byte buffer. Overflow bytes 64-71 = 0xdeadbeefcafebabe written to 0x555555a012e0 (adjacent chunk prev_size). Target is at fixed offset +64 from chunk user data start = RELATIVE_WRITE (not ARB_WRITE since target address is not attacker-chosen).\"},\"confidence\":\"HIGH\",\"notes\":\"Classified as RELATIVE_WRITE (not ARB_WRITE) because the overflow target is at a fixed offset from the chunk's user data pointer. The attacker controls the written value but not the target address. The target is always the adjacent chunk's prev_size field at ptrs[idx]+64.\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"The 8-byte heap overflow from BUG-001 writes non-NUL bytes into the adjacent chunk's prev_size field. When the view function (sub_e0d) calls puts(ptrs[idx]) on the overflowed chunk, puts() reads until NUL. Since bytes 0-71 are non-NUL (64 user bytes + 8 overflow bytes), puts() reads past the 64-byte user area into the adjacent chunk's metadata, leaking the prev_size (8 bytes) and the size field's low byte (0x51).\",\"description\":\"The overflow from BUG-001 bridges the NUL gap between two chunks. Without overflow, calloc zero-initialization provides NUL bytes at position 64 that stop puts(). With overflow, positions 64-71 are filled with non-NUL attacker data, so puts() continues reading into the adjacent chunk's size field until it hits a NUL byte.\"},\"chain\":[\"BUG-001\",\"8-byte overflow writes non-NUL bytes into adjacent chunk prev_size\",\"puts(ptrs[idx]) reads past 64-byte user area (no NUL at position 64)\",\"puts reads 9 bytes of adjacent chunk metadata (prev_size + size low byte)\",\"INFO_LEAK\"],\"controlled_element\":{\"what\":\"The attacker controls whether the overflow bytes are non-NUL (triggering the leak) or NUL (no leak). The leaked data is heap metadata (prev_size and size field) from the adjacent chunk.\",\"how\":\"1. Allocate 2 chunks. 2. Write 72 non-NUL bytes to chunk 0 (64 user + 8 overflow). 3. View chunk 0: puts() reads 73 bytes (64 user + 8 prev_size + 1 size byte), leaking 9 bytes of heap metadata.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Two adjacent chunks must be allocated (chunk 0 and chunk 1).\",\"necessity\":\"The leak reads from chunk 0's user area into chunk 1's metadata. Without an adjacent chunk, the overflow hits the top chunk.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Chunk 0 must be filled with 72 non-NUL bytes via the overflow (write_length > 73, content has no 0x00 or 0x0a in bytes 0-71).\",\"necessity\":\"puts() stops at NUL (0x00) or outputs up to newline. The overflow bytes must be non-NUL to bridge the gap between user data and adjacent metadata.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The adjacent chunk's size field must contain a non-NUL low byte (0x51 for calloc(0x40,1) chunks).\",\"necessity\":\"puts() continues reading until NUL. The size field 0x51 has no NUL in its low byte, so puts reads it. The leak stops at the first NUL byte in the size field (byte 1 = 0x00 for 0x0051).\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"puts_output = chunk0_user_data[0:64] + chunk1_prev_size[0:8] + chunk1_size_low_byte\",\"alias\":\"puts() output extends 9 bytes past the 64-byte user area: 8 bytes of prev_size + 1 byte of size field (low byte 0x51).\",\"implication\":\"9 bytes of heap metadata are leaked. If the adjacent chunk is freed and contains fd/bk pointers (heap addresses or libc addresses), those would also be leaked. In the current test, the adjacent chunk is in-use (calloc zeroed), so only the size field (0x51) is leaked beyond prev_size.\"}],\"verification_plan\":{\"method\":\"Dynamic verification via pwntools: allocate 2 chunks, write 72 non-NUL bytes to chunk 0 (overflow), view chunk 0, capture puts() output. Measure output length and extract bytes beyond position 64. Control test: write exactly 64 bytes (no overflow), verify puts() stops at 64.\",\"environment\":\"x86-64 Linux, glibc 2.39 (system), PIE+ASLR+NX+Canary+FullRELRO\",\"run_command\":\"python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"expected_evidence\":[\"puts() output length = 73 bytes (64 user + 8 prev_size + 1 size byte) with overflow\",\"puts() output length = 64 bytes without overflow (control test)\",\"Leaked bytes 64-71 = overflow data (prev_size), byte 72 = 0x51 (size low byte)\"]},\"mitigations\":[{\"name\":\"ASLR/PIE\",\"present\":true,\"primitive_impact\":\"ASLR randomizes heap addresses. The leaked prev_size in this test is attacker-controlled overflow data, not a pointer. However, if the adjacent chunk were freed (containing fd/bk pointers), the leak would reveal heap/libc addresses despite ASLR.\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d)\",\"address\":\"0xeb8 (call puts@plt)\",\"description\":\"Dynamic test: After writing 72 non-NUL bytes to chunk 0 (64 user + 8 overflow), puts(ptrs[0]) outputs 73 bytes. Bytes 64-71 = 0x4142434445464748 (overflow data = ABCDEFGH, matching prev_size). Byte 72 = 0x51 (adjacent chunk size low byte). 9 bytes of heap metadata leaked.\"},{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d)\",\"address\":\"0xeb8\",\"description\":\"Control test: After writing exactly 64 non-NUL bytes (no overflow), puts(ptrs[0]) outputs exactly 64 bytes. calloc zero-initialization provides NUL at position 64, stopping puts(). No metadata leaked without overflow.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"0x414243444546474851 (9 bytes: 8 bytes prev_size + 1 byte size low byte)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"With overflow: puts() output = 73 bytes (64 user + 8 prev_size + 1 size byte). Leaked bytes beyond 64-byte boundary: 414243444546474851 (9 bytes). Leaked prev_size = 0x4847464544434241 (matches overflow data ABCDEFGH). Leaked size low byte = 0x51 (matches expected chunk size). Control test without overflow: puts() output = 64 bytes (no leak, NUL from calloc stops puts).\"},\"confidence\":\"HIGH\",\"notes\":\"This INFO_LEAK is a direct consequence of BUG-001's overflow: the 8 non-NUL overflow bytes bridge the NUL gap between chunk 0's user data and chunk 1's metadata, allowing puts() to read 9 bytes of heap metadata. In the current test, the leaked prev_size is attacker-controlled overflow data (not interesting). However, if the adjacent chunk were freed first (placing fd/bk pointers in its user area), and then the overflow bridges to those pointers, the leak would reveal heap or libc addresses. This makes the INFO_LEAK primitive composable with heap state manipulation for more powerful leaks.\"}],\"non_primitives\":[{\"primitive_id\":\"PRIM-004\",\"candidate_type\":\"HEAP_OBJECT_CONTROL\",\"source_bug\":\"BUG-001\",\"reason\":\"Tested chunk consolidation via prev_size corruption: allocated 3 chunks (0,1,2), overflowed chunk 0's prev_size to 0x50, freed chunk 0 then chunk 1. No consolidation occurred because calloc(0x40,1) produces 0x51-size chunks which fall in the fastbin range (<=0x80 on 64-bit). Fastbin chunks do not consolidate on free and keep PREV_INUSE set in the next chunk's size field. Therefore, the prev_size corruption alone cannot trigger backward consolidation for fastbin-size chunks. HEAP_OBJECT_CONTROL via consolidation would require non-fastbin chunks (size > 0x80), which this binary cannot allocate (calloc(0x40,1) is hardcoded). Marked as non-primitive for this BUG: the prev_size corruption is valid (PRIM-001) but does not directly lead to overlapping chunks in this binary's heap configuration.\"},{\"primitive_id\":\"PRIM-005\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-001\",\"reason\":\"The 8-byte overflow writes to a fixed offset (ptrs[idx]+64 = adjacent chunk prev_size). The target address is NOT attacker-chosen — it is always the adjacent chunk's prev_size field at a fixed relative offset. There is no mechanism in this bug to redirect the write target to an arbitrary address. The write content is attacker-controlled, but the destination is fixed relative to the chunk. Therefore this is RELATIVE_WRITE (PRIM-002), not ARB_WRITE. No two-step write upgrade is possible because the overflow target (prev_size) is not a pointer slot that controls a subsequent write destination — it is a metadata field used only during chunk consolidation.\"}],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":1,\"verified\":1,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"In view function (sub_e0d at 0xe0d), puts(ptrs[block_index]) outputs heap content as a C string with no length bound. The write path (sub_c11 -> sub_a56 -> read()) does not null-terminate data. When a chunk is filled with 64 non-NUL bytes plus 8 overflow bytes (via BUG-001), puts() reads past the 64-byte chunk boundary into adjacent heap metadata (prev_size and size fields).\",\"description\":\"puts() reads until NUL with no length constraint. The chunk size byte is read from ptr-8 but discarded — it does not constrain output. By filling a chunk with non-NUL data and using BUG-001's 8-byte overflow to bridge the NUL gap in the adjacent chunk's prev_size field, puts() reads into the adjacent chunk's size field, leaking heap metadata (0x51 = chunk size low byte).\"},\"chain\":[\"BUG-002\",\"puts() has no length bound, reads until NUL\",\"fill chunk with 64 non-NUL bytes + 8 overflow bytes (via BUG-001) to bridge prev_size NUL gap\",\"puts() reads past 64-byte chunk boundary into adjacent chunk metadata\",\"adjacent chunk size field low byte (0x51) leaked in output\",\"INFO_LEAK (heap metadata leaked beyond chunk boundary)\"],\"controlled_element\":{\"what\":\"The content of the heap chunk user area (64 bytes) and the adjacent chunk's prev_size field (8 bytes via BUG-001 overflow). By filling these with non-NUL bytes, the attacker controls whether puts() reads past the chunk boundary.\",\"how\":\"Attacker uses menu option 3 (write) to fill chunk 0 with 64 non-NUL bytes + 8 overflow bytes (write_length=100 > 0x49, capped to 0x48=72). The 8 overflow bytes overwrite the adjacent chunk's prev_size with non-NUL data, bridging the NUL gap. Then menu option 2 (view) calls puts(ptrs[0]), which reads past the 64-byte boundary into the adjacent chunk's size field.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 2 heap chunks must be allocated adjacently (chunk 0 and chunk 1) so that chunk 1's metadata immediately follows chunk 0's user area.\",\"necessity\":\"Without an adjacent chunk, the overflow from chunk 0 would write into unallocated heap space or a different chunk, and the leaked size byte would not correspond to a valid chunk.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Chunk 0 must be filled with 64 non-NUL bytes to eliminate NUL terminators within the user area, forcing puts() to read to the end of the 64-byte boundary.\",\"necessity\":\"If any of the 64 user bytes is NUL, puts() stops before reaching the chunk boundary, preventing the overflow-based leak.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"BUG-001's 8-byte heap overflow must be used to write 8 non-NUL bytes into the adjacent chunk's prev_size field, bridging the NUL gap between chunk 0's user area and chunk 1's size field.\",\"necessity\":\"Without the overflow, prev_size is 0 (NUL) from calloc zero-initialization, and puts() stops at the chunk boundary. The overflow is required to bridge this NUL gap.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The adjacent chunk's size field must contain a non-NUL low byte (0x51 for calloc(0x40,1) chunks) so that puts() reads at least 1 byte of it before hitting a NUL in the higher bytes.\",\"necessity\":\"If the size field's low byte were NUL, puts() would stop at the prev_size boundary and no metadata would be leaked.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"puts(ptrs[block_index]) with no length bound\",\"alias\":\"puts() reads until NUL = unbounded relative read from chunk base\",\"implication\":\"puts() acts as a relative read primitive: starting from ptrs[idx], it reads forward in memory until a NUL byte. The read range is determined by the position of the first NUL byte after the chunk start, which the attacker can control by filling the chunk with non-NUL data and bridging gaps via BUG-001's overflow.\"},{\"expression\":\"BUG-001 overflow (8 bytes into prev_size) bridges NUL gap\",\"alias\":\"prev_size field (8 bytes, normally 0x00 from calloc) = NUL terminator barrier\",\"implication\":\"The prev_size field of the adjacent chunk acts as a NUL barrier when it is 0 (from calloc zero-init). BUG-001's 8-byte overflow overwrites this barrier with non-NUL bytes, allowing puts() to read through into the size field. This is a cross-BUG dependency: BUG-001's overflow is a precondition for BUG-002's info leak.\"},{\"expression\":\"Leaked byte 0x51 at offset 71 (64 user + 7 overflow)\",\"alias\":\"0x51 = chunk size low byte = 0x40 (user data) + 0x10 (header) + 0x1 (PREV_INUSE flag)\",\"implication\":\"The leaked value 0x51 is genuine heap metadata (malloc chunk size field), not attacker-written data. This confirms the info leak exposes real heap internal state. The value is consistent across allocated and freed states, and reproducible across 3 independent trials.\"}],\"verification_plan\":{\"method\":\"Dynamic verification via pwntools process interaction: allocate 2 adjacent heap chunks, fill chunk 0 with 64 non-NUL bytes + 8 overflow bytes (via BUG-001), then view chunk 0 to trigger puts(). Observe output length and leaked bytes beyond the 64-byte boundary. Verify the leaked byte is heap metadata (0x51 = chunk size). Also test with freed adjacent chunk and without overflow (negative control).\",\"environment\":\"Linux x86-64, target_syslibc (patchelf'd to use system ld-linux with system libc 2.39). The puts() NUL-termination behavior is identical across glibc versions, so the primitive is verified despite libc version difference from the original 2.24.\",\"run_command\":\"cd /work/workspace/0004-2020-4._Heap-20260905-040529 && python3 poc-BUG-002.py\",\"expected_evidence\":[\"PRIM-001: puts() output = 72 bytes (64 user + 8 beyond boundary), leaked hex ends with 0x51 (adjacent chunk size low byte)\",\"PRIM-002: Same leak (0x51) with freed adjacent chunk, confirming real metadata not written data\",\"PRIM-003: Consistent 0x51 leak across 3 independent trials\",\"PRIM-004: Without overflow, puts() stops at <=64 bytes (NUL in prev_size), confirming overflow is necessary\"]},\"mitigations\":[{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"No impact on this info leak primitive. RELRO protects GOT entries from overwrite, but the leak is via puts() reading heap metadata, not via GOT corruption.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"No impact. NX prevents code execution on stack/heap, but this primitive is a read/info-leak, not code execution.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact. Canary protects stack from overflow, but this primitive operates on heap data, not stack.\"},{\"name\":\"PIE\",\"present\":true,\"primitive_impact\":\"PIE randomizes code base, but the leaked value (0x51) is a heap chunk size field, not a code pointer. PIE does not prevent the heap metadata leak. However, PIE+ASLR means the leaked heap metadata alone does not directly reveal code/libc base addresses — additional primitives would be needed for that.\"},{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes heap base, but the leaked 0x51 is a chunk size (relative value), not an absolute address. ASLR does not prevent the size field leak. To leak absolute heap/libc addresses, the attacker would need to arrange freed chunks with fd/bk pointers adjacent to the viewed chunk.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"sub_e0d (view, 0xe0d)\",\"address\":\"0xe90-0xeb8\",\"description\":\"View function reads chunk size byte at 0xe90 (sub rax,0x8; movzx eax, BYTE PTR [rax]; movsx eax, al) and stores in [rbp-0x4] at 0xe9a, but this value is never used to limit output. At 0xeb8, puts(ptrs[block_index]) is called with no length constraint.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"sub_a56 (read_wrapper, 0xa56)\",\"address\":\"0xa9b\",\"description\":\"The write path uses read(0, buf, len) which does not null-terminate the buffer. Data written to heap chunks has no guaranteed NUL terminator at the end of written content.\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d) via puts()\",\"address\":\"0xeb8\",\"description\":\"PRIM-001 dynamic verification: Allocated 2 adjacent chunks (calloc(0x40,1) each). Filled chunk 0 with 64 bytes of 0x41 + 8 bytes of 0x42 (overflow via BUG-001). Viewed chunk 0: puts() output = 72 bytes. Output hex ends with 4242424242424251. The last byte 0x51 is the adjacent chunk's size field low byte (0x40 user + 0x10 header + 0x1 PREV_INUSE), leaked beyond the 64-byte chunk boundary. This proves puts() reads past the chunk boundary into adjacent heap metadata.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d) via puts()\",\"address\":\"0xeb8\",\"description\":\"PRIM-002 dynamic verification: Same setup but freed chunk 1 before viewing. puts() output = 72 bytes, leaked hex ends with 4343434343434351. The 0x51 size byte is still leaked, confirming it is genuine heap metadata (not attacker-written data, since the attacker wrote 0x43 not 0x51).\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d) via puts()\",\"address\":\"0xeb8\",\"description\":\"PRIM-003 dynamic verification: Ran the leak 3 independent times (fresh process each). All 3 trials: puts() output = 72 bytes, size byte at offset 71 = 0x51. Consistent and reproducible.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"sub_e0d (view, 0xe0d) via puts()\",\"address\":\"0xeb8\",\"description\":\"PRIM-004 negative control: Wrote only 64 non-NUL bytes (no overflow). puts() output = 63 bytes (<= 64, no leak beyond boundary). This confirms that without BUG-001's overflow to bridge the NUL gap in prev_size, puts() stops at the chunk boundary. The overflow is a necessary precondition for the info leak.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"0x51 (adjacent chunk size field low byte, leaked at output offset 71)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"PRIM-001: puts() read 72 bytes (64 user + 8 beyond boundary), leaked hex 4242424242424251, last byte 0x51 = adjacent chunk size. PRIM-002: Same with freed chunk, leaked 0x51. PRIM-003: 3/3 trials consistent 0x51. PRIM-004: Without overflow, puts stops at 63 bytes (no leak). All 4 sub-tests VERIFIED. The leaked 0x51 is heap metadata (malloc chunk size = 0x40 user + 0x10 header + 0x1 PREV_INUSE), not attacker-written data.\"},\"confidence\":\"HIGH\",\"notes\":\"This primitive is a DIRECT info leak: puts() directly reads past the chunk boundary into adjacent heap metadata. The leak is RELATIVE_READ in mechanism (bounded by NUL bytes, cannot read arbitrary addresses) but qualifies as INFO_LEAK because it exposes non-attacker-provided heap metadata (chunk size field 0x51). The primitive has a cross-BUG dependency on BUG-001: the 8-byte heap overflow is required to bridge the NUL gap in the adjacent chunk's prev_size field. Without BUG-001's overflow, puts() stops at the chunk boundary (verified by PRIM-004 negative control). The leaked value (0x51) is a chunk size, not an absolute address — to leak heap/libc base addresses, the attacker would need to arrange freed chunks (with fd/bk pointers) adjacent to the viewed chunk, which requires additional heap manipulation. The primitive was verified using target_syslibc (system libc 2.39) due to the original ld-2.27.so being corrupted; the puts() NUL-termination behavior is identical across glibc versions, so the verification is valid.\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_READ\",\"source_bug\":\"BUG-002\",\"reason\":\"puts() reads until NUL, which means the read range is bounded by the position of NUL bytes in memory. The attacker cannot specify an arbitrary target address Y and read its contents — the read always starts from ptrs[idx] (a fixed heap chunk) and proceeds linearly until NUL. This is RELATIVE_READ, not ARB_READ. The attacker controls the starting chunk (via block_index 0-14) and can influence NUL positions (via write + overflow), but cannot read from arbitrary addresses.\"}],\"unresolved\":[{\"description\":\"Whether the info leak can be extended to leak absolute heap/libc addresses (not just chunk size bytes) by arranging freed chunks with fd/bk pointers adjacent to the viewed chunk.\",\"reason\":\"The current verification only leaks the adjacent chunk's size field (0x51), which is a relative value. To leak absolute addresses, freed chunks in fastbin/unsortedbin would need to be adjacent to the viewed chunk, and their fd/bk pointers would need to be non-NUL and readable by puts(). This requires specific heap layout manipulation that was not tested.\",\"required_next_step\":\"S4 could test heap layouts where freed chunks (containing fd/bk heap/libc pointers) are adjacent to a viewed chunk, and use BUG-001's overflow to bridge the NUL gap, potentially leaking absolute addresses for ASLR bypass.\"}]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 3,
+        "verified": 3,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "HEAP_METADATA_CONTROL",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Size Calculation Error: In write function (sub_c11 at 0xc11), the maximum write length is derived from the malloc chunk size field's low byte (0x51 for calloc(0x40,1)) minus 8 = 0x49 = 73. When user-supplied length exceeds 73, it is capped to 0x48 = 72. But the actual user data area is only 64 bytes (0x40). The cap value 0x48 (72) exceeds the allocated user area by 8 bytes, causing an 8-byte heap buffer overflow into the next adjacent heap chunk's prev_size metadata field.",
+            "description": "The write function reads the low byte of the malloc chunk size field at *(ptrs[idx]-8), computes real_limit = chunk_size_byte - 8, and if user-supplied write_length > real_limit, sets write_length = 0x48 (72). For calloc(0x40,1): chunk size=0x51, real_limit=0x49=73, cap=0x48=72. 72 > 64 = 8-byte overflow into adjacent chunk's prev_size field."
+          },
+          "chain": [
+            "BUG-001",
+            "Size derivation from chunk header (0x51-8=0x49, cap=0x48=72 > 0x40=64)",
+            "read(0, ptrs[idx], 72) writes 72 bytes into 64-byte user area",
+            "8 bytes overflow into adjacent chunk's prev_size field",
+            "HEAP_METADATA_CONTROL"
+          ],
+          "controlled_element": {
+            "what": "The 8 overflow bytes (bytes 64-71 of the write) are fully attacker-controlled via stdin read() input. These bytes overwrite the adjacent heap chunk's prev_size field.",
+            "how": "User selects menu option 3 (write), provides block_index (0-14), write_length (>73 to trigger cap to 0x48=72), then sends 72 bytes of content via read(0, buf, 72). Bytes 0-63 fill the user area; bytes 64-71 overflow into the next chunk's prev_size.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least one heap chunk must be allocated via add (menu option 1) so ptrs[idx] is non-NULL. calloc(0x40,1) allocates a 64-byte user area with chunk size 0x51.",
+              "necessity": "The write function checks ptrs[idx] != NULL before proceeding. Without an allocated chunk, the write path is not reached.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "A second adjacent chunk must exist after the target chunk in the heap. This is naturally satisfied if two chunks are allocated consecutively via add.",
+              "necessity": "The 8-byte overflow lands on the adjacent chunk's prev_size field. Without an adjacent chunk, the overflow hits the top chunk's prev_size (less useful).",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "User-supplied write_length must exceed 73 (0x49) to trigger the cap to 0x48 (72). Any value > 73 works (e.g., 100).",
+              "necessity": "If write_length <= 73, the actual write_length is used as-is. Only when it exceeds 73 does the cap to 0x48=72 kick in, producing the 8-byte overflow.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The overflow content (bytes 64-71) must be provided by the attacker via stdin. read(0, buf, 72) reads exactly 72 bytes with no null termination.",
+              "necessity": "The attacker controls the exact 8 bytes that overwrite prev_size.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "chunk_size_byte = *(uint8_t*)(ptrs[idx] - 8) = 0x51",
+              "alias": "The low byte of the malloc chunk size field (0x51 = 0x40 user + 0x10 header + 0x1 PREV_INUSE) is used as the size limit basis instead of the actual allocation size (0x40).",
+              "implication": "real_limit = 0x51 - 8 = 0x49 = 73. Cap = 0x48 = 72. Both exceed the 64-byte user area, producing 8-byte overflow."
+            },
+            {
+              "expression": "overflow_target = ptrs[idx] + 64 = adjacent_chunk_header (prev_size field)",
+              "alias": "The 8 overflow bytes land exactly on the adjacent chunk's prev_size field (8 bytes before its size field).",
+              "implication": "prev_size is overwritten with attacker-controlled data. The size field (at prev_size+8) is NOT reached by the 8-byte overflow."
+            }
+          ],
+          "verification_plan": {
+            "method": "GDB dynamic verification: set breakpoint at 0xd43 (call to sub_a56/read_wrapper) and 0xd48 (after read returns). Allocate 2 chunks, write 72 bytes to chunk 0 with attacker-controlled overflow value. Examine heap memory before and after the write to confirm prev_size overwrite.",
+            "environment": "x86-64 Linux, glibc 2.39 (system libc, patched binary via patchelf). Original target uses glibc 2.24 (no tcache). The overflow bug is in the binary itself and is libc-independent.",
+            "run_command": "python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "expected_evidence": [
+              "GDB: rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes write length)",
+              "GDB: After write, 0x555555a012e0 = 0xdeadbeefcafebabe (chunk1 prev_size OVERWRITTEN)",
+              "GDB: 0x555555a012e8 = 0x0000000000000051 (chunk1 size field, unmodified)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "GOT is read-only at runtime. Does not affect heap metadata control primitive directly, but prevents GOT overwrite as a follow-up exploitation path."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "Stack/heap not executable. Does not affect heap metadata control primitive."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "Stack canary present. Does not affect heap overflow primitive (overflow targets heap, not stack)."
+            },
+            {
+              "name": "PIE",
+              "present": true,
+              "primitive_impact": "Address randomization. Does not prevent the overflow itself but makes heap/libc addresses unpredictable without an info leak."
+            },
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "Heap base address randomized. The overflow is relative to the chunk pointer, so ASLR does not prevent the overflow from hitting the adjacent chunk's prev_size."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "sub_c11 (write, 0xc11)",
+              "address": "0xcdb-0xce8",
+              "description": "Write function reads chunk size byte: sub rax,0x8; movzx eax,BYTE PTR [rax]; movsx eax,al; sub [rbp-0x4],0x8. For calloc(0x40,1): chunk size=0x51, real_limit=0x51-8=0x49=73."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "sub_c11 (write, 0xc11)",
+              "address": "0xcef-0xd02",
+              "description": "Length capping: cmp [rbp-0x4],[rbp-0x8]; jge 0xd09; else mov DWORD PTR [rbp-0x8],0x48. Cap 0x48=72 exceeds 64-byte user area by 8 bytes."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "sub_c11 (write, 0xc11)",
+              "address": "0xd43 (call sub_a56) / 0xd48 (after read)",
+              "description": "GDB evidence (PIE base=0x555555400000, ASLR disabled): At 0x555555400d43: rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes). After read at 0x555555400d48: 0x555555a012e0=0xdeadbeefcafebabe (chunk1 prev_size OVERWRITTEN with attacker value), 0x555555a012e8=0x0000000000000051 (chunk1 size, intact). Confirms 8-byte overflow into prev_size only."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "sub_b7b (add, 0xb7b)",
+              "address": "0xbe5-0xbea",
+              "description": "GDB confirmed heap layout: calloc(0x40,1) produces 0x51-size chunks (0x40 user + 0x10 header + 0x1 PREV_INUSE). Two consecutive chunks at 0x555555a01290 (chunk0) and 0x555555a012e0 (chunk1), separated by exactly 0x50 bytes (64 user + 16 header)."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "written_value": "0xdeadbeefcafebabe",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "GDB (ASLR disabled, PIE base=0x555555400000): At call sub_a56 (0x555555400d43): rdi=0x555555a012a0 (chunk0 user data), rsi=0x48 (72 bytes, capped from 100). After read returns (0x555555400d48): 0x555555a012e0=0xdeadbeefcafebabe (chunk1 prev_size overwritten with attacker-controlled value), 0x555555a012e8=0x0000000000000051 (chunk1 size field unmodified). Overflow is exactly 8 bytes into prev_size field only; size field not reached."
+          },
+          "confidence": "HIGH",
+          "notes": "The 8-byte overflow overwrites ONLY the adjacent chunk's prev_size field (8 bytes). The size field (at prev_size+8) is NOT corrupted. In glibc 2.24 (target environment, no tcache), prev_size is used during backward consolidation when a non-fastbin chunk is freed and its predecessor is also free. However, calloc(0x40,1) produces 0x51-size chunks which fall in the fastbin range (<=0x80 on 64-bit). Fastbin chunks do not consolidate on free and keep PREV_INUSE set. Therefore, the prev_size corruption alone does not directly cause chunk consolidation for fastbin-size chunks. The corruption is still valid as HEAP_METADATA_CONTROL: the prev_size field is overwritten with attacker-controlled data, which could be leveraged in combination with other operations (e.g., if chunks are later moved to unsortedbin via malloc_consolidate, or if the overflow is used to set up a fake prev_size for a poison null byte / overlapping chunk attack)."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "RELATIVE_WRITE",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Same as PRIM-001: Size derivation from chunk header produces a write length (0x48=72) that exceeds the allocated user area (0x40=64) by 8 bytes.",
+            "description": "The write operation read(0, ptrs[idx], 72) writes 72 bytes into a 64-byte buffer. The overflow target (adjacent chunk's prev_size) is at a fixed offset relative to the source chunk's user data pointer. The write content is fully attacker-controlled, but the target address is fixed (relative to the chunk, not arbitrarily chosen by the attacker)."
+          },
+          "chain": [
+            "BUG-001",
+            "Size cap 0x48=72 > 0x40=64 (user area)",
+            "read(0, ptrs[idx], 72) writes 72 bytes into 64-byte buffer",
+            "8 bytes overflow at fixed offset (ptrs[idx]+64) into adjacent chunk prev_size",
+            "RELATIVE_WRITE"
+          ],
+          "controlled_element": {
+            "what": "The 8 overflow bytes are attacker-controlled (content from stdin). The target address is ptrs[idx]+64, which is a fixed offset from the chunk's user data start — not arbitrarily chosen by the attacker.",
+            "how": "User provides 72 bytes of content via read(). Bytes 0-63 fill the user area; bytes 64-71 overflow into the adjacent chunk's prev_size at the fixed offset ptrs[idx]+64.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least one chunk allocated (ptrs[idx] != NULL).",
+              "necessity": "Write function checks ptrs[idx] != NULL.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "User-supplied write_length > 73 to trigger cap to 0x48=72.",
+              "necessity": "Only when length > 73 does the cap produce the 8-byte overflow.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "Adjacent chunk exists at ptrs[idx]+0x50 (64 user + 16 header).",
+              "necessity": "The overflow target is the adjacent chunk's prev_size at ptrs[idx]+64.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "overflow_offset = 64 (0x40) = user_area_size",
+              "alias": "The overflow starts exactly at the boundary between the current chunk's user data and the next chunk's prev_size field.",
+              "implication": "This is a RELATIVE_WRITE (fixed offset from chunk base), not an ARB_WRITE (target address not attacker-chosen)."
+            }
+          ],
+          "verification_plan": {
+            "method": "Same GDB verification as PRIM-001. The 8-byte overflow is the same physical operation; classified as RELATIVE_WRITE because the target is at a fixed offset from the chunk pointer, not an arbitrary address.",
+            "environment": "x86-64 Linux, glibc 2.39 (system), PIE+ASLR+NX+Canary+FullRELRO",
+            "run_command": "python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "expected_evidence": [
+              "GDB: 72 bytes written into 64-byte buffer (rsi=0x48 at read call)",
+              "GDB: bytes 64-71 land on adjacent chunk prev_size (0x555555a012e0)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "Does not prevent the relative overflow (target is at fixed offset from chunk). Prevents absolute address prediction but the overflow is relative."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "No impact on heap overflow primitive."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "sub_c11 (write, 0xc11)",
+              "address": "0xd43",
+              "description": "GDB: rsi=0x48 (72 bytes) at call to sub_a56. read(0, ptrs[0], 72) writes 72 bytes into 64-byte calloc buffer. 8 bytes overflow at fixed offset +64 into adjacent chunk prev_size."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "sub_c11 (write, 0xc11)",
+              "address": "0xd48",
+              "description": "GDB: After read, 0x555555a012e0 (ptrs[0]+64) = 0xdeadbeefcafebabe. Content at overflow offset is attacker-controlled. Target is at fixed offset from chunk base = RELATIVE_WRITE."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "written_value": "0xdeadbeefcafebabe",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "GDB: 72 bytes written into 64-byte buffer. Overflow bytes 64-71 = 0xdeadbeefcafebabe written to 0x555555a012e0 (adjacent chunk prev_size). Target is at fixed offset +64 from chunk user data start = RELATIVE_WRITE (not ARB_WRITE since target address is not attacker-chosen)."
+          },
+          "confidence": "HIGH",
+          "notes": "Classified as RELATIVE_WRITE (not ARB_WRITE) because the overflow target is at a fixed offset from the chunk's user data pointer. The attacker controls the written value but not the target address. The target is always the adjacent chunk's prev_size field at ptrs[idx]+64."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "The 8-byte heap overflow from BUG-001 writes non-NUL bytes into the adjacent chunk's prev_size field. When the view function (sub_e0d) calls puts(ptrs[idx]) on the overflowed chunk, puts() reads until NUL. Since bytes 0-71 are non-NUL (64 user bytes + 8 overflow bytes), puts() reads past the 64-byte user area into the adjacent chunk's metadata, leaking the prev_size (8 bytes) and the size field's low byte (0x51).",
+            "description": "The overflow from BUG-001 bridges the NUL gap between two chunks. Without overflow, calloc zero-initialization provides NUL bytes at position 64 that stop puts(). With overflow, positions 64-71 are filled with non-NUL attacker data, so puts() continues reading into the adjacent chunk's size field until it hits a NUL byte."
+          },
+          "chain": [
+            "BUG-001",
+            "8-byte overflow writes non-NUL bytes into adjacent chunk prev_size",
+            "puts(ptrs[idx]) reads past 64-byte user area (no NUL at position 64)",
+            "puts reads 9 bytes of adjacent chunk metadata (prev_size + size low byte)",
+            "INFO_LEAK"
+          ],
+          "controlled_element": {
+            "what": "The attacker controls whether the overflow bytes are non-NUL (triggering the leak) or NUL (no leak). The leaked data is heap metadata (prev_size and size field) from the adjacent chunk.",
+            "how": "1. Allocate 2 chunks. 2. Write 72 non-NUL bytes to chunk 0 (64 user + 8 overflow). 3. View chunk 0: puts() reads 73 bytes (64 user + 8 prev_size + 1 size byte), leaking 9 bytes of heap metadata.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Two adjacent chunks must be allocated (chunk 0 and chunk 1).",
+              "necessity": "The leak reads from chunk 0's user area into chunk 1's metadata. Without an adjacent chunk, the overflow hits the top chunk.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Chunk 0 must be filled with 72 non-NUL bytes via the overflow (write_length > 73, content has no 0x00 or 0x0a in bytes 0-71).",
+              "necessity": "puts() stops at NUL (0x00) or outputs up to newline. The overflow bytes must be non-NUL to bridge the gap between user data and adjacent metadata.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The adjacent chunk's size field must contain a non-NUL low byte (0x51 for calloc(0x40,1) chunks).",
+              "necessity": "puts() continues reading until NUL. The size field 0x51 has no NUL in its low byte, so puts reads it. The leak stops at the first NUL byte in the size field (byte 1 = 0x00 for 0x0051).",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "puts_output = chunk0_user_data[0:64] + chunk1_prev_size[0:8] + chunk1_size_low_byte",
+              "alias": "puts() output extends 9 bytes past the 64-byte user area: 8 bytes of prev_size + 1 byte of size field (low byte 0x51).",
+              "implication": "9 bytes of heap metadata are leaked. If the adjacent chunk is freed and contains fd/bk pointers (heap addresses or libc addresses), those would also be leaked. In the current test, the adjacent chunk is in-use (calloc zeroed), so only the size field (0x51) is leaked beyond prev_size."
+            }
+          ],
+          "verification_plan": {
+            "method": "Dynamic verification via pwntools: allocate 2 chunks, write 72 non-NUL bytes to chunk 0 (overflow), view chunk 0, capture puts() output. Measure output length and extract bytes beyond position 64. Control test: write exactly 64 bytes (no overflow), verify puts() stops at 64.",
+            "environment": "x86-64 Linux, glibc 2.39 (system), PIE+ASLR+NX+Canary+FullRELRO",
+            "run_command": "python3 /work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "expected_evidence": [
+              "puts() output length = 73 bytes (64 user + 8 prev_size + 1 size byte) with overflow",
+              "puts() output length = 64 bytes without overflow (control test)",
+              "Leaked bytes 64-71 = overflow data (prev_size), byte 72 = 0x51 (size low byte)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "ASLR/PIE",
+              "present": true,
+              "primitive_impact": "ASLR randomizes heap addresses. The leaked prev_size in this test is attacker-controlled overflow data, not a pointer. However, if the adjacent chunk were freed (containing fd/bk pointers), the leak would reveal heap/libc addresses despite ASLR."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d)",
+              "address": "0xeb8 (call puts@plt)",
+              "description": "Dynamic test: After writing 72 non-NUL bytes to chunk 0 (64 user + 8 overflow), puts(ptrs[0]) outputs 73 bytes. Bytes 64-71 = 0x4142434445464748 (overflow data = ABCDEFGH, matching prev_size). Byte 72 = 0x51 (adjacent chunk size low byte). 9 bytes of heap metadata leaked."
+            },
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d)",
+              "address": "0xeb8",
+              "description": "Control test: After writing exactly 64 non-NUL bytes (no overflow), puts(ptrs[0]) outputs exactly 64 bytes. calloc zero-initialization provides NUL at position 64, stopping puts(). No metadata leaked without overflow."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "0x414243444546474851 (9 bytes: 8 bytes prev_size + 1 byte size low byte)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "With overflow: puts() output = 73 bytes (64 user + 8 prev_size + 1 size byte). Leaked bytes beyond 64-byte boundary: 414243444546474851 (9 bytes). Leaked prev_size = 0x4847464544434241 (matches overflow data ABCDEFGH). Leaked size low byte = 0x51 (matches expected chunk size). Control test without overflow: puts() output = 64 bytes (no leak, NUL from calloc stops puts)."
+          },
+          "confidence": "HIGH",
+          "notes": "This INFO_LEAK is a direct consequence of BUG-001's overflow: the 8 non-NUL overflow bytes bridge the NUL gap between chunk 0's user data and chunk 1's metadata, allowing puts() to read 9 bytes of heap metadata. In the current test, the leaked prev_size is attacker-controlled overflow data (not interesting). However, if the adjacent chunk were freed first (placing fd/bk pointers in its user area), and then the overflow bridges to those pointers, the leak would reveal heap or libc addresses. This makes the INFO_LEAK primitive composable with heap state manipulation for more powerful leaks."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "PRIM-004",
+          "candidate_type": "HEAP_OBJECT_CONTROL",
+          "source_bug": "BUG-001",
+          "reason": "Tested chunk consolidation via prev_size corruption: allocated 3 chunks (0,1,2), overflowed chunk 0's prev_size to 0x50, freed chunk 0 then chunk 1. No consolidation occurred because calloc(0x40,1) produces 0x51-size chunks which fall in the fastbin range (<=0x80 on 64-bit). Fastbin chunks do not consolidate on free and keep PREV_INUSE set in the next chunk's size field. Therefore, the prev_size corruption alone cannot trigger backward consolidation for fastbin-size chunks. HEAP_OBJECT_CONTROL via consolidation would require non-fastbin chunks (size > 0x80), which this binary cannot allocate (calloc(0x40,1) is hardcoded). Marked as non-primitive for this BUG: the prev_size corruption is valid (PRIM-001) but does not directly lead to overlapping chunks in this binary's heap configuration."
+        },
+        {
+          "primitive_id": "PRIM-005",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-001",
+          "reason": "The 8-byte overflow writes to a fixed offset (ptrs[idx]+64 = adjacent chunk prev_size). The target address is NOT attacker-chosen — it is always the adjacent chunk's prev_size field at a fixed relative offset. There is no mechanism in this bug to redirect the write target to an arbitrary address. The write content is attacker-controlled, but the destination is fixed relative to the chunk. Therefore this is RELATIVE_WRITE (PRIM-002), not ARB_WRITE. No two-step write upgrade is possible because the overflow target (prev_size) is not a pointer slot that controls a subsequent write destination — it is a metadata field used only during chunk consolidation."
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 1,
+        "verified": 1,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "In view function (sub_e0d at 0xe0d), puts(ptrs[block_index]) outputs heap content as a C string with no length bound. The write path (sub_c11 -> sub_a56 -> read()) does not null-terminate data. When a chunk is filled with 64 non-NUL bytes plus 8 overflow bytes (via BUG-001), puts() reads past the 64-byte chunk boundary into adjacent heap metadata (prev_size and size fields).",
+            "description": "puts() reads until NUL with no length constraint. The chunk size byte is read from ptr-8 but discarded — it does not constrain output. By filling a chunk with non-NUL data and using BUG-001's 8-byte overflow to bridge the NUL gap in the adjacent chunk's prev_size field, puts() reads into the adjacent chunk's size field, leaking heap metadata (0x51 = chunk size low byte)."
+          },
+          "chain": [
+            "BUG-002",
+            "puts() has no length bound, reads until NUL",
+            "fill chunk with 64 non-NUL bytes + 8 overflow bytes (via BUG-001) to bridge prev_size NUL gap",
+            "puts() reads past 64-byte chunk boundary into adjacent chunk metadata",
+            "adjacent chunk size field low byte (0x51) leaked in output",
+            "INFO_LEAK (heap metadata leaked beyond chunk boundary)"
+          ],
+          "controlled_element": {
+            "what": "The content of the heap chunk user area (64 bytes) and the adjacent chunk's prev_size field (8 bytes via BUG-001 overflow). By filling these with non-NUL bytes, the attacker controls whether puts() reads past the chunk boundary.",
+            "how": "Attacker uses menu option 3 (write) to fill chunk 0 with 64 non-NUL bytes + 8 overflow bytes (write_length=100 > 0x49, capped to 0x48=72). The 8 overflow bytes overwrite the adjacent chunk's prev_size with non-NUL data, bridging the NUL gap. Then menu option 2 (view) calls puts(ptrs[0]), which reads past the 64-byte boundary into the adjacent chunk's size field.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 2 heap chunks must be allocated adjacently (chunk 0 and chunk 1) so that chunk 1's metadata immediately follows chunk 0's user area.",
+              "necessity": "Without an adjacent chunk, the overflow from chunk 0 would write into unallocated heap space or a different chunk, and the leaked size byte would not correspond to a valid chunk.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Chunk 0 must be filled with 64 non-NUL bytes to eliminate NUL terminators within the user area, forcing puts() to read to the end of the 64-byte boundary.",
+              "necessity": "If any of the 64 user bytes is NUL, puts() stops before reaching the chunk boundary, preventing the overflow-based leak.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "BUG-001's 8-byte heap overflow must be used to write 8 non-NUL bytes into the adjacent chunk's prev_size field, bridging the NUL gap between chunk 0's user area and chunk 1's size field.",
+              "necessity": "Without the overflow, prev_size is 0 (NUL) from calloc zero-initialization, and puts() stops at the chunk boundary. The overflow is required to bridge this NUL gap.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The adjacent chunk's size field must contain a non-NUL low byte (0x51 for calloc(0x40,1) chunks) so that puts() reads at least 1 byte of it before hitting a NUL in the higher bytes.",
+              "necessity": "If the size field's low byte were NUL, puts() would stop at the prev_size boundary and no metadata would be leaked.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "puts(ptrs[block_index]) with no length bound",
+              "alias": "puts() reads until NUL = unbounded relative read from chunk base",
+              "implication": "puts() acts as a relative read primitive: starting from ptrs[idx], it reads forward in memory until a NUL byte. The read range is determined by the position of the first NUL byte after the chunk start, which the attacker can control by filling the chunk with non-NUL data and bridging gaps via BUG-001's overflow."
+            },
+            {
+              "expression": "BUG-001 overflow (8 bytes into prev_size) bridges NUL gap",
+              "alias": "prev_size field (8 bytes, normally 0x00 from calloc) = NUL terminator barrier",
+              "implication": "The prev_size field of the adjacent chunk acts as a NUL barrier when it is 0 (from calloc zero-init). BUG-001's 8-byte overflow overwrites this barrier with non-NUL bytes, allowing puts() to read through into the size field. This is a cross-BUG dependency: BUG-001's overflow is a precondition for BUG-002's info leak."
+            },
+            {
+              "expression": "Leaked byte 0x51 at offset 71 (64 user + 7 overflow)",
+              "alias": "0x51 = chunk size low byte = 0x40 (user data) + 0x10 (header) + 0x1 (PREV_INUSE flag)",
+              "implication": "The leaked value 0x51 is genuine heap metadata (malloc chunk size field), not attacker-written data. This confirms the info leak exposes real heap internal state. The value is consistent across allocated and freed states, and reproducible across 3 independent trials."
+            }
+          ],
+          "verification_plan": {
+            "method": "Dynamic verification via pwntools process interaction: allocate 2 adjacent heap chunks, fill chunk 0 with 64 non-NUL bytes + 8 overflow bytes (via BUG-001), then view chunk 0 to trigger puts(). Observe output length and leaked bytes beyond the 64-byte boundary. Verify the leaked byte is heap metadata (0x51 = chunk size). Also test with freed adjacent chunk and without overflow (negative control).",
+            "environment": "Linux x86-64, target_syslibc (patchelf'd to use system ld-linux with system libc 2.39). The puts() NUL-termination behavior is identical across glibc versions, so the primitive is verified despite libc version difference from the original 2.24.",
+            "run_command": "cd /work/workspace/0004-2020-4._Heap-20260905-040529 && python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "PRIM-001: puts() output = 72 bytes (64 user + 8 beyond boundary), leaked hex ends with 0x51 (adjacent chunk size low byte)",
+              "PRIM-002: Same leak (0x51) with freed adjacent chunk, confirming real metadata not written data",
+              "PRIM-003: Consistent 0x51 leak across 3 independent trials",
+              "PRIM-004: Without overflow, puts() stops at <=64 bytes (NUL in prev_size), confirming overflow is necessary"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "No impact on this info leak primitive. RELRO protects GOT entries from overwrite, but the leak is via puts() reading heap metadata, not via GOT corruption."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "No impact. NX prevents code execution on stack/heap, but this primitive is a read/info-leak, not code execution."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact. Canary protects stack from overflow, but this primitive operates on heap data, not stack."
+            },
+            {
+              "name": "PIE",
+              "present": true,
+              "primitive_impact": "PIE randomizes code base, but the leaked value (0x51) is a heap chunk size field, not a code pointer. PIE does not prevent the heap metadata leak. However, PIE+ASLR means the leaked heap metadata alone does not directly reveal code/libc base addresses — additional primitives would be needed for that."
+            },
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes heap base, but the leaked 0x51 is a chunk size (relative value), not an absolute address. ASLR does not prevent the size field leak. To leak absolute heap/libc addresses, the attacker would need to arrange freed chunks with fd/bk pointers adjacent to the viewed chunk."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "sub_e0d (view, 0xe0d)",
+              "address": "0xe90-0xeb8",
+              "description": "View function reads chunk size byte at 0xe90 (sub rax,0x8; movzx eax, BYTE PTR [rax]; movsx eax, al) and stores in [rbp-0x4] at 0xe9a, but this value is never used to limit output. At 0xeb8, puts(ptrs[block_index]) is called with no length constraint."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "sub_a56 (read_wrapper, 0xa56)",
+              "address": "0xa9b",
+              "description": "The write path uses read(0, buf, len) which does not null-terminate the buffer. Data written to heap chunks has no guaranteed NUL terminator at the end of written content."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d) via puts()",
+              "address": "0xeb8",
+              "description": "PRIM-001 dynamic verification: Allocated 2 adjacent chunks (calloc(0x40,1) each). Filled chunk 0 with 64 bytes of 0x41 + 8 bytes of 0x42 (overflow via BUG-001). Viewed chunk 0: puts() output = 72 bytes. Output hex ends with 4242424242424251. The last byte 0x51 is the adjacent chunk's size field low byte (0x40 user + 0x10 header + 0x1 PREV_INUSE), leaked beyond the 64-byte chunk boundary. This proves puts() reads past the chunk boundary into adjacent heap metadata."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d) via puts()",
+              "address": "0xeb8",
+              "description": "PRIM-002 dynamic verification: Same setup but freed chunk 1 before viewing. puts() output = 72 bytes, leaked hex ends with 4343434343434351. The 0x51 size byte is still leaked, confirming it is genuine heap metadata (not attacker-written data, since the attacker wrote 0x43 not 0x51)."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d) via puts()",
+              "address": "0xeb8",
+              "description": "PRIM-003 dynamic verification: Ran the leak 3 independent times (fresh process each). All 3 trials: puts() output = 72 bytes, size byte at offset 71 = 0x51. Consistent and reproducible."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "sub_e0d (view, 0xe0d) via puts()",
+              "address": "0xeb8",
+              "description": "PRIM-004 negative control: Wrote only 64 non-NUL bytes (no overflow). puts() output = 63 bytes (<= 64, no leak beyond boundary). This confirms that without BUG-001's overflow to bridge the NUL gap in prev_size, puts() stops at the chunk boundary. The overflow is a necessary precondition for the info leak."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0004-2020-4._Heap-20260905-040529/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "0x51 (adjacent chunk size field low byte, leaked at output offset 71)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "PRIM-001: puts() read 72 bytes (64 user + 8 beyond boundary), leaked hex 4242424242424251, last byte 0x51 = adjacent chunk size. PRIM-002: Same with freed chunk, leaked 0x51. PRIM-003: 3/3 trials consistent 0x51. PRIM-004: Without overflow, puts stops at 63 bytes (no leak). All 4 sub-tests VERIFIED. The leaked 0x51 is heap metadata (malloc chunk size = 0x40 user + 0x10 header + 0x1 PREV_INUSE), not attacker-written data."
+          },
+          "confidence": "HIGH",
+          "notes": "This primitive is a DIRECT info leak: puts() directly reads past the chunk boundary into adjacent heap metadata. The leak is RELATIVE_READ in mechanism (bounded by NUL bytes, cannot read arbitrary addresses) but qualifies as INFO_LEAK because it exposes non-attacker-provided heap metadata (chunk size field 0x51). The primitive has a cross-BUG dependency on BUG-001: the 8-byte heap overflow is required to bridge the NUL gap in the adjacent chunk's prev_size field. Without BUG-001's overflow, puts() stops at the chunk boundary (verified by PRIM-004 negative control). The leaked value (0x51) is a chunk size, not an absolute address — to leak heap/libc base addresses, the attacker would need to arrange freed chunks (with fd/bk pointers) adjacent to the viewed chunk, which requires additional heap manipulation. The primitive was verified using target_syslibc (system libc 2.39) due to the original ld-2.27.so being corrupted; the puts() NUL-termination behavior is identical across glibc versions, so the verification is valid."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_READ",
+          "source_bug": "BUG-002",
+          "reason": "puts() reads until NUL, which means the read range is bounded by the position of NUL bytes in memory. The attacker cannot specify an arbitrary target address Y and read its contents — the read always starts from ptrs[idx] (a fixed heap chunk) and proceeds linearly until NUL. This is RELATIVE_READ, not ARB_READ. The attacker controls the starting chunk (via block_index 0-14) and can influence NUL positions (via write + overflow), but cannot read from arbitrary addresses."
+        }
+      ],
+      "unresolved": [
+        {
+          "description": "Whether the info leak can be extended to leak absolute heap/libc addresses (not just chunk size bytes) by arranging freed chunks with fd/bk pointers adjacent to the viewed chunk.",
+          "reason": "The current verification only leaks the adjacent chunk's size field (0x51), which is a relative value. To leak absolute addresses, freed chunks in fastbin/unsortedbin would need to be adjacent to the viewed chunk, and their fd/bk pointers would need to be non-NUL and readable by puts(). This requires specific heap layout manipulation that was not tested.",
+          "required_next_step": "S4 could test heap layouts where freed chunks (containing fd/bk heap/libc pointers) are adjacent to a viewed chunk, and use BUG-001's overflow to bridge the NUL gap, potentially leaking absolute addresses for ASLR bypass."
+        }
+      ]
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002"
+  ]
+}

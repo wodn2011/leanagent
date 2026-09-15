@@ -1,0 +1,862 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0016-2021-T3-seccomp1-20260908-133252/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0016-2021-T3-seccomp1-20260908-133252/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x10e0\",\"dynamic\":true,\"stripped\":false,\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"buildid\":\"2fe8c23086e609f3b0922b4a2be48faedca8103b\",\"source_file\":\"seccomp.c\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"os_abi\":\"UNIX System V\",\"abi_version\":0},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\",\"note\":\"GNU_STACK RW (no X) but mmap allocates RWX page at runtime\"},\"canary\":{\"value\":false,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":false,\"source\":\"ELF\"},\"shstk\":{\"value\":false,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\",\"note\":\"PIE enabled; ASLR active in observed environment\"},\"seccomp\":{\"value\":true,\"source\":\"DISASSEMBLY\",\"note\":\"seccomp_init(SCMP_ACT_KILL=0) default-deny; rules added via seccomp_rule_add with SCMP_ACT_ALLOW=0x7fff0000; loaded via seccomp_load in setup_seccomp() called from init()\"},\"alarm\":{\"value\":60,\"source\":\"DISASSEMBLY\",\"note\":\"init() calls alarm(0x3c=60) before setup_seccomp\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"release\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"ELF\"},\"libraries\":[{\"name\":\"libseccomp.so.2\",\"needed\":true,\"resolved_path\":\"/lib/x86_64-linux-gnu/libseccomp.so.2\",\"real_file\":\"/lib/x86_64-linux-gnu/libseccomp.so.2.5.5\",\"version\":\"2.5.5-1ubuntu3.1\",\"size\":125360,\"rpath\":false,\"runpath\":false,\"ld_library_path_priority\":true,\"note\":\"No RPATH/RUNPATH in target; LD_LIBRARY_PATH would take priority over system paths. System libseccomp 2.5.5 loaded. Exports seccomp_init/seccomp_rule_add/seccomp_load/seccomp_release etc. No init_array/.init side effects observed (standard lib).\",\"source\":\"RUNTIME\"},{\"name\":\"libc.so.6\",\"needed\":true,\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"2.39\",\"source\":\"RUNTIME\"},{\"name\":\"linux-vdso.so.1\",\"needed\":false,\"note\":\"vdso, auto-injected\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[{\"source\":\"stdin\",\"function\":\"main\",\"via\":\"read(0, mmap_buf, 0xfff)\",\"description\":\"shellcode input, up to 4095 bytes\"}],\"menu\":[],\"user_controlled_inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin\",\"function\":\"main\",\"max_size\":4095,\"buffer\":\"mmap RWX page\",\"description\":\"User-supplied shellcode read into RWX mmap region then executed via call rax\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x2a8\",\"size\":\"0x1c\",\"perms\":\"R\"},{\"name\":\".note.gnu.build-id\",\"address\":\"0x2c4\",\"size\":\"0x24\",\"perms\":\"R\"},{\"name\":\".note.ABI-tag\",\"address\":\"0x2e8\",\"size\":\"0x20\",\"perms\":\"R\"},{\"name\":\".gnu.hash\",\"address\":\"0x308\",\"size\":\"0x34\",\"perms\":\"R\"},{\"name\":\".dynsym\",\"address\":\"0x340\",\"size\":\"0x1c8\",\"perms\":\"R\"},{\"name\":\".dynstr\",\"address\":\"0x508\",\"size\":\"0xf5\",\"perms\":\"R\"},{\"name\":\".gnu.version\",\"address\":\"0x5fe\",\"size\":\"0x26\",\"perms\":\"R\"},{\"name\":\".gnu.version_r\",\"address\":\"0x628\",\"size\":\"0x20\",\"perms\":\"R\"},{\"name\":\".rela.dyn\",\"address\":\"0x648\",\"size\":\"0x108\",\"perms\":\"R\"},{\"name\":\".rela.plt\",\"address\":\"0x750\",\"size\":\"0xf0\",\"perms\":\"R\"},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"perms\":\"RX\"},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xb0\",\"perms\":\"RX\"},{\"name\":\".plt.got\",\"address\":\"0x10d0\",\"size\":\"0x8\",\"perms\":\"RX\"},{\"name\":\".text\",\"address\":\"0x10e0\",\"size\":\"0x491\",\"perms\":\"RX\"},{\"name\":\".fini\",\"address\":\"0x1574\",\"size\":\"0x9\",\"perms\":\"RX\"},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x50\",\"perms\":\"R\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2050\",\"size\":\"0x54\",\"perms\":\"R\"},{\"name\":\".eh_frame\",\"address\":\"0x20a8\",\"size\":\"0x168\",\"perms\":\"R\"},{\"name\":\".init_array\",\"address\":\"0x3dd8\",\"size\":\"0x8\",\"perms\":\"RW\"},{\"name\":\".fini_array\",\"address\":\"0x3de0\",\"size\":\"0x8\",\"perms\":\"RW\"},{\"name\":\".dynamic\",\"address\":\"0x3de8\",\"size\":\"0x1f0\",\"perms\":\"RW\"},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"perms\":\"RW\"},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0x68\",\"perms\":\"RW\",\"note\":\"Partial RELRO: .got.plt writable\"},{\"name\":\".data\",\"address\":\"0x4068\",\"size\":\"0x10\",\"perms\":\"RW\"},{\"name\":\".bss\",\"address\":\"0x4080\",\"size\":\"0x30\",\"perms\":\"RW\"}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4080\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdin\",\"address\":\"0x4090\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x40a0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"completed.0\",\"address\":\"0x40a8\",\"size\":1,\"section\":\".bss\",\"type\":\"flag\"},{\"name\":\"__dso_handle\",\"address\":\"0x4070\",\"size\":0,\"section\":\".data\",\"type\":\"hidden\"},{\"name\":\"_IO_stdin_used\",\"address\":\"0x2000\",\"size\":4,\"section\":\".rodata\",\"type\":\"int\"}],\"got\":[{\"offset\":\"0x3fd8\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"_ITM_deregisterTMCloneTable\"},{\"offset\":\"0x3fe0\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__libc_start_main@GLIBC_2.2.5\"},{\"offset\":\"0x3fe8\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__gmon_start__\"},{\"offset\":\"0x3ff0\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"_ITM_registerTMCloneTable\"},{\"offset\":\"0x3ff8\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__cxa_finalize@GLIBC_2.2.5\"},{\"offset\":\"0x4018\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"seccomp_init\",\"writable\":true},{\"offset\":\"0x4020\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"seccomp_rule_add\",\"writable\":true},{\"offset\":\"0x4028\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"puts@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4030\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"seccomp_load\",\"writable\":true},{\"offset\":\"0x4038\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"mmap@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4040\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"printf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4048\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"alarm@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4050\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"read@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4058\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"setvbuf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x4060\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"exit@GLIBC_2.2.5\",\"writable\":true}],\"plt\":[{\"name\":\"seccomp_init\",\"plt_addr\":\"0x1030\",\"got_addr\":\"0x4018\"},{\"name\":\"seccomp_rule_add\",\"plt_addr\":\"0x1040\",\"got_addr\":\"0x4020\"},{\"name\":\"puts\",\"plt_addr\":\"0x1050\",\"got_addr\":\"0x4028\"},{\"name\":\"seccomp_load\",\"plt_addr\":\"0x1060\",\"got_addr\":\"0x4030\"},{\"name\":\"mmap\",\"plt_addr\":\"0x1070\",\"got_addr\":\"0x4038\"},{\"name\":\"printf\",\"plt_addr\":\"0x1080\",\"got_addr\":\"0x4040\"},{\"name\":\"alarm\",\"plt_addr\":\"0x1090\",\"got_addr\":\"0x4048\"},{\"name\":\"read\",\"plt_addr\":\"0x10a0\",\"got_addr\":\"0x4050\"},{\"name\":\"setvbuf\",\"plt_addr\":\"0x10b0\",\"got_addr\":\"0x4058\"},{\"name\":\"exit\",\"plt_addr\":\"0x10c0\",\"got_addr\":\"0x4060\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x146d\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"puts\",\"mmap\",\"_abort\",\"read\",\"<indirect call rax>\"],\"inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin via read(0, buf, 0xfff)\",\"type\":\"raw bytes\"}],\"checks\":[\"mmap return != -1 (MAP_FAILED)\",\"read return != 0\"],\"memory_operations\":[{\"operation\":\"MMAP\",\"destination\":\"anonymous RWX page\",\"size\":4096,\"flags\":\"PROT_READ|PROT_WRITE|PROT_EXEC (0x7), MAP_PRIVATE|MAP_ANONYMOUS (0x22), fd=-1, offset=0\",\"note\":\"mmap(0, 0x1000, 7, 0x22, -1, 0)\"},{\"operation\":\"WRITE\",\"destination\":\"mmap RWX page\",\"size\":\"0xfff (4095)\",\"source\":\"read(0, buf, size-1)\",\"note\":\"reads up to 4095 bytes of shellcode into RWX page\"},{\"operation\":\"EXECUTE\",\"destination\":\"mmap RWX page\",\"size\":\"n/a\",\"note\":\"call rax — jumps to start of mmap'd buffer, executing user shellcode\"}],\"calls\":[\"init\",\"puts\",\"mmap\",\"read\",\"_abort\"],\"behavior\":\"init() -> puts(prompt) -> mmap RWX 0x1000 -> read shellcode (0xfff bytes) -> call rax (execute shellcode). On mmap failure or read returning 0, calls _abort then exit(1).\"},{\"name\":\"init\",\"address\":\"0x13f8\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"setup_seccomp\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\",\"setup_seccomp\"],\"behavior\":\"setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0) [unbuffered]; alarm(60); setup_seccomp().\"},{\"name\":\"setup_seccomp\",\"address\":\"0x11c5\",\"callers\":[\"init\"],\"callees\":[\"seccomp_init\",\"seccomp_rule_add\",\"seccomp_load\",\"exit\"],\"inputs\":[],\"checks\":[\"accumulates error in [rbp-0xc]; if nonzero after seccomp_load, exit(1)\"],\"memory_operations\":[],\"calls\":[\"seccomp_init\",\"seccomp_rule_add\",\"seccomp_load\",\"exit\"],\"behavior\":\"seccomp_init(0) [SCMP_ACT_KILL default]. Adds ALLOW rules: (1) read(0) with arg0==0 [SCMP_CMP_EQ], (2) write(1), (3) open(2), (4) openat(0x101), (5) close(3), (6) read(0) no-arg-constraint, (7) mmap(9), (8) fstat(5), (9) brk(0xc), (10) exit(0x3c), (11) exit_group(0xe7). seccomp_load(); exit(1) on error. NOTE: rule#1 read with arg0==0 and rule#6 read without constraint — both ALLOW read; net effect read always allowed.\",\"seccomp_rules\":[{\"action\":\"SCMP_ACT_KILL\",\"default\":true,\"init_arg\":0,\"note\":\"seccomp_init(0) = SCMP_ACT_KILL — all syscalls default-killed\"},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":0,\"name\":\"read\",\"arg0_constraint\":\"==0 (fd stdin)\",\"rule_index\":1},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":1,\"name\":\"write\",\"rule_index\":2},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":2,\"name\":\"open\",\"rule_index\":3},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":257,\"name\":\"openat\",\"rule_index\":4},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":3,\"name\":\"close\",\"rule_index\":5},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":0,\"name\":\"read\",\"arg0_constraint\":\"none\",\"rule_index\":6,\"note\":\"redundant with rule#1, read fully allowed\"},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":9,\"name\":\"mmap\",\"rule_index\":7},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":5,\"name\":\"fstat\",\"rule_index\":8},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":12,\"name\":\"brk\",\"rule_index\":9},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":60,\"name\":\"exit\",\"rule_index\":10},{\"action\":\"SCMP_ACT_ALLOW\",\"syscall\":231,\"name\":\"exit_group\",\"rule_index\":11}],\"allowed_syscalls\":[\"read(0)\",\"write(1)\",\"open(2)\",\"openat(257)\",\"close(3)\",\"read(0)_unconstrained\",\"mmap(9)\",\"fstat(5)\",\"brk(12)\",\"exit(60)\",\"exit_group(231)\"],\"denied_notable\":[\"execve(59)\",\"execveat(322)\",\"fork(57)\",\"vfork(58)\",\"clone(56)\",\"socket(41)\",\"connect(42)\",\"sendto(44)\",\"recvfrom(45)\",\"mprotect(10)\",\"munmap(11)\",\"stat(4)\",\"lstat(6)\",\"getdents(78)\",\"readdir\",\"chdir(80)\",\"getcwd(79)\"]},{\"name\":\"_abort\",\"address\":\"0x13ca\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"caller rdi\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"behavior\":\"printf('%s', msg); exit(1). Error handler for mmap/read failure.\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"shellcode via read(0, mmap_buf, 0xfff)\",\"operation\":\"EXECUTE — call rax jumps to user-controlled shellcode in RWX mmap page\",\"risk\":\"HIGH\",\"reason\":\"Attacker fully controls executed code (arbitrary shellcode in RWX page). This is by design (shellcode challenge). The real constraint is the seccomp sandbox limiting available syscalls.\"},{\"function\":\"setup_seccomp\",\"input\":\"n/a (static rules)\",\"operation\":\"SECCOMP sandbox — default KILL, whitelist of 11 syscalls\",\"risk\":\"HIGH\",\"reason\":\"Defines the exploit constraint surface. S2 must analyze which primitives are achievable under the whitelist: open/openat+read+write permits ORW (open-read-write) file exfiltration; execve/execveat are DENIED so no direct shell. mprotect DENIED. This is the core attack surface for S2.\"},{\"function\":\"main\",\"input\":\"mmap RWX allocation\",\"operation\":\"MMAP — anonymous RWX page (PROT_READ|PROT_WRITE|PROT_EXEC)\",\"risk\":\"MEDIUM\",\"reason\":\"RWX page enables arbitrary code execution; combined with seccomp this is the intended shellcode-execution primitive. No overflow in read (size 0xfff < page 0x1000).\"},{\"function\":\"dependency_resolution\",\"input\":\"libseccomp.so.2 NEEDED, no RPATH/RUNPATH\",\"operation\":\"LIBRARY_LOAD — LD_LIBRARY_PATH priority over system paths\",\"risk\":\"LOW\",\"reason\":\"No RPATH/RUNPATH; LD_LIBRARY_PATH could redirect libseccomp resolution, but this is an environment-level concern, not a binary vulnerability. System libseccomp 2.5.5 loads normally.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian), source file seccomp.c\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, No canary, PIE enabled, No FORTIFY, No CET (IBT/SHSTK). .got.plt is writable.\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"libseccomp.so.2 (v2.5.5-1ubuntu3.1, 125360 bytes) loaded from /lib/x86_64-linux-gnu/libseccomp.so.2. No RPATH/RUNPATH in binary.\",\"source\":\"RUNTIME\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main() at 0x146d: calls init(), puts('Give me your shellcode (max: 4096):'), mmap(0,0x1000,7,0x22,-1,0) [RWX anonymous], read(0, buf, 0xfff), then call rax to execute shellcode.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"init() at 0x13f8: setvbuf(stdin/stdout/stderr, 0, 2, 0) [unbuffered], alarm(60), setup_seccomp().\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"setup_seccomp() at 0x11c5: seccomp_init(0) [SCMP_ACT_KILL default-deny]. Adds 11 ALLOW rules via seccomp_rule_add(SCMP_ACT_ALLOW=0x7fff0000). Allowed syscalls: read(0) [arg0==0], write(1), open(2), openat(257/0x101), close(3), read(0) [unconstrained], mmap(9), fstat(5), brk(12), exit(60/0x3c), exit_group(231/0xe7). seccomp_load() then exit(1) on error.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"read() syscall has two ALLOW rules: rule#1 with arg0==0 constraint, rule#6 without constraint. Net effect: read() is fully allowed for any fd.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"execve(59), execveat(322), mprotect(10), munmap(11), fork/clone, socket/connect, stat(4)/lstat(6), getdents(78), chdir(80), getcwd(79) are NOT in whitelist → default KILL.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"mmap allocates RWX page (PROT_READ|PROT_WRITE|PROT_EXEC=0x7). read writes up to 0xfff (4095) bytes into it. call rax executes it. No buffer overflow: read size 0xfff < page size 0x1000.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"probe_io with input 'AAAA' (non-shellcode bytes 0x41414141): program prints prompt 'Give me your shellcode (max: 4096):' then segfaults executing 0x41414141 — confirms shellcode execution path works.\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"_abort() at 0x13ca: printf('%s', msg); exit(1). Called on mmap failure (msg='mmap failed!') or read returning 0 (msg='read failed!').\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\".rodata at 0x2000 contains strings: '%s' (0x2008), 'Give me your shellcode (max: 4096):' (0x2010), 'mmap failed!' (0x2034), 'read failed!' (0x2042).\",\"source\":\"ELF\"},{\"id\":\"F014\",\"type\":\"DERIVED\",\"description\":\"Seccomp whitelist permits ORW (open/openat + read + write) file operations but denies execve — S2 should analyze open-read-write exfiltration as the intended exploitation path under sandbox.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"DERIVED\",\"description\":\"mprotect(10) is denied, so shellcode cannot change page permissions at runtime; however the mmap page is already RWX so this is not a constraint for code execution, only for modifying other memory regions.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact seccomp BPF filter generated by libseccomp at runtime (arg comparisons, architecture handling) not directly dumped\",\"reason\":\"seccomp-tools not installed; rules inferred from seccomp_rule_add call arguments in disassembly. S2/S3 could dump actual BPF via ptrace/seccomp-tools for confirmation.\"},{\"id\":\"U002\",\"description\":\"Whether the two read() rules (arg0==0 and unconstrained) interact in an unexpected way under libseccomp 2.5.5 rule merging\",\"reason\":\"libseccomp may merge/deduplicate rules; behavior inferred from source-level calls. Runtime BPF dump would confirm.\"},{\"id\":\"U003\",\"description\":\"Whether fstat(5) vs stat(4)/lstat(6) distinction matters for exploitation (e.g., fstatat not whitelisted)\",\"reason\":\"Only fstat(5) is whitelisted; stat-family variants (4,6,262,332) are denied. S2 should note this if file metadata needed.\"},{\"id\":\"U004\",\"description\":\"Flag file location/name unknown\",\"reason\":\"No flag path string in binary; challenge likely expects shellcode to open a flag file (common name /flag or ./flag) but path not embedded. S2/S4 must determine target file.\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE x86-64, dyn linked, interp /lib64/ld-linux-x86-64.so.2, BuildID 2fe8c23086e609f3b0922b4a2be48faedca8103b, GCC 10.2.0 (Debian 10.2.0-16), not stripped, source seccomp.c. Entry 0x10e0. 11 program headers, 30 sections. LOAD segments: R(0-0x840), RX(0x1000-0x157d), R(0x2000-0x2210), RW(0x3dd8-0x40a8). GNU_STACK RW (NX on). GNU_RELRO 0x3dd8-0x4000 (partial: .got.plt 0x4000 remains writable).\",\"sections\":\".text 0x10e0 sz 0x491 RX | .rodata 0x2000 sz 0x50 R | .data 0x4068 sz 0x10 RW | .bss 0x4080 sz 0x30 RW | .got 0x3fd8 sz 0x28 RW | .got.plt 0x4000 sz 0x68 RW | .init_array 0x3dd8 sz 8 RW | .fini_array 0x3de0 sz 8 RW | .plt 0x1020 sz 0xb0 RX | .plt.got 0x10d0 sz 8 RX\",\"symbols\":\"main 0x146d T | init 0x13f8 T | setup_seccomp 0x11c5 T | _abort 0x13ca T | _start 0x10e0 T | __libc_csu_init 0x1510 T | __libc_csu_fini 0x1570 T | stdout 0x4080 B | stdin 0x4090 B | stderr 0x40a0 B | completed.0 0x40a8 b | _IO_stdin_used 0x2000 R | U: seccomp_init seccomp_rule_add seccomp_load puts mmap printf alarm read setvbuf exit __libc_start_main\",\"disassembly\":\"main: push rbp; mov rbp,rsp; sub rsp,0x10; mov [rbp-4],0x1000; call init; lea rdi,[prompt]; call puts; mov eax,[rbp-4]; cdqe; mov r9d,0; mov r8d,-1; mov ecx,0x22; mov edx,7; mov rsi,rax; mov edi,0; call mmap; mov [rbp-0x10],rax; cmp rax,-1; jne +0x64; lea rdi,[mmap failed]; call _abort; mov eax,[rbp-4]; sub eax,1; movsxd rdx,eax; mov rax,[rbp-0x10]; mov rsi,rax; mov edi,0; call read; test rax,rax; jne +0x8f; lea rdi,[read failed]; call _abort; mov rax,[rbp-0x10]; call rax; mov eax,0; leave; ret. || setup_seccomp: seccomp_init(0)->ctx; err=0; rule read arg0==0 ALLOW; rule write ALLOW; rule open ALLOW; rule openat ALLOW; rule close ALLOW; rule read unconstrained ALLOW; rule mmap ALLOW; rule fstat ALLOW; rule brk ALLOW; rule exit ALLOW; rule exit_group ALLOW; seccomp_load(ctx); if err exit(1). || init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(60); setup_seccomp(). || _abort: printf('%s',rdi); exit(1).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0016-2021-T3-seccomp1-20260908-133252/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x10e0",
+      "dynamic": true,
+      "stripped": false,
+      "compiler": "GCC 10.2.0 (Debian 10.2.0-16)",
+      "buildid": "2fe8c23086e609f3b0922b4a2be48faedca8103b",
+      "source_file": "seccomp.c",
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "os_abi": "UNIX System V",
+      "abi_version": 0
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF",
+        "note": "GNU_STACK RW (no X) but mmap allocates RWX page at runtime"
+      },
+      "canary": {
+        "value": false,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": false,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": false,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "RUNTIME",
+        "note": "PIE enabled; ASLR active in observed environment"
+      },
+      "seccomp": {
+        "value": true,
+        "source": "DISASSEMBLY",
+        "note": "seccomp_init(SCMP_ACT_KILL=0) default-deny; rules added via seccomp_rule_add with SCMP_ACT_ALLOW=0x7fff0000; loaded via seccomp_load in setup_seccomp() called from init()"
+      },
+      "alarm": {
+        "value": 60,
+        "source": "DISASSEMBLY",
+        "note": "init() calls alarm(0x3c=60) before setup_seccomp"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "release": "Ubuntu GLIBC 2.39-0ubuntu8.8",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "ELF"
+      },
+      "libraries": [
+        {
+          "name": "libseccomp.so.2",
+          "needed": true,
+          "resolved_path": "/lib/x86_64-linux-gnu/libseccomp.so.2",
+          "real_file": "/lib/x86_64-linux-gnu/libseccomp.so.2.5.5",
+          "version": "2.5.5-1ubuntu3.1",
+          "size": 125360,
+          "rpath": false,
+          "runpath": false,
+          "ld_library_path_priority": true,
+          "note": "No RPATH/RUNPATH in target; LD_LIBRARY_PATH would take priority over system paths. System libseccomp 2.5.5 loaded. Exports seccomp_init/seccomp_rule_add/seccomp_load/seccomp_release etc. No init_array/.init side effects observed (standard lib).",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "libc.so.6",
+          "needed": true,
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "version": "2.39",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "linux-vdso.so.1",
+          "needed": false,
+          "note": "vdso, auto-injected"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        {
+          "source": "stdin",
+          "function": "main",
+          "via": "read(0, mmap_buf, 0xfff)",
+          "description": "shellcode input, up to 4095 bytes"
+        }
+      ],
+      "menu": [],
+      "user_controlled_inputs": [
+        {
+          "name": "shellcode",
+          "source": "stdin",
+          "function": "main",
+          "max_size": 4095,
+          "buffer": "mmap RWX page",
+          "description": "User-supplied shellcode read into RWX mmap region then executed via call rax"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".interp",
+          "address": "0x2a8",
+          "size": "0x1c",
+          "perms": "R"
+        },
+        {
+          "name": ".note.gnu.build-id",
+          "address": "0x2c4",
+          "size": "0x24",
+          "perms": "R"
+        },
+        {
+          "name": ".note.ABI-tag",
+          "address": "0x2e8",
+          "size": "0x20",
+          "perms": "R"
+        },
+        {
+          "name": ".gnu.hash",
+          "address": "0x308",
+          "size": "0x34",
+          "perms": "R"
+        },
+        {
+          "name": ".dynsym",
+          "address": "0x340",
+          "size": "0x1c8",
+          "perms": "R"
+        },
+        {
+          "name": ".dynstr",
+          "address": "0x508",
+          "size": "0xf5",
+          "perms": "R"
+        },
+        {
+          "name": ".gnu.version",
+          "address": "0x5fe",
+          "size": "0x26",
+          "perms": "R"
+        },
+        {
+          "name": ".gnu.version_r",
+          "address": "0x628",
+          "size": "0x20",
+          "perms": "R"
+        },
+        {
+          "name": ".rela.dyn",
+          "address": "0x648",
+          "size": "0x108",
+          "perms": "R"
+        },
+        {
+          "name": ".rela.plt",
+          "address": "0x750",
+          "size": "0xf0",
+          "perms": "R"
+        },
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x17",
+          "perms": "RX"
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xb0",
+          "perms": "RX"
+        },
+        {
+          "name": ".plt.got",
+          "address": "0x10d0",
+          "size": "0x8",
+          "perms": "RX"
+        },
+        {
+          "name": ".text",
+          "address": "0x10e0",
+          "size": "0x491",
+          "perms": "RX"
+        },
+        {
+          "name": ".fini",
+          "address": "0x1574",
+          "size": "0x9",
+          "perms": "RX"
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x50",
+          "perms": "R"
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x2050",
+          "size": "0x54",
+          "perms": "R"
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x20a8",
+          "size": "0x168",
+          "perms": "R"
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3dd8",
+          "size": "0x8",
+          "perms": "RW"
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3de0",
+          "size": "0x8",
+          "perms": "RW"
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x3de8",
+          "size": "0x1f0",
+          "perms": "RW"
+        },
+        {
+          "name": ".got",
+          "address": "0x3fd8",
+          "size": "0x28",
+          "perms": "RW"
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x4000",
+          "size": "0x68",
+          "perms": "RW",
+          "note": "Partial RELRO: .got.plt writable"
+        },
+        {
+          "name": ".data",
+          "address": "0x4068",
+          "size": "0x10",
+          "perms": "RW"
+        },
+        {
+          "name": ".bss",
+          "address": "0x4080",
+          "size": "0x30",
+          "perms": "RW"
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x4080",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4090",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "stderr",
+          "address": "0x40a0",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x40a8",
+          "size": 1,
+          "section": ".bss",
+          "type": "flag"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x4070",
+          "size": 0,
+          "section": ".data",
+          "type": "hidden"
+        },
+        {
+          "name": "_IO_stdin_used",
+          "address": "0x2000",
+          "size": 4,
+          "section": ".rodata",
+          "type": "int"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3fd8",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "_ITM_deregisterTMCloneTable"
+        },
+        {
+          "offset": "0x3fe0",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "__libc_start_main@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fe8",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "__gmon_start__"
+        },
+        {
+          "offset": "0x3ff0",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "_ITM_registerTMCloneTable"
+        },
+        {
+          "offset": "0x3ff8",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "__cxa_finalize@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x4018",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "seccomp_init",
+          "writable": true
+        },
+        {
+          "offset": "0x4020",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "seccomp_rule_add",
+          "writable": true
+        },
+        {
+          "offset": "0x4028",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "puts@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4030",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "seccomp_load",
+          "writable": true
+        },
+        {
+          "offset": "0x4038",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "mmap@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4040",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "printf@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4048",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "alarm@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4050",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "read@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4058",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "setvbuf@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x4060",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "exit@GLIBC_2.2.5",
+          "writable": true
+        }
+      ],
+      "plt": [
+        {
+          "name": "seccomp_init",
+          "plt_addr": "0x1030",
+          "got_addr": "0x4018"
+        },
+        {
+          "name": "seccomp_rule_add",
+          "plt_addr": "0x1040",
+          "got_addr": "0x4020"
+        },
+        {
+          "name": "puts",
+          "plt_addr": "0x1050",
+          "got_addr": "0x4028"
+        },
+        {
+          "name": "seccomp_load",
+          "plt_addr": "0x1060",
+          "got_addr": "0x4030"
+        },
+        {
+          "name": "mmap",
+          "plt_addr": "0x1070",
+          "got_addr": "0x4038"
+        },
+        {
+          "name": "printf",
+          "plt_addr": "0x1080",
+          "got_addr": "0x4040"
+        },
+        {
+          "name": "alarm",
+          "plt_addr": "0x1090",
+          "got_addr": "0x4048"
+        },
+        {
+          "name": "read",
+          "plt_addr": "0x10a0",
+          "got_addr": "0x4050"
+        },
+        {
+          "name": "setvbuf",
+          "plt_addr": "0x10b0",
+          "got_addr": "0x4058"
+        },
+        {
+          "name": "exit",
+          "plt_addr": "0x10c0",
+          "got_addr": "0x4060"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x146d",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "puts",
+          "mmap",
+          "_abort",
+          "read",
+          "<indirect call rax>"
+        ],
+        "inputs": [
+          {
+            "name": "shellcode",
+            "source": "stdin via read(0, buf, 0xfff)",
+            "type": "raw bytes"
+          }
+        ],
+        "checks": [
+          "mmap return != -1 (MAP_FAILED)",
+          "read return != 0"
+        ],
+        "memory_operations": [
+          {
+            "operation": "MMAP",
+            "destination": "anonymous RWX page",
+            "size": 4096,
+            "flags": "PROT_READ|PROT_WRITE|PROT_EXEC (0x7), MAP_PRIVATE|MAP_ANONYMOUS (0x22), fd=-1, offset=0",
+            "note": "mmap(0, 0x1000, 7, 0x22, -1, 0)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "mmap RWX page",
+            "size": "0xfff (4095)",
+            "source": "read(0, buf, size-1)",
+            "note": "reads up to 4095 bytes of shellcode into RWX page"
+          },
+          {
+            "operation": "EXECUTE",
+            "destination": "mmap RWX page",
+            "size": "n/a",
+            "note": "call rax — jumps to start of mmap'd buffer, executing user shellcode"
+          }
+        ],
+        "calls": [
+          "init",
+          "puts",
+          "mmap",
+          "read",
+          "_abort"
+        ],
+        "behavior": "init() -> puts(prompt) -> mmap RWX 0x1000 -> read shellcode (0xfff bytes) -> call rax (execute shellcode). On mmap failure or read returning 0, calls _abort then exit(1)."
+      },
+      {
+        "name": "init",
+        "address": "0x13f8",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm",
+          "setup_seccomp"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm",
+          "setup_seccomp"
+        ],
+        "behavior": "setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0) [unbuffered]; alarm(60); setup_seccomp()."
+      },
+      {
+        "name": "setup_seccomp",
+        "address": "0x11c5",
+        "callers": [
+          "init"
+        ],
+        "callees": [
+          "seccomp_init",
+          "seccomp_rule_add",
+          "seccomp_load",
+          "exit"
+        ],
+        "inputs": [],
+        "checks": [
+          "accumulates error in [rbp-0xc]; if nonzero after seccomp_load, exit(1)"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "seccomp_init",
+          "seccomp_rule_add",
+          "seccomp_load",
+          "exit"
+        ],
+        "behavior": "seccomp_init(0) [SCMP_ACT_KILL default]. Adds ALLOW rules: (1) read(0) with arg0==0 [SCMP_CMP_EQ], (2) write(1), (3) open(2), (4) openat(0x101), (5) close(3), (6) read(0) no-arg-constraint, (7) mmap(9), (8) fstat(5), (9) brk(0xc), (10) exit(0x3c), (11) exit_group(0xe7). seccomp_load(); exit(1) on error. NOTE: rule#1 read with arg0==0 and rule#6 read without constraint — both ALLOW read; net effect read always allowed.",
+        "seccomp_rules": [
+          {
+            "action": "SCMP_ACT_KILL",
+            "default": true,
+            "init_arg": 0,
+            "note": "seccomp_init(0) = SCMP_ACT_KILL — all syscalls default-killed"
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 0,
+            "name": "read",
+            "arg0_constraint": "==0 (fd stdin)",
+            "rule_index": 1
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 1,
+            "name": "write",
+            "rule_index": 2
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 2,
+            "name": "open",
+            "rule_index": 3
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 257,
+            "name": "openat",
+            "rule_index": 4
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 3,
+            "name": "close",
+            "rule_index": 5
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 0,
+            "name": "read",
+            "arg0_constraint": "none",
+            "rule_index": 6,
+            "note": "redundant with rule#1, read fully allowed"
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 9,
+            "name": "mmap",
+            "rule_index": 7
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 5,
+            "name": "fstat",
+            "rule_index": 8
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 12,
+            "name": "brk",
+            "rule_index": 9
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 60,
+            "name": "exit",
+            "rule_index": 10
+          },
+          {
+            "action": "SCMP_ACT_ALLOW",
+            "syscall": 231,
+            "name": "exit_group",
+            "rule_index": 11
+          }
+        ],
+        "allowed_syscalls": [
+          "read(0)",
+          "write(1)",
+          "open(2)",
+          "openat(257)",
+          "close(3)",
+          "read(0)_unconstrained",
+          "mmap(9)",
+          "fstat(5)",
+          "brk(12)",
+          "exit(60)",
+          "exit_group(231)"
+        ],
+        "denied_notable": [
+          "execve(59)",
+          "execveat(322)",
+          "fork(57)",
+          "vfork(58)",
+          "clone(56)",
+          "socket(41)",
+          "connect(42)",
+          "sendto(44)",
+          "recvfrom(45)",
+          "mprotect(10)",
+          "munmap(11)",
+          "stat(4)",
+          "lstat(6)",
+          "getdents(78)",
+          "readdir",
+          "chdir(80)",
+          "getcwd(79)"
+        ]
+      },
+      {
+        "name": "_abort",
+        "address": "0x13ca",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "caller rdi"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf",
+          "exit"
+        ],
+        "behavior": "printf('%s', msg); exit(1). Error handler for mmap/read failure."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "shellcode via read(0, mmap_buf, 0xfff)",
+        "operation": "EXECUTE — call rax jumps to user-controlled shellcode in RWX mmap page",
+        "risk": "HIGH",
+        "reason": "Attacker fully controls executed code (arbitrary shellcode in RWX page). This is by design (shellcode challenge). The real constraint is the seccomp sandbox limiting available syscalls."
+      },
+      {
+        "function": "setup_seccomp",
+        "input": "n/a (static rules)",
+        "operation": "SECCOMP sandbox — default KILL, whitelist of 11 syscalls",
+        "risk": "HIGH",
+        "reason": "Defines the exploit constraint surface. S2 must analyze which primitives are achievable under the whitelist: open/openat+read+write permits ORW (open-read-write) file exfiltration; execve/execveat are DENIED so no direct shell. mprotect DENIED. This is the core attack surface for S2."
+      },
+      {
+        "function": "main",
+        "input": "mmap RWX allocation",
+        "operation": "MMAP — anonymous RWX page (PROT_READ|PROT_WRITE|PROT_EXEC)",
+        "risk": "MEDIUM",
+        "reason": "RWX page enables arbitrary code execution; combined with seccomp this is the intended shellcode-execution primitive. No overflow in read (size 0xfff < page 0x1000)."
+      },
+      {
+        "function": "dependency_resolution",
+        "input": "libseccomp.so.2 NEEDED, no RPATH/RUNPATH",
+        "operation": "LIBRARY_LOAD — LD_LIBRARY_PATH priority over system paths",
+        "risk": "LOW",
+        "reason": "No RPATH/RUNPATH; LD_LIBRARY_PATH could redirect libseccomp resolution, but this is an environment-level concern, not a binary vulnerability. System libseccomp 2.5.5 loads normally."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian), source file seccomp.c",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, No canary, PIE enabled, No FORTIFY, No CET (IBT/SHSTK). .got.plt is writable.",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "libseccomp.so.2 (v2.5.5-1ubuntu3.1, 125360 bytes) loaded from /lib/x86_64-linux-gnu/libseccomp.so.2. No RPATH/RUNPATH in binary.",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "main() at 0x146d: calls init(), puts('Give me your shellcode (max: 4096):'), mmap(0,0x1000,7,0x22,-1,0) [RWX anonymous], read(0, buf, 0xfff), then call rax to execute shellcode.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "init() at 0x13f8: setvbuf(stdin/stdout/stderr, 0, 2, 0) [unbuffered], alarm(60), setup_seccomp().",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "setup_seccomp() at 0x11c5: seccomp_init(0) [SCMP_ACT_KILL default-deny]. Adds 11 ALLOW rules via seccomp_rule_add(SCMP_ACT_ALLOW=0x7fff0000). Allowed syscalls: read(0) [arg0==0], write(1), open(2), openat(257/0x101), close(3), read(0) [unconstrained], mmap(9), fstat(5), brk(12), exit(60/0x3c), exit_group(231/0xe7). seccomp_load() then exit(1) on error.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "read() syscall has two ALLOW rules: rule#1 with arg0==0 constraint, rule#6 without constraint. Net effect: read() is fully allowed for any fd.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "execve(59), execveat(322), mprotect(10), munmap(11), fork/clone, socket/connect, stat(4)/lstat(6), getdents(78), chdir(80), getcwd(79) are NOT in whitelist → default KILL.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "mmap allocates RWX page (PROT_READ|PROT_WRITE|PROT_EXEC=0x7). read writes up to 0xfff (4095) bytes into it. call rax executes it. No buffer overflow: read size 0xfff < page size 0x1000.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "probe_io with input 'AAAA' (non-shellcode bytes 0x41414141): program prints prompt 'Give me your shellcode (max: 4096):' then segfaults executing 0x41414141 — confirms shellcode execution path works.",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "_abort() at 0x13ca: printf('%s', msg); exit(1). Called on mmap failure (msg='mmap failed!') or read returning 0 (msg='read failed!').",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": ".rodata at 0x2000 contains strings: '%s' (0x2008), 'Give me your shellcode (max: 4096):' (0x2010), 'mmap failed!' (0x2034), 'read failed!' (0x2042).",
+        "source": "ELF"
+      },
+      {
+        "id": "F014",
+        "type": "DERIVED",
+        "description": "Seccomp whitelist permits ORW (open/openat + read + write) file operations but denies execve — S2 should analyze open-read-write exfiltration as the intended exploitation path under sandbox.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "DERIVED",
+        "description": "mprotect(10) is denied, so shellcode cannot change page permissions at runtime; however the mmap page is already RWX so this is not a constraint for code execution, only for modifying other memory regions.",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Exact seccomp BPF filter generated by libseccomp at runtime (arg comparisons, architecture handling) not directly dumped",
+        "reason": "seccomp-tools not installed; rules inferred from seccomp_rule_add call arguments in disassembly. S2/S3 could dump actual BPF via ptrace/seccomp-tools for confirmation."
+      },
+      {
+        "id": "U002",
+        "description": "Whether the two read() rules (arg0==0 and unconstrained) interact in an unexpected way under libseccomp 2.5.5 rule merging",
+        "reason": "libseccomp may merge/deduplicate rules; behavior inferred from source-level calls. Runtime BPF dump would confirm."
+      },
+      {
+        "id": "U003",
+        "description": "Whether fstat(5) vs stat(4)/lstat(6) distinction matters for exploitation (e.g., fstatat not whitelisted)",
+        "reason": "Only fstat(5) is whitelisted; stat-family variants (4,6,262,332) are denied. S2 should note this if file metadata needed."
+      },
+      {
+        "id": "U004",
+        "description": "Flag file location/name unknown",
+        "reason": "No flag path string in binary; challenge likely expects shellcode to open a flag file (common name /flag or ./flag) but path not embedded. S2/S4 must determine target file."
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE x86-64, dyn linked, interp /lib64/ld-linux-x86-64.so.2, BuildID 2fe8c23086e609f3b0922b4a2be48faedca8103b, GCC 10.2.0 (Debian 10.2.0-16), not stripped, source seccomp.c. Entry 0x10e0. 11 program headers, 30 sections. LOAD segments: R(0-0x840), RX(0x1000-0x157d), R(0x2000-0x2210), RW(0x3dd8-0x40a8). GNU_STACK RW (NX on). GNU_RELRO 0x3dd8-0x4000 (partial: .got.plt 0x4000 remains writable).",
+      "sections": ".text 0x10e0 sz 0x491 RX | .rodata 0x2000 sz 0x50 R | .data 0x4068 sz 0x10 RW | .bss 0x4080 sz 0x30 RW | .got 0x3fd8 sz 0x28 RW | .got.plt 0x4000 sz 0x68 RW | .init_array 0x3dd8 sz 8 RW | .fini_array 0x3de0 sz 8 RW | .plt 0x1020 sz 0xb0 RX | .plt.got 0x10d0 sz 8 RX",
+      "symbols": "main 0x146d T | init 0x13f8 T | setup_seccomp 0x11c5 T | _abort 0x13ca T | _start 0x10e0 T | __libc_csu_init 0x1510 T | __libc_csu_fini 0x1570 T | stdout 0x4080 B | stdin 0x4090 B | stderr 0x40a0 B | completed.0 0x40a8 b | _IO_stdin_used 0x2000 R | U: seccomp_init seccomp_rule_add seccomp_load puts mmap printf alarm read setvbuf exit __libc_start_main",
+      "disassembly": "main: push rbp; mov rbp,rsp; sub rsp,0x10; mov [rbp-4],0x1000; call init; lea rdi,[prompt]; call puts; mov eax,[rbp-4]; cdqe; mov r9d,0; mov r8d,-1; mov ecx,0x22; mov edx,7; mov rsi,rax; mov edi,0; call mmap; mov [rbp-0x10],rax; cmp rax,-1; jne +0x64; lea rdi,[mmap failed]; call _abort; mov eax,[rbp-4]; sub eax,1; movsxd rdx,eax; mov rax,[rbp-0x10]; mov rsi,rax; mov edi,0; call read; test rax,rax; jne +0x8f; lea rdi,[read failed]; call _abort; mov rax,[rbp-0x10]; call rax; mov eax,0; leave; ret. || setup_seccomp: seccomp_init(0)->ctx; err=0; rule read arg0==0 ALLOW; rule write ALLOW; rule open ALLOW; rule openat ALLOW; rule close ALLOW; rule read unconstrained ALLOW; rule mmap ALLOW; rule fstat ALLOW; rule brk ALLOW; rule exit ALLOW; rule exit_group ALLOW; seccomp_load(ctx); if err exit(1). || init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(60); setup_seccomp(). || _abort: printf('%s',rdi); exit(1)."
+    }
+  }
+}

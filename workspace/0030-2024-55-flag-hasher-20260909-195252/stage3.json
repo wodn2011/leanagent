@@ -1,0 +1,598 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1260\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"buildid\":\"bfe415bae2ea5785bc83f99c636c45b6c50b35b8\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libcrypto.so.3\",\"path\":\"/lib/x86_64-linux-gnu/libcrypto.so.3\",\"version\":\"OpenSSL 3.0.13\",\"source\":\"RUNTIME\"},{\"name\":\"libc.so.6\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[\"1 - Compute sha256\",\"2 - Read Hash record\"],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf\",\"format\":\"%d\",\"address\":\"0x2167\",\"description\":\"Menu selection (1=compute, 2=read)\"},{\"name\":\"text_to_hash\",\"source\":\"read\",\"size\":1023,\"description\":\"Text input for SHA256 hashing\"},{\"name\":\"read_idx\",\"source\":\"scanf\",\"format\":\"%u\",\"address\":\"0x21dd\",\"description\":\"Index for reading hash record (unsigned, no upper bound check)\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1260\",\"size\":\"0x633\",\"permissions\":\"RX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x209\",\"permissions\":\"R\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x38\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x3f38\",\"size\":\"0xc8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".init_array\",\"address\":\"0x3d28\",\"size\":\"0x8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x3d30\",\"size\":\"0x8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false}],\"globals\":[{\"name\":\"stdin\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"},{\"name\":\"stdout\",\"address\":\"0x4048\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\"}],\"got\":[{\"offset\":\"0x3f50\",\"symbol\":\"printf\"},{\"offset\":\"0x3f58\",\"symbol\":\"memset\"},{\"offset\":\"0x3f60\",\"symbol\":\"puts\"},{\"offset\":\"0x3f68\",\"symbol\":\"exit\"},{\"offset\":\"0x3f70\",\"symbol\":\"setvbuf\"},{\"offset\":\"0x3f78\",\"symbol\":\"putchar\"},{\"offset\":\"0x3f80\",\"symbol\":\"read\"},{\"offset\":\"0x3f88\",\"symbol\":\"clearenv\"},{\"offset\":\"0x3f90\",\"symbol\":\"strlen\"},{\"offset\":\"0x3f98\",\"symbol\":\"SHA256_Init\"},{\"offset\":\"0x3fa0\",\"symbol\":\"SHA256_Final\"},{\"offset\":\"0x3fa8\",\"symbol\":\"getenv\"},{\"offset\":\"0x3fb0\",\"symbol\":\"alarm\"},{\"offset\":\"0x3fb8\",\"symbol\":\"__stack_chk_fail\"},{\"offset\":\"0x3fc0\",\"symbol\":\"__isoc99_scanf\"},{\"offset\":\"0x3fc8\",\"symbol\":\"SHA256_Update\"},{\"offset\":\"0x3fd0\",\"symbol\":\"calloc\"}],\"plt\":[{\"symbol\":\"printf\",\"address\":\"0x1150\"},{\"symbol\":\"memset\",\"address\":\"0x1160\"},{\"symbol\":\"puts\",\"address\":\"0x1170\"},{\"symbol\":\"exit\",\"address\":\"0x1180\"},{\"symbol\":\"setvbuf\",\"address\":\"0x1190\"},{\"symbol\":\"putchar\",\"address\":\"0x11a0\"},{\"symbol\":\"read\",\"address\":\"0x11b0\"},{\"symbol\":\"clearenv\",\"address\":\"0x11c0\"},{\"symbol\":\"strlen\",\"address\":\"0x11d0\"},{\"symbol\":\"SHA256_Init\",\"address\":\"0x11e0\"},{\"symbol\":\"SHA256_Final\",\"address\":\"0x11f0\"},{\"symbol\":\"getenv\",\"address\":\"0x1200\"},{\"symbol\":\"alarm\",\"address\":\"0x1210\"},{\"symbol\":\"__stack_chk_fail\",\"address\":\"0x1220\"},{\"symbol\":\"__isoc99_scanf\",\"address\":\"0x1230\"},{\"symbol\":\"SHA256_Update\",\"address\":\"0x1240\"},{\"symbol\":\"calloc\",\"address\":\"0x1250\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1521\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"getenv\",\"_abort\",\"compute_hash256\",\"clearenv\",\"memset\",\"menu\",\"__isoc99_scanf\",\"printf\",\"read\",\"puts\",\"putchar\"],\"inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf %d\",\"stack\":\"rbp-0x4b4\"},{\"name\":\"text_to_hash\",\"source\":\"read(0, buf, 0x3ff)\",\"stack\":\"rbp-0x410\"},{\"name\":\"read_idx\",\"source\":\"scanf %u\",\"stack\":\"rbp-0x4b0\"}],\"checks\":[\"menu_choice == 1 -> compute; == 2 -> read; else -> _abort('Unknown command')\",\"compute: loop idx 0..15 to find NULL slot; if idx==16 -> 'OUT-OF-MEMORY' puts + continue\",\"read: if hash_ptr[idx]==NULL -> _abort('Entry does not exist')\",\"NO upper bound check on read_idx before array indexing\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"hash_array[search_idx] = compute_hash256(text)\",\"stack\":\"rbp-0x490 + search_idx*8\",\"size\":8,\"destination_type\":\"stack_pointer_array\"},{\"operation\":\"READ\",\"destination\":\"hash_ptr = hash_array[read_idx]\",\"stack\":\"rbp-0x490 + read_idx*8\",\"size\":8,\"destination_type\":\"stack_pointer_array_dereference\",\"note\":\"read_idx from scanf %u, NO bounds check, attacker-controlled index reaches pointer dereference\"},{\"operation\":\"READ\",\"destination\":\"print 32 bytes from *hash_ptr\",\"size\":32,\"destination_type\":\"heap_pointer_dereference\",\"note\":\"prints 32 bytes (SHA256 digest) from dereferenced pointer via printf %02hhX loop\"}],\"calls\":[\"init\",\"getenv\",\"compute_hash256\",\"clearenv\",\"memset\",\"menu\",\"__isoc99_scanf\",\"printf\",\"read\",\"puts\",\"putchar\",\"_abort\"]},{\"name\":\"compute_hash256\",\"address\":\"0x137e\",\"callers\":[\"main\"],\"callees\":[\"calloc\",\"SHA256_Init\",\"strlen\",\"SHA256_Update\",\"SHA256_Final\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"text\",\"source\":\"rdi (caller stack buffer)\"}],\"checks\":[\"stack canary\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"calloc(0x20, 1) -> 32-byte heap buffer for SHA256 digest\",\"size\":32},{\"operation\":\"WRITE\",\"destination\":\"SHA256_Final(digest_buf, ctx) writes 32 bytes to heap buffer\"}],\"calls\":[\"calloc\",\"SHA256_Init\",\"strlen\",\"SHA256_Update\",\"SHA256_Final\"],\"note\":\"Returns pointer to 32-byte heap-allocated SHA256 digest\"},{\"name\":\"init\",\"address\":\"0x14b2\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"note\":\"setvbuf(stdin/stdout/stderr, NULL, _IONBF, 0); alarm(60)\"},{\"name\":\"menu\",\"address\":\"0x1420\",\"callers\":[\"main\"],\"callees\":[\"puts\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\"],\"note\":\"Prints ASCII banner and menu options\"},{\"name\":\"_abort\",\"address\":\"0x1349\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"note\":\"printf('%s', msg); exit(1)\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"read_idx (scanf %u at 0x17d8)\",\"operation\":\"READ: hash_array[read_idx] dereference + 32-byte print loop\",\"risk\":\"HIGH\",\"reason\":\"Attacker-controlled unsigned index with NO upper bound check reaches stack pointer array dereference at [rbp+rax*8-0x490]. idx 0..15 = valid hash slots; idx 16..145 = overlaps text buffer (zeros -> NULL -> abort); idx 146 = saved rbp (stack address leak CONFIRMED at runtime); idx 147 = return address; idx 0xffffffff = Bus error crash (OOB read beyond mapped memory). This is an out-of-bounds stack read primitive.\"},{\"function\":\"main\",\"input\":\"text_to_hash (read at 0x16a6)\",\"operation\":\"WRITE: read(0, rbp-0x410, 0x3ff) into stack buffer\",\"risk\":\"MEDIUM\",\"reason\":\"1023-byte read into 1024-byte stack buffer at rbp-0x410. Buffer is adjacent to hash pointer array (rbp-0x490) and canary (rbp-0x8). No overflow by itself (0x3ff < 0x400), but text buffer overlaps hash array indices 16..145.\"},{\"function\":\"main\",\"input\":\"flag environment variable\",\"operation\":\"getenv('flag') -> compute_hash256 -> stored at hash_array[0] -> clearenv()\",\"risk\":\"LOW\",\"reason\":\"Flag is hashed with SHA256 and stored at idx 0, then environment is cleared. The flag hash (not plaintext) is readable via Read Hash record idx 0.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is x86-64 PIE, dynamically linked, not stripped, GCC 11.4.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX, Canary, PIE, SHSTK+IBT (CET) enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"Runtime: glibc 2.39, OpenSSL 3.0.13, no RPATH/RUNPATH (system library paths only)\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Program requires environment variable 'flag' (lowercase) at startup; if missing, calls _abort('can\\\\'t find the flag!') and exits\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main stack frame: sub rsp,0x4c0. Hash pointer array at rbp-0x490 (16 entries, idx 0-15). Text buffer at rbp-0x410 (0x400 bytes). Canary at rbp-0x8.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"Read Hash record uses scanf('%u') at 0x17d8 to read index into rbp-0x4b0, then accesses hash_array[idx] at [rbp+rax*8-0x490] with NO upper bound check. Only NULL check on dereferenced pointer.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"Compute sha256 uses read(0, rbp-0x410, 0x3ff) for text input, calls compute_hash256, stores result pointer at first NULL slot in hash_array (search idx 0-15).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"compute_hash256 allocates 32-byte heap buffer via calloc(0x20,1), computes SHA256, returns heap pointer to digest\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Flag hash stored at hash_array[0] (idx 0) at startup; clearenv() called after to remove environment variables\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"Menu only accepts 1 (compute) and 2 (read); any other value calls _abort('Unknown command') and exit(1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Read idx 0 returns flag's SHA256 hash (32 hex bytes)\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Read idx 16-145 returns 'Entry does not exist' (text buffer is zeroed -> NULL pointer -> abort)\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Read idx 146 returns 32 bytes containing stack addresses (0x7ffc...) - saved rbp leak CONFIRMED. Two runs yielded different addresses (ASLR confirmed).\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Read idx 0xffffffff causes Bus error (SIGBUS, exit code 135) - OOB read beyond mapped memory\",\"source\":\"RUNTIME\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"init() calls alarm(60) - 60 second timeout, and setvbuf(_IONBF) on stdin/stdout/stderr\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"idx 146 = rbp-0x490+146*8 = rbp (saved rbp on stack). idx 147 = rbp+0x8 (return address). idx 16 = rbp-0x410 (text buffer start).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"The OOB read at idx 146 leaks saved rbp (stack address), enabling stack address disclosure. idx 147 would leak return address (potential PIE/libc leak).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; library search order: LD_LIBRARY_PATH > system paths. libcrypto.so.3 and libc.so.6 both resolve from /lib/x86_64-linux-gnu/\",\"source\":\"ELF\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact value at idx 147 (return address) - runtime test showed data but values did not cleanly parse as expected PIE/libc addresses; may need debugger to confirm exact layout at that offset\",\"reason\":\"Stack frame of __libc_start_main caller may have additional saved registers between saved rbp and return address\"},{\"id\":\"U002\",\"description\":\"Whether the OOB read can be leveraged beyond information disclosure (e.g., to leak canary, PIE base, libc base)\",\"reason\":\"S2 should determine which specific offsets leak canary (rbp-0x8 = idx ~145.875, not aligned), PIE base, and libc addresses\"},{\"id\":\"U003\",\"description\":\"Whether text buffer content (user-controlled via read) at idx 16-145 can be used to plant fake pointers for the read dereference\",\"reason\":\"Text buffer is memset to 0 after each compute, but during the compute flow the buffer contains user text before memset; the read flow uses a separate menu iteration\"}],\"raw\":{\"elf\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped. Entry=0x1260. 13 program headers, 31 sections.\",\"sections\":\".text@0x1260(0x633,RX) .rodata@0x2000(0x209,R) .data@0x4000(0x10,RW) .bss@0x4020(0x38,RW) .got@0x3f38(0xc8,RW) .init_array@0x3d28(0x8,RW) .fini_array@0x3d30(0x8,RW)\",\"symbols\":\"main@0x1521 compute_hash256@0x137e init@0x14b2 menu@0x1420 _abort@0x1349 _start@0x1260 _init@0x1000 _fini@0x1894\",\"disassembly\":\"main: sub rsp,0x4c0; hash_array@rbp-0x490(16 entries); text_buf@rbp-0x410(0x400); canary@rbp-0x8. Read path: scanf(%u)->idx@rbp-0x4b0; ptr=[rbp+rax*8-0x490]; if(!ptr)_abort; else print 32 bytes via printf(%02hhX) loop. NO bounds check on idx. Compute path: read(0,rbp-0x410,0x3ff); compute_hash256; store at first NULL slot. Flag: getenv(flag)->compute_hash256->array[0]->clearenv.\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":2,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"OOB_ARRAY_INDEX_MISSING_BOUNDS_CHECK\",\"root_cause\":{\"type\":\"Index Validation Error\",\"description\":\"In the 'Read Hash record' path of main, the user-supplied index read via scanf('%u') at 0x17d8 is used directly to access the hash_array at [rbp+rax*8-0x490] without any upper or lower bound check. The only validation performed is a NULL check on the dereferenced pointer value (test rax,rax at 0x17ed). The hash_array has only 16 valid entries (indices 0-15), but the unsigned index can be any value from 0 to 0xFFFFFFFF. The 'mov eax,eax' at 0x17e3 zero-extends the 32-bit unsigned value to 64-bit, so the index is treated as a large positive offset. For indices >= 16, the access reads beyond the hash_array into adjacent stack regions: the text buffer (idx 16-145), the stack canary (idx 145), the saved rbp (idx 146), the return address (idx 147), and potentially far beyond the stack frame for very large indices. If the OOB slot contains a non-NULL value, that value is then dereferenced as a pointer and 32 bytes are read and printed from it, creating an information disclosure primitive.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"hash_array[16] at rbp-0x490 (stack pointer array, 0x80 bytes)\",\"text_buf at rbp-0x410 (stack buffer, 0x400 bytes)\",\"stack canary at rbp-0x8\",\"saved rbp at rbp+0x0\",\"return address at rbp+0x8\"],\"attack_surface\":{\"input\":\"read_idx via scanf('%u') at address 0x17d8, stored at rbp-0x4b0\",\"entry_function\":\"main\",\"data_flow\":[\"scanf('%u', &read_idx) reads unsigned integer from stdin into rbp-0x4b0 at 0x17d8\",\"mov eax, [rbp-0x4b0] loads the 32-bit unsigned index at 0x17dd\",\"mov eax,eax zero-extends to 64-bit at 0x17e3 (unsigned, no sign extension)\",\"mov rax, [rbp+rax*8-0x490] accesses hash_array[idx] with NO bounds check at 0x17e5\",\"test rax,rax checks only if the loaded value is NULL at 0x17ed\",\"If non-NULL: the loaded 8-byte value is treated as a pointer\",\"Loop at 0x1829-0x186e: mov rdx, [rbp+rax*8-0x490] re-reads OOB slot, then add rax,rdx + movzx eax,[rax] dereferences the OOB pointer value, printing 32 bytes via printf('%02hhX')\"]},\"security_check\":{\"expected\":\"The read_idx should be validated to be within [0, 15] (the valid range of hash_array entries) before being used as an array index. An upper bound check (e.g., cmp idx, 0xf; ja abort) is required.\",\"actual\":\"No bounds check exists on read_idx. The only check is 'test rax,rax; jne' (NULL check) at 0x17ed-0x17f0, which only verifies the dereferenced pointer value is non-NULL. This check does not constrain the index at all — it merely filters out slots that happen to contain zero.\",\"missing_or_incorrect\":\"Missing upper bound check on the unsigned index before array access. The compute path correctly bounds its search index with 'cmp [rbp-0x4a8],0xf; jle' at 0x1650-0x1657, but the read path has no equivalent check.\"},\"vulnerable_operation\":{\"operation\":\"OOB stack read via pointer array dereference + subsequent heap/pointer dereference\",\"address\":\"0x17e5 (array access) and 0x1844 (pointer dereference in print loop)\",\"expression\":\"hash_array[read_idx] = *(rbp + read_idx*8 - 0x490) where read_idx is attacker-controlled unsigned with no bounds; then *hash_array[read_idx] + [0..31] bytes printed\",\"target\":\"Stack memory beyond hash_array (text buffer, canary, saved rbp, return address) and subsequently whatever address the OOB value points to\",\"size\":\"8 bytes read from OOB stack slot; 32 bytes read from dereferenced OOB pointer value\"},\"impact\":[{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"At idx 146, the access reads rbp+0x0 (saved rbp), which is a stack address. At idx 145, it reads rbp-0x8 (the stack canary). At idx 147, it reads rbp+0x8 (the return address, a PIE code address). If any of these OOB slots contain a non-NULL value, that value is dereferenced as a pointer and 32 bytes from that target address are printed to stdout. For idx 146 (saved rbp), the value is a stack pointer (0x7ffc...); dereferencing it reads 32 bytes of stack content starting from the caller's frame, leaking stack data. For idx 147 (return address), the value is a PIE .text address; dereferencing it reads 32 bytes of code. The canary at idx 145 is a random 64-bit value; if non-NULL (almost always true), dereferencing it reads 32 bytes from a random address, which may crash or leak data. S1 runtime testing confirmed idx 146 leaks stack addresses (0x7ffc...).\"},{\"type\":\"OOB_READ\",\"status\":\"CANDIDATE\",\"reason\":\"The unsigned index with no upper bound allows reading any 8-byte-aligned stack slot relative to rbp-0x490. For very large indices (e.g., 0xFFFFFFFF), the computed address rbp-0x490+0xFFFFFFFF*8 wraps to a location far beyond mapped memory, causing SIGBUS/SIGSEGV (confirmed by S1 runtime: idx 0xFFFFFFFF causes Bus error, exit code 135). For moderate indices (16-200+), the access reads stack data beyond the hash_array including the text buffer, canary, saved rbp, return address, and caller frame data.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"When an OOB slot contains a non-NULL value that is not a valid pointer (e.g., the canary at idx 145 is a random 64-bit value), the subsequent dereference at 0x1844 (movzx eax, BYTE PTR [rax]) will attempt to read from an invalid address, causing SIGSEGV or SIGBUS. S1 confirmed idx 0xFFFFFFFF causes SIGBUS. Additionally, dereferencing the canary value (a random address) at idx 145 would likely crash.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x17dd-0x17e5\",\"description\":\"Disassembly shows: 0x17dd: mov eax,[rbp-0x4b0] loads the scanf-read unsigned index; 0x17e3: mov eax,eax zero-extends to 64-bit; 0x17e5: mov rax,[rbp+rax*8-0x490] uses the index directly as an array offset with NO preceding cmp/jcc bounds check. The only check is test rax,rax at 0x17ed (NULL check on the loaded value, not on the index).\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x17c9-0x17d8\",\"description\":\"scanf format string at 0x21dd is '%u' (confirmed via xxd: bytes 25 75 00 = '%u\\\\0'), reading an unsigned 32-bit integer with no range restriction. The value is stored at rbp-0x4b0.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1529, 0x1587, 0x15ce\",\"description\":\"Stack frame layout confirmed: sub rsp,0x4c0 at 0x1529; hash_array base at rbp-0x490 (flag hash stored at [rbp-0x490] at 0x1587); text_buf at rbp-0x410 (lea rax,[rbp-0x410] at 0x15ce); canary at rbp-0x8 (mov [rbp-0x8],rax at 0x1539). This places: idx 145 = rbp-0x8 (canary), idx 146 = rbp (saved rbp), idx 147 = rbp+0x8 (return address).\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1829-0x1844\",\"description\":\"Print loop re-reads the OOB slot: 0x182f: mov eax,eax (zero-extend idx); 0x1831: mov rdx,[rbp+rax*8-0x490] (load OOB pointer); 0x1841: add rax,rdx (ptr + loop_offset); 0x1844: movzx eax,BYTE PTR [rax] (dereference OOB pointer value). This dereferences whatever 8-byte value was read from the OOB stack slot, printing 32 bytes from that address.\"},{\"id\":\"E005\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x1650-0x1657 vs 0x17dd-0x17e5\",\"description\":\"Contrast with compute path: the compute path bounds its search index with 'cmp [rbp-0x4a8],0xf; jle' at 0x1650-0x1657, limiting to indices 0-15. The read path has no equivalent bounds check, confirming the omission is a bug, not an intentional design choice.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm at runtime that idx 145 leaks the stack canary value (8 bytes at rbp-0x8)\",\"Confirm at runtime that idx 147 leaks the return address (PIE base disclosure)\",\"Confirm whether dereferencing the canary value (random address) at idx 145 crashes or leaks data\",\"Determine whether the leaked stack address at idx 146 can be used to defeat ASLR for subsequent exploitation (S3/S4 scope)\"]},{\"bug_id\":\"BUG-002\",\"title\":\"READ_RETURN_VALUE_USED_AS_INDEX_WITHOUT_VALIDATION\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"In the compute path of main, the return value of read(0, buf, 0x3ff) is stored at rbp-0x49c and then used to compute an index into the text buffer without checking for error/EOF conditions. At 0x16b7, 'sub eax,0x1' subtracts 1 from the read return value, and at 0x16ba 'cdqe' sign-extends it to 64-bit. If read() returns 0 (EOF) or -1 (error), the computation produces -1 (0xFFFFFFFFFFFFFFFF) or -2 (0xFFFFFFFFFFFFFFFE) respectively, and the subsequent 'movzx eax, BYTE PTR [rbp+rax*1-0x410]' at 0x16bc accesses text_buf at a massive negative offset, reading far beyond the stack frame boundary.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"text_buf at rbp-0x410 (stack buffer, 0x400 bytes)\",\"read return value at rbp-0x49c\"],\"attack_surface\":{\"input\":\"read() return value (affected by stdin EOF or read error)\",\"entry_function\":\"main\",\"data_flow\":[\"read(0, rbp-0x410, 0x3ff) at 0x16a6 returns number of bytes read (or -1 on error, 0 on EOF)\",\"Return value stored at rbp-0x49c at 0x16ab\",\"mov eax, [rbp-0x49c] at 0x16b1 loads the return value\",\"sub eax, 0x1 at 0x16b7 subtracts 1 (intending to index last byte read for newline check)\",\"cdqe at 0x16ba sign-extends to 64-bit\",\"movzx eax, BYTE PTR [rbp+rax*1-0x410] at 0x16bc accesses text_buf[ret_val-1]\"]},\"security_check\":{\"expected\":\"The return value of read() should be checked for <= 0 (error or EOF) before using it as an array index. A check like 'cmp eax,0; jle skip_newline_strip' is required.\",\"actual\":\"No check on the read() return value. The code directly subtracts 1 and uses the result as an index into the text buffer.\",\"missing_or_incorrect\":\"Missing validation of read() return value before using it as an array index. If read returns 0 or -1, the index becomes negative (sign-extended to a huge value), causing an OOB read.\"},\"vulnerable_operation\":{\"operation\":\"OOB stack read via unchecked read() return value used as index\",\"address\":\"0x16bc\",\"expression\":\"text_buf[read_ret - 1] where read_ret can be 0 (EOF) or -1 (error), producing index -1 or -2\",\"target\":\"Stack memory at rbp-0x410 + (0xFFFFFFFFFFFFFFFF or 0xFFFFFFFFFFFFFFFE) = far below stack frame\",\"size\":\"1 byte read (movzx)\"},\"impact\":[{\"type\":\"OOB_READ\",\"status\":\"THEORETICAL\",\"reason\":\"If read() returns 0 (EOF, e.g., stdin closed) or -1 (error), the index computation produces a negative value that sign-extends to a huge 64-bit value, and the movzx at 0x16bc reads 1 byte from an address far below the stack frame. This is an OOB read of 1 byte. The read value is only used for a comparison (cmp al, 0xa to check for newline) and is not stored or written anywhere, limiting the impact to a potential crash if the address is unmapped.\"},{\"type\":\"CRASH\",\"status\":\"THEORETICAL\",\"reason\":\"If the computed address (rbp-0x410 + 0xFFFFFFFFFFFFFFFF = rbp-0x411, which wraps to a very high address) is not mapped, the movzx dereference causes SIGSEGV. This requires the attacker to trigger an EOF or error on read(), which may be achievable by closing stdin or sending specific input.\"}],\"evidence\":[{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x16a6-0x16bc\",\"description\":\"Disassembly: 0x16a6: call read@plt; 0x16ab: mov [rbp-0x49c],eax (store ret); 0x16b1: mov eax,[rbp-0x49c] (load ret); 0x16b7: sub eax,0x1 (ret-1); 0x16ba: cdqe (sign-extend); 0x16bc: movzx eax,BYTE PTR [rbp+rax*1-0x410] (index into text_buf). No check for ret <= 0 between 0x16ab and 0x16bc.\"}],\"confidence\":\"MEDIUM\",\"verification_required\":[\"Confirm at runtime that closing stdin (EOF) during the compute path triggers the OOB read or crash\",\"Determine whether the 1-byte OOB read value is used in any subsequent control flow decision beyond the newline comparison\"]}],\"non_vulnerabilities\":[{\"function\":\"compute_hash256\",\"description\":\"compute_hash256 allocates a 32-byte heap buffer via calloc(0x20,1), initializes SHA256 context, calls SHA256_Update with strlen(text) as length, and SHA256_Final to write the 32-byte digest. The heap buffer is exactly 32 bytes and SHA256_Final writes exactly 32 bytes (SHA256_DIGEST_LENGTH). No overflow. Stack canary is present and checked.\",\"reason\":\"calloc(0x20,1) = 32 bytes; SHA256_Final writes SHA256_DIGEST_LENGTH = 32 bytes. Size matches. strlen correctly measures input length for SHA256_Update. No memory safety issue found.\"},{\"function\":\"main (compute path store)\",\"description\":\"The compute path stores the hash pointer at hash_array[search_idx] where search_idx is bounded by the loop 'cmp [rbp-0x4a8],0xf; jle' at 0x1650-0x1657, limiting to indices 0-15. If idx reaches 16 (all slots full), it prints 'OUT-OF-MEMORY' and continues without storing. The store at 0x16f3 uses movsxd (sign-extend) which is safe for values 0-15.\",\"reason\":\"The store index is properly bounded by the search loop (0-15). No OOB write possible on the compute path.\"},{\"function\":\"main (text buffer read)\",\"description\":\"read(0, rbp-0x410, 0x3ff) reads at most 1023 bytes into a 1024-byte (0x400) buffer at rbp-0x410. The buffer is 0x400 bytes and read size is 0x3ff, so no overflow. The buffer is memset to 0 before each read (0x15e2 initial, 0x170f per-iteration).\",\"reason\":\"0x3ff < 0x400, so the read cannot overflow the text buffer. The buffer is properly sized and zeroed.\"},{\"function\":\"main (text buffer zeroing prevents fake pointer planting)\",\"description\":\"S1 raised uncertainty (U003) about whether user-controlled text buffer content at indices 16-145 could plant fake pointers for the read dereference. Analysis confirms: the text buffer is memset to 0 after each compute operation (0x170f) before returning to the menu loop. The read path is in a separate menu iteration. Therefore, indices 16-145 always contain zeros (NULL pointers) when the read path executes, and the NULL check at 0x17ed catches them, calling _abort. Fake pointer planting via the text buffer is not possible.\",\"reason\":\"memset(rbp-0x410, 0, 0x400) at 0x170f executes after every compute operation before the next menu iteration, ensuring the text buffer (indices 16-145) is always zeroed when the read path runs.\"},{\"function\":\"main (flag handling)\",\"description\":\"The flag environment variable is hashed via compute_hash256 and stored at hash_array[0], then clearenv() is called. Only the SHA256 hash (not plaintext) is readable via idx 0. The flag plaintext is never stored in memory after hashing. clearenv removes all environment variables including 'flag'.\",\"reason\":\"The flag is only stored as a SHA256 digest (one-way hash). No plaintext flag is accessible through the read path. clearenv ensures the environment is cleared.\"},{\"function\":\"init\",\"description\":\"init() calls setvbuf(stdin/stdout/stderr, NULL, _IONBF, 0) and alarm(60). No vulnerability.\",\"reason\":\"Standard I/O setup and timeout. No security issue.\"},{\"function\":\"_abort\",\"description\":\"_abort prints a message via printf('%s', msg) and calls exit(1). The format string is '%s' (confirmed at 0x2008), not a user-controlled format string. No format string vulnerability.\",\"reason\":\"printf uses '%s' format with the message argument, not user input as format string. The message is a hardcoded string literal.\"}],\"unresolved\":[{\"description\":\"Exact content and exploitability of the OOB read at idx 147 (return address slot)\",\"reason\":\"S1 noted (U001) that runtime testing of idx 147 showed data but values did not cleanly parse as expected PIE/libc addresses. The stack frame of __libc_start_main's caller may have additional saved registers between saved rbp and the actual return address, shifting the layout.\",\"required_next_step\":\"Use a debugger (S3 scope) to set a breakpoint at 0x17e5 and inspect the actual stack layout at idx 147 to confirm whether it leaks the return address (PIE base) or a different value.\"},{\"description\":\"Whether the OOB read at idx 145 (canary slot) dereferences the canary value and what happens\",\"reason\":\"The canary is a random 64-bit value that is almost certainly non-NULL, so the NULL check at 0x17ed passes. The canary value is then dereferenced as a pointer at 0x1844. Since the canary is random, the dereferenced address is random — it may crash (SIGSEGV) or may coincidentally hit mapped memory and leak data. The exact behavior depends on the canary value at runtime.\",\"required_next_step\":\"Runtime testing (S3 scope) to read idx 145 and observe whether it crashes or leaks data. If it crashes, the canary value itself (8 bytes) is still leaked via the printf of the first few bytes before the dereference — need to verify if the idx value is printed before the dereference crash.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":2,\"verified\":2,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"In the 'Read Hash record' path of main, the user-supplied index read via scanf('%u') at 0x17d8 is used directly to access hash_array at [rbp+rax*8-0x490] without any upper or lower bound check. The only validation is a NULL check on the dereferenced pointer value (test rax,rax at 0x17ed). For indices >= 16, the access reads beyond hash_array into adjacent stack regions. If the OOB slot contains a non-NULL value, that value is dereferenced as a pointer and 32 bytes are read and printed via printf('%02hhX') loop, creating an information disclosure primitive.\",\"description\":\"OOB unsigned index with no bounds check reaches stack pointer array dereference. The 8-byte value read from the OOB stack slot is treated as a pointer, dereferenced, and 32 bytes from that address are printed to stdout. By selecting specific OOB indices, the attacker can leak stack addresses, libc addresses, PIE addresses, and code bytes from libc/PIE .text segments.\"},\"chain\":[\"BUG-001: OOB_ARRAY_INDEX_MISSING_BOUNDS_CHECK\",\"scanf('%u') reads unsigned index with no bounds check at 0x17d8\",\"mov eax,eax zero-extends to 64-bit at 0x17e3 (unsigned, no sign extension)\",\"mov rax,[rbp+rax*8-0x490] accesses hash_array[idx] with NO bounds check at 0x17e5\",\"test rax,rax at 0x17ed only checks if loaded value is NULL (not index range)\",\"If non-NULL: 8-byte OOB stack value treated as pointer, dereferenced at 0x1844\",\"32 bytes from dereferenced address printed via printf('%02hhX') loop at 0x1829-0x186e\",\"INFO_LEAK: attacker selects OOB index → leaks stack/libc/PIE addresses and code bytes\"],\"controlled_element\":{\"what\":\"Array index (read_idx) via scanf('%u') — attacker controls which 8-byte stack slot is read and subsequently dereferenced\",\"how\":\"Menu option 2 (Read Hash record) prompts for index via scanf('%u') at 0x17d8. The unsigned 32-bit value is zero-extended to 64-bit (mov eax,eax at 0x17e3) and used directly as array offset [rbp+rax*8-0x490] with no bounds check. Valid range is 0-15 but attacker can supply any value 0 to 0xFFFFFFFF.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"The 'flag' environment variable must be set at program startup (getenv('flag') at 0x1553; if NULL, _abort at 0x1573). This is a program requirement, not attacker-controlled.\",\"necessity\":\"Program exits immediately without flag env var. Attacker must set flag=testflag or similar before running.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The attacker must select menu option 2 (Read Hash record) to reach the vulnerable scanf at 0x17d8.\",\"necessity\":\"The OOB index is only read in the Read Hash record path. Menu option 1 (Compute) has a properly bounded search loop (cmp idx,0xf; jle at 0x1650-0x1657).\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The OOB index must select a stack slot whose 8-byte value is non-NULL (passes test rax,rax at 0x17ed). Indices 16-145 (text buffer area) are always zeroed by memset at 0x170f after each compute, so they contain NULL and trigger _abort. Indices 145+ (canary, saved rbp, return addr, caller frame) contain non-NULL values.\",\"necessity\":\"If the OOB slot value is NULL, the program calls _abort('Entry does not exist') and exits. Only non-NULL slots proceed to the dereference + print loop.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"For INFO_LEAK (not crash): the OOB slot value must be a valid mapped pointer. idx 146 (saved rbp = stack addr), idx 147 (return addr = libc addr), idx 148-149 (stack addrs), idx 151 (PIE addr), idx 156 (PIE addr), idx 157 (ld.so addr) all contain valid mapped pointers whose dereference succeeds and leaks 32 bytes.\",\"necessity\":\"If the OOB slot value is an unmapped address (e.g., canary at idx 145 = random value, or small integers at idx 150/154), the dereference at 0x1844 causes SIGSEGV instead of leaking data.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"hash_array[idx] = *(rbp + idx*8 - 0x490)\",\"alias\":\"idx 146 = rbp+0 = saved rbp (stack address 0x00007ffX...); idx 147 = rbp+8 = return address (libc address 0x00007fXX...); idx 145 = rbp-8 = stack canary (random, low byte 0x00); idx 151 = rbp+0x28 = PIE address (main entry 0x000055XX...)\",\"implication\":\"By selecting idx 146, the attacker dereferences the saved rbp (a stack pointer), reading 32 bytes of the caller's stack frame. This 32-byte leak contains: [0]=stack address, [1]=libc address (return addr of __libc_start_main caller), [2]=stack address, [3]=PIE address. A single read at idx 146 leaks stack, libc, AND PIE base addresses simultaneously, defeating ASLR for all three regions.\"},{\"expression\":\"idx 16-145 = text_buf area (rbp-0x410 to rbp-0x10)\",\"alias\":\"text_buf is memset to 0 at 0x170f after every compute operation, before returning to menu loop. The read path executes in a separate menu iteration after the memset.\",\"implication\":\"The text buffer (indices 16-145) is always zeroed when the read path runs. These indices always contain NULL, so the NULL check at 0x17ed catches them and calls _abort. The attacker CANNOT plant fake pointers in the text buffer to control the dereference target. This means ARB_READ is NOT achievable — the attacker can only select which pre-existing stack value to dereference, not control the pointer value itself.\"},{\"expression\":\"Dereferenced pointer value = *(OOB slot) = 8-byte value from stack\",\"alias\":\"The 8-byte value read from the OOB stack slot is NOT printed directly. Only the 32 bytes at the address pointed to by that value are printed. The slot value itself (e.g., the saved rbp, return address) is not directly leaked — only the memory it points to.\",\"implication\":\"At idx 146, the saved rbp value (a stack address) is not directly printed. Instead, 32 bytes starting at the saved rbp address are printed. Those 32 bytes happen to contain other stack/libc/PIE addresses (the caller's frame), which IS the leak. At idx 147, the return address (libc addr) is not directly printed — 32 bytes of libc .text code at that address are printed. The leak is indirect: the OOB slot value determines WHAT memory is leaked, not the slot value itself.\"}],\"verification_plan\":{\"method\":\"Run the binary with flag=testflag env var. Select menu option 2 (Read Hash record). Supply OOB indices 146, 147, 151 to trigger INFO_LEAK. Supply idx 145 to trigger CRASH. Parse the 64-hex-char output (32 bytes) from 'Hash - N : ' line. Decode as little-endian qwords to identify leaked addresses.\",\"environment\":\"Linux x86-64, glibc 2.39, OpenSSL 3.0.13, PIE+ASLR+Canary+Full RELRO+NX+CET(SHSTK+IBT) enabled\",\"run_command\":\"cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-001.py\",\"expected_evidence\":[\"PRIM-001: idx 146 output contains 64 hex chars; decoded qwords include stack addresses (0x00007ffX...) confirming stack address leak\",\"PRIM-001: idx 147 output contains 64 hex chars of libc .text code (89C7E8CFD90100E8... = mov rdi,rax; call ... instruction bytes)\",\"PRIM-001: idx 151 output contains 64 hex chars starting with F30F1EFA (endbr64 = main() prologue), confirming PIE .text code leak\",\"PRIM-002: idx 145 returns rc=-11 (SIGSEGV) with 'Hash - 145 :' printed before crash, confirming canary dereference crash\"]},\"mitigations\":[{\"name\":\"PIE / ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes stack, libc, and PIE base addresses. However, the INFO_LEAK primitive at idx 146 defeats ASLR by leaking stack + libc + PIE addresses in a single 32-byte read. The leaked addresses allow S4 to compute exact base addresses for all three regions. ASLR is bypassed by this primitive, not blocking it.\"},{\"name\":\"Stack Canary\",\"present\":true,\"primitive_impact\":\"The canary at idx 145 (rbp-8) is a random 64-bit value with low byte 0x00. It is non-NULL, so the NULL check passes and it gets dereferenced. Since the canary value is a random unmapped address, dereferencing it causes SIGSEGV (CRASH primitive). The canary value itself is NOT leaked — the program crashes before printing any bytes. Canary does not prevent the INFO_LEAK at idx 146/147/151.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"Full RELRO makes the GOT read-only, preventing GOT overwrite attacks. This does not affect the INFO_LEAK primitive (a read operation). Full RELRO is irrelevant to this read-only primitive.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"NX prevents code execution on stack/heap. Irrelevant to the INFO_LEAK read primitive. Would affect S4 exploit chain if shellcode were needed, but does not block the primitive itself.\"},{\"name\":\"CET (SHSTK + IBT)\",\"present\":true,\"primitive_impact\":\"Shadow stack (SHSTK) protects return addresses from overwrite; indirect branch tracking (IBT) requires endbr at indirect call targets. These protect control flow but do not affect the INFO_LEAK read primitive. Would affect S4 ROP/control-flow hijack attempts.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x17dd-0x17e5\",\"description\":\"Disassembly confirms: 0x17dd: mov eax,[rbp-0x4b0] loads scanf-read unsigned index; 0x17e3: mov eax,eax zero-extends to 64-bit; 0x17e5: mov rax,[rbp+rax*8-0x490] uses index directly as array offset with NO preceding cmp/jcc bounds check. Only test rax,rax at 0x17ed (NULL check on loaded value, not index).\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1829-0x1844\",\"description\":\"Print loop re-reads OOB slot: 0x1831: mov rdx,[rbp+rax*8-0x490] (load OOB pointer); 0x1841: add rax,rdx (ptr + loop_offset); 0x1844: movzx eax,BYTE PTR [rax] (dereference OOB pointer value). This dereferences whatever 8-byte value was read from the OOB stack slot, printing 32 bytes from that address.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1529, 0x1587, 0x15ce, 0x1539\",\"description\":\"Stack frame layout: sub rsp,0x4c0 at 0x1529; hash_array base at rbp-0x490 (flag hash stored at [rbp-0x490] at 0x1587); text_buf at rbp-0x410 (lea rax,[rbp-0x410] at 0x15ce); canary at rbp-0x8 (mov [rbp-0x8],rax at 0x1539). This places: idx 145 = rbp-0x8 (canary), idx 146 = rbp (saved rbp), idx 147 = rbp+0x8 (return address), idx 151 = rbp+0x28 (PIE addr).\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x17e5 (breakpoint)\",\"description\":\"gdb breakpoint at 0x17e5 with stdin '2\\\\n146\\\\n': confirmed rbp=0x7fffffffeaa0, hash_array_base=0x7fffffffe610. idx 146 slot at rbp=0x7fffffffeaa0 contains 0x00007fffffffeb40 (saved rbp = stack address). idx 147 at rbp+8 contains 0x00007ffff78b91ca (return address = libc address). idx 145 at rbp-8 contains canary 0xc4726ef83089ae00 (random, low byte 0x00). idx 151 at rbp+0x28 contains 0x0000555555555521 (PIE address = main entry).\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x188e (breakpoint after print loop)\",\"description\":\"gdb: idx 146 output = 'A0EBFFFFFF7F00008B928BF7FF7F0000D8EBFFFFFF7F0000307D555555550000'. Decoded qwords: [0]=0x00007fffffffeba0 (stack addr), [1]=0x00007ffff78b928b (libc addr), [2]=0x00007fffffffebd8 (stack addr), [3]=0x0000555555557d30 (PIE addr). Confirms stack+libc+PIE address leak from single read.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x188e (breakpoint after print loop)\",\"description\":\"gdb: idx 147 output = '89C7E8CFD90100E89AF10600F0832DF28E1D00017410BA3C0000000F1F0031FF'. This is 32 bytes of libc .text code at the return address (0x7ffff78b91ca). The bytes 89C7E8... correspond to 'mov rdi,rax; call ...' instructions in __libc_start_main return path.\"},{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x188e (breakpoint after print loop)\",\"description\":\"gdb: idx 151 output = 'F30F1EFA554889E54881ECC004000064488B042528000000488945F831C0B800'. First 4 bytes F30F1EFA = endbr64 instruction, followed by 55 (push rbp), 4889E5 (mov rbp,rsp), 4881ECC0040000 (sub rsp,0x4c0) = main() function prologue. Confirms PIE .text code leak.\"},{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1844 (crash point)\",\"description\":\"gdb: idx 145 (canary slot) causes SIGSEGV at 0x1844 (movzx eax,BYTE PTR [rax]). At crash: rax=0x622c8dafc19a4800 (canary value used as pointer), rdx=0x622c8dafc19a4800 (same canary value from OOB slot). The canary value is a random unmapped address, causing SIGSEGV. 'Hash - 145 :' was printed before crash (at 0x1818 printf), but no hex bytes were printed (crash occurred on first iteration of print loop). Return code = -11 (SIGSEGV).\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1710 (memset after compute)\",\"description\":\"gdb: After compute path, memset(rbp-0x410, 0, 0x400) at 0x170f zeroes the text buffer before returning to menu. Confirmed that indices 16-145 (text buffer area) are always NULL when read path executes. Runtime test: reading idx 16 after compute returns 'Entry does not exist' (NULL check at 0x17ed catches it). This proves the attacker CANNOT plant fake pointers in the text buffer to achieve ARB_READ.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"idx146: 0x00007ffd62707650(stack),0x000079182b66f28b(libc),0x00007ffd62707688(stack),0x000061b848bd1d30(PIE); idx147: 89C7E8CFD90100E8...(libc code); idx151: F30F1EFA554889E5...(PIE main prologue)\",\"fault_address\":\"\",\"return_code\":1,\"details\":\"PoC executed successfully. PRIM-001 INFO_LEAK VERIFIED: idx 146 leaks stack+libc+PIE addresses (32 bytes from dereferencing saved rbp), idx 147 leaks 32 bytes of libc .text code (from dereferencing return address), idx 151 leaks 32 bytes of PIE .text code starting with endbr64=main prologue (from dereferencing PIE address at rbp+0x28). All three sub-tests confirmed non-attacker-provided data in program output. PRIM-002 CRASH VERIFIED: idx 145 (canary) returns rc=-11 (SIGSEGV) with 'Hash - 145 :' printed before crash. The PoC uses subprocess to run the binary with flag=testflag env var, selects menu option 2, and supplies OOB indices.\"},\"confidence\":\"HIGH\",\"notes\":\"ARB_READ is NOT achievable from this BUG. The attacker controls the index (which stack slot to read) but NOT the pointer value in that slot. The text buffer (indices 16-145) is always zeroed by memset at 0x170f before the read path executes, so the attacker cannot plant fake pointers. Indices 0-15 contain legitimate heap pointers (SHA256 digests). Indices 146+ contain fixed stack values (saved rbp, return address, etc.) that the attacker cannot modify. Therefore the dereference target is determined by pre-existing stack values, not attacker-controlled data. The strongest primitive is INFO_LEAK: by selecting idx 146, the attacker leaks stack+libc+PIE addresses in a single 32-byte read, defeating ASLR for all three regions. This is a DIRECT primitive (no intermediate object reuse or metadata manipulation needed). The canary at idx 145 is NOT leaked — dereferencing it crashes before any bytes are printed. The 8-byte OOB slot values themselves are NOT directly printed; only the 32 bytes at the address they point to are printed.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Same as PRIM-001: OOB unsigned index with no bounds check. At idx 145, the OOB slot contains the stack canary (random 64-bit value with low byte 0x00). The canary is non-NULL, so the NULL check at 0x17ed passes. The canary value is then dereferenced as a pointer at 0x1844 (movzx eax,BYTE PTR [rax]). Since the canary is a random unmapped address, the dereference causes SIGSEGV.\",\"description\":\"By selecting idx 145, the attacker triggers a guaranteed SIGSEGV crash. The canary value is random and almost certainly points to unmapped memory. This is a denial-of-service primitive.\"},\"chain\":[\"BUG-001: OOB_ARRAY_INDEX_MISSING_BOUNDS_CHECK\",\"scanf('%u') reads unsigned index 145 with no bounds check\",\"mov rax,[rbp+145*8-0x490] = mov rax,[rbp-0x8] reads stack canary at 0x17e5\",\"test rax,rax at 0x17ed: canary is non-NULL (low byte 0x00 but high bytes random) → passes check\",\"Print loop at 0x1829: mov rdx,[rbp+rax*8-0x490] loads canary value as pointer\",\"movzx eax,BYTE PTR [rax] at 0x1844 dereferences canary value (random unmapped address)\",\"SIGSEGV: program crashes with signal 11 (rc=-11)\"],\"controlled_element\":{\"what\":\"Array index (read_idx=145) via scanf('%u') — attacker selects the canary slot\",\"how\":\"Menu option 2, supply index 145. The canary at rbp-0x8 is always non-NULL (random value with low byte 0x00), so the NULL check passes and the canary value is dereferenced as a pointer.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"The 'flag' environment variable must be set at program startup.\",\"necessity\":\"Program exits immediately without flag env var.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The attacker must select menu option 2 (Read Hash record) and supply index 145.\",\"necessity\":\"Only the Read Hash record path has the unbounded index. Index 145 maps to rbp-0x8 (stack canary).\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The canary value must be non-NULL (almost always true — canary is a random 64-bit value with only the low byte guaranteed to be 0x00).\",\"necessity\":\"If canary were NULL (probability ~2^-56), the NULL check would catch it and call _abort instead of crashing via dereference.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The canary value must point to unmapped memory (almost always true — random 64-bit value is overwhelmingly likely to be unmapped).\",\"necessity\":\"If the canary value happened to point to mapped memory (probability negligible), the dereference would succeed and 32 bytes would be printed instead of crashing.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"idx 145 = rbp-0x8 = stack canary\",\"alias\":\"The stack canary is stored at rbp-0x8, which corresponds to hash_array index 145 (rbp + 145*8 - 0x490 = rbp + 0x490 - 0x490 = rbp - 8).\",\"implication\":\"Selecting idx 145 reads the canary value. The canary is non-NULL (random with low byte 0x00), so it passes the NULL check and gets dereferenced. Since the canary is a random unmapped address, the dereference causes SIGSEGV. This is a reliable DoS primitive.\"}],\"verification_plan\":{\"method\":\"Run the binary with flag=testflag env var. Select menu option 2 (Read Hash record). Supply index 145. Observe SIGSEGV (return code -11).\",\"environment\":\"Linux x86-64, glibc 2.39, PIE+ASLR+Canary+Full RELRO+NX+CET enabled\",\"run_command\":\"cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-001.py\",\"expected_evidence\":[\"Return code = -11 (SIGSEGV)\",\"'Hash - 145 :' printed to stdout before crash (program reaches the dereference point)\",\"No hex bytes printed after 'Hash - 145 :' (crash occurs on first iteration of print loop)\"]},\"mitigations\":[{\"name\":\"Stack Canary\",\"present\":true,\"primitive_impact\":\"The canary itself is the cause of the crash at idx 145. The canary's random value is dereferenced as a pointer, causing SIGSEGV. The canary does not prevent this crash — it is the source of the crash. The canary's purpose (detecting stack buffer overflow) is unrelated to this OOB read vulnerability.\"},{\"name\":\"PIE / ASLR\",\"present\":true,\"primitive_impact\":\"ASLR does not prevent the crash. The canary value is random regardless of ASLR. The crash is deterministic (always SIGSEGV at idx 145) regardless of address randomization.\"}],\"evidence\":[{\"id\":\"E010\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x17e5, 0x17ed, 0x1844\",\"description\":\"idx 145 = rbp-0x8 (canary slot). The canary value is loaded at 0x17e5, NULL-checked at 0x17ed (passes because canary is non-NULL), then dereferenced at 0x1844 (movzx eax,BYTE PTR [rax]) where rax = canary value = random unmapped address → SIGSEGV.\"},{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1844 (crash point)\",\"description\":\"gdb: At breakpoint 0x1844 with idx 145: rax=0x622c8dafc19a4800 (canary value used as pointer), rdx=0x622c8dafc19a4800 (canary value from OOB slot), loop_counter=0. After continue: SIGSEGV at 0x555555555844 (main+0x323). 'Hash - 145 :' was printed (at 0x1818 printf) but no hex bytes printed (crash on first iteration). Return code = -11.\"},{\"id\":\"E012\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1844\",\"description\":\"PoC execution: run_read_idx(145) returns rc=-11 (SIGSEGV). stdout contains 'Hash - 145 :' followed by no hex bytes (crash before any bytes printed). Confirms CRASH primitive via canary dereference.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0x0000555555555844 (main+0x323, the movzx deref instruction)\",\"return_code\":-11,\"details\":\"PoC executed: idx 145 returns rc=-11 (SIGSEGV). 'Hash - 145 :' printed before crash. gdb confirmed: rax=canary value (random unmapped address), crash at 0x1844 (movzx eax,BYTE PTR [rax]). The canary at rbp-0x8 is non-NULL (random with low byte 0x00), passes NULL check, gets dereferenced as pointer → SIGSEGV. This is a reliable DoS primitive.\"},\"confidence\":\"HIGH\",\"notes\":\"This CRASH primitive is a side effect of the same OOB index bug. The canary value is random and almost always points to unmapped memory, making the crash deterministic. The crash occurs at the dereference instruction (0x1844), not at the array access (0x17e5) — the array access itself succeeds (it reads a valid stack slot), but the value read (canary) is an invalid pointer. This is distinct from the idx 0xFFFFFFFF crash (SIGBUS from accessing unmapped memory at the array access itself).\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_READ\",\"source_bug\":\"BUG-001\",\"reason\":\"ARB_READ is NOT achievable. The attacker controls the index (which stack slot to read) but NOT the pointer value in that slot. The text buffer (indices 16-145) is always zeroed by memset at 0x170f before the read path executes (confirmed by runtime test: idx 16 returns 'Entry does not exist'). Indices 0-15 contain legitimate heap pointers (SHA256 digests from calloc). Indices 146+ contain fixed stack values (saved rbp, return address, etc.) that the attacker cannot modify. The dereference target is determined by pre-existing stack values, not attacker-controlled data. Therefore the attacker cannot read an arbitrary address — only the fixed set of addresses that happen to be on the stack (stack frame pointers, return addresses, etc.).\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-001\",\"reason\":\"ARB_WRITE is NOT achievable. The OOB index bug only affects the READ path (menu option 2). The WRITE path (menu option 1, compute) has a properly bounded search loop (cmp idx,0xf; jle at 0x1650-0x1657) that limits stores to indices 0-15. There is no OOB write primitive from this bug.\"},{\"primitive_id\":\"NP-003\",\"candidate_type\":\"RELATIVE_READ\",\"source_bug\":\"BUG-001\",\"reason\":\"RELATIVE_READ (reading the 8-byte OOB slot value itself) is technically present but NOT directly observable. The 8-byte value read from the OOB stack slot is NOT printed to stdout — only the 32 bytes at the address pointed to by that value are printed. The slot value itself (e.g., the saved rbp, return address) is used internally as a pointer but never directly output. The observable primitive is the INFO_LEAK (dereferenced content), not the raw slot value. If the slot value points to unmapped memory (e.g., canary at idx 145), no data is leaked at all (crash instead).\"}],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":2,\"verified\":1,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"OOB_READ\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"In the compute path of main, the return value of read(0, rbp-0x410, 0x3ff) is used as an array index without checking for error/EOF conditions. At 0x16b7, 'sub eax,0x1' subtracts 1 from the read return value, and at 0x16ba 'cdqe' sign-extends it to 64-bit. If read() returns 0 (EOF), the computation produces -1 (0xFFFFFFFFFFFFFFFF), and the subsequent 'movzx eax, BYTE PTR [rbp+rax*1-0x410]' at 0x16bc accesses text_buf at offset -1, reading 1 byte from rbp-0x411 which is 1 byte before the text_buf boundary (within hash_array[15] region).\",\"description\":\"When read() returns 0 (EOF), the index computation produces -1, causing movzx to read 1 byte from rbp-0x411 (out-of-bounds relative to text_buf at rbp-0x410). The read byte is only used for cmp al, 0x0a (newline check) and is never output or stored.\"},\"chain\":[\"BUG-002\",\"read() return value used as index without validation\",\"read() returns 0 (EOF) → index = 0-1 = -1 → cdqe → 0xFFFFFFFFFFFFFFFF\",\"movzx reads BYTE PTR [rbp + 0xFFFFFFFFFFFFFFFF - 0x410] = [rbp - 0x411]\",\"1-byte OOB stack read at rbp-0x411 (within hash_array[15] MSB region)\",\"OOB_READ (1 byte, stack-internal, value used only for branch condition)\"],\"controlled_element\":{\"what\":\"The index used to access text_buf is derived from read()'s return value. When stdin reaches EOF, read() returns 0, producing index -1. The attacker controls whether stdin reaches EOF (by closing the input stream).\",\"how\":\"Attacker sends '1\\\\n' to select compute path, then closes stdin. read(0, buf, 0x3ff) returns 0 (EOF). The code computes 0-1=-1, sign-extends to 0xFFFFFFFFFFFFFFFF, and accesses [rbp-0x411].\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker must select menu option 1 (compute) to reach the vulnerable code path at 0x16a6-0x16bc.\",\"necessity\":\"The vulnerable movzx instruction is only reached in the compute path (menu choice 1).\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"read() must return 0 (EOF) or -1 (error) to produce a negative index. EOF is achieved by closing stdin after sending the menu selection.\",\"necessity\":\"For positive return values (1..0x3ff), the index n-1 is within text_buf bounds (0..0x3fe). Only n=0 or n=-1 produces an out-of-bounds access.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The target address rbp-0x411 (for n=0) or rbp-0x412 (for n=-1) must be mapped and readable. This is always true because these addresses are within the stack frame (hash_array[15] region at rbp-0x418 to rbp-0x410).\",\"necessity\":\"If the target were unmapped, the movzx would crash (SIGSEGV) instead of reading a byte. Since the target is always on the stack, the read always succeeds.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"rbp-0x411 = hash_array[15] byte 7 (MSB)\",\"alias\":\"The OOB read target rbp-0x411 is the most significant byte of hash_array[15] (at rbp-0x418). For user-space pointers (0x0000xxxxxxxxxxxx), the MSB is always 0x00. Even when hash_array[15] contains a heap pointer (e.g., 0x00005555555592a0), byte 7 = 0x00.\",\"implication\":\"The read byte is always 0x00 regardless of hash_array[15] content. The OOB read has no observable effect — the byte is only used for cmp al, 0x0a (which fails since 0x00 != 0x0a), and the program continues normally.\"},{\"expression\":\"rbp-0x412 = hash_array[15] byte 6\",\"alias\":\"For n=-1 (read error), the target is rbp-0x412 = hash_array[15] byte 6. For typical user-space pointers, byte 6 is also 0x00 (addresses are 0x0000xxxxxxxxxxxx).\",\"implication\":\"Same as above — the read byte is 0x00, used only for branch condition, no observable effect.\"}],\"verification_plan\":{\"method\":\"1. Run the binary with flag env var set. 2. Send '1\\\\n' to select compute path. 3. Close stdin (EOF) to make read() return 0. 4. Observe: program does NOT crash, computes SHA256 of empty string, outputs it. 5. GDB breakpoint at 0x16bc confirms: RAX=0xffffffffffffffff, target=rbp-0x411, byte=0x00, movzx succeeds, cmp al,0x0a → ZF=0 → jne taken.\",\"environment\":\"x86-64 Linux, glibc 2.39, PIE binary with flag env var set\",\"run_command\":\"cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-002.py\",\"expected_evidence\":[\"Program does not crash (return code 1 from exit(1) in _abort, not SIGSEGV)\",\"Empty-string SHA256 (E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855) appears in output, confirming read() returned 0 and program continued\",\"GDB: RAX=0xffffffffffffffff at 0x16bc, target address rbp-0x411 is valid stack, byte=0x00\"]},\"mitigations\":[{\"name\":\"Stack Canary\",\"present\":true,\"primitive_impact\":\"Not relevant — the OOB read is at rbp-0x411 (within hash_array region), not at the canary (rbp-0x8). The canary is not affected.\"},{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"Not relevant — the OOB read target is always on the stack (rbp-0x411), which is always mapped. ASLR does not prevent the read. However, the read byte (0x00) leaks no address information.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"Not relevant — this is a read primitive, not code execution.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"Not relevant — no GOT overwrite involved.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x16a6-0x16bc\",\"description\":\"Disassembly: 0x16a6: call read@plt; 0x16ab: mov [rbp-0x49c],eax (store ret); 0x16b1: mov eax,[rbp-0x49c] (load ret); 0x16b7: sub eax,0x1 (ret-1); 0x16ba: cdqe (sign-extend); 0x16bc: movzx eax,BYTE PTR [rbp+rax*1-0x410] (index into text_buf). No check for ret <= 0 between 0x16ab and 0x16bc.\"},{\"id\":\"E002\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x16bc\",\"description\":\"GDB breakpoint at main+0x19b (0x16bc) with stdin='1\\\\n' (EOF after menu selection): RAX=0xffffffffffffffff (index after sub eax,1 + cdqe when read() returned 0). Target address = rbp + rax - 0x410 = 0x7fffffffeaa0 + 0xffffffffffffffff - 0x410 = 0x7fffffffe68f (rbp-0x411). Byte at target = 0x00. After movzx: EAX=0x0. cmp al,0x0a → ZF=0 → jne taken (skip newline strip). Program continued to compute_hash256 and output empty-string SHA256.\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x16bc\",\"description\":\"PoC execution: sent '1\\\\n' then EOF to binary with flag=testflag. Return code = 1 (exit from _abort('Unknown command') on second menu iteration, NOT a crash). Output contained empty-string SHA256 (E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855), confirming read() returned 0, movzx read from rbp-0x411 without crashing, and program continued normally.\"},{\"id\":\"E004\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x16c4\",\"description\":\"The byte read by movzx at 0x16bc is only used at 0x16c4 (cmp al, 0x0a) for a newline check. If equal to 0x0a, the byte at the same offset is set to 0x00 (newline stripping). If not equal, the program skips to compute_hash256. The byte value is NEVER output, stored in a global, or used as a pointer — it only affects a single branch decision. Since the byte is always 0x00 (MSB of user-space pointer in hash_array[15]), the branch always takes the 'not newline' path.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"0x00\",\"fault_address\":\"\",\"return_code\":1,\"details\":\"GDB confirmed: when read() returns 0 (EOF), index=-1 (0xFFFFFFFFFFFFFFFF), movzx reads byte 0x00 from rbp-0x411 (valid stack, hash_array[15] MSB). No crash. Byte only used for cmp al,0x0a (branch condition). Program continues to compute_hash256(\\\"\\\") and outputs empty-string SHA256. The OOB read is confirmed but has no observable impact — no info leak, no crash, no side effect.\"},\"confidence\":\"HIGH\",\"notes\":\"This is a confirmed but minimal-impact OOB read. The vulnerability exists (read() return value unchecked), and an out-of-bounds 1-byte stack read does occur at rbp-0x411 when read() returns 0. However: (1) The target is always valid stack memory (within hash_array[15] region), so no crash. (2) The read byte is always 0x00 (MSB of user-space pointer), so no information is leaked. (3) The byte is only used for a branch condition (cmp al, 0x0a), never output or stored. (4) read() can only return 0..0x3ff or -1, all of which map to valid stack addresses — no path to unmapped memory. This primitive is VERIFIED as an OOB_READ but has no practical exploit value for S4.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"CRASH\",\"status\":\"UNKNOWN\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"Same as PRIM-001: read() return value used as index without validation. If the computed address (rbp-0x411 for n=0, rbp-0x412 for n=-1) were unmapped, the movzx dereference would cause SIGSEGV.\",\"description\":\"S2 theorized that if read() returns 0 or -1, the computed address wraps to a very high value and may be unmapped, causing a crash.\"},\"chain\":[\"BUG-002\",\"read() return value used as index without validation\",\"read() returns 0 or -1 → negative index → sign-extended to large 64-bit value\",\"movzx dereferences [rbp + large_value - 0x410]\",\"If target unmapped → SIGSEGV (CRASH)\"],\"controlled_element\":{\"what\":\"The index derived from read()'s return value. Attacker controls whether stdin reaches EOF (read returns 0).\",\"how\":\"Close stdin after selecting compute path.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"read() must return 0 (EOF) or -1 (error) to produce a negative index.\",\"necessity\":\"Positive return values produce in-bounds indices.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The computed target address (rbp-0x411 or rbp-0x412) must be unmapped for a crash to occur.\",\"necessity\":\"If the target is mapped (which it always is — it's on the stack), the movzx succeeds and no crash occurs.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"rbp-0x411 and rbp-0x412 are always within the stack frame\",\"alias\":\"hash_array[15] occupies rbp-0x418 to rbp-0x410. rbp-0x411 is byte 7 (MSB) and rbp-0x412 is byte 6 of hash_array[15]. Both are within the allocated stack frame (sub rsp,0x4c0).\",\"implication\":\"The target address is always mapped and readable. No crash is possible via this bug. The CRASH primitive is NOT achievable.\"}],\"verification_plan\":{\"method\":\"Enumerate all possible read() return values and compute the target address for each. Verify that all targets are within the stack frame.\",\"environment\":\"x86-64 Linux, glibc 2.39\",\"run_command\":\"cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-002.py\",\"expected_evidence\":[\"For n=0: target=rbp-0x411 (stack, valid) — no crash\",\"For n=-1: target=rbp-0x412 (stack, valid) — no crash\",\"For n=1..0x3ff: target=rbp-0x410+(n-1) (text_buf, valid) — no crash\",\"Conclusion: no path to unmapped memory, crash NOT achievable\"]},\"mitigations\":[{\"name\":\"Stack layout\",\"present\":true,\"primitive_impact\":\"The stack frame is 0x4c0 bytes. hash_array[15] at rbp-0x418 is well within the frame. The OOB targets (rbp-0x411, rbp-0x412) are always mapped. No crash possible.\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x16bc\",\"description\":\"GDB confirmed: when read() returns 0, target=rbp-0x411=0x7fffffffe68f (valid stack address within hash_array[15] region). movzx succeeded, read byte=0x00, no SIGSEGV. Program continued normally.\"},{\"id\":\"E006\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x16bc\",\"description\":\"Exhaustive analysis of all possible read() return values: n=0 → target=rbp-0x411 (stack); n=-1 → target=rbp-0x412 (stack); n=1..0x3ff → target=rbp-0x410+(n-1) (text_buf). All targets are within the stack frame (sub rsp,0x4c0). No return value produces an unmapped target. CRASH is NOT achievable via this bug.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":1,\"details\":\"Proven NOT achievable: all possible read() return values (0..0x3ff, -1) produce target addresses within the stack frame. GDB confirmed target rbp-0x411 is valid stack memory. No crash path exists via this bug.\"},\"confidence\":\"HIGH\",\"notes\":\"CRASH primitive is proven NOT achievable. The S2 analysis theorized that the computed address 'wraps to a very high address' causing SIGSEGV, but this is incorrect: in 64-bit arithmetic, rbp + 0xFFFFFFFFFFFFFFFF - 0x410 = rbp - 0x411 (modular arithmetic wraps to a small negative offset from rbp), which is always within the stack frame. The movzx always succeeds. This is a negative finding with DYNAMIC evidence (GDB confirmed no crash, target is valid stack).\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"INFO_LEAK\",\"source_bug\":\"BUG-002\",\"reason\":\"The OOB-read byte at rbp-0x411 is only used for cmp al, 0x0a (branch condition). It is NEVER output to stdout, stored in a global variable, or used as a pointer. The byte value (0x00) is not observable by the attacker. No information is leaked. Additionally, the byte is always 0x00 (MSB of user-space pointer in hash_array[15]), so even if it were observable, it would leak no useful information.\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"ARB_READ\",\"source_bug\":\"BUG-002\",\"reason\":\"The OOB read target is not attacker-controlled. The index is derived from read()'s return value, which can only be 0 (EOF), -1 (error), or 1..0x3ff (bytes read). The attacker cannot specify an arbitrary target address — the target is always rbp-0x411, rbp-0x412, or within text_buf. This is at most a RELATIVE_READ (1 byte, fixed offset), not ARB_READ.\"}],\"unresolved\":[]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 2,
+        "verified": 2,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "In the 'Read Hash record' path of main, the user-supplied index read via scanf('%u') at 0x17d8 is used directly to access hash_array at [rbp+rax*8-0x490] without any upper or lower bound check. The only validation is a NULL check on the dereferenced pointer value (test rax,rax at 0x17ed). For indices >= 16, the access reads beyond hash_array into adjacent stack regions. If the OOB slot contains a non-NULL value, that value is dereferenced as a pointer and 32 bytes are read and printed via printf('%02hhX') loop, creating an information disclosure primitive.",
+            "description": "OOB unsigned index with no bounds check reaches stack pointer array dereference. The 8-byte value read from the OOB stack slot is treated as a pointer, dereferenced, and 32 bytes from that address are printed to stdout. By selecting specific OOB indices, the attacker can leak stack addresses, libc addresses, PIE addresses, and code bytes from libc/PIE .text segments."
+          },
+          "chain": [
+            "BUG-001: OOB_ARRAY_INDEX_MISSING_BOUNDS_CHECK",
+            "scanf('%u') reads unsigned index with no bounds check at 0x17d8",
+            "mov eax,eax zero-extends to 64-bit at 0x17e3 (unsigned, no sign extension)",
+            "mov rax,[rbp+rax*8-0x490] accesses hash_array[idx] with NO bounds check at 0x17e5",
+            "test rax,rax at 0x17ed only checks if loaded value is NULL (not index range)",
+            "If non-NULL: 8-byte OOB stack value treated as pointer, dereferenced at 0x1844",
+            "32 bytes from dereferenced address printed via printf('%02hhX') loop at 0x1829-0x186e",
+            "INFO_LEAK: attacker selects OOB index → leaks stack/libc/PIE addresses and code bytes"
+          ],
+          "controlled_element": {
+            "what": "Array index (read_idx) via scanf('%u') — attacker controls which 8-byte stack slot is read and subsequently dereferenced",
+            "how": "Menu option 2 (Read Hash record) prompts for index via scanf('%u') at 0x17d8. The unsigned 32-bit value is zero-extended to 64-bit (mov eax,eax at 0x17e3) and used directly as array offset [rbp+rax*8-0x490] with no bounds check. Valid range is 0-15 but attacker can supply any value 0 to 0xFFFFFFFF.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "The 'flag' environment variable must be set at program startup (getenv('flag') at 0x1553; if NULL, _abort at 0x1573). This is a program requirement, not attacker-controlled.",
+              "necessity": "Program exits immediately without flag env var. Attacker must set flag=testflag or similar before running.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The attacker must select menu option 2 (Read Hash record) to reach the vulnerable scanf at 0x17d8.",
+              "necessity": "The OOB index is only read in the Read Hash record path. Menu option 1 (Compute) has a properly bounded search loop (cmp idx,0xf; jle at 0x1650-0x1657).",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The OOB index must select a stack slot whose 8-byte value is non-NULL (passes test rax,rax at 0x17ed). Indices 16-145 (text buffer area) are always zeroed by memset at 0x170f after each compute, so they contain NULL and trigger _abort. Indices 145+ (canary, saved rbp, return addr, caller frame) contain non-NULL values.",
+              "necessity": "If the OOB slot value is NULL, the program calls _abort('Entry does not exist') and exits. Only non-NULL slots proceed to the dereference + print loop.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "For INFO_LEAK (not crash): the OOB slot value must be a valid mapped pointer. idx 146 (saved rbp = stack addr), idx 147 (return addr = libc addr), idx 148-149 (stack addrs), idx 151 (PIE addr), idx 156 (PIE addr), idx 157 (ld.so addr) all contain valid mapped pointers whose dereference succeeds and leaks 32 bytes.",
+              "necessity": "If the OOB slot value is an unmapped address (e.g., canary at idx 145 = random value, or small integers at idx 150/154), the dereference at 0x1844 causes SIGSEGV instead of leaking data.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "hash_array[idx] = *(rbp + idx*8 - 0x490)",
+              "alias": "idx 146 = rbp+0 = saved rbp (stack address 0x00007ffX...); idx 147 = rbp+8 = return address (libc address 0x00007fXX...); idx 145 = rbp-8 = stack canary (random, low byte 0x00); idx 151 = rbp+0x28 = PIE address (main entry 0x000055XX...)",
+              "implication": "By selecting idx 146, the attacker dereferences the saved rbp (a stack pointer), reading 32 bytes of the caller's stack frame. This 32-byte leak contains: [0]=stack address, [1]=libc address (return addr of __libc_start_main caller), [2]=stack address, [3]=PIE address. A single read at idx 146 leaks stack, libc, AND PIE base addresses simultaneously, defeating ASLR for all three regions."
+            },
+            {
+              "expression": "idx 16-145 = text_buf area (rbp-0x410 to rbp-0x10)",
+              "alias": "text_buf is memset to 0 at 0x170f after every compute operation, before returning to menu loop. The read path executes in a separate menu iteration after the memset.",
+              "implication": "The text buffer (indices 16-145) is always zeroed when the read path runs. These indices always contain NULL, so the NULL check at 0x17ed catches them and calls _abort. The attacker CANNOT plant fake pointers in the text buffer to control the dereference target. This means ARB_READ is NOT achievable — the attacker can only select which pre-existing stack value to dereference, not control the pointer value itself."
+            },
+            {
+              "expression": "Dereferenced pointer value = *(OOB slot) = 8-byte value from stack",
+              "alias": "The 8-byte value read from the OOB stack slot is NOT printed directly. Only the 32 bytes at the address pointed to by that value are printed. The slot value itself (e.g., the saved rbp, return address) is not directly leaked — only the memory it points to.",
+              "implication": "At idx 146, the saved rbp value (a stack address) is not directly printed. Instead, 32 bytes starting at the saved rbp address are printed. Those 32 bytes happen to contain other stack/libc/PIE addresses (the caller's frame), which IS the leak. At idx 147, the return address (libc addr) is not directly printed — 32 bytes of libc .text code at that address are printed. The leak is indirect: the OOB slot value determines WHAT memory is leaked, not the slot value itself."
+            }
+          ],
+          "verification_plan": {
+            "method": "Run the binary with flag=testflag env var. Select menu option 2 (Read Hash record). Supply OOB indices 146, 147, 151 to trigger INFO_LEAK. Supply idx 145 to trigger CRASH. Parse the 64-hex-char output (32 bytes) from 'Hash - N : ' line. Decode as little-endian qwords to identify leaked addresses.",
+            "environment": "Linux x86-64, glibc 2.39, OpenSSL 3.0.13, PIE+ASLR+Canary+Full RELRO+NX+CET(SHSTK+IBT) enabled",
+            "run_command": "cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "PRIM-001: idx 146 output contains 64 hex chars; decoded qwords include stack addresses (0x00007ffX...) confirming stack address leak",
+              "PRIM-001: idx 147 output contains 64 hex chars of libc .text code (89C7E8CFD90100E8... = mov rdi,rax; call ... instruction bytes)",
+              "PRIM-001: idx 151 output contains 64 hex chars starting with F30F1EFA (endbr64 = main() prologue), confirming PIE .text code leak",
+              "PRIM-002: idx 145 returns rc=-11 (SIGSEGV) with 'Hash - 145 :' printed before crash, confirming canary dereference crash"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE / ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes stack, libc, and PIE base addresses. However, the INFO_LEAK primitive at idx 146 defeats ASLR by leaking stack + libc + PIE addresses in a single 32-byte read. The leaked addresses allow S4 to compute exact base addresses for all three regions. ASLR is bypassed by this primitive, not blocking it."
+            },
+            {
+              "name": "Stack Canary",
+              "present": true,
+              "primitive_impact": "The canary at idx 145 (rbp-8) is a random 64-bit value with low byte 0x00. It is non-NULL, so the NULL check passes and it gets dereferenced. Since the canary value is a random unmapped address, dereferencing it causes SIGSEGV (CRASH primitive). The canary value itself is NOT leaked — the program crashes before printing any bytes. Canary does not prevent the INFO_LEAK at idx 146/147/151."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "Full RELRO makes the GOT read-only, preventing GOT overwrite attacks. This does not affect the INFO_LEAK primitive (a read operation). Full RELRO is irrelevant to this read-only primitive."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "NX prevents code execution on stack/heap. Irrelevant to the INFO_LEAK read primitive. Would affect S4 exploit chain if shellcode were needed, but does not block the primitive itself."
+            },
+            {
+              "name": "CET (SHSTK + IBT)",
+              "present": true,
+              "primitive_impact": "Shadow stack (SHSTK) protects return addresses from overwrite; indirect branch tracking (IBT) requires endbr at indirect call targets. These protect control flow but do not affect the INFO_LEAK read primitive. Would affect S4 ROP/control-flow hijack attempts."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x17dd-0x17e5",
+              "description": "Disassembly confirms: 0x17dd: mov eax,[rbp-0x4b0] loads scanf-read unsigned index; 0x17e3: mov eax,eax zero-extends to 64-bit; 0x17e5: mov rax,[rbp+rax*8-0x490] uses index directly as array offset with NO preceding cmp/jcc bounds check. Only test rax,rax at 0x17ed (NULL check on loaded value, not index)."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x1829-0x1844",
+              "description": "Print loop re-reads OOB slot: 0x1831: mov rdx,[rbp+rax*8-0x490] (load OOB pointer); 0x1841: add rax,rdx (ptr + loop_offset); 0x1844: movzx eax,BYTE PTR [rax] (dereference OOB pointer value). This dereferences whatever 8-byte value was read from the OOB stack slot, printing 32 bytes from that address."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x1529, 0x1587, 0x15ce, 0x1539",
+              "description": "Stack frame layout: sub rsp,0x4c0 at 0x1529; hash_array base at rbp-0x490 (flag hash stored at [rbp-0x490] at 0x1587); text_buf at rbp-0x410 (lea rax,[rbp-0x410] at 0x15ce); canary at rbp-0x8 (mov [rbp-0x8],rax at 0x1539). This places: idx 145 = rbp-0x8 (canary), idx 146 = rbp (saved rbp), idx 147 = rbp+0x8 (return address), idx 151 = rbp+0x28 (PIE addr)."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x17e5 (breakpoint)",
+              "description": "gdb breakpoint at 0x17e5 with stdin '2\\n146\\n': confirmed rbp=0x7fffffffeaa0, hash_array_base=0x7fffffffe610. idx 146 slot at rbp=0x7fffffffeaa0 contains 0x00007fffffffeb40 (saved rbp = stack address). idx 147 at rbp+8 contains 0x00007ffff78b91ca (return address = libc address). idx 145 at rbp-8 contains canary 0xc4726ef83089ae00 (random, low byte 0x00). idx 151 at rbp+0x28 contains 0x0000555555555521 (PIE address = main entry)."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x188e (breakpoint after print loop)",
+              "description": "gdb: idx 146 output = 'A0EBFFFFFF7F00008B928BF7FF7F0000D8EBFFFFFF7F0000307D555555550000'. Decoded qwords: [0]=0x00007fffffffeba0 (stack addr), [1]=0x00007ffff78b928b (libc addr), [2]=0x00007fffffffebd8 (stack addr), [3]=0x0000555555557d30 (PIE addr). Confirms stack+libc+PIE address leak from single read."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x188e (breakpoint after print loop)",
+              "description": "gdb: idx 147 output = '89C7E8CFD90100E89AF10600F0832DF28E1D00017410BA3C0000000F1F0031FF'. This is 32 bytes of libc .text code at the return address (0x7ffff78b91ca). The bytes 89C7E8... correspond to 'mov rdi,rax; call ...' instructions in __libc_start_main return path."
+            },
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x188e (breakpoint after print loop)",
+              "description": "gdb: idx 151 output = 'F30F1EFA554889E54881ECC004000064488B042528000000488945F831C0B800'. First 4 bytes F30F1EFA = endbr64 instruction, followed by 55 (push rbp), 4889E5 (mov rbp,rsp), 4881ECC0040000 (sub rsp,0x4c0) = main() function prologue. Confirms PIE .text code leak."
+            },
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1844 (crash point)",
+              "description": "gdb: idx 145 (canary slot) causes SIGSEGV at 0x1844 (movzx eax,BYTE PTR [rax]). At crash: rax=0x622c8dafc19a4800 (canary value used as pointer), rdx=0x622c8dafc19a4800 (same canary value from OOB slot). The canary value is a random unmapped address, causing SIGSEGV. 'Hash - 145 :' was printed before crash (at 0x1818 printf), but no hex bytes were printed (crash occurred on first iteration of print loop). Return code = -11 (SIGSEGV)."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1710 (memset after compute)",
+              "description": "gdb: After compute path, memset(rbp-0x410, 0, 0x400) at 0x170f zeroes the text buffer before returning to menu. Confirmed that indices 16-145 (text buffer area) are always NULL when read path executes. Runtime test: reading idx 16 after compute returns 'Entry does not exist' (NULL check at 0x17ed catches it). This proves the attacker CANNOT plant fake pointers in the text buffer to achieve ARB_READ."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "idx146: 0x00007ffd62707650(stack),0x000079182b66f28b(libc),0x00007ffd62707688(stack),0x000061b848bd1d30(PIE); idx147: 89C7E8CFD90100E8...(libc code); idx151: F30F1EFA554889E5...(PIE main prologue)",
+            "fault_address": "",
+            "return_code": 1,
+            "details": "PoC executed successfully. PRIM-001 INFO_LEAK VERIFIED: idx 146 leaks stack+libc+PIE addresses (32 bytes from dereferencing saved rbp), idx 147 leaks 32 bytes of libc .text code (from dereferencing return address), idx 151 leaks 32 bytes of PIE .text code starting with endbr64=main prologue (from dereferencing PIE address at rbp+0x28). All three sub-tests confirmed non-attacker-provided data in program output. PRIM-002 CRASH VERIFIED: idx 145 (canary) returns rc=-11 (SIGSEGV) with 'Hash - 145 :' printed before crash. The PoC uses subprocess to run the binary with flag=testflag env var, selects menu option 2, and supplies OOB indices."
+          },
+          "confidence": "HIGH",
+          "notes": "ARB_READ is NOT achievable from this BUG. The attacker controls the index (which stack slot to read) but NOT the pointer value in that slot. The text buffer (indices 16-145) is always zeroed by memset at 0x170f before the read path executes, so the attacker cannot plant fake pointers. Indices 0-15 contain legitimate heap pointers (SHA256 digests). Indices 146+ contain fixed stack values (saved rbp, return address, etc.) that the attacker cannot modify. Therefore the dereference target is determined by pre-existing stack values, not attacker-controlled data. The strongest primitive is INFO_LEAK: by selecting idx 146, the attacker leaks stack+libc+PIE addresses in a single 32-byte read, defeating ASLR for all three regions. This is a DIRECT primitive (no intermediate object reuse or metadata manipulation needed). The canary at idx 145 is NOT leaked — dereferencing it crashes before any bytes are printed. The 8-byte OOB slot values themselves are NOT directly printed; only the 32 bytes at the address they point to are printed."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Same as PRIM-001: OOB unsigned index with no bounds check. At idx 145, the OOB slot contains the stack canary (random 64-bit value with low byte 0x00). The canary is non-NULL, so the NULL check at 0x17ed passes. The canary value is then dereferenced as a pointer at 0x1844 (movzx eax,BYTE PTR [rax]). Since the canary is a random unmapped address, the dereference causes SIGSEGV.",
+            "description": "By selecting idx 145, the attacker triggers a guaranteed SIGSEGV crash. The canary value is random and almost certainly points to unmapped memory. This is a denial-of-service primitive."
+          },
+          "chain": [
+            "BUG-001: OOB_ARRAY_INDEX_MISSING_BOUNDS_CHECK",
+            "scanf('%u') reads unsigned index 145 with no bounds check",
+            "mov rax,[rbp+145*8-0x490] = mov rax,[rbp-0x8] reads stack canary at 0x17e5",
+            "test rax,rax at 0x17ed: canary is non-NULL (low byte 0x00 but high bytes random) → passes check",
+            "Print loop at 0x1829: mov rdx,[rbp+rax*8-0x490] loads canary value as pointer",
+            "movzx eax,BYTE PTR [rax] at 0x1844 dereferences canary value (random unmapped address)",
+            "SIGSEGV: program crashes with signal 11 (rc=-11)"
+          ],
+          "controlled_element": {
+            "what": "Array index (read_idx=145) via scanf('%u') — attacker selects the canary slot",
+            "how": "Menu option 2, supply index 145. The canary at rbp-0x8 is always non-NULL (random value with low byte 0x00), so the NULL check passes and the canary value is dereferenced as a pointer.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "The 'flag' environment variable must be set at program startup.",
+              "necessity": "Program exits immediately without flag env var.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The attacker must select menu option 2 (Read Hash record) and supply index 145.",
+              "necessity": "Only the Read Hash record path has the unbounded index. Index 145 maps to rbp-0x8 (stack canary).",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The canary value must be non-NULL (almost always true — canary is a random 64-bit value with only the low byte guaranteed to be 0x00).",
+              "necessity": "If canary were NULL (probability ~2^-56), the NULL check would catch it and call _abort instead of crashing via dereference.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The canary value must point to unmapped memory (almost always true — random 64-bit value is overwhelmingly likely to be unmapped).",
+              "necessity": "If the canary value happened to point to mapped memory (probability negligible), the dereference would succeed and 32 bytes would be printed instead of crashing.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "idx 145 = rbp-0x8 = stack canary",
+              "alias": "The stack canary is stored at rbp-0x8, which corresponds to hash_array index 145 (rbp + 145*8 - 0x490 = rbp + 0x490 - 0x490 = rbp - 8).",
+              "implication": "Selecting idx 145 reads the canary value. The canary is non-NULL (random with low byte 0x00), so it passes the NULL check and gets dereferenced. Since the canary is a random unmapped address, the dereference causes SIGSEGV. This is a reliable DoS primitive."
+            }
+          ],
+          "verification_plan": {
+            "method": "Run the binary with flag=testflag env var. Select menu option 2 (Read Hash record). Supply index 145. Observe SIGSEGV (return code -11).",
+            "environment": "Linux x86-64, glibc 2.39, PIE+ASLR+Canary+Full RELRO+NX+CET enabled",
+            "run_command": "cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "Return code = -11 (SIGSEGV)",
+              "'Hash - 145 :' printed to stdout before crash (program reaches the dereference point)",
+              "No hex bytes printed after 'Hash - 145 :' (crash occurs on first iteration of print loop)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Stack Canary",
+              "present": true,
+              "primitive_impact": "The canary itself is the cause of the crash at idx 145. The canary's random value is dereferenced as a pointer, causing SIGSEGV. The canary does not prevent this crash — it is the source of the crash. The canary's purpose (detecting stack buffer overflow) is unrelated to this OOB read vulnerability."
+            },
+            {
+              "name": "PIE / ASLR",
+              "present": true,
+              "primitive_impact": "ASLR does not prevent the crash. The canary value is random regardless of ASLR. The crash is deterministic (always SIGSEGV at idx 145) regardless of address randomization."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E010",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x17e5, 0x17ed, 0x1844",
+              "description": "idx 145 = rbp-0x8 (canary slot). The canary value is loaded at 0x17e5, NULL-checked at 0x17ed (passes because canary is non-NULL), then dereferenced at 0x1844 (movzx eax,BYTE PTR [rax]) where rax = canary value = random unmapped address → SIGSEGV."
+            },
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1844 (crash point)",
+              "description": "gdb: At breakpoint 0x1844 with idx 145: rax=0x622c8dafc19a4800 (canary value used as pointer), rdx=0x622c8dafc19a4800 (canary value from OOB slot), loop_counter=0. After continue: SIGSEGV at 0x555555555844 (main+0x323). 'Hash - 145 :' was printed (at 0x1818 printf) but no hex bytes printed (crash on first iteration). Return code = -11."
+            },
+            {
+              "id": "E012",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1844",
+              "description": "PoC execution: run_read_idx(145) returns rc=-11 (SIGSEGV). stdout contains 'Hash - 145 :' followed by no hex bytes (crash before any bytes printed). Confirms CRASH primitive via canary dereference."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0x0000555555555844 (main+0x323, the movzx deref instruction)",
+            "return_code": -11,
+            "details": "PoC executed: idx 145 returns rc=-11 (SIGSEGV). 'Hash - 145 :' printed before crash. gdb confirmed: rax=canary value (random unmapped address), crash at 0x1844 (movzx eax,BYTE PTR [rax]). The canary at rbp-0x8 is non-NULL (random with low byte 0x00), passes NULL check, gets dereferenced as pointer → SIGSEGV. This is a reliable DoS primitive."
+          },
+          "confidence": "HIGH",
+          "notes": "This CRASH primitive is a side effect of the same OOB index bug. The canary value is random and almost always points to unmapped memory, making the crash deterministic. The crash occurs at the dereference instruction (0x1844), not at the array access (0x17e5) — the array access itself succeeds (it reads a valid stack slot), but the value read (canary) is an invalid pointer. This is distinct from the idx 0xFFFFFFFF crash (SIGBUS from accessing unmapped memory at the array access itself)."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_READ",
+          "source_bug": "BUG-001",
+          "reason": "ARB_READ is NOT achievable. The attacker controls the index (which stack slot to read) but NOT the pointer value in that slot. The text buffer (indices 16-145) is always zeroed by memset at 0x170f before the read path executes (confirmed by runtime test: idx 16 returns 'Entry does not exist'). Indices 0-15 contain legitimate heap pointers (SHA256 digests from calloc). Indices 146+ contain fixed stack values (saved rbp, return address, etc.) that the attacker cannot modify. The dereference target is determined by pre-existing stack values, not attacker-controlled data. Therefore the attacker cannot read an arbitrary address — only the fixed set of addresses that happen to be on the stack (stack frame pointers, return addresses, etc.)."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-001",
+          "reason": "ARB_WRITE is NOT achievable. The OOB index bug only affects the READ path (menu option 2). The WRITE path (menu option 1, compute) has a properly bounded search loop (cmp idx,0xf; jle at 0x1650-0x1657) that limits stores to indices 0-15. There is no OOB write primitive from this bug."
+        },
+        {
+          "primitive_id": "NP-003",
+          "candidate_type": "RELATIVE_READ",
+          "source_bug": "BUG-001",
+          "reason": "RELATIVE_READ (reading the 8-byte OOB slot value itself) is technically present but NOT directly observable. The 8-byte value read from the OOB stack slot is NOT printed to stdout — only the 32 bytes at the address pointed to by that value are printed. The slot value itself (e.g., the saved rbp, return address) is used internally as a pointer but never directly output. The observable primitive is the INFO_LEAK (dereferenced content), not the raw slot value. If the slot value points to unmapped memory (e.g., canary at idx 145), no data is leaked at all (crash instead)."
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 2,
+        "verified": 1,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "OOB_READ",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "In the compute path of main, the return value of read(0, rbp-0x410, 0x3ff) is used as an array index without checking for error/EOF conditions. At 0x16b7, 'sub eax,0x1' subtracts 1 from the read return value, and at 0x16ba 'cdqe' sign-extends it to 64-bit. If read() returns 0 (EOF), the computation produces -1 (0xFFFFFFFFFFFFFFFF), and the subsequent 'movzx eax, BYTE PTR [rbp+rax*1-0x410]' at 0x16bc accesses text_buf at offset -1, reading 1 byte from rbp-0x411 which is 1 byte before the text_buf boundary (within hash_array[15] region).",
+            "description": "When read() returns 0 (EOF), the index computation produces -1, causing movzx to read 1 byte from rbp-0x411 (out-of-bounds relative to text_buf at rbp-0x410). The read byte is only used for cmp al, 0x0a (newline check) and is never output or stored."
+          },
+          "chain": [
+            "BUG-002",
+            "read() return value used as index without validation",
+            "read() returns 0 (EOF) → index = 0-1 = -1 → cdqe → 0xFFFFFFFFFFFFFFFF",
+            "movzx reads BYTE PTR [rbp + 0xFFFFFFFFFFFFFFFF - 0x410] = [rbp - 0x411]",
+            "1-byte OOB stack read at rbp-0x411 (within hash_array[15] MSB region)",
+            "OOB_READ (1 byte, stack-internal, value used only for branch condition)"
+          ],
+          "controlled_element": {
+            "what": "The index used to access text_buf is derived from read()'s return value. When stdin reaches EOF, read() returns 0, producing index -1. The attacker controls whether stdin reaches EOF (by closing the input stream).",
+            "how": "Attacker sends '1\\n' to select compute path, then closes stdin. read(0, buf, 0x3ff) returns 0 (EOF). The code computes 0-1=-1, sign-extends to 0xFFFFFFFFFFFFFFFF, and accesses [rbp-0x411].",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker must select menu option 1 (compute) to reach the vulnerable code path at 0x16a6-0x16bc.",
+              "necessity": "The vulnerable movzx instruction is only reached in the compute path (menu choice 1).",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "read() must return 0 (EOF) or -1 (error) to produce a negative index. EOF is achieved by closing stdin after sending the menu selection.",
+              "necessity": "For positive return values (1..0x3ff), the index n-1 is within text_buf bounds (0..0x3fe). Only n=0 or n=-1 produces an out-of-bounds access.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The target address rbp-0x411 (for n=0) or rbp-0x412 (for n=-1) must be mapped and readable. This is always true because these addresses are within the stack frame (hash_array[15] region at rbp-0x418 to rbp-0x410).",
+              "necessity": "If the target were unmapped, the movzx would crash (SIGSEGV) instead of reading a byte. Since the target is always on the stack, the read always succeeds.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "rbp-0x411 = hash_array[15] byte 7 (MSB)",
+              "alias": "The OOB read target rbp-0x411 is the most significant byte of hash_array[15] (at rbp-0x418). For user-space pointers (0x0000xxxxxxxxxxxx), the MSB is always 0x00. Even when hash_array[15] contains a heap pointer (e.g., 0x00005555555592a0), byte 7 = 0x00.",
+              "implication": "The read byte is always 0x00 regardless of hash_array[15] content. The OOB read has no observable effect — the byte is only used for cmp al, 0x0a (which fails since 0x00 != 0x0a), and the program continues normally."
+            },
+            {
+              "expression": "rbp-0x412 = hash_array[15] byte 6",
+              "alias": "For n=-1 (read error), the target is rbp-0x412 = hash_array[15] byte 6. For typical user-space pointers, byte 6 is also 0x00 (addresses are 0x0000xxxxxxxxxxxx).",
+              "implication": "Same as above — the read byte is 0x00, used only for branch condition, no observable effect."
+            }
+          ],
+          "verification_plan": {
+            "method": "1. Run the binary with flag env var set. 2. Send '1\\n' to select compute path. 3. Close stdin (EOF) to make read() return 0. 4. Observe: program does NOT crash, computes SHA256 of empty string, outputs it. 5. GDB breakpoint at 0x16bc confirms: RAX=0xffffffffffffffff, target=rbp-0x411, byte=0x00, movzx succeeds, cmp al,0x0a → ZF=0 → jne taken.",
+            "environment": "x86-64 Linux, glibc 2.39, PIE binary with flag env var set",
+            "run_command": "cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "Program does not crash (return code 1 from exit(1) in _abort, not SIGSEGV)",
+              "Empty-string SHA256 (E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855) appears in output, confirming read() returned 0 and program continued",
+              "GDB: RAX=0xffffffffffffffff at 0x16bc, target address rbp-0x411 is valid stack, byte=0x00"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Stack Canary",
+              "present": true,
+              "primitive_impact": "Not relevant — the OOB read is at rbp-0x411 (within hash_array region), not at the canary (rbp-0x8). The canary is not affected."
+            },
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "Not relevant — the OOB read target is always on the stack (rbp-0x411), which is always mapped. ASLR does not prevent the read. However, the read byte (0x00) leaks no address information."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "Not relevant — this is a read primitive, not code execution."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "Not relevant — no GOT overwrite involved."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x16a6-0x16bc",
+              "description": "Disassembly: 0x16a6: call read@plt; 0x16ab: mov [rbp-0x49c],eax (store ret); 0x16b1: mov eax,[rbp-0x49c] (load ret); 0x16b7: sub eax,0x1 (ret-1); 0x16ba: cdqe (sign-extend); 0x16bc: movzx eax,BYTE PTR [rbp+rax*1-0x410] (index into text_buf). No check for ret <= 0 between 0x16ab and 0x16bc."
+            },
+            {
+              "id": "E002",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x16bc",
+              "description": "GDB breakpoint at main+0x19b (0x16bc) with stdin='1\\n' (EOF after menu selection): RAX=0xffffffffffffffff (index after sub eax,1 + cdqe when read() returned 0). Target address = rbp + rax - 0x410 = 0x7fffffffeaa0 + 0xffffffffffffffff - 0x410 = 0x7fffffffe68f (rbp-0x411). Byte at target = 0x00. After movzx: EAX=0x0. cmp al,0x0a → ZF=0 → jne taken (skip newline strip). Program continued to compute_hash256 and output empty-string SHA256."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x16bc",
+              "description": "PoC execution: sent '1\\n' then EOF to binary with flag=testflag. Return code = 1 (exit from _abort('Unknown command') on second menu iteration, NOT a crash). Output contained empty-string SHA256 (E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855), confirming read() returned 0, movzx read from rbp-0x411 without crashing, and program continued normally."
+            },
+            {
+              "id": "E004",
+              "type": "DERIVED",
+              "function": "main",
+              "address": "0x16c4",
+              "description": "The byte read by movzx at 0x16bc is only used at 0x16c4 (cmp al, 0x0a) for a newline check. If equal to 0x0a, the byte at the same offset is set to 0x00 (newline stripping). If not equal, the program skips to compute_hash256. The byte value is NEVER output, stored in a global, or used as a pointer — it only affects a single branch decision. Since the byte is always 0x00 (MSB of user-space pointer in hash_array[15]), the branch always takes the 'not newline' path."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "0x00",
+            "fault_address": "",
+            "return_code": 1,
+            "details": "GDB confirmed: when read() returns 0 (EOF), index=-1 (0xFFFFFFFFFFFFFFFF), movzx reads byte 0x00 from rbp-0x411 (valid stack, hash_array[15] MSB). No crash. Byte only used for cmp al,0x0a (branch condition). Program continues to compute_hash256(\"\") and outputs empty-string SHA256. The OOB read is confirmed but has no observable impact — no info leak, no crash, no side effect."
+          },
+          "confidence": "HIGH",
+          "notes": "This is a confirmed but minimal-impact OOB read. The vulnerability exists (read() return value unchecked), and an out-of-bounds 1-byte stack read does occur at rbp-0x411 when read() returns 0. However: (1) The target is always valid stack memory (within hash_array[15] region), so no crash. (2) The read byte is always 0x00 (MSB of user-space pointer), so no information is leaked. (3) The byte is only used for a branch condition (cmp al, 0x0a), never output or stored. (4) read() can only return 0..0x3ff or -1, all of which map to valid stack addresses — no path to unmapped memory. This primitive is VERIFIED as an OOB_READ but has no practical exploit value for S4."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "CRASH",
+          "status": "UNKNOWN",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "Same as PRIM-001: read() return value used as index without validation. If the computed address (rbp-0x411 for n=0, rbp-0x412 for n=-1) were unmapped, the movzx dereference would cause SIGSEGV.",
+            "description": "S2 theorized that if read() returns 0 or -1, the computed address wraps to a very high value and may be unmapped, causing a crash."
+          },
+          "chain": [
+            "BUG-002",
+            "read() return value used as index without validation",
+            "read() returns 0 or -1 → negative index → sign-extended to large 64-bit value",
+            "movzx dereferences [rbp + large_value - 0x410]",
+            "If target unmapped → SIGSEGV (CRASH)"
+          ],
+          "controlled_element": {
+            "what": "The index derived from read()'s return value. Attacker controls whether stdin reaches EOF (read returns 0).",
+            "how": "Close stdin after selecting compute path.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "read() must return 0 (EOF) or -1 (error) to produce a negative index.",
+              "necessity": "Positive return values produce in-bounds indices.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The computed target address (rbp-0x411 or rbp-0x412) must be unmapped for a crash to occur.",
+              "necessity": "If the target is mapped (which it always is — it's on the stack), the movzx succeeds and no crash occurs.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "rbp-0x411 and rbp-0x412 are always within the stack frame",
+              "alias": "hash_array[15] occupies rbp-0x418 to rbp-0x410. rbp-0x411 is byte 7 (MSB) and rbp-0x412 is byte 6 of hash_array[15]. Both are within the allocated stack frame (sub rsp,0x4c0).",
+              "implication": "The target address is always mapped and readable. No crash is possible via this bug. The CRASH primitive is NOT achievable."
+            }
+          ],
+          "verification_plan": {
+            "method": "Enumerate all possible read() return values and compute the target address for each. Verify that all targets are within the stack frame.",
+            "environment": "x86-64 Linux, glibc 2.39",
+            "run_command": "cd /work/workspace/0030-2024-55-flag-hasher-20260909-195252 && python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "For n=0: target=rbp-0x411 (stack, valid) — no crash",
+              "For n=-1: target=rbp-0x412 (stack, valid) — no crash",
+              "For n=1..0x3ff: target=rbp-0x410+(n-1) (text_buf, valid) — no crash",
+              "Conclusion: no path to unmapped memory, crash NOT achievable"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Stack layout",
+              "present": true,
+              "primitive_impact": "The stack frame is 0x4c0 bytes. hash_array[15] at rbp-0x418 is well within the frame. The OOB targets (rbp-0x411, rbp-0x412) are always mapped. No crash possible."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x16bc",
+              "description": "GDB confirmed: when read() returns 0, target=rbp-0x411=0x7fffffffe68f (valid stack address within hash_array[15] region). movzx succeeded, read byte=0x00, no SIGSEGV. Program continued normally."
+            },
+            {
+              "id": "E006",
+              "type": "DERIVED",
+              "function": "main",
+              "address": "0x16bc",
+              "description": "Exhaustive analysis of all possible read() return values: n=0 → target=rbp-0x411 (stack); n=-1 → target=rbp-0x412 (stack); n=1..0x3ff → target=rbp-0x410+(n-1) (text_buf). All targets are within the stack frame (sub rsp,0x4c0). No return value produces an unmapped target. CRASH is NOT achievable via this bug."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0030-2024-55-flag-hasher-20260909-195252/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 1,
+            "details": "Proven NOT achievable: all possible read() return values (0..0x3ff, -1) produce target addresses within the stack frame. GDB confirmed target rbp-0x411 is valid stack memory. No crash path exists via this bug."
+          },
+          "confidence": "HIGH",
+          "notes": "CRASH primitive is proven NOT achievable. The S2 analysis theorized that the computed address 'wraps to a very high address' causing SIGSEGV, but this is incorrect: in 64-bit arithmetic, rbp + 0xFFFFFFFFFFFFFFFF - 0x410 = rbp - 0x411 (modular arithmetic wraps to a small negative offset from rbp), which is always within the stack frame. The movzx always succeeds. This is a negative finding with DYNAMIC evidence (GDB confirmed no crash, target is valid stack)."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "INFO_LEAK",
+          "source_bug": "BUG-002",
+          "reason": "The OOB-read byte at rbp-0x411 is only used for cmp al, 0x0a (branch condition). It is NEVER output to stdout, stored in a global variable, or used as a pointer. The byte value (0x00) is not observable by the attacker. No information is leaked. Additionally, the byte is always 0x00 (MSB of user-space pointer in hash_array[15]), so even if it were observable, it would leak no useful information."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "ARB_READ",
+          "source_bug": "BUG-002",
+          "reason": "The OOB read target is not attacker-controlled. The index is derived from read()'s return value, which can only be 0 (EOF), -1 (error), or 1..0x3ff (bytes read). The attacker cannot specify an arbitrary target address — the target is always rbp-0x411, rbp-0x412, or within text_buf. This is at most a RELATIVE_READ (1 byte, fixed offset), not ARB_READ."
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002"
+  ]
+}

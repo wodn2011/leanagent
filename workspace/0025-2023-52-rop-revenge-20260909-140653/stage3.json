@@ -1,0 +1,410 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0025-2023-52-rop-revenge-20260909-140653/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0025-2023-52-rop-revenge-20260909-140653/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x4010b0\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"pie\":false,\"base_address\":\"0x400000\",\"compiler\":\"GCC 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)\",\"source_file\":\"chall.c\",\"buildid\":\"97141f37c3f783b8699d22030fdb8eef2b466762\"},\"security\":{\"relro\":{\"value\":\"Partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":false,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"UNKNOWN\",\"source\":\"UNKNOWN\",\"note\":\"ASLR is a kernel/runtime setting; libc base observed at 0x7e3deefd5000 in one ldd run, indicating ASLR is active in this environment, but this is not a property of the binary itself\"}},\"runtime\":{\"libc\":{\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\",\"source\":\"RUNTIME\",\"base_observed\":\"0x7e3deefd5000 (ldd, one run; ASLR active so base varies)\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":false,\"runpath\":false,\"ld_library_path_priority\":\"LD_LIBRARY_PATH (if set) takes precedence over system paths in the loader search order; no RPATH/RUNPATH embedded in the binary\",\"source\":\"RUNTIME\"},{\"name\":\"linux-vdso.so.1\",\"resolved_path\":\"vdso (kernel-provided)\",\"source\":\"RUNTIME\"}],\"libc_key_offsets\":{\"system\":\"0x58750\",\"execve\":\"0xef030\",\"gets\":\"0x87160\",\"puts\":\"0x87cc0\",\"printf\":\"0x60100\",\"open\":\"0x11b250\",\"read\":\"0x11bb80\",\"write\":\"0x11c690\",\"close\":\"0x116810\",\"alarm\":\"0xee330\",\"setvbuf\":\"0x88630\",\"environ\":\"0x20ad58\",\"__libc_start_main\":\"0x2a200\",\"bin_sh_string\":\"0x1cb42f\"}},\"interface\":{\"entry_function\":\"main (0x401239)\",\"input_sources\":[\"stdin\"],\"menu\":[],\"user_controlled_inputs\":[{\"function\":\"vuln\",\"address\":\"0x401205\",\"input_mechanism\":\"gets\",\"input_source\":\"stdin\",\"buffer_address\":\"rbp-0x70 (stack local)\",\"buffer_size_declared\":\"0x70 (112 bytes)\",\"bounds_check\":\"none (gets performs no length validation)\",\"note\":\"No prompt is printed; program reads directly from stdin via gets. After gets returns, close(1) and close(2) are called, so no further stdout/stderr output is possible.\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x4010b0\",\"size\":\"0x225\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x402000\",\"size\":\"0x4\",\"permissions\":\"R--\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x402004\",\"size\":\"0x54\",\"permissions\":\"R--\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x402058\",\"size\":\"0x140\",\"permissions\":\"R--\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x403e10\",\"size\":\"0x8\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x403e18\",\"size\":\"0x8\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x403e20\",\"size\":\"0x1d0\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x403ff0\",\"size\":\"0x10\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x404000\",\"size\":\"0x38\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x404038\",\"size\":\"0x10\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x404060\",\"size\":\"0x30\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".init\",\"address\":\"0x401000\",\"size\":\"0x1b\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x401020\",\"size\":\"0x50\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.sec\",\"address\":\"0x401070\",\"size\":\"0x40\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x4012d8\",\"size\":\"0xd\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true,\"readable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x404060\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x404070\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x404080\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"completed.8061\",\"address\":\"0x404088\",\"size\":1,\"section\":\".bss\",\"type\":\"dtors flag\"},{\"name\":\"__dso_handle\",\"address\":\"0x404040\",\"size\":8,\"section\":\".data\",\"type\":\"dso handle\"},{\"name\":\"__data_start\",\"address\":\"0x404038\",\"size\":8,\"section\":\".data\",\"type\":\"data start\"}],\"got\":[{\"offset\":\"0x403ff0\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__libc_start_main@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x403ff8\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__gmon_start__\",\"writable\":true},{\"offset\":\"0x404018\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"alarm@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404020\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"close@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404028\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"gets@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404030\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"setvbuf@GLIBC_2.2.5\",\"writable\":true}],\"plt\":[{\"name\":\"alarm@plt\",\"address\":\"0x401070\",\"got_entry\":\"0x404018\"},{\"name\":\"close@plt\",\"address\":\"0x401080\",\"got_entry\":\"0x404020\"},{\"name\":\"gets@plt\",\"address\":\"0x401090\",\"got_entry\":\"0x404028\"},{\"name\":\"setvbuf@plt\",\"address\":\"0x4010a0\",\"got_entry\":\"0x404030\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x401239\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init (0x401196)\",\"vuln (0x401205)\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"init\",\"vuln\"],\"summary\":\"Calls init() then vuln(); returns 0. No arguments processed.\"},{\"name\":\"init\",\"address\":\"0x401196\",\"callers\":[\"main\"],\"callees\":[\"setvbuf@plt\",\"alarm@plt\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"read\",\"destination\":\"stdin (0x404070)\",\"size\":8,\"note\":\"loads FILE* for setvbuf\"},{\"operation\":\"read\",\"destination\":\"stdout (0x404060)\",\"size\":8,\"note\":\"loads FILE* for setvbuf\"},{\"operation\":\"read\",\"destination\":\"stderr (0x404080)\",\"size\":8,\"note\":\"loads FILE* for setvbuf\"}],\"calls\":[\"setvbuf(stdin, 0, 2, 0)\",\"setvbuf(stdout, 0, 2, 0)\",\"setvbuf(stderr, 0, 2, 0)\",\"alarm(0x3c)\"],\"summary\":\"Disables buffering on stdin/stdout/stderr (setvbuf _IONBF), then sets alarm(60).\"},{\"name\":\"vuln\",\"address\":\"0x401205\",\"callers\":[\"main\"],\"callees\":[\"gets@plt\",\"close@plt\"],\"inputs\":[{\"name\":\"stdin input\",\"source\":\"gets\",\"destination\":\"stack buffer at rbp-0x70\",\"size_limit\":\"none\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buffer [rbp-0x70]\",\"size\":\"unbounded (gets reads until newline/EOF)\",\"destination_type\":\"stack_local\",\"note\":\"gets performs no bounds checking; buffer is 0x70 (112) bytes from saved rbp\"},{\"operation\":\"CALL\",\"target\":\"close(1)\",\"note\":\"closes stdout fd\"},{\"operation\":\"CALL\",\"target\":\"close(2)\",\"note\":\"closes stderr fd\"}],\"calls\":[\"gets(rbp-0x70)\",\"close(1)\",\"close(2)\"],\"summary\":\"Allocates 0x70-byte stack buffer, calls gets() on it (no bounds check -> stack buffer overflow), then closes fd 1 (stdout) and fd 2 (stderr). Function epilogue is 'leave; ret' so saved rbp at [rbp] and return address at [rbp+8] are both overwritable. Offset from buffer start to return address = 0x70 (buffer) + 0x8 (saved rbp) = 0x78 (120 bytes).\"},{\"name\":\"__libc_csu_init\",\"address\":\"0x401260\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"_init\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_init\"],\"summary\":\"Standard CSU init; contains useful gadgets (pop r12-r15; ret etc.) for ROP. Note: CET/IBT enabled so indirect calls require endbr64 targets.\"},{\"name\":\"__libc_csu_fini\",\"address\":\"0x4012d0\",\"callers\":[\"__libc_start_main\"],\"callees\":[],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[],\"summary\":\"Standard CSU fini.\"}],\"attack_surfaces\":[{\"function\":\"vuln\",\"input\":\"stdin via gets()\",\"operation\":\"unbounded stack buffer write (gets) into 0x70-byte buffer at rbp-0x70\",\"risk\":\"HIGH\",\"reason\":\"gets() performs no length validation; attacker-controlled input overflows the 0x70-byte stack buffer, overwriting saved rbp (at offset 0x70) and return address (at offset 0x78). No stack canary present, so overflow is not detected. NX enabled so direct shellcode on stack is not executable, but ROP is viable. This is the primary attack surface for S2.\"},{\"function\":\"vuln\",\"input\":\"close(1) and close(2) after gets\",\"operation\":\"stdout (fd 1) and stderr (fd 2) are closed before vuln returns\",\"risk\":\"MEDIUM\",\"reason\":\"After the overflow, stdout and stderr are closed, meaning any post-exploitation output via puts/printf/write(1,...) will fail. This constrains information leakage and exfiltration strategies. S2 should consider this when evaluating exploit routes (e.g., may need to reopen fd 1 or use a different fd for output, or use one-shot techniques that do not require stdout).\"},{\"function\":\"vuln\",\"input\":\"stack overflow -> return address control\",\"operation\":\"ret instruction at 0x401238 returns to attacker-controlled address\",\"risk\":\"HIGH\",\"reason\":\"With return address overwritten at offset 0x78 from buffer start, and no PIE (fixed addresses) + no canary, ROP chain can be constructed using gadgets from the binary (0x400000 range) and/or libc (if base can be leaked or brute-forced). CET SHSTK/IBT is marked enabled in ELF but enforcement depends on kernel/hardware support at runtime (UNKNOWN).\"},{\"function\":\"dependency_resolution\",\"input\":\"no RPATH/RUNPATH; only libc.so.6 NEEDED\",\"operation\":\"library search order: LD_LIBRARY_PATH > system paths\",\"risk\":\"LOW\",\"reason\":\"No embedded RPATH/RUNPATH. If LD_LIBRARY_PATH is set in the execution environment, a malicious libc.so.6 could be loaded. This is a standard fact about the resolution order, not a vulnerability in the binary. No non-libc custom libraries are present.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is amd64 ELF EXEC, No PIE (base 0x400000), dynamically linked, not stripped, source file chall.c\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, No canary, No PIE, FORTIFY off, CET IBT+SHSTK marked enabled in ELF GNU_PROPERTY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; only NEEDED library is libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main (0x401239) calls init() then vuln()\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"init (0x401196) calls setvbuf(stdin/stdout/stderr, 0, _IONBF, 0) then alarm(60)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"vuln (0x401205): sub rsp,0x70; lea rax,[rbp-0x70]; gets(rax); close(1); close(2); leave; ret\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"gets() performs no bounds checking on input length\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Stack buffer in vuln is 0x70 (112) bytes; saved rbp at [rbp] is 0x70 bytes from buffer start; return address at [rbp+8] is 0x78 (120) bytes from buffer start\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"No stack canary in vuln (no canary found in binary; vuln prologue has no canary load/check)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"vuln calls close(1) and close(2) after gets(), closing stdout and stderr before function returns\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"GOT is writable (Partial RELRO); .got.plt at 0x404000, .got at 0x403ff0\",\"source\":\"ELF\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"PLT entries: alarm@plt 0x401070, close@plt 0x401080, gets@plt 0x401090, setvbuf@plt 0x4010a0\",\"source\":\"ELF\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"libc key offsets: system 0x58750, execve 0xef030, gets 0x87160, puts 0x87cc0, open 0x11b250, read 0x11bb80, write 0x11c690, environ 0x20ad58, /bin/sh string 0x1cb42f\",\"source\":\"RUNTIME\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"probe_io with input 'AAAA' produced no output, consistent with vuln closing stdout/stderr after gets\",\"source\":\"RUNTIME\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"alarm(60) is set in init, so the process will receive SIGALRM after 60 seconds (anti-hang protection)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"Offset from start of gets buffer to return address = 0x70 (buffer) + 0x8 (saved rbp) = 0x78 (120 bytes). 120 bytes of padding reach the return address.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"DERIVED\",\"description\":\"Since No PIE + No Canary + writable GOT, the binary is amenable to ROP using fixed-address gadgets. libc addresses require either a leak or brute force (ASLR).\",\"source\":\"ELF\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"CET (SHSTK/IBT) is marked in ELF but actual enforcement depends on kernel + CPU support at runtime; if enforced, shadow stack would detect return-address overwrite and IBT would require endbr64 at indirect call targets. Enforcement status is UNKNOWN without runtime confirmation.\",\"source\":\"ELF\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"CET (SHSTK/IBT) runtime enforcement status\",\"reason\":\"ELF marks SHSTK and IBT as enabled in GNU_PROPERTY, but actual enforcement requires kernel support (CONFIG_X86_CET) and compatible CPU. Cannot confirm from static analysis alone whether shadow stack / indirect branch tracking is actively enforced at runtime.\"},{\"id\":\"U002\",\"description\":\"ASLR status for libc base\",\"reason\":\"ldd showed libc at 0x7e3deefd5000 in one run, suggesting ASLR is active, but ASLR is a kernel setting not a binary property. The libc base address at exploit time is unknown without a leak.\"},{\"id\":\"U003\",\"description\":\"Whether stdout/stderr closure (close(1), close(2)) can be worked around at runtime\",\"reason\":\"After vuln closes fd 1 and 2, any output-based leak or shell interaction via stdout fails. Whether fd 0 (stdin) remains open and usable, or whether fds can be reopened (e.g., open('/dev/tty') or dup2), is a matter for S2/S3 exploit route analysis.\"},{\"id\":\"U004\",\"description\":\"Exact ROP gadget inventory in the binary\",\"reason\":\"S1 recorded __libc_csu_init as a source of gadgets but did not enumerate all gadgets. S2/S3 should run ROPgadget/ropper for a complete gadget list if ROP route is pursued.\"},{\"id\":\"U005\",\"description\":\"Whether the binary is intended to be exploited with pure binary gadgets (ret2plt) or requires libc leak for ret2libc\",\"reason\":\"The binary only imports alarm/close/gets/setvbuf via PLT. system/execve are not in PLT. A ret2libc route would require a libc base leak, but stdout is closed making traditional puts-based leaks difficult. This is an S2/S3 determination.\"}],\"raw\":{\"elf\":\"ELF 64-bit LSB executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=97141f37c3f783b8699d22030fdb8eef2b466762, for GNU/Linux 3.2.0, not stripped. Entry 0x4010b0. 13 program headers. GCC 9.4.0. Source: chall.c.\",\"sections\":\".text 0x4010b0 R-X 0x225 | .rodata 0x402000 R-- 0x4 | .init_array 0x403e10 RW- 0x8 | .fini_array 0x403e18 RW- 0x8 | .dynamic 0x403e20 RW- 0x1d0 | .got 0x403ff0 RW- 0x10 | .got.plt 0x404000 RW- 0x38 | .data 0x404038 RW- 0x10 | .bss 0x404060 RW- 0x30 | .plt 0x401020 R-X 0x50 | .plt.sec 0x401070 R-X 0x40\",\"symbols\":\"main 0x401239 T | init 0x401196 T | vuln 0x401205 T | _start 0x4010b0 T | __libc_csu_init 0x401260 T | __libc_csu_fini 0x4012d0 T | stdout 0x404060 B | stdin 0x404070 B | stderr 0x404080 B | gets U | alarm U | close U | setvbuf U | __libc_start_main U\",\"disassembly\":\"vuln: 401205 endbr64; push rbp; mov rbp,rsp; sub rsp,0x70; lea rax,[rbp-0x70]; mov rdi,rax; mov eax,0; call 401090 <gets@plt>; mov edi,1; call 401080 <close@plt>; mov edi,2; call 401080 <close@plt>; nop; leave; ret. main: 401239 endbr64; push rbp; mov rbp,rsp; mov eax,0; call 401196 <init>; mov eax,0; call 401205 <vuln>; mov eax,0; pop rbp; ret. init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(0x3c).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":1,\"high_severity\":1,\"medium_severity\":0,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"STACK_BUFFER_OVERFLOW via gets() with no bounds check and no stack canary\",\"root_cause\":{\"type\":\"STACK_BUFFER_OVERFLOW\",\"description\":\"The vuln() function allocates a 0x70 (112) byte stack buffer at [rbp-0x70] and passes its address to gets(), which reads an unbounded amount of data from stdin until a newline or EOF is encountered. gets() performs no length validation whatsoever — there is no size parameter to the call. The buffer is only 0x70 bytes, but gets() will write as many bytes as the attacker supplies. The saved RBP (at [rbp], offset 0x70 from buffer start) and the return address (at [rbp+8], offset 0x78 = 120 bytes from buffer start) are both within reach of the overflow. Furthermore, the binary has no stack canary (confirmed by checksec: 'No canary found' and the vuln prologue at 0x401205 contains no canary load/check — only 'push rbp; mov rbp,rsp; sub rsp,0x70'). This means the overflow proceeds undetected and the return address can be overwritten with attacker-controlled data. The root cause is the use of gets() (an inherently unsafe function with no bounds checking) on a fixed-size stack buffer, combined with the complete absence of a stack canary to detect the corruption.\"},\"affected_functions\":[\"vuln\"],\"affected_objects\":[\"stack buffer at [rbp-0x70] in vuln() — 0x70 (112) bytes, the overflow source\",\"saved RBP at [rbp] in vuln() — overwritable at offset 0x70 from buffer start\",\"return address at [rbp+8] in vuln() — overwritable at offset 0x78 (120 bytes) from buffer start\"],\"attack_surface\":{\"input\":\"stdin (attacker-controlled data read via gets())\",\"entry_function\":\"main (0x401239) -> vuln (0x401205)\",\"data_flow\":[\"main() calls init() then vuln() with no arguments\",\"vuln() prologue: push rbp; mov rbp,rsp; sub rsp,0x70 — allocates 0x70-byte stack frame\",\"vuln() at 0x401211: lea rax,[rbp-0x70] — computes address of stack buffer\",\"vuln() at 0x401215: mov rdi,rax — passes buffer address as first argument to gets()\",\"vuln() at 0x40121d: call gets@plt — gets() reads unbounded stdin input into the 0x70-byte buffer\",\"Attacker input exceeding 0x70 bytes overwrites saved RBP at offset 0x70\",\"Attacker input exceeding 0x78 bytes overwrites return address at offset 0x78\",\"vuln() at 0x401237: leave — restores RSP from corrupted RBP, then pops corrupted saved RBP into RBP\",\"vuln() at 0x401238: ret — pops the overwritten return address into RIP, transferring control\"]},\"security_check\":{\"expected\":\"Input length should be validated against the buffer size (0x70 bytes) before or during the write operation. A stack canary should be present to detect stack buffer overflow before the function returns.\",\"actual\":\"No length validation is performed. gets() is called directly with the buffer address and no size limit. No stack canary is present in the binary (confirmed by checksec and the vuln prologue). The function epilogue is a plain 'leave; ret' with no canary check.\",\"missing_or_incorrect\":\"Both the length check and the stack canary are entirely absent. gets() inherently provides no bounds checking — it reads until newline/EOF. The buffer is 0x70 bytes but there is no mechanism to prevent or detect writes beyond this boundary.\"},\"vulnerable_operation\":{\"operation\":\"unbounded stack buffer write via gets()\",\"address\":\"0x40121d (call gets@plt)\",\"expression\":\"gets(rbp-0x70) — writes attacker-controlled stdin data into a 0x70-byte stack buffer with no length limit\",\"target\":\"stack local buffer at [rbp-0x70] in vuln()'s stack frame; overflow reaches saved RBP at [rbp] (offset 0x70) and return address at [rbp+8] (offset 0x78)\",\"size\":\"buffer declared 0x70 (112) bytes; actual write size is unbounded (determined by attacker input length)\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The gets() call writes attacker-controlled data beyond the 0x70-byte buffer boundary, corrupting the saved RBP (at offset 0x70) and return address (at offset 0x78) on the stack. This is a direct stack memory corruption: the overflow overwrites adjacent stack memory with attacker-controlled bytes. No canary detects this corruption. Preconditions: attacker must supply more than 0x70 bytes of input via stdin to the vuln() function.\"},{\"type\":\"DATA_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The saved RBP value on the stack is corrupted at offset 0x70 from the buffer start. When 'leave' executes (mov rsp,rbp; pop rbp), the corrupted RBP is popped into RBP, and subsequent stack frame references in caller functions (main) will use a corrupted base pointer, potentially corrupting data accesses. Preconditions: attacker supplies at least 0x71 bytes of input.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"When the overwritten return address at offset 0x78 is not a valid executable address, the 'ret' instruction at 0x401238 will transfer control to an invalid location, causing a SIGSEGV. Even with partial overflow (corrupting only saved RBP), the 'leave' instruction can set RSP to an invalid value, causing a crash on subsequent stack access. Preconditions: attacker supplies at least 0x71 bytes (RBP corruption) or 0x79 bytes (return address corruption) of input.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x40121d\",\"description\":\"Disassembly confirms gets@plt is called at 0x40121d with rdi = [rbp-0x70] (set at 0x401211 lea rax,[rbp-0x70]; 0x401215 mov rdi,rax). gets() reads unbounded stdin input into the 0x70-byte stack buffer. There is no length parameter to gets() and no bounds check before or after the call.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x40120d-0x401238\",\"description\":\"The vuln prologue is 'push rbp; mov rbp,rsp; sub rsp,0x70' (0x401209-0x40120d) and the epilogue is 'leave; ret' (0x401237-0x401238). There is no stack canary load (no 'mov rax, [fs:0x28]') or canary check (no 'xor rax,[fs:0x28]; jne ...') anywhere in the function. This confirms the overflow will not be detected.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x40120d\",\"description\":\"The stack frame is 0x70 bytes (sub rsp,0x70). The buffer starts at [rbp-0x70] (0x401211). The saved RBP is at [rbp] = offset 0x70 from buffer start. The return address is at [rbp+8] = offset 0x78 (120 bytes) from buffer start. Both are overwritable by input exceeding 0x70 bytes.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"binary-level\",\"description\":\"checksec confirms: 'No canary found', 'NX enabled', 'No PIE (0x400000)', 'Partial RELRO'. The absence of a canary means the stack overflow is undetectable by the runtime. NX prevents direct shellcode execution on the stack but does not prevent the overflow itself.\"},{\"id\":\"E005\",\"type\":\"DERIVED\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"The 'ret' instruction at 0x401238 pops the return address from [rsp]. After the overflow, [rsp] at the point of ret contains attacker-controlled data (the overwritten return address at offset 0x78 from the buffer). The return address is fully controlled by the attacker after supplying 120 bytes of padding + 8 bytes of target address.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Dynamic confirmation that supplying 120 bytes of padding followed by an 8-byte address overwrites the return address and redirects control flow on 'ret' at 0x401238\",\"CET (SHSTK/IBT) runtime enforcement status: if Shadow Stack is enforced at runtime, the return address overwrite would be detected and cause a SIGSEGV before control transfer. This is UNKNOWN from static analysis — ELF marks SHSTK/IBT as enabled but enforcement requires kernel + CPU support\",\"Whether the close(1)/close(2) calls at 0x401227/0x401231 affect the exploitability of post-overflow control flow (they close stdout/stderr but do not prevent the overflow or the return address overwrite itself)\"]}],\"non_vulnerabilities\":[{\"function\":\"init\",\"description\":\"init() calls setvbuf(stdin/stdout/stderr, 0, _IONBF, 0) and alarm(60).\",\"reason\":\"setvbuf is called with valid FILE* pointers loaded from .bss globals (stdin@0x404070, stdout@0x404060, stderr@0x404080) and constant arguments (0, 2, 0). The mode value 2 = _IONBF is a valid mode. alarm(60) uses a hardcoded constant argument. No attacker-controlled input reaches these calls. No vulnerability in init().\"},{\"function\":\"main\",\"description\":\"main() calls init() then vuln() with no arguments, returns 0.\",\"reason\":\"main passes no arguments to init or vuln. The call sequence is fixed. No attacker-controlled data flows through main itself — the vulnerability is entirely within vuln()'s gets() call. main's own stack frame has no buffer and no unsafe operations.\"},{\"function\":\"vuln (close calls)\",\"description\":\"vuln() calls close(1) and close(2) after gets() — closes stdout (fd 1) and stderr (fd 2).\",\"reason\":\"close() is called with hardcoded constant arguments (edi=1 at 0x401222, edi=2 at 0x40122c). The arguments are not attacker-controlled. The close calls are not themselves vulnerabilities — they are a constraint on post-overflow exploitation (stdout/stderr are unavailable after the overflow), not a memory safety or logic bug.\"},{\"function\":\"dependency_resolution\",\"description\":\"Binary has no RPATH/RUNPATH; only NEEDED library is libc.so.6.\",\"reason\":\"While LD_LIBRARY_PATH could theoretically be used to load a malicious libc, this is an environment-level configuration issue, not a vulnerability in the binary itself. The binary does not load any custom or non-standard libraries. There are no dlopen/dlsym calls. This is a standard fact about library resolution order, not a binary vulnerability.\"}],\"unresolved\":[{\"description\":\"CET (Shadow Stack / IBT) runtime enforcement status is unknown\",\"reason\":\"The ELF GNU_PROPERTY marks SHSTK and IBT as enabled, and checksec reports both as 'Enabled'. However, actual enforcement requires kernel support (CONFIG_X86_CET) and compatible CPU hardware. If Shadow Stack is enforced at runtime, the return address overwrite at 0x401238 would be detected (the shadow stack's copy of the return address would not match), causing a SIGSEGV before control transfer. This would not prevent the stack memory corruption itself (the overflow still happens), but it would prevent control flow hijacking via the corrupted return address.\",\"required_next_step\":\"S3 dynamic verification: run the binary under a CET-capable kernel and attempt the overflow to observe whether a shadow stack violation is triggered. If CET is not enforced, the return address overwrite proceeds to control flow redirection.\"},{\"description\":\"ASLR status for libc base address at exploit time\",\"reason\":\"ASLR is a kernel/runtime setting. S1 observed libc at 0x7e3deefd5000 in one ldd run, suggesting ASLR is active. The binary itself is No PIE (fixed at 0x400000), so binary addresses are known. But libc addresses vary per run. This affects whether the overflow's impact extends to libc-based targets but does not affect the existence of the stack buffer overflow vulnerability itself.\",\"required_next_step\":\"S3/S4 determination: whether a libc leak is needed for exploitation route planning. This is outside S2 scope — S2 confirms the overflow vulnerability regardless of ASLR.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":3,\"verified\":3,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"RELATIVE_WRITE\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"gets() called on a 0x70-byte stack buffer at [rbp-0x70] in vuln() with no bounds checking and no stack canary. gets() reads unbounded stdin input, allowing attacker to write beyond the 0x70-byte buffer into saved RBP (offset 0x70) and return address (offset 0x78).\",\"description\":\"The gets() call at 0x40121d writes attacker-controlled stdin data into a 0x70-byte stack buffer with no length limit. Input exceeding 0x70 bytes overwrites adjacent stack memory: saved RBP at offset 0x70 (112 bytes) and return address at offset 0x78 (120 bytes) from buffer start.\"},\"chain\":[\"BUG-001\",\"gets() with no bounds check on 0x70-byte stack buffer\",\"Attacker input exceeds 0x70 bytes, writing beyond buffer boundary\",\"Attacker-controlled data overwrites saved RBP at offset 0x70 and return address at offset 0x78\",\"RELATIVE_WRITE\"],\"controlled_element\":{\"what\":\"Written data (value) and write offset relative to buffer base\",\"how\":\"Attacker supplies stdin input to gets(). The first 0x70 bytes fill the buffer; bytes at offset 0x70 overwrite saved RBP; bytes at offset 0x78 overwrite the return address. The written values are fully attacker-controlled.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker must supply more than 0x70 (112) bytes of input via stdin to the vuln() function's gets() call\",\"necessity\":\"The buffer is 0x70 bytes; overflow begins at byte 113. Without exceeding this length, no out-of-bounds write occurs.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"No stack canary is present to detect the overflow\",\"necessity\":\"A canary would abort the program before the overflow reaches the return address. Confirmed absent by checksec and disassembly of vuln prologue.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"gets() must read the full attacker payload before returning (input terminated by newline or EOF)\",\"necessity\":\"gets() reads until newline/EOF. The attacker payload must not contain a newline before the overflow data.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"GDB breakpoint at leave instruction (0x401237) before it executes, inspect stack to confirm attacker values written at offset 0x70 (saved RBP) and 0x78 (return address).\",\"environment\":\"Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000\",\"run_command\":\"python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"expected_evidence\":[\"GDB breakpoint at 0x401237 shows saved RBP = 0xdeadbeefdeadbeef at offset 0x70\",\"GDB shows return address = 0xcafebabecafebabe at offset 0x78\",\"Both values are attacker-supplied, confirming write beyond buffer boundary\"]},\"mitigations\":[{\"name\":\"NX (Non-Executable Stack)\",\"present\":true,\"primitive_impact\":\"NX does not prevent the stack overflow write itself. It only prevents execution of shellcode placed on the stack. RELATIVE_WRITE is unaffected.\"},{\"name\":\"No Stack Canary\",\"present\":false,\"primitive_impact\":\"No canary means the overflow is undetected. This is a missing mitigation that enables the primitive.\"},{\"name\":\"No PIE\",\"present\":false,\"primitive_impact\":\"Fixed binary addresses (0x400000 base) make stack layout predictable. This is a missing mitigation that aids the primitive.\"},{\"name\":\"CET SHSTK (Shadow Stack)\",\"present\":false,\"primitive_impact\":\"ELF marks SHSTK as enabled but runtime enforcement is NOT active (verified dynamically: ret jumps to arbitrary addresses). Does not prevent the write.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x40121d\",\"description\":\"Disassembly confirms gets@plt called at 0x40121d with rdi=[rbp-0x70]. No length parameter, no bounds check. Buffer is 0x70 bytes (sub rsp,0x70 at 0x40120d).\"},{\"id\":\"E002\",\"type\":\"DYNAMIC\",\"function\":\"vuln\",\"address\":\"0x401237\",\"description\":\"GDB breakpoint at leave (0x401237) before execution: stack at [rbp] = 0xdeadbeefdeadbeef (offset 0x70), [rbp+8] = 0xcafebabecafebabe (offset 0x78). Both are attacker-supplied values written beyond the 0x70-byte buffer, confirming RELATIVE_WRITE.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"written_value\":\"0xdeadbeefdeadbeef at offset 0x70 (saved RBP), 0xcafebabecafebabe at offset 0x78 (return address)\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"GDB breakpoint at leave instruction (0x401237) confirmed: saved RBP at [rbp]=0xdeadbeefdeadbeef and return address at [rbp+8]=0xcafebabecafebabe, both attacker-controlled values written beyond the 0x70-byte buffer boundary via gets() overflow.\"},\"confidence\":\"HIGH\",\"notes\":\"RELATIVE_WRITE is the foundational primitive: the gets() overflow writes attacker-controlled data to fixed offsets (0x70 for saved RBP, 0x78 for return address) relative to the buffer base. The write target is not arbitrary (fixed stack offsets), so this is RELATIVE_WRITE not ARB_WRITE. The written value is fully attacker-controlled.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"STACK_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"gets() overflow overwrites saved RBP at offset 0x70 from buffer start. The 'leave' instruction (mov rsp,rbp; pop rbp) at 0x401237 loads the corrupted saved RBP value into the RBP register, giving the attacker control of the base pointer.\",\"description\":\"After gets() overwrites the saved RBP at offset 0x70, the 'leave' instruction pops this corrupted value into RBP. The attacker now controls RBP, which affects all subsequent stack frame references (rbp-relative addressing) in caller functions.\"},\"chain\":[\"BUG-001\",\"gets() overflow overwrites saved RBP at offset 0x70\",\"leave instruction (mov rsp,rbp; pop rbp) loads corrupted value into RBP register\",\"RBP register now holds attacker-controlled value\",\"STACK_CONTROL\"],\"controlled_element\":{\"what\":\"RBP register value (stack frame base pointer)\",\"how\":\"Attacker writes 8 bytes at offset 0x70 from buffer start. When 'leave' executes, these 8 bytes are popped into RBP. The attacker fully controls the RBP value.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker must supply at least 0x71 (113) bytes of input to overwrite saved RBP\",\"necessity\":\"Saved RBP starts at offset 0x70. At least 8 bytes beyond offset 0x70 are needed to fully control RBP.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"No stack canary to detect the saved RBP corruption\",\"necessity\":\"Canary would abort before leave executes. Confirmed absent.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The 'leave' instruction must execute (program must reach 0x401237 without crashing first)\",\"necessity\":\"If gets() or close() calls crash before leave, RBP corruption is not loaded into the register. gets() and close() use hardcoded arguments and do not crash.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"GDB: set breakpoint at leave (0x401237), step over leave instruction, observe RBP register value equals attacker-supplied value.\",\"environment\":\"Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000\",\"run_command\":\"python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"expected_evidence\":[\"Before leave: RBP = original stack frame address (0x7fffffffea80)\",\"After leave: RBP = 0x4141414141414141 (attacker-controlled value)\",\"RSP = original RBP + 8 (pointing to return address slot)\"]},\"mitigations\":[{\"name\":\"No Stack Canary\",\"present\":false,\"primitive_impact\":\"No canary means saved RBP corruption is undetected. Missing mitigation enables STACK_CONTROL.\"},{\"name\":\"CET SHSTK (Shadow Stack)\",\"present\":false,\"primitive_impact\":\"SHSTK protects return addresses, not RBP. Even if enforced, RBP corruption via leave would still occur. Does not affect STACK_CONTROL.\"}],\"evidence\":[{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x401237\",\"description\":\"Disassembly confirms 'leave' instruction at 0x401237 (mov rsp,rbp; pop rbp). This loads the corrupted saved RBP from the stack into the RBP register.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"vuln\",\"address\":\"0x401237\",\"description\":\"GDB single-step over leave: Before leave RBP=0x7fffffffea80 (original). After leave RBP=0x4141414141414141 (attacker-controlled). RSP=0x7fffffffea88 (pointing to return address). Confirms STACK_CONTROL: attacker controls RBP register value.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"written_value\":\"0x4141414141414141 into RBP register via leave instruction\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"GDB single-step over leave (0x401237): RBP changed from 0x7fffffffea80 (original) to 0x4141414141414141 (attacker-controlled). The 'leave' instruction (mov rsp,rbp; pop rbp) loaded the corrupted saved RBP from offset 0x70 into the RBP register. Stack frame base pointer is fully attacker-controlled.\"},\"confidence\":\"HIGH\",\"notes\":\"STACK_CONTROL via RBP corruption enables stack pivot techniques: since 'leave' sets RSP=old_RBP then pops new_RBP, controlling RBP allows redirecting RSP to attacker-controlled memory. This is a stepping stone for ROP chain placement. The RBP value is fully attacker-controlled (8 bytes at offset 0x70).\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"RIP_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"gets() overflow overwrites the return address at offset 0x78 (120 bytes) from buffer start. The 'ret' instruction at 0x401238 pops this corrupted return address into RIP, transferring control to an attacker-specified address. No stack canary detects the corruption, and CET Shadow Stack is NOT enforced at runtime.\",\"description\":\"After gets() overwrites the return address at offset 0x78, the 'ret' instruction at 0x401238 pops the attacker-controlled value into RIP. Dynamic verification confirms ret jumps to arbitrary attacker-specified addresses, including non-endbr64 targets, proving CET SHSTK is not enforced.\"},\"chain\":[\"BUG-001\",\"gets() overflow overwrites return address at offset 0x78\",\"ret instruction at 0x401238 pops corrupted return address into RIP\",\"RIP register now holds attacker-controlled address\",\"RIP_CONTROL\"],\"controlled_element\":{\"what\":\"RIP register value (instruction pointer / control flow target)\",\"how\":\"Attacker writes 8 bytes at offset 0x78 from buffer start. When 'ret' executes at 0x401238, these 8 bytes are popped into RIP. The attacker fully controls the jump target.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker must supply at least 0x79 (121) bytes of input to fully overwrite the 8-byte return address\",\"necessity\":\"Return address starts at offset 0x78. 8 bytes (0x78-0x7f) must be overwritten to control the full 64-bit RIP.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"No stack canary to detect return address corruption\",\"necessity\":\"Canary would abort before ret executes. Confirmed absent by checksec and disassembly.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"CET Shadow Stack (SHSTK) must NOT be enforced at runtime\",\"necessity\":\"If SHSTK were enforced, ret would compare the stack return address with the shadow stack copy and fault (si_code=128 SEGV_CPERR) before jumping. Dynamic testing confirms SHSTK is NOT enforced: ret successfully jumps to attacker-specified addresses including non-endbr64 targets.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The 'ret' instruction at 0x401238 must execute (program must reach it without crashing first)\",\"necessity\":\"close(1) and close(2) are called before ret but use hardcoded arguments and do not crash. The leave instruction must also succeed (RBP corruption does not prevent leave from executing).\",\"verified\":true},{\"id\":\"PC-05\",\"description\":\"The target address must be a mapped executable address for successful control flow hijacking (NX prevents execution at non-executable addresses)\",\"necessity\":\"If the target is non-executable (e.g., .data section), NX causes SEGV_ACCERR. If unmapped, SEGV_MAPERR. For successful hijacking, target must be in .text or libc's executable segments. No PIE means binary .text addresses are fixed and known.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"CET SHSTK runtime enforcement\",\"alias\":\"ELF GNU_PROPERTY marks SHSTK as enabled; checksec reports 'Enabled'; CPU supports IBT but NOT SHSTK (no shstk flag in cpuinfo)\",\"implication\":\"CET SHSTK is NOT enforced at runtime. Dynamic verification: ret at 0x401238 successfully jumps to attacker-specified addresses (0x404038, 0x4012c3, 0x0) without triggering si_code=128 (SEGV_CPERR). The si_code=128 observed for 0x4242424242424242 is a kernel behavior for that specific unmapped address range, not CET enforcement. RIP_CONTROL is achievable.\"}],\"verification_plan\":{\"method\":\"Three GDB tests: (1) ret to 0x404038 (.data, non-exec) -> expect RIP=0x404038, si_code=2; (2) ret to 0x4012c3 (pop rdi;ret, no endbr64) -> expect program continues normally; (3) ret to 0x0 (NULL) -> expect RIP=0x0, si_code=1. All three confirm ret jumps to attacker-specified address.\",\"environment\":\"Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000, CET SHSTK not enforced\",\"run_command\":\"python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"expected_evidence\":[\"Test 3a: RIP=0x404038, si_code=2 (SEGV_ACCERR, NX violation) - ret jumped to attacker address\",\"Test 3b: program exited normally - ret jumped to 0x4012c3 (pop rdi;ret) and continued\",\"Test 3c: RIP=0x0, si_code=1 (SEGV_MAPERR) - ret jumped to attacker-specified NULL address\",\"All three prove RIP == attacker-specified return address value\"]},\"mitigations\":[{\"name\":\"NX (Non-Executable Stack)\",\"present\":true,\"primitive_impact\":\"NX prevents execution at non-executable addresses (e.g., stack, .data). RIP_CONTROL still works for targets in executable segments (.text, libc text). NX constrains the target address space but does not prevent RIP_CONTROL itself.\"},{\"name\":\"No Stack Canary\",\"present\":false,\"primitive_impact\":\"No canary means return address corruption is undetected. Missing mitigation enables RIP_CONTROL.\"},{\"name\":\"No PIE\",\"present\":false,\"primitive_impact\":\"Fixed binary addresses (0x400000 base) mean .text gadget addresses are known without a leak. Missing mitigation aids RIP_CONTROL for binary gadgets. libc addresses still require a leak (ASLR).\"},{\"name\":\"CET SHSTK (Shadow Stack)\",\"present\":false,\"primitive_impact\":\"ELF marks SHSTK enabled but it is NOT enforced at runtime (CPU lacks shstk support; dynamic verification confirms ret jumps to arbitrary addresses). If it were enforced, it would prevent RIP_CONTROL by detecting return address mismatch. Currently does NOT affect the primitive.\"},{\"name\":\"CET IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"IBT requires endbr64 at indirect call/jump targets. However, IBT does NOT apply to 'ret' instructions (ret is not an indirect branch in the IBT sense). Dynamic verification confirms ret jumps to non-endbr64 addresses (0x4012c3). IBT does not prevent RIP_CONTROL via return address overwrite.\"},{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes libc base address. Binary is No PIE so binary addresses are fixed. RIP_CONTROL to binary gadgets (0x40xxxx) works without a leak. RIP_CONTROL to libc addresses requires a libc base leak first.\"},{\"name\":\"close(1)/close(2) after gets()\",\"present\":true,\"primitive_impact\":\"stdout and stderr are closed before vuln returns. This does not prevent RIP_CONTROL (the ret still executes), but it constrains post-hijack output: any puts/printf/write(1,...) will fail. This affects exploit route planning (S4), not the primitive itself.\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"Disassembly confirms 'ret' instruction at 0x401238. After the overflow, [rsp] at the point of ret contains the attacker-controlled return address (overwritten at offset 0x78 from buffer start).\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"Test 3a: Return address overwritten to 0x404038 (.data section). GDB: RIP=0x404038, si_code=2 (SEGV_ACCERR). ret jumped to attacker-specified address. NX prevented execution but the jump occurred.\"},{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"Test 3b: Return address overwritten to 0x4012c3 (pop rdi; ret gadget, no endbr64). GDB: program exited normally (rc=0). ret successfully jumped to 0x4012c3 and executed the gadget. This proves CET SHSTK is NOT enforced (ret jumps to non-endbr64 targets).\"},{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"Test 3c: Return address overwritten to 0x0 (NULL). GDB: RIP=0x0, si_code=1 (SEGV_MAPERR). ret jumped to attacker-specified NULL address. Confirms RIP == attacker-specified value.\"},{\"id\":\"E009\",\"type\":\"DERIVED\",\"function\":\"vuln\",\"address\":\"0x401238\",\"description\":\"Three independent tests with different target addresses (0x404038, 0x4012c3, 0x0) all confirm ret jumps to the attacker-specified address. RIP register == attacker-controlled return address value. CET SHSTK is not enforced (0x4012c3 has no endbr64 yet ret succeeded). RIP_CONTROL is VERIFIED.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py\",\"written_value\":\"0x404038 (test 3a), 0x4012c3 (test 3b), 0x0 (test 3c) written to return address at offset 0x78\",\"read_value\":\"\",\"fault_address\":\"0x404038 (test 3a, NX), 0x0 (test 3c, unmapped)\",\"return_code\":0,\"details\":\"Three GDB tests confirm RIP_CONTROL: (3a) ret to 0x404038 -> RIP=0x404038, si_code=2 (NX violation, jump succeeded); (3b) ret to 0x4012c3 (pop rdi;ret, no endbr64) -> program exited normally (jump succeeded, CET SHSTK not enforced); (3c) ret to 0x0 -> RIP=0x0, si_code=1 (unmapped, jump succeeded). All three prove RIP == attacker-specified return address.\"},\"confidence\":\"HIGH\",\"notes\":\"RIP_CONTROL is the highest-impact primitive from this BUG. CET SHSTK is NOT enforced at runtime despite being marked in ELF (CPU lacks shstk support). IBT does not apply to ret instructions. The ret at 0x401238 jumps to any attacker-specified address. Combined with No PIE (fixed binary gadget addresses) and available ROP gadgets (pop rdi;ret at 0x4012c3, leave;ret at 0x401237), this enables ROP chain construction. The close(1)/close(2) calls constrain post-hijack output but do not prevent control flow hijacking. ASLR means libc gadget addresses require a leak, but binary gadgets at 0x40xxxx are usable without a leak.\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-001\",\"reason\":\"The gets() overflow writes to fixed stack offsets (0x70 for saved RBP, 0x78 for return address) relative to the buffer base. The write target is not arbitrary - it is determined by the stack layout, not by attacker-specified address. This is RELATIVE_WRITE (PRIM-001), not ARB_WRITE. The attacker controls the written value but not the write destination address.\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"FUNCTION_POINTER_CONTROL\",\"source_bug\":\"BUG-001\",\"reason\":\"The overflow overwrites the return address on the stack, which is a control flow target but not a function pointer in the traditional sense (GOT/vtable/callback). The return address is consumed by 'ret', not by an indirect call/jump instruction. This is RIP_CONTROL (PRIM-003), not FUNCTION_POINTER_CONTROL. The binary has writable GOT (Partial RELRO) but the overflow does not directly target GOT entries - it targets the stack.\"},{\"primitive_id\":\"NP-003\",\"candidate_type\":\"CODE_EXECUTION\",\"source_bug\":\"BUG-001\",\"reason\":\"CODE_EXECUTION via environment-level library hijacking (LD_LIBRARY_PATH) is not related to this BUG. The BUG is a stack buffer overflow, not a dependency resolution issue. No dlopen/dlsym calls exist in the binary. This primitive type does not apply to BUG-001.\"}],\"unresolved\":[{\"description\":\"ASLR randomizes libc base address at runtime\",\"reason\":\"The binary is No PIE (fixed at 0x400000) so binary gadget addresses are known. However, libc addresses vary per run. RIP_CONTROL to binary gadgets works without a leak, but ret2libc (system, one_gadget) requires a libc base leak. stdout/stderr are closed after gets(), making traditional puts-based leaks difficult.\",\"required_next_step\":\"S4 exploit route planning: determine whether binary-only ROP (ret2plt) suffices or a libc leak is needed. If libc leak is needed, consider alternative leak methods (e.g., ret to write(2,...) using fd 2 if reopened, or stack pivot to leak via GOT read). This is S4 scope, not S3.\"}]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 3,
+        "verified": 3,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "RELATIVE_WRITE",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "gets() called on a 0x70-byte stack buffer at [rbp-0x70] in vuln() with no bounds checking and no stack canary. gets() reads unbounded stdin input, allowing attacker to write beyond the 0x70-byte buffer into saved RBP (offset 0x70) and return address (offset 0x78).",
+            "description": "The gets() call at 0x40121d writes attacker-controlled stdin data into a 0x70-byte stack buffer with no length limit. Input exceeding 0x70 bytes overwrites adjacent stack memory: saved RBP at offset 0x70 (112 bytes) and return address at offset 0x78 (120 bytes) from buffer start."
+          },
+          "chain": [
+            "BUG-001",
+            "gets() with no bounds check on 0x70-byte stack buffer",
+            "Attacker input exceeds 0x70 bytes, writing beyond buffer boundary",
+            "Attacker-controlled data overwrites saved RBP at offset 0x70 and return address at offset 0x78",
+            "RELATIVE_WRITE"
+          ],
+          "controlled_element": {
+            "what": "Written data (value) and write offset relative to buffer base",
+            "how": "Attacker supplies stdin input to gets(). The first 0x70 bytes fill the buffer; bytes at offset 0x70 overwrite saved RBP; bytes at offset 0x78 overwrite the return address. The written values are fully attacker-controlled.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker must supply more than 0x70 (112) bytes of input via stdin to the vuln() function's gets() call",
+              "necessity": "The buffer is 0x70 bytes; overflow begins at byte 113. Without exceeding this length, no out-of-bounds write occurs.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "No stack canary is present to detect the overflow",
+              "necessity": "A canary would abort the program before the overflow reaches the return address. Confirmed absent by checksec and disassembly of vuln prologue.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "gets() must read the full attacker payload before returning (input terminated by newline or EOF)",
+              "necessity": "gets() reads until newline/EOF. The attacker payload must not contain a newline before the overflow data.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "GDB breakpoint at leave instruction (0x401237) before it executes, inspect stack to confirm attacker values written at offset 0x70 (saved RBP) and 0x78 (return address).",
+            "environment": "Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000",
+            "run_command": "python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "expected_evidence": [
+              "GDB breakpoint at 0x401237 shows saved RBP = 0xdeadbeefdeadbeef at offset 0x70",
+              "GDB shows return address = 0xcafebabecafebabe at offset 0x78",
+              "Both values are attacker-supplied, confirming write beyond buffer boundary"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX (Non-Executable Stack)",
+              "present": true,
+              "primitive_impact": "NX does not prevent the stack overflow write itself. It only prevents execution of shellcode placed on the stack. RELATIVE_WRITE is unaffected."
+            },
+            {
+              "name": "No Stack Canary",
+              "present": false,
+              "primitive_impact": "No canary means the overflow is undetected. This is a missing mitigation that enables the primitive."
+            },
+            {
+              "name": "No PIE",
+              "present": false,
+              "primitive_impact": "Fixed binary addresses (0x400000 base) make stack layout predictable. This is a missing mitigation that aids the primitive."
+            },
+            {
+              "name": "CET SHSTK (Shadow Stack)",
+              "present": false,
+              "primitive_impact": "ELF marks SHSTK as enabled but runtime enforcement is NOT active (verified dynamically: ret jumps to arbitrary addresses). Does not prevent the write."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "vuln",
+              "address": "0x40121d",
+              "description": "Disassembly confirms gets@plt called at 0x40121d with rdi=[rbp-0x70]. No length parameter, no bounds check. Buffer is 0x70 bytes (sub rsp,0x70 at 0x40120d)."
+            },
+            {
+              "id": "E002",
+              "type": "DYNAMIC",
+              "function": "vuln",
+              "address": "0x401237",
+              "description": "GDB breakpoint at leave (0x401237) before execution: stack at [rbp] = 0xdeadbeefdeadbeef (offset 0x70), [rbp+8] = 0xcafebabecafebabe (offset 0x78). Both are attacker-supplied values written beyond the 0x70-byte buffer, confirming RELATIVE_WRITE."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "written_value": "0xdeadbeefdeadbeef at offset 0x70 (saved RBP), 0xcafebabecafebabe at offset 0x78 (return address)",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "GDB breakpoint at leave instruction (0x401237) confirmed: saved RBP at [rbp]=0xdeadbeefdeadbeef and return address at [rbp+8]=0xcafebabecafebabe, both attacker-controlled values written beyond the 0x70-byte buffer boundary via gets() overflow."
+          },
+          "confidence": "HIGH",
+          "notes": "RELATIVE_WRITE is the foundational primitive: the gets() overflow writes attacker-controlled data to fixed offsets (0x70 for saved RBP, 0x78 for return address) relative to the buffer base. The write target is not arbitrary (fixed stack offsets), so this is RELATIVE_WRITE not ARB_WRITE. The written value is fully attacker-controlled."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "STACK_CONTROL",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "gets() overflow overwrites saved RBP at offset 0x70 from buffer start. The 'leave' instruction (mov rsp,rbp; pop rbp) at 0x401237 loads the corrupted saved RBP value into the RBP register, giving the attacker control of the base pointer.",
+            "description": "After gets() overwrites the saved RBP at offset 0x70, the 'leave' instruction pops this corrupted value into RBP. The attacker now controls RBP, which affects all subsequent stack frame references (rbp-relative addressing) in caller functions."
+          },
+          "chain": [
+            "BUG-001",
+            "gets() overflow overwrites saved RBP at offset 0x70",
+            "leave instruction (mov rsp,rbp; pop rbp) loads corrupted value into RBP register",
+            "RBP register now holds attacker-controlled value",
+            "STACK_CONTROL"
+          ],
+          "controlled_element": {
+            "what": "RBP register value (stack frame base pointer)",
+            "how": "Attacker writes 8 bytes at offset 0x70 from buffer start. When 'leave' executes, these 8 bytes are popped into RBP. The attacker fully controls the RBP value.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker must supply at least 0x71 (113) bytes of input to overwrite saved RBP",
+              "necessity": "Saved RBP starts at offset 0x70. At least 8 bytes beyond offset 0x70 are needed to fully control RBP.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "No stack canary to detect the saved RBP corruption",
+              "necessity": "Canary would abort before leave executes. Confirmed absent.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The 'leave' instruction must execute (program must reach 0x401237 without crashing first)",
+              "necessity": "If gets() or close() calls crash before leave, RBP corruption is not loaded into the register. gets() and close() use hardcoded arguments and do not crash.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "GDB: set breakpoint at leave (0x401237), step over leave instruction, observe RBP register value equals attacker-supplied value.",
+            "environment": "Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000",
+            "run_command": "python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "expected_evidence": [
+              "Before leave: RBP = original stack frame address (0x7fffffffea80)",
+              "After leave: RBP = 0x4141414141414141 (attacker-controlled value)",
+              "RSP = original RBP + 8 (pointing to return address slot)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "No Stack Canary",
+              "present": false,
+              "primitive_impact": "No canary means saved RBP corruption is undetected. Missing mitigation enables STACK_CONTROL."
+            },
+            {
+              "name": "CET SHSTK (Shadow Stack)",
+              "present": false,
+              "primitive_impact": "SHSTK protects return addresses, not RBP. Even if enforced, RBP corruption via leave would still occur. Does not affect STACK_CONTROL."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "vuln",
+              "address": "0x401237",
+              "description": "Disassembly confirms 'leave' instruction at 0x401237 (mov rsp,rbp; pop rbp). This loads the corrupted saved RBP from the stack into the RBP register."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "vuln",
+              "address": "0x401237",
+              "description": "GDB single-step over leave: Before leave RBP=0x7fffffffea80 (original). After leave RBP=0x4141414141414141 (attacker-controlled). RSP=0x7fffffffea88 (pointing to return address). Confirms STACK_CONTROL: attacker controls RBP register value."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "written_value": "0x4141414141414141 into RBP register via leave instruction",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "GDB single-step over leave (0x401237): RBP changed from 0x7fffffffea80 (original) to 0x4141414141414141 (attacker-controlled). The 'leave' instruction (mov rsp,rbp; pop rbp) loaded the corrupted saved RBP from offset 0x70 into the RBP register. Stack frame base pointer is fully attacker-controlled."
+          },
+          "confidence": "HIGH",
+          "notes": "STACK_CONTROL via RBP corruption enables stack pivot techniques: since 'leave' sets RSP=old_RBP then pops new_RBP, controlling RBP allows redirecting RSP to attacker-controlled memory. This is a stepping stone for ROP chain placement. The RBP value is fully attacker-controlled (8 bytes at offset 0x70)."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "RIP_CONTROL",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "gets() overflow overwrites the return address at offset 0x78 (120 bytes) from buffer start. The 'ret' instruction at 0x401238 pops this corrupted return address into RIP, transferring control to an attacker-specified address. No stack canary detects the corruption, and CET Shadow Stack is NOT enforced at runtime.",
+            "description": "After gets() overwrites the return address at offset 0x78, the 'ret' instruction at 0x401238 pops the attacker-controlled value into RIP. Dynamic verification confirms ret jumps to arbitrary attacker-specified addresses, including non-endbr64 targets, proving CET SHSTK is not enforced."
+          },
+          "chain": [
+            "BUG-001",
+            "gets() overflow overwrites return address at offset 0x78",
+            "ret instruction at 0x401238 pops corrupted return address into RIP",
+            "RIP register now holds attacker-controlled address",
+            "RIP_CONTROL"
+          ],
+          "controlled_element": {
+            "what": "RIP register value (instruction pointer / control flow target)",
+            "how": "Attacker writes 8 bytes at offset 0x78 from buffer start. When 'ret' executes at 0x401238, these 8 bytes are popped into RIP. The attacker fully controls the jump target.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker must supply at least 0x79 (121) bytes of input to fully overwrite the 8-byte return address",
+              "necessity": "Return address starts at offset 0x78. 8 bytes (0x78-0x7f) must be overwritten to control the full 64-bit RIP.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "No stack canary to detect return address corruption",
+              "necessity": "Canary would abort before ret executes. Confirmed absent by checksec and disassembly.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "CET Shadow Stack (SHSTK) must NOT be enforced at runtime",
+              "necessity": "If SHSTK were enforced, ret would compare the stack return address with the shadow stack copy and fault (si_code=128 SEGV_CPERR) before jumping. Dynamic testing confirms SHSTK is NOT enforced: ret successfully jumps to attacker-specified addresses including non-endbr64 targets.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The 'ret' instruction at 0x401238 must execute (program must reach it without crashing first)",
+              "necessity": "close(1) and close(2) are called before ret but use hardcoded arguments and do not crash. The leave instruction must also succeed (RBP corruption does not prevent leave from executing).",
+              "verified": true
+            },
+            {
+              "id": "PC-05",
+              "description": "The target address must be a mapped executable address for successful control flow hijacking (NX prevents execution at non-executable addresses)",
+              "necessity": "If the target is non-executable (e.g., .data section), NX causes SEGV_ACCERR. If unmapped, SEGV_MAPERR. For successful hijacking, target must be in .text or libc's executable segments. No PIE means binary .text addresses are fixed and known.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "CET SHSTK runtime enforcement",
+              "alias": "ELF GNU_PROPERTY marks SHSTK as enabled; checksec reports 'Enabled'; CPU supports IBT but NOT SHSTK (no shstk flag in cpuinfo)",
+              "implication": "CET SHSTK is NOT enforced at runtime. Dynamic verification: ret at 0x401238 successfully jumps to attacker-specified addresses (0x404038, 0x4012c3, 0x0) without triggering si_code=128 (SEGV_CPERR). The si_code=128 observed for 0x4242424242424242 is a kernel behavior for that specific unmapped address range, not CET enforcement. RIP_CONTROL is achievable."
+            }
+          ],
+          "verification_plan": {
+            "method": "Three GDB tests: (1) ret to 0x404038 (.data, non-exec) -> expect RIP=0x404038, si_code=2; (2) ret to 0x4012c3 (pop rdi;ret, no endbr64) -> expect program continues normally; (3) ret to 0x0 (NULL) -> expect RIP=0x0, si_code=1. All three confirm ret jumps to attacker-specified address.",
+            "environment": "Linux x86-64, glibc 2.39, GDB, No PIE binary at 0x400000, CET SHSTK not enforced",
+            "run_command": "python3 /work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "expected_evidence": [
+              "Test 3a: RIP=0x404038, si_code=2 (SEGV_ACCERR, NX violation) - ret jumped to attacker address",
+              "Test 3b: program exited normally - ret jumped to 0x4012c3 (pop rdi;ret) and continued",
+              "Test 3c: RIP=0x0, si_code=1 (SEGV_MAPERR) - ret jumped to attacker-specified NULL address",
+              "All three prove RIP == attacker-specified return address value"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX (Non-Executable Stack)",
+              "present": true,
+              "primitive_impact": "NX prevents execution at non-executable addresses (e.g., stack, .data). RIP_CONTROL still works for targets in executable segments (.text, libc text). NX constrains the target address space but does not prevent RIP_CONTROL itself."
+            },
+            {
+              "name": "No Stack Canary",
+              "present": false,
+              "primitive_impact": "No canary means return address corruption is undetected. Missing mitigation enables RIP_CONTROL."
+            },
+            {
+              "name": "No PIE",
+              "present": false,
+              "primitive_impact": "Fixed binary addresses (0x400000 base) mean .text gadget addresses are known without a leak. Missing mitigation aids RIP_CONTROL for binary gadgets. libc addresses still require a leak (ASLR)."
+            },
+            {
+              "name": "CET SHSTK (Shadow Stack)",
+              "present": false,
+              "primitive_impact": "ELF marks SHSTK enabled but it is NOT enforced at runtime (CPU lacks shstk support; dynamic verification confirms ret jumps to arbitrary addresses). If it were enforced, it would prevent RIP_CONTROL by detecting return address mismatch. Currently does NOT affect the primitive."
+            },
+            {
+              "name": "CET IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "IBT requires endbr64 at indirect call/jump targets. However, IBT does NOT apply to 'ret' instructions (ret is not an indirect branch in the IBT sense). Dynamic verification confirms ret jumps to non-endbr64 addresses (0x4012c3). IBT does not prevent RIP_CONTROL via return address overwrite."
+            },
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes libc base address. Binary is No PIE so binary addresses are fixed. RIP_CONTROL to binary gadgets (0x40xxxx) works without a leak. RIP_CONTROL to libc addresses requires a libc base leak first."
+            },
+            {
+              "name": "close(1)/close(2) after gets()",
+              "present": true,
+              "primitive_impact": "stdout and stderr are closed before vuln returns. This does not prevent RIP_CONTROL (the ret still executes), but it constrains post-hijack output: any puts/printf/write(1,...) will fail. This affects exploit route planning (S4), not the primitive itself."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "STATIC",
+              "function": "vuln",
+              "address": "0x401238",
+              "description": "Disassembly confirms 'ret' instruction at 0x401238. After the overflow, [rsp] at the point of ret contains the attacker-controlled return address (overwritten at offset 0x78 from buffer start)."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "vuln",
+              "address": "0x401238",
+              "description": "Test 3a: Return address overwritten to 0x404038 (.data section). GDB: RIP=0x404038, si_code=2 (SEGV_ACCERR). ret jumped to attacker-specified address. NX prevented execution but the jump occurred."
+            },
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "vuln",
+              "address": "0x401238",
+              "description": "Test 3b: Return address overwritten to 0x4012c3 (pop rdi; ret gadget, no endbr64). GDB: program exited normally (rc=0). ret successfully jumped to 0x4012c3 and executed the gadget. This proves CET SHSTK is NOT enforced (ret jumps to non-endbr64 targets)."
+            },
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "vuln",
+              "address": "0x401238",
+              "description": "Test 3c: Return address overwritten to 0x0 (NULL). GDB: RIP=0x0, si_code=1 (SEGV_MAPERR). ret jumped to attacker-specified NULL address. Confirms RIP == attacker-specified value."
+            },
+            {
+              "id": "E009",
+              "type": "DERIVED",
+              "function": "vuln",
+              "address": "0x401238",
+              "description": "Three independent tests with different target addresses (0x404038, 0x4012c3, 0x0) all confirm ret jumps to the attacker-specified address. RIP register == attacker-controlled return address value. CET SHSTK is not enforced (0x4012c3 has no endbr64 yet ret succeeded). RIP_CONTROL is VERIFIED."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0025-2023-52-rop-revenge-20260909-140653/poc-BUG-001.py",
+            "written_value": "0x404038 (test 3a), 0x4012c3 (test 3b), 0x0 (test 3c) written to return address at offset 0x78",
+            "read_value": "",
+            "fault_address": "0x404038 (test 3a, NX), 0x0 (test 3c, unmapped)",
+            "return_code": 0,
+            "details": "Three GDB tests confirm RIP_CONTROL: (3a) ret to 0x404038 -> RIP=0x404038, si_code=2 (NX violation, jump succeeded); (3b) ret to 0x4012c3 (pop rdi;ret, no endbr64) -> program exited normally (jump succeeded, CET SHSTK not enforced); (3c) ret to 0x0 -> RIP=0x0, si_code=1 (unmapped, jump succeeded). All three prove RIP == attacker-specified return address."
+          },
+          "confidence": "HIGH",
+          "notes": "RIP_CONTROL is the highest-impact primitive from this BUG. CET SHSTK is NOT enforced at runtime despite being marked in ELF (CPU lacks shstk support). IBT does not apply to ret instructions. The ret at 0x401238 jumps to any attacker-specified address. Combined with No PIE (fixed binary gadget addresses) and available ROP gadgets (pop rdi;ret at 0x4012c3, leave;ret at 0x401237), this enables ROP chain construction. The close(1)/close(2) calls constrain post-hijack output but do not prevent control flow hijacking. ASLR means libc gadget addresses require a leak, but binary gadgets at 0x40xxxx are usable without a leak."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-001",
+          "reason": "The gets() overflow writes to fixed stack offsets (0x70 for saved RBP, 0x78 for return address) relative to the buffer base. The write target is not arbitrary - it is determined by the stack layout, not by attacker-specified address. This is RELATIVE_WRITE (PRIM-001), not ARB_WRITE. The attacker controls the written value but not the write destination address."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "FUNCTION_POINTER_CONTROL",
+          "source_bug": "BUG-001",
+          "reason": "The overflow overwrites the return address on the stack, which is a control flow target but not a function pointer in the traditional sense (GOT/vtable/callback). The return address is consumed by 'ret', not by an indirect call/jump instruction. This is RIP_CONTROL (PRIM-003), not FUNCTION_POINTER_CONTROL. The binary has writable GOT (Partial RELRO) but the overflow does not directly target GOT entries - it targets the stack."
+        },
+        {
+          "primitive_id": "NP-003",
+          "candidate_type": "CODE_EXECUTION",
+          "source_bug": "BUG-001",
+          "reason": "CODE_EXECUTION via environment-level library hijacking (LD_LIBRARY_PATH) is not related to this BUG. The BUG is a stack buffer overflow, not a dependency resolution issue. No dlopen/dlsym calls exist in the binary. This primitive type does not apply to BUG-001."
+        }
+      ],
+      "unresolved": [
+        {
+          "description": "ASLR randomizes libc base address at runtime",
+          "reason": "The binary is No PIE (fixed at 0x400000) so binary gadget addresses are known. However, libc addresses vary per run. RIP_CONTROL to binary gadgets works without a leak, but ret2libc (system, one_gadget) requires a libc base leak. stdout/stderr are closed after gets(), making traditional puts-based leaks difficult.",
+          "required_next_step": "S4 exploit route planning: determine whether binary-only ROP (ret2plt) suffices or a libc leak is needed. If libc leak is needed, consider alternative leak methods (e.g., ret to write(2,...) using fd 2 if reopened, or stack pivot to leak via GOT read). This is S4 scope, not S3."
+        }
+      ]
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001"
+  ]
+}

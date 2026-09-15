@@ -1,0 +1,729 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1160\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"file_type\":\"ELF 64-bit LSB PIE executable, x86-64, dynamically linked, not stripped\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"source_file\":\"chall.c\",\"build_id\":\"0abafe79c11ebe1e05c840266e9199fd7fe7fa57\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\",\"note\":\"PIE enabled implies ASLR-relevant base randomization; runtime ASLR status not independently confirmed\"},\"seccomp\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"distro\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"}],\"rpath\":\"none\",\"runpath\":\"none\",\"note\":\"No RPATH/RUNPATH in dynamic section; only NEEDED lib is libc.so.6 resolved from system path. LD_LIBRARY_PATH would precede system path in search order (standard ld.so behavior) but no in-repo .so stubs present.\"},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[{\"source\":\"stdin\",\"function\":\"main\",\"mechanism\":\"read(0, buf, 0x3ff)\",\"buffer\":\"stack local [rbp-0x410]\",\"max_size\":1023}],\"menu\":[{\"prompt\":\"~Postfix expression calculator~\",\"type\":\"banner\"},{\"prompt\":\"expression(e.g. 9 6 - 11 *): \",\"type\":\"input_prompt\"},{\"output\":\"Result: %lld\",\"type\":\"result\"}],\"user_controlled_inputs\":[{\"name\":\"postfix_expression\",\"source\":\"stdin\",\"function\":\"main\",\"size\":1023,\"format\":\"space-separated tokens: decimal numbers, hex numbers (0x...), operators + - * /\",\"parsed_by\":\"eval_expr\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1160\",\"size\":\"0x4fb\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x6c\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x4060\",\"size\":\"0x18\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x4080\",\"size\":\"0x840\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0x60\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xa0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".plt.sec\",\"address\":\"0x10d0\",\"size\":\"0x90\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".init_array\",\"address\":\"0x3de8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x3df0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".dynamic\",\"address\":\"0x3df8\",\"size\":\"0x1e0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".eh_frame\",\"address\":\"0x20e0\",\"size\":\"0x1a8\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".eh_frame_hdr\",\"address\":\"0x206c\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false}],\"globals\":[{\"name\":\"stack_top\",\"address\":\"0x4070\",\"size\":8,\"section\":\".data\",\"type\":\"pointer (long long*)\",\"init_value\":\"0x40c0 (points to start of stack via R_X86_64_RELATIVE relocation)\",\"note\":\"current stack pointer; advanced by push (+8) and pop (-8); NO bounds check\"},{\"name\":\"stack\",\"address\":\"0x40c0\",\"size\":2048,\"section\":\".bss\",\"type\":\"array of long long\",\"count\":256,\"element_size\":8,\"note\":\"postfix evaluation stack; capacity 256 qwords = 0x800 bytes; ends at 0x48c0 = _end\"},{\"name\":\"stdout\",\"address\":\"0x4080\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x4090\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x40a0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x40a8\",\"size\":1,\"section\":\".bss\",\"type\":\"flag\"},{\"name\":\"__dso_handle\",\"address\":\"0x4068\",\"size\":8,\"section\":\".data\",\"type\":\"pointer\"},{\"name\":\"__data_start\",\"address\":\"0x4060\",\"size\":8,\"section\":\".data\"}],\"bss_layout_note\":\".bss 0x4080-0x48c0: [0x4080 stdout(8)] [0x4090 stdin(8)] [0x40a0 stderr(8)] [0x40a8 completed.0(1)] [0x40b0 padding] [0x40c0 stack(2048=0x800) -> 0x48c0=_end]. stack_top initial=0x40c0. pop underflow decrements stack_top below 0x40c0 into the stdout/stdin/stderr FILE* pointer region. push overflow increments stack_top above 0x48c0 (past _end).\",\"got\":[{\"offset\":\"0x4018\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4020\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4028\",\"symbol\":\"printf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4030\",\"symbol\":\"alarm\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4038\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4040\",\"symbol\":\"strtoll\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4048\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4050\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4058\",\"symbol\":\"__ctype_b_loc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fd8\",\"symbol\":\"__libc_start_main\",\"type\":\"GLOB_DAT\"},{\"offset\":\"0x3ff8\",\"symbol\":\"__cxa_finalize\",\"type\":\"GLOB_DAT\"}],\"plt\":[{\"address\":\"0x10d0\",\"symbol\":\"puts\"},{\"address\":\"0x10e0\",\"symbol\":\"__stack_chk_fail\"},{\"address\":\"0x10f0\",\"symbol\":\"printf\"},{\"address\":\"0x1100\",\"symbol\":\"alarm\"},{\"address\":\"0x1110\",\"symbol\":\"read\"},{\"address\":\"0x1120\",\"symbol\":\"strtoll\"},{\"address\":\"0x1130\",\"symbol\":\"setvbuf\"},{\"address\":\"0x1140\",\"symbol\":\"exit\"},{\"address\":\"0x1150\",\"symbol\":\"__ctype_b_loc\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1586\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"puts\",\"printf\",\"read\",\"eval_expr\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"expression_buf\",\"source\":\"read(0, [rbp-0x410], 0x3ff)\",\"type\":\"stack buffer\",\"size\":1023}],\"checks\":[\"canary: fs:0x28 saved at [rbp-0x8], checked before ret\",\"if last byte of input == 0x0a, replace with 0x00 (newline strip)\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"stdin -> [rbp-0x410]\",\"size\":1023,\"function\":\"read\"},{\"operation\":\"WRITE\",\"destination\":\"[rbp-0x410] -> eval_expr arg\",\"size\":\"pointer pass\"}],\"calls\":[\"init\",\"puts\",\"printf\",\"read\",\"eval_expr\"],\"behavior\":\"Calls init (setvbuf x3 + alarm(60)). Prints banner + prompt. read(0, buf, 0x3ff). Strips trailing newline. Calls eval_expr(buf). Prints 'Result: %lld' with return value. Returns 0.\"},{\"name\":\"eval_expr\",\"address\":\"0x13d0\",\"callers\":[\"main\"],\"callees\":[\"is_operator\",\"pop\",\"push\",\"__ctype_b_loc\",\"is_hex_number\",\"strtoll\",\"is_dec_number\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"expr\",\"source\":\"rdi (pointer to expression string from main)\"}],\"checks\":[\"canary: fs:0x28 at [rbp-0x8]\",\"is_operator(c) for +,-,*,/\",\"isspace(c) via __ctype_b_loc -> skip\",\"is_hex_number(ptr) -> strtoll base 16\",\"is_dec_number(c) -> strtoll base 10\",\"else _abort('invalid expression')\",\"NO bounds check on push/pop relative to stack array\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"*stack_top = value (via push)\",\"size\":8,\"address_calc\":\"stack_top global pointer, incremented +8 each push, NO upper bound\"},{\"operation\":\"READ\",\"destination\":\"value = *stack_top (via pop)\",\"size\":8,\"address_calc\":\"stack_top decremented -8 each pop, NO lower bound\"},{\"operation\":\"CALL\",\"target\":\"push/pop\",\"note\":\"operator handling: pop b, pop a, compute a+b/a-b/a*b/a/b, push result\"}],\"calls\":[\"is_operator\",\"pop\",\"push\",\"__ctype_b_loc\",\"is_hex_number\",\"strtoll\",\"is_dec_number\",\"_abort\"],\"behavior\":\"Token-walk loop over expression string. For each char: if operator (+,-,*,/) -> pop twice, compute, push result. If space -> skip. If hex (0x prefix) -> strtoll base 16, push. If decimal digit -> strtoll base 10, push. Else _abort. At end: pop once and return value. push/pop have NO bounds checking against the 256-element stack array.\"},{\"name\":\"push\",\"address\":\"0x127e\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"value\",\"source\":\"rdi (long long)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"*stack_top = value\",\"size\":8,\"address_calc\":\"stack_top = [0x4070]; write to [stack_top]\"},{\"operation\":\"WRITE\",\"destination\":\"stack_top = stack_top + 8\",\"size\":8,\"address_calc\":\"[0x4070] = [0x4070] + 8\"}],\"calls\":[],\"behavior\":\"Stores value at current stack_top, then increments stack_top by 8. NO upper-bound check. stack array capacity is 256 qwords (0x800 bytes); pushing more than 256 values writes past stack end (0x48c0).\"},{\"name\":\"pop\",\"address\":\"0x12ad\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack_top = stack_top - 8\",\"size\":8,\"address_calc\":\"[0x4070] = [0x4070] - 8\"},{\"operation\":\"READ\",\"destination\":\"return *stack_top\",\"size\":8,\"address_calc\":\"read from [stack_top] after decrement\"}],\"calls\":[],\"behavior\":\"Decrements stack_top by 8, then reads and returns the qword at new stack_top. NO lower-bound check. If stack_top == stack (0x40c0) at call, pop sets stack_top=0x40b8 and reads from 0x40b8 (before stack array, in padding/completed.0 region). Further pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout).\"},{\"name\":\"is_operator\",\"address\":\"0x12d3\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"c\",\"source\":\"edi (char)\"}],\"checks\":[\"c == '+' || c == '-' || c == '*' || c == '/'\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if char is one of + - * /, else 0.\"},{\"name\":\"is_dec_number\",\"address\":\"0x1306\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"c\",\"source\":\"edi (char)\"}],\"checks\":[\"c > '/' (0x2f) && c <= '9' (0x39)\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if char is '0'-'9'.\"},{\"name\":\"is_hex_number\",\"address\":\"0x132d\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"ptr\",\"source\":\"rdi (char*)\"}],\"checks\":[\"ptr[0]=='0' && ptr[1]=='x'\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if string starts with '0x'.\"},{\"name\":\"init\",\"address\":\"0x1361\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"behavior\":\"setvbuf(stdin, 0, 2, 0); setvbuf(stdout, 0, 2, 0); setvbuf(stderr, 0, 2, 0) [unbuffered]; alarm(60).\"},{\"name\":\"_abort\",\"address\":\"0x1249\",\"callers\":[\"eval_expr\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"behavior\":\"printf('%s', msg); exit(1). Called on invalid token.\"}],\"attack_surfaces\":[{\"function\":\"push\",\"input\":\"attacker-controlled number of pushed values (each hex/decimal token in expression causes one push)\",\"operation\":\"WRITE *stack_top without upper-bound check; stack_top increments past stack[256] end (0x48c0)\",\"risk\":\"HIGH\",\"reason\":\"push writes 8 bytes at stack_top and advances it unconditionally; stack array is only 256 qwords (0x800 bytes, 0x40c0-0x48c0); pushing >256 values writes past _end of .bss into potentially unmapped or adjacent memory. Attacker controls both the count (number of tokens) and the values pushed (via hex/decimal literals). No bounds check exists in push or eval_expr.\"},{\"function\":\"pop\",\"input\":\"attacker-controlled number of pops (operators consume 2 pops each; final pop at eval_expr end)\",\"operation\":\"READ *stack_top without lower-bound check; stack_top decrements below stack start (0x40c0) into FILE* pointer region\",\"risk\":\"HIGH\",\"reason\":\"pop decrements stack_top by 8 then reads qword at that address with no lower-bound check. stack_top initial=0x40c0 (stack start). Excess pops (more pops than pushes) move stack_top below 0x40c0: 0x40b8, 0x40b0, 0x40a8(completed.0), 0x40a0(stderr FILE*), 0x4098, 0x4090(stdin FILE*), 0x4088, 0x4080(stdout FILE*). The final pop in eval_expr returns the read value to main which prints it via printf('Result: %lld') — potential info leak of memory below stack. Attacker controls pop count via operator tokens and expression structure.\"},{\"function\":\"eval_expr\",\"input\":\"attacker-controlled expression string (1023 bytes via read)\",\"operation\":\"token parsing drives push/pop sequence; operator semantics pop a,b then push a op b\",\"risk\":\"HIGH\",\"reason\":\"Expression is attacker-controlled. Number of pushes (value tokens) and pops (operator tokens + final pop) fully attacker-controlled. Combined with unbounded push/pop, attacker can drive stack_top to arbitrary offsets relative to stack base and read/write 8-byte qwords. Values pushed are attacker-controlled 64-bit integers (via strtoll on hex/decimal). The final pop result is printed to attacker (info leak path).\"},{\"function\":\"main\",\"input\":\"read(0, buf, 0x3ff) — 1023 bytes of attacker expression\",\"operation\":\"passes buffer to eval_expr\",\"risk\":\"MEDIUM\",\"reason\":\"Input size capped at 0x3ff (1023) bytes, limiting token count, but sufficient to exceed 256-element stack capacity. Newline stripped.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source chall.c, GCC 11.4.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary enabled, PIE enabled, FORTIFY not present, CET IBT+SHSTK enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH; only NEEDED lib is libc.so.6 from system path; no in-repo .so stubs\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"stack is global array at 0x40c0 in .bss, size 2048 bytes (256 qwords), ends at 0x48c0=_end\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"stack_top is global pointer at 0x4070 in .data, initialized to 0x40c0 (start of stack) via R_X86_64_RELATIVE relocation\",\"source\":\"ELF\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\".bss layout: 0x4080 stdout(8), 0x4090 stdin(8), 0x40a0 stderr(8), 0x40a8 completed.0(1), 0x40c0 stack(2048)->0x48c0\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"push(): writes value to *stack_top, then stack_top += 8. NO upper-bound check against stack end (0x48c0).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"pop(): stack_top -= 8, then returns *stack_top. NO lower-bound check against stack start (0x40c0).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eval_expr tokenizes expression: operators (+,-,*,/) pop twice and push result; hex (0x..) and decimal tokens push via strtoll; spaces skipped; invalid token -> _abort. Final pop returns result to main which prints it.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"main reads 1023 bytes from stdin via read(0, buf, 0x3ff), strips trailing newline, passes to eval_expr, prints 'Result: %lld'\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"init sets stdin/stdout/stderr unbuffered (setvbuf mode 2) and alarm(60)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Runtime: input '3 4 +' produces 'Result: 7' — calculator functions correctly\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Runtime: pushing 300 values (exceeding 256-element stack capacity) does NOT crash — push writes past stack end without bounds check, confirming unbounded write behavior\",\"source\":\"RUNTIME\"},{\"id\":\"F015\",\"type\":\"DERIVED\",\"description\":\"pop underflow: if stack_top at 0x40c0 (empty stack) and pop called, stack_top becomes 0x40b8 and reads qword at 0x40b8 (below stack, in .bss padding region). Successive pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout). These addresses hold FILE* pointers (COPY relocations).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"The final pop in eval_expr (at 0x156b) returns a value to main which is printed via printf('Result: %lld'). If stack_top has been driven below stack start via excess pops, this prints memory content from below stack as a decimal integer — potential info leak.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"Attacker controls both the count of push/pop operations (via token count and operator placement) and the values pushed (via hex/decimal literals parsed by strtoll into 64-bit). Combined with unbounded stack_top, attacker can position stack_top at chosen offsets relative to stack base and perform 8-byte reads (pop) or writes (push).\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether memory past _end (0x48c0) is mapped/writable at runtime when push overflows\",\"reason\":\"300 pushes did not crash, suggesting the page containing 0x48c0+ is mapped (BSS pages are rounded up to page boundary: 0x4080-0x4fff likely mapped RW). Exact page boundary and writability of far overflow addresses unconfirmed.\"},{\"id\":\"U002\",\"description\":\"Whether pop underflow reading FILE* pointers (stdout/stdin/stderr at 0x4080/0x4090/0x40a0) yields useful leak values\",\"reason\":\"The FILE* values are libc heap/data pointers (COPY reloc). Their printed decimal representation would leak libc addresses, but exact runtime values not captured. Dynamic verification needed.\"},{\"id\":\"U003\",\"description\":\"Whether push overflow can overwrite meaningful targets beyond .bss\",\"reason\":\"stack ends at _end (0x48c0). Beyond _end is outside any defined section; depending on ASLR/page layout, may be unmapped at large offsets. The practical overwrite window is 0x48c0 to page boundary (~0x4fff). No global objects defined beyond stack in .bss.\"},{\"id\":\"U004\",\"description\":\"Exact exploitability of the unbounded push/pop primitive (e.g., whether it enables arbitrary write to GOT, return address, or other control-flow targets)\",\"reason\":\"This is S2/S3 scope. S1 only records that push/pop are unbounded and attacker-controlled. Whether the reachable addresses contain exploitable targets (GOT is at 0x4000-0x4060, below stack_top initial 0x40c0 — reachable via pop underflow direction) requires S2 analysis.\"},{\"id\":\"U005\",\"description\":\"ASLR runtime status not independently confirmed\",\"reason\":\"PIE is enabled (ELF-level fact). Whether the kernel applies ASLR (randomized base) at runtime was not separately verified via /proc/sys/kernel/randomize_va_space.\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE, x86-64, dyn linked, interp /lib64/ld-linux-x86-64.so.2, not stripped, BuildID 0abafe79..., entry 0x1160, 13 phdrs, 32 sections. LOAD segments: R(0-0x900), R-E(0x1000-0x1669), R(0x2000-0x2288), RW(0x3de8-0x48c0, .bss extends to 0x48c0). GNU_STACK RW (NX). GNU_RELRO 0x3de8-0x4000.\",\"sections\":\".text 0x1160(0x4fb,AX) .rodata 0x2000(0x6c,A) .data 0x4060(0x18,WA) .bss 0x4080(0x840,WA) .got 0x3fd8(0x28,WA) .got.plt 0x4000(0x60,WA) .plt 0x1020(0xa0,AX) .plt.sec 0x10d0(0x90,AX) .init_array 0x3de8(8,WA) .fini_array 0x3df0(8,WA) .dynamic 0x3df8(0x1e0,WA) .eh_frame 0x20e0(0x1a8,A)\",\"symbols\":\"main 0x1586, eval_expr 0x13d0, push 0x127e, pop 0x12ad, is_operator 0x12d3, is_dec_number 0x1306, is_hex_number 0x132d, init 0x1361, _abort 0x1249, stack 0x40c0(BSS,2048), stack_top 0x4070(DATA,8,init=0x40c0), stdout 0x4080, stdin 0x4090, stderr 0x40a0\",\"disassembly\":\"push(0x127e): mov rax,[stack_top]; mov [rax],rdi; mov rax,[stack_top]; add rax,8; mov [stack_top],rax; ret — NO bounds check. pop(0x12ad): mov rax,[stack_top]; sub rax,8; mov [stack_top],rax; mov rax,[stack_top]; mov rax,[rax]; ret — NO bounds check. eval_expr(0x13d0): token loop; operator->pop,pop,compute,push; hex->strtoll(16),push; dec->strtoll(10),push; space->skip; else->_abort; end->pop,return. main(0x1586): init; puts(banner); printf(prompt); read(0,buf,0x3ff); strip newline; eval_expr(buf); printf('Result: %lld',ret); canary check; ret.\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":2,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"UNBOUNDED_STACK_POINTER_NO_BOUNDS_CHECK\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"The global postfix evaluation stack pointer 'stack_top' (at 0x4070, initialized to 0x40c0 = start of the 256-element 'stack' array in .bss) is incremented by push() and decremented by pop() with NO bounds checking against the stack array boundaries (lower bound 0x40c0, upper bound 0x48c0). push() writes an 8-byte value at *stack_top then does stack_top += 8 unconditionally. pop() does stack_top -= 8 then reads *stack_top unconditionally. The attacker controls both the number of push/pop operations (via token count and operator placement in the expression string) and the values pushed (via strtoll-parsed 64-bit hex/decimal literals). This allows stack_top to be driven above 0x48c0 (push overflow past stack end) or below 0x40c0 (pop underflow into the FILE* pointer region and GOT region). The underflow direction is especially critical: .bss layout below stack is [0x4080 stdout(8)] [0x4090 stdin(8)] [0x40a0 stderr(8)] [0x40a8 completed.0(1)] [0x40b0 padding] [0x40c0 stack]. Further below .bss is .data (0x4060-0x4078, containing stack_top itself at 0x4070) and .got.plt (0x4000-0x4060, writable due to Partial RELRO). Each operator token causes net -8 to stack_top (pop twice, push once). With ~24 operators from an empty stack, stack_top reaches 0x4000 (GOT.PLT base). A subsequent push of an attacker-specified value writes directly to a GOT entry. The final pop in eval_expr (0x156b) returns the value at the underflowed stack_top to main, which prints it via printf('Result: %lld') — leaking memory contents (FILE* pointers = libc addresses, GOT entries = libc function addresses) as decimal integers.\"},\"affected_functions\":[\"push\",\"pop\",\"eval_expr\"],\"affected_objects\":[\"stack_top (0x4070, .data)\",\"stack (0x40c0, .bss, 256 qwords)\",\"stdout FILE* (0x4080, .bss)\",\"stdin FILE* (0x4090, .bss)\",\"stderr FILE* (0x40a0, .bss)\",\".got.plt entries (0x4000-0x4060)\"],\"attack_surface\":{\"input\":\"postfix expression string from stdin (max 1023 bytes via read(0, buf, 0x3ff))\",\"entry_function\":\"main\",\"data_flow\":[\"main: read(0, buf[rbp-0x410], 0x3ff) reads up to 1023 bytes of attacker expression from stdin\",\"main: strips trailing newline, passes buf pointer to eval_expr(buf) via rdi\",\"eval_expr: token-walk loop over expression string; for each char checks is_operator/is_hex_number/is_dec_number/isspace\",\"eval_expr: decimal token -> strtoll(ptr, &ptr, 10) -> push(result) [stack_top += 8, no upper bound check]\",\"eval_expr: hex token (0x prefix) -> strtoll(ptr, &ptr, 0) -> push(result) [stack_top += 8, no upper bound check]\",\"eval_expr: operator token (+,-,*,/) -> pop() [stack_top -= 8, no lower bound check] x2, compute a op b, push(result) [stack_top += 8]\",\"eval_expr: at end of string (0x156b) -> pop() returns value to main\",\"main: printf('Result: %lld', returned_value) prints the popped value to attacker\",\"Net effect: attacker controls stack_top position via push/pop balance and controls values written via push; attacker observes values read via pop through the printed result\"]},\"security_check\":{\"expected\":\"push() must verify stack_top < stack_end (0x48c0) before writing; pop() must verify stack_top > stack_start (0x40c0) before decrementing and reading; eval_expr must track stack depth and reject expressions that would overflow/underflow the 256-element stack\",\"actual\":\"push() writes *stack_top and increments stack_top += 8 with no comparison against any bound; pop() decrements stack_top -= 8 and reads *stack_top with no comparison against any bound; eval_expr performs no stack depth tracking whatsoever\",\"missing_or_incorrect\":\"Both upper-bound check (push overflow) and lower-bound check (pop underflow) are entirely missing in push(), pop(), and eval_expr. No bounds check of any kind exists on stack_top.\"},\"vulnerable_operation\":{\"operation\":\"WRITE via push and READ via pop on unbounded stack_top pointer\",\"address\":\"push: 0x128a-0x12a3 (write *stack_top, stack_top+=8); pop: 0x12b5-0x12ce (stack_top-=8, read *stack_top); eval_expr final pop: 0x156b\",\"expression\":\"push: *stack_top = value; stack_top += 8 (no check stack_top < 0x48c0). pop: stack_top -= 8; return *stack_top (no check stack_top >= 0x40c0). Operator net effect on stack_top: -8 per operator. Final pop returns underflowed memory to printf.\",\"target\":\"Underflow direction (stack_top < 0x40c0): FILE* pointers at 0x4080/0x4090/0x40a0, .data at 0x4060-0x4078 (stack_top itself), .got.plt at 0x4000-0x4060 (puts@0x4018, __stack_chk_fail@0x4020, printf@0x4028, alarm@0x4030, read@0x4038, strtoll@0x4040, setvbuf@0x4048, exit@0x4050, __ctype_b_loc@0x4058). Overflow direction (stack_top > 0x48c0): memory past _end of .bss.\",\"size\":\"8 bytes per push/pop operation\"},\"impact\":[{\"type\":\"OOB_READ\",\"status\":\"CANDIDATE\",\"reason\":\"pop() reads 8 bytes at stack_top after decrementing it below 0x40c0 (stack start). Successive pops from an empty stack read memory at 0x40b8, 0x40b0, 0x40a8, 0x40a0(stderr FILE*), 0x4098, 0x4090(stdin FILE*), 0x4088, 0x4080(stdout FILE*), and further down into .data and .got.plt. The final pop at eval_expr end (0x156b) returns this value to main which prints it via printf('Result: %lld'). This leaks memory contents below the stack array as decimal integers. Preconditions: attacker sends an expression with more pop operations than push operations (e.g., operator tokens on an empty/near-empty stack). Input size of 1023 bytes is sufficient (each operator is 2 bytes including space).\"},{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"The OOB read via pop underflow reaches FILE* pointers (stdout at 0x4080, stdin at 0x4090, stderr at 0x40a0) which are COPY relocations holding libc data/heap addresses. These values are returned by the final pop and printed by printf('Result: %lld') in main, leaking libc addresses to the attacker as decimal integers. Further underflow reaches .got.plt entries (0x4000-0x4060) which hold resolved libc function addresses, also leakable. Preconditions: same as OOB_READ — excess pop operations driving stack_top below 0x40c0.\"},{\"type\":\"OOB_WRITE\",\"status\":\"CANDIDATE\",\"reason\":\"Two write paths: (1) Push overflow: pushing more than 256 values drives stack_top above 0x48c0 (stack end / _end of .bss); subsequent pushes write 8-byte attacker-controlled values past the stack array into memory beyond .bss. (2) Pop underflow + push: driving stack_top below 0x40c0 via excess operators, then pushing an attacker-specified value writes that value at the underflowed stack_top address. This can overwrite FILE* pointers (stdout/stdin/stderr at 0x4080-0x40a0), the stack_top pointer itself (0x4070 in .data), and .got.plt entries (0x4000-0x4060, writable due to Partial RELRO). The pushed values are attacker-controlled 64-bit integers from strtoll. Preconditions: attacker sends an expression that positions stack_top at the target address (via push/pop balance) then pushes a specific value. ~24 operators from empty stack reach GOT.PLT base (0x4000); each operator is 2 bytes, well within 1023-byte input limit.\"},{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The OOB write via pop underflow + push can corrupt FILE* pointers (stdout/stdin/stderr) and GOT.PLT entries with attacker-controlled 8-byte values. Partial RELRO means .got.plt (0x4000-0x4060) is writable at runtime. Overwriting a GOT entry (e.g., puts@0x4018, printf@0x4028, exit@0x4050) with an attacker-specified value corrupts the function pointer used on subsequent calls. Additionally, during the operator underflow sequence itself, each operator's push writes the computed result (a op b from two underflowed reads) to stack_top-16, which may already be a GOT entry — causing intermediate corruption before the final targeted push. Preconditions: attacker can position stack_top in the GOT region and push a controlled value.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"If stack_top is driven to an unmapped address (e.g., far past _end beyond the page boundary ~0x5000 in the overflow direction, or to an unmapped address via corrupted stack_top), push/pop will dereference an unmapped address causing SIGSEGV. Also, overwriting a GOT entry or FILE* with a bad value will cause a crash on the next use of that function/FILE*. Preconditions: push overflow beyond page boundary, or GOT/FILE* corruption followed by a call using the corrupted entry.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"push\",\"address\":\"0x128a-0x12a3\",\"description\":\"push() disassembly: mov rax,[rip+0x2ddf] (#4070 stack_top); mov [rax],rdi (write value to *stack_top); mov rax,[rip+0x2dd1] (#4070); add rax,0x8; mov [rip+0x2dc6],rax (stack_top += 8). No cmp/jcc against any upper bound (0x48c0). Unconditional write and increment.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"pop\",\"address\":\"0x12b5-0x12ce\",\"description\":\"pop() disassembly: mov rax,[rip+0x2db4] (#4070 stack_top); sub rax,0x8; mov [rip+0x2da9],rax (stack_top -= 8); mov rax,[rip+0x2da2] (#4070); mov rax,[rax] (read *stack_top). No cmp/jcc against any lower bound (0x40c0). Unconditional decrement and read.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x1419-0x14a3\",\"description\":\"Operator handling in eval_expr: at 0x141e call pop (pop b), at 0x142c call pop (pop a), compute a op b, at 0x1465/0x1477/0x148a/0x149e call push(result). No stack depth check before pops. Each operator: 2 pops + 1 push = net -8 to stack_top. From empty stack (stack_top=0x40c0), N operators drive stack_top to 0x40c0 - N*8.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x156b\",\"description\":\"Final pop at end of eval_expr: mov eax,0x0; call 12ad <pop>. Return value goes to main which does printf('Result: %lld', ret) at 0x163b. If stack_top was driven below 0x40c0 by excess pops, this prints memory content from below the stack array (FILE* pointers, GOT entries) as a decimal integer.\"},{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1629-0x163b\",\"description\":\"main: call eval_expr returns value in rax; mov rsi,rax; lea rax,[rip+0xa2b] (#205e 'Result: %lld'); call printf. The popped value is printed to stdout, visible to attacker. This is the info leak channel.\"},{\"id\":\"E006\",\"type\":\"DERIVED\",\"function\":\"push/pop/eval_expr\",\"address\":\"0x40c0-0x4000\",\"description\":\"Memory layout derivation: stack at 0x40c0 (256 qwords, ends 0x48c0). Below stack in .bss: stderr FILE* at 0x40a0, stdin at 0x4090, stdout at 0x4080. Below .bss: .data (0x4060-0x4078, stack_top at 0x4070), .got.plt (0x4000-0x4060, writable per Partial RELRO). From stack_top=0x40c0, 13 net pops reach 0x4058 (__ctype_b_loc GOT), 20 net pops reach 0x4018 (puts GOT), 24 net pops reach 0x4000 (GOT.PLT base). Each operator = 1 net pop. 24 operators = 48 bytes of input, well within 1023-byte limit.\"},{\"id\":\"E007\",\"type\":\"DERIVED\",\"function\":\"eval_expr\",\"address\":\"0x14f5-0x1510, 0x1526-0x1541\",\"description\":\"strtoll returns a full 64-bit long long for both hex (base 0, auto-detects 0x prefix) and decimal (base 10) tokens. The return value is passed directly to push() as rdi. This means the attacker can push arbitrary 64-bit values (e.g., 0xdeadbeef via '0xdeadbeef' token) to any stack_top position, including underflowed positions in the GOT region.\"},{\"id\":\"E008\",\"type\":\"DERIVED\",\"function\":\"push/pop\",\"address\":\"N/A\",\"description\":\"Bidirectional stack_top control: push (via number tokens) moves stack_top +8; operators move stack_top -8 net. Attacker can interleave number tokens and operators to position stack_top at any 8-byte-aligned offset relative to 0x40c0, both above (overflow) and below (underflow). After positioning, a push writes an attacker-controlled 8-byte value at that address. This enables targeted writes to GOT entries, FILE* pointers, or the stack_top pointer itself.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm that memory below 0x40c0 (FILE* pointers at 0x4080-0x40a0, GOT at 0x4000-0x4060) is mapped and readable/writable at runtime when pop underflows reach it\",\"Confirm the exact page boundary above 0x48c0 to determine how far push overflow can write before SIGSEGV\",\"Verify that the final pop's returned value is actually printed by printf when stack_top has been underflowed (confirm no intermediate crash prevents reaching the printf)\",\"Verify that operator tokens on an empty stack do not crash before reaching the GOT region (pops read FILE*/GOT values which are valid pointers, arithmetic on them should not fault except potential idiv-by-zero)\",\"Confirm Partial RELRO leaves .got.plt writable at runtime (ELF shows Partial RELRO, GNU_RELRO covers 0x3de8-0x4000 but .got.plt at 0x4000-0x4060 is outside RELRO range)\"]},{\"bug_id\":\"BUG-002\",\"title\":\"DIVISION_BY_ZERO_NO_DIVISOR_CHECK\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"The '/' operator handler in eval_expr performs integer division using 'idiv' (signed division instruction at 0x1497) without checking whether the divisor (the second popped value, stored at [rbp-0x18]) is zero. The divisor comes from pop(), which returns either an attacker-pushed value (via strtoll-parsed literal) or an underflowed memory read. If the divisor is zero, the x86-64 idiv instruction raises a SIGFPE (arithmetic exception), terminating the process. The attacker can directly push 0 as a literal (e.g., '0' or '0x0') and then use '/' to trigger this.\"},\"affected_functions\":[\"eval_expr\"],\"affected_objects\":[],\"attack_surface\":{\"input\":\"postfix expression string containing a '/' operator with a zero divisor\",\"entry_function\":\"main\",\"data_flow\":[\"main: read expression from stdin, pass to eval_expr\",\"eval_expr: attacker pushes 0 (e.g., '0' token -> strtoll returns 0 -> push(0))\",\"eval_expr: attacker pushes another value (dividend)\",\"eval_expr: '/' operator token -> pop() returns 0 as divisor [rbp-0x18]\",\"eval_expr: pop() returns dividend as [rbp-0x10]\",\"eval_expr: at 0x1491-0x1497: mov rax,[rbp-0x10]; cqo; idiv QWORD PTR [rbp-0x18] — divisor is 0 -> SIGFPE\"]},\"security_check\":{\"expected\":\"Before performing idiv, check if the divisor ([rbp-0x18]) is zero and handle the error gracefully (e.g., _abort with 'division by zero' message)\",\"actual\":\"No zero-check on the divisor before idiv at 0x1497\",\"missing_or_incorrect\":\"Divisor zero-check is entirely missing. The idiv instruction at 0x1497 executes unconditionally with whatever value pop() returned.\"},\"vulnerable_operation\":{\"operation\":\"idiv with zero divisor\",\"address\":\"0x1497\",\"expression\":\"mov rax,[rbp-0x10]; cqo; idiv QWORD PTR [rbp-0x18] — if [rbp-0x18]==0, SIGFPE\",\"target\":\"Process termination via SIGFPE\",\"size\":\"N/A\"},\"impact\":[{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"The idiv instruction at 0x1497 with a zero divisor raises SIGFPE (arithmetic exception), which by default terminates the process. The attacker can trigger this by sending an expression like '1 0 /' (push 1, push 0, divide). Preconditions: attacker sends a '/' operator when the top-of-stack value (divisor) is zero. This is directly controllable via the '0' literal token.\"},{\"type\":\"DOS\",\"status\":\"CANDIDATE\",\"reason\":\"The SIGFPE crash terminates the calculator process, denying service. The alarm(60) timeout already limits session duration, but the division-by-zero crash provides immediate process termination on attacker demand. Preconditions: same as CRASH — attacker sends expression with zero divisor and '/' operator.\"}],\"evidence\":[{\"id\":\"E009\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x1491-0x149e\",\"description\":\"Division operator handler: at 0x1439 cmp eax,0x2f ('/') -> je 0x1491. At 0x1491: mov rax,[rbp-0x10] (dividend); 0x1495: cqo (sign-extend); 0x1497: idiv QWORD PTR [rbp-0x18] (divisor from second pop). No test/cmp/jcc on [rbp-0x18] before idiv. If [rbp-0x18]==0, CPU raises #DE (divide error) -> SIGFPE.\"},{\"id\":\"E010\",\"type\":\"DERIVED\",\"function\":\"eval_expr\",\"address\":\"0x1419-0x1431\",\"description\":\"The divisor [rbp-0x18] comes from the first pop() call at 0x141e (pop b). The popped value is either an attacker-pushed literal (e.g., '0' token -> strtoll returns 0 -> push(0)) or an underflowed memory read. In both cases, the value can be zero. The attacker directly controls whether 0 is on the stack via the '0' or '0x0' literal token.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm that SIGFPE is not caught by a signal handler (no signal() or sigaction() calls observed in the binary, so default SIGFPE behavior = process termination)\",\"Confirm the expression '1 0 /' triggers the division-by-zero path (divisor = 0 from the '0' token)\"]}],\"non_vulnerabilities\":[{\"function\":\"main\",\"description\":\"read(0, buf, 0x3ff) with buf at [rbp-0x410], stack frame 0x420 bytes. Buffer is 0x410 bytes, read size 0x3ff (1023). No stack buffer overflow: read size (1023) < buffer size (0x410=1040). Canary at [rbp-0x8] protects return address.\",\"reason\":\"read size is strictly less than buffer allocation. No overflow of the stack buffer in main.\"},{\"function\":\"main\",\"description\":\"printf('Result: %lld', ret) uses a compile-time constant format string. No format string vulnerability.\",\"reason\":\"Format string is a string literal in .rodata, not attacker-controlled. printf is called with a fixed format and one argument.\"},{\"function\":\"eval_expr\",\"description\":\"strtoll call sites: hex uses base 0 (auto-detect 0x prefix), decimal uses base 10. endptr is &ptr (local variable at rbp-0x20), correctly advancing the parse pointer past the number. The +1 increment after strtoll skips the separator. Return value is used correctly (pushed to stack).\",\"reason\":\"strtoll is called with correct base and endptr. The return value (parsed integer) is correctly used. errno is not checked for overflow, but this is a minor robustness issue, not a security vulnerability by itself.\"},{\"function\":\"init\",\"description\":\"setvbuf(stdin/stdout/stderr, 0, 2, 0) sets unbuffered mode. alarm(60) sets a 60-second timeout. Standard setup, no vulnerability.\",\"reason\":\"setvbuf mode 2 (_IONBF) is correct for unbuffered I/O. alarm(60) is a standard timeout. No security issue.\"},{\"function\":\"main\",\"description\":\"read() return value used for newline stripping: if read returns -1 (error), eax-1=-2, cdqe sign-extends to -2, buf[-2] is accessed. This is a theoretical OOB read on error, but read from stdin does not fail under normal conditions.\",\"reason\":\"read() failure on stdin is not attacker-triggerable under normal operating conditions. The theoretical OOB read at buf[-2] requires read() returning -1, which is a runtime error condition, not an attacker-controlled input scenario. Classified as non-vulnerability due to non-triggerability.\"},{\"function\":\"eval_expr\",\"description\":\"is_operator, is_dec_number, is_hex_number are simple character/prefix checks with no memory safety issues. _abort calls printf and exit(1) — clean termination.\",\"reason\":\"These helper functions perform only register-level comparisons and return 0/1. No memory operations, no vulnerability.\"}],\"unresolved\":[{\"description\":\"Exact writability of .got.plt at runtime\",\"reason\":\"S1 reports Partial RELRO. GNU_RELRO covers 0x3de8-0x4000. .got.plt is at 0x4000-0x4060, which is outside the RELRO region, implying it remains writable. However, whether the loader applies mprotect after relocation is not independently confirmed by S2 static analysis.\",\"required_next_step\":\"S3 dynamic verification: check mprotect on .got.plt region at runtime, or attempt a GOT write via the pop-underflow+push technique and observe whether the write persists.\"},{\"description\":\"Exact page boundary above _end (0x48c0) for push overflow\",\"reason\":\".bss ends at 0x48c0. The RW LOAD segment likely rounds up to a page boundary (0x5000). Push overflow writes between 0x48c0 and ~0x4fff should land on mapped RW memory. Beyond 0x5000 is likely unmapped. S1 runtime test showed 300 pushes did not crash, confirming at least some overflow is mapped.\",\"required_next_step\":\"S3 dynamic verification: determine exact page boundary via /proc/self/maps or by pushing increasing numbers of values until SIGSEGV.\"},{\"description\":\"Whether pop underflow reads of FILE* pointers produce useful leak values\",\"reason\":\"stdout/stdin/stderr at 0x4080/0x4090/0x40a0 hold FILE* COPY relocations pointing to libc's _IO_2_1_stdout_/_IO_2_1_stdin_/_IO_2_1_stderr_ structures. Their decimal representation via printf('Result: %lld') would leak libc addresses. Exact runtime values not captured by S2 static analysis.\",\"required_next_step\":\"S3 dynamic verification: send an expression that causes pop underflow to 0x4080/0x4090/0x40a0 and observe the printed 'Result' value to confirm it is a libc address.\"},{\"description\":\"Whether intermediate operator pushes during underflow corrupt GOT entries before the final targeted push\",\"reason\":\"During the operator underflow sequence, each operator's push writes the computed result (a op b from two underflowed reads) to stack_top-16. When stack_top-16 falls in the GOT region, GOT entries get overwritten with arithmetic results of adjacent GOT values. This intermediate corruption may cause crashes before the attacker can complete a targeted GOT overwrite.\",\"required_next_step\":\"S3 dynamic verification: trace the exact sequence of GOT writes during operator underflow to determine if a clean targeted write is achievable, or if intermediate corruption prevents reaching the target.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":4,\"verified\":4,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Unbounded stack_top pointer: pop() decrements stack_top by 8 and reads *stack_top with NO lower-bound check. From empty stack (stack_top=0x40c0), excess pop operations drive stack_top below 0x40c0 into the FILE* pointer region (stdout/stdin/stderr at 0x4080/0x4090/0x40a0). The final pop in eval_expr returns this value to main which prints it via printf('Result: %lld').\",\"description\":\"Pop underflow reads FILE* pointers (libc addresses) from below the stack array and leaks them to the attacker via the printed result.\"},\"chain\":[\"BUG-001: unbounded stack_top pointer (no bounds check in push/pop)\",\"pop() decrements stack_top below 0x40c0 (stack start) with no lower-bound check\",\"Underflowed stack_top reads memory at FILE* pointer slots (0x40a0=stderr, 0x4090=stdin, 0x4080=stdout)\",\"Final pop in eval_expr returns underflowed memory value to main\",\"main prints the value via printf('Result: %lld') — libc address leaked to attacker\",\"INFO_LEAK\"],\"controlled_element\":{\"what\":\"Number of pop operations (via operator token count) and which memory slot is read\",\"how\":\"Attacker sends expression with N operator tokens from empty stack. Each operator = 2 pops + 1 push = net -8 to stack_top. N operators drive stack_top to 0x40c0 - N*8. Using + operator with zero-valued slots preserves the original value (0 + value = value). Final pop reads *(0x40c0 - (N+1)*8) and prints it.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can send a postfix expression with more pop operations than push operations (operator tokens on empty/near-empty stack)\",\"necessity\":\"Required to drive stack_top below 0x40c0 into the FILE* region\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Memory below 0x40c0 (FILE* pointers at 0x4080-0x40a0) is mapped and readable at runtime\",\"necessity\":\"Required for pop to successfully read the FILE* values without SIGSEGV\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The + operator preserves original slot values when the other operand is 0 (padding slots are zero)\",\"necessity\":\"Required to leak the actual FILE* value rather than an arithmetic result. Using + on zero-valued padding slots: 0 + FILE* = FILE*\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The final pop in eval_expr returns the underflowed value to main which prints it\",\"necessity\":\"Required for the leaked value to reach the attacker via stdout\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"stack_top = 0x40c0 - N*8 (after N operators from empty stack)\",\"alias\":\"Underflowed stack_top aliases to FILE* pointer slots: 3 ops -> 0x40a8 (reads *(0x40a0)=stderr), 5 ops -> 0x4098 (reads *(0x4090)=stdin)\",\"implication\":\"Each additional operator moves the read window 8 bytes lower, allowing sequential reading of stdout/stdin/stderr FILE* pointers\"},{\"expression\":\"+ operator on zero-valued padding: 0 + value = value\",\"alias\":\"The + operator acts as identity function when one operand is 0 (padding slots between FILE* pointers are zero)\",\"implication\":\"Using + operators preserves the original FILE* value through the arithmetic, allowing it to be leaked intact\"}],\"verification_plan\":{\"method\":\"Send postfix expressions with 3 and 5 + operators from empty stack. Observe printed 'Result' values. Verify they are non-zero, different from each other, and look like libc addresses.\",\"environment\":\"Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled\",\"run_command\":\"python3 poc-BUG-001.py\",\"expected_evidence\":[\"3 operators: Result value is a non-zero libc address (stderr FILE* at 0x40a0)\",\"5 operators: Result value is a different non-zero libc address (stdin FILE* at 0x4090)\",\"Two different values prove reading different memory locations\"]},\"mitigations\":[{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes the libc base, so the leaked FILE* values change each run. However, the leak still provides the runtime libc address, defeating ASLR for that run.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"Canary protects the return address on the C stack frame, but this primitive operates on the global BSS stack array, not the C call stack. Canary has no impact.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"pop\",\"address\":\"0x12b5-0x12ce\",\"description\":\"pop() disassembly: stack_top -= 8 (no lower-bound check), then reads *stack_top. No cmp/jcc against 0x40c0.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x156b\",\"description\":\"Final pop at eval_expr end returns value to main which prints via printf('Result: %lld'). If stack_top underflowed, this prints memory below stack as decimal integer.\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"eval_expr/main\",\"address\":\"0x40a0/0x4090\",\"description\":\"Runtime: 3 + operators leaked stderr FILE* = 0x76ae413574e0 (libc address). 5 + operators leaked stdin FILE* = 0xe5072e283dc0 (different libc address). Both non-zero, different values confirm reading different memory slots.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"stderr=0x76ae413574e0, stdin=0xe5072e283dc0 (different libc addresses)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"3 + operators from empty stack: stack_top underflows to 0x40a8, final pop reads *(0x40a0)=stderr FILE*=0x76ae413574e0. 5 + operators: stack_top to 0x4098, reads *(0x4090)=stdin FILE*=0xe5072e283dc0. Both are non-zero libc addresses, different from each other, confirming INFO_LEAK of FILE* pointers.\"},\"confidence\":\"HIGH\",\"notes\":\"The + operator preserves FILE* values because the padding slots between FILE* pointers (0x40a8, 0x4098, 0x4088) are zero, so 0 + FILE* = FILE*. Using 7+ operators to reach stdout (0x4080) corrupts stdout because + accumulates non-zero values from above, causing subsequent printf to SIGSEGV. This limits the leak to stderr and stdin via the + operator technique.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Unbounded stack_top pointer: 9 operators with +*+*+*+*+ pattern underflow stack_top to 0x4078. The final pop reads *(0x4070) = stack_top global variable value, which is a PIE runtime address. The +* alternating pattern uses * to zero padding slots and + to preserve non-zero values, establishing a self-referencing state where stack_top's value equals its own runtime address.\",\"description\":\"Pop underflow reads the stack_top global variable itself (at 0x4070), leaking a PIE runtime address. PIE base = leaked_value - 0x4070.\"},\"chain\":[\"BUG-001: unbounded stack_top pointer (no bounds check in push/pop)\",\"9 operators (+*+*+*+*+) underflow stack_top to 0x4078 with * zeroing padding and + preserving values\",\"Final pop reads *(0x4070) = stack_top global variable value (PIE runtime address)\",\"main prints the value via printf('Result: %lld') — PIE address leaked\",\"PIE base = leaked_value - 0x4070 (page-aligned verification confirms correctness)\",\"INFO_LEAK\"],\"controlled_element\":{\"what\":\"Position stack_top at 0x4078 (one slot above the stack_top global at 0x4070) so the final pop reads the stack_top value\",\"how\":\"Send expression '+*+*+*+*+' (9 operators). The +* pattern: + preserves non-zero values (0+value=value), * zeros slots (0*value=0). This underflows through the FILE* region and padding without corrupting stack_top, reaching 0x4078. Final pop reads *(0x4070).\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can send 9 operator tokens in +*+*+*+*+ pattern\",\"necessity\":\"Required to underflow stack_top to 0x4078 (9 ops * -8 = -72 = -0x48, 0x40c0 - 0x48 = 0x4078)\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The * operator zeros padding slots between FILE* pointers, preventing + from accumulating non-zero values\",\"necessity\":\"Required to reach 0x4070 without corrupting stdout (which would crash printf). The * operator on zero-valued padding: 0 * value = 0, keeping slots clean.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"Memory at 0x4070 (stack_top global) is readable and contains a PIE runtime address\",\"necessity\":\"Required for the leak to provide a useful PIE address\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The final pop returns the stack_top value to main which prints it\",\"necessity\":\"Required for the leaked PIE address to reach the attacker\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"9 operators: stack_top = 0x40c0 - 9*8 = 0x4078\",\"alias\":\"Final pop reads *(0x4078-8) = *(0x4070) = stack_top global variable\",\"implication\":\"The stack_top global at 0x4070 holds a PIE runtime address (initially 0x40c0 + PIE base). Leaking it reveals the PIE base.\"},{\"expression\":\"+* alternating pattern: * zeros padding, + preserves non-zero\",\"alias\":\"The * operator on zero padding produces 0, which + then adds to the next non-zero value without corruption\",\"implication\":\"This pattern allows underflowing through the FILE* region (0x4080-0x40a0) without corrupting stdout, which would crash the subsequent printf\"},{\"expression\":\"stack_top self-reference at 0x4070\",\"alias\":\"After 9 ops, the operator push writes to *(0x4068) (corrupting __dso_handle), and stack_top becomes self-referencing (value = own address)\",\"implication\":\"The leaked value is stack_top's own runtime address (pie_base + 0x4070), directly revealing PIE base\"}],\"verification_plan\":{\"method\":\"Send expression '+*+*+*+*+' (9 operators). Observe printed result. Compute PIE base = result - 0x4070. Verify PIE base is page-aligned (ends in 0x000).\",\"environment\":\"Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled\",\"run_command\":\"python3 poc-BUG-001.py\",\"expected_evidence\":[\"Result value is a PIE runtime address (stack_top's own address)\",\"PIE base = result - 0x4070 is page-aligned (ends in 0x000)\",\"Page alignment confirms correct PIE base derivation\"]},\"mitigations\":[{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"PIE randomizes the base address, but this leak directly reveals the runtime PIE base, defeating PIE/ASLR for the current process.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact — operates on global BSS data, not the C call stack.\"}],\"evidence\":[{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"pop/eval_expr\",\"address\":\"0x12b5-0x12ce, 0x156b\",\"description\":\"pop() has no lower-bound check. 9 operators drive stack_top to 0x4078. Final pop reads *(0x4070) = stack_top global value.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"eval_expr/main\",\"address\":\"0x4070\",\"description\":\"Runtime: 9 operators (+*+*+*+*+) leaked stack_top value = 0x608dae2b2070. PIE base = 0x608dae2b2070 - 0x4070 = 0x608dae2ae000 (page-aligned, confirmed correct). GDB verification: stack_top=0x555555558070 (self-referencing), PIE base=0x555555554000.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"0x608dae2b2070 (stack_top self-reference, PIE base=0x608dae2ae000)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"9 operators (+*+*+*+*+) underflow stack_top to 0x4078. Final pop reads *(0x4070) = stack_top value = 0x608dae2b2070. PIE base = 0x608dae2b2070 - 0x4070 = 0x608dae2ae000, page-aligned (ends in 0x000). GDB verification confirmed stack_top=0x555555558070 (self-referencing) with ASLR disabled.\"},\"confidence\":\"HIGH\",\"notes\":\"The +*+*+*+*+ pattern is critical: using only + operators would accumulate non-zero FILE* values and corrupt stdout, crashing printf. The * operator zeros padding slots, allowing + to preserve the stack_top value intact. After 9 ops, __dso_handle (0x4068) is corrupted but this doesn't affect program flow before the final pop.\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"RELATIVE_WRITE\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Unbounded stack_top pointer: 4 operators underflow stack_top to 0x40a0 (stderr FILE* slot). A subsequent push of an attacker-controlled value writes 8 bytes to *(0x40a0), overwriting the stderr FILE* pointer. The final pop reads back the written value, confirming the write.\",\"description\":\"Pop underflow positions stack_top at a fixed address (0x40a0 = stderr slot), then push writes an attacker-controlled 8-byte value there. Target address is fixed (not attacker-controlled), so this is RELATIVE_WRITE, not ARB_WRITE.\"},\"chain\":[\"BUG-001: unbounded stack_top pointer (no bounds check in push/pop)\",\"4 operators (+ + + +) underflow stack_top to 0x40a0 (stderr FILE* slot)\",\"push(0xdeadbeef) writes *(0x40a0) = 0xdeadbeef (overwrites stderr FILE*)\",\"Final pop reads *(0x40a0) = 0xdeadbeef, printed as result (confirms write)\",\"RELATIVE_WRITE (target address fixed at 0x40a0, value controlled)\"],\"controlled_element\":{\"what\":\"The value written (via strtoll-parsed 64-bit literal) and confirmation of the write (via final pop readback)\",\"how\":\"Send expression '+ + + + 0xdeadbeef'. 4 operators underflow stack_top to 0x40a0. push(0xdeadbeef) writes to *(0x40a0). Final pop reads back 0xdeadbeef.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can send 4 operator tokens followed by a number token\",\"necessity\":\"4 operators underflow stack_top to 0x40a0 (4 * -8 = -32 = -0x20, 0x40c0 - 0x20 = 0x40a0)\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Memory at 0x40a0 (stderr FILE* slot) is writable\",\"necessity\":\"Required for push to successfully write the value without SIGSEGV\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The pushed value is attacker-controlled (via strtoll on hex/decimal literal)\",\"necessity\":\"Required for the write to place an attacker-specified value rather than an arbitrary one\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The final pop reads back the written value, confirming the write succeeded\",\"necessity\":\"Provides verification that the write actually occurred\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"4 operators: stack_top = 0x40c0 - 4*8 = 0x40a0\",\"alias\":\"Underflowed stack_top aliases to stderr FILE* slot at 0x40a0\",\"implication\":\"push writes to *(0x40a0), overwriting the stderr FILE* pointer with an attacker-controlled value\"},{\"expression\":\"Target address 0x40a0 is fixed (determined by operator count, not attacker-chosen address)\",\"alias\":\"The write target is a fixed offset from stack base, not an arbitrary address\",\"implication\":\"This is RELATIVE_WRITE (fixed target), not ARB_WRITE. The value is controlled but the address is not.\"}],\"verification_plan\":{\"method\":\"Send expression '+ + + + 0xdeadbeef'. 4 operators underflow to 0x40a0. push writes 0xdeadbeef. Final pop reads back the value. Verify readback matches written value.\",\"environment\":\"Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled\",\"run_command\":\"python3 poc-BUG-001.py\",\"expected_evidence\":[\"Result value equals 0xdeadbeef (the pushed value)\",\"Confirms write to *(0x40a0) succeeded\",\"Program does not crash (stderr not used after the write in this code path)\"]},\"mitigations\":[{\"name\":\"Partial RELRO\",\"present\":true,\"primitive_impact\":\"Partial RELRO leaves .got.plt writable, but this primitive targets .bss (stderr slot), not GOT. RELRO has no direct impact on this primitive.\"},{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"No impact — the target address 0x40a0 is a fixed offset from the PIE base, and the write doesn't depend on knowing the runtime address.\"}],\"evidence\":[{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"push\",\"address\":\"0x128a-0x12a3\",\"description\":\"push() writes *stack_top = value with no upper-bound check. After 4 operators underflow stack_top to 0x40a0, push writes to *(0x40a0).\"},{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"push/eval_expr\",\"address\":\"0x40a0\",\"description\":\"Runtime: expression '+ + + + 0xdeadbeef' produced Result: 0xdeadbeef. 4 operators underflowed stack_top to 0x40a0 (stderr slot), push wrote 0xdeadbeef, final pop read back 0xdeadbeef. GDB confirmed stderr@0x5555555580a0 = 0x00000000deadbeef after write.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py\",\"written_value\":\"0xdeadbeef\",\"read_value\":\"0xdeadbeef (readback matches written value)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"4 + operators underflow stack_top to 0x40a0 (stderr FILE* slot). push(0xdeadbeef) writes *(0x40a0) = 0xdeadbeef. Final pop reads back 0xdeadbeef, confirming the write. GDB verification: stderr@0x5555555580a0 = 0x00000000deadbeef. Program did not crash because stderr is not used after the write in this code path.\"},\"confidence\":\"HIGH\",\"notes\":\"This is RELATIVE_WRITE, not ARB_WRITE: the target address (0x40a0) is determined by the operator count (fixed offset from stack base), not by an attacker-chosen arbitrary address. The written value is fully attacker-controlled. The program doesn't crash because stderr is not used after eval_expr returns (main only calls printf which uses stdout).\"},{\"primitive_id\":\"PRIM-004\",\"type\":\"ARB_WRITE\",\"status\":\"VERIFIED\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Unbounded stack_top pointer enables a two-step write technique: (1) 10 operators underflow stack_top to 0x4070 (the stack_top global variable itself, establishing self-reference), (2) push(target_addr - 8) overwrites the stack_top global with target_addr-8, making stack_top point to the target, (3) push(value) writes to *(target_addr) = value. The target address is fully attacker-controlled, making this ARB_WRITE.\",\"description\":\"Two-step write: first overwrite the stack_top pointer itself to point to an attacker-chosen address Y, then push a value V that writes to *(Y). This upgrades from RELATIVE_WRITE (fixed target) to ARB_WRITE (arbitrary target).\"},\"chain\":[\"BUG-001: unbounded stack_top pointer (no bounds check in push/pop)\",\"10 operators (+*+*+*+*++) underflow stack_top to 0x4070 (stack_top global itself, self-referencing)\",\"Step 1: push(Y-8) writes *(0x4070) = Y-8, overwriting stack_top global to Y-8; after push's stack_top+=8, stack_top = Y\",\"Step 2: push(V) writes *(Y) = V (arbitrary write to attacker-chosen address Y)\",\"Final pop reads *(Y) = V, printed as result (confirms write to Y)\",\"ARB_WRITE (Write-What-Where: target address Y and value V both attacker-controlled)\"],\"controlled_element\":{\"what\":\"Both the target address Y (via push(Y-8) which overwrites stack_top) and the written value V (via push(V))\",\"how\":\"Send expression '+ * + * + * + * + + (Y-8) V'. 10 operators underflow stack_top to 0x4070 (self-reference). push(Y-8) overwrites stack_top to Y-8, then stack_top becomes Y after +=8. push(V) writes *(Y) = V. Final pop reads *(Y) = V.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can send 10 operator tokens in +*+*+*+*++ pattern to underflow stack_top to 0x4070 (self-reference)\",\"necessity\":\"Required to position stack_top at the stack_top global variable itself (0x4070), enabling the pointer hijack\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The stack_top global at 0x4070 is writable (it's in .data section)\",\"necessity\":\"Required for push(Y-8) to successfully overwrite stack_top with the target address\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The target address Y must be a valid writable mapped address at runtime\",\"necessity\":\"Required for push(V) to write to *(Y) without SIGSEGV. GOT entries (.got.plt at 0x4000-0x4060) are writable due to Partial RELRO.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"Attacker knows the runtime target address Y (requires PIE base leak from PRIM-002 or ASLR disabled)\",\"necessity\":\"Required to compute Y-8 as the push value. With ASLR, PIE base must be leaked first (PRIM-002). Verification used GDB with ASLR disabled (fixed PIE base 0x555555554000).\",\"verified\":true},{\"id\":\"PC-05\",\"description\":\"The +*+*+*+*++ pattern reaches 0x4070 without crashing (doesn't corrupt stdout/printf before the write)\",\"necessity\":\"The * operator zeros padding slots, preventing + from accumulating non-zero values that would corrupt stdout and crash printf\",\"verified\":true},{\"id\":\"PC-06\",\"description\":\"Partial RELRO leaves .got.plt (0x4000-0x4060) writable at runtime\",\"necessity\":\"Required for GOT entries to be valid write targets. GNU_RELRO covers 0x3de8-0x4000, but .got.plt at 0x4000-0x4060 is outside RELRO range.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"10 operators: stack_top = 0x40c0 - 10*8 = 0x4070 (self-reference)\",\"alias\":\"Underflowed stack_top aliases to the stack_top global variable itself at 0x4070\",\"implication\":\"push writes to *(0x4070), overwriting the stack_top pointer with an attacker-controlled value. This is the pointer hijack step.\"},{\"expression\":\"stack_top self-reference: *(0x4070) = 0x4070 (runtime: pie_base + 0x4070)\",\"alias\":\"After 10 ops, stack_top's value equals its own address (self-referencing pointer)\",\"implication\":\"This is the critical structural alias that enables the two-step write: the write target (stack_top) and the pointer slot are the same address, so writing to *stack_top modifies stack_top itself.\"},{\"expression\":\"Two-step write: push(Y-8) -> stack_top=Y; push(V) -> *(Y)=V\",\"alias\":\"First push hijacks the pointer (stack_top := Y), second push writes through the hijacked pointer (*(Y) := V)\",\"implication\":\"This upgrades from RELATIVE_WRITE (fixed target) to ARB_WRITE (arbitrary target Y). The target address is fully attacker-controlled via the first push value.\"},{\"expression\":\"__dso_handle (0x4068) is corrupted during underflow but doesn't affect program flow\",\"alias\":\"The 10th operator's push writes to *(0x4068) (corrupting __dso_handle), but this doesn't crash the program before the two-step write\",\"implication\":\"The underflow path corrupts __dso_handle, but since it's not used during eval_expr/main execution, the program survives to complete the two-step write.\"}],\"verification_plan\":{\"method\":\"Use GDB with ASLR disabled (fixed PIE base 0x555555554000). Send expression '+ * + * + * + * + + (target_runtime-8) V'. Break at final pop, step over, read $rax (readback) and x/gx target (GOT value after write). Test two different targets (puts@GOT and __ctype_b_loc@GOT) with different values.\",\"environment\":\"Linux x86-64, Ubuntu 22.04, glibc 2.39, GDB with disable-randomization (ASLR off for fixed addresses)\",\"run_command\":\"python3 poc-BUG-001.py\",\"expected_evidence\":[\"Target 1 (puts@GOT 0x4018): $rax = 0x42424242, GOT value = 0x42424242\",\"Target 2 (__ctype_b_loc@GOT 0x4058): $rax = 0x45454545, GOT value = 0x45454545\",\"Two different addresses written with different values proves ARB_WRITE\"]},\"mitigations\":[{\"name\":\"Partial RELRO\",\"present\":true,\"primitive_impact\":\"Partial RELRO leaves .got.plt (0x4000-0x4060) writable, making GOT entries valid targets for the ARB_WRITE. Full RELRO would make GOT read-only, but the primitive would still work on other writable targets (.bss, .data).\"},{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes the PIE base, so the attacker must first leak the PIE base (PRIM-002) to compute runtime target addresses. The two-step write itself is not blocked by ASLR — it just requires an address leak first. Verification used GDB with ASLR disabled for reproducibility.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact — operates on global BSS/data/GOT, not the C call stack.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"No impact on the write primitive itself. NX prevents executing shellcode on the stack/heap, but the ARB_WRITE primitive is about writing to memory, not executing code.\"},{\"name\":\"CET (IBT+SHSTK)\",\"present\":true,\"primitive_impact\":\"CET IBT requires indirect branch targets to be ENDBR instructions, and SHSTK protects return addresses. These affect control-flow hijacking (S4 scope) but not the ARB_WRITE primitive itself, which is about writing to arbitrary addresses.\"}],\"evidence\":[{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"push/pop\",\"address\":\"0x128a-0x12a3, 0x12b5-0x12ce\",\"description\":\"push writes *stack_top = value then stack_top += 8 (no bounds check). pop decrements stack_top -= 8 then reads *stack_top (no bounds check). 10 operators drive stack_top to 0x4070 (self-reference).\"},{\"id\":\"E009\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x1419-0x14a3\",\"description\":\"Operator handling: pop b, pop a, compute a op b, push result. Net -8 per operator. 10 operators from empty stack: 0x40c0 - 80 = 0x4070.\"},{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"push/eval_expr\",\"address\":\"0x4070 (stack_top global), 0x4018 (puts@GOT)\",\"description\":\"GDB (ASLR disabled, PIE base 0x555555554000): Expression '+ * + * + * + * + + 93824992247824 0x42424242'. After 10 ops, stack_top=0x555555558070 (self-referencing). push(0x555555558010) set stack_top=0x555555558018. push(0x42424242) wrote *(0x555555558018)=0x42424242. Final pop $rax=0x42424242. puts@GOT=0x0000000042424242 (was 0x7ffff7e2acc0).\"},{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"push/eval_expr\",\"address\":\"0x4070 (stack_top global), 0x4058 (__ctype_b_loc@GOT)\",\"description\":\"GDB (ASLR disabled): Expression '+ * + * + * + * + + 93824992247888 0x45454545'. push(0x555555558050) set stack_top=0x555555558058. push(0x45454545) wrote *(0x555555558058)=0x45454545. Final pop $rax=0x45454545. __ctype_b_loc@GOT=0x0000000045454545. puts@GOT unchanged=0x7ffff7e2acc0 (different run, confirms different target).\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py\",\"written_value\":\"0x42424242 (to puts@GOT), 0x45454545 (to __ctype_b_loc@GOT)\",\"read_value\":\"0x42424242 (readback from puts@GOT), 0x45454545 (readback from __ctype_b_loc@GOT)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"Two-step write verified with GDB (ASLR disabled, PIE base 0x555555554000). Target 1: puts@GOT (0x555555558018) overwritten with 0x42424242 — $rax=0x42424242, GOT=0x42424242. Target 2: __ctype_b_loc@GOT (0x555555558058) overwritten with 0x45454545 — $rax=0x45454545, GOT=0x45454545. Two different attacker-chosen addresses written with different values confirms ARB_WRITE (Write-What-Where). Technique: 10 ops underflow stack_top to 0x4070 (self-ref), push(target-8) hijacks stack_top to target, push(value) writes *(target)=value.\"},\"confidence\":\"HIGH\",\"notes\":\"This is an INDIRECT primitive: the two-step write uses an intermediate pointer hijack (overwriting stack_top to point to the target) before writing through the hijacked pointer. The self-referencing property of stack_top at 0x4070 (value == own address after 10 ops) is the critical structural enabler. ASLR requires a PIE base leak (PRIM-002) before computing runtime target addresses; verification used GDB with ASLR disabled for reproducibility. The __dso_handle (0x4068) is corrupted during underflow but doesn't affect program flow. Partial RELRO keeps .got.plt writable, making GOT entries valid write targets.\"}],\"non_primitives\":[],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":1,\"verified\":1,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"The '/' operator handler in eval_expr performs idiv (signed division) at link-time offset 0x1497 without checking whether the divisor (the second popped value, stored at [rbp-0x18]) is zero. A zero divisor causes the x86-64 CPU to raise #DE (divide error), which the kernel delivers as SIGFPE (signal 8). No signal handler is registered (no signal/sigaction symbols in the binary), so the default action terminates the process.\",\"description\":\"eval_expr tokenizes the attacker-controlled expression string. When a '/' operator token is encountered, it pops two values (divisor b at [rbp-0x18], dividend a at [rbp-0x10]) and executes 'mov rax,[rbp-0x10]; cqo; idiv QWORD PTR [rbp-0x18]'. If the divisor is zero, idiv raises #DE -> SIGFPE -> process death. The attacker directly controls the divisor value via literal tokens (e.g., '0' or '0x0' pushes zero onto the stack). The crash occurs before any push of the result or any printf output, so no memory corruption or info leak occurs — only process termination.\"},\"chain\":[\"BUG-002\",\"Missing zero-divisor check before idiv at 0x1497\",\"Attacker pushes 0 as divisor via '0' literal token (strtoll returns 0 -> push(0))\",\"Attacker pushes non-zero dividend via '1' literal token (strtoll returns 1 -> push(1))\",\"'/' operator: pop divisor=0 into [rbp-0x18], pop dividend=1 into [rbp-0x10]\",\"idiv QWORD PTR [rbp-0x18] with divisor=0 -> CPU raises #DE -> SIGFPE\",\"No signal handler -> default action: process termination\",\"CRASH (DOS)\"],\"controlled_element\":{\"what\":\"The divisor value for the '/' operator (the second-popped value). The attacker controls this by pushing a zero literal ('0' or '0x0') before the '/' operator token.\",\"how\":\"The expression string is attacker-controlled (read from stdin, max 1023 bytes). Decimal tokens are parsed by strtoll(ptr, &ptr, 10); hex tokens by strtoll(ptr, &ptr, 0). The '0' token produces strtoll return value 0, which is pushed onto the stack. When '/' is the next token, pop() returns this 0 as the divisor.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can send a postfix expression string containing a zero-valued literal token followed by a '/' operator token (e.g., '1 0 /'). The expression must have at least two pushed values before the '/' so that pop() returns the zero as the divisor and a non-zero value as the dividend.\",\"necessity\":\"The '/' operator pops two values: first pop = divisor [rbp-0x18], second pop = dividend [rbp-0x10]. The divisor must be zero for SIGFPE. The attacker controls this by pushing 0 via the '0' literal token.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"No SIGFPE signal handler is registered in the binary, so the default action (process termination) applies.\",\"necessity\":\"If a SIGFPE handler were registered, the process might recover instead of crashing. Confirmed: no signal() or sigaction() symbols exist in the binary.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The expression string fits within the 1023-byte input limit (read(0, buf, 0x3ff)). The minimal trigger '1 0 /' is only 6 bytes.\",\"necessity\":\"The input must be accepted by read() and parsed by eval_expr. The minimal payload is trivially within the limit.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"Send a division-by-zero expression ('1 0 /') to the target binary via stdin. Observe process termination with SIGFPE (signal 8, return code -8). Use GDB to confirm the fault occurs at the idiv instruction (eval_expr+0xc7 / link-time 0x1497) with divisor [rbp-0x18]=0. Test multiple input variants (decimal, hex, different dividends) to confirm reproducibility.\",\"environment\":\"Linux x86-64, Ubuntu GLIBC 2.39, PIE binary with Canary, NX, Partial RELRO, CET IBT+SHSTK enabled\",\"run_command\":\"python3 /work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-002.py\",\"expected_evidence\":[\"Process return code = -8 (SIGFPE = signal 8)\",\"GDB: breakpoint at eval_expr+0xc7 (0x1497) hits before crash\",\"GDB: [rbp-0x18] = 0x0 (divisor = zero)\",\"GDB: [rbp-0x10] = 0x1 (dividend = non-zero)\",\"GDB: signal = SIGFPE, crash_addr = eval_expr+0xc7\",\"Multiple input variants (decimal/hex) all reproduce SIGFPE\"]},\"mitigations\":[{\"name\":\"NX (Non-Executable Stack)\",\"present\":true,\"primitive_impact\":\"Not relevant to this primitive. SIGFPE is a CPU arithmetic exception, not a code execution vector. NX does not prevent or mitigate the crash.\"},{\"name\":\"Canary (Stack Protector)\",\"present\":true,\"primitive_impact\":\"Not relevant. The crash occurs via a CPU exception (idiv by zero), not via stack buffer overflow. Canary does not prevent SIGFPE.\"},{\"name\":\"PIE / ASLR\",\"present\":true,\"primitive_impact\":\"Not relevant. The crash is deterministic regardless of base address. The idiv instruction always faults on zero divisor at the same link-time offset.\"},{\"name\":\"Partial RELRO\",\"present\":true,\"primitive_impact\":\"Not relevant. This primitive does not involve GOT or any memory write. It is a pure CPU exception.\"},{\"name\":\"CET (IBT + SHSTK)\",\"present\":true,\"primitive_impact\":\"Not relevant. CET protects against ROP/COP via indirect branch tracking and shadow stack. SIGFPE is a synchronous CPU exception, not a control-flow hijack.\"},{\"name\":\"alarm(60)\",\"present\":true,\"primitive_impact\":\"Not relevant. The crash is immediate (sub-second). alarm(60) would only trigger after 60 seconds of inactivity, which never occurs.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x1491-0x149e\",\"description\":\"Division operator handler disassembly: at 0x1439 cmp eax,0x2f ('/') -> je 0x1491. At 0x1491: mov rax,[rbp-0x10] (load dividend); 0x1495: cqo (sign-extend rax into rdx:rax); 0x1497: idiv QWORD PTR [rbp-0x18] (divide by divisor). No test/cmp/jcc on [rbp-0x18] before idiv. If [rbp-0x18]==0, CPU raises #DE -> SIGFPE.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"eval_expr\",\"address\":\"0x1419-0x1431\",\"description\":\"Operator handling: at 0x141e call pop (pop b = divisor -> [rbp-0x18]); at 0x142c call pop (pop a = dividend -> [rbp-0x10]). The divisor comes from the first pop, which returns either an attacker-pushed literal or underflowed memory. The attacker directly controls whether 0 is on the stack via the '0' or '0x0' literal token.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"binary (symbols)\",\"address\":\"N/A\",\"description\":\"No signal() or sigaction() symbols found in the binary (nm filter for 'signal' and 'sigaction' returned no output). This confirms no SIGFPE handler is registered, so the default action (process termination) applies.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"eval_expr\",\"address\":\"0x1497\",\"description\":\"GDB breakpoint at eval_expr+0xc7 (link-time 0x1497, the idiv instruction) hit with input '1 0 /'. Register state: rax=0x1 (dividend), rdx=0x0 (cqo sign-extension). Stack: [rbp-0x18]=0x0000000000000000 (divisor=zero), [rbp-0x10]=0x0000000000000001 (dividend=1). This confirms the idiv is about to execute with a zero divisor.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"eval_expr\",\"address\":\"0x1497\",\"description\":\"GDB crash analysis: signal=SIGFPE (Arithmetic exception), crash_addr=0x0000555555555497 (PIE runtime address = link-time 0x1497 + PIE base). Backtrace: #0 eval_expr, #1 main. Process terminated by SIGFPE.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"eval_expr\",\"address\":\"0x1497\",\"description\":\"PoC execution: 4 input variants all produced rc=-8 (SIGFPE): '1 0 /' (decimal), '5 0 /' (decimal), '0x1 0x0 /' (hex), '100 0 /' (decimal). All variants confirm reproducible process termination via SIGFPE.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0x0000555555555497 (eval_expr+0xc7, link-time 0x1497, idiv instruction)\",\"return_code\":-8,\"details\":\"GDB confirmed: breakpoint at eval_expr+0xc7 (0x1497) hit before crash. Divisor [rbp-0x18]=0x0 (zero), dividend [rbp-0x10]=0x1. idiv with zero divisor raises SIGFPE. No signal handler registered -> process terminated. PoC tested 4 input variants (decimal/hex), all reproduced rc=-8 (SIGFPE). The crash occurs at the idiv instruction before any push(result) or printf output, so no memory corruption or info leak occurs — pure DOS/CRASH primitive.\"},\"confidence\":\"HIGH\",\"notes\":\"BUG-002 produces a single DIRECT CRASH primitive. The idiv instruction faults synchronously on zero divisor before any memory write (push at 0x149e is never reached) or any output (printf in main is never reached). Therefore no higher-order primitive (ARB_WRITE, INFO_LEAK, RIP_CONTROL) can be derived from this BUG alone. The primitive is purely a denial-of-service: the attacker can terminate the calculator process on demand by sending a division-by-zero expression. The attack cost is minimal: a 6-byte expression string ('1 0 /') within the 1023-byte input limit. No preconditions beyond sending the expression are required. The primitive is trivially reproducible and deterministic.\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-002\",\"reason\":\"The idiv instruction at 0x1497 faults synchronously on zero divisor before the push(result) at 0x149e is reached. No memory write occurs. The division result is never computed or pushed. Therefore no write primitive of any kind (ARB_WRITE, RELATIVE_WRITE, RESTRICTED_WRITE) can be derived from BUG-002.\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"INFO_LEAK\",\"source_bug\":\"BUG-002\",\"reason\":\"The SIGFPE crash terminates the process inside eval_expr before control returns to main. The printf('Result: %lld') in main (at 0x163b) is never reached. No output beyond the banner/prompt is produced. Therefore no information leak primitive can be derived from BUG-002.\"},{\"primitive_id\":\"NP-003\",\"candidate_type\":\"RIP_CONTROL\",\"source_bug\":\"BUG-002\",\"reason\":\"SIGFPE is a synchronous CPU exception (arithmetic trap), not a control-flow hijack. The CPU raises #DE and the kernel delivers SIGFPE with default action (terminate). There is no mechanism by which the zero divisor value influences the instruction pointer. The fault address is always the idiv instruction (0x1497), not an attacker-controlled address. Therefore no RIP_CONTROL or FUNCTION_POINTER_CONTROL primitive can be derived from BUG-002.\"},{\"primitive_id\":\"NP-004\",\"candidate_type\":\"HEAP_METADATA_CONTROL / HEAP_OBJECT_CONTROL\",\"source_bug\":\"BUG-002\",\"reason\":\"BUG-002 involves no heap operations. The idiv instruction operates on stack-local variables ([rbp-0x18] and [rbp-0x10]). No heap allocation, free, or metadata manipulation occurs. Therefore no heap primitive can be derived from BUG-002.\"}],\"unresolved\":[]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 4,
+        "verified": 4,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Unbounded stack_top pointer: pop() decrements stack_top by 8 and reads *stack_top with NO lower-bound check. From empty stack (stack_top=0x40c0), excess pop operations drive stack_top below 0x40c0 into the FILE* pointer region (stdout/stdin/stderr at 0x4080/0x4090/0x40a0). The final pop in eval_expr returns this value to main which prints it via printf('Result: %lld').",
+            "description": "Pop underflow reads FILE* pointers (libc addresses) from below the stack array and leaks them to the attacker via the printed result."
+          },
+          "chain": [
+            "BUG-001: unbounded stack_top pointer (no bounds check in push/pop)",
+            "pop() decrements stack_top below 0x40c0 (stack start) with no lower-bound check",
+            "Underflowed stack_top reads memory at FILE* pointer slots (0x40a0=stderr, 0x4090=stdin, 0x4080=stdout)",
+            "Final pop in eval_expr returns underflowed memory value to main",
+            "main prints the value via printf('Result: %lld') — libc address leaked to attacker",
+            "INFO_LEAK"
+          ],
+          "controlled_element": {
+            "what": "Number of pop operations (via operator token count) and which memory slot is read",
+            "how": "Attacker sends expression with N operator tokens from empty stack. Each operator = 2 pops + 1 push = net -8 to stack_top. N operators drive stack_top to 0x40c0 - N*8. Using + operator with zero-valued slots preserves the original value (0 + value = value). Final pop reads *(0x40c0 - (N+1)*8) and prints it.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can send a postfix expression with more pop operations than push operations (operator tokens on empty/near-empty stack)",
+              "necessity": "Required to drive stack_top below 0x40c0 into the FILE* region",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Memory below 0x40c0 (FILE* pointers at 0x4080-0x40a0) is mapped and readable at runtime",
+              "necessity": "Required for pop to successfully read the FILE* values without SIGSEGV",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The + operator preserves original slot values when the other operand is 0 (padding slots are zero)",
+              "necessity": "Required to leak the actual FILE* value rather than an arithmetic result. Using + on zero-valued padding slots: 0 + FILE* = FILE*",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The final pop in eval_expr returns the underflowed value to main which prints it",
+              "necessity": "Required for the leaked value to reach the attacker via stdout",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "stack_top = 0x40c0 - N*8 (after N operators from empty stack)",
+              "alias": "Underflowed stack_top aliases to FILE* pointer slots: 3 ops -> 0x40a8 (reads *(0x40a0)=stderr), 5 ops -> 0x4098 (reads *(0x4090)=stdin)",
+              "implication": "Each additional operator moves the read window 8 bytes lower, allowing sequential reading of stdout/stdin/stderr FILE* pointers"
+            },
+            {
+              "expression": "+ operator on zero-valued padding: 0 + value = value",
+              "alias": "The + operator acts as identity function when one operand is 0 (padding slots between FILE* pointers are zero)",
+              "implication": "Using + operators preserves the original FILE* value through the arithmetic, allowing it to be leaked intact"
+            }
+          ],
+          "verification_plan": {
+            "method": "Send postfix expressions with 3 and 5 + operators from empty stack. Observe printed 'Result' values. Verify they are non-zero, different from each other, and look like libc addresses.",
+            "environment": "Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled",
+            "run_command": "python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "3 operators: Result value is a non-zero libc address (stderr FILE* at 0x40a0)",
+              "5 operators: Result value is a different non-zero libc address (stdin FILE* at 0x4090)",
+              "Two different values prove reading different memory locations"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes the libc base, so the leaked FILE* values change each run. However, the leak still provides the runtime libc address, defeating ASLR for that run."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "Canary protects the return address on the C stack frame, but this primitive operates on the global BSS stack array, not the C call stack. Canary has no impact."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "pop",
+              "address": "0x12b5-0x12ce",
+              "description": "pop() disassembly: stack_top -= 8 (no lower-bound check), then reads *stack_top. No cmp/jcc against 0x40c0."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "eval_expr",
+              "address": "0x156b",
+              "description": "Final pop at eval_expr end returns value to main which prints via printf('Result: %lld'). If stack_top underflowed, this prints memory below stack as decimal integer."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "eval_expr/main",
+              "address": "0x40a0/0x4090",
+              "description": "Runtime: 3 + operators leaked stderr FILE* = 0x76ae413574e0 (libc address). 5 + operators leaked stdin FILE* = 0xe5072e283dc0 (different libc address). Both non-zero, different values confirm reading different memory slots."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "stderr=0x76ae413574e0, stdin=0xe5072e283dc0 (different libc addresses)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "3 + operators from empty stack: stack_top underflows to 0x40a8, final pop reads *(0x40a0)=stderr FILE*=0x76ae413574e0. 5 + operators: stack_top to 0x4098, reads *(0x4090)=stdin FILE*=0xe5072e283dc0. Both are non-zero libc addresses, different from each other, confirming INFO_LEAK of FILE* pointers."
+          },
+          "confidence": "HIGH",
+          "notes": "The + operator preserves FILE* values because the padding slots between FILE* pointers (0x40a8, 0x4098, 0x4088) are zero, so 0 + FILE* = FILE*. Using 7+ operators to reach stdout (0x4080) corrupts stdout because + accumulates non-zero values from above, causing subsequent printf to SIGSEGV. This limits the leak to stderr and stdin via the + operator technique."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Unbounded stack_top pointer: 9 operators with +*+*+*+*+ pattern underflow stack_top to 0x4078. The final pop reads *(0x4070) = stack_top global variable value, which is a PIE runtime address. The +* alternating pattern uses * to zero padding slots and + to preserve non-zero values, establishing a self-referencing state where stack_top's value equals its own runtime address.",
+            "description": "Pop underflow reads the stack_top global variable itself (at 0x4070), leaking a PIE runtime address. PIE base = leaked_value - 0x4070."
+          },
+          "chain": [
+            "BUG-001: unbounded stack_top pointer (no bounds check in push/pop)",
+            "9 operators (+*+*+*+*+) underflow stack_top to 0x4078 with * zeroing padding and + preserving values",
+            "Final pop reads *(0x4070) = stack_top global variable value (PIE runtime address)",
+            "main prints the value via printf('Result: %lld') — PIE address leaked",
+            "PIE base = leaked_value - 0x4070 (page-aligned verification confirms correctness)",
+            "INFO_LEAK"
+          ],
+          "controlled_element": {
+            "what": "Position stack_top at 0x4078 (one slot above the stack_top global at 0x4070) so the final pop reads the stack_top value",
+            "how": "Send expression '+*+*+*+*+' (9 operators). The +* pattern: + preserves non-zero values (0+value=value), * zeros slots (0*value=0). This underflows through the FILE* region and padding without corrupting stack_top, reaching 0x4078. Final pop reads *(0x4070).",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can send 9 operator tokens in +*+*+*+*+ pattern",
+              "necessity": "Required to underflow stack_top to 0x4078 (9 ops * -8 = -72 = -0x48, 0x40c0 - 0x48 = 0x4078)",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The * operator zeros padding slots between FILE* pointers, preventing + from accumulating non-zero values",
+              "necessity": "Required to reach 0x4070 without corrupting stdout (which would crash printf). The * operator on zero-valued padding: 0 * value = 0, keeping slots clean.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "Memory at 0x4070 (stack_top global) is readable and contains a PIE runtime address",
+              "necessity": "Required for the leak to provide a useful PIE address",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The final pop returns the stack_top value to main which prints it",
+              "necessity": "Required for the leaked PIE address to reach the attacker",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "9 operators: stack_top = 0x40c0 - 9*8 = 0x4078",
+              "alias": "Final pop reads *(0x4078-8) = *(0x4070) = stack_top global variable",
+              "implication": "The stack_top global at 0x4070 holds a PIE runtime address (initially 0x40c0 + PIE base). Leaking it reveals the PIE base."
+            },
+            {
+              "expression": "+* alternating pattern: * zeros padding, + preserves non-zero",
+              "alias": "The * operator on zero padding produces 0, which + then adds to the next non-zero value without corruption",
+              "implication": "This pattern allows underflowing through the FILE* region (0x4080-0x40a0) without corrupting stdout, which would crash the subsequent printf"
+            },
+            {
+              "expression": "stack_top self-reference at 0x4070",
+              "alias": "After 9 ops, the operator push writes to *(0x4068) (corrupting __dso_handle), and stack_top becomes self-referencing (value = own address)",
+              "implication": "The leaked value is stack_top's own runtime address (pie_base + 0x4070), directly revealing PIE base"
+            }
+          ],
+          "verification_plan": {
+            "method": "Send expression '+*+*+*+*+' (9 operators). Observe printed result. Compute PIE base = result - 0x4070. Verify PIE base is page-aligned (ends in 0x000).",
+            "environment": "Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled",
+            "run_command": "python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "Result value is a PIE runtime address (stack_top's own address)",
+              "PIE base = result - 0x4070 is page-aligned (ends in 0x000)",
+              "Page alignment confirms correct PIE base derivation"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "PIE randomizes the base address, but this leak directly reveals the runtime PIE base, defeating PIE/ASLR for the current process."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact — operates on global BSS data, not the C call stack."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E004",
+              "type": "STATIC",
+              "function": "pop/eval_expr",
+              "address": "0x12b5-0x12ce, 0x156b",
+              "description": "pop() has no lower-bound check. 9 operators drive stack_top to 0x4078. Final pop reads *(0x4070) = stack_top global value."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "eval_expr/main",
+              "address": "0x4070",
+              "description": "Runtime: 9 operators (+*+*+*+*+) leaked stack_top value = 0x608dae2b2070. PIE base = 0x608dae2b2070 - 0x4070 = 0x608dae2ae000 (page-aligned, confirmed correct). GDB verification: stack_top=0x555555558070 (self-referencing), PIE base=0x555555554000."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "0x608dae2b2070 (stack_top self-reference, PIE base=0x608dae2ae000)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "9 operators (+*+*+*+*+) underflow stack_top to 0x4078. Final pop reads *(0x4070) = stack_top value = 0x608dae2b2070. PIE base = 0x608dae2b2070 - 0x4070 = 0x608dae2ae000, page-aligned (ends in 0x000). GDB verification confirmed stack_top=0x555555558070 (self-referencing) with ASLR disabled."
+          },
+          "confidence": "HIGH",
+          "notes": "The +*+*+*+*+ pattern is critical: using only + operators would accumulate non-zero FILE* values and corrupt stdout, crashing printf. The * operator zeros padding slots, allowing + to preserve the stack_top value intact. After 9 ops, __dso_handle (0x4068) is corrupted but this doesn't affect program flow before the final pop."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "RELATIVE_WRITE",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Unbounded stack_top pointer: 4 operators underflow stack_top to 0x40a0 (stderr FILE* slot). A subsequent push of an attacker-controlled value writes 8 bytes to *(0x40a0), overwriting the stderr FILE* pointer. The final pop reads back the written value, confirming the write.",
+            "description": "Pop underflow positions stack_top at a fixed address (0x40a0 = stderr slot), then push writes an attacker-controlled 8-byte value there. Target address is fixed (not attacker-controlled), so this is RELATIVE_WRITE, not ARB_WRITE."
+          },
+          "chain": [
+            "BUG-001: unbounded stack_top pointer (no bounds check in push/pop)",
+            "4 operators (+ + + +) underflow stack_top to 0x40a0 (stderr FILE* slot)",
+            "push(0xdeadbeef) writes *(0x40a0) = 0xdeadbeef (overwrites stderr FILE*)",
+            "Final pop reads *(0x40a0) = 0xdeadbeef, printed as result (confirms write)",
+            "RELATIVE_WRITE (target address fixed at 0x40a0, value controlled)"
+          ],
+          "controlled_element": {
+            "what": "The value written (via strtoll-parsed 64-bit literal) and confirmation of the write (via final pop readback)",
+            "how": "Send expression '+ + + + 0xdeadbeef'. 4 operators underflow stack_top to 0x40a0. push(0xdeadbeef) writes to *(0x40a0). Final pop reads back 0xdeadbeef.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can send 4 operator tokens followed by a number token",
+              "necessity": "4 operators underflow stack_top to 0x40a0 (4 * -8 = -32 = -0x20, 0x40c0 - 0x20 = 0x40a0)",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Memory at 0x40a0 (stderr FILE* slot) is writable",
+              "necessity": "Required for push to successfully write the value without SIGSEGV",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The pushed value is attacker-controlled (via strtoll on hex/decimal literal)",
+              "necessity": "Required for the write to place an attacker-specified value rather than an arbitrary one",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The final pop reads back the written value, confirming the write succeeded",
+              "necessity": "Provides verification that the write actually occurred",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "4 operators: stack_top = 0x40c0 - 4*8 = 0x40a0",
+              "alias": "Underflowed stack_top aliases to stderr FILE* slot at 0x40a0",
+              "implication": "push writes to *(0x40a0), overwriting the stderr FILE* pointer with an attacker-controlled value"
+            },
+            {
+              "expression": "Target address 0x40a0 is fixed (determined by operator count, not attacker-chosen address)",
+              "alias": "The write target is a fixed offset from stack base, not an arbitrary address",
+              "implication": "This is RELATIVE_WRITE (fixed target), not ARB_WRITE. The value is controlled but the address is not."
+            }
+          ],
+          "verification_plan": {
+            "method": "Send expression '+ + + + 0xdeadbeef'. 4 operators underflow to 0x40a0. push writes 0xdeadbeef. Final pop reads back the value. Verify readback matches written value.",
+            "environment": "Linux x86-64, Ubuntu 22.04, glibc 2.39, ASLR enabled",
+            "run_command": "python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "Result value equals 0xdeadbeef (the pushed value)",
+              "Confirms write to *(0x40a0) succeeded",
+              "Program does not crash (stderr not used after the write in this code path)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Partial RELRO",
+              "present": true,
+              "primitive_impact": "Partial RELRO leaves .got.plt writable, but this primitive targets .bss (stderr slot), not GOT. RELRO has no direct impact on this primitive."
+            },
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "No impact — the target address 0x40a0 is a fixed offset from the PIE base, and the write doesn't depend on knowing the runtime address."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E006",
+              "type": "STATIC",
+              "function": "push",
+              "address": "0x128a-0x12a3",
+              "description": "push() writes *stack_top = value with no upper-bound check. After 4 operators underflow stack_top to 0x40a0, push writes to *(0x40a0)."
+            },
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "push/eval_expr",
+              "address": "0x40a0",
+              "description": "Runtime: expression '+ + + + 0xdeadbeef' produced Result: 0xdeadbeef. 4 operators underflowed stack_top to 0x40a0 (stderr slot), push wrote 0xdeadbeef, final pop read back 0xdeadbeef. GDB confirmed stderr@0x5555555580a0 = 0x00000000deadbeef after write."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py",
+            "written_value": "0xdeadbeef",
+            "read_value": "0xdeadbeef (readback matches written value)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "4 + operators underflow stack_top to 0x40a0 (stderr FILE* slot). push(0xdeadbeef) writes *(0x40a0) = 0xdeadbeef. Final pop reads back 0xdeadbeef, confirming the write. GDB verification: stderr@0x5555555580a0 = 0x00000000deadbeef. Program did not crash because stderr is not used after the write in this code path."
+          },
+          "confidence": "HIGH",
+          "notes": "This is RELATIVE_WRITE, not ARB_WRITE: the target address (0x40a0) is determined by the operator count (fixed offset from stack base), not by an attacker-chosen arbitrary address. The written value is fully attacker-controlled. The program doesn't crash because stderr is not used after eval_expr returns (main only calls printf which uses stdout)."
+        },
+        {
+          "primitive_id": "PRIM-004",
+          "type": "ARB_WRITE",
+          "status": "VERIFIED",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Unbounded stack_top pointer enables a two-step write technique: (1) 10 operators underflow stack_top to 0x4070 (the stack_top global variable itself, establishing self-reference), (2) push(target_addr - 8) overwrites the stack_top global with target_addr-8, making stack_top point to the target, (3) push(value) writes to *(target_addr) = value. The target address is fully attacker-controlled, making this ARB_WRITE.",
+            "description": "Two-step write: first overwrite the stack_top pointer itself to point to an attacker-chosen address Y, then push a value V that writes to *(Y). This upgrades from RELATIVE_WRITE (fixed target) to ARB_WRITE (arbitrary target)."
+          },
+          "chain": [
+            "BUG-001: unbounded stack_top pointer (no bounds check in push/pop)",
+            "10 operators (+*+*+*+*++) underflow stack_top to 0x4070 (stack_top global itself, self-referencing)",
+            "Step 1: push(Y-8) writes *(0x4070) = Y-8, overwriting stack_top global to Y-8; after push's stack_top+=8, stack_top = Y",
+            "Step 2: push(V) writes *(Y) = V (arbitrary write to attacker-chosen address Y)",
+            "Final pop reads *(Y) = V, printed as result (confirms write to Y)",
+            "ARB_WRITE (Write-What-Where: target address Y and value V both attacker-controlled)"
+          ],
+          "controlled_element": {
+            "what": "Both the target address Y (via push(Y-8) which overwrites stack_top) and the written value V (via push(V))",
+            "how": "Send expression '+ * + * + * + * + + (Y-8) V'. 10 operators underflow stack_top to 0x4070 (self-reference). push(Y-8) overwrites stack_top to Y-8, then stack_top becomes Y after +=8. push(V) writes *(Y) = V. Final pop reads *(Y) = V.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can send 10 operator tokens in +*+*+*+*++ pattern to underflow stack_top to 0x4070 (self-reference)",
+              "necessity": "Required to position stack_top at the stack_top global variable itself (0x4070), enabling the pointer hijack",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The stack_top global at 0x4070 is writable (it's in .data section)",
+              "necessity": "Required for push(Y-8) to successfully overwrite stack_top with the target address",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The target address Y must be a valid writable mapped address at runtime",
+              "necessity": "Required for push(V) to write to *(Y) without SIGSEGV. GOT entries (.got.plt at 0x4000-0x4060) are writable due to Partial RELRO.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "Attacker knows the runtime target address Y (requires PIE base leak from PRIM-002 or ASLR disabled)",
+              "necessity": "Required to compute Y-8 as the push value. With ASLR, PIE base must be leaked first (PRIM-002). Verification used GDB with ASLR disabled (fixed PIE base 0x555555554000).",
+              "verified": true
+            },
+            {
+              "id": "PC-05",
+              "description": "The +*+*+*+*++ pattern reaches 0x4070 without crashing (doesn't corrupt stdout/printf before the write)",
+              "necessity": "The * operator zeros padding slots, preventing + from accumulating non-zero values that would corrupt stdout and crash printf",
+              "verified": true
+            },
+            {
+              "id": "PC-06",
+              "description": "Partial RELRO leaves .got.plt (0x4000-0x4060) writable at runtime",
+              "necessity": "Required for GOT entries to be valid write targets. GNU_RELRO covers 0x3de8-0x4000, but .got.plt at 0x4000-0x4060 is outside RELRO range.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "10 operators: stack_top = 0x40c0 - 10*8 = 0x4070 (self-reference)",
+              "alias": "Underflowed stack_top aliases to the stack_top global variable itself at 0x4070",
+              "implication": "push writes to *(0x4070), overwriting the stack_top pointer with an attacker-controlled value. This is the pointer hijack step."
+            },
+            {
+              "expression": "stack_top self-reference: *(0x4070) = 0x4070 (runtime: pie_base + 0x4070)",
+              "alias": "After 10 ops, stack_top's value equals its own address (self-referencing pointer)",
+              "implication": "This is the critical structural alias that enables the two-step write: the write target (stack_top) and the pointer slot are the same address, so writing to *stack_top modifies stack_top itself."
+            },
+            {
+              "expression": "Two-step write: push(Y-8) -> stack_top=Y; push(V) -> *(Y)=V",
+              "alias": "First push hijacks the pointer (stack_top := Y), second push writes through the hijacked pointer (*(Y) := V)",
+              "implication": "This upgrades from RELATIVE_WRITE (fixed target) to ARB_WRITE (arbitrary target Y). The target address is fully attacker-controlled via the first push value."
+            },
+            {
+              "expression": "__dso_handle (0x4068) is corrupted during underflow but doesn't affect program flow",
+              "alias": "The 10th operator's push writes to *(0x4068) (corrupting __dso_handle), but this doesn't crash the program before the two-step write",
+              "implication": "The underflow path corrupts __dso_handle, but since it's not used during eval_expr/main execution, the program survives to complete the two-step write."
+            }
+          ],
+          "verification_plan": {
+            "method": "Use GDB with ASLR disabled (fixed PIE base 0x555555554000). Send expression '+ * + * + * + * + + (target_runtime-8) V'. Break at final pop, step over, read $rax (readback) and x/gx target (GOT value after write). Test two different targets (puts@GOT and __ctype_b_loc@GOT) with different values.",
+            "environment": "Linux x86-64, Ubuntu 22.04, glibc 2.39, GDB with disable-randomization (ASLR off for fixed addresses)",
+            "run_command": "python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "Target 1 (puts@GOT 0x4018): $rax = 0x42424242, GOT value = 0x42424242",
+              "Target 2 (__ctype_b_loc@GOT 0x4058): $rax = 0x45454545, GOT value = 0x45454545",
+              "Two different addresses written with different values proves ARB_WRITE"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Partial RELRO",
+              "present": true,
+              "primitive_impact": "Partial RELRO leaves .got.plt (0x4000-0x4060) writable, making GOT entries valid targets for the ARB_WRITE. Full RELRO would make GOT read-only, but the primitive would still work on other writable targets (.bss, .data)."
+            },
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes the PIE base, so the attacker must first leak the PIE base (PRIM-002) to compute runtime target addresses. The two-step write itself is not blocked by ASLR — it just requires an address leak first. Verification used GDB with ASLR disabled for reproducibility."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact — operates on global BSS/data/GOT, not the C call stack."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "No impact on the write primitive itself. NX prevents executing shellcode on the stack/heap, but the ARB_WRITE primitive is about writing to memory, not executing code."
+            },
+            {
+              "name": "CET (IBT+SHSTK)",
+              "present": true,
+              "primitive_impact": "CET IBT requires indirect branch targets to be ENDBR instructions, and SHSTK protects return addresses. These affect control-flow hijacking (S4 scope) but not the ARB_WRITE primitive itself, which is about writing to arbitrary addresses."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E008",
+              "type": "STATIC",
+              "function": "push/pop",
+              "address": "0x128a-0x12a3, 0x12b5-0x12ce",
+              "description": "push writes *stack_top = value then stack_top += 8 (no bounds check). pop decrements stack_top -= 8 then reads *stack_top (no bounds check). 10 operators drive stack_top to 0x4070 (self-reference)."
+            },
+            {
+              "id": "E009",
+              "type": "STATIC",
+              "function": "eval_expr",
+              "address": "0x1419-0x14a3",
+              "description": "Operator handling: pop b, pop a, compute a op b, push result. Net -8 per operator. 10 operators from empty stack: 0x40c0 - 80 = 0x4070."
+            },
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "push/eval_expr",
+              "address": "0x4070 (stack_top global), 0x4018 (puts@GOT)",
+              "description": "GDB (ASLR disabled, PIE base 0x555555554000): Expression '+ * + * + * + * + + 93824992247824 0x42424242'. After 10 ops, stack_top=0x555555558070 (self-referencing). push(0x555555558010) set stack_top=0x555555558018. push(0x42424242) wrote *(0x555555558018)=0x42424242. Final pop $rax=0x42424242. puts@GOT=0x0000000042424242 (was 0x7ffff7e2acc0)."
+            },
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "push/eval_expr",
+              "address": "0x4070 (stack_top global), 0x4058 (__ctype_b_loc@GOT)",
+              "description": "GDB (ASLR disabled): Expression '+ * + * + * + * + + 93824992247888 0x45454545'. push(0x555555558050) set stack_top=0x555555558058. push(0x45454545) wrote *(0x555555558058)=0x45454545. Final pop $rax=0x45454545. __ctype_b_loc@GOT=0x0000000045454545. puts@GOT unchanged=0x7ffff7e2acc0 (different run, confirms different target)."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py",
+            "written_value": "0x42424242 (to puts@GOT), 0x45454545 (to __ctype_b_loc@GOT)",
+            "read_value": "0x42424242 (readback from puts@GOT), 0x45454545 (readback from __ctype_b_loc@GOT)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "Two-step write verified with GDB (ASLR disabled, PIE base 0x555555554000). Target 1: puts@GOT (0x555555558018) overwritten with 0x42424242 — $rax=0x42424242, GOT=0x42424242. Target 2: __ctype_b_loc@GOT (0x555555558058) overwritten with 0x45454545 — $rax=0x45454545, GOT=0x45454545. Two different attacker-chosen addresses written with different values confirms ARB_WRITE (Write-What-Where). Technique: 10 ops underflow stack_top to 0x4070 (self-ref), push(target-8) hijacks stack_top to target, push(value) writes *(target)=value."
+          },
+          "confidence": "HIGH",
+          "notes": "This is an INDIRECT primitive: the two-step write uses an intermediate pointer hijack (overwriting stack_top to point to the target) before writing through the hijacked pointer. The self-referencing property of stack_top at 0x4070 (value == own address after 10 ops) is the critical structural enabler. ASLR requires a PIE base leak (PRIM-002) before computing runtime target addresses; verification used GDB with ASLR disabled for reproducibility. The __dso_handle (0x4068) is corrupted during underflow but doesn't affect program flow. Partial RELRO keeps .got.plt writable, making GOT entries valid write targets."
+        }
+      ],
+      "non_primitives": [],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 1,
+        "verified": 1,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "The '/' operator handler in eval_expr performs idiv (signed division) at link-time offset 0x1497 without checking whether the divisor (the second popped value, stored at [rbp-0x18]) is zero. A zero divisor causes the x86-64 CPU to raise #DE (divide error), which the kernel delivers as SIGFPE (signal 8). No signal handler is registered (no signal/sigaction symbols in the binary), so the default action terminates the process.",
+            "description": "eval_expr tokenizes the attacker-controlled expression string. When a '/' operator token is encountered, it pops two values (divisor b at [rbp-0x18], dividend a at [rbp-0x10]) and executes 'mov rax,[rbp-0x10]; cqo; idiv QWORD PTR [rbp-0x18]'. If the divisor is zero, idiv raises #DE -> SIGFPE -> process death. The attacker directly controls the divisor value via literal tokens (e.g., '0' or '0x0' pushes zero onto the stack). The crash occurs before any push of the result or any printf output, so no memory corruption or info leak occurs — only process termination."
+          },
+          "chain": [
+            "BUG-002",
+            "Missing zero-divisor check before idiv at 0x1497",
+            "Attacker pushes 0 as divisor via '0' literal token (strtoll returns 0 -> push(0))",
+            "Attacker pushes non-zero dividend via '1' literal token (strtoll returns 1 -> push(1))",
+            "'/' operator: pop divisor=0 into [rbp-0x18], pop dividend=1 into [rbp-0x10]",
+            "idiv QWORD PTR [rbp-0x18] with divisor=0 -> CPU raises #DE -> SIGFPE",
+            "No signal handler -> default action: process termination",
+            "CRASH (DOS)"
+          ],
+          "controlled_element": {
+            "what": "The divisor value for the '/' operator (the second-popped value). The attacker controls this by pushing a zero literal ('0' or '0x0') before the '/' operator token.",
+            "how": "The expression string is attacker-controlled (read from stdin, max 1023 bytes). Decimal tokens are parsed by strtoll(ptr, &ptr, 10); hex tokens by strtoll(ptr, &ptr, 0). The '0' token produces strtoll return value 0, which is pushed onto the stack. When '/' is the next token, pop() returns this 0 as the divisor.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can send a postfix expression string containing a zero-valued literal token followed by a '/' operator token (e.g., '1 0 /'). The expression must have at least two pushed values before the '/' so that pop() returns the zero as the divisor and a non-zero value as the dividend.",
+              "necessity": "The '/' operator pops two values: first pop = divisor [rbp-0x18], second pop = dividend [rbp-0x10]. The divisor must be zero for SIGFPE. The attacker controls this by pushing 0 via the '0' literal token.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "No SIGFPE signal handler is registered in the binary, so the default action (process termination) applies.",
+              "necessity": "If a SIGFPE handler were registered, the process might recover instead of crashing. Confirmed: no signal() or sigaction() symbols exist in the binary.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The expression string fits within the 1023-byte input limit (read(0, buf, 0x3ff)). The minimal trigger '1 0 /' is only 6 bytes.",
+              "necessity": "The input must be accepted by read() and parsed by eval_expr. The minimal payload is trivially within the limit.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "Send a division-by-zero expression ('1 0 /') to the target binary via stdin. Observe process termination with SIGFPE (signal 8, return code -8). Use GDB to confirm the fault occurs at the idiv instruction (eval_expr+0xc7 / link-time 0x1497) with divisor [rbp-0x18]=0. Test multiple input variants (decimal, hex, different dividends) to confirm reproducibility.",
+            "environment": "Linux x86-64, Ubuntu GLIBC 2.39, PIE binary with Canary, NX, Partial RELRO, CET IBT+SHSTK enabled",
+            "run_command": "python3 /work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-002.py",
+            "expected_evidence": [
+              "Process return code = -8 (SIGFPE = signal 8)",
+              "GDB: breakpoint at eval_expr+0xc7 (0x1497) hits before crash",
+              "GDB: [rbp-0x18] = 0x0 (divisor = zero)",
+              "GDB: [rbp-0x10] = 0x1 (dividend = non-zero)",
+              "GDB: signal = SIGFPE, crash_addr = eval_expr+0xc7",
+              "Multiple input variants (decimal/hex) all reproduce SIGFPE"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX (Non-Executable Stack)",
+              "present": true,
+              "primitive_impact": "Not relevant to this primitive. SIGFPE is a CPU arithmetic exception, not a code execution vector. NX does not prevent or mitigate the crash."
+            },
+            {
+              "name": "Canary (Stack Protector)",
+              "present": true,
+              "primitive_impact": "Not relevant. The crash occurs via a CPU exception (idiv by zero), not via stack buffer overflow. Canary does not prevent SIGFPE."
+            },
+            {
+              "name": "PIE / ASLR",
+              "present": true,
+              "primitive_impact": "Not relevant. The crash is deterministic regardless of base address. The idiv instruction always faults on zero divisor at the same link-time offset."
+            },
+            {
+              "name": "Partial RELRO",
+              "present": true,
+              "primitive_impact": "Not relevant. This primitive does not involve GOT or any memory write. It is a pure CPU exception."
+            },
+            {
+              "name": "CET (IBT + SHSTK)",
+              "present": true,
+              "primitive_impact": "Not relevant. CET protects against ROP/COP via indirect branch tracking and shadow stack. SIGFPE is a synchronous CPU exception, not a control-flow hijack."
+            },
+            {
+              "name": "alarm(60)",
+              "present": true,
+              "primitive_impact": "Not relevant. The crash is immediate (sub-second). alarm(60) would only trigger after 60 seconds of inactivity, which never occurs."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "eval_expr",
+              "address": "0x1491-0x149e",
+              "description": "Division operator handler disassembly: at 0x1439 cmp eax,0x2f ('/') -> je 0x1491. At 0x1491: mov rax,[rbp-0x10] (load dividend); 0x1495: cqo (sign-extend rax into rdx:rax); 0x1497: idiv QWORD PTR [rbp-0x18] (divide by divisor). No test/cmp/jcc on [rbp-0x18] before idiv. If [rbp-0x18]==0, CPU raises #DE -> SIGFPE."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "eval_expr",
+              "address": "0x1419-0x1431",
+              "description": "Operator handling: at 0x141e call pop (pop b = divisor -> [rbp-0x18]); at 0x142c call pop (pop a = dividend -> [rbp-0x10]). The divisor comes from the first pop, which returns either an attacker-pushed literal or underflowed memory. The attacker directly controls whether 0 is on the stack via the '0' or '0x0' literal token."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "binary (symbols)",
+              "address": "N/A",
+              "description": "No signal() or sigaction() symbols found in the binary (nm filter for 'signal' and 'sigaction' returned no output). This confirms no SIGFPE handler is registered, so the default action (process termination) applies."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "eval_expr",
+              "address": "0x1497",
+              "description": "GDB breakpoint at eval_expr+0xc7 (link-time 0x1497, the idiv instruction) hit with input '1 0 /'. Register state: rax=0x1 (dividend), rdx=0x0 (cqo sign-extension). Stack: [rbp-0x18]=0x0000000000000000 (divisor=zero), [rbp-0x10]=0x0000000000000001 (dividend=1). This confirms the idiv is about to execute with a zero divisor."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "eval_expr",
+              "address": "0x1497",
+              "description": "GDB crash analysis: signal=SIGFPE (Arithmetic exception), crash_addr=0x0000555555555497 (PIE runtime address = link-time 0x1497 + PIE base). Backtrace: #0 eval_expr, #1 main. Process terminated by SIGFPE."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "eval_expr",
+              "address": "0x1497",
+              "description": "PoC execution: 4 input variants all produced rc=-8 (SIGFPE): '1 0 /' (decimal), '5 0 /' (decimal), '0x1 0x0 /' (hex), '100 0 /' (decimal). All variants confirm reproducible process termination via SIGFPE."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0x0000555555555497 (eval_expr+0xc7, link-time 0x1497, idiv instruction)",
+            "return_code": -8,
+            "details": "GDB confirmed: breakpoint at eval_expr+0xc7 (0x1497) hit before crash. Divisor [rbp-0x18]=0x0 (zero), dividend [rbp-0x10]=0x1. idiv with zero divisor raises SIGFPE. No signal handler registered -> process terminated. PoC tested 4 input variants (decimal/hex), all reproduced rc=-8 (SIGFPE). The crash occurs at the idiv instruction before any push(result) or printf output, so no memory corruption or info leak occurs — pure DOS/CRASH primitive."
+          },
+          "confidence": "HIGH",
+          "notes": "BUG-002 produces a single DIRECT CRASH primitive. The idiv instruction faults synchronously on zero divisor before any memory write (push at 0x149e is never reached) or any output (printf in main is never reached). Therefore no higher-order primitive (ARB_WRITE, INFO_LEAK, RIP_CONTROL) can be derived from this BUG alone. The primitive is purely a denial-of-service: the attacker can terminate the calculator process on demand by sending a division-by-zero expression. The attack cost is minimal: a 6-byte expression string ('1 0 /') within the 1023-byte input limit. No preconditions beyond sending the expression are required. The primitive is trivially reproducible and deterministic."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-002",
+          "reason": "The idiv instruction at 0x1497 faults synchronously on zero divisor before the push(result) at 0x149e is reached. No memory write occurs. The division result is never computed or pushed. Therefore no write primitive of any kind (ARB_WRITE, RELATIVE_WRITE, RESTRICTED_WRITE) can be derived from BUG-002."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "INFO_LEAK",
+          "source_bug": "BUG-002",
+          "reason": "The SIGFPE crash terminates the process inside eval_expr before control returns to main. The printf('Result: %lld') in main (at 0x163b) is never reached. No output beyond the banner/prompt is produced. Therefore no information leak primitive can be derived from BUG-002."
+        },
+        {
+          "primitive_id": "NP-003",
+          "candidate_type": "RIP_CONTROL",
+          "source_bug": "BUG-002",
+          "reason": "SIGFPE is a synchronous CPU exception (arithmetic trap), not a control-flow hijack. The CPU raises #DE and the kernel delivers SIGFPE with default action (terminate). There is no mechanism by which the zero divisor value influences the instruction pointer. The fault address is always the idiv instruction (0x1497), not an attacker-controlled address. Therefore no RIP_CONTROL or FUNCTION_POINTER_CONTROL primitive can be derived from BUG-002."
+        },
+        {
+          "primitive_id": "NP-004",
+          "candidate_type": "HEAP_METADATA_CONTROL / HEAP_OBJECT_CONTROL",
+          "source_bug": "BUG-002",
+          "reason": "BUG-002 involves no heap operations. The idiv instruction operates on stack-local variables ([rbp-0x18] and [rbp-0x10]). No heap allocation, free, or metadata manipulation occurs. Therefore no heap primitive can be derived from BUG-002."
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002"
+  ]
+}

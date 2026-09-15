@@ -1,0 +1,168 @@
+{
+  "stage": 2,
+  "binary": "/work/workspace/0024-2023-51-mips-rop-20260909-134236/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0024-2023-51-mips-rop-20260909-134236/target\",\"arch\":\"mips\",\"bits\":32,\"endianness\":\"big\",\"entry\":\"0x4005a0\",\"dynamic\":false,\"stripped\":false,\"compiler\":\"GNU GCC (statically linked, glibc built-in), MIPS32r2 BE, o32 ABI, hard-float\",\"buildid\":\"06733c9d9402bb7398f2aaa0dccf51bf3abaab46\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":false,\"source\":\"ELF\",\"note\":\"NX disabled; no GNU_STACK segment; first LOAD segment is R E (executable); RWX segments present\"},\"canary\":{\"value\":\"present-in-binary-but-not-in-main\",\"source\":\"ELF\",\"note\":\"__stack_chk_guard @0x490958 and __stack_chk_fail @0x41f3c0 exist, but main @0x4007a0 does NOT reference __stack_chk_guard — main has no canary check\"},\"pie\":{\"value\":false,\"source\":\"ELF\",\"note\":\"EXEC type, base 0x400000\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":false,\"source\":\"ELF\"},\"shstk\":{\"value\":false,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\",\"note\":\"No PIE so code/data sections are fixed; stack ASLR depends on kernel but irrelevant to ROP since all gadgets at fixed addresses\"}},\"runtime\":{\"libc\":{\"version\":\"glibc (statically linked, version string not extracted)\",\"source\":\"STATIC\",\"note\":\"Binary is statically linked — libc code is embedded in .text; no external libc.so loaded\"},\"loader\":{\"value\":\"none (statically linked)\",\"source\":\"ELF\"},\"libraries\":[],\"note\":\"No NEEDED dynamic libraries; no RPATH/RUNPATH; no .interp. Fully self-contained static executable. Dependency resolution chain is trivial (no external .so).\"},\"interface\":{\"entry_function\":\"main @ 0x4007a0\",\"input_sources\":[\"stdin (via gets)\"],\"menu\":[],\"user_controlled_inputs\":[{\"name\":\"gets_buffer\",\"source\":\"stdin\",\"function\":\"main\",\"address\":\"0x40082c\",\"buffer_address\":\"fp+0x18 (sp+0x18)\",\"size_limit\":\"none (gets is unbounded)\",\"note\":\"User input read via _IO_gets (gets) into stack buffer at fp+0x18 with no length check\"}],\"io_flow\":\"main: puts('Welcome to hkcertCTF 2023') -> puts('input : ') -> fflush(stdout) -> gets(buf@fp+0x18) -> return 0\"},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x4002e0\",\"size\":\"0x64140\",\"permissions\":\"R E\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x4653b0\",\"size\":\"0x15e30\",\"permissions\":\"R\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x491000\",\"size\":\"0xfa0\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x492790\",\"size\":\"0xcf8\",\"permissions\":\"RW\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x4922c0\",\"size\":\"0x3f0\",\"permissions\":\"RW (processor-specific)\",\"writable\":true,\"executable\":false},{\"name\":\".sdata\",\"address\":\"0x4926b0\",\"size\":\"0x4\",\"permissions\":\"RW\",\"writable\":true},{\"name\":\".sbss\",\"address\":\"0x4926b8\",\"size\":\"0xd0\",\"permissions\":\"RW\",\"writable\":true},{\"name\":\".data.rel.ro\",\"address\":\"0x48e948\",\"size\":\"0x26b8\",\"permissions\":\"RW (RELRO after relocation)\",\"writable\":true},{\"name\":\"__libc_IO_vtables\",\"address\":\"0x491fc4\",\"size\":\"0x2f4\",\"permissions\":\"RW\",\"writable\":true},{\"name\":\".init\",\"address\":\"0x400264\",\"size\":\"0x7c\",\"permissions\":\"R E\"},{\"name\":\".fini\",\"address\":\"0x46536c\",\"size\":\"0x44\",\"permissions\":\"R E\"},{\"name\":\".eh_frame\",\"address\":\"0x47b1e0\",\"size\":\"0x2ba4\",\"permissions\":\"R\"}],\"globals\":[{\"name\":\"__stack_chk_guard\",\"address\":\"0x490958\",\"size\":4,\"section\":\".data.rel.ro\",\"note\":\"Canary value; NOT referenced by main\"},{\"name\":\"main_arena\",\"address\":\"0x49146c\",\"size\":1112,\"section\":\".data\"},{\"name\":\"stdout (via GOT)\",\"address\":\"0x492314\",\"size\":4,\"section\":\".got\",\"note\":\"Points to 0x491404 (stdout FILE structure)\"},{\"name\":\"mp_\",\"address\":\"0x49141c\",\"size\":64,\"section\":\".data\"}],\"got\":[{\"offset\":\"0x492310\",\"symbol\":\"puts (_IO_puts)\",\"value\":\"0x408f50\",\"writable\":true},{\"offset\":\"0x492314\",\"symbol\":\"stdout\",\"value\":\"0x491404\",\"writable\":true},{\"offset\":\"0x492318\",\"symbol\":\"fflush (_IO_fflush)\",\"value\":\"0x408910\",\"writable\":true},{\"offset\":\"0x49231c\",\"symbol\":\"gets (_IO_gets)\",\"value\":\"0x408ce0\",\"writable\":true}],\"plt\":[],\"note\":\"Static binary — no PLT; all calls resolved at link time. GOT entries are in .got at 0x4922c0+.\"},\"functions\":[{\"name\":\"main\",\"address\":\"0x4007a0\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"_IO_puts (0x408f50)\",\"_IO_fflush (0x408910)\",\"_IO_gets (0x408ce0)\"],\"inputs\":[{\"name\":\"stdin_line\",\"source\":\"gets\",\"destination\":\"stack buffer at fp+0x18\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack buffer fp+0x18\",\"size\":\"unbounded (gets)\",\"destination_type\":\"stack_buffer\",\"note\":\"gets writes user input to fp+0x18 with no bounds check; saved ra at fp+0x64 is 0x4c=76 bytes away from buffer start\"}],\"calls\":[\"puts\",\"fflush\",\"gets\"],\"stack_frame\":{\"size\":\"0x68\",\"buf_offset\":\"0x18\",\"saved_gp_offset\":\"0x10\",\"saved_fp_offset\":\"0x60\",\"saved_ra_offset\":\"0x64\",\"buf_to_ra\":\"0x4c (76 bytes)\",\"canary\":false}},{\"name\":\"__libc_csu_init\",\"address\":\"0x401000\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"_init\",\"indirect via $t9\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"CALL\",\"destination\":\"jalr $t9 (function pointer from $s0)\",\"note\":\"Loop at 0x401058-0x401078 calls function pointers from array at $s0, passing $s2->$a0, $s3->$a1, $s4->$a2\"},{\"operation\":\"EPILOGUE\",\"destination\":\"0x4010c4: lw $ra,0x34($sp); lw $s0-$s5 from stack; jr $ra; addiu $sp,$sp,0x38\",\"note\":\"Standard MIPS ret2csu epilogue — controls $s0-$s5 and $ra from stack\"}],\"calls\":[\"_init\",\"indirect\"],\"note\":\"ret2csu gadget source: epilogue at 0x4010c4 loads s0-s5,ra from sp+0x1c..0x34; call loop at 0x401058 does lw $t9,($s0); jalr $t9; move $a0,$s2; move $a1,$s3; move $a2,$s4 (delay slot)\"},{\"name\":\"_IO_gets (gets)\",\"address\":\"0x408ce0\",\"callers\":[\"main\"],\"callees\":[],\"inputs\":[{\"name\":\"buffer_ptr\",\"source\":\"$a0 (from main: fp+0x18)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"$a0 buffer\",\"size\":\"unbounded until newline/EOF\",\"destination_type\":\"stack_buffer\"}],\"calls\":[],\"note\":\"Classic unsafe gets — reads stdin into caller-provided buffer with no size limit\"},{\"name\":\"syscall_gadget_0x41f340\",\"address\":\"0x41f340\",\"callers\":[\"(within glibc internal syscall wrapper)\"],\"callees\":[],\"inputs\":[{\"name\":\"syscall_number\",\"source\":\"stack at sp+0x14\",\"register\":\"$v0\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"SYSCALL\",\"destination\":\"kernel\",\"note\":\"lw $v0,0x14($sp); syscall; jr $ra (delay: move $v1,$a3). Loads syscall number from stack, executes syscall, returns via jr $ra.\"}],\"calls\":[\"syscall\"],\"note\":\"Key ROP gadget: allows arbitrary syscall with number loaded from stack. Also 0x41f350 variant loads from sp+0x18.\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"stdin via gets\",\"operation\":\"unbounded stack buffer write (gets at 0x40082c, buffer fp+0x18, saved ra fp+0x64, distance 76 bytes)\",\"risk\":\"HIGH\",\"reason\":\"Attacker-controlled stdin input written via gets into stack buffer with no bounds check; saved return address (ra) at fp+0x64 is directly overwritable after 76 bytes of padding. No canary in main. NX disabled (stack executable). No PIE (fixed addresses). This is a textbook stack buffer overflow leading to control-flow hijack via ra overwrite.\"},{\"function\":\"__libc_csu_init\",\"input\":\"controlled stack values (via overflow)\",\"operation\":\"ret2csu epilogue at 0x4010c4 loads $s0-$s5 and $ra from stack; call loop at 0x401058 sets $a0=$s2, $a1=$s3, $a2=$s4 then jalr $t9\",\"risk\":\"HIGH\",\"reason\":\"After ra overwrite, attacker can pivot to csu epilogue to load controlled values into s0-s5/ra, then chain into csu call loop to set a0/a1/a2 and call arbitrary function pointer. This is the standard MIPS ret2csu primitive for controlling syscall arguments.\"},{\"function\":\"syscall_gadget (0x41f340)\",\"input\":\"controlled stack value at sp+0x14\",\"operation\":\"lw $v0,0x14($sp); syscall; jr $ra — arbitrary syscall with number from stack\",\"risk\":\"HIGH\",\"reason\":\"Combined with ret2csu to set $a0/$a1/$a2 and this gadget to set $v0 (syscall number) from stack, attacker can invoke arbitrary MIPS syscalls (e.g., execve syscall 4011/0xfab). 'sh' string available at 0x477504 in .rodata.\"},{\"function\":\"dependency_resolution\",\"input\":\"N/A\",\"operation\":\"static binary — no external library resolution\",\"risk\":\"LOW\",\"reason\":\"Fully statically linked, no .interp, no NEEDED entries, no RPATH/RUNPATH. No library hijacking surface.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF32 MIPS32r2 big-endian, statically linked, not stripped, entry 0x4005a0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"NX disabled; no GNU_STACK segment; first LOAD segment (0x400000, size 0x7dd84) is R E (read+execute); RWX segments present\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"No PIE — EXEC type, fixed base 0x400000, all code/data at fixed addresses\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Partial RELRO only; .got is writable at 0x4922c0\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"__stack_chk_guard exists at 0x490958 and __stack_chk_fail at 0x41f3c0, but main (0x4007a0) does NOT reference __stack_chk_guard — main has no stack canary protection\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"main calls _IO_gets (gets) at 0x40082c with buffer argument fp+0x18; gets performs unbounded read from stdin\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"main stack frame: size 0x68; buffer at fp+0x18; saved ra at fp+0x64; buffer-to-ra distance = 0x4c = 76 bytes\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"main prints 'Welcome to hkcertCTF 2023' (0x4653c0) and 'input : ' (0x4653dc), flushes stdout, then calls gets\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Binary is statically linked — no .interp, no NEEDED libraries, no PLT, no RPATH/RUNPATH; all libc code embedded in .text\",\"source\":\"ELF\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"ret2csu epilogue at 0x4010c4: lw $ra,0x34($sp); lw $s5,0x30($sp); lw $s4,0x2c($sp); lw $s3,0x28($sp); lw $s2,0x24($sp); lw $s1,0x20($sp); lw $s0,0x1c($sp); jr $ra; addiu $sp,$sp,0x38\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"ret2csu call loop at 0x401058: lw $t9,($s0); addiu $s1,$s1,1; move $a2,$s4; move $a1,$s3; jalr $t9; move $a0,$s2 (delay slot); then bne $s5,$s1 loop\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Syscall gadget at 0x41f340: lw $v0,0x14($sp); syscall; jr $ra (delay slot: move $v1,$a3). Loads syscall number from stack sp+0x14.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Variant syscall gadget at 0x41f350: lw $v0,0x18($sp); syscall; jr $ra\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"142 syscall instructions found in .text; 815 jr $ra gadgets available\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"String 'sh\\\\x00' found at vaddr 0x477504 in .rodata (usable as execve filename argument)\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"No system() or execve() function symbol exists in the binary; no '/bin/sh' string — must use raw syscall (execve syscall number 4011 = 0xfab on MIPS o32)\",\"source\":\"ELF\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"MIPS o32 ABI: syscall arguments in $a0-$a3, syscall number in $v0, return in $v0, error flag in $a3\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"probe_io failed with 'Exec format error' — binary cannot run natively in this environment (MIPS BE on non-MIPS host); runtime behavior not directly observable\",\"source\":\"RUNTIME\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"Overflow of 76+ bytes from buffer start (fp+0x18) overwrites saved ra at fp+0x64, enabling control-flow hijack on main return\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"With NX disabled and stack executable, both shellcode-on-stack and ROP are viable exploitation strategies; ROP is preferred due to fixed gadget addresses and no ASLR concern for code\",\"source\":\"ELF\"},{\"id\":\"F021\",\"type\":\"DERIVED\",\"description\":\"ret2csu chain: overflow -> csu_epilogue(0x4010c4) sets s0=func_ptr, s2=a0, s3=a1, s4=a2, s5=1, ra=csu_loop(0x401058) -> csu_loop calls jalr $t9 with a0/a1/a2 set -> returns to next gadget\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact runtime stack ASLR status on target environment\",\"reason\":\"Cannot run MIPS binary in current environment; however No PIE means code/data/gadgets are at fixed addresses regardless\"},{\"id\":\"U002\",\"description\":\"Whether saved $gp at fp+0x10 needs to be preserved/corrected for ROP chain\",\"reason\":\"main saves gp at fp+0x10 and reloads it after calls; overflow at 76 bytes from buf start reaches ra at 0x64 but gp at 0x10 is BEFORE the buffer (0x18) so gp is not overwritten by forward overflow — but gadgets that use $gp-relative addressing need valid gp\"},{\"id\":\"U003\",\"description\":\"Exact MIPS o32 syscall number table confirmation (execve=4011/0xfab)\",\"reason\":\"Derived from standard MIPS o32 ABI; not independently verified on target kernel\"},{\"id\":\"U004\",\"description\":\"Whether cache coherency issues (MIPS I-cache) affect shellcode execution on stack\",\"reason\":\"MIPS requires explicit cache flush for self-modifying code; ROP avoids this issue entirely\"}],\"raw\":{\"elf\":\"ELF 32-bit MSB executable, MIPS, MIPS32 rel2, statically linked, BuildID 06733c9d9402bb7398f2aaa0dccf51bf3abaab46, for GNU/Linux 3.2.0, not stripped. Entry 0x4005a0. Flags: noreorder, pic, cpic, o32, mips32r2. 7 program headers. LOAD segments: (1) 0x400000 R E size 0x7dd84, (2) 0x48e867 RW size 0x4c35. No GNU_STACK. No .interp.\",\"sections\":\"35 sections. Key: .text@0x4002e0 size 0x64140 R E; .rodata@0x4653b0 size 0x15e30 R; .data@0x491000 size 0xfa0 RW; .bss@0x492790 size 0xcf8 RW; .got@0x4922c0 size 0x3f0 RW; .data.rel.ro@0x48e948 size 0x26b8 RW; __libc_IO_vtables@0x491fc4 size 0x2f4 RW.\",\"symbols\":\"main@0x4007a0 (T); _IO_gets/gets@0x408ce0 (T); _IO_puts@0x408f50; _IO_fflush@0x408910; __stack_chk_guard@0x490958 (D, size 4); __stack_chk_fail@0x41f3c0 (T); __libc_csu_init@0x401000; __libc_csu_fini@0x4010e8; read@0x41ca60; write@0x41cb50; open@0x41c910; mprotect@0x41dc5c; sigaction@0x42f59c. No system/execve symbols.\",\"disassembly\":\"main(0x4007a0): addiu $sp,$sp,-0x68; sw $ra,0x64($sp); sw $fp,0x60($sp); move $fp,$sp; lui $gp,0x4a; addiu $gp,$gp,-0x5d50; sw $gp,0x10($sp); [puts('Welcome to hkcertCTF 2023')@0x4653c0]; [puts('input : ')@0x4653dc]; [fflush(stdout)]; addiu $v0,$fp,0x18; move $a0,$v0; [gets@0x408ce0]; move $v0,$zero; lw $ra,0x64($sp); lw $fp,0x60($sp); addiu $sp,$sp,0x68; jr $ra. --- ret2csu epilogue(0x4010c4): lw $ra,0x34($sp); lw $s5,0x30; lw $s4,0x2c; lw $s3,0x28; lw $s2,0x24; lw $s1,0x20; lw $s0,0x1c; jr $ra; addiu $sp,$sp,0x38. --- ret2csu loop(0x401058): lw $t9,($s0); addiu $s1,$s1,1; move $a2,$s4; move $a1,$s3; jalr $t9; move $a0,$s2(delay). --- syscall gadget(0x41f340): lw $v0,0x14($sp); syscall; jr $ra; move $v1,$a3(delay).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":1,\"high_severity\":1,\"medium_severity\":0,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"STACK_BUFFER_OVERFLOW_UNBOUNDED_GETS\",\"root_cause\":{\"type\":\"STACK_BUFFER_OVERFLOW\",\"description\":\"main 函数通过 _IO_gets (gets) 从 stdin 读取用户输入到栈缓冲区 (fp+0x18)，gets 对读取长度没有任何限制（无界读取直到遇到换行符或 EOF）。缓冲区起始地址为 sp+0x18，而保存的返回地址 ra 存放在 sp+0x64，两者距离仅 0x4c = 76 字节。攻击者只需提供超过 76 字节的输入即可越过缓冲区边界，覆盖 saved ra。main 函数未启用栈保护（canary），因此溢出不会被检测。根因是：gets 作为无界输入函数被用于固定大小的栈缓冲区，且调用点缺少任何长度边界检查。\"},\"affected_functions\":[\"main\",\"_IO_gets\"],\"affected_objects\":[{\"name\":\"stack_buffer (fp+0x18 / sp+0x18)\",\"type\":\"stack_buffer\",\"size\":\"76 bytes to saved ra (0x4c = 76 bytes from buffer start to saved ra at fp+0x64)\",\"location\":\"main stack frame, sp+0x18\"},{\"name\":\"saved return address (ra)\",\"type\":\"saved_register\",\"size\":\"4 bytes\",\"location\":\"sp+0x64 (fp+0x64)\"},{\"name\":\"saved frame pointer (fp)\",\"type\":\"saved_register\",\"size\":\"4 bytes\",\"location\":\"sp+0x60 (fp+0x60)\"}],\"attack_surface\":{\"input\":\"stdin (单行用户输入，通过 gets 读取)\",\"entry_function\":\"main @ 0x4007a0\",\"data_flow\":[\"stdin → _IO_gets (gets @ 0x408ce0) 被调用，参数 $a0 = fp+0x18 (栈缓冲区地址)\",\"gets 从 stdin 无界读取字节，写入 $a0 指向的栈缓冲区 (sp+0x18)，直到遇到换行符或 EOF\",\"写入无长度限制：gets 不接受 size 参数，内部循环持续写入直到行结束\",\"缓冲区 sp+0x18 到 saved ra sp+0x64 仅 76 字节 (0x4c)\",\"输入超过 76 字节后，溢出数据覆盖 sp+0x60 处的 saved fp 和 sp+0x64 处的 saved ra\",\"main 返回时执行 lw $ra,0x64($sp); jr $ra — 加载被覆盖的 ra 值作为返回地址\",\"攻击者控制的 ra 值成为 jr $ra 的跳转目标\"]},\"security_check\":{\"expected\":\"对写入栈缓冲区的数据长度进行边界检查，确保不超过缓冲区大小（76 字节到 ra），或使用带长度限制的输入函数（如 fgets(buf, size, stdin)）。\",\"actual\":\"main 使用 gets (无界读取函数) 读取输入到栈缓冲区，gets 不接受也不执行任何长度检查。main 函数中无任何长度验证逻辑。\",\"missing_or_incorrect\":\"完全缺失长度边界检查。gets 函数本身不提供长度参数，无法限制写入字节数。main 未引用 __stack_chk_guard，无栈 canary 保护，溢出无法被运行时检测。\"},\"vulnerable_operation\":{\"operation\":\"UNBOUNDED_STACK_WRITE\",\"address\":\"0x40082c (gets 调用点 in main)\",\"expression\":\"gets(fp+0x18) — 无界写入栈缓冲区，buffer 起始 sp+0x18，saved ra 在 sp+0x64，距离 0x4c=76 字节\",\"target\":\"stack buffer at fp+0x18 → overflow into saved fp (fp+0x60) and saved ra (fp+0x64)\",\"size\":\"unbounded (gets 读取直到换行/EOF，无上限)\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"gets 无界写入超出栈缓冲区边界，覆盖 saved fp (sp+0x60) 和 saved ra (sp+0x64) 及后续栈内容。溢出数据直接写入栈帧中保存的寄存器值，造成栈内存破坏。Preconditions: 攻击者能通过 stdin 提供超过 76 字节的输入。证据：S1 F006/F007 确认 gets 无界读取且 buffer-to-ra 距离为 76 字节。\"},{\"type\":\"DATA_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"溢出覆盖 saved ra (返回地址) 和 saved fp (帧指针)，这些是控制流和栈帧完整性的关键数据。被覆盖的 ra 值在 main 返回时被加载并用于 jr $ra 跳转，被覆盖的 fp 影响后续栈帧访问。Preconditions: 攻击者提供 76+ 字节输入。\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x40082c\",\"description\":\"main 在 0x40082c 调用 _IO_gets (gets @ 0x408ce0)，参数 $a0 = fp+0x18 (栈缓冲区)。gets 是无界输入函数，不接受长度参数，持续从 stdin 读取直到换行符或 EOF。调用点无任何长度检查。\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4007a0\",\"description\":\"main 栈帧布局：addiu $sp,$sp,-0x68 (帧大小 0x68=104字节); sw $ra,0x64($sp) (saved ra 在 sp+0x64); sw $fp,0x60($sp) (saved fp 在 sp+0x60); 缓冲区在 fp+0x18=sp+0x18。buffer-to-ra 距离 = 0x64-0x18 = 0x4c = 76 字节。溢出 76 字节即触及 saved ra。\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4007a0\",\"description\":\"main 函数不引用 __stack_chk_guard (0x490958)，未启用栈 canary 保护。虽然二进制中存在 __stack_chk_guard 和 __stack_chk_fail 符号，但 main 函数的 prologue/epilogue 中没有 canary 的加载/存储/比较逻辑，因此栈溢出不会被运行时检测。\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4007a0 (epilogue)\",\"description\":\"main epilogue: lw $ra,0x64($sp); lw $fp,0x60($sp); addiu $sp,$sp,0x68; jr $ra。返回时从 sp+0x64 加载 saved ra 并通过 jr $ra 跳转。若 ra 被溢出覆盖，跳转目标由攻击者控制。\"},{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"_IO_gets\",\"address\":\"0x408ce0\",\"description\":\"_IO_gets (gets) 是 C 标准库中已知的不安全函数，不接受缓冲区大小参数，对写入长度无任何限制。其内部实现持续从 stdin 读取字符写入调用者提供的缓冲区，直到遇到换行符或 EOF。这是 gets 被从 ISO C11 标准移除的根本原因。\"},{\"id\":\"E006\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x40082c → 0x4007a0 epilogue\",\"description\":\"数据流推导：stdin 输入 → gets 写入 sp+0x18 (无界) → 超过 76 字节溢出至 sp+0x64 (saved ra) → main epilogue 的 lw $ra,0x64($sp); jr $ra 加载被覆盖的 ra → 控制流跳转到攻击者控制的地址。完整证据链：无界写入 + 无 canary + ra 可达 + ra 被用于跳转。\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"动态验证：在 MIPS 运行环境中向程序 stdin 发送超过 76 字节的输入，确认 saved ra 被覆盖且程序跳转到可控地址（S3 职责）\",\"确认目标运行环境的栈 ASLR 状态（S1 U001 — 但无 PIE 意味着代码/数据地址固定，栈 ASLR 不影响 ROP gadget 地址）\",\"确认 gets 在此静态链接 glibc 版本中的具体实现行为（是否在内部有其他限制——标准 gets 不应有）\"]}],\"non_vulnerabilities\":[{\"function\":\"dependency_resolution\",\"description\":\"二进制为完全静态链接，无 .interp、无 NEEDED 库、无 PLT、无 RPATH/RUNPATH。所有 libc 代码嵌入 .text 段。\",\"reason\":\"无外部库解析链，不存在依赖库劫持攻击面。攻击者无法通过放置恶意 .so 替换库函数。\"},{\"function\":\"__libc_csu_init\",\"description\":\"__libc_csu_init (0x401000) 包含 ret2csu epilogue (0x4010c4) 和 call loop (0x401058)，可从栈加载 s0-s5 和 ra 并间接调用函数指针。\",\"reason\":\"这是标准 MIPS __libc_csu_init 的正常代码结构，本身不是漏洞。它仅在 BUG-001 的栈溢出被触发后才可能被用作 ROP gadget 链的组成部分。ret2csu 是利用技术（属 S3/S4），不是独立的漏洞根因。此处记录为非漏洞以明确边界。\"},{\"function\":\"syscall_gadget (0x41f340)\",\"description\":\"glibc 内部 syscall wrapper 包含 lw $v0,0x14($sp); syscall; jr $ra 指令序列，可从栈加载 syscall 号并执行 syscall。\",\"reason\":\"这是 glibc syscall wrapper 的正常实现代码，本身不是漏洞。仅在 BUG-001 栈溢出被触发后才可能被用作 ROP gadget。syscall gadget 是利用技术组件（属 S3/S4），不是独立的漏洞根因。\"}],\"unresolved\":[{\"description\":\"目标运行环境的栈 ASLR 状态未确认\",\"reason\":\"S1 U001 指出无法在当前环境运行 MIPS BE 二进制（probe_io 返回 Exec format error）。栈 ASLR 是否启用影响栈上 shellcode 的可行性，但不影响 ROP（无 PIE，gadget 地址固定）。\",\"required_next_step\":\"S3 动态验证阶段在目标 MIPS 环境中确认栈布局和 ASLR 状态。\"},{\"description\":\"saved $gp (sp+0x10) 与溢出的关系\",\"reason\":\"S1 U002 指出 gp 保存在 sp+0x10，位于缓冲区 sp+0x18 之前，正向溢出不直接覆盖 gp。但使用 $gp-relative 寻址的 gadget 需要有效的 gp 值。这不影响漏洞根因（栈溢出），但可能影响后续利用链构造。\",\"required_next_step\":\"S3/S4 阶段在构造 ROP 链时考虑 gp 的正确性。\"}]},\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "vulnerability_report": {
+    "schema": "VulnerabilityReport",
+    "version": "1.0",
+    "status": "COMPLETED",
+    "summary": {
+      "total_bugs": 1,
+      "high_severity": 1,
+      "medium_severity": 0,
+      "low_severity": 0
+    },
+    "vulnerabilities": [
+      {
+        "bug_id": "BUG-001",
+        "title": "STACK_BUFFER_OVERFLOW_UNBOUNDED_GETS",
+        "root_cause": {
+          "type": "STACK_BUFFER_OVERFLOW",
+          "description": "main 函数通过 _IO_gets (gets) 从 stdin 读取用户输入到栈缓冲区 (fp+0x18)，gets 对读取长度没有任何限制（无界读取直到遇到换行符或 EOF）。缓冲区起始地址为 sp+0x18，而保存的返回地址 ra 存放在 sp+0x64，两者距离仅 0x4c = 76 字节。攻击者只需提供超过 76 字节的输入即可越过缓冲区边界，覆盖 saved ra。main 函数未启用栈保护（canary），因此溢出不会被检测。根因是：gets 作为无界输入函数被用于固定大小的栈缓冲区，且调用点缺少任何长度边界检查。"
+        },
+        "affected_functions": [
+          "main",
+          "_IO_gets"
+        ],
+        "affected_objects": [
+          {
+            "name": "stack_buffer (fp+0x18 / sp+0x18)",
+            "type": "stack_buffer",
+            "size": "76 bytes to saved ra (0x4c = 76 bytes from buffer start to saved ra at fp+0x64)",
+            "location": "main stack frame, sp+0x18"
+          },
+          {
+            "name": "saved return address (ra)",
+            "type": "saved_register",
+            "size": "4 bytes",
+            "location": "sp+0x64 (fp+0x64)"
+          },
+          {
+            "name": "saved frame pointer (fp)",
+            "type": "saved_register",
+            "size": "4 bytes",
+            "location": "sp+0x60 (fp+0x60)"
+          }
+        ],
+        "attack_surface": {
+          "input": "stdin (单行用户输入，通过 gets 读取)",
+          "entry_function": "main @ 0x4007a0",
+          "data_flow": [
+            "stdin → _IO_gets (gets @ 0x408ce0) 被调用，参数 $a0 = fp+0x18 (栈缓冲区地址)",
+            "gets 从 stdin 无界读取字节，写入 $a0 指向的栈缓冲区 (sp+0x18)，直到遇到换行符或 EOF",
+            "写入无长度限制：gets 不接受 size 参数，内部循环持续写入直到行结束",
+            "缓冲区 sp+0x18 到 saved ra sp+0x64 仅 76 字节 (0x4c)",
+            "输入超过 76 字节后，溢出数据覆盖 sp+0x60 处的 saved fp 和 sp+0x64 处的 saved ra",
+            "main 返回时执行 lw $ra,0x64($sp); jr $ra — 加载被覆盖的 ra 值作为返回地址",
+            "攻击者控制的 ra 值成为 jr $ra 的跳转目标"
+          ]
+        },
+        "security_check": {
+          "expected": "对写入栈缓冲区的数据长度进行边界检查，确保不超过缓冲区大小（76 字节到 ra），或使用带长度限制的输入函数（如 fgets(buf, size, stdin)）。",
+          "actual": "main 使用 gets (无界读取函数) 读取输入到栈缓冲区，gets 不接受也不执行任何长度检查。main 函数中无任何长度验证逻辑。",
+          "missing_or_incorrect": "完全缺失长度边界检查。gets 函数本身不提供长度参数，无法限制写入字节数。main 未引用 __stack_chk_guard，无栈 canary 保护，溢出无法被运行时检测。"
+        },
+        "vulnerable_operation": {
+          "operation": "UNBOUNDED_STACK_WRITE",
+          "address": "0x40082c (gets 调用点 in main)",
+          "expression": "gets(fp+0x18) — 无界写入栈缓冲区，buffer 起始 sp+0x18，saved ra 在 sp+0x64，距离 0x4c=76 字节",
+          "target": "stack buffer at fp+0x18 → overflow into saved fp (fp+0x60) and saved ra (fp+0x64)",
+          "size": "unbounded (gets 读取直到换行/EOF，无上限)"
+        },
+        "impact": [
+          {
+            "type": "MEMORY_CORRUPTION",
+            "status": "CANDIDATE",
+            "reason": "gets 无界写入超出栈缓冲区边界，覆盖 saved fp (sp+0x60) 和 saved ra (sp+0x64) 及后续栈内容。溢出数据直接写入栈帧中保存的寄存器值，造成栈内存破坏。Preconditions: 攻击者能通过 stdin 提供超过 76 字节的输入。证据：S1 F006/F007 确认 gets 无界读取且 buffer-to-ra 距离为 76 字节。"
+          },
+          {
+            "type": "DATA_CORRUPTION",
+            "status": "CANDIDATE",
+            "reason": "溢出覆盖 saved ra (返回地址) 和 saved fp (帧指针)，这些是控制流和栈帧完整性的关键数据。被覆盖的 ra 值在 main 返回时被加载并用于 jr $ra 跳转，被覆盖的 fp 影响后续栈帧访问。Preconditions: 攻击者提供 76+ 字节输入。"
+          }
+        ],
+        "evidence": [
+          {
+            "id": "E001",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x40082c",
+            "description": "main 在 0x40082c 调用 _IO_gets (gets @ 0x408ce0)，参数 $a0 = fp+0x18 (栈缓冲区)。gets 是无界输入函数，不接受长度参数，持续从 stdin 读取直到换行符或 EOF。调用点无任何长度检查。"
+          },
+          {
+            "id": "E002",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x4007a0",
+            "description": "main 栈帧布局：addiu $sp,$sp,-0x68 (帧大小 0x68=104字节); sw $ra,0x64($sp) (saved ra 在 sp+0x64); sw $fp,0x60($sp) (saved fp 在 sp+0x60); 缓冲区在 fp+0x18=sp+0x18。buffer-to-ra 距离 = 0x64-0x18 = 0x4c = 76 字节。溢出 76 字节即触及 saved ra。"
+          },
+          {
+            "id": "E003",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x4007a0",
+            "description": "main 函数不引用 __stack_chk_guard (0x490958)，未启用栈 canary 保护。虽然二进制中存在 __stack_chk_guard 和 __stack_chk_fail 符号，但 main 函数的 prologue/epilogue 中没有 canary 的加载/存储/比较逻辑，因此栈溢出不会被运行时检测。"
+          },
+          {
+            "id": "E004",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x4007a0 (epilogue)",
+            "description": "main epilogue: lw $ra,0x64($sp); lw $fp,0x60($sp); addiu $sp,$sp,0x68; jr $ra。返回时从 sp+0x64 加载 saved ra 并通过 jr $ra 跳转。若 ra 被溢出覆盖，跳转目标由攻击者控制。"
+          },
+          {
+            "id": "E005",
+            "type": "STATIC",
+            "function": "_IO_gets",
+            "address": "0x408ce0",
+            "description": "_IO_gets (gets) 是 C 标准库中已知的不安全函数，不接受缓冲区大小参数，对写入长度无任何限制。其内部实现持续从 stdin 读取字符写入调用者提供的缓冲区，直到遇到换行符或 EOF。这是 gets 被从 ISO C11 标准移除的根本原因。"
+          },
+          {
+            "id": "E006",
+            "type": "DERIVED",
+            "function": "main",
+            "address": "0x40082c → 0x4007a0 epilogue",
+            "description": "数据流推导：stdin 输入 → gets 写入 sp+0x18 (无界) → 超过 76 字节溢出至 sp+0x64 (saved ra) → main epilogue 的 lw $ra,0x64($sp); jr $ra 加载被覆盖的 ra → 控制流跳转到攻击者控制的地址。完整证据链：无界写入 + 无 canary + ra 可达 + ra 被用于跳转。"
+          }
+        ],
+        "confidence": "HIGH",
+        "verification_required": [
+          "动态验证：在 MIPS 运行环境中向程序 stdin 发送超过 76 字节的输入，确认 saved ra 被覆盖且程序跳转到可控地址（S3 职责）",
+          "确认目标运行环境的栈 ASLR 状态（S1 U001 — 但无 PIE 意味着代码/数据地址固定，栈 ASLR 不影响 ROP gadget 地址）",
+          "确认 gets 在此静态链接 glibc 版本中的具体实现行为（是否在内部有其他限制——标准 gets 不应有）"
+        ]
+      }
+    ],
+    "non_vulnerabilities": [
+      {
+        "function": "dependency_resolution",
+        "description": "二进制为完全静态链接，无 .interp、无 NEEDED 库、无 PLT、无 RPATH/RUNPATH。所有 libc 代码嵌入 .text 段。",
+        "reason": "无外部库解析链，不存在依赖库劫持攻击面。攻击者无法通过放置恶意 .so 替换库函数。"
+      },
+      {
+        "function": "__libc_csu_init",
+        "description": "__libc_csu_init (0x401000) 包含 ret2csu epilogue (0x4010c4) 和 call loop (0x401058)，可从栈加载 s0-s5 和 ra 并间接调用函数指针。",
+        "reason": "这是标准 MIPS __libc_csu_init 的正常代码结构，本身不是漏洞。它仅在 BUG-001 的栈溢出被触发后才可能被用作 ROP gadget 链的组成部分。ret2csu 是利用技术（属 S3/S4），不是独立的漏洞根因。此处记录为非漏洞以明确边界。"
+      },
+      {
+        "function": "syscall_gadget (0x41f340)",
+        "description": "glibc 内部 syscall wrapper 包含 lw $v0,0x14($sp); syscall; jr $ra 指令序列，可从栈加载 syscall 号并执行 syscall。",
+        "reason": "这是 glibc syscall wrapper 的正常实现代码，本身不是漏洞。仅在 BUG-001 栈溢出被触发后才可能被用作 ROP gadget。syscall gadget 是利用技术组件（属 S3/S4），不是独立的漏洞根因。"
+      }
+    ],
+    "unresolved": [
+      {
+        "description": "目标运行环境的栈 ASLR 状态未确认",
+        "reason": "S1 U001 指出无法在当前环境运行 MIPS BE 二进制（probe_io 返回 Exec format error）。栈 ASLR 是否启用影响栈上 shellcode 的可行性，但不影响 ROP（无 PIE，gadget 地址固定）。",
+        "required_next_step": "S3 动态验证阶段在目标 MIPS 环境中确认栈布局和 ASLR 状态。"
+      },
+      {
+        "description": "saved $gp (sp+0x10) 与溢出的关系",
+        "reason": "S1 U002 指出 gp 保存在 sp+0x10，位于缓冲区 sp+0x18 之前，正向溢出不直接覆盖 gp。但使用 $gp-relative 寻址的 gadget 需要有效的 gp 值。这不影响漏洞根因（栈溢出），但可能影响后续利用链构造。",
+        "required_next_step": "S3/S4 阶段在构造 ROP 链时考虑 gp 的正确性。"
+      }
+    ]
+  }
+}

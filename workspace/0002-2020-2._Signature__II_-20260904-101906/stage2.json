@@ -1,0 +1,295 @@
+{
+  "stage": 2,
+  "binary": "/work/workspace/0002-2020-2._Signature__II_-20260904-101906/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0002-2020-2._Signature__II_-20260904-101906/target\",\"arch\":\"x86-64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1070\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC (Debian 10.2.0-5) 10.2.0\",\"source_file\":\"test.c\",\"buildid\":\"2c33c8dc1b757b76523ef049a16b97cc7745651b\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":false,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":true,\"source\":\"DERIVED\",\"note\":\"PIE enabled; ASLR assumed active on standard Linux runtime (not explicitly verified)\"},\"seccomp\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)\",\"source\":\"RUNTIME\",\"note\":\"ldd resolves libc.so.6 to system path; version string from runtime libc\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libcrypto.so.1.1\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libcrypto.so.1.1\",\"version\":\"OpenSSL 1.1.1f 31 Mar 2020\",\"source\":\"RUNTIME\",\"needed\":true,\"rpath\":\"none\",\"runpath\":\"none\",\"search_order\":\"LD_LIBRARY_PATH precedes system paths (no RPATH/RUNPATH present)\",\"transitive_deps\":[\"libdl.so.2\",\"libpthread.so.0\"],\"note\":\"NEEDED directly; provides DES_ecb_encrypt, DES_set_key_unchecked\"},{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39\",\"source\":\"RUNTIME\",\"needed\":true,\"rpath\":\"none\",\"runpath\":\"none\"},{\"name\":\"linux-vdso.so.1\",\"resolved_path\":\"0x00007fb88a9c8000\",\"source\":\"RUNTIME\",\"needed\":false,\"note\":\"vdso, auto-injected\"}]},\"interface\":{\"entry_function\":\"main (0x1155)\",\"input_sources\":[{\"source\":\"argv[1]\",\"description\":\"DES key, dereferenced as 8 bytes via mov rax,[argv+0x10]; mov rax,[rax]\",\"used_as\":\"DES key (stored at rbp-0x8)\"},{\"source\":\"argv[2]\",\"description\":\"plaintext, dereferenced as 8 bytes via mov rax,[argv+0x8]; mov rax,[rax]\",\"used_as\":\"DES plaintext input (stored at rbp-0x98)\"}],\"menu\":[],\"user_controlled_inputs\":[{\"name\":\"argv[1]\",\"source\":\"argv\",\"type\":\"string pointer dereferenced to 8 bytes\",\"function\":\"main\"},{\"name\":\"argv[2]\",\"source\":\"argv\",\"type\":\"string pointer dereferenced to 8 bytes\",\"function\":\"main\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x2a8\",\"size\":\"0x1c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".note.gnu.build-id\",\"address\":\"0x2c4\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".note.ABI-tag\",\"address\":\"0x2e8\",\"size\":\"0x20\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.hash\",\"address\":\"0x308\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".dynsym\",\"address\":\"0x330\",\"size\":\"0xd8\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".dynstr\",\"address\":\"0x408\",\"size\":\"0xc8\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.version\",\"address\":\"0x4d0\",\"size\":\"0x12\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.version_r\",\"address\":\"0x4e8\",\"size\":\"0x40\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".rela.dyn\",\"address\":\"0x528\",\"size\":\"0xc0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".rela.plt\",\"address\":\"0x5e8\",\"size\":\"0x48\",\"flags\":\"AI\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0x40\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.got\",\"address\":\"0x1060\",\"size\":\"0x8\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".text\",\"address\":\"0x1070\",\"size\":\"0x1f1\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x1264\",\"size\":\"0x9\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x4\",\"flags\":\"AM\",\"writable\":false,\"executable\":false,\"readable\":true,\"content\":\"01 00 02 00\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2004\",\"size\":\"0x3c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x2040\",\"size\":\"0x108\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3dd8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"points to frame_dummy (0x1150)\"},{\"name\":\".fini_array\",\"address\":\"0x3de0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"points to __do_global_dtors_aux (0x1110)\"},{\"name\":\".dynamic\",\"address\":\"0x3de8\",\"size\":\"0x1f0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0x30\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4030\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"__data_start(0) + __dso_handle(0x4038)\"},{\"name\":\".bss\",\"address\":\"0x4040\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"completed.0\"}],\"globals\":[{\"name\":\"completed.0\",\"address\":\"0x4040\",\"size\":1,\"section\":\".bss\",\"type\":\"OBJECT\"},{\"name\":\"__dso_handle\",\"address\":\"0x4038\",\"size\":0,\"section\":\".data\",\"type\":\"OBJECT\"},{\"name\":\"__data_start\",\"address\":\"0x4030\",\"size\":0,\"section\":\".data\",\"type\":\"OBJECT\"},{\"name\":\"_GLOBAL_OFFSET_TABLE_\",\"address\":\"0x4000\",\"size\":0,\"section\":\".got.plt\",\"type\":\"OBJECT\"},{\"name\":\"_DYNAMIC\",\"address\":\"0x3de8\",\"size\":0,\"section\":\".dynamic\",\"type\":\"OBJECT\"},{\"name\":\"_IO_stdin_used\",\"address\":\"0x2000\",\"size\":4,\"section\":\".rodata\",\"type\":\"OBJECT\"}],\"got\":[{\"offset\":\"0x3fd8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__gmon_start__\"},{\"offset\":\"0x3fe0\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__libc_start_main@GLIBC_2.2.5\"},{\"offset\":\"0x3fe8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"_ITM_deregisterTMCloneTable\"},{\"offset\":\"0x3ff0\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"_ITM_registerTMCloneTable\"},{\"offset\":\"0x3ff8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__cxa_finalize@GLIBC_2.2.5\"},{\"offset\":\"0x4018\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"DES_ecb_encrypt@OPENSSL_1_1_0\"},{\"offset\":\"0x4020\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"DES_set_key_unchecked@OPENSSL_1_1_0\"},{\"offset\":\"0x4028\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"write@GLIBC_2.2.5\"}],\"plt\":[{\"address\":\"0x1030\",\"symbol\":\"DES_ecb_encrypt@plt\"},{\"address\":\"0x1040\",\"symbol\":\"DES_set_key_unchecked@plt\"},{\"address\":\"0x1050\",\"symbol\":\"write@plt\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1155\",\"callers\":[\"__libc_start_main (via _start)\"],\"callees\":[\"DES_set_key_unchecked@plt\",\"DES_ecb_encrypt@plt\",\"write@plt\"],\"inputs\":[{\"name\":\"argc\",\"source\":\"edi (from _start)\",\"storage\":\"rbp-0xa4\"},{\"name\":\"argv\",\"source\":\"rsi (from _start)\",\"storage\":\"rbp-0xb0\"},{\"name\":\"argv[1]\",\"source\":\"argv dereference: mov rax,[argv+0x10]; mov rax,[rax]\",\"storage\":\"rbp-0x8 (8 bytes, DES key)\"},{\"name\":\"argv[2]\",\"source\":\"argv dereference: mov rax,[argv+0x8]; mov rax,[rax]\",\"storage\":\"rbp-0x98 (8 bytes, plaintext)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"argv[1] pointer\",\"destination\":\"rbp-0x8\",\"size\":8,\"note\":\"mov rax,[argv+0x10] loads argv[1] ptr; mov rax,[rax] dereferences to 8 bytes\"},{\"operation\":\"READ\",\"source\":\"argv[2] pointer\",\"destination\":\"rbp-0x98\",\"size\":8,\"note\":\"mov rax,[argv+0x8] loads argv[2] ptr; mov rax,[rax] dereferences to 8 bytes\"},{\"operation\":\"WRITE\",\"source\":\"DES_set_key_unchecked output\",\"destination\":\"rbp-0x90 (DES_key_schedule, ~128 bytes)\",\"size\":128,\"note\":\"DES_key_schedule struct filled by DES_set_key_unchecked(rbp-0x8 key, rbp-0x90 schedule)\"},{\"operation\":\"WRITE\",\"source\":\"DES_ecb_encrypt output\",\"destination\":\"rbp-0xa0 (ciphertext buffer)\",\"size\":8,\"note\":\"DES_ecb_encrypt(rbp-0x98 input, rbp-0xa0 output, rbp-0x90 schedule, mode=1=encrypt)\"},{\"operation\":\"WRITE\",\"source\":\"write syscall\",\"destination\":\"fd=1 (stdout)\",\"size\":8,\"note\":\"write(1, rbp-0xa0, 8) outputs 8-byte ciphertext\"}],\"calls\":[\"DES_set_key_unchecked\",\"DES_ecb_encrypt\",\"write\"],\"stack_layout\":{\"frame_size\":\"0xb0\",\"locals\":[{\"offset\":\"rbp-0xb0\",\"name\":\"argv\",\"size\":8},{\"offset\":\"rbp-0xa4\",\"name\":\"argc\",\"size\":4},{\"offset\":\"rbp-0xa0\",\"name\":\"ciphertext_output\",\"size\":8},{\"offset\":\"rbp-0x98\",\"name\":\"plaintext_from_argv2\",\"size\":8},{\"offset\":\"rbp-0x90\",\"name\":\"DES_key_schedule\",\"size\":128},{\"offset\":\"rbp-0x8\",\"name\":\"key_from_argv1\",\"size\":8}]}},{\"name\":\"_start\",\"address\":\"0x1070\",\"callers\":[],\"callees\":[\"__libc_start_main\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"__libc_start_main\"]},{\"name\":\"__libc_csu_init\",\"address\":\"0x1200\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"_init\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_init\"]},{\"name\":\"__libc_csu_fini\",\"address\":\"0x1260\",\"callers\":[\"__libc_start_main\"],\"callees\":[],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[]}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"argv[1] (DES key) and argv[2] (plaintext)\",\"operation\":\"argv pointer dereference without NULL check\",\"risk\":\"MEDIUM\",\"reason\":\"argv[1]/argv[2] are dereferenced via mov rax,[rax] without checking argc>=3 or pointer validity; missing args cause NULL dereference segfault. This is a robustness/DoS issue, not a memory corruption primitive. The dereferenced data flows into DES crypto operations (key schedule + ECB encrypt) and is written to stdout via write(1,...,8). No heap, no format string, no index-based OOB.\"},{\"function\":\"main\",\"input\":\"argv[1]/argv[2] content\",\"operation\":\"DES ECB encryption with attacker-controlled key and plaintext\",\"risk\":\"LOW\",\"reason\":\"Attacker controls both DES key and plaintext, but output is fixed 8 bytes written to stdout. No memory corruption path observed; crypto misuse (ECB mode, no IV) is a cryptographic weakness, not a memory-safety vulnerability.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source file test.c, compiled with GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, No canary, PIE enabled, No FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"main at 0x1155 calls DES_set_key_unchecked, DES_ecb_encrypt, write in sequence\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"main reads argv[1] (offset +0x10 from argv) and argv[2] (offset +0x8 from argv), dereferencing each as 8 bytes via double indirection mov rax,[argv+off]; mov rax,[rax]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"No argc check exists in main; running without 2 arguments causes segfault (NULL dereference of argv[1]/argv[2])\",\"source\":\"RUNTIME\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"DES_set_key_unchecked(key=rbp-0x8, schedule=rbp-0x90) sets up DES key schedule from 8-byte argv[1] content\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"DES_ecb_encrypt(input=rbp-0x98, output=rbp-0xa0, schedule=rbp-0x90, mode=1/ENCRYPT) encrypts 8-byte argv[2] content\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"write(1, rbp-0xa0, 8) outputs exactly 8 bytes of ciphertext to stdout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Stack frame size 0xb0; locals: argv@rbp-0xb0, argc@rbp-0xa4, ciphertext@rbp-0xa0, plaintext@rbp-0x98, key_schedule@rbp-0x90(128B), key@rbp-0x8\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"No heap operations (malloc/calloc/realloc/free) in binary; no scanf/gets/fgets input parsing; no format string functions\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"NEEDED libs: libcrypto.so.1.1 (OpenSSL 1.1.1f) and libc.so.6 (glibc 2.39); no RPATH/RUNPATH; LD_LIBRARY_PATH precedes system paths in search order\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Running ./target AAAABBBB CCCCDDDD produces 8 bytes output (bf8fa20f 60f61780) and exits 0\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\".got.plt is writable (Partial RELRO); GOT entries for DES_ecb_encrypt@0x4018, DES_set_key_unchecked@0x4020, write@0x4028 are R_X86_64_JUMP_SLOT (writable)\",\"source\":\"ELF\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"No function pointers, vtables, or callback tables in user code; no indirect calls in main\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"CET (IBT/SHSTK) status not confirmed from ELF headers\",\"reason\":\"checksec did not report CET flags; requires explicit readelf of .note.gnu.property which was not present in section list\"},{\"id\":\"U002\",\"description\":\"No seccomp/sandbox verification performed\",\"reason\":\"No static indicator; runtime seccomp filter not checked\"},{\"id\":\"U003\",\"description\":\"Whether the NULL dereference on missing argv has any exploitable consequence beyond DoS\",\"reason\":\"S1 observes segfault only; deeper analysis of control flow after deref is S2 scope, though no corruption primitive is evident\"},{\"id\":\"U004\",\"description\":\"Exact behavior if argv[1]/argv[2] point to strings shorter than 8 bytes\",\"reason\":\"DES reads 8 bytes from the dereferenced pointer; short strings may read adjacent stack/heap bytes — not dynamically tested, potential info consideration for S2\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID 2c33c8dc1b757b76523ef049a16b97cc7745651b, not stripped, source test.c, GCC 10.2.0. Entry 0x1070. Segments: LOAD R(0x0-0x630), LOAD R-E(0x1000-0x126d), LOAD R(0x2000-0x2148), LOAD RW(0x3dd8-0x4048). GNU_STACK RW (NX enabled). GNU_RELRO 0x3dd8-0x4000 (partial).\",\"sections\":\"30 sections. Key: .text 0x1070 size 0x1f1 (AX), .rodata 0x2000 size 0x4 (AM, content 01000200), .data 0x4030 size 0x10 (WA), .bss 0x4040 size 0x8 (WA), .got 0x3fd8 size 0x28 (WA), .got.plt 0x4000 size 0x30 (WA), .plt 0x1020 size 0x40 (AX), .init_array 0x3dd8 (WA), .fini_array 0x3de0 (WA), .dynamic 0x3de8 (WA).\",\"symbols\":\"main 0x1155 T; _start 0x1070 T; __libc_csu_init 0x1200 T; __libc_csu_fini 0x1260 T; _init 0x1000 t; _fini 0x1264 T; U DES_ecb_encrypt, DES_set_key_unchecked, write, __libc_start_main, __cxa_finalize; _GLOBAL_OFFSET_TABLE_ 0x4000; _DYNAMIC 0x3de8; __dso_handle 0x4038; completed.0 0x4040.\",\"disassembly\":\"main:\\n1155 push rbp; mov rbp,rsp; sub rsp,0xb0\\n1160 mov [rbp-0xa4],edi (argc); mov [rbp-0xb0],rsi (argv)\\n116d mov rax,[rbp-0xb0]; add rax,0x10; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x98],rax  // argv[2] -> 8 bytes plaintext\\n1185 mov rax,[rbp-0xb0]; add rax,0x8; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x8],rax   // argv[1] -> 8 bytes key\\n119a lea rdx,[rbp-0x90]; lea rax,[rbp-0x8]; mov rsi,rdx; mov rdi,rax; call DES_set_key_unchecked\\n11b0 lea rdx,[rbp-0x90]; lea rsi,[rbp-0xa0]; lea rax,[rbp-0x98]; mov ecx,0x1; mov rdi,rax; call DES_ecb_encrypt\\n11d2 lea rax,[rbp-0xa0]; mov edx,0x8; mov rsi,rax; mov edi,0x1; call write\\n11eb mov eax,0x0; leave; ret\\nNo canary check before ret. No argc validation.\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":3,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":1},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"NULL_POINTER_DEREF_MISSING_ARGC_CHECK\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"main() never validates that argc >= 3 before dereferencing argv[1] and argv[2]. The argv array elements at indices 1 and 2 are accessed via double indirection (mov rax,[argv+off]; mov rax,[rax]) without any bounds check on argc. When the program is invoked with fewer than 2 arguments, argv[1] or argv[2] is NULL, and the second-level dereference (mov rax,[rax] where rax=0) causes a NULL pointer dereference, resulting in SIGSEGV.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"argv array (rbp-0xb0)\",\"argv[1] pointer (rbp-0x8)\",\"argv[2] pointer (rbp-0x98)\"],\"attack_surface\":{\"input\":\"argc/argv (command-line argument count and vector)\",\"entry_function\":\"main\",\"data_flow\":[\"argc stored at rbp-0xa4, argv stored at rbp-0xb0 (0x1160-0x1166)\",\"argv[2] loaded: mov rax,[rbp-0xb0]; add rax,0x10; mov rax,[rax] — loads argv[2] pointer (0x116d-0x1178)\",\"argv[2] dereferenced: mov rax,[rax] — reads 8 bytes from argv[2] target, NULL if argv[2] absent (0x117b)\",\"argv[1] loaded: mov rax,[rbp-0xb0]; add rax,0x8; mov rax,[rax] — loads argv[1] pointer (0x1185-0x1190)\",\"argv[1] dereferenced: mov rax,[rax] — reads 8 bytes from argv[1] target, NULL if argv[1] absent (0x1193)\",\"No argc check exists anywhere in main before these dereferences\"]},\"security_check\":{\"expected\":\"main should verify argc >= 3 before accessing argv[1] and argv[2], or at minimum check that argv[1] and argv[2] are non-NULL before dereferencing them\",\"actual\":\"No argc check, no NULL check on argv[1]/argv[2] pointers before double indirection dereference\",\"missing_or_incorrect\":\"Missing argc bounds check and missing NULL pointer validation on argv elements before dereference\"},\"vulnerable_operation\":{\"operation\":\"READ dereference of NULL pointer\",\"address\":\"0x117b (argv[2] deref) and 0x1193 (argv[1] deref)\",\"expression\":\"mov rax,[rax] where rax = NULL (argv[1] or argv[2] is NULL when argc < 3)\",\"target\":\"NULL address (0x0)\",\"size\":\"8 bytes\"},\"impact\":[{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"Dereferencing NULL pointer when argv[1] or argv[2] is absent causes SIGSEGV. S1 runtime observation F005 confirms segfault on missing arguments. This is a denial-of-service condition triggered by attacker-controlled invocation (running the binary with insufficient arguments).\"},{\"type\":\"DOS\",\"status\":\"CANDIDATE\",\"reason\":\"The crash terminates the process, making it unavailable. Any caller or wrapper that invokes the binary with fewer than 2 arguments will experience a crash.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x116d-0x117e\",\"description\":\"argv[2] is loaded and dereferenced via double indirection (mov rax,[argv+0x10]; mov rax,[rax]) at 0x116d-0x117e with no preceding argc check. If argc < 3, argv[2] is NULL, and mov rax,[rax] at 0x117b dereferences NULL.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1185-0x1196\",\"description\":\"argv[1] is loaded and dereferenced via double indirection (mov rax,[argv+0x8]; mov rax,[rax]) at 0x1185-0x1196 with no preceding argc check. If argc < 2, argv[1] is NULL, and mov rax,[rax] at 0x1193 dereferences NULL.\"},{\"id\":\"E003\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x1155-0x11f1\",\"description\":\"Full disassembly of main (0x1155-0x11f1) contains no comparison instruction involving argc (stored at rbp-0xa4) anywhere in the function body. argc is stored at 0x1160 but never read again, confirming no argument count validation exists.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Dynamic confirmation that running ./target with 0 or 1 arguments produces SIGSEGV at the NULL dereference point (S1 F005 already observes this at runtime)\"]},{\"bug_id\":\"BUG-002\",\"title\":\"OOB_READ_SHORT_ARGV_STRING_INFO_LEAK\",\"root_cause\":{\"type\":\"Length Validation Error\",\"description\":\"main() reads exactly 8 bytes from each argv string pointer via mov rax,[rax] (a 64-bit load), but never validates that the pointed-to string is at least 8 bytes long. When argv[1] or argv[2] is a short string (e.g., 1-7 characters), the 8-byte read extends past the string's NUL terminator into adjacent memory. The read bytes flow into DES key schedule and ECB encryption, and the resulting 8-byte ciphertext is written to stdout via write(1, ..., 8). This leaks adjacent memory content (encrypted) to the attacker, who controls the key and can thus decrypt the output to recover the leaked bytes.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"argv[1] string content (rbp-0x8)\",\"argv[2] string content (rbp-0x98)\",\"ciphertext output (rbp-0xa0)\"],\"attack_surface\":{\"input\":\"argv[1] (DES key) and argv[2] (plaintext) — specifically their string length\",\"entry_function\":\"main\",\"data_flow\":[\"argv[2] pointer loaded at 0x116d-0x1178\",\"8 bytes read from argv[2] string via mov rax,[rax] at 0x117b — reads past NUL if string < 8 bytes\",\"8 bytes stored to rbp-0x98 (plaintext) at 0x117e\",\"argv[1] pointer loaded at 0x1185-0x1190\",\"8 bytes read from argv[1] string via mov rax,[rax] at 0x1193 — reads past NUL if string < 8 bytes\",\"8 bytes stored to rbp-0x8 (key) at 0x1196\",\"DES_set_key_unchecked(rbp-0x8, rbp-0x90) at 0x11ab — key schedule from possibly over-read bytes\",\"DES_ecb_encrypt(rbp-0x98, rbp-0xa0, rbp-0x90, 1) at 0x11cd — encrypts possibly over-read plaintext\",\"write(1, rbp-0xa0, 8) at 0x11e6 — outputs 8-byte ciphertext containing encrypted adjacent memory to stdout\"]},\"security_check\":{\"expected\":\"Before reading 8 bytes from each argv string pointer, main should verify the string length is >= 8 bytes (e.g., using strlen or strnlen), or use a bounded copy function like memcpy with a known-safe length\",\"actual\":\"No length check on argv string content; raw 8-byte memory load (mov rax,[rax]) assumes strings are exactly 8+ bytes\",\"missing_or_incorrect\":\"Missing string length validation before fixed-size 8-byte memory read from attacker-controlled string pointers\"},\"vulnerable_operation\":{\"operation\":\"READ (8-byte load from string pointer without length check)\",\"address\":\"0x117b (argv[2] read) and 0x1193 (argv[1] read)\",\"expression\":\"mov rax,[rax] — 8-byte load from argv string pointer, extends past NUL terminator for strings shorter than 8 bytes\",\"target\":\"argv[1]/argv[2] string buffer + adjacent memory (stack/heap where argv strings are stored by the runtime)\",\"size\":\"8 bytes (always), regardless of actual string length\"},\"impact\":[{\"type\":\"OOB_READ\",\"status\":\"CANDIDATE\",\"reason\":\"When argv[1] or argv[2] is shorter than 8 bytes, the 8-byte load reads past the string's NUL terminator into adjacent memory. The over-read bytes are not validated and flow into DES operations. This is an out-of-bounds read from the perspective of the intended string data.\"},{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"The over-read bytes (from adjacent memory beyond the short string) are encrypted via DES ECB and written to stdout via write(1, ..., 8). Since the attacker controls the DES key (argv[1]), they can decrypt the output to recover the leaked adjacent memory bytes. This creates an information leak channel: adjacent memory content is disclosed through the encrypted output. Preconditions: attacker provides a short argv[2] string (< 8 bytes) and a known argv[1] key, then decrypts the 8-byte stdout output to recover the over-read bytes.\"}],\"evidence\":[{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x117b\",\"description\":\"mov rax,[rax] at 0x117b performs an unconditional 8-byte load from the argv[2] string pointer. No strlen/strnlen/memchr check precedes this load. If argv[2] is shorter than 8 bytes, this reads past the NUL terminator.\"},{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x1193\",\"description\":\"mov rax,[rax] at 0x1193 performs an unconditional 8-byte load from the argv[1] string pointer. Same missing length validation as E004.\"},{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x11e6\",\"description\":\"write(1, rbp-0xa0, 8) at 0x11e6 outputs exactly 8 bytes of DES ciphertext to stdout. The ciphertext is derived from the 8 bytes loaded at 0x117b (plaintext) and 0x1193 (key), which may contain over-read adjacent memory if the input strings are short.\"},{\"id\":\"E007\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x1155-0x11f1\",\"description\":\"Full disassembly of main shows no call to strlen, strnlen, or any length-checking function. The only library calls are DES_set_key_unchecked, DES_ecb_encrypt, and write. No input length validation exists anywhere in the function.\"}],\"confidence\":\"MEDIUM\",\"verification_required\":[\"Dynamic test: run ./target with a short argv[2] (e.g., 1-7 chars) and a known key, then decrypt the 8-byte output to verify that bytes beyond the string's NUL terminator are present in the ciphertext\",\"Confirm what memory layout surrounds argv strings at process startup (typically on the stack or in a special argv region) to determine what data is leaked\"]},{\"bug_id\":\"BUG-003\",\"title\":\"LIBRARY_SEARCH_PATH_HIJACK_NO_RPATH\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"The binary has no RPATH or RUNPATH set, meaning the dynamic linker resolves NEEDED libraries (libcrypto.so.1.1 and libc.so.6) using the default search order where LD_LIBRARY_PATH takes precedence over system paths. An attacker who can control the execution environment (e.g., by setting LD_LIBRARY_PATH or placing a malicious libcrypto.so.1.1 in a writable directory on the search path) can cause a trojaned shared library to be loaded. The library's init_array/.init section executes code at load time before main() runs, achieving arbitrary code execution without any memory corruption in the target binary itself.\"},\"affected_functions\":[\"_start\",\"__libc_csu_init\"],\"affected_objects\":[\"libcrypto.so.1.1 (NEEDED, no RPATH/RUNPATH binding)\",\".got.plt entries for DES_ecb_encrypt, DES_set_key_unchecked, write\"],\"attack_surface\":{\"input\":\"Execution environment (LD_LIBRARY_PATH environment variable or writable directory on library search path)\",\"entry_function\":\"_start (dynamic linker loads libraries before main)\",\"data_flow\":[\"Dynamic linker processes NEEDED entries: libcrypto.so.1.1, libc.so.6\",\"No RPATH/RUNPATH in binary → LD_LIBRARY_PATH directories searched first\",\"Attacker-controlled libcrypto.so.1.1 placed in LD_LIBRARY_PATH directory is loaded\",\"Malicious library's .init_array/.init executes at load time (before main)\",\"Subsequent calls to DES_set_key_unchecked@plt / DES_ecb_encrypt@plt / write@plt resolve to attacker-controlled GOT entries\"]},\"security_check\":{\"expected\":\"Binary should set RPATH or RUNPATH to bind NEEDED libraries to trusted absolute paths, preventing LD_LIBRARY_PATH from overriding them\",\"actual\":\"No RPATH, no RUNPATH — LD_LIBRARY_PATH takes precedence over system library paths\",\"missing_or_incorrect\":\"Missing RPATH/RUNPATH binding for NEEDED libraries, allowing environment-controlled library substitution\"},\"vulnerable_operation\":{\"operation\":\"LOAD (dynamic library loading via NEEDED + search path)\",\"address\":\"N/A (dynamic linker behavior, no specific instruction in binary)\",\"expression\":\"dlopen-equivalent: load libcrypto.so.1.1 from LD_LIBRARY_PATH-preceded search path\",\"target\":\"libcrypto.so.1.1 (OpenSSL 1.1.1f expected, attacker-controlled replacement possible)\",\"size\":\"N/A\"},\"impact\":[{\"type\":\"UNKNOWN\",\"status\":\"CANDIDATE\",\"reason\":\"A trojaned libcrypto.so.1.1 loaded via LD_LIBRARY_PATH executes arbitrary code at library init time (before main runs). This is an environment-layer vulnerability — it requires the attacker to control the execution environment (LD_LIBRARY_PATH or a directory on the search path). The impact is arbitrary code execution in the process context, but this depends on environmental preconditions rather than a memory corruption in the binary itself. Classified as UNKNOWN because the impact type (code execution) is outside S2's allowed Impact vocabulary and the precondition (environment control) may or may not be realistic depending on deployment context.\"}],\"evidence\":[{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"_start\",\"address\":\"0x1070\",\"description\":\"Binary is dynamically linked with NEEDED entries for libcrypto.so.1.1 and libc.so.6. The ELF has no DT_RPATH or DT_RUNPATH tag (confirmed by S1 F011: 'no RPATH/RUNPATH; LD_LIBRARY_PATH precedes system paths in search order').\"},{\"id\":\"E009\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4018-0x4028\",\"description\":\"GOT.plt entries for DES_ecb_encrypt (0x4018), DES_set_key_unchecked (0x4020), and write (0x4028) are R_X86_64_JUMP_SLOT relocations resolved at runtime from whatever libcrypto.so.1.1/libc.so.6 the dynamic linker loads. With no RPATH, the resolved library can be attacker-controlled.\"}],\"confidence\":\"MEDIUM\",\"verification_required\":[\"Confirm whether the deployment context allows an attacker to set LD_LIBRARY_PATH or place files in directories on the library search path\",\"If environment control is not realistic in the threat model, this vulnerability may be downgraded to informational\"]}],\"non_vulnerabilities\":[{\"function\":\"main\",\"description\":\"DES ECB mode encryption with attacker-controlled key and plaintext\",\"reason\":\"ECB mode is a cryptographic weakness (identical plaintext blocks produce identical ciphertext blocks, no IV/nonce), and DES_set_key_unchecked does not reject weak keys. However, these are cryptographic design weaknesses, not memory-safety vulnerabilities. The output is a fixed 8-byte ciphertext written to stdout with no memory corruption path. S2 scope is memory/logic vulnerabilities, not cryptographic protocol analysis.\"},{\"function\":\"main\",\"description\":\"write(1, rbp-0xa0, 8) output operation\",\"reason\":\"The write call uses a fixed size of 8 bytes, writes to fd=1 (stdout), and the source buffer (rbp-0xa0) is a valid stack-local ciphertext buffer of 8 bytes. No buffer overflow or OOB write occurs here. The size matches the buffer exactly.\"},{\"function\":\"main\",\"description\":\"DES_key_schedule buffer at rbp-0x90 (128 bytes)\",\"reason\":\"DES_set_key_unchecked writes the key schedule to rbp-0x90. The stack frame is 0xb0 bytes (rbp-0xb0 to rbp). The key schedule at rbp-0x90 with 128 bytes extends to rbp-0x10, which is within the frame. The key at rbp-0x8 (8 bytes) extends to rbp, also within the frame. No stack buffer overflow occurs from the DES operations themselves.\"},{\"function\":\"main\",\"description\":\"No canary check before ret\",\"reason\":\"While the binary lacks stack canary (confirmed by S1 F002: canary=false), there is no stack buffer overflow vulnerability in main that would make the missing canary exploitable. The only writes to stack buffers are from DES library functions writing to properly-sized local buffers. The missing canary is a mitigation weakness, not a vulnerability by itself.\"}],\"unresolved\":[{\"description\":\"Whether the OOB read from short argv strings (BUG-002) leaks meaningful/sensitive data\",\"reason\":\"The content of memory adjacent to argv strings at process startup depends on the runtime's argv layout (typically on the stack or in a special region). The over-read bytes are encrypted before output, so the attacker must decrypt to recover them. The actual sensitivity of the leaked bytes is unknown without dynamic testing.\",\"required_next_step\":\"S3 dynamic verification: run ./target with short argv strings and a known key, decrypt the output, and inspect the recovered bytes to determine if meaningful data is leaked\"},{\"description\":\"CET (IBT/SHSTK) status unconfirmed\",\"reason\":\"S1 U001 notes that .note.gnu.property was not present in the section list, so CET status cannot be determined from static analysis. This affects exploit mitigation assessment but not vulnerability root cause analysis.\",\"required_next_step\":\"Check for .note.gnu.property section or use readelf -n to confirm CET status (relevant for S3/S4 mitigation analysis, not S2)\"},{\"description\":\"seccomp/sandbox status unknown\",\"reason\":\"S1 U002 notes no static indicator for seccomp was found. If a seccomp filter is active, it may limit the impact of the library hijack (BUG-003) by restricting syscalls from the trojaned library.\",\"required_next_step\":\"Runtime seccomp filter inspection (S3 scope)\"}]},\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "vulnerability_report": {
+    "schema": "VulnerabilityReport",
+    "version": "1.0",
+    "status": "COMPLETED",
+    "summary": {
+      "total_bugs": 3,
+      "high_severity": 1,
+      "medium_severity": 1,
+      "low_severity": 1
+    },
+    "vulnerabilities": [
+      {
+        "bug_id": "BUG-001",
+        "title": "NULL_POINTER_DEREF_MISSING_ARGC_CHECK",
+        "root_cause": {
+          "type": "Improper Input Validation",
+          "description": "main() never validates that argc >= 3 before dereferencing argv[1] and argv[2]. The argv array elements at indices 1 and 2 are accessed via double indirection (mov rax,[argv+off]; mov rax,[rax]) without any bounds check on argc. When the program is invoked with fewer than 2 arguments, argv[1] or argv[2] is NULL, and the second-level dereference (mov rax,[rax] where rax=0) causes a NULL pointer dereference, resulting in SIGSEGV."
+        },
+        "affected_functions": [
+          "main"
+        ],
+        "affected_objects": [
+          "argv array (rbp-0xb0)",
+          "argv[1] pointer (rbp-0x8)",
+          "argv[2] pointer (rbp-0x98)"
+        ],
+        "attack_surface": {
+          "input": "argc/argv (command-line argument count and vector)",
+          "entry_function": "main",
+          "data_flow": [
+            "argc stored at rbp-0xa4, argv stored at rbp-0xb0 (0x1160-0x1166)",
+            "argv[2] loaded: mov rax,[rbp-0xb0]; add rax,0x10; mov rax,[rax] — loads argv[2] pointer (0x116d-0x1178)",
+            "argv[2] dereferenced: mov rax,[rax] — reads 8 bytes from argv[2] target, NULL if argv[2] absent (0x117b)",
+            "argv[1] loaded: mov rax,[rbp-0xb0]; add rax,0x8; mov rax,[rax] — loads argv[1] pointer (0x1185-0x1190)",
+            "argv[1] dereferenced: mov rax,[rax] — reads 8 bytes from argv[1] target, NULL if argv[1] absent (0x1193)",
+            "No argc check exists anywhere in main before these dereferences"
+          ]
+        },
+        "security_check": {
+          "expected": "main should verify argc >= 3 before accessing argv[1] and argv[2], or at minimum check that argv[1] and argv[2] are non-NULL before dereferencing them",
+          "actual": "No argc check, no NULL check on argv[1]/argv[2] pointers before double indirection dereference",
+          "missing_or_incorrect": "Missing argc bounds check and missing NULL pointer validation on argv elements before dereference"
+        },
+        "vulnerable_operation": {
+          "operation": "READ dereference of NULL pointer",
+          "address": "0x117b (argv[2] deref) and 0x1193 (argv[1] deref)",
+          "expression": "mov rax,[rax] where rax = NULL (argv[1] or argv[2] is NULL when argc < 3)",
+          "target": "NULL address (0x0)",
+          "size": "8 bytes"
+        },
+        "impact": [
+          {
+            "type": "CRASH",
+            "status": "CANDIDATE",
+            "reason": "Dereferencing NULL pointer when argv[1] or argv[2] is absent causes SIGSEGV. S1 runtime observation F005 confirms segfault on missing arguments. This is a denial-of-service condition triggered by attacker-controlled invocation (running the binary with insufficient arguments)."
+          },
+          {
+            "type": "DOS",
+            "status": "CANDIDATE",
+            "reason": "The crash terminates the process, making it unavailable. Any caller or wrapper that invokes the binary with fewer than 2 arguments will experience a crash."
+          }
+        ],
+        "evidence": [
+          {
+            "id": "E001",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x116d-0x117e",
+            "description": "argv[2] is loaded and dereferenced via double indirection (mov rax,[argv+0x10]; mov rax,[rax]) at 0x116d-0x117e with no preceding argc check. If argc < 3, argv[2] is NULL, and mov rax,[rax] at 0x117b dereferences NULL."
+          },
+          {
+            "id": "E002",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x1185-0x1196",
+            "description": "argv[1] is loaded and dereferenced via double indirection (mov rax,[argv+0x8]; mov rax,[rax]) at 0x1185-0x1196 with no preceding argc check. If argc < 2, argv[1] is NULL, and mov rax,[rax] at 0x1193 dereferences NULL."
+          },
+          {
+            "id": "E003",
+            "type": "DERIVED",
+            "function": "main",
+            "address": "0x1155-0x11f1",
+            "description": "Full disassembly of main (0x1155-0x11f1) contains no comparison instruction involving argc (stored at rbp-0xa4) anywhere in the function body. argc is stored at 0x1160 but never read again, confirming no argument count validation exists."
+          }
+        ],
+        "confidence": "HIGH",
+        "verification_required": [
+          "Dynamic confirmation that running ./target with 0 or 1 arguments produces SIGSEGV at the NULL dereference point (S1 F005 already observes this at runtime)"
+        ]
+      },
+      {
+        "bug_id": "BUG-002",
+        "title": "OOB_READ_SHORT_ARGV_STRING_INFO_LEAK",
+        "root_cause": {
+          "type": "Length Validation Error",
+          "description": "main() reads exactly 8 bytes from each argv string pointer via mov rax,[rax] (a 64-bit load), but never validates that the pointed-to string is at least 8 bytes long. When argv[1] or argv[2] is a short string (e.g., 1-7 characters), the 8-byte read extends past the string's NUL terminator into adjacent memory. The read bytes flow into DES key schedule and ECB encryption, and the resulting 8-byte ciphertext is written to stdout via write(1, ..., 8). This leaks adjacent memory content (encrypted) to the attacker, who controls the key and can thus decrypt the output to recover the leaked bytes."
+        },
+        "affected_functions": [
+          "main"
+        ],
+        "affected_objects": [
+          "argv[1] string content (rbp-0x8)",
+          "argv[2] string content (rbp-0x98)",
+          "ciphertext output (rbp-0xa0)"
+        ],
+        "attack_surface": {
+          "input": "argv[1] (DES key) and argv[2] (plaintext) — specifically their string length",
+          "entry_function": "main",
+          "data_flow": [
+            "argv[2] pointer loaded at 0x116d-0x1178",
+            "8 bytes read from argv[2] string via mov rax,[rax] at 0x117b — reads past NUL if string < 8 bytes",
+            "8 bytes stored to rbp-0x98 (plaintext) at 0x117e",
+            "argv[1] pointer loaded at 0x1185-0x1190",
+            "8 bytes read from argv[1] string via mov rax,[rax] at 0x1193 — reads past NUL if string < 8 bytes",
+            "8 bytes stored to rbp-0x8 (key) at 0x1196",
+            "DES_set_key_unchecked(rbp-0x8, rbp-0x90) at 0x11ab — key schedule from possibly over-read bytes",
+            "DES_ecb_encrypt(rbp-0x98, rbp-0xa0, rbp-0x90, 1) at 0x11cd — encrypts possibly over-read plaintext",
+            "write(1, rbp-0xa0, 8) at 0x11e6 — outputs 8-byte ciphertext containing encrypted adjacent memory to stdout"
+          ]
+        },
+        "security_check": {
+          "expected": "Before reading 8 bytes from each argv string pointer, main should verify the string length is >= 8 bytes (e.g., using strlen or strnlen), or use a bounded copy function like memcpy with a known-safe length",
+          "actual": "No length check on argv string content; raw 8-byte memory load (mov rax,[rax]) assumes strings are exactly 8+ bytes",
+          "missing_or_incorrect": "Missing string length validation before fixed-size 8-byte memory read from attacker-controlled string pointers"
+        },
+        "vulnerable_operation": {
+          "operation": "READ (8-byte load from string pointer without length check)",
+          "address": "0x117b (argv[2] read) and 0x1193 (argv[1] read)",
+          "expression": "mov rax,[rax] — 8-byte load from argv string pointer, extends past NUL terminator for strings shorter than 8 bytes",
+          "target": "argv[1]/argv[2] string buffer + adjacent memory (stack/heap where argv strings are stored by the runtime)",
+          "size": "8 bytes (always), regardless of actual string length"
+        },
+        "impact": [
+          {
+            "type": "OOB_READ",
+            "status": "CANDIDATE",
+            "reason": "When argv[1] or argv[2] is shorter than 8 bytes, the 8-byte load reads past the string's NUL terminator into adjacent memory. The over-read bytes are not validated and flow into DES operations. This is an out-of-bounds read from the perspective of the intended string data."
+          },
+          {
+            "type": "INFO_LEAK",
+            "status": "CANDIDATE",
+            "reason": "The over-read bytes (from adjacent memory beyond the short string) are encrypted via DES ECB and written to stdout via write(1, ..., 8). Since the attacker controls the DES key (argv[1]), they can decrypt the output to recover the leaked adjacent memory bytes. This creates an information leak channel: adjacent memory content is disclosed through the encrypted output. Preconditions: attacker provides a short argv[2] string (< 8 bytes) and a known argv[1] key, then decrypts the 8-byte stdout output to recover the over-read bytes."
+          }
+        ],
+        "evidence": [
+          {
+            "id": "E004",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x117b",
+            "description": "mov rax,[rax] at 0x117b performs an unconditional 8-byte load from the argv[2] string pointer. No strlen/strnlen/memchr check precedes this load. If argv[2] is shorter than 8 bytes, this reads past the NUL terminator."
+          },
+          {
+            "id": "E005",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x1193",
+            "description": "mov rax,[rax] at 0x1193 performs an unconditional 8-byte load from the argv[1] string pointer. Same missing length validation as E004."
+          },
+          {
+            "id": "E006",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x11e6",
+            "description": "write(1, rbp-0xa0, 8) at 0x11e6 outputs exactly 8 bytes of DES ciphertext to stdout. The ciphertext is derived from the 8 bytes loaded at 0x117b (plaintext) and 0x1193 (key), which may contain over-read adjacent memory if the input strings are short."
+          },
+          {
+            "id": "E007",
+            "type": "DERIVED",
+            "function": "main",
+            "address": "0x1155-0x11f1",
+            "description": "Full disassembly of main shows no call to strlen, strnlen, or any length-checking function. The only library calls are DES_set_key_unchecked, DES_ecb_encrypt, and write. No input length validation exists anywhere in the function."
+          }
+        ],
+        "confidence": "MEDIUM",
+        "verification_required": [
+          "Dynamic test: run ./target with a short argv[2] (e.g., 1-7 chars) and a known key, then decrypt the 8-byte output to verify that bytes beyond the string's NUL terminator are present in the ciphertext",
+          "Confirm what memory layout surrounds argv strings at process startup (typically on the stack or in a special argv region) to determine what data is leaked"
+        ]
+      },
+      {
+        "bug_id": "BUG-003",
+        "title": "LIBRARY_SEARCH_PATH_HIJACK_NO_RPATH",
+        "root_cause": {
+          "type": "Improper Input Validation",
+          "description": "The binary has no RPATH or RUNPATH set, meaning the dynamic linker resolves NEEDED libraries (libcrypto.so.1.1 and libc.so.6) using the default search order where LD_LIBRARY_PATH takes precedence over system paths. An attacker who can control the execution environment (e.g., by setting LD_LIBRARY_PATH or placing a malicious libcrypto.so.1.1 in a writable directory on the search path) can cause a trojaned shared library to be loaded. The library's init_array/.init section executes code at load time before main() runs, achieving arbitrary code execution without any memory corruption in the target binary itself."
+        },
+        "affected_functions": [
+          "_start",
+          "__libc_csu_init"
+        ],
+        "affected_objects": [
+          "libcrypto.so.1.1 (NEEDED, no RPATH/RUNPATH binding)",
+          ".got.plt entries for DES_ecb_encrypt, DES_set_key_unchecked, write"
+        ],
+        "attack_surface": {
+          "input": "Execution environment (LD_LIBRARY_PATH environment variable or writable directory on library search path)",
+          "entry_function": "_start (dynamic linker loads libraries before main)",
+          "data_flow": [
+            "Dynamic linker processes NEEDED entries: libcrypto.so.1.1, libc.so.6",
+            "No RPATH/RUNPATH in binary → LD_LIBRARY_PATH directories searched first",
+            "Attacker-controlled libcrypto.so.1.1 placed in LD_LIBRARY_PATH directory is loaded",
+            "Malicious library's .init_array/.init executes at load time (before main)",
+            "Subsequent calls to DES_set_key_unchecked@plt / DES_ecb_encrypt@plt / write@plt resolve to attacker-controlled GOT entries"
+          ]
+        },
+        "security_check": {
+          "expected": "Binary should set RPATH or RUNPATH to bind NEEDED libraries to trusted absolute paths, preventing LD_LIBRARY_PATH from overriding them",
+          "actual": "No RPATH, no RUNPATH — LD_LIBRARY_PATH takes precedence over system library paths",
+          "missing_or_incorrect": "Missing RPATH/RUNPATH binding for NEEDED libraries, allowing environment-controlled library substitution"
+        },
+        "vulnerable_operation": {
+          "operation": "LOAD (dynamic library loading via NEEDED + search path)",
+          "address": "N/A (dynamic linker behavior, no specific instruction in binary)",
+          "expression": "dlopen-equivalent: load libcrypto.so.1.1 from LD_LIBRARY_PATH-preceded search path",
+          "target": "libcrypto.so.1.1 (OpenSSL 1.1.1f expected, attacker-controlled replacement possible)",
+          "size": "N/A"
+        },
+        "impact": [
+          {
+            "type": "UNKNOWN",
+            "status": "CANDIDATE",
+            "reason": "A trojaned libcrypto.so.1.1 loaded via LD_LIBRARY_PATH executes arbitrary code at library init time (before main runs). This is an environment-layer vulnerability — it requires the attacker to control the execution environment (LD_LIBRARY_PATH or a directory on the search path). The impact is arbitrary code execution in the process context, but this depends on environmental preconditions rather than a memory corruption in the binary itself. Classified as UNKNOWN because the impact type (code execution) is outside S2's allowed Impact vocabulary and the precondition (environment control) may or may not be realistic depending on deployment context."
+          }
+        ],
+        "evidence": [
+          {
+            "id": "E008",
+            "type": "STATIC",
+            "function": "_start",
+            "address": "0x1070",
+            "description": "Binary is dynamically linked with NEEDED entries for libcrypto.so.1.1 and libc.so.6. The ELF has no DT_RPATH or DT_RUNPATH tag (confirmed by S1 F011: 'no RPATH/RUNPATH; LD_LIBRARY_PATH precedes system paths in search order')."
+          },
+          {
+            "id": "E009",
+            "type": "STATIC",
+            "function": "main",
+            "address": "0x4018-0x4028",
+            "description": "GOT.plt entries for DES_ecb_encrypt (0x4018), DES_set_key_unchecked (0x4020), and write (0x4028) are R_X86_64_JUMP_SLOT relocations resolved at runtime from whatever libcrypto.so.1.1/libc.so.6 the dynamic linker loads. With no RPATH, the resolved library can be attacker-controlled."
+          }
+        ],
+        "confidence": "MEDIUM",
+        "verification_required": [
+          "Confirm whether the deployment context allows an attacker to set LD_LIBRARY_PATH or place files in directories on the library search path",
+          "If environment control is not realistic in the threat model, this vulnerability may be downgraded to informational"
+        ]
+      }
+    ],
+    "non_vulnerabilities": [
+      {
+        "function": "main",
+        "description": "DES ECB mode encryption with attacker-controlled key and plaintext",
+        "reason": "ECB mode is a cryptographic weakness (identical plaintext blocks produce identical ciphertext blocks, no IV/nonce), and DES_set_key_unchecked does not reject weak keys. However, these are cryptographic design weaknesses, not memory-safety vulnerabilities. The output is a fixed 8-byte ciphertext written to stdout with no memory corruption path. S2 scope is memory/logic vulnerabilities, not cryptographic protocol analysis."
+      },
+      {
+        "function": "main",
+        "description": "write(1, rbp-0xa0, 8) output operation",
+        "reason": "The write call uses a fixed size of 8 bytes, writes to fd=1 (stdout), and the source buffer (rbp-0xa0) is a valid stack-local ciphertext buffer of 8 bytes. No buffer overflow or OOB write occurs here. The size matches the buffer exactly."
+      },
+      {
+        "function": "main",
+        "description": "DES_key_schedule buffer at rbp-0x90 (128 bytes)",
+        "reason": "DES_set_key_unchecked writes the key schedule to rbp-0x90. The stack frame is 0xb0 bytes (rbp-0xb0 to rbp). The key schedule at rbp-0x90 with 128 bytes extends to rbp-0x10, which is within the frame. The key at rbp-0x8 (8 bytes) extends to rbp, also within the frame. No stack buffer overflow occurs from the DES operations themselves."
+      },
+      {
+        "function": "main",
+        "description": "No canary check before ret",
+        "reason": "While the binary lacks stack canary (confirmed by S1 F002: canary=false), there is no stack buffer overflow vulnerability in main that would make the missing canary exploitable. The only writes to stack buffers are from DES library functions writing to properly-sized local buffers. The missing canary is a mitigation weakness, not a vulnerability by itself."
+      }
+    ],
+    "unresolved": [
+      {
+        "description": "Whether the OOB read from short argv strings (BUG-002) leaks meaningful/sensitive data",
+        "reason": "The content of memory adjacent to argv strings at process startup depends on the runtime's argv layout (typically on the stack or in a special region). The over-read bytes are encrypted before output, so the attacker must decrypt to recover them. The actual sensitivity of the leaked bytes is unknown without dynamic testing.",
+        "required_next_step": "S3 dynamic verification: run ./target with short argv strings and a known key, decrypt the output, and inspect the recovered bytes to determine if meaningful data is leaked"
+      },
+      {
+        "description": "CET (IBT/SHSTK) status unconfirmed",
+        "reason": "S1 U001 notes that .note.gnu.property was not present in the section list, so CET status cannot be determined from static analysis. This affects exploit mitigation assessment but not vulnerability root cause analysis.",
+        "required_next_step": "Check for .note.gnu.property section or use readelf -n to confirm CET status (relevant for S3/S4 mitigation analysis, not S2)"
+      },
+      {
+        "description": "seccomp/sandbox status unknown",
+        "reason": "S1 U002 notes no static indicator for seccomp was found. If a seccomp filter is active, it may limit the impact of the library hijack (BUG-003) by restricting syscalls from the trojaned library.",
+        "required_next_step": "Runtime seccomp filter inspection (S3 scope)"
+      }
+    ]
+  }
+}

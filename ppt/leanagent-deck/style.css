@@ -1,0 +1,95 @@
+/* LeanAgent 华为红主题 — corporate red/white/grey, 数据驱动技术汇报 */
+.tpl-tech-sharing{
+  --bg:#ffffff;--bg-soft:#f7f7f8;--surface:#ffffff;--surface-2:#f5f5f7;
+  --border:rgba(0,0,0,.1);--border-strong:rgba(0,0,0,.22);
+  --text-1:#1a1a1e;--text-2:#55565a;--text-3:#8a8b90;
+  --accent:#c7000b;--accent-2:#007dff;--accent-3:#e8380d;
+  --grad:linear-gradient(120deg,#c7000b 0%,#e8380d 55%,#ff7a45 100%);
+  --radius:12px;--radius-lg:16px;
+  --shadow:0 12px 40px rgba(199,0,11,.1);
+  font-family:'Inter','HarmonyOS Sans SC','Noto Sans SC',sans-serif;
+}
+.tpl-tech-sharing{background:#fff;color:var(--text-1)}
+.tpl-tech-sharing .slide{padding:56px 72px;background:#fff;color:var(--text-1)}
+.tpl-tech-sharing .slide::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(55% 40% at 95% 0%,rgba(199,0,11,.05),transparent 65%),
+  radial-gradient(40% 35% at 0% 100%,rgba(0,125,255,.03),transparent 60%);
+  pointer-events:none;z-index:0}
+.tpl-tech-sharing .slide>*{position:relative;z-index:1}
+.tpl-tech-sharing .h1{font-size:66px;line-height:1.05;font-weight:800;letter-spacing:-.03em;color:#1a1a1e}
+.tpl-tech-sharing .h2{font-size:42px;font-weight:700;letter-spacing:-.02em;color:#1a1a1e}
+.tpl-tech-sharing h3,.tpl-tech-sharing h4{color:#1a1a1e}
+.tpl-tech-sharing .kicker{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.06em}
+.tpl-tech-sharing .kicker::before{content:"▎ "}
+.tpl-tech-sharing .mono{font-family:'JetBrains Mono','IBM Plex Mono',monospace}
+.tpl-tech-sharing .terminal{background:#23262b;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.18);font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.65}
+.tpl-tech-sharing .terminal .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#2c3036;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;color:#8a8b90}
+.tpl-tech-sharing .terminal .dot{width:12px;height:12px;border-radius:50%;background:#ff5f56}
+.tpl-tech-sharing .terminal .dot:nth-child(2){background:#ffbd2e}
+.tpl-tech-sharing .terminal .dot:nth-child(3){background:#27c93f}
+.tpl-tech-sharing .terminal pre{margin:0;padding:24px 28px;color:#e8eaed;overflow:auto;max-height:440px}
+.tpl-tech-sharing .kw{color:#ff8a80}
+.tpl-tech-sharing .fn{color:#82b1ff}
+.tpl-tech-sharing .str{color:#c3e88d}
+.tpl-tech-sharing .cmt{color:#78909c;font-style:italic}
+.tpl-tech-sharing .num{color:#f78c6c}
+.tpl-tech-sharing .card{background:var(--surface);border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.tpl-tech-sharing .card-accent{border-top:3px solid var(--accent)}
+.tpl-tech-sharing .pill{background:var(--surface-2);color:var(--text-2);border-color:var(--border)}
+.tpl-tech-sharing .pill-accent{background:rgba(199,0,11,.07);color:var(--accent);border-color:rgba(199,0,11,.3)}
+.tpl-tech-sharing .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2)}
+.tpl-tech-sharing .agenda-row{display:flex;align-items:baseline;gap:24px;padding:18px 0;border-bottom:1px dashed var(--border);font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .agenda-row .num{color:var(--accent);flex:none;width:48px}
+.tpl-tech-sharing .agenda-row .t{color:#1a1a1e;font-size:24px;flex:1;font-family:'Inter',sans-serif;font-weight:600}
+.tpl-tech-sharing .agenda-row .d{color:var(--text-3);font-size:13px}
+.tpl-tech-sharing .speaker{display:flex;align-items:center;gap:14px;margin-top:28px}
+.tpl-tech-sharing .speaker .av{width:56px;height:56px;border-radius:50%;background:var(--grad)}
+.tpl-tech-sharing .speaker b{display:block;color:#1a1a1e;font-size:18px}
+.tpl-tech-sharing .speaker span{color:var(--text-3);font-size:13px;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .lede{color:var(--text-2)}
+/* LeanAgent 扩展组件 */
+.tpl-tech-sharing .big-num{font-size:84px;font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .big-num small{font-size:28px;color:var(--text-2)}
+.tpl-tech-sharing .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tpl-tech-sharing .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;border-top:3px solid var(--accent);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.tpl-tech-sharing .kpi .lab{font-size:13px;color:var(--text-3);font-family:'JetBrains Mono',monospace;margin-top:8px}
+.tpl-tech-sharing table.dt{width:100%;border-collapse:collapse;font-size:14px}
+.tpl-tech-sharing table.dt th{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:left;padding:8px 10px;border-bottom:2px solid var(--accent);white-space:nowrap;font-weight:700}
+.tpl-tech-sharing table.dt td{padding:6.5px 10px;border-bottom:1px solid var(--border);color:var(--text-1)}
+.tpl-tech-sharing table.dt td.dim{color:var(--text-2)}
+.tpl-tech-sharing table.dt tr.ok td:first-child{color:var(--accent);font-weight:700}
+.tpl-tech-sharing table.dt tr:nth-child(even){background:var(--surface-2)}
+.tpl-tech-sharing .arch{display:flex;flex-direction:column;gap:12px}
+.tpl-tech-sharing .arch-row{display:flex;gap:12px;align-items:stretch}
+.tpl-tech-sharing .arch-box{flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center}
+.tpl-tech-sharing .arch-box b{display:block;color:#1a1a1e;font-size:15px}
+.tpl-tech-sharing .arch-box span{color:var(--text-3);font-size:11.5px;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .arch-box.hl{border-color:var(--accent);background:rgba(199,0,11,.05)}
+.tpl-tech-sharing .arch-box.hl b{color:var(--accent)}
+.tpl-tech-sharing .arch-arrow{text-align:center;color:var(--text-3);font-size:14px;line-height:.6}
+.tpl-tech-sharing .layers{display:flex;flex-direction:column;gap:6px}
+.tpl-tech-sharing .layer{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 16px;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.tpl-tech-sharing .layer .lv{font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:700;font-size:15px}
+.tpl-tech-sharing .layer .body b{color:#1a1a1e;font-size:14.5px}
+.tpl-tech-sharing .layer .body span{color:var(--text-2);font-size:12.5px}
+.tpl-tech-sharing .chart{display:flex;align-items:flex-end;gap:6px;height:130px;padding:0 4px}
+.tpl-tech-sharing .chart .bar{flex:1;background:linear-gradient(180deg,var(--accent),rgba(199,0,11,.25));border-radius:4px 4px 0 0;min-height:3px;position:relative}
+.tpl-tech-sharing .chart .bar span{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--text-3);font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .chart .bar.pass{background:linear-gradient(180deg,var(--accent),rgba(199,0,11,.25))}
+.tpl-tech-sharing .chart .bar.fail{background:linear-gradient(180deg,#9aa0a6,rgba(154,160,166,.25))}
+.tpl-tech-sharing .flowline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tpl-tech-sharing .fnode{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;color:#1a1a1e;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .fnode.hl{border-color:var(--accent);color:var(--accent);background:rgba(199,0,11,.05)}
+.tpl-tech-sharing .farr{color:var(--text-3);font-size:13px}
+.tpl-tech-sharing .two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.tpl-tech-sharing .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch}
+.tpl-tech-sharing .vs .side{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.tpl-tech-sharing .vs .side.bad{border-top:3px solid #9aa0a6}
+.tpl-tech-sharing .vs .side.good{border-top:3px solid var(--accent)}
+.tpl-tech-sharing .vs .mid{display:flex;align-items:center;color:var(--text-3);font-size:22px;font-weight:800}
+.tpl-tech-sharing .stat-line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--border);font-size:14px}
+.tpl-tech-sharing .stat-line b{color:#1a1a1e}
+.tpl-tech-sharing .stat-line .v{font-family:'JetBrains Mono',monospace;color:var(--accent-2)}
+.tpl-tech-sharing .deck-footer{color:var(--text-3)}
+.tpl-tech-sharing .slide-number{font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .progress{background:var(--accent)!important}

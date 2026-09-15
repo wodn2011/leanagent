@@ -1,0 +1,763 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0002-2020-2._Signature__II_-20260904-101906/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0002-2020-2._Signature__II_-20260904-101906/target\",\"arch\":\"x86-64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1070\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC (Debian 10.2.0-5) 10.2.0\",\"source_file\":\"test.c\",\"buildid\":\"2c33c8dc1b757b76523ef049a16b97cc7745651b\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":false,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":true,\"source\":\"DERIVED\",\"note\":\"PIE enabled; ASLR assumed active on standard Linux runtime (not explicitly verified)\"},\"seccomp\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)\",\"source\":\"RUNTIME\",\"note\":\"ldd resolves libc.so.6 to system path; version string from runtime libc\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libcrypto.so.1.1\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libcrypto.so.1.1\",\"version\":\"OpenSSL 1.1.1f 31 Mar 2020\",\"source\":\"RUNTIME\",\"needed\":true,\"rpath\":\"none\",\"runpath\":\"none\",\"search_order\":\"LD_LIBRARY_PATH precedes system paths (no RPATH/RUNPATH present)\",\"transitive_deps\":[\"libdl.so.2\",\"libpthread.so.0\"],\"note\":\"NEEDED directly; provides DES_ecb_encrypt, DES_set_key_unchecked\"},{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"glibc 2.39\",\"source\":\"RUNTIME\",\"needed\":true,\"rpath\":\"none\",\"runpath\":\"none\"},{\"name\":\"linux-vdso.so.1\",\"resolved_path\":\"0x00007fb88a9c8000\",\"source\":\"RUNTIME\",\"needed\":false,\"note\":\"vdso, auto-injected\"}]},\"interface\":{\"entry_function\":\"main (0x1155)\",\"input_sources\":[{\"source\":\"argv[1]\",\"description\":\"DES key, dereferenced as 8 bytes via mov rax,[argv+0x10]; mov rax,[rax]\",\"used_as\":\"DES key (stored at rbp-0x8)\"},{\"source\":\"argv[2]\",\"description\":\"plaintext, dereferenced as 8 bytes via mov rax,[argv+0x8]; mov rax,[rax]\",\"used_as\":\"DES plaintext input (stored at rbp-0x98)\"}],\"menu\":[],\"user_controlled_inputs\":[{\"name\":\"argv[1]\",\"source\":\"argv\",\"type\":\"string pointer dereferenced to 8 bytes\",\"function\":\"main\"},{\"name\":\"argv[2]\",\"source\":\"argv\",\"type\":\"string pointer dereferenced to 8 bytes\",\"function\":\"main\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x2a8\",\"size\":\"0x1c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".note.gnu.build-id\",\"address\":\"0x2c4\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".note.ABI-tag\",\"address\":\"0x2e8\",\"size\":\"0x20\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.hash\",\"address\":\"0x308\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".dynsym\",\"address\":\"0x330\",\"size\":\"0xd8\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".dynstr\",\"address\":\"0x408\",\"size\":\"0xc8\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.version\",\"address\":\"0x4d0\",\"size\":\"0x12\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".gnu.version_r\",\"address\":\"0x4e8\",\"size\":\"0x40\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".rela.dyn\",\"address\":\"0x528\",\"size\":\"0xc0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".rela.plt\",\"address\":\"0x5e8\",\"size\":\"0x48\",\"flags\":\"AI\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0x40\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.got\",\"address\":\"0x1060\",\"size\":\"0x8\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".text\",\"address\":\"0x1070\",\"size\":\"0x1f1\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x1264\",\"size\":\"0x9\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x4\",\"flags\":\"AM\",\"writable\":false,\"executable\":false,\"readable\":true,\"content\":\"01 00 02 00\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2004\",\"size\":\"0x3c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x2040\",\"size\":\"0x108\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3dd8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"points to frame_dummy (0x1150)\"},{\"name\":\".fini_array\",\"address\":\"0x3de0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"points to __do_global_dtors_aux (0x1110)\"},{\"name\":\".dynamic\",\"address\":\"0x3de8\",\"size\":\"0x1f0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0x30\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4030\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"__data_start(0) + __dso_handle(0x4038)\"},{\"name\":\".bss\",\"address\":\"0x4040\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true,\"content\":\"completed.0\"}],\"globals\":[{\"name\":\"completed.0\",\"address\":\"0x4040\",\"size\":1,\"section\":\".bss\",\"type\":\"OBJECT\"},{\"name\":\"__dso_handle\",\"address\":\"0x4038\",\"size\":0,\"section\":\".data\",\"type\":\"OBJECT\"},{\"name\":\"__data_start\",\"address\":\"0x4030\",\"size\":0,\"section\":\".data\",\"type\":\"OBJECT\"},{\"name\":\"_GLOBAL_OFFSET_TABLE_\",\"address\":\"0x4000\",\"size\":0,\"section\":\".got.plt\",\"type\":\"OBJECT\"},{\"name\":\"_DYNAMIC\",\"address\":\"0x3de8\",\"size\":0,\"section\":\".dynamic\",\"type\":\"OBJECT\"},{\"name\":\"_IO_stdin_used\",\"address\":\"0x2000\",\"size\":4,\"section\":\".rodata\",\"type\":\"OBJECT\"}],\"got\":[{\"offset\":\"0x3fd8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__gmon_start__\"},{\"offset\":\"0x3fe0\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__libc_start_main@GLIBC_2.2.5\"},{\"offset\":\"0x3fe8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"_ITM_deregisterTMCloneTable\"},{\"offset\":\"0x3ff0\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"_ITM_registerTMCloneTable\"},{\"offset\":\"0x3ff8\",\"type\":\"R_X86_64_GLOB_DAT\",\"symbol\":\"__cxa_finalize@GLIBC_2.2.5\"},{\"offset\":\"0x4018\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"DES_ecb_encrypt@OPENSSL_1_1_0\"},{\"offset\":\"0x4020\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"DES_set_key_unchecked@OPENSSL_1_1_0\"},{\"offset\":\"0x4028\",\"type\":\"R_X86_64_JUMP_SLOT\",\"symbol\":\"write@GLIBC_2.2.5\"}],\"plt\":[{\"address\":\"0x1030\",\"symbol\":\"DES_ecb_encrypt@plt\"},{\"address\":\"0x1040\",\"symbol\":\"DES_set_key_unchecked@plt\"},{\"address\":\"0x1050\",\"symbol\":\"write@plt\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1155\",\"callers\":[\"__libc_start_main (via _start)\"],\"callees\":[\"DES_set_key_unchecked@plt\",\"DES_ecb_encrypt@plt\",\"write@plt\"],\"inputs\":[{\"name\":\"argc\",\"source\":\"edi (from _start)\",\"storage\":\"rbp-0xa4\"},{\"name\":\"argv\",\"source\":\"rsi (from _start)\",\"storage\":\"rbp-0xb0\"},{\"name\":\"argv[1]\",\"source\":\"argv dereference: mov rax,[argv+0x10]; mov rax,[rax]\",\"storage\":\"rbp-0x8 (8 bytes, DES key)\"},{\"name\":\"argv[2]\",\"source\":\"argv dereference: mov rax,[argv+0x8]; mov rax,[rax]\",\"storage\":\"rbp-0x98 (8 bytes, plaintext)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"argv[1] pointer\",\"destination\":\"rbp-0x8\",\"size\":8,\"note\":\"mov rax,[argv+0x10] loads argv[1] ptr; mov rax,[rax] dereferences to 8 bytes\"},{\"operation\":\"READ\",\"source\":\"argv[2] pointer\",\"destination\":\"rbp-0x98\",\"size\":8,\"note\":\"mov rax,[argv+0x8] loads argv[2] ptr; mov rax,[rax] dereferences to 8 bytes\"},{\"operation\":\"WRITE\",\"source\":\"DES_set_key_unchecked output\",\"destination\":\"rbp-0x90 (DES_key_schedule, ~128 bytes)\",\"size\":128,\"note\":\"DES_key_schedule struct filled by DES_set_key_unchecked(rbp-0x8 key, rbp-0x90 schedule)\"},{\"operation\":\"WRITE\",\"source\":\"DES_ecb_encrypt output\",\"destination\":\"rbp-0xa0 (ciphertext buffer)\",\"size\":8,\"note\":\"DES_ecb_encrypt(rbp-0x98 input, rbp-0xa0 output, rbp-0x90 schedule, mode=1=encrypt)\"},{\"operation\":\"WRITE\",\"source\":\"write syscall\",\"destination\":\"fd=1 (stdout)\",\"size\":8,\"note\":\"write(1, rbp-0xa0, 8) outputs 8-byte ciphertext\"}],\"calls\":[\"DES_set_key_unchecked\",\"DES_ecb_encrypt\",\"write\"],\"stack_layout\":{\"frame_size\":\"0xb0\",\"locals\":[{\"offset\":\"rbp-0xb0\",\"name\":\"argv\",\"size\":8},{\"offset\":\"rbp-0xa4\",\"name\":\"argc\",\"size\":4},{\"offset\":\"rbp-0xa0\",\"name\":\"ciphertext_output\",\"size\":8},{\"offset\":\"rbp-0x98\",\"name\":\"plaintext_from_argv2\",\"size\":8},{\"offset\":\"rbp-0x90\",\"name\":\"DES_key_schedule\",\"size\":128},{\"offset\":\"rbp-0x8\",\"name\":\"key_from_argv1\",\"size\":8}]}},{\"name\":\"_start\",\"address\":\"0x1070\",\"callers\":[],\"callees\":[\"__libc_start_main\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"__libc_start_main\"]},{\"name\":\"__libc_csu_init\",\"address\":\"0x1200\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"_init\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_init\"]},{\"name\":\"__libc_csu_fini\",\"address\":\"0x1260\",\"callers\":[\"__libc_start_main\"],\"callees\":[],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[]}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"argv[1] (DES key) and argv[2] (plaintext)\",\"operation\":\"argv pointer dereference without NULL check\",\"risk\":\"MEDIUM\",\"reason\":\"argv[1]/argv[2] are dereferenced via mov rax,[rax] without checking argc>=3 or pointer validity; missing args cause NULL dereference segfault. This is a robustness/DoS issue, not a memory corruption primitive. The dereferenced data flows into DES crypto operations (key schedule + ECB encrypt) and is written to stdout via write(1,...,8). No heap, no format string, no index-based OOB.\"},{\"function\":\"main\",\"input\":\"argv[1]/argv[2] content\",\"operation\":\"DES ECB encryption with attacker-controlled key and plaintext\",\"risk\":\"LOW\",\"reason\":\"Attacker controls both DES key and plaintext, but output is fixed 8 bytes written to stdout. No memory corruption path observed; crypto misuse (ECB mode, no IV) is a cryptographic weakness, not a memory-safety vulnerability.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source file test.c, compiled with GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, No canary, PIE enabled, No FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"main at 0x1155 calls DES_set_key_unchecked, DES_ecb_encrypt, write in sequence\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"main reads argv[1] (offset +0x10 from argv) and argv[2] (offset +0x8 from argv), dereferencing each as 8 bytes via double indirection mov rax,[argv+off]; mov rax,[rax]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"No argc check exists in main; running without 2 arguments causes segfault (NULL dereference of argv[1]/argv[2])\",\"source\":\"RUNTIME\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"DES_set_key_unchecked(key=rbp-0x8, schedule=rbp-0x90) sets up DES key schedule from 8-byte argv[1] content\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"DES_ecb_encrypt(input=rbp-0x98, output=rbp-0xa0, schedule=rbp-0x90, mode=1/ENCRYPT) encrypts 8-byte argv[2] content\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"write(1, rbp-0xa0, 8) outputs exactly 8 bytes of ciphertext to stdout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Stack frame size 0xb0; locals: argv@rbp-0xb0, argc@rbp-0xa4, ciphertext@rbp-0xa0, plaintext@rbp-0x98, key_schedule@rbp-0x90(128B), key@rbp-0x8\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"No heap operations (malloc/calloc/realloc/free) in binary; no scanf/gets/fgets input parsing; no format string functions\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"NEEDED libs: libcrypto.so.1.1 (OpenSSL 1.1.1f) and libc.so.6 (glibc 2.39); no RPATH/RUNPATH; LD_LIBRARY_PATH precedes system paths in search order\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Running ./target AAAABBBB CCCCDDDD produces 8 bytes output (bf8fa20f 60f61780) and exits 0\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\".got.plt is writable (Partial RELRO); GOT entries for DES_ecb_encrypt@0x4018, DES_set_key_unchecked@0x4020, write@0x4028 are R_X86_64_JUMP_SLOT (writable)\",\"source\":\"ELF\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"No function pointers, vtables, or callback tables in user code; no indirect calls in main\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"CET (IBT/SHSTK) status not confirmed from ELF headers\",\"reason\":\"checksec did not report CET flags; requires explicit readelf of .note.gnu.property which was not present in section list\"},{\"id\":\"U002\",\"description\":\"No seccomp/sandbox verification performed\",\"reason\":\"No static indicator; runtime seccomp filter not checked\"},{\"id\":\"U003\",\"description\":\"Whether the NULL dereference on missing argv has any exploitable consequence beyond DoS\",\"reason\":\"S1 observes segfault only; deeper analysis of control flow after deref is S2 scope, though no corruption primitive is evident\"},{\"id\":\"U004\",\"description\":\"Exact behavior if argv[1]/argv[2] point to strings shorter than 8 bytes\",\"reason\":\"DES reads 8 bytes from the dereferenced pointer; short strings may read adjacent stack/heap bytes — not dynamically tested, potential info consideration for S2\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID 2c33c8dc1b757b76523ef049a16b97cc7745651b, not stripped, source test.c, GCC 10.2.0. Entry 0x1070. Segments: LOAD R(0x0-0x630), LOAD R-E(0x1000-0x126d), LOAD R(0x2000-0x2148), LOAD RW(0x3dd8-0x4048). GNU_STACK RW (NX enabled). GNU_RELRO 0x3dd8-0x4000 (partial).\",\"sections\":\"30 sections. Key: .text 0x1070 size 0x1f1 (AX), .rodata 0x2000 size 0x4 (AM, content 01000200), .data 0x4030 size 0x10 (WA), .bss 0x4040 size 0x8 (WA), .got 0x3fd8 size 0x28 (WA), .got.plt 0x4000 size 0x30 (WA), .plt 0x1020 size 0x40 (AX), .init_array 0x3dd8 (WA), .fini_array 0x3de0 (WA), .dynamic 0x3de8 (WA).\",\"symbols\":\"main 0x1155 T; _start 0x1070 T; __libc_csu_init 0x1200 T; __libc_csu_fini 0x1260 T; _init 0x1000 t; _fini 0x1264 T; U DES_ecb_encrypt, DES_set_key_unchecked, write, __libc_start_main, __cxa_finalize; _GLOBAL_OFFSET_TABLE_ 0x4000; _DYNAMIC 0x3de8; __dso_handle 0x4038; completed.0 0x4040.\",\"disassembly\":\"main:\\n1155 push rbp; mov rbp,rsp; sub rsp,0xb0\\n1160 mov [rbp-0xa4],edi (argc); mov [rbp-0xb0],rsi (argv)\\n116d mov rax,[rbp-0xb0]; add rax,0x10; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x98],rax  // argv[2] -> 8 bytes plaintext\\n1185 mov rax,[rbp-0xb0]; add rax,0x8; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x8],rax   // argv[1] -> 8 bytes key\\n119a lea rdx,[rbp-0x90]; lea rax,[rbp-0x8]; mov rsi,rdx; mov rdi,rax; call DES_set_key_unchecked\\n11b0 lea rdx,[rbp-0x90]; lea rsi,[rbp-0xa0]; lea rax,[rbp-0x98]; mov ecx,0x1; mov rdi,rax; call DES_ecb_encrypt\\n11d2 lea rax,[rbp-0xa0]; mov edx,0x8; mov rsi,rax; mov edi,0x1; call write\\n11eb mov eax,0x0; leave; ret\\nNo canary check before ret. No argc validation.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0002-2020-2._Signature__II_-20260904-101906/target",
+      "arch": "x86-64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1070",
+      "dynamic": true,
+      "stripped": false,
+      "file_type": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2",
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC (Debian 10.2.0-5) 10.2.0",
+      "source_file": "test.c",
+      "buildid": "2c33c8dc1b757b76523ef049a16b97cc7745651b"
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": false,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "UNKNOWN"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "DERIVED",
+        "note": "PIE enabled; ASLR assumed active on standard Linux runtime (not explicitly verified)"
+      },
+      "seccomp": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "version": "glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)",
+        "source": "RUNTIME",
+        "note": "ldd resolves libc.so.6 to system path; version string from runtime libc"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libcrypto.so.1.1",
+          "resolved_path": "/lib/x86_64-linux-gnu/libcrypto.so.1.1",
+          "version": "OpenSSL 1.1.1f 31 Mar 2020",
+          "source": "RUNTIME",
+          "needed": true,
+          "rpath": "none",
+          "runpath": "none",
+          "search_order": "LD_LIBRARY_PATH precedes system paths (no RPATH/RUNPATH present)",
+          "transitive_deps": [
+            "libdl.so.2",
+            "libpthread.so.0"
+          ],
+          "note": "NEEDED directly; provides DES_ecb_encrypt, DES_set_key_unchecked"
+        },
+        {
+          "name": "libc.so.6",
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "version": "glibc 2.39",
+          "source": "RUNTIME",
+          "needed": true,
+          "rpath": "none",
+          "runpath": "none"
+        },
+        {
+          "name": "linux-vdso.so.1",
+          "resolved_path": "0x00007fb88a9c8000",
+          "source": "RUNTIME",
+          "needed": false,
+          "note": "vdso, auto-injected"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main (0x1155)",
+      "input_sources": [
+        {
+          "source": "argv[1]",
+          "description": "DES key, dereferenced as 8 bytes via mov rax,[argv+0x10]; mov rax,[rax]",
+          "used_as": "DES key (stored at rbp-0x8)"
+        },
+        {
+          "source": "argv[2]",
+          "description": "plaintext, dereferenced as 8 bytes via mov rax,[argv+0x8]; mov rax,[rax]",
+          "used_as": "DES plaintext input (stored at rbp-0x98)"
+        }
+      ],
+      "menu": [],
+      "user_controlled_inputs": [
+        {
+          "name": "argv[1]",
+          "source": "argv",
+          "type": "string pointer dereferenced to 8 bytes",
+          "function": "main"
+        },
+        {
+          "name": "argv[2]",
+          "source": "argv",
+          "type": "string pointer dereferenced to 8 bytes",
+          "function": "main"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".interp",
+          "address": "0x2a8",
+          "size": "0x1c",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".note.gnu.build-id",
+          "address": "0x2c4",
+          "size": "0x24",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".note.ABI-tag",
+          "address": "0x2e8",
+          "size": "0x20",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".gnu.hash",
+          "address": "0x308",
+          "size": "0x24",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".dynsym",
+          "address": "0x330",
+          "size": "0xd8",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".dynstr",
+          "address": "0x408",
+          "size": "0xc8",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".gnu.version",
+          "address": "0x4d0",
+          "size": "0x12",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".gnu.version_r",
+          "address": "0x4e8",
+          "size": "0x40",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".rela.dyn",
+          "address": "0x528",
+          "size": "0xc0",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".rela.plt",
+          "address": "0x5e8",
+          "size": "0x48",
+          "flags": "AI",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x17",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0x40",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".plt.got",
+          "address": "0x1060",
+          "size": "0x8",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".text",
+          "address": "0x1070",
+          "size": "0x1f1",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".fini",
+          "address": "0x1264",
+          "size": "0x9",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x4",
+          "flags": "AM",
+          "writable": false,
+          "executable": false,
+          "readable": true,
+          "content": "01 00 02 00"
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x2004",
+          "size": "0x3c",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x2040",
+          "size": "0x108",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3dd8",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true,
+          "content": "points to frame_dummy (0x1150)"
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3de0",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true,
+          "content": "points to __do_global_dtors_aux (0x1110)"
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x3de8",
+          "size": "0x1f0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x3fd8",
+          "size": "0x28",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x4000",
+          "size": "0x30",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x4030",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true,
+          "content": "__data_start(0) + __dso_handle(0x4038)"
+        },
+        {
+          "name": ".bss",
+          "address": "0x4040",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true,
+          "content": "completed.0"
+        }
+      ],
+      "globals": [
+        {
+          "name": "completed.0",
+          "address": "0x4040",
+          "size": 1,
+          "section": ".bss",
+          "type": "OBJECT"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x4038",
+          "size": 0,
+          "section": ".data",
+          "type": "OBJECT"
+        },
+        {
+          "name": "__data_start",
+          "address": "0x4030",
+          "size": 0,
+          "section": ".data",
+          "type": "OBJECT"
+        },
+        {
+          "name": "_GLOBAL_OFFSET_TABLE_",
+          "address": "0x4000",
+          "size": 0,
+          "section": ".got.plt",
+          "type": "OBJECT"
+        },
+        {
+          "name": "_DYNAMIC",
+          "address": "0x3de8",
+          "size": 0,
+          "section": ".dynamic",
+          "type": "OBJECT"
+        },
+        {
+          "name": "_IO_stdin_used",
+          "address": "0x2000",
+          "size": 4,
+          "section": ".rodata",
+          "type": "OBJECT"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3fd8",
+          "type": "R_X86_64_GLOB_DAT",
+          "symbol": "__gmon_start__"
+        },
+        {
+          "offset": "0x3fe0",
+          "type": "R_X86_64_GLOB_DAT",
+          "symbol": "__libc_start_main@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fe8",
+          "type": "R_X86_64_GLOB_DAT",
+          "symbol": "_ITM_deregisterTMCloneTable"
+        },
+        {
+          "offset": "0x3ff0",
+          "type": "R_X86_64_GLOB_DAT",
+          "symbol": "_ITM_registerTMCloneTable"
+        },
+        {
+          "offset": "0x3ff8",
+          "type": "R_X86_64_GLOB_DAT",
+          "symbol": "__cxa_finalize@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x4018",
+          "type": "R_X86_64_JUMP_SLOT",
+          "symbol": "DES_ecb_encrypt@OPENSSL_1_1_0"
+        },
+        {
+          "offset": "0x4020",
+          "type": "R_X86_64_JUMP_SLOT",
+          "symbol": "DES_set_key_unchecked@OPENSSL_1_1_0"
+        },
+        {
+          "offset": "0x4028",
+          "type": "R_X86_64_JUMP_SLOT",
+          "symbol": "write@GLIBC_2.2.5"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x1030",
+          "symbol": "DES_ecb_encrypt@plt"
+        },
+        {
+          "address": "0x1040",
+          "symbol": "DES_set_key_unchecked@plt"
+        },
+        {
+          "address": "0x1050",
+          "symbol": "write@plt"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x1155",
+        "callers": [
+          "__libc_start_main (via _start)"
+        ],
+        "callees": [
+          "DES_set_key_unchecked@plt",
+          "DES_ecb_encrypt@plt",
+          "write@plt"
+        ],
+        "inputs": [
+          {
+            "name": "argc",
+            "source": "edi (from _start)",
+            "storage": "rbp-0xa4"
+          },
+          {
+            "name": "argv",
+            "source": "rsi (from _start)",
+            "storage": "rbp-0xb0"
+          },
+          {
+            "name": "argv[1]",
+            "source": "argv dereference: mov rax,[argv+0x10]; mov rax,[rax]",
+            "storage": "rbp-0x8 (8 bytes, DES key)"
+          },
+          {
+            "name": "argv[2]",
+            "source": "argv dereference: mov rax,[argv+0x8]; mov rax,[rax]",
+            "storage": "rbp-0x98 (8 bytes, plaintext)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "argv[1] pointer",
+            "destination": "rbp-0x8",
+            "size": 8,
+            "note": "mov rax,[argv+0x10] loads argv[1] ptr; mov rax,[rax] dereferences to 8 bytes"
+          },
+          {
+            "operation": "READ",
+            "source": "argv[2] pointer",
+            "destination": "rbp-0x98",
+            "size": 8,
+            "note": "mov rax,[argv+0x8] loads argv[2] ptr; mov rax,[rax] dereferences to 8 bytes"
+          },
+          {
+            "operation": "WRITE",
+            "source": "DES_set_key_unchecked output",
+            "destination": "rbp-0x90 (DES_key_schedule, ~128 bytes)",
+            "size": 128,
+            "note": "DES_key_schedule struct filled by DES_set_key_unchecked(rbp-0x8 key, rbp-0x90 schedule)"
+          },
+          {
+            "operation": "WRITE",
+            "source": "DES_ecb_encrypt output",
+            "destination": "rbp-0xa0 (ciphertext buffer)",
+            "size": 8,
+            "note": "DES_ecb_encrypt(rbp-0x98 input, rbp-0xa0 output, rbp-0x90 schedule, mode=1=encrypt)"
+          },
+          {
+            "operation": "WRITE",
+            "source": "write syscall",
+            "destination": "fd=1 (stdout)",
+            "size": 8,
+            "note": "write(1, rbp-0xa0, 8) outputs 8-byte ciphertext"
+          }
+        ],
+        "calls": [
+          "DES_set_key_unchecked",
+          "DES_ecb_encrypt",
+          "write"
+        ],
+        "stack_layout": {
+          "frame_size": "0xb0",
+          "locals": [
+            {
+              "offset": "rbp-0xb0",
+              "name": "argv",
+              "size": 8
+            },
+            {
+              "offset": "rbp-0xa4",
+              "name": "argc",
+              "size": 4
+            },
+            {
+              "offset": "rbp-0xa0",
+              "name": "ciphertext_output",
+              "size": 8
+            },
+            {
+              "offset": "rbp-0x98",
+              "name": "plaintext_from_argv2",
+              "size": 8
+            },
+            {
+              "offset": "rbp-0x90",
+              "name": "DES_key_schedule",
+              "size": 128
+            },
+            {
+              "offset": "rbp-0x8",
+              "name": "key_from_argv1",
+              "size": 8
+            }
+          ]
+        }
+      },
+      {
+        "name": "_start",
+        "address": "0x1070",
+        "callers": [],
+        "callees": [
+          "__libc_start_main"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "__libc_start_main"
+        ]
+      },
+      {
+        "name": "__libc_csu_init",
+        "address": "0x1200",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "_init"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "_init"
+        ]
+      },
+      {
+        "name": "__libc_csu_fini",
+        "address": "0x1260",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": []
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "argv[1] (DES key) and argv[2] (plaintext)",
+        "operation": "argv pointer dereference without NULL check",
+        "risk": "MEDIUM",
+        "reason": "argv[1]/argv[2] are dereferenced via mov rax,[rax] without checking argc>=3 or pointer validity; missing args cause NULL dereference segfault. This is a robustness/DoS issue, not a memory corruption primitive. The dereferenced data flows into DES crypto operations (key schedule + ECB encrypt) and is written to stdout via write(1,...,8). No heap, no format string, no index-based OOB."
+      },
+      {
+        "function": "main",
+        "input": "argv[1]/argv[2] content",
+        "operation": "DES ECB encryption with attacker-controlled key and plaintext",
+        "risk": "LOW",
+        "reason": "Attacker controls both DES key and plaintext, but output is fixed 8 bytes written to stdout. No memory corruption path observed; crypto misuse (ECB mode, no IV) is a cryptographic weakness, not a memory-safety vulnerability."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source file test.c, compiled with GCC 10.2.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, No canary, PIE enabled, No FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "main at 0x1155 calls DES_set_key_unchecked, DES_ecb_encrypt, write in sequence",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "main reads argv[1] (offset +0x10 from argv) and argv[2] (offset +0x8 from argv), dereferencing each as 8 bytes via double indirection mov rax,[argv+off]; mov rax,[rax]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "No argc check exists in main; running without 2 arguments causes segfault (NULL dereference of argv[1]/argv[2])",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "DES_set_key_unchecked(key=rbp-0x8, schedule=rbp-0x90) sets up DES key schedule from 8-byte argv[1] content",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "DES_ecb_encrypt(input=rbp-0x98, output=rbp-0xa0, schedule=rbp-0x90, mode=1/ENCRYPT) encrypts 8-byte argv[2] content",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "write(1, rbp-0xa0, 8) outputs exactly 8 bytes of ciphertext to stdout",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "Stack frame size 0xb0; locals: argv@rbp-0xb0, argc@rbp-0xa4, ciphertext@rbp-0xa0, plaintext@rbp-0x98, key_schedule@rbp-0x90(128B), key@rbp-0x8",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "No heap operations (malloc/calloc/realloc/free) in binary; no scanf/gets/fgets input parsing; no format string functions",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "NEEDED libs: libcrypto.so.1.1 (OpenSSL 1.1.1f) and libc.so.6 (glibc 2.39); no RPATH/RUNPATH; LD_LIBRARY_PATH precedes system paths in search order",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "Running ./target AAAABBBB CCCCDDDD produces 8 bytes output (bf8fa20f 60f61780) and exits 0",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": ".got.plt is writable (Partial RELRO); GOT entries for DES_ecb_encrypt@0x4018, DES_set_key_unchecked@0x4020, write@0x4028 are R_X86_64_JUMP_SLOT (writable)",
+        "source": "ELF"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "No function pointers, vtables, or callback tables in user code; no indirect calls in main",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "CET (IBT/SHSTK) status not confirmed from ELF headers",
+        "reason": "checksec did not report CET flags; requires explicit readelf of .note.gnu.property which was not present in section list"
+      },
+      {
+        "id": "U002",
+        "description": "No seccomp/sandbox verification performed",
+        "reason": "No static indicator; runtime seccomp filter not checked"
+      },
+      {
+        "id": "U003",
+        "description": "Whether the NULL dereference on missing argv has any exploitable consequence beyond DoS",
+        "reason": "S1 observes segfault only; deeper analysis of control flow after deref is S2 scope, though no corruption primitive is evident"
+      },
+      {
+        "id": "U004",
+        "description": "Exact behavior if argv[1]/argv[2] point to strings shorter than 8 bytes",
+        "reason": "DES reads 8 bytes from the dereferenced pointer; short strings may read adjacent stack/heap bytes — not dynamically tested, potential info consideration for S2"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID 2c33c8dc1b757b76523ef049a16b97cc7745651b, not stripped, source test.c, GCC 10.2.0. Entry 0x1070. Segments: LOAD R(0x0-0x630), LOAD R-E(0x1000-0x126d), LOAD R(0x2000-0x2148), LOAD RW(0x3dd8-0x4048). GNU_STACK RW (NX enabled). GNU_RELRO 0x3dd8-0x4000 (partial).",
+      "sections": "30 sections. Key: .text 0x1070 size 0x1f1 (AX), .rodata 0x2000 size 0x4 (AM, content 01000200), .data 0x4030 size 0x10 (WA), .bss 0x4040 size 0x8 (WA), .got 0x3fd8 size 0x28 (WA), .got.plt 0x4000 size 0x30 (WA), .plt 0x1020 size 0x40 (AX), .init_array 0x3dd8 (WA), .fini_array 0x3de0 (WA), .dynamic 0x3de8 (WA).",
+      "symbols": "main 0x1155 T; _start 0x1070 T; __libc_csu_init 0x1200 T; __libc_csu_fini 0x1260 T; _init 0x1000 t; _fini 0x1264 T; U DES_ecb_encrypt, DES_set_key_unchecked, write, __libc_start_main, __cxa_finalize; _GLOBAL_OFFSET_TABLE_ 0x4000; _DYNAMIC 0x3de8; __dso_handle 0x4038; completed.0 0x4040.",
+      "disassembly": "main:\n1155 push rbp; mov rbp,rsp; sub rsp,0xb0\n1160 mov [rbp-0xa4],edi (argc); mov [rbp-0xb0],rsi (argv)\n116d mov rax,[rbp-0xb0]; add rax,0x10; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x98],rax  // argv[2] -> 8 bytes plaintext\n1185 mov rax,[rbp-0xb0]; add rax,0x8; mov rax,[rax]; mov rax,[rax]; mov [rbp-0x8],rax   // argv[1] -> 8 bytes key\n119a lea rdx,[rbp-0x90]; lea rax,[rbp-0x8]; mov rsi,rdx; mov rdi,rax; call DES_set_key_unchecked\n11b0 lea rdx,[rbp-0x90]; lea rsi,[rbp-0xa0]; lea rax,[rbp-0x98]; mov ecx,0x1; mov rdi,rax; call DES_ecb_encrypt\n11d2 lea rax,[rbp-0xa0]; mov edx,0x8; mov rsi,rax; mov edi,0x1; call write\n11eb mov eax,0x0; leave; ret\nNo canary check before ret. No argc validation."
+    }
+  }
+}

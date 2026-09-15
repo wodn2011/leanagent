@@ -1,0 +1,1033 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0003-2020-3._Babyheap-20260904-235752/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0003-2020-3._Babyheap-20260904-235752/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1100\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /work/ctf/0003-2020-3. Babyheap/ld-2.27.so, BuildID=72fd2d96b39541097f03e86d242f720bd43a2895, for GNU/Linux 3.2.0\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-5)\",\"source_file\":\"babynote.c\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"rpath\":{\"value\":\"/work/ctf/0003-2020-3. Babyheap\",\"source\":\"ELF\"}},\"runtime\":{\"libc\":{\"version\":\"2.27\",\"full_version\":\"Ubuntu GLIBC 2.27-3ubuntu1.2\",\"path\":\"/work/ctf/0003-2020-3. Babyheap/libc.so.6\",\"size\":2030544,\"source\":\"RUNTIME\",\"has_tcache\":true,\"tcache_double_free_check\":false},\"loader\":{\"path\":\"/work/ctf/0003-2020-3. Babyheap/ld-2.27.so\",\"size\":179152,\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"needed\":true,\"resolved_path\":\"/work/ctf/0003-2020-3. Babyheap/libc.so.6\",\"rpath\":\"/work/ctf/0003-2020-3. Babyheap\",\"runpath\":null,\"search_order_note\":\"RPATH set to /work/ctf/0003-2020-3. Babyheap; libc resolved from RPATH directory, not system path. LD_LIBRARY_PATH would take precedence over RPATH per glibc search order.\",\"source\":\"RUNTIME\"},{\"name\":\"ld-2.27.so\",\"needed\":false,\"resolved_path\":\"/work/ctf/0003-2020-3. Babyheap/ld-2.27.so\",\"note\":\"Program interpreter (PT_INTERP), loaded at process startup\",\"source\":\"RUNTIME\"},{\"name\":\"linux-vdso.so.1\",\"needed\":false,\"resolved_path\":\"0x00007dbcf018b000\",\"note\":\"Kernel-provided virtual shared object\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main (0x16cd)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"create note\",\"function\":\"create_note (0x1587)\"},{\"option\":\"2\",\"label\":\"drop note\",\"function\":\"drop_note (0x1380)\"},{\"option\":\"3\",\"label\":\"view note\",\"function\":\"view_note (0x1444)\"},{\"option\":\"4\",\"label\":\"exit\",\"function\":\"exit(0)\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%lld)\",\"function\":\"main\",\"description\":\"Menu selection 1-4\"},{\"name\":\"note_size\",\"source\":\"scanf(%lld)\",\"function\":\"create_note\",\"description\":\"Size for data allocation, checked <= 0x500\"},{\"name\":\"note_data\",\"source\":\"read_input -> read(0, buf, size)\",\"function\":\"create_note\",\"description\":\"Content written to note data chunk\"},{\"name\":\"drop_index\",\"source\":\"scanf(%llu)\",\"function\":\"drop_note\",\"description\":\"Index of note to free, checked <= 0x13 and < idx\"},{\"name\":\"view_index\",\"source\":\"scanf(%llu)\",\"function\":\"view_note\",\"description\":\"Index of note to view, checked <= 0x13 and < idx\"},{\"name\":\"view_offset\",\"source\":\"scanf(%llu)\",\"function\":\"view_note\",\"description\":\"Offset within note data to start printing from\"},{\"name\":\"view_length\",\"source\":\"scanf(%llu)\",\"function\":\"view_note\",\"description\":\"Length of data to print\"}]},\"memory\":{\"sections\":[{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x17\",\"permissions\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xd0\",\"permissions\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.got\",\"address\":\"0x10f0\",\"size\":\"0x8\",\"permissions\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".text\",\"address\":\"0x1100\",\"size\":\"0x721\",\"permissions\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x1824\",\"size\":\"0x9\",\"permissions\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x16b\",\"permissions\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x216c\",\"size\":\"0x6c\",\"permissions\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x21d8\",\"size\":\"0x1c8\",\"permissions\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"permissions\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d68\",\"size\":\"0x8\",\"permissions\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f60\",\"size\":\"0xa0\",\"permissions\":\"WA (RELRO: read-only after relocation)\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"permissions\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0xb8\",\"permissions\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x6138\",\"size\":\"0x200\",\"permissions\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x4048\",\"size\":1,\"section\":\".bss\",\"type\":\"flag\"},{\"name\":\"note_list\",\"address\":\"0x4060\",\"size\":112,\"section\":\".bss\",\"type\":\"pointer array\",\"count\":14,\"element_size\":8,\"element_type\":\"pointer to note struct (0x10 bytes: [size, data_ptr])\"},{\"name\":\"idx\",\"address\":\"0x40d0\",\"size\":8,\"section\":\".bss\",\"type\":\"int64 (note count)\"}],\"got\":[{\"offset\":\"0x3f78\",\"symbol\":\"free@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f80\",\"symbol\":\"putchar@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f88\",\"symbol\":\"puts@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f90\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f98\",\"symbol\":\"printf@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa0\",\"symbol\":\"alarm@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa8\",\"symbol\":\"read@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb0\",\"symbol\":\"malloc@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb8\",\"symbol\":\"setvbuf@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc0\",\"symbol\":\"__isoc99_scanf@GLIBC_2.7\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc8\",\"symbol\":\"exit@GLIBC_2.2.5\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fd0\",\"symbol\":\"__ctype_b_loc@GLIBC_2.3\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fe0\",\"symbol\":\"__libc_start_main@GLIBC_2.2.5\",\"type\":\"GLOB_DAT\"},{\"offset\":\"0x3ff8\",\"symbol\":\"__cxa_finalize@GLIBC_2.2.5\",\"type\":\"GLOB_DAT\"}],\"plt\":[{\"address\":\"0x1030\",\"symbol\":\"free@plt\"},{\"address\":\"0x1040\",\"symbol\":\"putchar@plt\"},{\"address\":\"0x1050\",\"symbol\":\"puts@plt\"},{\"address\":\"0x1060\",\"symbol\":\"__stack_chk_fail@plt\"},{\"address\":\"0x1070\",\"symbol\":\"printf@plt\"},{\"address\":\"0x1080\",\"symbol\":\"alarm@plt\"},{\"address\":\"0x1090\",\"symbol\":\"read@plt\"},{\"address\":\"0x10a0\",\"symbol\":\"malloc@plt\"},{\"address\":\"0x10b0\",\"symbol\":\"setvbuf@plt\"},{\"address\":\"0x10c0\",\"symbol\":\"__isoc99_scanf@plt\"},{\"address\":\"0x10d0\",\"symbol\":\"exit@plt\"},{\"address\":\"0x10e0\",\"symbol\":\"__ctype_b_loc@plt\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x16cd\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"setvbuf\",\"alarm\",\"menu\",\"scanf\",\"create_note\",\"drop_note\",\"view_note\",\"exit\"],\"inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%lld, &rbp-0x10)\"}],\"checks\":[\"menu_choice == 1 -> create_note\",\"menu_choice == 2 -> drop_note\",\"menu_choice == 3 -> view_note\",\"menu_choice == 4 -> exit(0)\"],\"memory_operations\":[],\"calls\":[\"setvbuf(stdin,0,2,0)\",\"setvbuf(stdout,0,2,0)\",\"setvbuf(stderr,0,2,0)\",\"alarm(0x3c=60s)\",\"menu()\",\"scanf\",\"create_note\",\"drop_note\",\"view_note\",\"exit\"],\"behavior\":\"Initializes stdin/stdout/stderr buffering (setvbuf _IONBF), sets alarm(60s), then loops: call menu(), scanf menu choice, dispatch to create_note/drop_note/view_note/exit. Loop continues until exit(0).\"},{\"name\":\"create_note\",\"address\":\"0x1587\",\"callers\":[\"main\"],\"callees\":[\"malloc\",\"printf\",\"scanf\",\"read_input\",\"puts\"],\"inputs\":[{\"name\":\"size\",\"source\":\"scanf(%lld, &rbp-0x18)\"}],\"checks\":[\"idx <= 0x13 (19): if idx > 0x13, prints 'Too many note' and exit(0)\",\"size <= 0x500 (1280): if size > 0x500, prints 'Too long!' and exit(0)\"],\"memory_operations\":[{\"operation\":\"ALLOCATE\",\"destination\":\"heap chunk (0x10 bytes)\",\"size\":16,\"function\":\"malloc(0x10)\",\"note\":\"struct header: [size at +0x0, data_ptr at +0x8]\"},{\"operation\":\"WRITE\",\"destination\":\"[struct+0x0] = size\",\"size\":8,\"description\":\"Store user-provided size into struct header field 0\"},{\"operation\":\"ALLOCATE\",\"destination\":\"heap chunk (size bytes)\",\"size\":\"user-controlled (<=0x500)\",\"function\":\"malloc(size)\"},{\"operation\":\"WRITE\",\"destination\":\"[struct+0x8] = data_ptr\",\"size\":8,\"description\":\"Store data chunk pointer into struct header field 1\"},{\"operation\":\"WRITE\",\"destination\":\"note_list[idx*8] = struct_ptr\",\"size\":8,\"address\":\"0x4060 + idx*8\",\"description\":\"Store struct pointer into global note_list array\"},{\"operation\":\"WRITE\",\"destination\":\"idx = idx + 1\",\"size\":8,\"address\":\"0x40d0\",\"description\":\"Increment global note counter\"}],\"calls\":[\"malloc(0x10)\",\"malloc(size)\",\"read_input(data_ptr, size)\",\"printf('You now make a note #%lld', idx)\"],\"behavior\":\"Checks idx<=0x13 and size<=0x500. Allocates 0x10-byte struct header via malloc(0x10). Stores size at [header+0x0]. Allocates data chunk via malloc(size), stores ptr at [header+0x8]. Calls read_input(data_ptr, size) to read user content. Stores header ptr into note_list[idx]. Increments idx. Prints note number.\"},{\"name\":\"drop_note\",\"address\":\"0x1380\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"scanf\",\"free\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf(%llu, &rbp-0x18)\"}],\"checks\":[\"index <= 0x13 (unsigned): if index > 0x13, prints 'Invalid index.'\",\"index < idx: if index >= idx, prints 'Invalid index.'\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"struct_ptr = note_list[index*8]\",\"address\":\"0x4060 + index*8\",\"size\":8,\"description\":\"Load note struct pointer from global array\"},{\"operation\":\"FREE\",\"destination\":\"[struct_ptr+0x8] (data chunk)\",\"function\":\"free(data_ptr)\",\"description\":\"Free the data chunk\"},{\"operation\":\"FREE\",\"destination\":\"struct_ptr (header chunk)\",\"function\":\"free(struct_ptr)\",\"description\":\"Free the struct header chunk\"},{\"operation\":\"WRITE\",\"destination\":\"local var [rbp-0x10] = 0\",\"size\":8,\"description\":\"Sets LOCAL variable to NULL (NOT the note_list entry)\"}],\"calls\":[\"free(data_ptr)\",\"free(struct_ptr)\",\"puts('done.')\"],\"behavior\":\"Reads index via scanf(%llu). Checks index<=0x13 and index<idx. Loads struct_ptr from note_list[index]. Frees data chunk at [struct_ptr+0x8] first, then frees struct_ptr itself. Sets LOCAL variable [rbp-0x10] to 0 (NOT note_list[index]). Prints 'done.'. CRITICAL: note_list[index] is NOT cleared to NULL, and idx is NOT decremented.\"},{\"name\":\"view_note\",\"address\":\"0x1444\",\"callers\":[\"main\"],\"callees\":[\"puts\",\"scanf\",\"secure_print\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf(%llu, &rbp-0x28)\"},{\"name\":\"offset\",\"source\":\"scanf(%llu, &rbp-0x18)\"},{\"name\":\"length\",\"source\":\"scanf(%llu, &rbp-0x20)\"}],\"checks\":[\"index <= 0x13 (unsigned): if > 0x13, prints 'Invalid index.'\",\"index < idx: if >= idx, prints 'Invalid index.'\",\"offset < [struct_ptr+0x0] (size): if offset >= size, prints 'Invalid offset.'\",\"offset + length <= [struct_ptr+0x0] (size): if offset+length > size, prints 'Invalid lenght.'\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"struct_ptr = note_list[index*8]\",\"address\":\"0x4060 + index*8\",\"size\":8},{\"operation\":\"READ\",\"destination\":\"size = [struct_ptr+0x0]\",\"size\":8,\"description\":\"Read stored size from struct header\"},{\"operation\":\"READ\",\"destination\":\"data_ptr = [struct_ptr+0x8]\",\"size\":8,\"description\":\"Read data pointer from struct header\"},{\"operation\":\"READ\",\"destination\":\"secure_print(data_ptr + offset, length)\",\"size\":\"user-controlled length\",\"description\":\"Print length bytes from data_ptr+offset via secure_print\"}],\"calls\":[\"scanf\",\"secure_print(data_ptr+offset, length)\"],\"behavior\":\"Reads index, offset, length. Validates index<idx and index<=0x13. Validates offset < size and offset+length <= size. Calls secure_print(data_ptr + offset, length) to output note content.\"},{\"name\":\"secure_print\",\"address\":\"0x11e5\",\"callers\":[\"view_note\"],\"callees\":[\"__ctype_b_loc\",\"putchar\",\"puts\",\"exit\"],\"inputs\":[{\"name\":\"buf (rdi)\",\"source\":\"data_ptr + offset (from view_note)\"},{\"name\":\"length (rsi)\",\"source\":\"user-controlled length (from view_note)\"}],\"checks\":[\"For each byte i in [0, length): calls __ctype_b_loc() and checks if byte is printable (flag 0x4000 = _ISprint). If NOT printable, prints 'You are CHEATER!!!!' and calls exit(-1).\",\"Loop terminates when byte == 0 (NUL) or i >= length.\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"byte = buf[i]\",\"size\":1,\"description\":\"Read each byte from buffer\"},{\"operation\":\"CALL\",\"destination\":\"putchar(byte)\",\"description\":\"Output printable byte via putchar\"}],\"calls\":[\"__ctype_b_loc()\",\"putchar(byte)\",\"puts('You are CHEATER!!!!')\",\"exit(-1)\"],\"behavior\":\"Iterates over buf[0..length). For each byte, checks printability via __ctype_b_loc bitmask 0x4000. If printable, outputs via putchar. If non-printable byte encountered, prints error and exit(-1). Stops at NUL byte or when i>=length. After loop, prints 'something goes wrong.'\"},{\"name\":\"read_input\",\"address\":\"0x129e\",\"callers\":[\"create_note\"],\"callees\":[\"read\",\"puts\",\"exit\"],\"inputs\":[{\"name\":\"buf (rdi)\",\"source\":\"data_ptr from create_note\"},{\"name\":\"size (rsi)\",\"source\":\"user-controlled size from create_note\"}],\"checks\":[\"Loop: i < size, reads one byte at a time via read(0, buf+i, 1).\",\"If byte == 0x0a (newline): increments i and breaks loop.\",\"If i == 0 after loop (no input read): prints 'something goes wrong.' and exit(-1).\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"buf[i] = read(0, buf+i, 1)\",\"size\":1,\"description\":\"Write one byte at a time from stdin to buffer\"},{\"operation\":\"WRITE\",\"destination\":\"buf[i-1] = 0x00 (NUL)\",\"size\":1,\"description\":\"NUL-terminate: replaces last byte (newline position) with NUL\"}],\"calls\":[\"read(0, buf+i, 1)\",\"puts('something goes wrong.')\",\"exit(-1)\"],\"behavior\":\"Reads input byte-by-byte via read(0, buf+i, 1) up to size bytes. Stops on newline (0x0a). If no bytes read, exits. NUL-terminates at position i-1 (replacing the newline).\"},{\"name\":\"menu\",\"address\":\"0x1331\",\"callers\":[\"main\"],\"callees\":[\"puts\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts x6\"],\"behavior\":\"Prints menu: '============', '1. create note', '2. drop note', '3. view note', '4. exit', '============'\"}],\"attack_surfaces\":[{\"function\":\"drop_note\",\"input\":\"index (scanf %llu)\",\"operation\":\"free(data_ptr) then free(struct_ptr) without clearing note_list[index] or decrementing idx\",\"risk\":\"HIGH\",\"reason\":\"After free, note_list[index] still holds the old struct_ptr (dangling pointer). idx is not decremented, so the same index can be selected again. This creates a Use-After-Free condition: view_note can read freed chunk content, and create_note can allocate new chunks that overlap freed ones. Double-free is also possible since the same index can be freed repeatedly (no NULL check on note_list[index] before free).\"},{\"function\":\"view_note\",\"input\":\"index + offset + length (all scanf %llu)\",\"operation\":\"READ: secure_print(data_ptr + offset, length) where data_ptr comes from freed struct\",\"risk\":\"HIGH\",\"reason\":\"If the note at 'index' has been freed (UAF from drop_note), data_ptr at [struct_ptr+0x8] may contain heap metadata (fd/bk pointers). view_note reads offset and length from user, validates against [struct_ptr+0x0] (stored size), then calls secure_print on data_ptr+offset. If struct_ptr itself is freed and reallocated, [struct_ptr+0x0] and [struct_ptr+0x8] are attacker-controlled, enabling arbitrary read (subject to secure_print printable-byte restriction).\"},{\"function\":\"create_note\",\"input\":\"size (scanf %lld, <= 0x500)\",\"operation\":\"malloc(0x10) for struct header, malloc(size) for data, then read_input writes user data into data chunk\",\"risk\":\"MEDIUM\",\"reason\":\"After UAF/double-free, malloc(0x10) or malloc(size) may return a previously freed chunk. If the struct header chunk (0x10) is returned from a tcache bin containing a poisoned fd pointer, the attacker controls [struct+0x0] (size) and [struct+0x8] (data_ptr), which view_note dereferences. This is the write primitive path: writing into the data chunk via read_input can overwrite arbitrary memory if data_ptr was poisoned.\"},{\"function\":\"secure_print\",\"input\":\"buf pointer + length (from view_note, ultimately user-controlled via offset/length)\",\"operation\":\"READ: iterates buf[0..length), checks printability, outputs via putchar\",\"risk\":\"MEDIUM\",\"reason\":\"secure_print acts as an information leak channel but with a strict constraint: any non-printable byte (outside isprint mask 0x4000) triggers exit(-1). This limits direct leaking of libc addresses (which contain non-printable bytes like 0x7f). Heap addresses with printable bytes may be leakable. The length parameter is user-controlled, allowing reading beyond intended bounds if the size check in view_note is bypassed via UAF.\"},{\"function\":\"dependency_resolution\",\"input\":\"RPATH = /work/ctf/0003-2020-3. Babyheap\",\"operation\":\"libc.so.6 resolved from RPATH directory; LD_LIBRARY_PATH takes precedence over RPATH in glibc search order\",\"risk\":\"LOW\",\"reason\":\"RPATH is set to a specific directory containing the intended libc.so.6 (glibc 2.27). No RUNPATH present. LD_LIBRARY_PATH would take precedence over RPATH, but this is an environmental concern, not a binary vulnerability. The libc is the intended Ubuntu 2.27-3ubuntu1.2 with tcache and no tcache double-free protection.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF 64-bit LSB PIE executable, x86-64, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian)\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, Canary, NX, PIE all enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"RPATH set to /work/ctf/0003-2020-3. Babyheap; interpreter is /work/ctf/0003-2020-3. Babyheap/ld-2.27.so\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Only NEEDED library is libc.so.6, resolved to /work/ctf/0003-2020-3. Babyheap/libc.so.6 (glibc 2.27, Ubuntu GLIBC 2.27-3ubuntu1.2)\",\"source\":\"RUNTIME\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"glibc 2.27 has tcache mechanism with no double-free check (tcache double-free protection added in 2.29+)\",\"source\":\"RUNTIME\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"Global variable note_list at 0x4060, size 112 bytes (14 pointers x 8 bytes), stores pointers to note struct headers\",\"source\":\"ELF\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"Global variable idx at 0x40d0, size 8 bytes, stores current note count (int64)\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"Note struct layout: 0x10 bytes, [offset+0x0: size (8 bytes)], [offset+0x8: data_ptr (8 bytes)]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"create_note checks idx<=0x13 (max 20 notes, 0-indexed 0..19) and size<=0x500 (1280 bytes)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"create_note allocates struct header via malloc(0x10), stores size at [header+0x0], allocates data via malloc(size), stores ptr at [header+0x8], stores header into note_list[idx], increments idx\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"drop_note frees data chunk [struct_ptr+0x8] then struct_ptr, but does NOT clear note_list[index] to NULL and does NOT decrement idx\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"drop_note sets local variable [rbp-0x10] to 0 after free, but this is a stack local, NOT the note_list global entry\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"drop_note does not check if note_list[index] is NULL before freeing, allowing double-free on the same index\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"view_note validates: index<=0x13, index<idx, offset<[struct_ptr+0x0], offset+length<=[struct_ptr+0x0], then calls secure_print(data_ptr+offset, length)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"secure_print checks each byte via __ctype_b_loc() bitmask 0x4000 (isprint); non-printable byte triggers puts('You are CHEATER!!!!') and exit(-1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"read_input reads byte-by-byte via read(0, buf+i, 1), stops on newline 0x0a, NUL-terminates at position i-1; exits if no input\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"main sets alarm(0x3c=60 seconds) at startup, providing a 60-second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"main disables buffering on stdin/stdout/stderr via setvbuf(..., _IONBF)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F019\",\"type\":\"FACT\",\"description\":\"GOT is Full RELRO (read-only after relocation), so GOT overwrite is not viable\",\"source\":\"ELF\"},{\"id\":\"F020\",\"type\":\"FACT\",\"description\":\"BSS layout: stdout@0x4020, stdin@0x4030, stderr@0x4040, completed.0@0x4048, note_list@0x4060(112 bytes), idx@0x40d0\",\"source\":\"ELF\"},{\"id\":\"F021\",\"type\":\"DERIVED\",\"description\":\"note_list (0x4060, 112 bytes) and idx (0x40d0, 8 bytes) are adjacent in BSS; note_list ends at 0x40d0 which is exactly where idx begins\",\"source\":\"ELF\"},{\"id\":\"F022\",\"type\":\"FACT\",\"description\":\"I/O confirmed via probe: menu prints '============', options 1-4, prompt '>' after menu; create_note prompts 'size?', then 'Lesson begin, time to jot note...', reads data, prints 'Lesson end.' and 'You now make a note #N'; view_note prompts 'Which note?', 'Offset?', 'Who long?'\",\"source\":\"RUNTIME\"},{\"id\":\"F023\",\"type\":\"FACT\",\"description\":\"scanf format for menu/size is %lld (signed long long); scanf format for index/offset/length is %llu (unsigned long long)\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether ASLR is enabled in the runtime environment\",\"reason\":\"Cannot confirm from static analysis; PIE is enabled but ASLR depends on kernel settings\"},{\"id\":\"U002\",\"description\":\"Whether seccomp or other sandbox restrictions are in place\",\"reason\":\"No seccomp-related symbols or prctl calls found in binary, but kernel-level seccomp cannot be ruled out from static analysis alone\"},{\"id\":\"U003\",\"description\":\"Exact heap layout at runtime and tcache bin state after free operations\",\"reason\":\"Requires dynamic analysis to observe actual heap state; static analysis can only identify the free/reuse pattern\"},{\"id\":\"U004\",\"description\":\"Whether secure_print's printable-byte restriction can be bypassed to leak libc addresses\",\"reason\":\"libc addresses contain bytes like 0x7f which are non-printable, triggering exit(-1); need S2 to determine if partial leaks or alternative leak paths exist\"},{\"id\":\"U005\",\"description\":\"Whether FORTIFY_SOURCE is enabled\",\"reason\":\"checksec did not report FORTIFY status; no __*_chk variants of string functions observed in PLT\"}],\"raw\":{\"elf\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /work/ctf/0003-2020-3. Babyheap/ld-2.27.so, BuildID=72fd2d96b39541097f03e86d242f720bd43a2895, not stripped. Entry=0x1100. RPATH=/work/ctf/0003-2020-3. Babyheap. NEEDED: libc.so.6. Compiler: GCC 10.2.0 (Debian 10.2.0-5). Source: babynote.c\",\"sections\":\".init@0x1000(0x17,AX) .plt@0x1020(0xd0,AX) .plt.got@0x10f0(0x8,AX) .text@0x1100(0x721,AX) .fini@0x1824(0x9,AX) .rodata@0x2000(0x16b,A) .eh_frame_hdr@0x216c(0x6c,A) .eh_frame@0x21d8(0x1c8,A) .init_array@0x3d60(0x8,WA) .fini_array@0x3d68(0x8,WA) .got@0x3f60(0xa0,WA->RELRO) .data@0x4000(0x10,WA) .bss@0x4020(0xb8,WA) .dynamic@0x6138(0x200,WA)\",\"symbols\":\"main@0x16cd create_note@0x1587 drop_note@0x1380 view_note@0x1444 read_input@0x129e secure_print@0x11e5 menu@0x1331 note_list@0x4060(112B) idx@0x40d0(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040. Imports: free puts putchar printf read malloc setvbuf alarm exit __isoc99_scanf __ctype_b_loc __stack_chk_fail __libc_start_main __cxa_finalize\",\"disassembly\":\"main(0x16cd): setvbuf(stdin/stdout/stderr,_IONBF), alarm(60), loop{menu(); scanf(%lld,&choice); switch(choice){1->create_note,2->drop_note,3->view_note,4->exit(0)}}. create_note(0x1587): if(idx>0x13)exit; printf('size?'); scanf(%lld,&size); if(size>0x500)exit; header=malloc(0x10); [header]=size; data=malloc(size); [header+8]=data; read_input(data,size); note_list[idx]=header; printf('note #%lld',idx); idx++. drop_note(0x1380): printf('Which note?'); scanf(%llu,&idx_in); if(idx_in>0x13||idx_in>=idx)invalid; ptr=note_list[idx_in]; free([ptr+8]); free(ptr); local=0(NOT note_list!); puts('done.'). view_note(0x1444): scanf(%llu,&idx_in); validate; ptr=note_list[idx_in]; scanf(%llu,&offset); if(offset>=[ptr])invalid; scanf(%llu,&length); if(offset+length>[ptr])invalid; secure_print([ptr+8]+offset,length). secure_print(0x11e5): for(i=0;i<length;i++){if(buf[i]==0)break; if(i>=length)break; if(!isprint(buf[i])){puts('CHEATER');exit(-1);} putchar(buf[i]);} puts('something goes wrong.'). read_input(0x129e): for(i=0;i<size;i++){read(0,buf+i,1); if(buf[i]==0x0a){i++;break;}} if(i==0)exit(-1); buf[i-1]=0.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0003-2020-3._Babyheap-20260904-235752/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1100",
+      "dynamic": true,
+      "stripped": false,
+      "file_type": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /work/ctf/0003-2020-3. Babyheap/ld-2.27.so, BuildID=72fd2d96b39541097f03e86d242f720bd43a2895, for GNU/Linux 3.2.0",
+      "compiler": "GCC 10.2.0 (Debian 10.2.0-5)",
+      "source_file": "babynote.c"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "unknown",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      },
+      "rpath": {
+        "value": "/work/ctf/0003-2020-3. Babyheap",
+        "source": "ELF"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.27",
+        "full_version": "Ubuntu GLIBC 2.27-3ubuntu1.2",
+        "path": "/work/ctf/0003-2020-3. Babyheap/libc.so.6",
+        "size": 2030544,
+        "source": "RUNTIME",
+        "has_tcache": true,
+        "tcache_double_free_check": false
+      },
+      "loader": {
+        "path": "/work/ctf/0003-2020-3. Babyheap/ld-2.27.so",
+        "size": 179152,
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "needed": true,
+          "resolved_path": "/work/ctf/0003-2020-3. Babyheap/libc.so.6",
+          "rpath": "/work/ctf/0003-2020-3. Babyheap",
+          "runpath": null,
+          "search_order_note": "RPATH set to /work/ctf/0003-2020-3. Babyheap; libc resolved from RPATH directory, not system path. LD_LIBRARY_PATH would take precedence over RPATH per glibc search order.",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "ld-2.27.so",
+          "needed": false,
+          "resolved_path": "/work/ctf/0003-2020-3. Babyheap/ld-2.27.so",
+          "note": "Program interpreter (PT_INTERP), loaded at process startup",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "linux-vdso.so.1",
+          "needed": false,
+          "resolved_path": "0x00007dbcf018b000",
+          "note": "Kernel-provided virtual shared object",
+          "source": "RUNTIME"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main (0x16cd)",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "option": "1",
+          "label": "create note",
+          "function": "create_note (0x1587)"
+        },
+        {
+          "option": "2",
+          "label": "drop note",
+          "function": "drop_note (0x1380)"
+        },
+        {
+          "option": "3",
+          "label": "view note",
+          "function": "view_note (0x1444)"
+        },
+        {
+          "option": "4",
+          "label": "exit",
+          "function": "exit(0)"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf(%lld)",
+          "function": "main",
+          "description": "Menu selection 1-4"
+        },
+        {
+          "name": "note_size",
+          "source": "scanf(%lld)",
+          "function": "create_note",
+          "description": "Size for data allocation, checked <= 0x500"
+        },
+        {
+          "name": "note_data",
+          "source": "read_input -> read(0, buf, size)",
+          "function": "create_note",
+          "description": "Content written to note data chunk"
+        },
+        {
+          "name": "drop_index",
+          "source": "scanf(%llu)",
+          "function": "drop_note",
+          "description": "Index of note to free, checked <= 0x13 and < idx"
+        },
+        {
+          "name": "view_index",
+          "source": "scanf(%llu)",
+          "function": "view_note",
+          "description": "Index of note to view, checked <= 0x13 and < idx"
+        },
+        {
+          "name": "view_offset",
+          "source": "scanf(%llu)",
+          "function": "view_note",
+          "description": "Offset within note data to start printing from"
+        },
+        {
+          "name": "view_length",
+          "source": "scanf(%llu)",
+          "function": "view_note",
+          "description": "Length of data to print"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x17",
+          "permissions": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xd0",
+          "permissions": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".plt.got",
+          "address": "0x10f0",
+          "size": "0x8",
+          "permissions": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".text",
+          "address": "0x1100",
+          "size": "0x721",
+          "permissions": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".fini",
+          "address": "0x1824",
+          "size": "0x9",
+          "permissions": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x16b",
+          "permissions": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x216c",
+          "size": "0x6c",
+          "permissions": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x21d8",
+          "size": "0x1c8",
+          "permissions": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d60",
+          "size": "0x8",
+          "permissions": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d68",
+          "size": "0x8",
+          "permissions": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x3f60",
+          "size": "0xa0",
+          "permissions": "WA (RELRO: read-only after relocation)",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0x10",
+          "permissions": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x4020",
+          "size": "0xb8",
+          "permissions": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x6138",
+          "size": "0x200",
+          "permissions": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x4020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4030",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x4048",
+          "size": 1,
+          "section": ".bss",
+          "type": "flag"
+        },
+        {
+          "name": "note_list",
+          "address": "0x4060",
+          "size": 112,
+          "section": ".bss",
+          "type": "pointer array",
+          "count": 14,
+          "element_size": 8,
+          "element_type": "pointer to note struct (0x10 bytes: [size, data_ptr])"
+        },
+        {
+          "name": "idx",
+          "address": "0x40d0",
+          "size": 8,
+          "section": ".bss",
+          "type": "int64 (note count)"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3f78",
+          "symbol": "free@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f80",
+          "symbol": "putchar@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f88",
+          "symbol": "puts@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f90",
+          "symbol": "__stack_chk_fail@GLIBC_2.4",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3f98",
+          "symbol": "printf@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fa0",
+          "symbol": "alarm@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fa8",
+          "symbol": "read@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fb0",
+          "symbol": "malloc@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fb8",
+          "symbol": "setvbuf@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fc0",
+          "symbol": "__isoc99_scanf@GLIBC_2.7",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fc8",
+          "symbol": "exit@GLIBC_2.2.5",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fd0",
+          "symbol": "__ctype_b_loc@GLIBC_2.3",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fe0",
+          "symbol": "__libc_start_main@GLIBC_2.2.5",
+          "type": "GLOB_DAT"
+        },
+        {
+          "offset": "0x3ff8",
+          "symbol": "__cxa_finalize@GLIBC_2.2.5",
+          "type": "GLOB_DAT"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x1030",
+          "symbol": "free@plt"
+        },
+        {
+          "address": "0x1040",
+          "symbol": "putchar@plt"
+        },
+        {
+          "address": "0x1050",
+          "symbol": "puts@plt"
+        },
+        {
+          "address": "0x1060",
+          "symbol": "__stack_chk_fail@plt"
+        },
+        {
+          "address": "0x1070",
+          "symbol": "printf@plt"
+        },
+        {
+          "address": "0x1080",
+          "symbol": "alarm@plt"
+        },
+        {
+          "address": "0x1090",
+          "symbol": "read@plt"
+        },
+        {
+          "address": "0x10a0",
+          "symbol": "malloc@plt"
+        },
+        {
+          "address": "0x10b0",
+          "symbol": "setvbuf@plt"
+        },
+        {
+          "address": "0x10c0",
+          "symbol": "__isoc99_scanf@plt"
+        },
+        {
+          "address": "0x10d0",
+          "symbol": "exit@plt"
+        },
+        {
+          "address": "0x10e0",
+          "symbol": "__ctype_b_loc@plt"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x16cd",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm",
+          "menu",
+          "scanf",
+          "create_note",
+          "drop_note",
+          "view_note",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "menu_choice",
+            "source": "scanf(%lld, &rbp-0x10)"
+          }
+        ],
+        "checks": [
+          "menu_choice == 1 -> create_note",
+          "menu_choice == 2 -> drop_note",
+          "menu_choice == 3 -> view_note",
+          "menu_choice == 4 -> exit(0)"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf(stdin,0,2,0)",
+          "setvbuf(stdout,0,2,0)",
+          "setvbuf(stderr,0,2,0)",
+          "alarm(0x3c=60s)",
+          "menu()",
+          "scanf",
+          "create_note",
+          "drop_note",
+          "view_note",
+          "exit"
+        ],
+        "behavior": "Initializes stdin/stdout/stderr buffering (setvbuf _IONBF), sets alarm(60s), then loops: call menu(), scanf menu choice, dispatch to create_note/drop_note/view_note/exit. Loop continues until exit(0)."
+      },
+      {
+        "name": "create_note",
+        "address": "0x1587",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "malloc",
+          "printf",
+          "scanf",
+          "read_input",
+          "puts"
+        ],
+        "inputs": [
+          {
+            "name": "size",
+            "source": "scanf(%lld, &rbp-0x18)"
+          }
+        ],
+        "checks": [
+          "idx <= 0x13 (19): if idx > 0x13, prints 'Too many note' and exit(0)",
+          "size <= 0x500 (1280): if size > 0x500, prints 'Too long!' and exit(0)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOCATE",
+            "destination": "heap chunk (0x10 bytes)",
+            "size": 16,
+            "function": "malloc(0x10)",
+            "note": "struct header: [size at +0x0, data_ptr at +0x8]"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "[struct+0x0] = size",
+            "size": 8,
+            "description": "Store user-provided size into struct header field 0"
+          },
+          {
+            "operation": "ALLOCATE",
+            "destination": "heap chunk (size bytes)",
+            "size": "user-controlled (<=0x500)",
+            "function": "malloc(size)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "[struct+0x8] = data_ptr",
+            "size": 8,
+            "description": "Store data chunk pointer into struct header field 1"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "note_list[idx*8] = struct_ptr",
+            "size": 8,
+            "address": "0x4060 + idx*8",
+            "description": "Store struct pointer into global note_list array"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "idx = idx + 1",
+            "size": 8,
+            "address": "0x40d0",
+            "description": "Increment global note counter"
+          }
+        ],
+        "calls": [
+          "malloc(0x10)",
+          "malloc(size)",
+          "read_input(data_ptr, size)",
+          "printf('You now make a note #%lld', idx)"
+        ],
+        "behavior": "Checks idx<=0x13 and size<=0x500. Allocates 0x10-byte struct header via malloc(0x10). Stores size at [header+0x0]. Allocates data chunk via malloc(size), stores ptr at [header+0x8]. Calls read_input(data_ptr, size) to read user content. Stores header ptr into note_list[idx]. Increments idx. Prints note number."
+      },
+      {
+        "name": "drop_note",
+        "address": "0x1380",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "scanf",
+          "free"
+        ],
+        "inputs": [
+          {
+            "name": "index",
+            "source": "scanf(%llu, &rbp-0x18)"
+          }
+        ],
+        "checks": [
+          "index <= 0x13 (unsigned): if index > 0x13, prints 'Invalid index.'",
+          "index < idx: if index >= idx, prints 'Invalid index.'"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "struct_ptr = note_list[index*8]",
+            "address": "0x4060 + index*8",
+            "size": 8,
+            "description": "Load note struct pointer from global array"
+          },
+          {
+            "operation": "FREE",
+            "destination": "[struct_ptr+0x8] (data chunk)",
+            "function": "free(data_ptr)",
+            "description": "Free the data chunk"
+          },
+          {
+            "operation": "FREE",
+            "destination": "struct_ptr (header chunk)",
+            "function": "free(struct_ptr)",
+            "description": "Free the struct header chunk"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "local var [rbp-0x10] = 0",
+            "size": 8,
+            "description": "Sets LOCAL variable to NULL (NOT the note_list entry)"
+          }
+        ],
+        "calls": [
+          "free(data_ptr)",
+          "free(struct_ptr)",
+          "puts('done.')"
+        ],
+        "behavior": "Reads index via scanf(%llu). Checks index<=0x13 and index<idx. Loads struct_ptr from note_list[index]. Frees data chunk at [struct_ptr+0x8] first, then frees struct_ptr itself. Sets LOCAL variable [rbp-0x10] to 0 (NOT note_list[index]). Prints 'done.'. CRITICAL: note_list[index] is NOT cleared to NULL, and idx is NOT decremented."
+      },
+      {
+        "name": "view_note",
+        "address": "0x1444",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts",
+          "scanf",
+          "secure_print"
+        ],
+        "inputs": [
+          {
+            "name": "index",
+            "source": "scanf(%llu, &rbp-0x28)"
+          },
+          {
+            "name": "offset",
+            "source": "scanf(%llu, &rbp-0x18)"
+          },
+          {
+            "name": "length",
+            "source": "scanf(%llu, &rbp-0x20)"
+          }
+        ],
+        "checks": [
+          "index <= 0x13 (unsigned): if > 0x13, prints 'Invalid index.'",
+          "index < idx: if >= idx, prints 'Invalid index.'",
+          "offset < [struct_ptr+0x0] (size): if offset >= size, prints 'Invalid offset.'",
+          "offset + length <= [struct_ptr+0x0] (size): if offset+length > size, prints 'Invalid lenght.'"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "struct_ptr = note_list[index*8]",
+            "address": "0x4060 + index*8",
+            "size": 8
+          },
+          {
+            "operation": "READ",
+            "destination": "size = [struct_ptr+0x0]",
+            "size": 8,
+            "description": "Read stored size from struct header"
+          },
+          {
+            "operation": "READ",
+            "destination": "data_ptr = [struct_ptr+0x8]",
+            "size": 8,
+            "description": "Read data pointer from struct header"
+          },
+          {
+            "operation": "READ",
+            "destination": "secure_print(data_ptr + offset, length)",
+            "size": "user-controlled length",
+            "description": "Print length bytes from data_ptr+offset via secure_print"
+          }
+        ],
+        "calls": [
+          "scanf",
+          "secure_print(data_ptr+offset, length)"
+        ],
+        "behavior": "Reads index, offset, length. Validates index<idx and index<=0x13. Validates offset < size and offset+length <= size. Calls secure_print(data_ptr + offset, length) to output note content."
+      },
+      {
+        "name": "secure_print",
+        "address": "0x11e5",
+        "callers": [
+          "view_note"
+        ],
+        "callees": [
+          "__ctype_b_loc",
+          "putchar",
+          "puts",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "buf (rdi)",
+            "source": "data_ptr + offset (from view_note)"
+          },
+          {
+            "name": "length (rsi)",
+            "source": "user-controlled length (from view_note)"
+          }
+        ],
+        "checks": [
+          "For each byte i in [0, length): calls __ctype_b_loc() and checks if byte is printable (flag 0x4000 = _ISprint). If NOT printable, prints 'You are CHEATER!!!!' and calls exit(-1).",
+          "Loop terminates when byte == 0 (NUL) or i >= length."
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "byte = buf[i]",
+            "size": 1,
+            "description": "Read each byte from buffer"
+          },
+          {
+            "operation": "CALL",
+            "destination": "putchar(byte)",
+            "description": "Output printable byte via putchar"
+          }
+        ],
+        "calls": [
+          "__ctype_b_loc()",
+          "putchar(byte)",
+          "puts('You are CHEATER!!!!')",
+          "exit(-1)"
+        ],
+        "behavior": "Iterates over buf[0..length). For each byte, checks printability via __ctype_b_loc bitmask 0x4000. If printable, outputs via putchar. If non-printable byte encountered, prints error and exit(-1). Stops at NUL byte or when i>=length. After loop, prints 'something goes wrong.'"
+      },
+      {
+        "name": "read_input",
+        "address": "0x129e",
+        "callers": [
+          "create_note"
+        ],
+        "callees": [
+          "read",
+          "puts",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "buf (rdi)",
+            "source": "data_ptr from create_note"
+          },
+          {
+            "name": "size (rsi)",
+            "source": "user-controlled size from create_note"
+          }
+        ],
+        "checks": [
+          "Loop: i < size, reads one byte at a time via read(0, buf+i, 1).",
+          "If byte == 0x0a (newline): increments i and breaks loop.",
+          "If i == 0 after loop (no input read): prints 'something goes wrong.' and exit(-1)."
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "buf[i] = read(0, buf+i, 1)",
+            "size": 1,
+            "description": "Write one byte at a time from stdin to buffer"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "buf[i-1] = 0x00 (NUL)",
+            "size": 1,
+            "description": "NUL-terminate: replaces last byte (newline position) with NUL"
+          }
+        ],
+        "calls": [
+          "read(0, buf+i, 1)",
+          "puts('something goes wrong.')",
+          "exit(-1)"
+        ],
+        "behavior": "Reads input byte-by-byte via read(0, buf+i, 1) up to size bytes. Stops on newline (0x0a). If no bytes read, exits. NUL-terminates at position i-1 (replacing the newline)."
+      },
+      {
+        "name": "menu",
+        "address": "0x1331",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "puts"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "puts x6"
+        ],
+        "behavior": "Prints menu: '============', '1. create note', '2. drop note', '3. view note', '4. exit', '============'"
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "drop_note",
+        "input": "index (scanf %llu)",
+        "operation": "free(data_ptr) then free(struct_ptr) without clearing note_list[index] or decrementing idx",
+        "risk": "HIGH",
+        "reason": "After free, note_list[index] still holds the old struct_ptr (dangling pointer). idx is not decremented, so the same index can be selected again. This creates a Use-After-Free condition: view_note can read freed chunk content, and create_note can allocate new chunks that overlap freed ones. Double-free is also possible since the same index can be freed repeatedly (no NULL check on note_list[index] before free)."
+      },
+      {
+        "function": "view_note",
+        "input": "index + offset + length (all scanf %llu)",
+        "operation": "READ: secure_print(data_ptr + offset, length) where data_ptr comes from freed struct",
+        "risk": "HIGH",
+        "reason": "If the note at 'index' has been freed (UAF from drop_note), data_ptr at [struct_ptr+0x8] may contain heap metadata (fd/bk pointers). view_note reads offset and length from user, validates against [struct_ptr+0x0] (stored size), then calls secure_print on data_ptr+offset. If struct_ptr itself is freed and reallocated, [struct_ptr+0x0] and [struct_ptr+0x8] are attacker-controlled, enabling arbitrary read (subject to secure_print printable-byte restriction)."
+      },
+      {
+        "function": "create_note",
+        "input": "size (scanf %lld, <= 0x500)",
+        "operation": "malloc(0x10) for struct header, malloc(size) for data, then read_input writes user data into data chunk",
+        "risk": "MEDIUM",
+        "reason": "After UAF/double-free, malloc(0x10) or malloc(size) may return a previously freed chunk. If the struct header chunk (0x10) is returned from a tcache bin containing a poisoned fd pointer, the attacker controls [struct+0x0] (size) and [struct+0x8] (data_ptr), which view_note dereferences. This is the write primitive path: writing into the data chunk via read_input can overwrite arbitrary memory if data_ptr was poisoned."
+      },
+      {
+        "function": "secure_print",
+        "input": "buf pointer + length (from view_note, ultimately user-controlled via offset/length)",
+        "operation": "READ: iterates buf[0..length), checks printability, outputs via putchar",
+        "risk": "MEDIUM",
+        "reason": "secure_print acts as an information leak channel but with a strict constraint: any non-printable byte (outside isprint mask 0x4000) triggers exit(-1). This limits direct leaking of libc addresses (which contain non-printable bytes like 0x7f). Heap addresses with printable bytes may be leakable. The length parameter is user-controlled, allowing reading beyond intended bounds if the size check in view_note is bypassed via UAF."
+      },
+      {
+        "function": "dependency_resolution",
+        "input": "RPATH = /work/ctf/0003-2020-3. Babyheap",
+        "operation": "libc.so.6 resolved from RPATH directory; LD_LIBRARY_PATH takes precedence over RPATH in glibc search order",
+        "risk": "LOW",
+        "reason": "RPATH is set to a specific directory containing the intended libc.so.6 (glibc 2.27). No RUNPATH present. LD_LIBRARY_PATH would take precedence over RPATH, but this is an environmental concern, not a binary vulnerability. The libc is the intended Ubuntu 2.27-3ubuntu1.2 with tcache and no tcache double-free protection."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF 64-bit LSB PIE executable, x86-64, dynamically linked, not stripped, compiled with GCC 10.2.0 (Debian)",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, Canary, NX, PIE all enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "RPATH set to /work/ctf/0003-2020-3. Babyheap; interpreter is /work/ctf/0003-2020-3. Babyheap/ld-2.27.so",
+        "source": "ELF"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "Only NEEDED library is libc.so.6, resolved to /work/ctf/0003-2020-3. Babyheap/libc.so.6 (glibc 2.27, Ubuntu GLIBC 2.27-3ubuntu1.2)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "glibc 2.27 has tcache mechanism with no double-free check (tcache double-free protection added in 2.29+)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "Global variable note_list at 0x4060, size 112 bytes (14 pointers x 8 bytes), stores pointers to note struct headers",
+        "source": "ELF"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "Global variable idx at 0x40d0, size 8 bytes, stores current note count (int64)",
+        "source": "ELF"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "Note struct layout: 0x10 bytes, [offset+0x0: size (8 bytes)], [offset+0x8: data_ptr (8 bytes)]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "create_note checks idx<=0x13 (max 20 notes, 0-indexed 0..19) and size<=0x500 (1280 bytes)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "create_note allocates struct header via malloc(0x10), stores size at [header+0x0], allocates data via malloc(size), stores ptr at [header+0x8], stores header into note_list[idx], increments idx",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "drop_note frees data chunk [struct_ptr+0x8] then struct_ptr, but does NOT clear note_list[index] to NULL and does NOT decrement idx",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "drop_note sets local variable [rbp-0x10] to 0 after free, but this is a stack local, NOT the note_list global entry",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "drop_note does not check if note_list[index] is NULL before freeing, allowing double-free on the same index",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "view_note validates: index<=0x13, index<idx, offset<[struct_ptr+0x0], offset+length<=[struct_ptr+0x0], then calls secure_print(data_ptr+offset, length)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "secure_print checks each byte via __ctype_b_loc() bitmask 0x4000 (isprint); non-printable byte triggers puts('You are CHEATER!!!!') and exit(-1)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "read_input reads byte-by-byte via read(0, buf+i, 1), stops on newline 0x0a, NUL-terminates at position i-1; exits if no input",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "main sets alarm(0x3c=60 seconds) at startup, providing a 60-second timeout",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "main disables buffering on stdin/stdout/stderr via setvbuf(..., _IONBF)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F019",
+        "type": "FACT",
+        "description": "GOT is Full RELRO (read-only after relocation), so GOT overwrite is not viable",
+        "source": "ELF"
+      },
+      {
+        "id": "F020",
+        "type": "FACT",
+        "description": "BSS layout: stdout@0x4020, stdin@0x4030, stderr@0x4040, completed.0@0x4048, note_list@0x4060(112 bytes), idx@0x40d0",
+        "source": "ELF"
+      },
+      {
+        "id": "F021",
+        "type": "DERIVED",
+        "description": "note_list (0x4060, 112 bytes) and idx (0x40d0, 8 bytes) are adjacent in BSS; note_list ends at 0x40d0 which is exactly where idx begins",
+        "source": "ELF"
+      },
+      {
+        "id": "F022",
+        "type": "FACT",
+        "description": "I/O confirmed via probe: menu prints '============', options 1-4, prompt '>' after menu; create_note prompts 'size?', then 'Lesson begin, time to jot note...', reads data, prints 'Lesson end.' and 'You now make a note #N'; view_note prompts 'Which note?', 'Offset?', 'Who long?'",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F023",
+        "type": "FACT",
+        "description": "scanf format for menu/size is %lld (signed long long); scanf format for index/offset/length is %llu (unsigned long long)",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether ASLR is enabled in the runtime environment",
+        "reason": "Cannot confirm from static analysis; PIE is enabled but ASLR depends on kernel settings"
+      },
+      {
+        "id": "U002",
+        "description": "Whether seccomp or other sandbox restrictions are in place",
+        "reason": "No seccomp-related symbols or prctl calls found in binary, but kernel-level seccomp cannot be ruled out from static analysis alone"
+      },
+      {
+        "id": "U003",
+        "description": "Exact heap layout at runtime and tcache bin state after free operations",
+        "reason": "Requires dynamic analysis to observe actual heap state; static analysis can only identify the free/reuse pattern"
+      },
+      {
+        "id": "U004",
+        "description": "Whether secure_print's printable-byte restriction can be bypassed to leak libc addresses",
+        "reason": "libc addresses contain bytes like 0x7f which are non-printable, triggering exit(-1); need S2 to determine if partial leaks or alternative leak paths exist"
+      },
+      {
+        "id": "U005",
+        "description": "Whether FORTIFY_SOURCE is enabled",
+        "reason": "checksec did not report FORTIFY status; no __*_chk variants of string functions observed in PLT"
+      }
+    ],
+    "raw": {
+      "elf": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /work/ctf/0003-2020-3. Babyheap/ld-2.27.so, BuildID=72fd2d96b39541097f03e86d242f720bd43a2895, not stripped. Entry=0x1100. RPATH=/work/ctf/0003-2020-3. Babyheap. NEEDED: libc.so.6. Compiler: GCC 10.2.0 (Debian 10.2.0-5). Source: babynote.c",
+      "sections": ".init@0x1000(0x17,AX) .plt@0x1020(0xd0,AX) .plt.got@0x10f0(0x8,AX) .text@0x1100(0x721,AX) .fini@0x1824(0x9,AX) .rodata@0x2000(0x16b,A) .eh_frame_hdr@0x216c(0x6c,A) .eh_frame@0x21d8(0x1c8,A) .init_array@0x3d60(0x8,WA) .fini_array@0x3d68(0x8,WA) .got@0x3f60(0xa0,WA->RELRO) .data@0x4000(0x10,WA) .bss@0x4020(0xb8,WA) .dynamic@0x6138(0x200,WA)",
+      "symbols": "main@0x16cd create_note@0x1587 drop_note@0x1380 view_note@0x1444 read_input@0x129e secure_print@0x11e5 menu@0x1331 note_list@0x4060(112B) idx@0x40d0(8B) stdout@0x4020 stdin@0x4030 stderr@0x4040. Imports: free puts putchar printf read malloc setvbuf alarm exit __isoc99_scanf __ctype_b_loc __stack_chk_fail __libc_start_main __cxa_finalize",
+      "disassembly": "main(0x16cd): setvbuf(stdin/stdout/stderr,_IONBF), alarm(60), loop{menu(); scanf(%lld,&choice); switch(choice){1->create_note,2->drop_note,3->view_note,4->exit(0)}}. create_note(0x1587): if(idx>0x13)exit; printf('size?'); scanf(%lld,&size); if(size>0x500)exit; header=malloc(0x10); [header]=size; data=malloc(size); [header+8]=data; read_input(data,size); note_list[idx]=header; printf('note #%lld',idx); idx++. drop_note(0x1380): printf('Which note?'); scanf(%llu,&idx_in); if(idx_in>0x13||idx_in>=idx)invalid; ptr=note_list[idx_in]; free([ptr+8]); free(ptr); local=0(NOT note_list!); puts('done.'). view_note(0x1444): scanf(%llu,&idx_in); validate; ptr=note_list[idx_in]; scanf(%llu,&offset); if(offset>=[ptr])invalid; scanf(%llu,&length); if(offset+length>[ptr])invalid; secure_print([ptr+8]+offset,length). secure_print(0x11e5): for(i=0;i<length;i++){if(buf[i]==0)break; if(i>=length)break; if(!isprint(buf[i])){puts('CHEATER');exit(-1);} putchar(buf[i]);} puts('something goes wrong.'). read_input(0x129e): for(i=0;i<size;i++){read(0,buf+i,1); if(buf[i]==0x0a){i++;break;}} if(i==0)exit(-1); buf[i-1]=0."
+    }
+  }
+}

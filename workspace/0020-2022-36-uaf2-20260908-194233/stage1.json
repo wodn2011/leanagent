@@ -1,0 +1,985 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0020-2022-36-uaf2-20260908-194233/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x401190\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB executable, x86-64, SYSV\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04)\",\"source_file\":\"zoo.c\",\"build_id\":\"e3bd0f41acd579b8362bbe50b427a0f7f3044ab4\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\",\"detail\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":\"none\",\"runpath\":\"none\",\"ld_library_path_priority\":\"LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"Add animal\",\"function\":\"add_animal\",\"address\":\"0x401421\"},{\"option\":\"2\",\"label\":\"Remove animal\",\"function\":\"remove_animal\",\"address\":\"0x4015ed\"},{\"option\":\"3\",\"label\":\"Report animal Name\",\"function\":\"report_name\",\"address\":\"0x401735\"},{\"option\":\"0\",\"label\":\"Exit\",\"function\":\"main_exit\",\"address\":\"0x4018b7\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%d)\",\"function\":\"menu\",\"detail\":\"0-4 valid, 0 exits\"},{\"name\":\"animal_type\",\"source\":\"scanf(%d)\",\"function\":\"add_animal\",\"detail\":\"1=Parrot(type=0), 2=Panda(type=1)\"},{\"name\":\"animal_name\",\"source\":\"read(0, buf, 0x18)\",\"function\":\"add_animal\",\"detail\":\"24 bytes read into heap name buffer\"},{\"name\":\"zone_index\",\"source\":\"scanf(%d)\",\"function\":\"remove_animal\",\"detail\":\"0-9 valid index\"},{\"name\":\"zone_index\",\"source\":\"scanf(%d)\",\"function\":\"report_name\",\"detail\":\"0-9 valid index\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x401190\",\"size\":\"0x745\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x402000\",\"size\":\"0x18a\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x404070\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x404080\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x403ff0\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x404000\",\"size\":\"0x70\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x401020\",\"size\":\"0xc0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.sec\",\"address\":\"0x4010e0\",\"size\":\"0xb0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init\",\"address\":\"0x401000\",\"size\":\"0x1b\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x4018d8\",\"size\":\"0xd\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x403e10\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x403e18\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x403e20\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x4021f8\",\"size\":\"0x184\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x40218c\",\"size\":\"0x6c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"zoo\",\"address\":\"0x4040c0\",\"size\":88,\"section\":\".bss\",\"layout\":\"zoo[0]=count(int32 at 0x4040c0, 4 bytes + 4 padding), zoo[1..10]=pointer slots at 0x4040c8..0x404110 (10 x 8 bytes)\",\"element_type\":\"mixed: count + pointer array\",\"count\":11,\"element_size\":8,\"detail\":\"zoo count at offset 0 (int32), 10 animal pointers at offset 8..88\"},{\"name\":\"stdout\",\"address\":\"0x404080\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x404090\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x4040a0\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x4040a8\",\"size\":1,\"section\":\".bss\",\"element_type\":\"flag byte\"}],\"got\":[{\"offset\":\"0x404018\",\"type\":\"JUMP_SLOT\",\"symbol\":\"free@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404020\",\"type\":\"JUMP_SLOT\",\"symbol\":\"putchar@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404028\",\"type\":\"JUMP_SLOT\",\"symbol\":\"puts@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404030\",\"type\":\"JUMP_SLOT\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\",\"writable\":true},{\"offset\":\"0x404038\",\"type\":\"JUMP_SLOT\",\"symbol\":\"system@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404040\",\"type\":\"JUMP_SLOT\",\"symbol\":\"printf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404048\",\"type\":\"JUMP_SLOT\",\"symbol\":\"alarm@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404050\",\"type\":\"JUMP_SLOT\",\"symbol\":\"read@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404058\",\"type\":\"JUMP_SLOT\",\"symbol\":\"malloc@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404060\",\"type\":\"JUMP_SLOT\",\"symbol\":\"setvbuf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404068\",\"type\":\"JUMP_SLOT\",\"symbol\":\"__isoc99_scanf@GLIBC_2.7\",\"writable\":true},{\"offset\":\"0x403ff0\",\"type\":\"GLOB_DAT\",\"symbol\":\"__libc_start_main@GLIBC_2.34\",\"writable\":true},{\"offset\":\"0x403ff8\",\"type\":\"GLOB_DAT\",\"symbol\":\"__gmon_start__@Base\",\"writable\":true}],\"plt\":[{\"address\":\"0x4010e0\",\"symbol\":\"free@plt\"},{\"address\":\"0x4010f0\",\"symbol\":\"putchar@plt\"},{\"address\":\"0x401100\",\"symbol\":\"puts@plt\"},{\"address\":\"0x401110\",\"symbol\":\"__stack_chk_fail@plt\"},{\"address\":\"0x401120\",\"symbol\":\"system@plt\"},{\"address\":\"0x401130\",\"symbol\":\"printf@plt\"},{\"address\":\"0x401140\",\"symbol\":\"alarm@plt\"},{\"address\":\"0x401150\",\"symbol\":\"read@plt\"},{\"address\":\"0x401160\",\"symbol\":\"malloc@plt\"},{\"address\":\"0x401170\",\"symbol\":\"setvbuf@plt\"},{\"address\":\"0x401180\",\"symbol\":\"__isoc99_scanf@plt\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x40184d\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"putchar\"],\"inputs\":[{\"name\":\"argc\",\"source\":\"argv\"},{\"name\":\"argv\",\"source\":\"argv\"}],\"checks\":[\"menu return value compared against 1/2/3; default case sets exit flag\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"putchar\"],\"behavior\":\"Loop: call menu, dispatch 1->add_animal, 2->remove_animal, 3->report_name, 0->exit. putchar(0xa) after each iteration.\"},{\"name\":\"init\",\"address\":\"0x4012d2\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"behavior\":\"setvbuf(stdin/stdout/stderr, 0, 2, 0) to disable buffering; alarm(0x3c=60s).\"},{\"name\":\"menu\",\"address\":\"0x401341\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"putchar\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf(%d) into stack var [rbp-0xc]\"}],\"checks\":[\"choice >= 0 and choice <= 4, else prints error and re-prompts\"],\"memory_operations\":[],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"putchar\"],\"behavior\":\"Prints menu via print() (which calls system + printf), reads int choice, validates 0-4, returns choice in eax.\"},{\"name\":\"print\",\"address\":\"0x401276\",\"callers\":[\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"speak\"],\"callees\":[\"system\",\"printf\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi argument (string pointer)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"CALL\",\"destination\":\"system(\\\"/usr/bin/date +\\\\\\\"%Y/%m/%d %H:%M.%S\\\\\\\" | tr -d '\\\\\\\\n: '\\\")\",\"size\":0,\"destination_type\":\"hardcoded_command\"},{\"operation\":\"WRITE\",\"destination\":\"stdout via printf\",\"size\":0,\"destination_type\":\"format_string_output\"}],\"calls\":[\"system\",\"printf\"],\"behavior\":\"Calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). The system() call executes a shell command (date formatting).\"},{\"name\":\"speak\",\"address\":\"0x4012b3\",\"callers\":[\"indirect call from report_name via function pointer\"],\"callees\":[\"print\"],\"inputs\":[{\"name\":\"animal_ptr\",\"source\":\"rdi argument (animal object pointer)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"print\"],\"behavior\":\"Wrapper: passes its argument directly to print(). This is the default function pointer stored in animal->func_ptr (offset 0) during add_animal.\"},{\"name\":\"add_animal\",\"address\":\"0x401421\",\"callers\":[\"main\"],\"callees\":[\"print\",\"malloc\",\"printf\",\"__isoc99_scanf\",\"puts\",\"read\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"animal_type\",\"source\":\"scanf(%d) into [rbp-0x18]\"},{\"name\":\"animal_name\",\"source\":\"read(0, name_buf, 0x18) into heap buffer\"}],\"checks\":[\"zoo count (at 0x4040c0) <= 9, else 'zoo full'\",\"finds first empty slot (zoo[idx+8]==NULL) for idx 0..9\",\"animal_type==1 -> type=0(Parrot), ==2 -> type=1(Panda), else re-prompt\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x18) -> animal object (24 bytes)\",\"size\":24,\"destination_type\":\"heap\"},{\"operation\":\"WRITE\",\"destination\":\"animal->type (offset 0x8, int32)\",\"size\":4,\"destination_type\":\"struct_field\"},{\"operation\":\"WRITE\",\"destination\":\"animal->func_ptr (offset 0x0)\",\"size\":8,\"destination_type\":\"struct_field\",\"value\":\"address of speak (0x4012b3)\"},{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x18) -> name_buf (24 bytes)\",\"size\":24,\"destination_type\":\"heap\"},{\"operation\":\"WRITE\",\"destination\":\"animal->name_ptr (offset 0x10)\",\"size\":8,\"destination_type\":\"struct_field\",\"value\":\"name_buf pointer\"},{\"operation\":\"READ\",\"source\":\"stdin fd 0\",\"destination\":\"name_buf\",\"size\":24,\"source_type\":\"read()\"},{\"operation\":\"WRITE\",\"destination\":\"zoo[idx+8] (pointer slot at 0x4040c8 + idx*8)\",\"size\":8,\"destination_type\":\"global_array_element\",\"value\":\"animal object pointer\"},{\"operation\":\"WRITE\",\"destination\":\"zoo count (0x4040c0)\",\"size\":4,\"destination_type\":\"global_counter\",\"value\":\"count+1\"}],\"calls\":[\"print\",\"malloc\",\"printf\",\"__isoc99_scanf\",\"puts\",\"read\"],\"behavior\":\"Allocates 24-byte animal struct: [func_ptr(8), type(4+4pad), name_ptr(8)]. Sets func_ptr=speak. Allocates 24-byte name buffer, reads 24 bytes from stdin. Stores animal ptr in first empty zoo slot, increments count. Animal struct layout: offset0=func_ptr, offset8=type(int32), offset0x10=name_ptr.\"},{\"name\":\"remove_animal\",\"address\":\"0x4015ed\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"free\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"zone_index\",\"source\":\"scanf(%d) into [rbp-0xc]\"}],\"checks\":[\"zoo count > 0, else 'no animal'\",\"zone_index >= 0 and <= 9, else error re-prompt\",\"zoo[idx+8] != NULL, else 'no animal in this zone'\"],\"memory_operations\":[{\"operation\":\"FREE\",\"destination\":\"animal->name_ptr (zoo[idx]->offset 0x10)\",\"size\":0,\"destination_type\":\"heap_free\"},{\"operation\":\"FREE\",\"destination\":\"animal object (zoo[idx])\",\"size\":0,\"destination_type\":\"heap_free\"},{\"operation\":\"WRITE\",\"destination\":\"zoo count (0x4040c0)\",\"size\":4,\"destination_type\":\"global_counter\",\"value\":\"count-1\"}],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"free\"],\"behavior\":\"Frees name buffer first (free(animal->name_ptr)), then frees animal struct (free(animal)). Decrements zoo count. CRITICAL: does NOT set zoo[idx+8] to NULL after freeing — the dangling pointer remains in the zoo array.\"},{\"name\":\"report_name\",\"address\":\"0x401735\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"zone_index\",\"source\":\"scanf(%d) into [rbp-0xc]\"}],\"checks\":[\"zoo count > 0, else 'no animal'\",\"zone_index >= 0 and <= 9, else error re-prompt\",\"zoo[idx+8] != NULL, else 'no animal in this zone'\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"zoo[idx+8] (pointer at 0x4040c8 + idx*8)\",\"size\":8,\"source_type\":\"global_array_element\",\"destination\":\"animal pointer\"},{\"operation\":\"READ\",\"source\":\"animal->func_ptr (offset 0x0)\",\"size\":8,\"source_type\":\"struct_field\",\"destination\":\"rdx (call target)\"},{\"operation\":\"READ\",\"source\":\"animal->name_ptr (offset 0x10)\",\"size\":8,\"source_type\":\"struct_field\",\"destination\":\"rdi (call argument)\"},{\"operation\":\"CALL\",\"destination\":\"rdx (indirect call via function pointer from animal->func_ptr)\",\"size\":0,\"destination_type\":\"indirect_call\",\"argument\":\"rdi = animal->name_ptr\"}],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\"],\"behavior\":\"Loads animal pointer from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, then 'call rdx'. This is an indirect call through a function pointer stored in a heap object. If the animal was freed (dangling pointer in zoo), this dereferences freed memory.\"}],\"attack_surfaces\":[{\"function\":\"remove_animal\",\"input\":\"zone_index (scanf)\",\"operation\":\"FREE animal struct + name buffer without NULLing zoo[idx] pointer\",\"risk\":\"HIGH\",\"reason\":\"free(animal) and free(animal->name_ptr) are called but zoo[idx+8] pointer is NOT cleared to NULL. The dangling pointer remains accessible. report_name can later dereference this freed pointer. This is a classic use-after-free pattern: allocate -> free (no clear) -> use via report_name.\"},{\"function\":\"report_name\",\"input\":\"zone_index (scanf)\",\"operation\":\"Indirect call rdx where rdx=animal->func_ptr (offset 0) and rdi=animal->name_ptr (offset 0x10), animal pointer loaded from zoo[idx] which may be dangling\",\"risk\":\"HIGH\",\"reason\":\"After remove_animal frees an animal but leaves the zoo pointer, report_name dereferences the freed heap object: reads func_ptr (offset 0) as call target and name_ptr (offset 0x10) as argument, then 'call rdx'. If the freed chunk is reallocated and overwritten with attacker-controlled data, the attacker controls both the call target and its argument — potential code execution primitive.\"},{\"function\":\"add_animal\",\"input\":\"animal_name (read 0x18 bytes)\",\"operation\":\"READ 24 bytes from stdin into 24-byte heap name buffer (malloc(0x18))\",\"risk\":\"MEDIUM\",\"reason\":\"read(0, name_buf, 0x18) reads exactly 24 bytes into a 24-byte buffer — no overflow here, but the name buffer is the same size (0x18) as the animal struct, meaning a freed animal struct can be reallocated as a name buffer (or vice versa), enabling heap object aliasing for UAF exploitation.\"},{\"function\":\"print\",\"input\":\"msg (rdi argument)\",\"operation\":\"CALL system() with hardcoded date command, then printf('%s', msg)\",\"risk\":\"MEDIUM\",\"reason\":\"print() calls system() — while the command is hardcoded (not attacker-controlled), system@plt is in the GOT at 0x404038 (writable, Partial RELRO). If a function pointer in a freed/reused animal object is overwritten to point to system or a controlled target, the indirect call in report_name could redirect control flow.\"},{\"function\":\"report_name\",\"input\":\"zone_index\",\"operation\":\"READ animal->name_ptr (offset 0x10) and pass to indirect call as rdi argument, then the called function (print/speak) passes it to printf('%s')\",\"risk\":\"MEDIUM\",\"reason\":\"If animal->name_ptr is controlled (via UAF heap reuse), it becomes the argument to the indirect call and is ultimately printed via printf('%s', ptr) — potential arbitrary read if the name_ptr field is overwritten with an arbitrary address.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64, dynamically linked, not stripped, No PIE (base 0x400000), source file zoo.c, compiled with GCC 11.3.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary found, No PIE, SHSTK enabled, IBT enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2; only NEEDED dependency is libc.so.6; no RPATH/RUNPATH set\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Global variable zoo at 0x4040c0, size 88 bytes in .bss. Layout: offset 0 = count (int32, 4 bytes + 4 padding), offset 8 = 10 pointer slots (8 bytes each) at 0x4040c8..0x404110\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Animal struct is 24 bytes (malloc(0x18)): offset 0x0 = func_ptr (8 bytes, set to speak=0x4012b3), offset 0x8 = type (int32, 0=Parrot/1=Panda), offset 0x10 = name_ptr (8 bytes, pointer to 24-byte name buffer)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"add_animal allocates two 0x18-byte chunks: animal struct and name buffer. Both are same size (24 bytes), enabling tcache bin aliasing.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"remove_animal calls free(animal->name_ptr) then free(animal), decrements zoo count, but does NOT set zoo[idx+8] to NULL — dangling pointer remains in zoo array\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"report_name loads animal ptr from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, executes 'call rdx' — indirect call through heap-stored function pointer\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"print() at 0x401276 calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). system@plt is at 0x401120, system GOT entry at 0x404038 (writable, Partial RELRO).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"speak() at 0x4012b3 is a wrapper that passes its argument to print(). It is the default func_ptr stored in every animal object at offset 0.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"init() sets stdin/stdout/stderr to unbuffered (setvbuf with mode 2) and sets alarm(60) — 60 second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"menu reads choice via scanf(%d), validates 0-4, returns choice. Options: 1=add, 2=remove, 3=report, 0=exit.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Runtime confirmed: program prints date-prefixed menu, add flow works (type 1=Parrot, name read), report on zone 0 outputs the animal name via the speak->print->printf chain\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"GOT is writable (Partial RELRO): .got.plt at 0x404000 (size 0x70) and .got at 0x403ff0 (size 0x10) are in RW LOAD segment. system@GOT at 0x404038, free@GOT at 0x404018, malloc@GOT at 0x404058.\",\"source\":\"ELF\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; only NEEDED library is libc.so.6 resolved to /lib/x86_64-linux-gnu/libc.so.6. LD_LIBRARY_PATH (if set) would precede system paths in search order.\",\"source\":\"RUNTIME\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"Since animal struct (0x18) and name buffer (0x18) are the same malloc size, after remove_animal frees both, a subsequent add_animal's name buffer malloc(0x18) can reuse the freed animal struct chunk (same tcache bin), allowing attacker to write 24 bytes of name data that overlaps the animal struct fields (func_ptr at offset 0, type at offset 8, name_ptr at offset 0x10).\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact glibc tcache behavior and chunk alignment at runtime for 0x18-size allocations (24 bytes user data, 0x20 chunk size with header)\",\"reason\":\"Cannot fully determine runtime heap layout without dynamic debugging; glibc 2.39 tcache semantics assumed standard\"},{\"id\":\"U002\",\"description\":\"Whether ASLR is enabled in the target execution environment\",\"reason\":\"No PIE so binary base is fixed at 0x400000, but libc base is randomized if ASLR is on; cannot confirm from static analysis alone\"},{\"id\":\"U003\",\"description\":\"Whether FORTIFY_SOURCE is enabled\",\"reason\":\"checksec did not report FORTIFY; no __*_chk variants of read/printf observed in PLT, suggesting FORTIFY is likely not enabled, but not definitively confirmed\"},{\"id\":\"U004\",\"description\":\"Whether the freed animal pointer in zoo[idx] can survive multiple alloc/free cycles and be reliably aliased\",\"reason\":\"Requires dynamic heap state analysis to confirm tcache reuse ordering\"}],\"raw\":{\"elf\":\"ELF64 LSB executable, x86-64, SYSV, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=e3bd0f41acd579b8362bbe50b427a0f7f3044ab4, not stripped. Entry=0x401190. 13 program headers, 31 sections. LOAD segments: R(0x400000), RX(0x401000), R(0x402000), RW(0x403e10). GNU_STACK=RW (NX). GNU_RELRO=0x403e10 (Partial).\",\"sections\":\"Key sections: .text@0x401190(0x745,X), .rodata@0x402000(0x18a,R), .data@0x404070(0x10,RW), .bss@0x404080(0x98,RW), .got@0x403ff0(0x10,RW), .got.plt@0x404000(0x70,RW), .plt@0x401020(0xc0,X), .plt.sec@0x4010e0(0xb0,X), .init_array@0x403e10(8,RW), .fini_array@0x403e18(8,RW), .dynamic@0x403e20(0x1d0,RW), .eh_frame@0x4021f8(0x184,R), .eh_frame_hdr@0x40218c(0x6c,R).\",\"symbols\":\"Key symbols: main@0x40184d, init@0x4012d2, menu@0x401341, print@0x401276, speak@0x4012b3, add_animal@0x401421, remove_animal@0x4015ed, report_name@0x401735. Globals: zoo@0x4040c0(88B), stdout@0x404080, stdin@0x404090, stderr@0x4040a0. Imports: free,putchar,puts,__stack_chk_fail,system,printf,alarm,read,malloc,setvbuf,__isoc99_scanf.\",\"disassembly\":\"add_animal(0x401421): malloc(0x18)->animal, scanf type, animal->func_ptr=speak(0x4012b3), animal->type=0/1, malloc(0x18)->name_buf, read(0,name_buf,0x18), zoo[idx+8]=animal, zoo[0]++. remove_animal(0x4015ed): scanf idx(0-9), free(zoo[idx]->name_ptr@0x10), free(zoo[idx]), zoo[0]--, NO NULL of zoo[idx+8]. report_name(0x401735): scanf idx(0-9), rdx=zoo[idx]->func_ptr@0, rdi=zoo[idx]->name_ptr@0x10, call rdx. print(0x401276): system(date_cmd@0x402008), printf('%s',msg). speak(0x4012b3): call print(arg).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x401190",
+      "dynamic": true,
+      "stripped": false,
+      "file_type": "ELF 64-bit LSB executable, x86-64, SYSV",
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04)",
+      "source_file": "zoo.c",
+      "build_id": "e3bd0f41acd579b8362bbe50b427a0f7f3044ab4"
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": false,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME",
+        "detail": "GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "rpath": "none",
+          "runpath": "none",
+          "ld_library_path_priority": "LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)",
+          "source": "RUNTIME"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "option": "1",
+          "label": "Add animal",
+          "function": "add_animal",
+          "address": "0x401421"
+        },
+        {
+          "option": "2",
+          "label": "Remove animal",
+          "function": "remove_animal",
+          "address": "0x4015ed"
+        },
+        {
+          "option": "3",
+          "label": "Report animal Name",
+          "function": "report_name",
+          "address": "0x401735"
+        },
+        {
+          "option": "0",
+          "label": "Exit",
+          "function": "main_exit",
+          "address": "0x4018b7"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "menu_choice",
+          "source": "scanf(%d)",
+          "function": "menu",
+          "detail": "0-4 valid, 0 exits"
+        },
+        {
+          "name": "animal_type",
+          "source": "scanf(%d)",
+          "function": "add_animal",
+          "detail": "1=Parrot(type=0), 2=Panda(type=1)"
+        },
+        {
+          "name": "animal_name",
+          "source": "read(0, buf, 0x18)",
+          "function": "add_animal",
+          "detail": "24 bytes read into heap name buffer"
+        },
+        {
+          "name": "zone_index",
+          "source": "scanf(%d)",
+          "function": "remove_animal",
+          "detail": "0-9 valid index"
+        },
+        {
+          "name": "zone_index",
+          "source": "scanf(%d)",
+          "function": "report_name",
+          "detail": "0-9 valid index"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x401190",
+          "size": "0x745",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x402000",
+          "size": "0x18a",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".data",
+          "address": "0x404070",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".bss",
+          "address": "0x404080",
+          "size": "0x98",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got",
+          "address": "0x403ff0",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x404000",
+          "size": "0x70",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x401020",
+          "size": "0xc0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".plt.sec",
+          "address": "0x4010e0",
+          "size": "0xb0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init",
+          "address": "0x401000",
+          "size": "0x1b",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".fini",
+          "address": "0x4018d8",
+          "size": "0xd",
+          "flags": "AX",
+          "writable": false,
+          "executable": true,
+          "readable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x403e10",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x403e18",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x403e20",
+          "size": "0x1d0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x4021f8",
+          "size": "0x184",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x40218c",
+          "size": "0x6c",
+          "flags": "A",
+          "writable": false,
+          "executable": false,
+          "readable": true
+        }
+      ],
+      "globals": [
+        {
+          "name": "zoo",
+          "address": "0x4040c0",
+          "size": 88,
+          "section": ".bss",
+          "layout": "zoo[0]=count(int32 at 0x4040c0, 4 bytes + 4 padding), zoo[1..10]=pointer slots at 0x4040c8..0x404110 (10 x 8 bytes)",
+          "element_type": "mixed: count + pointer array",
+          "count": 11,
+          "element_size": 8,
+          "detail": "zoo count at offset 0 (int32), 10 animal pointers at offset 8..88"
+        },
+        {
+          "name": "stdout",
+          "address": "0x404080",
+          "size": 8,
+          "section": ".bss",
+          "element_type": "FILE* pointer (R_X86_64_COPY)"
+        },
+        {
+          "name": "stdin",
+          "address": "0x404090",
+          "size": 8,
+          "section": ".bss",
+          "element_type": "FILE* pointer (R_X86_64_COPY)"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040a0",
+          "size": 8,
+          "section": ".bss",
+          "element_type": "FILE* pointer (R_X86_64_COPY)"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x4040a8",
+          "size": 1,
+          "section": ".bss",
+          "element_type": "flag byte"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x404018",
+          "type": "JUMP_SLOT",
+          "symbol": "free@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404020",
+          "type": "JUMP_SLOT",
+          "symbol": "putchar@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404028",
+          "type": "JUMP_SLOT",
+          "symbol": "puts@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404030",
+          "type": "JUMP_SLOT",
+          "symbol": "__stack_chk_fail@GLIBC_2.4",
+          "writable": true
+        },
+        {
+          "offset": "0x404038",
+          "type": "JUMP_SLOT",
+          "symbol": "system@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404040",
+          "type": "JUMP_SLOT",
+          "symbol": "printf@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404048",
+          "type": "JUMP_SLOT",
+          "symbol": "alarm@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404050",
+          "type": "JUMP_SLOT",
+          "symbol": "read@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404058",
+          "type": "JUMP_SLOT",
+          "symbol": "malloc@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404060",
+          "type": "JUMP_SLOT",
+          "symbol": "setvbuf@GLIBC_2.2.5",
+          "writable": true
+        },
+        {
+          "offset": "0x404068",
+          "type": "JUMP_SLOT",
+          "symbol": "__isoc99_scanf@GLIBC_2.7",
+          "writable": true
+        },
+        {
+          "offset": "0x403ff0",
+          "type": "GLOB_DAT",
+          "symbol": "__libc_start_main@GLIBC_2.34",
+          "writable": true
+        },
+        {
+          "offset": "0x403ff8",
+          "type": "GLOB_DAT",
+          "symbol": "__gmon_start__@Base",
+          "writable": true
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x4010e0",
+          "symbol": "free@plt"
+        },
+        {
+          "address": "0x4010f0",
+          "symbol": "putchar@plt"
+        },
+        {
+          "address": "0x401100",
+          "symbol": "puts@plt"
+        },
+        {
+          "address": "0x401110",
+          "symbol": "__stack_chk_fail@plt"
+        },
+        {
+          "address": "0x401120",
+          "symbol": "system@plt"
+        },
+        {
+          "address": "0x401130",
+          "symbol": "printf@plt"
+        },
+        {
+          "address": "0x401140",
+          "symbol": "alarm@plt"
+        },
+        {
+          "address": "0x401150",
+          "symbol": "read@plt"
+        },
+        {
+          "address": "0x401160",
+          "symbol": "malloc@plt"
+        },
+        {
+          "address": "0x401170",
+          "symbol": "setvbuf@plt"
+        },
+        {
+          "address": "0x401180",
+          "symbol": "__isoc99_scanf@plt"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x40184d",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "menu",
+          "add_animal",
+          "remove_animal",
+          "report_name",
+          "putchar"
+        ],
+        "inputs": [
+          {
+            "name": "argc",
+            "source": "argv"
+          },
+          {
+            "name": "argv",
+            "source": "argv"
+          }
+        ],
+        "checks": [
+          "menu return value compared against 1/2/3; default case sets exit flag"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "init",
+          "menu",
+          "add_animal",
+          "remove_animal",
+          "report_name",
+          "putchar"
+        ],
+        "behavior": "Loop: call menu, dispatch 1->add_animal, 2->remove_animal, 3->report_name, 0->exit. putchar(0xa) after each iteration."
+      },
+      {
+        "name": "init",
+        "address": "0x4012d2",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm"
+        ],
+        "behavior": "setvbuf(stdin/stdout/stderr, 0, 2, 0) to disable buffering; alarm(0x3c=60s)."
+      },
+      {
+        "name": "menu",
+        "address": "0x401341",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "putchar",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "choice",
+            "source": "scanf(%d) into stack var [rbp-0xc]"
+          }
+        ],
+        "checks": [
+          "choice >= 0 and choice <= 4, else prints error and re-prompts"
+        ],
+        "memory_operations": [],
+        "calls": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "putchar"
+        ],
+        "behavior": "Prints menu via print() (which calls system + printf), reads int choice, validates 0-4, returns choice in eax."
+      },
+      {
+        "name": "print",
+        "address": "0x401276",
+        "callers": [
+          "menu",
+          "add_animal",
+          "remove_animal",
+          "report_name",
+          "speak"
+        ],
+        "callees": [
+          "system",
+          "printf"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "rdi argument (string pointer)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "CALL",
+            "destination": "system(\"/usr/bin/date +\\\"%Y/%m/%d %H:%M.%S\\\" | tr -d '\\\\n: '\")",
+            "size": 0,
+            "destination_type": "hardcoded_command"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "stdout via printf",
+            "size": 0,
+            "destination_type": "format_string_output"
+          }
+        ],
+        "calls": [
+          "system",
+          "printf"
+        ],
+        "behavior": "Calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). The system() call executes a shell command (date formatting)."
+      },
+      {
+        "name": "speak",
+        "address": "0x4012b3",
+        "callers": [
+          "indirect call from report_name via function pointer"
+        ],
+        "callees": [
+          "print"
+        ],
+        "inputs": [
+          {
+            "name": "animal_ptr",
+            "source": "rdi argument (animal object pointer)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "print"
+        ],
+        "behavior": "Wrapper: passes its argument directly to print(). This is the default function pointer stored in animal->func_ptr (offset 0) during add_animal."
+      },
+      {
+        "name": "add_animal",
+        "address": "0x401421",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "print",
+          "malloc",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "read",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "animal_type",
+            "source": "scanf(%d) into [rbp-0x18]"
+          },
+          {
+            "name": "animal_name",
+            "source": "read(0, name_buf, 0x18) into heap buffer"
+          }
+        ],
+        "checks": [
+          "zoo count (at 0x4040c0) <= 9, else 'zoo full'",
+          "finds first empty slot (zoo[idx+8]==NULL) for idx 0..9",
+          "animal_type==1 -> type=0(Parrot), ==2 -> type=1(Panda), else re-prompt"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "malloc(0x18) -> animal object (24 bytes)",
+            "size": 24,
+            "destination_type": "heap"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "animal->type (offset 0x8, int32)",
+            "size": 4,
+            "destination_type": "struct_field"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "animal->func_ptr (offset 0x0)",
+            "size": 8,
+            "destination_type": "struct_field",
+            "value": "address of speak (0x4012b3)"
+          },
+          {
+            "operation": "ALLOC",
+            "destination": "malloc(0x18) -> name_buf (24 bytes)",
+            "size": 24,
+            "destination_type": "heap"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "animal->name_ptr (offset 0x10)",
+            "size": 8,
+            "destination_type": "struct_field",
+            "value": "name_buf pointer"
+          },
+          {
+            "operation": "READ",
+            "source": "stdin fd 0",
+            "destination": "name_buf",
+            "size": 24,
+            "source_type": "read()"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "zoo[idx+8] (pointer slot at 0x4040c8 + idx*8)",
+            "size": 8,
+            "destination_type": "global_array_element",
+            "value": "animal object pointer"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "zoo count (0x4040c0)",
+            "size": 4,
+            "destination_type": "global_counter",
+            "value": "count+1"
+          }
+        ],
+        "calls": [
+          "print",
+          "malloc",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "read"
+        ],
+        "behavior": "Allocates 24-byte animal struct: [func_ptr(8), type(4+4pad), name_ptr(8)]. Sets func_ptr=speak. Allocates 24-byte name buffer, reads 24 bytes from stdin. Stores animal ptr in first empty zoo slot, increments count. Animal struct layout: offset0=func_ptr, offset8=type(int32), offset0x10=name_ptr."
+      },
+      {
+        "name": "remove_animal",
+        "address": "0x4015ed",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "free",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "zone_index",
+            "source": "scanf(%d) into [rbp-0xc]"
+          }
+        ],
+        "checks": [
+          "zoo count > 0, else 'no animal'",
+          "zone_index >= 0 and <= 9, else error re-prompt",
+          "zoo[idx+8] != NULL, else 'no animal in this zone'"
+        ],
+        "memory_operations": [
+          {
+            "operation": "FREE",
+            "destination": "animal->name_ptr (zoo[idx]->offset 0x10)",
+            "size": 0,
+            "destination_type": "heap_free"
+          },
+          {
+            "operation": "FREE",
+            "destination": "animal object (zoo[idx])",
+            "size": 0,
+            "destination_type": "heap_free"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "zoo count (0x4040c0)",
+            "size": 4,
+            "destination_type": "global_counter",
+            "value": "count-1"
+          }
+        ],
+        "calls": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "free"
+        ],
+        "behavior": "Frees name buffer first (free(animal->name_ptr)), then frees animal struct (free(animal)). Decrements zoo count. CRITICAL: does NOT set zoo[idx+8] to NULL after freeing — the dangling pointer remains in the zoo array."
+      },
+      {
+        "name": "report_name",
+        "address": "0x401735",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "zone_index",
+            "source": "scanf(%d) into [rbp-0xc]"
+          }
+        ],
+        "checks": [
+          "zoo count > 0, else 'no animal'",
+          "zone_index >= 0 and <= 9, else error re-prompt",
+          "zoo[idx+8] != NULL, else 'no animal in this zone'"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "zoo[idx+8] (pointer at 0x4040c8 + idx*8)",
+            "size": 8,
+            "source_type": "global_array_element",
+            "destination": "animal pointer"
+          },
+          {
+            "operation": "READ",
+            "source": "animal->func_ptr (offset 0x0)",
+            "size": 8,
+            "source_type": "struct_field",
+            "destination": "rdx (call target)"
+          },
+          {
+            "operation": "READ",
+            "source": "animal->name_ptr (offset 0x10)",
+            "size": 8,
+            "source_type": "struct_field",
+            "destination": "rdi (call argument)"
+          },
+          {
+            "operation": "CALL",
+            "destination": "rdx (indirect call via function pointer from animal->func_ptr)",
+            "size": 0,
+            "destination_type": "indirect_call",
+            "argument": "rdi = animal->name_ptr"
+          }
+        ],
+        "calls": [
+          "print",
+          "printf",
+          "__isoc99_scanf",
+          "puts"
+        ],
+        "behavior": "Loads animal pointer from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, then 'call rdx'. This is an indirect call through a function pointer stored in a heap object. If the animal was freed (dangling pointer in zoo), this dereferences freed memory."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "remove_animal",
+        "input": "zone_index (scanf)",
+        "operation": "FREE animal struct + name buffer without NULLing zoo[idx] pointer",
+        "risk": "HIGH",
+        "reason": "free(animal) and free(animal->name_ptr) are called but zoo[idx+8] pointer is NOT cleared to NULL. The dangling pointer remains accessible. report_name can later dereference this freed pointer. This is a classic use-after-free pattern: allocate -> free (no clear) -> use via report_name."
+      },
+      {
+        "function": "report_name",
+        "input": "zone_index (scanf)",
+        "operation": "Indirect call rdx where rdx=animal->func_ptr (offset 0) and rdi=animal->name_ptr (offset 0x10), animal pointer loaded from zoo[idx] which may be dangling",
+        "risk": "HIGH",
+        "reason": "After remove_animal frees an animal but leaves the zoo pointer, report_name dereferences the freed heap object: reads func_ptr (offset 0) as call target and name_ptr (offset 0x10) as argument, then 'call rdx'. If the freed chunk is reallocated and overwritten with attacker-controlled data, the attacker controls both the call target and its argument — potential code execution primitive."
+      },
+      {
+        "function": "add_animal",
+        "input": "animal_name (read 0x18 bytes)",
+        "operation": "READ 24 bytes from stdin into 24-byte heap name buffer (malloc(0x18))",
+        "risk": "MEDIUM",
+        "reason": "read(0, name_buf, 0x18) reads exactly 24 bytes into a 24-byte buffer — no overflow here, but the name buffer is the same size (0x18) as the animal struct, meaning a freed animal struct can be reallocated as a name buffer (or vice versa), enabling heap object aliasing for UAF exploitation."
+      },
+      {
+        "function": "print",
+        "input": "msg (rdi argument)",
+        "operation": "CALL system() with hardcoded date command, then printf('%s', msg)",
+        "risk": "MEDIUM",
+        "reason": "print() calls system() — while the command is hardcoded (not attacker-controlled), system@plt is in the GOT at 0x404038 (writable, Partial RELRO). If a function pointer in a freed/reused animal object is overwritten to point to system or a controlled target, the indirect call in report_name could redirect control flow."
+      },
+      {
+        "function": "report_name",
+        "input": "zone_index",
+        "operation": "READ animal->name_ptr (offset 0x10) and pass to indirect call as rdi argument, then the called function (print/speak) passes it to printf('%s')",
+        "risk": "MEDIUM",
+        "reason": "If animal->name_ptr is controlled (via UAF heap reuse), it becomes the argument to the indirect call and is ultimately printed via printf('%s', ptr) — potential arbitrary read if the name_ptr field is overwritten with an arbitrary address."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64, dynamically linked, not stripped, No PIE (base 0x400000), source file zoo.c, compiled with GCC 11.3.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, Canary found, No PIE, SHSTK enabled, IBT enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2; only NEEDED dependency is libc.so.6; no RPATH/RUNPATH set",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "Global variable zoo at 0x4040c0, size 88 bytes in .bss. Layout: offset 0 = count (int32, 4 bytes + 4 padding), offset 8 = 10 pointer slots (8 bytes each) at 0x4040c8..0x404110",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Animal struct is 24 bytes (malloc(0x18)): offset 0x0 = func_ptr (8 bytes, set to speak=0x4012b3), offset 0x8 = type (int32, 0=Parrot/1=Panda), offset 0x10 = name_ptr (8 bytes, pointer to 24-byte name buffer)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "add_animal allocates two 0x18-byte chunks: animal struct and name buffer. Both are same size (24 bytes), enabling tcache bin aliasing.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "remove_animal calls free(animal->name_ptr) then free(animal), decrements zoo count, but does NOT set zoo[idx+8] to NULL — dangling pointer remains in zoo array",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "report_name loads animal ptr from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, executes 'call rdx' — indirect call through heap-stored function pointer",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "print() at 0x401276 calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). system@plt is at 0x401120, system GOT entry at 0x404038 (writable, Partial RELRO).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "speak() at 0x4012b3 is a wrapper that passes its argument to print(). It is the default func_ptr stored in every animal object at offset 0.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "init() sets stdin/stdout/stderr to unbuffered (setvbuf with mode 2) and sets alarm(60) — 60 second timeout",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "menu reads choice via scanf(%d), validates 0-4, returns choice. Options: 1=add, 2=remove, 3=report, 0=exit.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "Runtime confirmed: program prints date-prefixed menu, add flow works (type 1=Parrot, name read), report on zone 0 outputs the animal name via the speak->print->printf chain",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "GOT is writable (Partial RELRO): .got.plt at 0x404000 (size 0x70) and .got at 0x403ff0 (size 0x10) are in RW LOAD segment. system@GOT at 0x404038, free@GOT at 0x404018, malloc@GOT at 0x404058.",
+        "source": "ELF"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in binary; only NEEDED library is libc.so.6 resolved to /lib/x86_64-linux-gnu/libc.so.6. LD_LIBRARY_PATH (if set) would precede system paths in search order.",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F016",
+        "type": "DERIVED",
+        "description": "Since animal struct (0x18) and name buffer (0x18) are the same malloc size, after remove_animal frees both, a subsequent add_animal's name buffer malloc(0x18) can reuse the freed animal struct chunk (same tcache bin), allowing attacker to write 24 bytes of name data that overlaps the animal struct fields (func_ptr at offset 0, type at offset 8, name_ptr at offset 0x10).",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Exact glibc tcache behavior and chunk alignment at runtime for 0x18-size allocations (24 bytes user data, 0x20 chunk size with header)",
+        "reason": "Cannot fully determine runtime heap layout without dynamic debugging; glibc 2.39 tcache semantics assumed standard"
+      },
+      {
+        "id": "U002",
+        "description": "Whether ASLR is enabled in the target execution environment",
+        "reason": "No PIE so binary base is fixed at 0x400000, but libc base is randomized if ASLR is on; cannot confirm from static analysis alone"
+      },
+      {
+        "id": "U003",
+        "description": "Whether FORTIFY_SOURCE is enabled",
+        "reason": "checksec did not report FORTIFY; no __*_chk variants of read/printf observed in PLT, suggesting FORTIFY is likely not enabled, but not definitively confirmed"
+      },
+      {
+        "id": "U004",
+        "description": "Whether the freed animal pointer in zoo[idx] can survive multiple alloc/free cycles and be reliably aliased",
+        "reason": "Requires dynamic heap state analysis to confirm tcache reuse ordering"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB executable, x86-64, SYSV, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=e3bd0f41acd579b8362bbe50b427a0f7f3044ab4, not stripped. Entry=0x401190. 13 program headers, 31 sections. LOAD segments: R(0x400000), RX(0x401000), R(0x402000), RW(0x403e10). GNU_STACK=RW (NX). GNU_RELRO=0x403e10 (Partial).",
+      "sections": "Key sections: .text@0x401190(0x745,X), .rodata@0x402000(0x18a,R), .data@0x404070(0x10,RW), .bss@0x404080(0x98,RW), .got@0x403ff0(0x10,RW), .got.plt@0x404000(0x70,RW), .plt@0x401020(0xc0,X), .plt.sec@0x4010e0(0xb0,X), .init_array@0x403e10(8,RW), .fini_array@0x403e18(8,RW), .dynamic@0x403e20(0x1d0,RW), .eh_frame@0x4021f8(0x184,R), .eh_frame_hdr@0x40218c(0x6c,R).",
+      "symbols": "Key symbols: main@0x40184d, init@0x4012d2, menu@0x401341, print@0x401276, speak@0x4012b3, add_animal@0x401421, remove_animal@0x4015ed, report_name@0x401735. Globals: zoo@0x4040c0(88B), stdout@0x404080, stdin@0x404090, stderr@0x4040a0. Imports: free,putchar,puts,__stack_chk_fail,system,printf,alarm,read,malloc,setvbuf,__isoc99_scanf.",
+      "disassembly": "add_animal(0x401421): malloc(0x18)->animal, scanf type, animal->func_ptr=speak(0x4012b3), animal->type=0/1, malloc(0x18)->name_buf, read(0,name_buf,0x18), zoo[idx+8]=animal, zoo[0]++. remove_animal(0x4015ed): scanf idx(0-9), free(zoo[idx]->name_ptr@0x10), free(zoo[idx]), zoo[0]--, NO NULL of zoo[idx+8]. report_name(0x401735): scanf idx(0-9), rdx=zoo[idx]->func_ptr@0, rdi=zoo[idx]->name_ptr@0x10, call rdx. print(0x401276): system(date_cmd@0x402008), printf('%s',msg). speak(0x4012b3): call print(arg)."
+    }
+  }
+}

@@ -1,0 +1,832 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0029-2024-54-profix-calc-20260909-185030/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1160\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"file_type\":\"ELF 64-bit LSB PIE executable, x86-64, dynamically linked, not stripped\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"source_file\":\"chall.c\",\"build_id\":\"0abafe79c11ebe1e05c840266e9199fd7fe7fa57\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\",\"note\":\"PIE enabled implies ASLR-relevant base randomization; runtime ASLR status not independently confirmed\"},\"seccomp\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"distro\":\"Ubuntu GLIBC 2.39-0ubuntu8.8\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"}],\"rpath\":\"none\",\"runpath\":\"none\",\"note\":\"No RPATH/RUNPATH in dynamic section; only NEEDED lib is libc.so.6 resolved from system path. LD_LIBRARY_PATH would precede system path in search order (standard ld.so behavior) but no in-repo .so stubs present.\"},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[{\"source\":\"stdin\",\"function\":\"main\",\"mechanism\":\"read(0, buf, 0x3ff)\",\"buffer\":\"stack local [rbp-0x410]\",\"max_size\":1023}],\"menu\":[{\"prompt\":\"~Postfix expression calculator~\",\"type\":\"banner\"},{\"prompt\":\"expression(e.g. 9 6 - 11 *): \",\"type\":\"input_prompt\"},{\"output\":\"Result: %lld\",\"type\":\"result\"}],\"user_controlled_inputs\":[{\"name\":\"postfix_expression\",\"source\":\"stdin\",\"function\":\"main\",\"size\":1023,\"format\":\"space-separated tokens: decimal numbers, hex numbers (0x...), operators + - * /\",\"parsed_by\":\"eval_expr\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1160\",\"size\":\"0x4fb\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x6c\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x4060\",\"size\":\"0x18\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x4080\",\"size\":\"0x840\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x3fd8\",\"size\":\"0x28\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got.plt\",\"address\":\"0x4000\",\"size\":\"0x60\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xa0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".plt.sec\",\"address\":\"0x10d0\",\"size\":\"0x90\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".init_array\",\"address\":\"0x3de8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x3df0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".dynamic\",\"address\":\"0x3df8\",\"size\":\"0x1e0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".eh_frame\",\"address\":\"0x20e0\",\"size\":\"0x1a8\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".eh_frame_hdr\",\"address\":\"0x206c\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false}],\"globals\":[{\"name\":\"stack_top\",\"address\":\"0x4070\",\"size\":8,\"section\":\".data\",\"type\":\"pointer (long long*)\",\"init_value\":\"0x40c0 (points to start of stack via R_X86_64_RELATIVE relocation)\",\"note\":\"current stack pointer; advanced by push (+8) and pop (-8); NO bounds check\"},{\"name\":\"stack\",\"address\":\"0x40c0\",\"size\":2048,\"section\":\".bss\",\"type\":\"array of long long\",\"count\":256,\"element_size\":8,\"note\":\"postfix evaluation stack; capacity 256 qwords = 0x800 bytes; ends at 0x48c0 = _end\"},{\"name\":\"stdout\",\"address\":\"0x4080\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x4090\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x40a0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE* (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x40a8\",\"size\":1,\"section\":\".bss\",\"type\":\"flag\"},{\"name\":\"__dso_handle\",\"address\":\"0x4068\",\"size\":8,\"section\":\".data\",\"type\":\"pointer\"},{\"name\":\"__data_start\",\"address\":\"0x4060\",\"size\":8,\"section\":\".data\"}],\"bss_layout_note\":\".bss 0x4080-0x48c0: [0x4080 stdout(8)] [0x4090 stdin(8)] [0x40a0 stderr(8)] [0x40a8 completed.0(1)] [0x40b0 padding] [0x40c0 stack(2048=0x800) -> 0x48c0=_end]. stack_top initial=0x40c0. pop underflow decrements stack_top below 0x40c0 into the stdout/stdin/stderr FILE* pointer region. push overflow increments stack_top above 0x48c0 (past _end).\",\"got\":[{\"offset\":\"0x4018\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4020\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4028\",\"symbol\":\"printf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4030\",\"symbol\":\"alarm\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4038\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4040\",\"symbol\":\"strtoll\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4048\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4050\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x4058\",\"symbol\":\"__ctype_b_loc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fd8\",\"symbol\":\"__libc_start_main\",\"type\":\"GLOB_DAT\"},{\"offset\":\"0x3ff8\",\"symbol\":\"__cxa_finalize\",\"type\":\"GLOB_DAT\"}],\"plt\":[{\"address\":\"0x10d0\",\"symbol\":\"puts\"},{\"address\":\"0x10e0\",\"symbol\":\"__stack_chk_fail\"},{\"address\":\"0x10f0\",\"symbol\":\"printf\"},{\"address\":\"0x1100\",\"symbol\":\"alarm\"},{\"address\":\"0x1110\",\"symbol\":\"read\"},{\"address\":\"0x1120\",\"symbol\":\"strtoll\"},{\"address\":\"0x1130\",\"symbol\":\"setvbuf\"},{\"address\":\"0x1140\",\"symbol\":\"exit\"},{\"address\":\"0x1150\",\"symbol\":\"__ctype_b_loc\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1586\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"puts\",\"printf\",\"read\",\"eval_expr\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"expression_buf\",\"source\":\"read(0, [rbp-0x410], 0x3ff)\",\"type\":\"stack buffer\",\"size\":1023}],\"checks\":[\"canary: fs:0x28 saved at [rbp-0x8], checked before ret\",\"if last byte of input == 0x0a, replace with 0x00 (newline strip)\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"stdin -> [rbp-0x410]\",\"size\":1023,\"function\":\"read\"},{\"operation\":\"WRITE\",\"destination\":\"[rbp-0x410] -> eval_expr arg\",\"size\":\"pointer pass\"}],\"calls\":[\"init\",\"puts\",\"printf\",\"read\",\"eval_expr\"],\"behavior\":\"Calls init (setvbuf x3 + alarm(60)). Prints banner + prompt. read(0, buf, 0x3ff). Strips trailing newline. Calls eval_expr(buf). Prints 'Result: %lld' with return value. Returns 0.\"},{\"name\":\"eval_expr\",\"address\":\"0x13d0\",\"callers\":[\"main\"],\"callees\":[\"is_operator\",\"pop\",\"push\",\"__ctype_b_loc\",\"is_hex_number\",\"strtoll\",\"is_dec_number\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"expr\",\"source\":\"rdi (pointer to expression string from main)\"}],\"checks\":[\"canary: fs:0x28 at [rbp-0x8]\",\"is_operator(c) for +,-,*,/\",\"isspace(c) via __ctype_b_loc -> skip\",\"is_hex_number(ptr) -> strtoll base 16\",\"is_dec_number(c) -> strtoll base 10\",\"else _abort('invalid expression')\",\"NO bounds check on push/pop relative to stack array\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"*stack_top = value (via push)\",\"size\":8,\"address_calc\":\"stack_top global pointer, incremented +8 each push, NO upper bound\"},{\"operation\":\"READ\",\"destination\":\"value = *stack_top (via pop)\",\"size\":8,\"address_calc\":\"stack_top decremented -8 each pop, NO lower bound\"},{\"operation\":\"CALL\",\"target\":\"push/pop\",\"note\":\"operator handling: pop b, pop a, compute a+b/a-b/a*b/a/b, push result\"}],\"calls\":[\"is_operator\",\"pop\",\"push\",\"__ctype_b_loc\",\"is_hex_number\",\"strtoll\",\"is_dec_number\",\"_abort\"],\"behavior\":\"Token-walk loop over expression string. For each char: if operator (+,-,*,/) -> pop twice, compute, push result. If space -> skip. If hex (0x prefix) -> strtoll base 16, push. If decimal digit -> strtoll base 10, push. Else _abort. At end: pop once and return value. push/pop have NO bounds checking against the 256-element stack array.\"},{\"name\":\"push\",\"address\":\"0x127e\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"value\",\"source\":\"rdi (long long)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"*stack_top = value\",\"size\":8,\"address_calc\":\"stack_top = [0x4070]; write to [stack_top]\"},{\"operation\":\"WRITE\",\"destination\":\"stack_top = stack_top + 8\",\"size\":8,\"address_calc\":\"[0x4070] = [0x4070] + 8\"}],\"calls\":[],\"behavior\":\"Stores value at current stack_top, then increments stack_top by 8. NO upper-bound check. stack array capacity is 256 qwords (0x800 bytes); pushing more than 256 values writes past stack end (0x48c0).\"},{\"name\":\"pop\",\"address\":\"0x12ad\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack_top = stack_top - 8\",\"size\":8,\"address_calc\":\"[0x4070] = [0x4070] - 8\"},{\"operation\":\"READ\",\"destination\":\"return *stack_top\",\"size\":8,\"address_calc\":\"read from [stack_top] after decrement\"}],\"calls\":[],\"behavior\":\"Decrements stack_top by 8, then reads and returns the qword at new stack_top. NO lower-bound check. If stack_top == stack (0x40c0) at call, pop sets stack_top=0x40b8 and reads from 0x40b8 (before stack array, in padding/completed.0 region). Further pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout).\"},{\"name\":\"is_operator\",\"address\":\"0x12d3\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"c\",\"source\":\"edi (char)\"}],\"checks\":[\"c == '+' || c == '-' || c == '*' || c == '/'\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if char is one of + - * /, else 0.\"},{\"name\":\"is_dec_number\",\"address\":\"0x1306\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"c\",\"source\":\"edi (char)\"}],\"checks\":[\"c > '/' (0x2f) && c <= '9' (0x39)\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if char is '0'-'9'.\"},{\"name\":\"is_hex_number\",\"address\":\"0x132d\",\"callers\":[\"eval_expr\"],\"callees\":[],\"inputs\":[{\"name\":\"ptr\",\"source\":\"rdi (char*)\"}],\"checks\":[\"ptr[0]=='0' && ptr[1]=='x'\"],\"memory_operations\":[],\"calls\":[],\"behavior\":\"Returns 1 if string starts with '0x'.\"},{\"name\":\"init\",\"address\":\"0x1361\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"behavior\":\"setvbuf(stdin, 0, 2, 0); setvbuf(stdout, 0, 2, 0); setvbuf(stderr, 0, 2, 0) [unbuffered]; alarm(60).\"},{\"name\":\"_abort\",\"address\":\"0x1249\",\"callers\":[\"eval_expr\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"behavior\":\"printf('%s', msg); exit(1). Called on invalid token.\"}],\"attack_surfaces\":[{\"function\":\"push\",\"input\":\"attacker-controlled number of pushed values (each hex/decimal token in expression causes one push)\",\"operation\":\"WRITE *stack_top without upper-bound check; stack_top increments past stack[256] end (0x48c0)\",\"risk\":\"HIGH\",\"reason\":\"push writes 8 bytes at stack_top and advances it unconditionally; stack array is only 256 qwords (0x800 bytes, 0x40c0-0x48c0); pushing >256 values writes past _end of .bss into potentially unmapped or adjacent memory. Attacker controls both the count (number of tokens) and the values pushed (via hex/decimal literals). No bounds check exists in push or eval_expr.\"},{\"function\":\"pop\",\"input\":\"attacker-controlled number of pops (operators consume 2 pops each; final pop at eval_expr end)\",\"operation\":\"READ *stack_top without lower-bound check; stack_top decrements below stack start (0x40c0) into FILE* pointer region\",\"risk\":\"HIGH\",\"reason\":\"pop decrements stack_top by 8 then reads qword at that address with no lower-bound check. stack_top initial=0x40c0 (stack start). Excess pops (more pops than pushes) move stack_top below 0x40c0: 0x40b8, 0x40b0, 0x40a8(completed.0), 0x40a0(stderr FILE*), 0x4098, 0x4090(stdin FILE*), 0x4088, 0x4080(stdout FILE*). The final pop in eval_expr returns the read value to main which prints it via printf('Result: %lld') — potential info leak of memory below stack. Attacker controls pop count via operator tokens and expression structure.\"},{\"function\":\"eval_expr\",\"input\":\"attacker-controlled expression string (1023 bytes via read)\",\"operation\":\"token parsing drives push/pop sequence; operator semantics pop a,b then push a op b\",\"risk\":\"HIGH\",\"reason\":\"Expression is attacker-controlled. Number of pushes (value tokens) and pops (operator tokens + final pop) fully attacker-controlled. Combined with unbounded push/pop, attacker can drive stack_top to arbitrary offsets relative to stack base and read/write 8-byte qwords. Values pushed are attacker-controlled 64-bit integers (via strtoll on hex/decimal). The final pop result is printed to attacker (info leak path).\"},{\"function\":\"main\",\"input\":\"read(0, buf, 0x3ff) — 1023 bytes of attacker expression\",\"operation\":\"passes buffer to eval_expr\",\"risk\":\"MEDIUM\",\"reason\":\"Input size capped at 0x3ff (1023) bytes, limiting token count, but sufficient to exceed 256-element stack capacity. Newline stripped.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source chall.c, GCC 11.4.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary enabled, PIE enabled, FORTIFY not present, CET IBT+SHSTK enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH; only NEEDED lib is libc.so.6 from system path; no in-repo .so stubs\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"stack is global array at 0x40c0 in .bss, size 2048 bytes (256 qwords), ends at 0x48c0=_end\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"stack_top is global pointer at 0x4070 in .data, initialized to 0x40c0 (start of stack) via R_X86_64_RELATIVE relocation\",\"source\":\"ELF\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\".bss layout: 0x4080 stdout(8), 0x4090 stdin(8), 0x40a0 stderr(8), 0x40a8 completed.0(1), 0x40c0 stack(2048)->0x48c0\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"push(): writes value to *stack_top, then stack_top += 8. NO upper-bound check against stack end (0x48c0).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"pop(): stack_top -= 8, then returns *stack_top. NO lower-bound check against stack start (0x40c0).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eval_expr tokenizes expression: operators (+,-,*,/) pop twice and push result; hex (0x..) and decimal tokens push via strtoll; spaces skipped; invalid token -> _abort. Final pop returns result to main which prints it.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"main reads 1023 bytes from stdin via read(0, buf, 0x3ff), strips trailing newline, passes to eval_expr, prints 'Result: %lld'\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"init sets stdin/stdout/stderr unbuffered (setvbuf mode 2) and alarm(60)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Runtime: input '3 4 +' produces 'Result: 7' — calculator functions correctly\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Runtime: pushing 300 values (exceeding 256-element stack capacity) does NOT crash — push writes past stack end without bounds check, confirming unbounded write behavior\",\"source\":\"RUNTIME\"},{\"id\":\"F015\",\"type\":\"DERIVED\",\"description\":\"pop underflow: if stack_top at 0x40c0 (empty stack) and pop called, stack_top becomes 0x40b8 and reads qword at 0x40b8 (below stack, in .bss padding region). Successive pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout). These addresses hold FILE* pointers (COPY relocations).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"The final pop in eval_expr (at 0x156b) returns a value to main which is printed via printf('Result: %lld'). If stack_top has been driven below stack start via excess pops, this prints memory content from below stack as a decimal integer — potential info leak.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"Attacker controls both the count of push/pop operations (via token count and operator placement) and the values pushed (via hex/decimal literals parsed by strtoll into 64-bit). Combined with unbounded stack_top, attacker can position stack_top at chosen offsets relative to stack base and perform 8-byte reads (pop) or writes (push).\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether memory past _end (0x48c0) is mapped/writable at runtime when push overflows\",\"reason\":\"300 pushes did not crash, suggesting the page containing 0x48c0+ is mapped (BSS pages are rounded up to page boundary: 0x4080-0x4fff likely mapped RW). Exact page boundary and writability of far overflow addresses unconfirmed.\"},{\"id\":\"U002\",\"description\":\"Whether pop underflow reading FILE* pointers (stdout/stdin/stderr at 0x4080/0x4090/0x40a0) yields useful leak values\",\"reason\":\"The FILE* values are libc heap/data pointers (COPY reloc). Their printed decimal representation would leak libc addresses, but exact runtime values not captured. Dynamic verification needed.\"},{\"id\":\"U003\",\"description\":\"Whether push overflow can overwrite meaningful targets beyond .bss\",\"reason\":\"stack ends at _end (0x48c0). Beyond _end is outside any defined section; depending on ASLR/page layout, may be unmapped at large offsets. The practical overwrite window is 0x48c0 to page boundary (~0x4fff). No global objects defined beyond stack in .bss.\"},{\"id\":\"U004\",\"description\":\"Exact exploitability of the unbounded push/pop primitive (e.g., whether it enables arbitrary write to GOT, return address, or other control-flow targets)\",\"reason\":\"This is S2/S3 scope. S1 only records that push/pop are unbounded and attacker-controlled. Whether the reachable addresses contain exploitable targets (GOT is at 0x4000-0x4060, below stack_top initial 0x40c0 — reachable via pop underflow direction) requires S2 analysis.\"},{\"id\":\"U005\",\"description\":\"ASLR runtime status not independently confirmed\",\"reason\":\"PIE is enabled (ELF-level fact). Whether the kernel applies ASLR (randomized base) at runtime was not separately verified via /proc/sys/kernel/randomize_va_space.\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE, x86-64, dyn linked, interp /lib64/ld-linux-x86-64.so.2, not stripped, BuildID 0abafe79..., entry 0x1160, 13 phdrs, 32 sections. LOAD segments: R(0-0x900), R-E(0x1000-0x1669), R(0x2000-0x2288), RW(0x3de8-0x48c0, .bss extends to 0x48c0). GNU_STACK RW (NX). GNU_RELRO 0x3de8-0x4000.\",\"sections\":\".text 0x1160(0x4fb,AX) .rodata 0x2000(0x6c,A) .data 0x4060(0x18,WA) .bss 0x4080(0x840,WA) .got 0x3fd8(0x28,WA) .got.plt 0x4000(0x60,WA) .plt 0x1020(0xa0,AX) .plt.sec 0x10d0(0x90,AX) .init_array 0x3de8(8,WA) .fini_array 0x3df0(8,WA) .dynamic 0x3df8(0x1e0,WA) .eh_frame 0x20e0(0x1a8,A)\",\"symbols\":\"main 0x1586, eval_expr 0x13d0, push 0x127e, pop 0x12ad, is_operator 0x12d3, is_dec_number 0x1306, is_hex_number 0x132d, init 0x1361, _abort 0x1249, stack 0x40c0(BSS,2048), stack_top 0x4070(DATA,8,init=0x40c0), stdout 0x4080, stdin 0x4090, stderr 0x40a0\",\"disassembly\":\"push(0x127e): mov rax,[stack_top]; mov [rax],rdi; mov rax,[stack_top]; add rax,8; mov [stack_top],rax; ret — NO bounds check. pop(0x12ad): mov rax,[stack_top]; sub rax,8; mov [stack_top],rax; mov rax,[stack_top]; mov rax,[rax]; ret — NO bounds check. eval_expr(0x13d0): token loop; operator->pop,pop,compute,push; hex->strtoll(16),push; dec->strtoll(10),push; space->skip; else->_abort; end->pop,return. main(0x1586): init; puts(banner); printf(prompt); read(0,buf,0x3ff); strip newline; eval_expr(buf); printf('Result: %lld',ret); canary check; ret.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0029-2024-54-profix-calc-20260909-185030/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1160",
+      "dynamic": true,
+      "stripped": false,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "file_type": "ELF 64-bit LSB PIE executable, x86-64, dynamically linked, not stripped",
+      "compiler": "GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)",
+      "source_file": "chall.c",
+      "build_id": "0abafe79c11ebe1e05c840266e9199fd7fe7fa57"
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN",
+        "note": "PIE enabled implies ASLR-relevant base randomization; runtime ASLR status not independently confirmed"
+      },
+      "seccomp": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39",
+        "distro": "Ubuntu GLIBC 2.39-0ubuntu8.8",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "source": "RUNTIME"
+        }
+      ],
+      "rpath": "none",
+      "runpath": "none",
+      "note": "No RPATH/RUNPATH in dynamic section; only NEEDED lib is libc.so.6 resolved from system path. LD_LIBRARY_PATH would precede system path in search order (standard ld.so behavior) but no in-repo .so stubs present."
+    },
+    "interface": {
+      "entry_function": "main",
+      "input_sources": [
+        {
+          "source": "stdin",
+          "function": "main",
+          "mechanism": "read(0, buf, 0x3ff)",
+          "buffer": "stack local [rbp-0x410]",
+          "max_size": 1023
+        }
+      ],
+      "menu": [
+        {
+          "prompt": "~Postfix expression calculator~",
+          "type": "banner"
+        },
+        {
+          "prompt": "expression(e.g. 9 6 - 11 *): ",
+          "type": "input_prompt"
+        },
+        {
+          "output": "Result: %lld",
+          "type": "result"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "postfix_expression",
+          "source": "stdin",
+          "function": "main",
+          "size": 1023,
+          "format": "space-separated tokens: decimal numbers, hex numbers (0x...), operators + - * /",
+          "parsed_by": "eval_expr"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1160",
+          "size": "0x4fb",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x6c",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".data",
+          "address": "0x4060",
+          "size": "0x18",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".bss",
+          "address": "0x4080",
+          "size": "0x840",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".got",
+          "address": "0x3fd8",
+          "size": "0x28",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x4000",
+          "size": "0x60",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xa0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".plt.sec",
+          "address": "0x10d0",
+          "size": "0x90",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3de8",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3df0",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x3df8",
+          "size": "0x1e0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x20e0",
+          "size": "0x1a8",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x206c",
+          "size": "0x74",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        }
+      ],
+      "globals": [
+        {
+          "name": "stack_top",
+          "address": "0x4070",
+          "size": 8,
+          "section": ".data",
+          "type": "pointer (long long*)",
+          "init_value": "0x40c0 (points to start of stack via R_X86_64_RELATIVE relocation)",
+          "note": "current stack pointer; advanced by push (+8) and pop (-8); NO bounds check"
+        },
+        {
+          "name": "stack",
+          "address": "0x40c0",
+          "size": 2048,
+          "section": ".bss",
+          "type": "array of long long",
+          "count": 256,
+          "element_size": 8,
+          "note": "postfix evaluation stack; capacity 256 qwords = 0x800 bytes; ends at 0x48c0 = _end"
+        },
+        {
+          "name": "stdout",
+          "address": "0x4080",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4090",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "stderr",
+          "address": "0x40a0",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE* (R_X86_64_COPY)"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x40a8",
+          "size": 1,
+          "section": ".bss",
+          "type": "flag"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x4068",
+          "size": 8,
+          "section": ".data",
+          "type": "pointer"
+        },
+        {
+          "name": "__data_start",
+          "address": "0x4060",
+          "size": 8,
+          "section": ".data"
+        }
+      ],
+      "bss_layout_note": ".bss 0x4080-0x48c0: [0x4080 stdout(8)] [0x4090 stdin(8)] [0x40a0 stderr(8)] [0x40a8 completed.0(1)] [0x40b0 padding] [0x40c0 stack(2048=0x800) -> 0x48c0=_end]. stack_top initial=0x40c0. pop underflow decrements stack_top below 0x40c0 into the stdout/stdin/stderr FILE* pointer region. push overflow increments stack_top above 0x48c0 (past _end).",
+      "got": [
+        {
+          "offset": "0x4018",
+          "symbol": "puts",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4020",
+          "symbol": "__stack_chk_fail",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4028",
+          "symbol": "printf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4030",
+          "symbol": "alarm",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4038",
+          "symbol": "read",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4040",
+          "symbol": "strtoll",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4048",
+          "symbol": "setvbuf",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4050",
+          "symbol": "exit",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x4058",
+          "symbol": "__ctype_b_loc",
+          "type": "JUMP_SLOT"
+        },
+        {
+          "offset": "0x3fd8",
+          "symbol": "__libc_start_main",
+          "type": "GLOB_DAT"
+        },
+        {
+          "offset": "0x3ff8",
+          "symbol": "__cxa_finalize",
+          "type": "GLOB_DAT"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x10d0",
+          "symbol": "puts"
+        },
+        {
+          "address": "0x10e0",
+          "symbol": "__stack_chk_fail"
+        },
+        {
+          "address": "0x10f0",
+          "symbol": "printf"
+        },
+        {
+          "address": "0x1100",
+          "symbol": "alarm"
+        },
+        {
+          "address": "0x1110",
+          "symbol": "read"
+        },
+        {
+          "address": "0x1120",
+          "symbol": "strtoll"
+        },
+        {
+          "address": "0x1130",
+          "symbol": "setvbuf"
+        },
+        {
+          "address": "0x1140",
+          "symbol": "exit"
+        },
+        {
+          "address": "0x1150",
+          "symbol": "__ctype_b_loc"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x1586",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "puts",
+          "printf",
+          "read",
+          "eval_expr",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "expression_buf",
+            "source": "read(0, [rbp-0x410], 0x3ff)",
+            "type": "stack buffer",
+            "size": 1023
+          }
+        ],
+        "checks": [
+          "canary: fs:0x28 saved at [rbp-0x8], checked before ret",
+          "if last byte of input == 0x0a, replace with 0x00 (newline strip)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "stdin -> [rbp-0x410]",
+            "size": 1023,
+            "function": "read"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "[rbp-0x410] -> eval_expr arg",
+            "size": "pointer pass"
+          }
+        ],
+        "calls": [
+          "init",
+          "puts",
+          "printf",
+          "read",
+          "eval_expr"
+        ],
+        "behavior": "Calls init (setvbuf x3 + alarm(60)). Prints banner + prompt. read(0, buf, 0x3ff). Strips trailing newline. Calls eval_expr(buf). Prints 'Result: %lld' with return value. Returns 0."
+      },
+      {
+        "name": "eval_expr",
+        "address": "0x13d0",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "is_operator",
+          "pop",
+          "push",
+          "__ctype_b_loc",
+          "is_hex_number",
+          "strtoll",
+          "is_dec_number",
+          "_abort",
+          "__stack_chk_fail"
+        ],
+        "inputs": [
+          {
+            "name": "expr",
+            "source": "rdi (pointer to expression string from main)"
+          }
+        ],
+        "checks": [
+          "canary: fs:0x28 at [rbp-0x8]",
+          "is_operator(c) for +,-,*,/",
+          "isspace(c) via __ctype_b_loc -> skip",
+          "is_hex_number(ptr) -> strtoll base 16",
+          "is_dec_number(c) -> strtoll base 10",
+          "else _abort('invalid expression')",
+          "NO bounds check on push/pop relative to stack array"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "*stack_top = value (via push)",
+            "size": 8,
+            "address_calc": "stack_top global pointer, incremented +8 each push, NO upper bound"
+          },
+          {
+            "operation": "READ",
+            "destination": "value = *stack_top (via pop)",
+            "size": 8,
+            "address_calc": "stack_top decremented -8 each pop, NO lower bound"
+          },
+          {
+            "operation": "CALL",
+            "target": "push/pop",
+            "note": "operator handling: pop b, pop a, compute a+b/a-b/a*b/a/b, push result"
+          }
+        ],
+        "calls": [
+          "is_operator",
+          "pop",
+          "push",
+          "__ctype_b_loc",
+          "is_hex_number",
+          "strtoll",
+          "is_dec_number",
+          "_abort"
+        ],
+        "behavior": "Token-walk loop over expression string. For each char: if operator (+,-,*,/) -> pop twice, compute, push result. If space -> skip. If hex (0x prefix) -> strtoll base 16, push. If decimal digit -> strtoll base 10, push. Else _abort. At end: pop once and return value. push/pop have NO bounds checking against the 256-element stack array."
+      },
+      {
+        "name": "push",
+        "address": "0x127e",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "value",
+            "source": "rdi (long long)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "*stack_top = value",
+            "size": 8,
+            "address_calc": "stack_top = [0x4070]; write to [stack_top]"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "stack_top = stack_top + 8",
+            "size": 8,
+            "address_calc": "[0x4070] = [0x4070] + 8"
+          }
+        ],
+        "calls": [],
+        "behavior": "Stores value at current stack_top, then increments stack_top by 8. NO upper-bound check. stack array capacity is 256 qwords (0x800 bytes); pushing more than 256 values writes past stack end (0x48c0)."
+      },
+      {
+        "name": "pop",
+        "address": "0x12ad",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack_top = stack_top - 8",
+            "size": 8,
+            "address_calc": "[0x4070] = [0x4070] - 8"
+          },
+          {
+            "operation": "READ",
+            "destination": "return *stack_top",
+            "size": 8,
+            "address_calc": "read from [stack_top] after decrement"
+          }
+        ],
+        "calls": [],
+        "behavior": "Decrements stack_top by 8, then reads and returns the qword at new stack_top. NO lower-bound check. If stack_top == stack (0x40c0) at call, pop sets stack_top=0x40b8 and reads from 0x40b8 (before stack array, in padding/completed.0 region). Further pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout)."
+      },
+      {
+        "name": "is_operator",
+        "address": "0x12d3",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "c",
+            "source": "edi (char)"
+          }
+        ],
+        "checks": [
+          "c == '+' || c == '-' || c == '*' || c == '/'"
+        ],
+        "memory_operations": [],
+        "calls": [],
+        "behavior": "Returns 1 if char is one of + - * /, else 0."
+      },
+      {
+        "name": "is_dec_number",
+        "address": "0x1306",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "c",
+            "source": "edi (char)"
+          }
+        ],
+        "checks": [
+          "c > '/' (0x2f) && c <= '9' (0x39)"
+        ],
+        "memory_operations": [],
+        "calls": [],
+        "behavior": "Returns 1 if char is '0'-'9'."
+      },
+      {
+        "name": "is_hex_number",
+        "address": "0x132d",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "ptr",
+            "source": "rdi (char*)"
+          }
+        ],
+        "checks": [
+          "ptr[0]=='0' && ptr[1]=='x'"
+        ],
+        "memory_operations": [],
+        "calls": [],
+        "behavior": "Returns 1 if string starts with '0x'."
+      },
+      {
+        "name": "init",
+        "address": "0x1361",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm"
+        ],
+        "behavior": "setvbuf(stdin, 0, 2, 0); setvbuf(stdout, 0, 2, 0); setvbuf(stderr, 0, 2, 0) [unbuffered]; alarm(60)."
+      },
+      {
+        "name": "_abort",
+        "address": "0x1249",
+        "callers": [
+          "eval_expr"
+        ],
+        "callees": [
+          "printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "rdi"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf",
+          "exit"
+        ],
+        "behavior": "printf('%s', msg); exit(1). Called on invalid token."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "push",
+        "input": "attacker-controlled number of pushed values (each hex/decimal token in expression causes one push)",
+        "operation": "WRITE *stack_top without upper-bound check; stack_top increments past stack[256] end (0x48c0)",
+        "risk": "HIGH",
+        "reason": "push writes 8 bytes at stack_top and advances it unconditionally; stack array is only 256 qwords (0x800 bytes, 0x40c0-0x48c0); pushing >256 values writes past _end of .bss into potentially unmapped or adjacent memory. Attacker controls both the count (number of tokens) and the values pushed (via hex/decimal literals). No bounds check exists in push or eval_expr."
+      },
+      {
+        "function": "pop",
+        "input": "attacker-controlled number of pops (operators consume 2 pops each; final pop at eval_expr end)",
+        "operation": "READ *stack_top without lower-bound check; stack_top decrements below stack start (0x40c0) into FILE* pointer region",
+        "risk": "HIGH",
+        "reason": "pop decrements stack_top by 8 then reads qword at that address with no lower-bound check. stack_top initial=0x40c0 (stack start). Excess pops (more pops than pushes) move stack_top below 0x40c0: 0x40b8, 0x40b0, 0x40a8(completed.0), 0x40a0(stderr FILE*), 0x4098, 0x4090(stdin FILE*), 0x4088, 0x4080(stdout FILE*). The final pop in eval_expr returns the read value to main which prints it via printf('Result: %lld') — potential info leak of memory below stack. Attacker controls pop count via operator tokens and expression structure."
+      },
+      {
+        "function": "eval_expr",
+        "input": "attacker-controlled expression string (1023 bytes via read)",
+        "operation": "token parsing drives push/pop sequence; operator semantics pop a,b then push a op b",
+        "risk": "HIGH",
+        "reason": "Expression is attacker-controlled. Number of pushes (value tokens) and pops (operator tokens + final pop) fully attacker-controlled. Combined with unbounded push/pop, attacker can drive stack_top to arbitrary offsets relative to stack base and read/write 8-byte qwords. Values pushed are attacker-controlled 64-bit integers (via strtoll on hex/decimal). The final pop result is printed to attacker (info leak path)."
+      },
+      {
+        "function": "main",
+        "input": "read(0, buf, 0x3ff) — 1023 bytes of attacker expression",
+        "operation": "passes buffer to eval_expr",
+        "risk": "MEDIUM",
+        "reason": "Input size capped at 0x3ff (1023) bytes, limiting token count, but sufficient to exceed 256-element stack capacity. Newline stripped."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source chall.c, GCC 11.4.0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, Canary enabled, PIE enabled, FORTIFY not present, CET IBT+SHSTK enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH; only NEEDED lib is libc.so.6 from system path; no in-repo .so stubs",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "stack is global array at 0x40c0 in .bss, size 2048 bytes (256 qwords), ends at 0x48c0=_end",
+        "source": "ELF"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "stack_top is global pointer at 0x4070 in .data, initialized to 0x40c0 (start of stack) via R_X86_64_RELATIVE relocation",
+        "source": "ELF"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": ".bss layout: 0x4080 stdout(8), 0x4090 stdin(8), 0x40a0 stderr(8), 0x40a8 completed.0(1), 0x40c0 stack(2048)->0x48c0",
+        "source": "ELF"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "push(): writes value to *stack_top, then stack_top += 8. NO upper-bound check against stack end (0x48c0).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "pop(): stack_top -= 8, then returns *stack_top. NO lower-bound check against stack start (0x40c0).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "eval_expr tokenizes expression: operators (+,-,*,/) pop twice and push result; hex (0x..) and decimal tokens push via strtoll; spaces skipped; invalid token -> _abort. Final pop returns result to main which prints it.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "main reads 1023 bytes from stdin via read(0, buf, 0x3ff), strips trailing newline, passes to eval_expr, prints 'Result: %lld'",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "init sets stdin/stdout/stderr unbuffered (setvbuf mode 2) and alarm(60)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "Runtime: input '3 4 +' produces 'Result: 7' — calculator functions correctly",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "Runtime: pushing 300 values (exceeding 256-element stack capacity) does NOT crash — push writes past stack end without bounds check, confirming unbounded write behavior",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F015",
+        "type": "DERIVED",
+        "description": "pop underflow: if stack_top at 0x40c0 (empty stack) and pop called, stack_top becomes 0x40b8 and reads qword at 0x40b8 (below stack, in .bss padding region). Successive pops read 0x40b0, 0x40a8, 0x40a0(stderr), 0x4098, 0x4090(stdin), 0x4088, 0x4080(stdout). These addresses hold FILE* pointers (COPY relocations).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "DERIVED",
+        "description": "The final pop in eval_expr (at 0x156b) returns a value to main which is printed via printf('Result: %lld'). If stack_top has been driven below stack start via excess pops, this prints memory content from below stack as a decimal integer — potential info leak.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "DERIVED",
+        "description": "Attacker controls both the count of push/pop operations (via token count and operator placement) and the values pushed (via hex/decimal literals parsed by strtoll into 64-bit). Combined with unbounded stack_top, attacker can position stack_top at chosen offsets relative to stack base and perform 8-byte reads (pop) or writes (push).",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether memory past _end (0x48c0) is mapped/writable at runtime when push overflows",
+        "reason": "300 pushes did not crash, suggesting the page containing 0x48c0+ is mapped (BSS pages are rounded up to page boundary: 0x4080-0x4fff likely mapped RW). Exact page boundary and writability of far overflow addresses unconfirmed."
+      },
+      {
+        "id": "U002",
+        "description": "Whether pop underflow reading FILE* pointers (stdout/stdin/stderr at 0x4080/0x4090/0x40a0) yields useful leak values",
+        "reason": "The FILE* values are libc heap/data pointers (COPY reloc). Their printed decimal representation would leak libc addresses, but exact runtime values not captured. Dynamic verification needed."
+      },
+      {
+        "id": "U003",
+        "description": "Whether push overflow can overwrite meaningful targets beyond .bss",
+        "reason": "stack ends at _end (0x48c0). Beyond _end is outside any defined section; depending on ASLR/page layout, may be unmapped at large offsets. The practical overwrite window is 0x48c0 to page boundary (~0x4fff). No global objects defined beyond stack in .bss."
+      },
+      {
+        "id": "U004",
+        "description": "Exact exploitability of the unbounded push/pop primitive (e.g., whether it enables arbitrary write to GOT, return address, or other control-flow targets)",
+        "reason": "This is S2/S3 scope. S1 only records that push/pop are unbounded and attacker-controlled. Whether the reachable addresses contain exploitable targets (GOT is at 0x4000-0x4060, below stack_top initial 0x40c0 — reachable via pop underflow direction) requires S2 analysis."
+      },
+      {
+        "id": "U005",
+        "description": "ASLR runtime status not independently confirmed",
+        "reason": "PIE is enabled (ELF-level fact). Whether the kernel applies ASLR (randomized base) at runtime was not separately verified via /proc/sys/kernel/randomize_va_space."
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE, x86-64, dyn linked, interp /lib64/ld-linux-x86-64.so.2, not stripped, BuildID 0abafe79..., entry 0x1160, 13 phdrs, 32 sections. LOAD segments: R(0-0x900), R-E(0x1000-0x1669), R(0x2000-0x2288), RW(0x3de8-0x48c0, .bss extends to 0x48c0). GNU_STACK RW (NX). GNU_RELRO 0x3de8-0x4000.",
+      "sections": ".text 0x1160(0x4fb,AX) .rodata 0x2000(0x6c,A) .data 0x4060(0x18,WA) .bss 0x4080(0x840,WA) .got 0x3fd8(0x28,WA) .got.plt 0x4000(0x60,WA) .plt 0x1020(0xa0,AX) .plt.sec 0x10d0(0x90,AX) .init_array 0x3de8(8,WA) .fini_array 0x3df0(8,WA) .dynamic 0x3df8(0x1e0,WA) .eh_frame 0x20e0(0x1a8,A)",
+      "symbols": "main 0x1586, eval_expr 0x13d0, push 0x127e, pop 0x12ad, is_operator 0x12d3, is_dec_number 0x1306, is_hex_number 0x132d, init 0x1361, _abort 0x1249, stack 0x40c0(BSS,2048), stack_top 0x4070(DATA,8,init=0x40c0), stdout 0x4080, stdin 0x4090, stderr 0x40a0",
+      "disassembly": "push(0x127e): mov rax,[stack_top]; mov [rax],rdi; mov rax,[stack_top]; add rax,8; mov [stack_top],rax; ret — NO bounds check. pop(0x12ad): mov rax,[stack_top]; sub rax,8; mov [stack_top],rax; mov rax,[stack_top]; mov rax,[rax]; ret — NO bounds check. eval_expr(0x13d0): token loop; operator->pop,pop,compute,push; hex->strtoll(16),push; dec->strtoll(10),push; space->skip; else->_abort; end->pop,return. main(0x1586): init; puts(banner); printf(prompt); read(0,buf,0x3ff); strip newline; eval_expr(buf); printf('Result: %lld',ret); canary check; ret."
+    }
+  }
+}

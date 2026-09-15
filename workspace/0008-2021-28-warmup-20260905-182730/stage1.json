@@ -1,0 +1,629 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0008-2021-28-warmup-20260905-182730/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0008-2021-28-warmup-20260905-182730/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x4010a0\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF64 LSB executable, x86-64, SYSV\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"warmup.c\",\"build_id\":\"54ac43693e146e7eb87261b3dbeafc39241f417b\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":false,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":\"false\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"2.39\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main (0x401200)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"prompt\":\"Welcome to echo service.\",\"type\":\"banner\"},{\"prompt\":\"End?[Y/N] \",\"type\":\"loop_control\",\"format\":\"%7s\",\"scanf\":true}],\"user_controlled_inputs\":[{\"name\":\"echo_input\",\"source\":\"read(0, rbp-0x70, 0x100)\",\"size\":256,\"function\":\"main\",\"notes\":\"user input echoed back via printf(\\\"%s\\\", buf)\"},{\"name\":\"continue_flag\",\"source\":\"scanf(\\\"%7s\\\", &rbp-0x78)\",\"function\":\"main\",\"notes\":\"Y/y exits loop, other continues\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x4002a8\",\"size\":\"0x1c\",\"flags\":\"R\"},{\"name\":\".note.gnu.build-id\",\"address\":\"0x4002c4\",\"size\":\"0x24\",\"flags\":\"R\"},{\"name\":\".note.ABI-tag\",\"address\":\"0x4002e8\",\"size\":\"0x20\",\"flags\":\"R\"},{\"name\":\".gnu.hash\",\"address\":\"0x400308\",\"size\":\"0x30\",\"flags\":\"R\"},{\"name\":\".dynsym\",\"address\":\"0x400338\",\"size\":\"0x138\",\"flags\":\"R\"},{\"name\":\".dynstr\",\"address\":\"0x400470\",\"size\":\"0x8b\",\"flags\":\"R\"},{\"name\":\".gnu.version\",\"address\":\"0x4004fc\",\"size\":\"0x1a\",\"flags\":\"R\"},{\"name\":\".gnu.version_r\",\"address\":\"0x400518\",\"size\":\"0x30\",\"flags\":\"R\"},{\"name\":\".rela.dyn\",\"address\":\"0x400548\",\"size\":\"0x78\",\"flags\":\"R\"},{\"name\":\".rela.plt\",\"address\":\"0x4005c0\",\"size\":\"0xa8\",\"flags\":\"R\"},{\"name\":\".init\",\"address\":\"0x401000\",\"size\":\"0x17\",\"flags\":\"RX\"},{\"name\":\".plt\",\"address\":\"0x401020\",\"size\":\"0x80\",\"flags\":\"RX\"},{\"name\":\".text\",\"address\":\"0x4010a0\",\"size\":\"0x281\",\"flags\":\"RX\"},{\"name\":\".fini\",\"address\":\"0x401324\",\"size\":\"0x9\",\"flags\":\"RX\"},{\"name\":\".rodata\",\"address\":\"0x402000\",\"size\":\"0x37\",\"flags\":\"R\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x402038\",\"size\":\"0x4c\",\"flags\":\"R\"},{\"name\":\".eh_frame\",\"address\":\"0x402088\",\"size\":\"0x140\",\"flags\":\"R\"},{\"name\":\".init_array\",\"address\":\"0x403e10\",\"size\":\"0x8\",\"flags\":\"RW\"},{\"name\":\".fini_array\",\"address\":\"0x403e18\",\"size\":\"0x8\",\"flags\":\"RW\"},{\"name\":\".dynamic\",\"address\":\"0x403e20\",\"size\":\"0x1d0\",\"flags\":\"RW\"},{\"name\":\".got\",\"address\":\"0x403ff0\",\"size\":\"0x10\",\"flags\":\"RW\"},{\"name\":\".got.plt\",\"address\":\"0x404000\",\"size\":\"0x50\",\"flags\":\"RW\"},{\"name\":\".data\",\"address\":\"0x404050\",\"size\":\"0x10\",\"flags\":\"RW\"},{\"name\":\".bss\",\"address\":\"0x404060\",\"size\":\"0x30\",\"flags\":\"RW\"}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x404060\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"stdin\",\"address\":\"0x404070\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"stderr\",\"address\":\"0x404080\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"completed.0\",\"address\":\"0x404088\",\"size\":1,\"type\":\"char\",\"section\":\".bss\"},{\"name\":\"__dso_handle\",\"address\":\"0x404058\",\"size\":8,\"type\":\"void*\",\"section\":\".data\"},{\"name\":\"_IO_stdin_used\",\"address\":\"0x402000\",\"size\":4,\"type\":\"int\",\"section\":\".rodata\"}],\"got\":[{\"offset\":\"0x403ff0\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__libc_start_main@GLIBC_2.2.5\"},{\"offset\":\"0x403ff8\",\"type\":\"R_X86_64_GLOB_DAT\",\"value\":\"__gmon_start__\"},{\"offset\":\"0x404018\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"puts@GLIBC_2.2.5\"},{\"offset\":\"0x404020\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"system@GLIBC_2.2.5\"},{\"offset\":\"0x404028\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"printf@GLIBC_2.2.5\"},{\"offset\":\"0x404030\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"alarm@GLIBC_2.2.5\"},{\"offset\":\"0x404038\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"read@GLIBC_2.2.5\"},{\"offset\":\"0x404040\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"setvbuf@GLIBC_2.2.5\"},{\"offset\":\"0x404048\",\"type\":\"R_X86_64_JUMP_SLOT\",\"value\":\"__isoc99_scanf@GLIBC_2.7\"}],\"plt\":[{\"name\":\"puts@plt\",\"address\":\"0x401030\",\"got\":\"0x404018\"},{\"name\":\"system@plt\",\"address\":\"0x401040\",\"got\":\"0x404020\"},{\"name\":\"printf@plt\",\"address\":\"0x401050\",\"got\":\"0x404028\"},{\"name\":\"alarm@plt\",\"address\":\"0x401060\",\"got\":\"0x404030\"},{\"name\":\"read@plt\",\"address\":\"0x401070\",\"got\":\"0x404038\"},{\"name\":\"setvbuf@plt\",\"address\":\"0x401080\",\"got\":\"0x404040\"},{\"name\":\"__isoc99_scanf@plt\",\"address\":\"0x401090\",\"got\":\"0x404048\"}]},\"functions\":[{\"name\":\"get_shell\",\"address\":\"0x401182\",\"callers\":[],\"callees\":[\"system@plt\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"system(\\\"/bin/sh\\\")\"],\"summary\":\"Calls system(\\\"/bin/sh\\\"). Not called from main. Win function at fixed address 0x401182 (No PIE).\"},{\"name\":\"init\",\"address\":\"0x401195\",\"callers\":[\"main\"],\"callees\":[\"setvbuf@plt\",\"alarm@plt\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf(stdin,0,2,0)\",\"setvbuf(stdout,0,2,0)\",\"setvbuf(stderr,0,2,0)\",\"alarm(0x3c)\"],\"summary\":\"Disables buffering on stdin/stdout/stderr, sets alarm(60).\"},{\"name\":\"main\",\"address\":\"0x401200\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"puts@plt\",\"read@plt\",\"printf@plt\",\"__isoc99_scanf@plt\"],\"inputs\":[{\"name\":\"echo_input\",\"source\":\"read(0, rbp-0x70, 0x100)\",\"size\":256},{\"name\":\"continue_flag\",\"source\":\"scanf(\\\"%7s\\\", &rbp-0x78)\",\"size\":7}],\"checks\":[\"cmp BYTE[rbp-0x78], 0x59 (Y)\",\"cmp BYTE[rbp-0x78], 0x79 (y)\",\"if last read byte == 0x0a, replace with 0x00\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"stdin fd 0\",\"destination\":\"stack buffer rbp-0x70\",\"size\":256,\"note\":\"buffer is 0x70=112 bytes from rbp, read writes up to 256 bytes\"},{\"operation\":\"WRITE\",\"destination\":\"stack buffer rbp-0x70[last_byte_index]\",\"size\":1,\"note\":\"newline-to-NUL replacement\"},{\"operation\":\"WRITE\",\"destination\":\"stack rbp-0x78\",\"size\":7,\"note\":\"scanf %7s writes continue flag\"}],\"calls\":[\"init\",\"puts(\\\"Welcome to echo service.\\\")\",\"read(0, rbp-0x70, 0x100)\",\"printf(\\\"%s\\\", rbp-0x70)\",\"printf(\\\"End?[Y/N] \\\")\",\"scanf(\\\"%7s\\\", &rbp-0x78)\"],\"summary\":\"Echo loop: reads up to 256 bytes into stack buffer (112 bytes from rbp), strips trailing newline, prints input via printf(\\\"%s\\\", buf), asks continue Y/N. Y/y exits.\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"read(0, rbp-0x70, 0x100)\",\"operation\":\"stack buffer overflow: read writes 256 bytes into buffer starting at rbp-0x70 (112 bytes to rbp, 120 bytes to saved rbp)\",\"risk\":\"HIGH\",\"reason\":\"read(0, buf, 0x100) writes up to 256 bytes into a stack buffer only 0x70(112) bytes below rbp. No canary, No PIE. Saved rbp at rbp+0 and return address at rbp+8 are reachable (overflow starts at rbp-0x70, return addr at rbp+8 = 0x78=120 bytes offset, well within 256). Overflow can overwrite saved rbp and return address.\"},{\"function\":\"main\",\"input\":\"printf(\\\"%s\\\", rbp-0x70) with attacker-controlled buffer content\",\"operation\":\"format string: user input used as printf %s argument (not format string itself, but content is attacker-controlled)\",\"risk\":\"MEDIUM\",\"reason\":\"printf uses \\\"%s\\\" format with user buffer as argument — this is NOT a classic format string vuln (format is fixed %s). However the echoed content is fully attacker-controlled. The real primitive is the stack overflow above.\"},{\"function\":\"get_shell\",\"input\":\"none (win function)\",\"operation\":\"system(\\\"/bin/sh\\\") at fixed address 0x401182\",\"risk\":\"HIGH\",\"reason\":\"Win function present at fixed address (No PIE). If return address can be overwritten via the stack overflow, redirecting to 0x401182 yields shell. system@plt GOT at 0x404020 is also writable (Partial RELRO).\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64, dynamically linked, not stripped, No PIE (base 0x400000), entry 0x4010a0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, No canary, No PIE, No FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"main at 0x401200: stack frame sub rsp,0x80; buffer at rbp-0x70; read(0, rbp-0x70, 0x100) reads 256 bytes\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Buffer rbp-0x70 is 0x70=112 bytes below rbp; saved rbp at [rbp], return address at [rbp+8]\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"DERIVED\",\"description\":\"read writes up to 256 bytes starting at rbp-0x70; return address at rbp+8 is offset 0x78=120 from buffer start, within 256-byte write range — return address is overwritable\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"No stack canary present — overflow to return address is not detected\",\"source\":\"ELF\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"get_shell function at 0x401182 calls system(\\\"/bin/sh\\\"); string \\\"/bin/sh\\\" at 0x402004\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"get_shell is not called from main or any other function in the binary\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"printf uses fixed format \\\"%s\\\" at 0x402025 with user buffer as argument — not a classic format string vulnerability\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"scanf uses \\\"%7s\\\" format at 0x402033 writing to rbp-0x78 (7 bytes max, bounded)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Loop control: byte at rbp-0x78 compared to 0x59('Y') and 0x79('y'); either exits loop via leave;ret\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"init() sets alarm(60) — process will receive SIGALRM after 60 seconds\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"GOT.plt at 0x404000 is writable (Partial RELRO); system@GOT at 0x404020\",\"source\":\"ELF\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; only NEEDED dependency is libc.so.6 resolved to system path\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"Runtime I/O confirmed: prints 'Welcome to echo service.', reads input, echoes it, prints 'End?[Y/N] ', reads Y/N; loop continues on non-Y input\",\"source\":\"RUNTIME\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"ASLR status at runtime cannot be confirmed from static analysis; however binary is No-PIE so code/rodata addresses are fixed. libc base would be ASLR-randomized if enabled.\",\"reason\":\"ASLR depends on kernel/runtime config, not observable from ELF alone\"},{\"id\":\"U002\",\"description\":\"CET (IBT/SHSTK) status unknown\",\"reason\":\"checksec did not report CET flags; cannot confirm from available tools\"}],\"raw\":{\"elf\":\"ELF64 LSB executable x86-64, entry 0x4010a0, interpreter /lib64/ld-linux-x86-64.so.2, not stripped, BuildID 54ac43693e146e7eb87261b3dbeafc39241f417b, GCC 10.2.0 (Debian)\",\"sections\":\"29 sections; .text 0x4010a0 size 0x281; .rodata 0x402000 size 0x37; .got.plt 0x404000 size 0x50 RW; .data 0x404050 size 0x10 RW; .bss 0x404060 size 0x30 RW\",\"symbols\":\"get_shell 0x401182 T; init 0x401195 T; main 0x401200 T; _start 0x4010a0 T; imports: puts system printf alarm read setvbuf __isoc99_scanf __libc_start_main\",\"disassembly\":\"main: push rbp; mov rbp,rsp; sub rsp,0x80; mov [rbp-0x78],0x4e('N'); call init; puts('Welcome to echo service.'); loop: read(0,rbp-0x70,0x100)->[rbp-0x4]; strip trailing newline; printf('%s',rbp-0x70); printf('End?[Y/N] '); scanf('%7s',&rbp-0x78); if [rbp-0x78]=='Y'||'y' then leave;ret else loop. get_shell: system('/bin/sh').\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0008-2021-28-warmup-20260905-182730/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x4010a0",
+      "dynamic": true,
+      "stripped": false,
+      "file_type": "ELF64 LSB executable, x86-64, SYSV",
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 10.2.0 (Debian 10.2.0-16)",
+      "source_file": "warmup.c",
+      "build_id": "54ac43693e146e7eb87261b3dbeafc39241f417b"
+    },
+    "security": {
+      "relro": {
+        "value": "partial",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": false,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": false,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": "false",
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": "unknown",
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": "unknown",
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "version": "2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)",
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "version": "2.39",
+          "source": "RUNTIME"
+        }
+      ]
+    },
+    "interface": {
+      "entry_function": "main (0x401200)",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "prompt": "Welcome to echo service.",
+          "type": "banner"
+        },
+        {
+          "prompt": "End?[Y/N] ",
+          "type": "loop_control",
+          "format": "%7s",
+          "scanf": true
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "echo_input",
+          "source": "read(0, rbp-0x70, 0x100)",
+          "size": 256,
+          "function": "main",
+          "notes": "user input echoed back via printf(\"%s\", buf)"
+        },
+        {
+          "name": "continue_flag",
+          "source": "scanf(\"%7s\", &rbp-0x78)",
+          "function": "main",
+          "notes": "Y/y exits loop, other continues"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".interp",
+          "address": "0x4002a8",
+          "size": "0x1c",
+          "flags": "R"
+        },
+        {
+          "name": ".note.gnu.build-id",
+          "address": "0x4002c4",
+          "size": "0x24",
+          "flags": "R"
+        },
+        {
+          "name": ".note.ABI-tag",
+          "address": "0x4002e8",
+          "size": "0x20",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.hash",
+          "address": "0x400308",
+          "size": "0x30",
+          "flags": "R"
+        },
+        {
+          "name": ".dynsym",
+          "address": "0x400338",
+          "size": "0x138",
+          "flags": "R"
+        },
+        {
+          "name": ".dynstr",
+          "address": "0x400470",
+          "size": "0x8b",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.version",
+          "address": "0x4004fc",
+          "size": "0x1a",
+          "flags": "R"
+        },
+        {
+          "name": ".gnu.version_r",
+          "address": "0x400518",
+          "size": "0x30",
+          "flags": "R"
+        },
+        {
+          "name": ".rela.dyn",
+          "address": "0x400548",
+          "size": "0x78",
+          "flags": "R"
+        },
+        {
+          "name": ".rela.plt",
+          "address": "0x4005c0",
+          "size": "0xa8",
+          "flags": "R"
+        },
+        {
+          "name": ".init",
+          "address": "0x401000",
+          "size": "0x17",
+          "flags": "RX"
+        },
+        {
+          "name": ".plt",
+          "address": "0x401020",
+          "size": "0x80",
+          "flags": "RX"
+        },
+        {
+          "name": ".text",
+          "address": "0x4010a0",
+          "size": "0x281",
+          "flags": "RX"
+        },
+        {
+          "name": ".fini",
+          "address": "0x401324",
+          "size": "0x9",
+          "flags": "RX"
+        },
+        {
+          "name": ".rodata",
+          "address": "0x402000",
+          "size": "0x37",
+          "flags": "R"
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x402038",
+          "size": "0x4c",
+          "flags": "R"
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x402088",
+          "size": "0x140",
+          "flags": "R"
+        },
+        {
+          "name": ".init_array",
+          "address": "0x403e10",
+          "size": "0x8",
+          "flags": "RW"
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x403e18",
+          "size": "0x8",
+          "flags": "RW"
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x403e20",
+          "size": "0x1d0",
+          "flags": "RW"
+        },
+        {
+          "name": ".got",
+          "address": "0x403ff0",
+          "size": "0x10",
+          "flags": "RW"
+        },
+        {
+          "name": ".got.plt",
+          "address": "0x404000",
+          "size": "0x50",
+          "flags": "RW"
+        },
+        {
+          "name": ".data",
+          "address": "0x404050",
+          "size": "0x10",
+          "flags": "RW"
+        },
+        {
+          "name": ".bss",
+          "address": "0x404060",
+          "size": "0x30",
+          "flags": "RW"
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x404060",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "stdin",
+          "address": "0x404070",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "stderr",
+          "address": "0x404080",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x404088",
+          "size": 1,
+          "type": "char",
+          "section": ".bss"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x404058",
+          "size": 8,
+          "type": "void*",
+          "section": ".data"
+        },
+        {
+          "name": "_IO_stdin_used",
+          "address": "0x402000",
+          "size": 4,
+          "type": "int",
+          "section": ".rodata"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x403ff0",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "__libc_start_main@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x403ff8",
+          "type": "R_X86_64_GLOB_DAT",
+          "value": "__gmon_start__"
+        },
+        {
+          "offset": "0x404018",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "puts@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404020",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "system@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404028",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "printf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404030",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "alarm@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404038",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "read@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404040",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "setvbuf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x404048",
+          "type": "R_X86_64_JUMP_SLOT",
+          "value": "__isoc99_scanf@GLIBC_2.7"
+        }
+      ],
+      "plt": [
+        {
+          "name": "puts@plt",
+          "address": "0x401030",
+          "got": "0x404018"
+        },
+        {
+          "name": "system@plt",
+          "address": "0x401040",
+          "got": "0x404020"
+        },
+        {
+          "name": "printf@plt",
+          "address": "0x401050",
+          "got": "0x404028"
+        },
+        {
+          "name": "alarm@plt",
+          "address": "0x401060",
+          "got": "0x404030"
+        },
+        {
+          "name": "read@plt",
+          "address": "0x401070",
+          "got": "0x404038"
+        },
+        {
+          "name": "setvbuf@plt",
+          "address": "0x401080",
+          "got": "0x404040"
+        },
+        {
+          "name": "__isoc99_scanf@plt",
+          "address": "0x401090",
+          "got": "0x404048"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "get_shell",
+        "address": "0x401182",
+        "callers": [],
+        "callees": [
+          "system@plt"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "system(\"/bin/sh\")"
+        ],
+        "summary": "Calls system(\"/bin/sh\"). Not called from main. Win function at fixed address 0x401182 (No PIE)."
+      },
+      {
+        "name": "init",
+        "address": "0x401195",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf@plt",
+          "alarm@plt"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf(stdin,0,2,0)",
+          "setvbuf(stdout,0,2,0)",
+          "setvbuf(stderr,0,2,0)",
+          "alarm(0x3c)"
+        ],
+        "summary": "Disables buffering on stdin/stdout/stderr, sets alarm(60)."
+      },
+      {
+        "name": "main",
+        "address": "0x401200",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "puts@plt",
+          "read@plt",
+          "printf@plt",
+          "__isoc99_scanf@plt"
+        ],
+        "inputs": [
+          {
+            "name": "echo_input",
+            "source": "read(0, rbp-0x70, 0x100)",
+            "size": 256
+          },
+          {
+            "name": "continue_flag",
+            "source": "scanf(\"%7s\", &rbp-0x78)",
+            "size": 7
+          }
+        ],
+        "checks": [
+          "cmp BYTE[rbp-0x78], 0x59 (Y)",
+          "cmp BYTE[rbp-0x78], 0x79 (y)",
+          "if last read byte == 0x0a, replace with 0x00"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "source": "stdin fd 0",
+            "destination": "stack buffer rbp-0x70",
+            "size": 256,
+            "note": "buffer is 0x70=112 bytes from rbp, read writes up to 256 bytes"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "stack buffer rbp-0x70[last_byte_index]",
+            "size": 1,
+            "note": "newline-to-NUL replacement"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "stack rbp-0x78",
+            "size": 7,
+            "note": "scanf %7s writes continue flag"
+          }
+        ],
+        "calls": [
+          "init",
+          "puts(\"Welcome to echo service.\")",
+          "read(0, rbp-0x70, 0x100)",
+          "printf(\"%s\", rbp-0x70)",
+          "printf(\"End?[Y/N] \")",
+          "scanf(\"%7s\", &rbp-0x78)"
+        ],
+        "summary": "Echo loop: reads up to 256 bytes into stack buffer (112 bytes from rbp), strips trailing newline, prints input via printf(\"%s\", buf), asks continue Y/N. Y/y exits."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "read(0, rbp-0x70, 0x100)",
+        "operation": "stack buffer overflow: read writes 256 bytes into buffer starting at rbp-0x70 (112 bytes to rbp, 120 bytes to saved rbp)",
+        "risk": "HIGH",
+        "reason": "read(0, buf, 0x100) writes up to 256 bytes into a stack buffer only 0x70(112) bytes below rbp. No canary, No PIE. Saved rbp at rbp+0 and return address at rbp+8 are reachable (overflow starts at rbp-0x70, return addr at rbp+8 = 0x78=120 bytes offset, well within 256). Overflow can overwrite saved rbp and return address."
+      },
+      {
+        "function": "main",
+        "input": "printf(\"%s\", rbp-0x70) with attacker-controlled buffer content",
+        "operation": "format string: user input used as printf %s argument (not format string itself, but content is attacker-controlled)",
+        "risk": "MEDIUM",
+        "reason": "printf uses \"%s\" format with user buffer as argument — this is NOT a classic format string vuln (format is fixed %s). However the echoed content is fully attacker-controlled. The real primitive is the stack overflow above."
+      },
+      {
+        "function": "get_shell",
+        "input": "none (win function)",
+        "operation": "system(\"/bin/sh\") at fixed address 0x401182",
+        "risk": "HIGH",
+        "reason": "Win function present at fixed address (No PIE). If return address can be overwritten via the stack overflow, redirecting to 0x401182 yields shell. system@plt GOT at 0x404020 is also writable (Partial RELRO)."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64, dynamically linked, not stripped, No PIE (base 0x400000), entry 0x4010a0",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Partial RELRO, NX enabled, No canary, No PIE, No FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "main at 0x401200: stack frame sub rsp,0x80; buffer at rbp-0x70; read(0, rbp-0x70, 0x100) reads 256 bytes",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Buffer rbp-0x70 is 0x70=112 bytes below rbp; saved rbp at [rbp], return address at [rbp+8]",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "DERIVED",
+        "description": "read writes up to 256 bytes starting at rbp-0x70; return address at rbp+8 is offset 0x78=120 from buffer start, within 256-byte write range — return address is overwritable",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "No stack canary present — overflow to return address is not detected",
+        "source": "ELF"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "get_shell function at 0x401182 calls system(\"/bin/sh\"); string \"/bin/sh\" at 0x402004",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "get_shell is not called from main or any other function in the binary",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "printf uses fixed format \"%s\" at 0x402025 with user buffer as argument — not a classic format string vulnerability",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "scanf uses \"%7s\" format at 0x402033 writing to rbp-0x78 (7 bytes max, bounded)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "Loop control: byte at rbp-0x78 compared to 0x59('Y') and 0x79('y'); either exits loop via leave;ret",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "init() sets alarm(60) — process will receive SIGALRM after 60 seconds",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "GOT.plt at 0x404000 is writable (Partial RELRO); system@GOT at 0x404020",
+        "source": "ELF"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in binary; only NEEDED dependency is libc.so.6 resolved to system path",
+        "source": "ELF"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "Runtime I/O confirmed: prints 'Welcome to echo service.', reads input, echoes it, prints 'End?[Y/N] ', reads Y/N; loop continues on non-Y input",
+        "source": "RUNTIME"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "ASLR status at runtime cannot be confirmed from static analysis; however binary is No-PIE so code/rodata addresses are fixed. libc base would be ASLR-randomized if enabled.",
+        "reason": "ASLR depends on kernel/runtime config, not observable from ELF alone"
+      },
+      {
+        "id": "U002",
+        "description": "CET (IBT/SHSTK) status unknown",
+        "reason": "checksec did not report CET flags; cannot confirm from available tools"
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB executable x86-64, entry 0x4010a0, interpreter /lib64/ld-linux-x86-64.so.2, not stripped, BuildID 54ac43693e146e7eb87261b3dbeafc39241f417b, GCC 10.2.0 (Debian)",
+      "sections": "29 sections; .text 0x4010a0 size 0x281; .rodata 0x402000 size 0x37; .got.plt 0x404000 size 0x50 RW; .data 0x404050 size 0x10 RW; .bss 0x404060 size 0x30 RW",
+      "symbols": "get_shell 0x401182 T; init 0x401195 T; main 0x401200 T; _start 0x4010a0 T; imports: puts system printf alarm read setvbuf __isoc99_scanf __libc_start_main",
+      "disassembly": "main: push rbp; mov rbp,rsp; sub rsp,0x80; mov [rbp-0x78],0x4e('N'); call init; puts('Welcome to echo service.'); loop: read(0,rbp-0x70,0x100)->[rbp-0x4]; strip trailing newline; printf('%s',rbp-0x70); printf('End?[Y/N] '); scanf('%7s',&rbp-0x78); if [rbp-0x78]=='Y'||'y' then leave;ret else loop. get_shell: system('/bin/sh')."
+    }
+  }
+}

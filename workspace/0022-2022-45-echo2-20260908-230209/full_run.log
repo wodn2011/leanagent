@@ -1,0 +1,49 @@
+# [重建] 原始 full_run.log 丢失（0字节），由 console log 拼接恢复
+
+# ===== 来源: /work/ctf2/_run_0022.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 /work/ctf2/0022-2022-45-echo2/target ===
+
+23:02:09 === Task Workspace: /work/workspace/0022-2022-45-echo2-20260908-230209（target 已拷入） ===
+23:02:09 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+23:02:09 --- S1 Recon ---
+23:02:09 === recon (bug_id=-) ===
+23:03:52 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，14326 chars）
+23:04:02 [stage1] 保存 → /work/workspace/0022-2022-45-echo2-20260908-230209/stage1.json
+23:04:02 --- S2 Semantic ---
+23:04:02 === semantic (bug_id=-) ===
+23:06:00 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，14749 chars）
+23:06:11 [stage2] 保存 → /work/workspace/0022-2022-45-echo2-20260908-230209/stage2.json
+23:06:11 --- S3 Primitive（所有 bug） ---
+23:06:11 === impact (bug_id=BUG-001) ===
+23:18:57 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，24074 chars）
+23:19:06 === impact (bug_id=BUG-002) ===
+23:27:06 [retry] 无 submit（1/5），原地重试...
+23:30:04 [retry] 无 submit（2/5），原地重试...
+23:30:54 [retry] 无 submit（3/5），原地重试...
+23:35:30 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，20848 chars）
+23:35:38 [stage3] 保存 → /work/workspace/0022-2022-45-echo2-20260908-230209/stage3.json
+23:35:38 --- S4 Exploit ---
+23:35:38 === exploit (bug_id=-) ===
+23:43:03 [retry] 无 submit（1/5），原地重试...
+23:52:03 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，14271 chars）
+23:52:17 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+23:52:17 [stage4] 保存 → /work/workspace/0022-2022-45-echo2-20260908-230209/stage4.json
+23:52:43 📄 渗透报告：/work/workspace/0022-2022-45-echo2-20260908-230209/report.md
+23:52:48 === 主 agent 汇总 ===
+分析完成！以下是结果摘要：
+
+## 漏洞分析结果
+
+| 项目 | 结果 |
+|------|------|
+| **二进制路径** | `/work/ctf2/0022-2022-45-echo2/target` |
+| **Exploit 是否成功** | ✅ **成功** |
+| **Exploit 脚本路径** | `/work/workspace/0022-2022-45-echo2-20260908-230209/exploit.py` |
+| **完整分析报告** | `/work/workspace/0022-2022-45-echo2-20260908-230209/report.md` |
+| **工作目录** | `/work/workspace/0022-2022-45-echo2-20260908-230209` |
+
+完整 S1-S4 四阶段分析（侦察 → 语义分析 → 原语验证 → exploit 构造）均已顺利跑通，最终 exploit 成功利用了目标二进制中的漏洞。所有产物（stage1-4.json、exploit.py、report.md、full_run.log）都保存在上述工作目录中，可随时查看。

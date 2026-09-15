@@ -1,0 +1,1106 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0028-2024-50-black-c2-20260909-160320/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0028-2024-50-black-c2-20260909-160320/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1340\",\"dynamic\":true,\"stripped\":true,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"buildid\":\"69a3c4547216b0278af17239f4a73b30096b47f7\",\"filetype\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, stripped\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":true,\"source\":\"RUNTIME\",\"note\":\"PIE + ASLR default on Linux\"},\"seccomp\":{\"value\":true,\"source\":\"DISASSEMBLY\",\"note\":\"Child process under SECCOMP_MODE_FILTER (BPF), parent NOT under seccomp\"}},\"runtime\":{\"libc\":{\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"name\":\"linux-vdso.so.1\",\"source\":\"RUNTIME\"}],\"rpath\":\"none\",\"runpath\":\"none\",\"needed\":[\"libc.so.6\"]},\"interface\":{\"entry_function\":\"0x1935 (main, passed to __libc_start_main at 0x1358)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"command\":\"banner\",\"description\":\"strcpy 'Welcome to the Black C2!' into output_buf\"},{\"command\":\"getuid\",\"description\":\"sprintf 'User ID: %d' with getuid() into output_buf\"},{\"command\":\"pwd\",\"description\":\"getcwd + sprintf 'Current working directory: %s' into output_buf\"},{\"command\":\"echo\",\"description\":\"read(0, output_buf, 0x1000) from stdin directly - KEY ATTACK SURFACE\"},{\"command\":\"exit\",\"description\":\"strcpy 'Child Exiting...' into output_buf, sets exit_flag=1\"}],\"user_controlled_inputs\":[{\"name\":\"command_string\",\"source\":\"stdin\",\"function\":\"main (parent) at 0x1a4c\",\"size\":\"0x64 (100 bytes)\",\"note\":\"read by parent, forwarded to child via pipe1\"},{\"name\":\"echo_input\",\"source\":\"stdin\",\"function\":\"echo at 0x1673 (child)\",\"size\":\"0x1000 (4096 bytes)\",\"note\":\"read directly from stdin by child process into stack buffer\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1340\",\"size\":\"0x861\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x148\",\"permissions\":\"R--\",\"writable\":false,\"executable\":false},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0xd8\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"note\":\"contains BPF seccomp filter at 0x4020\"},{\"name\":\".bss\",\"address\":\"0x40e0\",\"size\":\"0x40\",\"permissions\":\"RW-\",\"writable\":true,\"executable\":false,\"note\":\"contains stdout/stdin/stderr + pipe fd arrays\"},{\"name\":\".got\",\"address\":\"0x3f00\",\"size\":\"0x100\",\"permissions\":\"R-- (Full RELRO)\",\"writable\":false,\"executable\":false},{\"name\":\".plt.sec\",\"address\":\"0x11c0\",\"size\":\"0x180\",\"permissions\":\"R-X\",\"writable\":false,\"executable\":true},{\"name\":\".init_array\",\"address\":\"0x3d00\",\"size\":\"0x8\",\"permissions\":\"RW-\",\"writable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d08\",\"size\":\"0x8\",\"permissions\":\"RW-\",\"writable\":true},{\"name\":\".eh_frame\",\"address\":\"0x21c8\",\"size\":\"0x1c8\",\"permissions\":\"R--\"},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2148\",\"size\":\"0x7c\",\"permissions\":\"R--\"}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x40e0\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"stdin\",\"address\":\"0x40f0\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"stderr\",\"address\":\"0x4100\",\"size\":8,\"type\":\"FILE*\",\"section\":\".bss\"},{\"name\":\"completed_flag\",\"address\":\"0x4108\",\"size\":1,\"type\":\"char\",\"section\":\".bss\",\"note\":\"__cxa_finalize guard\"},{\"name\":\"pipe1_fds\",\"address\":\"0x4110\",\"size\":8,\"type\":\"int[2]\",\"section\":\".bss\",\"note\":\"[0]=child_read_end, [1]=parent_write_end\"},{\"name\":\"pipe2_fds\",\"address\":\"0x4118\",\"size\":8,\"type\":\"int[2]\",\"section\":\".bss\",\"note\":\"[0]=parent_read_end, [1]=child_write_end\"},{\"name\":\"seccomp_bpf_filter\",\"address\":\"0x4020\",\"size\":\"0xc8 (23 instructions x 8 bytes)\",\"type\":\"struct sock_filter[23]\",\"section\":\".data\",\"note\":\"BPF program for seccomp\"},{\"name\":\"sock_fprog\",\"note\":\"on stack at child_thread rbp-0x20: len=0x17=23, filter=0x4020\"}],\"got\":[{\"offset\":\"0x3f18\",\"symbol\":\"strncmp@GLIBC_2.2.5\"},{\"offset\":\"0x3f20\",\"symbol\":\"strcpy@GLIBC_2.2.5\"},{\"offset\":\"0x3f28\",\"symbol\":\"puts@GLIBC_2.2.5\"},{\"offset\":\"0x3f30\",\"symbol\":\"write@GLIBC_2.2.5\"},{\"offset\":\"0x3f38\",\"symbol\":\"strlen@GLIBC_2.2.5\"},{\"offset\":\"0x3f40\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\"},{\"offset\":\"0x3f48\",\"symbol\":\"getuid@GLIBC_2.2.5\"},{\"offset\":\"0x3f50\",\"symbol\":\"printf@GLIBC_2.2.5\"},{\"offset\":\"0x3f58\",\"symbol\":\"memset@GLIBC_2.2.5\"},{\"offset\":\"0x3f60\",\"symbol\":\"getcwd@GLIBC_2.2.5\"},{\"offset\":\"0x3f68\",\"symbol\":\"alarm@GLIBC_2.2.5\"},{\"offset\":\"0x3f70\",\"symbol\":\"close@GLIBC_2.2.5\"},{\"offset\":\"0x3f78\",\"symbol\":\"pipe@GLIBC_2.2.5\"},{\"offset\":\"0x3f80\",\"symbol\":\"read@GLIBC_2.2.5\"},{\"offset\":\"0x3f88\",\"symbol\":\"prctl@GLIBC_2.2.5\"},{\"offset\":\"0x3f90\",\"symbol\":\"pthread_exit@GLIBC_2.2.5\"},{\"offset\":\"0x3f98\",\"symbol\":\"setvbuf@GLIBC_2.2.5\"},{\"offset\":\"0x3fa0\",\"symbol\":\"pthread_create@GLIBC_2.34\"},{\"offset\":\"0x3fa8\",\"symbol\":\"perror@GLIBC_2.2.5\"},{\"offset\":\"0x3fb0\",\"symbol\":\"sprintf@GLIBC_2.2.5\"},{\"offset\":\"0x3fb8\",\"symbol\":\"exit@GLIBC_2.2.5\"},{\"offset\":\"0x3fc0\",\"symbol\":\"pthread_join@GLIBC_2.34\"},{\"offset\":\"0x3fc8\",\"symbol\":\"sleep@GLIBC_2.2.5\"},{\"offset\":\"0x3fd0\",\"symbol\":\"fork@GLIBC_2.2.5\"},{\"offset\":\"0x3fd8\",\"symbol\":\"__libc_start_main@GLIBC_2.34\"}],\"plt\":[{\"address\":\"0x11c0\",\"symbol\":\"strncmp@plt\"},{\"address\":\"0x11d0\",\"symbol\":\"strcpy@plt\"},{\"address\":\"0x11e0\",\"symbol\":\"puts@plt\"},{\"address\":\"0x11f0\",\"symbol\":\"write@plt\"},{\"address\":\"0x1200\",\"symbol\":\"strlen@plt\"},{\"address\":\"0x1210\",\"symbol\":\"__stack_chk_fail@plt\"},{\"address\":\"0x1220\",\"symbol\":\"getuid@plt\"},{\"address\":\"0x1230\",\"symbol\":\"printf@plt\"},{\"address\":\"0x1240\",\"symbol\":\"memset@plt\"},{\"address\":\"0x1250\",\"symbol\":\"getcwd@plt\"},{\"address\":\"0x1260\",\"symbol\":\"alarm@plt\"},{\"address\":\"0x1270\",\"symbol\":\"close@plt\"},{\"address\":\"0x1280\",\"symbol\":\"pipe@plt\"},{\"address\":\"0x1290\",\"symbol\":\"read@plt\"},{\"address\":\"0x12a0\",\"symbol\":\"prctl@plt\"},{\"address\":\"0x12b0\",\"symbol\":\"pthread_exit@plt\"},{\"address\":\"0x12c0\",\"symbol\":\"setvbuf@plt\"},{\"address\":\"0x12d0\",\"symbol\":\"pthread_create@plt\"},{\"address\":\"0x12e0\",\"symbol\":\"perror@plt\"},{\"address\":\"0x12f0\",\"symbol\":\"sprintf@plt\"},{\"address\":\"0x1300\",\"symbol\":\"exit@plt\"},{\"address\":\"0x1310\",\"symbol\":\"pthread_join@plt\"},{\"address\":\"0x1320\",\"symbol\":\"sleep@plt\"},{\"address\":\"0x1330\",\"symbol\":\"fork@plt\"}]},\"functions\":[{\"name\":\"main (parent process)\",\"address\":\"0x1935\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"setup_io@0x14e5\",\"pipe@plt\",\"fork@plt\",\"read@plt\",\"write@plt\",\"puts@plt\",\"printf@plt\",\"strncmp@plt\",\"close@plt\",\"memset@plt\",\"perror@plt\",\"exit@plt\"],\"inputs\":[{\"name\":\"command\",\"source\":\"stdin\",\"function\":\"read at 0x1a4c\",\"size\":\"0x64 (100 bytes)\",\"buffer\":\"rbp-0x180 (cmd_buf)\"}],\"checks\":[\"strncmp(cmd_buf, 'exit', 4) at 0x1b28 - checks for exit command\",\"pipe() return value checked at 0x196c/0x1980\",\"fork() return value checked at 0x19a9\",\"canary check at 0x1b8b (fs:0x28)\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"rbp-0x180 (cmd_buf)\",\"size\":\"0x64\",\"source\":\"stdin (fd 0)\",\"note\":\"parent reads command from stdin\"},{\"operation\":\"WRITE\",\"destination\":\"pipe1_fds[1] (0x4114)\",\"size\":\"0x64\",\"source\":\"cmd_buf\",\"note\":\"parent writes command to child via pipe1\"},{\"operation\":\"READ\",\"destination\":\"rbp-0x188 (sent_bytes)\",\"size\":\"4\",\"source\":\"pipe2_fds[0] (0x4118)\",\"note\":\"parent reads 4-byte int from child - ATTACKER INFLUENCED via child overflow\"},{\"operation\":\"READ\",\"destination\":\"rbp-0x110 (output_buf)\",\"size\":\"sent_bytes (sign-extended int from pipe)\",\"source\":\"pipe2_fds[0]\",\"note\":\"KEY: read size is attacker-controlled via child, output_buf is 0x108 bytes but read size can be up to 0x7fffffff\"},{\"operation\":\"WRITE\",\"destination\":\"stdout (fd 1)\",\"size\":\"sent_bytes\",\"source\":\"output_buf\"}],\"calls\":[\"pipe\",\"fork\",\"read\",\"write\",\"puts\",\"printf\",\"strncmp\",\"close\",\"memset\",\"perror\",\"exit\"]},{\"name\":\"child_thread_func\",\"address\":\"0x18f9\",\"callers\":[\"pthread_create (from child fork process at 0x19ef)\"],\"callees\":[\"seccomp_setup@0x1429\",\"puts@plt\",\"child_command_handler@0x1707\",\"pthread_exit@plt\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"prctl (via seccomp_setup)\",\"puts\",\"child_command_handler\",\"pthread_exit\"],\"notes\":\"Runs in forked child process. Sets up seccomp sandbox, then loops calling child_command_handler until exit_flag set.\"},{\"name\":\"seccomp_setup\",\"address\":\"0x1429\",\"callers\":[\"child_thread_func@0x18f9\"],\"callees\":[\"prctl@plt\",\"perror@plt\",\"exit@plt\"],\"inputs\":[],\"checks\":[\"prctl(PR_SET_NO_NEW_PRIVS=38, 1) at 0x1474, checks return >= 0\",\"prctl(PR_SET_SECCOMP=22, SECCOMP_MODE_FILTER=2, &sock_fprog) at 0x14ac, checks return >= 0\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"stack rbp-0x20 (sock_fprog)\",\"size\":\"16 bytes\",\"note\":\"len=0x17=23, filter=0x4020 (BPF filter in .data)\"}],\"calls\":[\"prctl\",\"perror\",\"exit\"],\"notes\":\"Installs BPF seccomp filter. Allowed syscalls: read(0), write(1), exit(60), getuid(102), getcwd(79), mmap(9), mprotect(10), clock_nanosleep(230). All others KILL. Arch check: AUDIT_ARCH_X86_64 (0xc000003e).\"},{\"name\":\"child_command_handler\",\"address\":\"0x1707\",\"callers\":[\"child_thread_func@0x18f9 (called in loop)\"],\"callees\":[\"sleep@plt\",\"memset@plt\",\"read@plt\",\"strncmp@plt\",\"echo@0x1673\",\"banner_func@0x1554\",\"getuid_func@0x15cd\",\"pwd_func@0x1602\",\"exit_func@0x169c\",\"strlen@plt\",\"write@plt\",\"puts@plt\"],\"inputs\":[{\"name\":\"command\",\"source\":\"pipe1_fds[0] (0x4110, child read end)\",\"function\":\"read at 0x1769\",\"size\":\"0x64 (100 bytes)\",\"buffer\":\"rbp-0x180 (cmd_buf)\"},{\"name\":\"echo_input\",\"source\":\"stdin (fd 0)\",\"function\":\"echo at 0x1673\",\"size\":\"0x1000 (4096 bytes)\",\"buffer\":\"rbp-0x110 (output_buf)\"}],\"checks\":[\"strncmp(cmd_buf, 'exit', 4) at 0x1787\",\"strncmp(cmd_buf, 'banner', 6) at 0x17b7\",\"strncmp(cmd_buf, 'getuid', 6) at 0x17c7\",\"strncmp(cmd_buf, 'pwd', 3) at 0x17f7\",\"strncmp(cmd_buf, 'echo', 4) at 0x1856\",\"canary check at 0x18e3 (fs:0x28)\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"rbp-0x180 (cmd_buf)\",\"size\":\"0x64\",\"source\":\"pipe1_fds[0]\"},{\"operation\":\"WRITE\",\"destination\":\"rbp-0x110 (output_buf)\",\"size\":\"varies\",\"source\":\"various command handlers\",\"note\":\"banner/getuid/pwd/exit use strcpy/sprintf into output_buf\"},{\"operation\":\"READ\",\"destination\":\"rbp-0x110 (output_buf)\",\"size\":\"0x1000 (4096 bytes)\",\"source\":\"stdin (fd 0)\",\"note\":\"ECHO: reads 0x1000 bytes into 0x108-byte buffer - STACK BUFFER OVERFLOW\"},{\"operation\":\"WRITE\",\"destination\":\"pipe2_fds[1] (0x411c, child write end)\",\"size\":\"4\",\"source\":\"rbp-0x188 (sent_bytes = strlen(output_buf))\"},{\"operation\":\"WRITE\",\"destination\":\"pipe2_fds[1]\",\"size\":\"sent_bytes\",\"source\":\"rbp-0x110 (output_buf)\"}],\"calls\":[\"sleep\",\"memset\",\"read\",\"strncmp\",\"strlen\",\"write\",\"puts\",\"echo\",\"banner_func\",\"getuid_func\",\"pwd_func\",\"exit_func\"],\"stack_layout\":{\"frame_size\":\"0x190 (400 bytes)\",\"rbp-0x188\":\"sent_bytes (int, 4 bytes)\",\"rbp-0x184\":\"exit_flag (int, 4 bytes)\",\"rbp-0x180\":\"cmd_buf (112 bytes available, read 100)\",\"rbp-0x110\":\"output_buf (264 bytes available to canary, echo reads 4096)\",\"rbp-0x8\":\"canary (8 bytes)\"}},{\"name\":\"echo\",\"address\":\"0x1673\",\"callers\":[\"child_command_handler@0x1876\"],\"callees\":[\"read@plt\"],\"inputs\":[{\"name\":\"output_buf_ptr\",\"source\":\"rdi (caller's rbp-0x110)\",\"type\":\"char*\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"rdi (output_buf in caller frame)\",\"size\":\"0x1000 (4096 bytes)\",\"source\":\"stdin (fd 0)\",\"note\":\"CRITICAL: reads 4096 bytes into caller's 264-byte stack buffer\"}],\"calls\":[\"read\"],\"notes\":\"No bounds checking. read(0, buf, 0x1000) where buf is a 0x108-byte stack buffer in caller.\"},{\"name\":\"banner_func\",\"address\":\"0x1554\",\"callers\":[\"child_command_handler@0x17da\"],\"callees\":[\"strcpy@plt\"],\"inputs\":[{\"name\":\"output_buf_ptr\",\"source\":\"rdi\"}],\"checks\":[\"canary check at 0x15b7\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"rdi (output_buf)\",\"size\":\"25 bytes\",\"source\":\"stack string 'Welcome to the Black C2!\\\\n'\"}],\"calls\":[\"strcpy\"]},{\"name\":\"getuid_func\",\"address\":\"0x15cd\",\"callers\":[\"child_command_handler@0x1810\"],\"callees\":[\"getuid@plt\",\"sprintf@plt\"],\"inputs\":[{\"name\":\"output_buf_ptr\",\"source\":\"rdi\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"rdi (output_buf)\",\"size\":\"varies (~12 bytes)\",\"source\":\"sprintf 'User ID: %d\\\\n' with getuid() result\"}],\"calls\":[\"getuid\",\"sprintf\"]},{\"name\":\"pwd_func\",\"address\":\"0x1602\",\"callers\":[\"child_command_handler@0x1843\"],\"callees\":[\"getcwd@plt\",\"sprintf@plt\"],\"inputs\":[{\"name\":\"output_buf_ptr\",\"source\":\"rdi\"}],\"checks\":[\"canary check at 0x1661\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"stack rbp-0x110 (local cwd_buf)\",\"size\":\"0x100\",\"source\":\"getcwd\"},{\"operation\":\"WRITE\",\"destination\":\"rdi (output_buf)\",\"size\":\"varies\",\"source\":\"sprintf 'Current working directory: %s\\\\n'\"}],\"calls\":[\"getcwd\",\"sprintf\"],\"stack_layout\":{\"frame_size\":\"0x120\",\"rbp-0x110\":\"cwd_buf (256 bytes)\",\"rbp-0x8\":\"canary\"}},{\"name\":\"exit_func\",\"address\":\"0x169c\",\"callers\":[\"child_command_handler@0x179a\"],\"callees\":[\"strcpy@plt\"],\"inputs\":[{\"name\":\"output_buf_ptr\",\"source\":\"rdi\"}],\"checks\":[\"canary check at 0x16fe\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"rdi (output_buf)\",\"size\":\"16 bytes\",\"source\":\"stack string 'Child Exiting...\\\\n'\"}],\"calls\":[\"strcpy\"]},{\"name\":\"setup_io\",\"address\":\"0x14e5\",\"callers\":[\"main@0x1958\"],\"callees\":[\"setvbuf@plt\",\"alarm@plt\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"notes\":\"setvbuf(stdin/stdout/stderr, NULL, _IONBF=2, 0); alarm(60)\"}],\"attack_surfaces\":[{\"function\":\"echo (0x1673) called from child_command_handler (0x1707)\",\"input\":\"stdin (fd 0) - echo command triggers read(0, output_buf, 0x1000)\",\"operation\":\"READ 0x1000 bytes into 0x108-byte stack buffer (rbp-0x110 in child handler frame)\",\"risk\":\"HIGH\",\"reason\":\"Stack buffer overflow: echo reads 0x1000=4096 bytes from stdin into output_buf which has only 0x108=264 bytes before canary. Overflow of 3832 bytes overwrites canary, saved rbp, return address, and beyond. Child process is under seccomp (only read/write/exit/getuid/getcwd/mmap/mprotect/clock_nanosleep allowed) but has canary protection.\"},{\"function\":\"main (parent, 0x1935) - read at 0x1ade\",\"input\":\"sent_bytes (4-byte int read from pipe2, originally strlen of child's output_buf)\",\"operation\":\"READ sent_bytes bytes into output_buf (rbp-0x110, 264 bytes available)\",\"risk\":\"HIGH\",\"reason\":\"Parent reads sent_bytes from pipe2 and uses it as read size for output_buf. If child's echo overflow corrupts strlen result or if child writes a large sent_bytes value, parent stack overflow occurs. Parent has NO seccomp (can call execve/system) but has canary. sent_bytes is sign-extended via movsxd, so negative values could cause issues.\"},{\"function\":\"child_command_handler (0x1707) - write at 0x18b8/0x18d8\",\"input\":\"sent_bytes = strlen(output_buf) after echo overflow\",\"operation\":\"WRITE sent_bytes to pipe2 as 4-byte int, then WRITE output_buf content to pipe2\",\"risk\":\"MEDIUM\",\"reason\":\"After echo overflow, strlen(output_buf) may return a value reflecting overflowed content. This value is sent to parent as sent_bytes and used as read size. If overflow fills output_buf with non-null bytes beyond buffer, strlen returns large value, enabling parent overflow.\"},{\"function\":\"Dependency resolution chain\",\"input\":\"N/A - no RPATH/RUNPATH, only libc.so.6 needed\",\"operation\":\"Standard library resolution\",\"risk\":\"LOW\",\"reason\":\"Only depends on libc.so.6 (resolved from /lib/x86_64-linux-gnu/). No RPATH/RUNPATH. No custom .so files. No LD_LIBRARY_PATH manipulation surface.\"},{\"function\":\"Cross-boundary call: child->parent via pipe\",\"input\":\"sent_bytes (4-byte int) and output_buf content via pipe2\",\"operation\":\"Child writes data to pipe2, parent reads with attacker-controlled size\",\"risk\":\"HIGH\",\"reason\":\"The child process (sandboxed with seccomp) communicates results to parent (unsandboxed) via pipe. The sent_bytes field controls parent's read size. If child is exploited to write a large sent_bytes, parent (no seccomp) can be overflowed, potentially leading to RCE in parent context.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is a 64-bit PIE ELF, stripped, dynamically linked with libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Full RELRO, NX, Canary, PIE, CET (IBT+SHSTK) all enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary. Only NEEDED dependency is libc.so.6\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Program architecture: parent process forks child, communicates via two pipes (pipe1: parent->child, pipe2: child->parent)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"Child process runs under SECCOMP_MODE_FILTER with BPF filter at .data 0x4020 (23 instructions). Allowed syscalls: read(0), write(1), exit(60), getuid(102), getcwd(79), mmap(9), mprotect(10), clock_nanosleep(230). All others KILL.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"Parent process is NOT under seccomp - can call any syscall including execve\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"echo function at 0x1673 calls read(0, output_buf, 0x1000) where output_buf is rbp-0x110 in child_command_handler frame (264 bytes to canary)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"Child command handler frame: rbp-0x180=cmd_buf(read 100 bytes from pipe), rbp-0x110=output_buf(echo reads 4096 bytes from stdin), rbp-0x8=canary\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"After echo, child writes strlen(output_buf) as 4-byte int to pipe2, then writes output_buf content to pipe2\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Parent reads 4-byte sent_bytes from pipe2, then read(pipe2_rd, output_buf, sent_bytes) where output_buf is rbp-0x110 (264 bytes to canary). sent_bytes is sign-extended via movsxd.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Parent main frame: rbp-0x188=tid/sent_bytes, rbp-0x180=cmd_buf, rbp-0x110=output_buf, rbp-0x8=canary. Frame size 0x190.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Both parent and child have stack canary checks (fs:0x28)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"alarm(60) set in setup_io, applies to parent process\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"BPF filter at 0x4020 checks arch==AUDIT_ARCH_X86_64(0xc000003e), blocks syscalls >= 0x40000000, allows whitelist, default KILL\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"echo command confirmed at runtime: sending 'echo' then separate input line causes child to read that input directly from stdin and echo it back via pipe\",\"source\":\"RUNTIME\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"Runtime test: echo with 455 bytes of 'A' returned 455 bytes, confirming read(0, buf, 0x1000) accepts large input\",\"source\":\"RUNTIME\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"Global pipe fd arrays: pipe1_fds at 0x4110 (int[2]), pipe2_fds at 0x4118 (int[2]) in .bss\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F019\",\"type\":\"DERIVED\",\"description\":\"echo overflow in child can overwrite canary+rbp+ret addr (3832 bytes past buffer). If canary is leaked/bypassed, child RIP control possible but limited by seccomp (no execve).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F020\",\"type\":\"DERIVED\",\"description\":\"If child echo overflow fills output_buf with non-null bytes, strlen returns large value. This large sent_bytes is sent to parent, who reads that many bytes from pipe2 into 264-byte output_buf -> parent stack overflow. Parent has no seccomp -> potential RCE.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F021\",\"type\":\"DERIVED\",\"description\":\"Child's echo read and parent's command read share the same stdin (fd 0) due to fork. Timing: parent reads command first, then child's echo reads remaining stdin. This creates a race/coordination point.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether child's canary can be leaked or bypassed to achieve RIP control in child process\",\"reason\":\"Canary is present and checked. No obvious leak path in child (seccomp restricts output to write(1) only, but child writes to pipe not stdout). Need S2 to analyze if canary can be recovered.\"},{\"id\":\"U002\",\"description\":\"Exact value of sent_bytes that parent will receive after child echo overflow\",\"reason\":\"strlen(output_buf) depends on where first null byte is in the overflowed buffer. If overflow payload contains no nulls, strlen could return very large value. Need S2/dynamic analysis to confirm.\"},{\"id\":\"U003\",\"description\":\"Whether parent's canary can be bypassed when parent stack is overflowed via sent_bytes\",\"reason\":\"Parent also has canary check. If parent overflow reaches canary, it will trigger __stack_chk_fail. Need S2 to determine if canary can be leaked or if overflow can avoid canary region.\"},{\"id\":\"U004\",\"description\":\"Whether the movsxd sign-extension of sent_bytes in parent can be exploited (negative values)\",\"reason\":\"sent_bytes is read as int then movsxd to rdx for read size. If sent_bytes is negative, rdx would be very large (0xffffffff????????). read() with huge size may return less than requested, but the buffer overflow still occurs. Need S2 analysis.\"},{\"id\":\"U005\",\"description\":\"Whether child process can perform useful ROP despite seccomp (mmap+mprotect available for shellcode, or open+read+write via ROP if allowed)\",\"reason\":\"Seccomp allows mmap(9) and mprotect(10), which could enable shellcode execution. But no open/read/write to arbitrary files except fd 0/1. Need S2 to assess ROP feasibility under seccomp.\"},{\"id\":\"U006\",\"description\":\"Whether the parent's read(pipe2_rd, output_buf, sent_bytes) can overflow enough to control parent RIP without hitting canary first\",\"reason\":\"output_buf at rbp-0x110, canary at rbp-0x8. Overflow must pass canary to reach ret. Unless canary is known/leaked. Need S2 to analyze canary leak paths.\"}],\"raw\":{\"elf\":\"ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, stripped. Entry=0x1340. 13 program headers, 29 sections. BuildID=69a3c4547216b0278af17239f4a73b30096b47f7. GCC 11.4.0.\",\"sections\":\".text@0x1340(0x861,RX) .rodata@0x2000(0x148,R) .data@0x4000(0xd8,RW,contains BPF filter@0x4020) .bss@0x40e0(0x40,RW,stdout/stdin/stderr/pipe_fds) .got@0x3f00(0x100,R,FullRELRO) .plt.sec@0x11c0(0x180,RX) .init_array@0x3d00(8,RW) .fini_array@0x3d08(8,RW)\",\"symbols\":\"Stripped binary. Only dynamic symbols: stdout@0x40e0, stdin@0x40f0, stderr@0x4100 (all COPY relocations in .bss). 24 PLT entries for libc functions. No debug symbols.\",\"disassembly\":\"Key functions: main@0x1935(parent: pipe+fork, reads cmd from stdin, writes to pipe1, reads sent_bytes+output from pipe2, writes to stdout, loops on command), child_thread@0x18f9(seccomp_setup@0x1429 + loop child_handler@0x1707), child_handler@0x1707(sleep(3), read pipe1 cmd, dispatch: exit/banner/getuid/pwd/echo, strlen+write pipe2), echo@0x1673(read(0,buf,0x1000) into caller's 264-byte buf), seccomp@0x1429(prctl NO_NEW_PRIVS + SECCOMP_MODE_FILTER with 23-insn BPF@0x4020 allowing read/write/exit/getuid/getcwd/mmap/mprotect/clock_nanosleep). BPF filter: check arch=x86_64, block syscalls>=0x40000000, whitelist 8 syscalls, default KILL.\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0028-2024-50-black-c2-20260909-160320/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1340",
+      "dynamic": true,
+      "stripped": true,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)",
+      "buildid": "69a3c4547216b0278af17239f4a73b30096b47f7",
+      "filetype": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, stripped"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": true,
+        "source": "RUNTIME",
+        "note": "PIE + ASLR default on Linux"
+      },
+      "seccomp": {
+        "value": true,
+        "source": "DISASSEMBLY",
+        "note": "Child process under SECCOMP_MODE_FILTER (BPF), parent NOT under seccomp"
+      }
+    },
+    "runtime": {
+      "libc": {
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "version": "GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "source": "RUNTIME"
+        },
+        {
+          "name": "linux-vdso.so.1",
+          "source": "RUNTIME"
+        }
+      ],
+      "rpath": "none",
+      "runpath": "none",
+      "needed": [
+        "libc.so.6"
+      ]
+    },
+    "interface": {
+      "entry_function": "0x1935 (main, passed to __libc_start_main at 0x1358)",
+      "input_sources": [
+        "stdin"
+      ],
+      "menu": [
+        {
+          "command": "banner",
+          "description": "strcpy 'Welcome to the Black C2!' into output_buf"
+        },
+        {
+          "command": "getuid",
+          "description": "sprintf 'User ID: %d' with getuid() into output_buf"
+        },
+        {
+          "command": "pwd",
+          "description": "getcwd + sprintf 'Current working directory: %s' into output_buf"
+        },
+        {
+          "command": "echo",
+          "description": "read(0, output_buf, 0x1000) from stdin directly - KEY ATTACK SURFACE"
+        },
+        {
+          "command": "exit",
+          "description": "strcpy 'Child Exiting...' into output_buf, sets exit_flag=1"
+        }
+      ],
+      "user_controlled_inputs": [
+        {
+          "name": "command_string",
+          "source": "stdin",
+          "function": "main (parent) at 0x1a4c",
+          "size": "0x64 (100 bytes)",
+          "note": "read by parent, forwarded to child via pipe1"
+        },
+        {
+          "name": "echo_input",
+          "source": "stdin",
+          "function": "echo at 0x1673 (child)",
+          "size": "0x1000 (4096 bytes)",
+          "note": "read directly from stdin by child process into stack buffer"
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".text",
+          "address": "0x1340",
+          "size": "0x861",
+          "permissions": "R-X",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x148",
+          "permissions": "R--",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0xd8",
+          "permissions": "RW-",
+          "writable": true,
+          "executable": false,
+          "note": "contains BPF seccomp filter at 0x4020"
+        },
+        {
+          "name": ".bss",
+          "address": "0x40e0",
+          "size": "0x40",
+          "permissions": "RW-",
+          "writable": true,
+          "executable": false,
+          "note": "contains stdout/stdin/stderr + pipe fd arrays"
+        },
+        {
+          "name": ".got",
+          "address": "0x3f00",
+          "size": "0x100",
+          "permissions": "R-- (Full RELRO)",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".plt.sec",
+          "address": "0x11c0",
+          "size": "0x180",
+          "permissions": "R-X",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d00",
+          "size": "0x8",
+          "permissions": "RW-",
+          "writable": true
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d08",
+          "size": "0x8",
+          "permissions": "RW-",
+          "writable": true
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x21c8",
+          "size": "0x1c8",
+          "permissions": "R--"
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x2148",
+          "size": "0x7c",
+          "permissions": "R--"
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x40e0",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "stdin",
+          "address": "0x40f0",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4100",
+          "size": 8,
+          "type": "FILE*",
+          "section": ".bss"
+        },
+        {
+          "name": "completed_flag",
+          "address": "0x4108",
+          "size": 1,
+          "type": "char",
+          "section": ".bss",
+          "note": "__cxa_finalize guard"
+        },
+        {
+          "name": "pipe1_fds",
+          "address": "0x4110",
+          "size": 8,
+          "type": "int[2]",
+          "section": ".bss",
+          "note": "[0]=child_read_end, [1]=parent_write_end"
+        },
+        {
+          "name": "pipe2_fds",
+          "address": "0x4118",
+          "size": 8,
+          "type": "int[2]",
+          "section": ".bss",
+          "note": "[0]=parent_read_end, [1]=child_write_end"
+        },
+        {
+          "name": "seccomp_bpf_filter",
+          "address": "0x4020",
+          "size": "0xc8 (23 instructions x 8 bytes)",
+          "type": "struct sock_filter[23]",
+          "section": ".data",
+          "note": "BPF program for seccomp"
+        },
+        {
+          "name": "sock_fprog",
+          "note": "on stack at child_thread rbp-0x20: len=0x17=23, filter=0x4020"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3f18",
+          "symbol": "strncmp@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f20",
+          "symbol": "strcpy@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f28",
+          "symbol": "puts@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f30",
+          "symbol": "write@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f38",
+          "symbol": "strlen@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f40",
+          "symbol": "__stack_chk_fail@GLIBC_2.4"
+        },
+        {
+          "offset": "0x3f48",
+          "symbol": "getuid@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f50",
+          "symbol": "printf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f58",
+          "symbol": "memset@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f60",
+          "symbol": "getcwd@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f68",
+          "symbol": "alarm@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f70",
+          "symbol": "close@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f78",
+          "symbol": "pipe@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f80",
+          "symbol": "read@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f88",
+          "symbol": "prctl@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f90",
+          "symbol": "pthread_exit@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f98",
+          "symbol": "setvbuf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fa0",
+          "symbol": "pthread_create@GLIBC_2.34"
+        },
+        {
+          "offset": "0x3fa8",
+          "symbol": "perror@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fb0",
+          "symbol": "sprintf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fb8",
+          "symbol": "exit@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fc0",
+          "symbol": "pthread_join@GLIBC_2.34"
+        },
+        {
+          "offset": "0x3fc8",
+          "symbol": "sleep@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fd0",
+          "symbol": "fork@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fd8",
+          "symbol": "__libc_start_main@GLIBC_2.34"
+        }
+      ],
+      "plt": [
+        {
+          "address": "0x11c0",
+          "symbol": "strncmp@plt"
+        },
+        {
+          "address": "0x11d0",
+          "symbol": "strcpy@plt"
+        },
+        {
+          "address": "0x11e0",
+          "symbol": "puts@plt"
+        },
+        {
+          "address": "0x11f0",
+          "symbol": "write@plt"
+        },
+        {
+          "address": "0x1200",
+          "symbol": "strlen@plt"
+        },
+        {
+          "address": "0x1210",
+          "symbol": "__stack_chk_fail@plt"
+        },
+        {
+          "address": "0x1220",
+          "symbol": "getuid@plt"
+        },
+        {
+          "address": "0x1230",
+          "symbol": "printf@plt"
+        },
+        {
+          "address": "0x1240",
+          "symbol": "memset@plt"
+        },
+        {
+          "address": "0x1250",
+          "symbol": "getcwd@plt"
+        },
+        {
+          "address": "0x1260",
+          "symbol": "alarm@plt"
+        },
+        {
+          "address": "0x1270",
+          "symbol": "close@plt"
+        },
+        {
+          "address": "0x1280",
+          "symbol": "pipe@plt"
+        },
+        {
+          "address": "0x1290",
+          "symbol": "read@plt"
+        },
+        {
+          "address": "0x12a0",
+          "symbol": "prctl@plt"
+        },
+        {
+          "address": "0x12b0",
+          "symbol": "pthread_exit@plt"
+        },
+        {
+          "address": "0x12c0",
+          "symbol": "setvbuf@plt"
+        },
+        {
+          "address": "0x12d0",
+          "symbol": "pthread_create@plt"
+        },
+        {
+          "address": "0x12e0",
+          "symbol": "perror@plt"
+        },
+        {
+          "address": "0x12f0",
+          "symbol": "sprintf@plt"
+        },
+        {
+          "address": "0x1300",
+          "symbol": "exit@plt"
+        },
+        {
+          "address": "0x1310",
+          "symbol": "pthread_join@plt"
+        },
+        {
+          "address": "0x1320",
+          "symbol": "sleep@plt"
+        },
+        {
+          "address": "0x1330",
+          "symbol": "fork@plt"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main (parent process)",
+        "address": "0x1935",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "setup_io@0x14e5",
+          "pipe@plt",
+          "fork@plt",
+          "read@plt",
+          "write@plt",
+          "puts@plt",
+          "printf@plt",
+          "strncmp@plt",
+          "close@plt",
+          "memset@plt",
+          "perror@plt",
+          "exit@plt"
+        ],
+        "inputs": [
+          {
+            "name": "command",
+            "source": "stdin",
+            "function": "read at 0x1a4c",
+            "size": "0x64 (100 bytes)",
+            "buffer": "rbp-0x180 (cmd_buf)"
+          }
+        ],
+        "checks": [
+          "strncmp(cmd_buf, 'exit', 4) at 0x1b28 - checks for exit command",
+          "pipe() return value checked at 0x196c/0x1980",
+          "fork() return value checked at 0x19a9",
+          "canary check at 0x1b8b (fs:0x28)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "rbp-0x180 (cmd_buf)",
+            "size": "0x64",
+            "source": "stdin (fd 0)",
+            "note": "parent reads command from stdin"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "pipe1_fds[1] (0x4114)",
+            "size": "0x64",
+            "source": "cmd_buf",
+            "note": "parent writes command to child via pipe1"
+          },
+          {
+            "operation": "READ",
+            "destination": "rbp-0x188 (sent_bytes)",
+            "size": "4",
+            "source": "pipe2_fds[0] (0x4118)",
+            "note": "parent reads 4-byte int from child - ATTACKER INFLUENCED via child overflow"
+          },
+          {
+            "operation": "READ",
+            "destination": "rbp-0x110 (output_buf)",
+            "size": "sent_bytes (sign-extended int from pipe)",
+            "source": "pipe2_fds[0]",
+            "note": "KEY: read size is attacker-controlled via child, output_buf is 0x108 bytes but read size can be up to 0x7fffffff"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "stdout (fd 1)",
+            "size": "sent_bytes",
+            "source": "output_buf"
+          }
+        ],
+        "calls": [
+          "pipe",
+          "fork",
+          "read",
+          "write",
+          "puts",
+          "printf",
+          "strncmp",
+          "close",
+          "memset",
+          "perror",
+          "exit"
+        ]
+      },
+      {
+        "name": "child_thread_func",
+        "address": "0x18f9",
+        "callers": [
+          "pthread_create (from child fork process at 0x19ef)"
+        ],
+        "callees": [
+          "seccomp_setup@0x1429",
+          "puts@plt",
+          "child_command_handler@0x1707",
+          "pthread_exit@plt"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "prctl (via seccomp_setup)",
+          "puts",
+          "child_command_handler",
+          "pthread_exit"
+        ],
+        "notes": "Runs in forked child process. Sets up seccomp sandbox, then loops calling child_command_handler until exit_flag set."
+      },
+      {
+        "name": "seccomp_setup",
+        "address": "0x1429",
+        "callers": [
+          "child_thread_func@0x18f9"
+        ],
+        "callees": [
+          "prctl@plt",
+          "perror@plt",
+          "exit@plt"
+        ],
+        "inputs": [],
+        "checks": [
+          "prctl(PR_SET_NO_NEW_PRIVS=38, 1) at 0x1474, checks return >= 0",
+          "prctl(PR_SET_SECCOMP=22, SECCOMP_MODE_FILTER=2, &sock_fprog) at 0x14ac, checks return >= 0"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "stack rbp-0x20 (sock_fprog)",
+            "size": "16 bytes",
+            "note": "len=0x17=23, filter=0x4020 (BPF filter in .data)"
+          }
+        ],
+        "calls": [
+          "prctl",
+          "perror",
+          "exit"
+        ],
+        "notes": "Installs BPF seccomp filter. Allowed syscalls: read(0), write(1), exit(60), getuid(102), getcwd(79), mmap(9), mprotect(10), clock_nanosleep(230). All others KILL. Arch check: AUDIT_ARCH_X86_64 (0xc000003e)."
+      },
+      {
+        "name": "child_command_handler",
+        "address": "0x1707",
+        "callers": [
+          "child_thread_func@0x18f9 (called in loop)"
+        ],
+        "callees": [
+          "sleep@plt",
+          "memset@plt",
+          "read@plt",
+          "strncmp@plt",
+          "echo@0x1673",
+          "banner_func@0x1554",
+          "getuid_func@0x15cd",
+          "pwd_func@0x1602",
+          "exit_func@0x169c",
+          "strlen@plt",
+          "write@plt",
+          "puts@plt"
+        ],
+        "inputs": [
+          {
+            "name": "command",
+            "source": "pipe1_fds[0] (0x4110, child read end)",
+            "function": "read at 0x1769",
+            "size": "0x64 (100 bytes)",
+            "buffer": "rbp-0x180 (cmd_buf)"
+          },
+          {
+            "name": "echo_input",
+            "source": "stdin (fd 0)",
+            "function": "echo at 0x1673",
+            "size": "0x1000 (4096 bytes)",
+            "buffer": "rbp-0x110 (output_buf)"
+          }
+        ],
+        "checks": [
+          "strncmp(cmd_buf, 'exit', 4) at 0x1787",
+          "strncmp(cmd_buf, 'banner', 6) at 0x17b7",
+          "strncmp(cmd_buf, 'getuid', 6) at 0x17c7",
+          "strncmp(cmd_buf, 'pwd', 3) at 0x17f7",
+          "strncmp(cmd_buf, 'echo', 4) at 0x1856",
+          "canary check at 0x18e3 (fs:0x28)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "rbp-0x180 (cmd_buf)",
+            "size": "0x64",
+            "source": "pipe1_fds[0]"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "rbp-0x110 (output_buf)",
+            "size": "varies",
+            "source": "various command handlers",
+            "note": "banner/getuid/pwd/exit use strcpy/sprintf into output_buf"
+          },
+          {
+            "operation": "READ",
+            "destination": "rbp-0x110 (output_buf)",
+            "size": "0x1000 (4096 bytes)",
+            "source": "stdin (fd 0)",
+            "note": "ECHO: reads 0x1000 bytes into 0x108-byte buffer - STACK BUFFER OVERFLOW"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "pipe2_fds[1] (0x411c, child write end)",
+            "size": "4",
+            "source": "rbp-0x188 (sent_bytes = strlen(output_buf))"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "pipe2_fds[1]",
+            "size": "sent_bytes",
+            "source": "rbp-0x110 (output_buf)"
+          }
+        ],
+        "calls": [
+          "sleep",
+          "memset",
+          "read",
+          "strncmp",
+          "strlen",
+          "write",
+          "puts",
+          "echo",
+          "banner_func",
+          "getuid_func",
+          "pwd_func",
+          "exit_func"
+        ],
+        "stack_layout": {
+          "frame_size": "0x190 (400 bytes)",
+          "rbp-0x188": "sent_bytes (int, 4 bytes)",
+          "rbp-0x184": "exit_flag (int, 4 bytes)",
+          "rbp-0x180": "cmd_buf (112 bytes available, read 100)",
+          "rbp-0x110": "output_buf (264 bytes available to canary, echo reads 4096)",
+          "rbp-0x8": "canary (8 bytes)"
+        }
+      },
+      {
+        "name": "echo",
+        "address": "0x1673",
+        "callers": [
+          "child_command_handler@0x1876"
+        ],
+        "callees": [
+          "read@plt"
+        ],
+        "inputs": [
+          {
+            "name": "output_buf_ptr",
+            "source": "rdi (caller's rbp-0x110)",
+            "type": "char*"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "rdi (output_buf in caller frame)",
+            "size": "0x1000 (4096 bytes)",
+            "source": "stdin (fd 0)",
+            "note": "CRITICAL: reads 4096 bytes into caller's 264-byte stack buffer"
+          }
+        ],
+        "calls": [
+          "read"
+        ],
+        "notes": "No bounds checking. read(0, buf, 0x1000) where buf is a 0x108-byte stack buffer in caller."
+      },
+      {
+        "name": "banner_func",
+        "address": "0x1554",
+        "callers": [
+          "child_command_handler@0x17da"
+        ],
+        "callees": [
+          "strcpy@plt"
+        ],
+        "inputs": [
+          {
+            "name": "output_buf_ptr",
+            "source": "rdi"
+          }
+        ],
+        "checks": [
+          "canary check at 0x15b7"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "rdi (output_buf)",
+            "size": "25 bytes",
+            "source": "stack string 'Welcome to the Black C2!\\n'"
+          }
+        ],
+        "calls": [
+          "strcpy"
+        ]
+      },
+      {
+        "name": "getuid_func",
+        "address": "0x15cd",
+        "callers": [
+          "child_command_handler@0x1810"
+        ],
+        "callees": [
+          "getuid@plt",
+          "sprintf@plt"
+        ],
+        "inputs": [
+          {
+            "name": "output_buf_ptr",
+            "source": "rdi"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "rdi (output_buf)",
+            "size": "varies (~12 bytes)",
+            "source": "sprintf 'User ID: %d\\n' with getuid() result"
+          }
+        ],
+        "calls": [
+          "getuid",
+          "sprintf"
+        ]
+      },
+      {
+        "name": "pwd_func",
+        "address": "0x1602",
+        "callers": [
+          "child_command_handler@0x1843"
+        ],
+        "callees": [
+          "getcwd@plt",
+          "sprintf@plt"
+        ],
+        "inputs": [
+          {
+            "name": "output_buf_ptr",
+            "source": "rdi"
+          }
+        ],
+        "checks": [
+          "canary check at 0x1661"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "stack rbp-0x110 (local cwd_buf)",
+            "size": "0x100",
+            "source": "getcwd"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "rdi (output_buf)",
+            "size": "varies",
+            "source": "sprintf 'Current working directory: %s\\n'"
+          }
+        ],
+        "calls": [
+          "getcwd",
+          "sprintf"
+        ],
+        "stack_layout": {
+          "frame_size": "0x120",
+          "rbp-0x110": "cwd_buf (256 bytes)",
+          "rbp-0x8": "canary"
+        }
+      },
+      {
+        "name": "exit_func",
+        "address": "0x169c",
+        "callers": [
+          "child_command_handler@0x179a"
+        ],
+        "callees": [
+          "strcpy@plt"
+        ],
+        "inputs": [
+          {
+            "name": "output_buf_ptr",
+            "source": "rdi"
+          }
+        ],
+        "checks": [
+          "canary check at 0x16fe"
+        ],
+        "memory_operations": [
+          {
+            "operation": "WRITE",
+            "destination": "rdi (output_buf)",
+            "size": "16 bytes",
+            "source": "stack string 'Child Exiting...\\n'"
+          }
+        ],
+        "calls": [
+          "strcpy"
+        ]
+      },
+      {
+        "name": "setup_io",
+        "address": "0x14e5",
+        "callers": [
+          "main@0x1958"
+        ],
+        "callees": [
+          "setvbuf@plt",
+          "alarm@plt"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm"
+        ],
+        "notes": "setvbuf(stdin/stdout/stderr, NULL, _IONBF=2, 0); alarm(60)"
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "echo (0x1673) called from child_command_handler (0x1707)",
+        "input": "stdin (fd 0) - echo command triggers read(0, output_buf, 0x1000)",
+        "operation": "READ 0x1000 bytes into 0x108-byte stack buffer (rbp-0x110 in child handler frame)",
+        "risk": "HIGH",
+        "reason": "Stack buffer overflow: echo reads 0x1000=4096 bytes from stdin into output_buf which has only 0x108=264 bytes before canary. Overflow of 3832 bytes overwrites canary, saved rbp, return address, and beyond. Child process is under seccomp (only read/write/exit/getuid/getcwd/mmap/mprotect/clock_nanosleep allowed) but has canary protection."
+      },
+      {
+        "function": "main (parent, 0x1935) - read at 0x1ade",
+        "input": "sent_bytes (4-byte int read from pipe2, originally strlen of child's output_buf)",
+        "operation": "READ sent_bytes bytes into output_buf (rbp-0x110, 264 bytes available)",
+        "risk": "HIGH",
+        "reason": "Parent reads sent_bytes from pipe2 and uses it as read size for output_buf. If child's echo overflow corrupts strlen result or if child writes a large sent_bytes value, parent stack overflow occurs. Parent has NO seccomp (can call execve/system) but has canary. sent_bytes is sign-extended via movsxd, so negative values could cause issues."
+      },
+      {
+        "function": "child_command_handler (0x1707) - write at 0x18b8/0x18d8",
+        "input": "sent_bytes = strlen(output_buf) after echo overflow",
+        "operation": "WRITE sent_bytes to pipe2 as 4-byte int, then WRITE output_buf content to pipe2",
+        "risk": "MEDIUM",
+        "reason": "After echo overflow, strlen(output_buf) may return a value reflecting overflowed content. This value is sent to parent as sent_bytes and used as read size. If overflow fills output_buf with non-null bytes beyond buffer, strlen returns large value, enabling parent overflow."
+      },
+      {
+        "function": "Dependency resolution chain",
+        "input": "N/A - no RPATH/RUNPATH, only libc.so.6 needed",
+        "operation": "Standard library resolution",
+        "risk": "LOW",
+        "reason": "Only depends on libc.so.6 (resolved from /lib/x86_64-linux-gnu/). No RPATH/RUNPATH. No custom .so files. No LD_LIBRARY_PATH manipulation surface."
+      },
+      {
+        "function": "Cross-boundary call: child->parent via pipe",
+        "input": "sent_bytes (4-byte int) and output_buf content via pipe2",
+        "operation": "Child writes data to pipe2, parent reads with attacker-controlled size",
+        "risk": "HIGH",
+        "reason": "The child process (sandboxed with seccomp) communicates results to parent (unsandboxed) via pipe. The sent_bytes field controls parent's read size. If child is exploited to write a large sent_bytes, parent (no seccomp) can be overflowed, potentially leading to RCE in parent context."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is a 64-bit PIE ELF, stripped, dynamically linked with libc.so.6",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Security: Full RELRO, NX, Canary, PIE, CET (IBT+SHSTK) all enabled",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is glibc 2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8) at /lib/x86_64-linux-gnu/libc.so.6",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "No RPATH/RUNPATH in binary. Only NEEDED dependency is libc.so.6",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "Program architecture: parent process forks child, communicates via two pipes (pipe1: parent->child, pipe2: child->parent)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "Child process runs under SECCOMP_MODE_FILTER with BPF filter at .data 0x4020 (23 instructions). Allowed syscalls: read(0), write(1), exit(60), getuid(102), getcwd(79), mmap(9), mprotect(10), clock_nanosleep(230). All others KILL.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "Parent process is NOT under seccomp - can call any syscall including execve",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "FACT",
+        "description": "echo function at 0x1673 calls read(0, output_buf, 0x1000) where output_buf is rbp-0x110 in child_command_handler frame (264 bytes to canary)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "Child command handler frame: rbp-0x180=cmd_buf(read 100 bytes from pipe), rbp-0x110=output_buf(echo reads 4096 bytes from stdin), rbp-0x8=canary",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "After echo, child writes strlen(output_buf) as 4-byte int to pipe2, then writes output_buf content to pipe2",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "FACT",
+        "description": "Parent reads 4-byte sent_bytes from pipe2, then read(pipe2_rd, output_buf, sent_bytes) where output_buf is rbp-0x110 (264 bytes to canary). sent_bytes is sign-extended via movsxd.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "Parent main frame: rbp-0x188=tid/sent_bytes, rbp-0x180=cmd_buf, rbp-0x110=output_buf, rbp-0x8=canary. Frame size 0x190.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "Both parent and child have stack canary checks (fs:0x28)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "alarm(60) set in setup_io, applies to parent process",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "BPF filter at 0x4020 checks arch==AUDIT_ARCH_X86_64(0xc000003e), blocks syscalls >= 0x40000000, allows whitelist, default KILL",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "echo command confirmed at runtime: sending 'echo' then separate input line causes child to read that input directly from stdin and echo it back via pipe",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "Runtime test: echo with 455 bytes of 'A' returned 455 bytes, confirming read(0, buf, 0x1000) accepts large input",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": "Global pipe fd arrays: pipe1_fds at 0x4110 (int[2]), pipe2_fds at 0x4118 (int[2]) in .bss",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F019",
+        "type": "DERIVED",
+        "description": "echo overflow in child can overwrite canary+rbp+ret addr (3832 bytes past buffer). If canary is leaked/bypassed, child RIP control possible but limited by seccomp (no execve).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F020",
+        "type": "DERIVED",
+        "description": "If child echo overflow fills output_buf with non-null bytes, strlen returns large value. This large sent_bytes is sent to parent, who reads that many bytes from pipe2 into 264-byte output_buf -> parent stack overflow. Parent has no seccomp -> potential RCE.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F021",
+        "type": "DERIVED",
+        "description": "Child's echo read and parent's command read share the same stdin (fd 0) due to fork. Timing: parent reads command first, then child's echo reads remaining stdin. This creates a race/coordination point.",
+        "source": "DISASSEMBLY"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether child's canary can be leaked or bypassed to achieve RIP control in child process",
+        "reason": "Canary is present and checked. No obvious leak path in child (seccomp restricts output to write(1) only, but child writes to pipe not stdout). Need S2 to analyze if canary can be recovered."
+      },
+      {
+        "id": "U002",
+        "description": "Exact value of sent_bytes that parent will receive after child echo overflow",
+        "reason": "strlen(output_buf) depends on where first null byte is in the overflowed buffer. If overflow payload contains no nulls, strlen could return very large value. Need S2/dynamic analysis to confirm."
+      },
+      {
+        "id": "U003",
+        "description": "Whether parent's canary can be bypassed when parent stack is overflowed via sent_bytes",
+        "reason": "Parent also has canary check. If parent overflow reaches canary, it will trigger __stack_chk_fail. Need S2 to determine if canary can be leaked or if overflow can avoid canary region."
+      },
+      {
+        "id": "U004",
+        "description": "Whether the movsxd sign-extension of sent_bytes in parent can be exploited (negative values)",
+        "reason": "sent_bytes is read as int then movsxd to rdx for read size. If sent_bytes is negative, rdx would be very large (0xffffffff????????). read() with huge size may return less than requested, but the buffer overflow still occurs. Need S2 analysis."
+      },
+      {
+        "id": "U005",
+        "description": "Whether child process can perform useful ROP despite seccomp (mmap+mprotect available for shellcode, or open+read+write via ROP if allowed)",
+        "reason": "Seccomp allows mmap(9) and mprotect(10), which could enable shellcode execution. But no open/read/write to arbitrary files except fd 0/1. Need S2 to assess ROP feasibility under seccomp."
+      },
+      {
+        "id": "U006",
+        "description": "Whether the parent's read(pipe2_rd, output_buf, sent_bytes) can overflow enough to control parent RIP without hitting canary first",
+        "reason": "output_buf at rbp-0x110, canary at rbp-0x8. Overflow must pass canary to reach ret. Unless canary is known/leaked. Need S2 to analyze canary leak paths."
+      }
+    ],
+    "raw": {
+      "elf": "ELF 64-bit LSB pie executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, stripped. Entry=0x1340. 13 program headers, 29 sections. BuildID=69a3c4547216b0278af17239f4a73b30096b47f7. GCC 11.4.0.",
+      "sections": ".text@0x1340(0x861,RX) .rodata@0x2000(0x148,R) .data@0x4000(0xd8,RW,contains BPF filter@0x4020) .bss@0x40e0(0x40,RW,stdout/stdin/stderr/pipe_fds) .got@0x3f00(0x100,R,FullRELRO) .plt.sec@0x11c0(0x180,RX) .init_array@0x3d00(8,RW) .fini_array@0x3d08(8,RW)",
+      "symbols": "Stripped binary. Only dynamic symbols: stdout@0x40e0, stdin@0x40f0, stderr@0x4100 (all COPY relocations in .bss). 24 PLT entries for libc functions. No debug symbols.",
+      "disassembly": "Key functions: main@0x1935(parent: pipe+fork, reads cmd from stdin, writes to pipe1, reads sent_bytes+output from pipe2, writes to stdout, loops on command), child_thread@0x18f9(seccomp_setup@0x1429 + loop child_handler@0x1707), child_handler@0x1707(sleep(3), read pipe1 cmd, dispatch: exit/banner/getuid/pwd/echo, strlen+write pipe2), echo@0x1673(read(0,buf,0x1000) into caller's 264-byte buf), seccomp@0x1429(prctl NO_NEW_PRIVS + SECCOMP_MODE_FILTER with 23-insn BPF@0x4020 allowing read/write/exit/getuid/getcwd/mmap/mprotect/clock_nanosleep). BPF filter: check arch=x86_64, block syscalls>=0x40000000, whitelist 8 syscalls, default KILL."
+    }
+  }
+}

@@ -1,0 +1,119 @@
+# [重建] 原始 full_run.log 丢失，由 console log 恢复（里程碑事件）
+
+# ===== 来源: /work/ctf/_batch_0011.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 /work/ctf/0011-2021-31-fortunecookie2/target ===
+
+21:10:18 === Task Workspace: /work/workspace/0011-2021-31-fortunecookie2-20260905-211018（target 已拷入） ===
+21:10:18 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+21:10:18 --- S1 Recon ---
+21:10:18 === recon (bug_id=-) ===
+21:13:21 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，22868 chars）
+21:13:27 [stage1] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260905-211018/stage1.json
+21:13:27 --- S2 Semantic ---
+21:13:27 === semantic (bug_id=-) ===
+21:17:09 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，19408 chars）
+21:17:21 [stage2] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260905-211018/stage2.json
+21:17:21 --- S3 Primitive（所有 bug） ---
+21:17:22 === impact (bug_id=BUG-001) ===
+21:23:07 [retry] 无 submit（1/5），原地重试...
+21:30:10 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，17860 chars）
+21:30:18 === impact (bug_id=BUG-002) ===
+21:36:48 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，12839 chars）
+21:36:55 [stage3] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260905-211018/stage3.json
+21:36:55 --- S4 Exploit ---
+21:36:55 === exploit (bug_id=-) ===
+21:49:38 [retry] 无 submit（1/5），原地重试...
+21:53:13 [retry] 无 submit（2/5），原地重试...
+22:02:54 [retry] 无 submit（3/5），原地重试...
+22:07:32 ⚠ 墙钟超限(1800s)。
+22:07:32 [exploit] ⚠ wallclock(1836s)，转总结轮
+22:07:32 [exploit] → 基于历史记录请求总结...
+22:07:56 [exploit] ← LLM 总结完成 (4107 chars)
+22:07:56 [exploit] ⚠ BudgetExhausted: wallclock(1836s)
+## 漏洞挖掘 S4 阶段总结
+
+### 1. 已完成的进度与关键发现
+
+**核心漏洞原语（已验证）：**
+- **BUG-002 变体（size=0 堆溢出）**：S3 仅测试了负数 size（导致崩溃），但**遗漏了 size=0 的路径**。
+  - `create_cookie(size=0)` → `calloc(1,0)` 返回有效的 0x20 字节 
+22:07:56 === exploit (bug_id=-) attempt 2/8 ===
+22:21:34 [retry] 无 submit（1/5），原地重试...
+22:23:15 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，6833 chars）
+22:23:23 [exploit] LLM 最终结论: FAILED（收下失败报告，不重试）
+22:23:23 [stage4] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260905-211018/stage4.json
+22:23:38 📄 渗透报告：/work/workspace/0011-2021-31-fortunecookie2-20260905-211018/report.md
+22:23:48 === 主 agent 汇总 ===
+分析已完成，以下是结果摘要：
+
+## 分析结果
+
+| 项目 | 内容 |
+|------|------|
+| **二进制路径** | `/work/ctf/0011-2021-31-fortunecookie2/target` |
+| **工作空间** | `/work/workspace/0011-2021-31-fortunecookie2-20260905-211018/` |
+| **Exploit 成功** | ❌ 否（exploit 不稳定） |
+| **最终 exploit 路径** | 无（未生成稳定 exploit） |
+| **报告路径** | `/work/workspace/0011-2021-31-fortunecookie2-20260905-211018/report.md` |
+
+### 说明
+完整 S1-S4 漏洞分析流程已跑完，但最终 **exploit 未达到稳定可复现的状态**，因此没有生成最终的 exploit 脚本。详细的分析过程和中间产物（stage1-4.json、full_run.log 等）都保存在工作空间目录中。
+
+如需进一步查看详细报告或调整分析策略，可以读取 `report.md` 了解具体的漏洞发现情况。需要我查看报告内容吗？
+
+# ===== 来源: /work/ctf/_batch_0011r2.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 /work/ctf/0011-2021-31-fortunecookie2/target ===
+
+15:08:45 === Task Workspace: /work/workspace/0011-2021-31-fortunecookie2-20260906-150845（target 已拷入） ===
+15:08:45 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+15:08:45 --- S1 Recon ---
+15:08:45 === recon (bug_id=-) ===
+15:10:25 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，23208 chars）
+15:10:33 [stage1] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260906-150845/stage1.json
+15:10:33 --- S2 Semantic ---
+15:10:33 === semantic (bug_id=-) ===
+15:14:21 [retry] 无 submit（1/5），原地重试...
+15:15:48 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，22130 chars）
+15:15:57 [stage2] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260906-150845/stage2.json
+15:15:57 --- S3 Primitive（所有 bug） ---
+15:15:57 === impact (bug_id=BUG-001) ===
+15:25:13 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，19243 chars）
+15:25:22 === impact (bug_id=BUG-002) ===
+15:27:10 [retry] 无 submit（1/5），原地重试...
+15:31:33 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，20909 chars）
+15:31:42 === impact (bug_id=BUG-003) ===
+15:34:10 [impact:BUG-003] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，12915 chars）
+15:34:16 === impact (bug_id=BUG-004) ===
+15:39:01 [retry] 无 submit（1/5），原地重试...
+15:43:30 ⚠ gdb_run 同参数重复调用 5 次，终止。
+15:44:09 ⚠ gdb_run 同参数重复调用 6 次，终止。
+15:46:55 [impact:BUG-004] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，22901 chars）
+15:47:03 [stage3] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260906-150845/stage3.json
+15:47:03 --- S4 Exploit ---
+15:47:03 === exploit (bug_id=-) ===
+16:04:36 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，23220 chars）
+16:04:47 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+16:04:47 [stage4] 保存 → /work/workspace/0011-2021-31-fortunecookie2-20260906-150845/stage4.json
+16:05:12 📄 渗透报告：/work/workspace/0011-2021-31-fortunecookie2-20260906-150845/report.md
+16:05:16 === 主 agent 汇总 ===
+## 分析完成 ✅
+
+对 `/work/ctf/0011-2021-31-fortunecookie2/target` 的完整 S1–S4 漏洞分析已成功跑完，结果如下：
+
+| 项目 | 结果 |
+|------|------|
+| **Exploit 是否成功** | ✅ 成功 |
+| **Workspace 目录** | `/work/workspace/0011-2021-31-fortunecookie2-20260906-150845/` |
+| **Exploit 脚本** | `…/exploit.py` |
+| **完整报告** | `…/report.md` |
+| **错误信息** | 无 |
+
+所有产物（stage1-4.json、exploit.py、report.md、full_run.log）均位于上述 workspace 目录中。如需查看报告详情或 exploit 脚本内容，告诉我即可。

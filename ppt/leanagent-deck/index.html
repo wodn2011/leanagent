@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LeanAgent · LLM 驱动的自动化二进制漏洞挖掘</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="style.css">
+<style>
+/* LeanAgent 扩展样式 */
+.tpl-tech-sharing .h1{font-size:66px}
+.tpl-tech-sharing .h2{font-size:42px}
+.tpl-tech-sharing .slide{padding:56px 72px}
+.tpl-tech-sharing .big-num{font-size:84px;font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .big-num small{font-size:28px;color:var(--accent)}
+.tpl-tech-sharing .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tpl-tech-sharing .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;border-top:3px solid var(--accent)}
+.tpl-tech-sharing .kpi .lab{font-size:13px;color:var(--text-3);font-family:'JetBrains Mono',monospace;margin-top:8px}
+.tpl-tech-sharing table.dt{width:100%;border-collapse:collapse;font-size:14px}
+.tpl-tech-sharing table.dt th{color:var(--accent-2);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:left;padding:8px 10px;border-bottom:2px solid var(--border-strong);white-space:nowrap}
+.tpl-tech-sharing table.dt td{padding:6.5px 10px;border-bottom:1px solid var(--border);color:var(--text-1)}
+.tpl-tech-sharing table.dt td.dim{color:var(--text-2)}
+.tpl-tech-sharing table.dt tr.ok td:first-child{color:var(--accent)}
+.tpl-tech-sharing .arch{display:flex;flex-direction:column;gap:12px}
+.tpl-tech-sharing .arch-row{display:flex;gap:12px;align-items:stretch}
+.tpl-tech-sharing .arch-box{flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center}
+.tpl-tech-sharing .arch-box b{display:block;color:#1a1a1e;font-size:15px}
+.tpl-tech-sharing .arch-box span{color:var(--text-3);font-size:11.5px;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .arch-box.hl{border-color:var(--accent);background:rgba(199,0,11,.05)}
+.tpl-tech-sharing .arch-box.hl b{color:var(--accent)}
+.tpl-tech-sharing .arch-arrow{text-align:center;color:var(--text-3);font-size:14px;line-height:.6}
+.tpl-tech-sharing .layers{display:flex;flex-direction:column;gap:6px}
+.tpl-tech-sharing .layer{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 16px}
+.tpl-tech-sharing .layer .lv{font-family:'JetBrains Mono',monospace;color:var(--accent);font-weight:700;font-size:15px}
+.tpl-tech-sharing .layer .body b{color:#1a1a1e;font-size:14.5px}
+.tpl-tech-sharing .layer .body span{color:var(--text-2);font-size:12.5px}
+.tpl-tech-sharing .chart{display:flex;align-items:flex-end;gap:6px;height:130px;padding:0 4px}
+.tpl-tech-sharing .chart .bar{flex:1;background:linear-gradient(180deg,var(--accent),rgba(199,0,11,.25));border-radius:4px 4px 0 0;min-height:3px;position:relative}
+.tpl-tech-sharing .chart .bar span{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--text-3);font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .chart .bar.pass{background:linear-gradient(180deg,var(--accent),rgba(199,0,11,.25))}
+.tpl-tech-sharing .chart .bar.fail{background:linear-gradient(180deg,var(--accent-3),rgba(255,123,114,.25))}
+.tpl-tech-sharing .flowline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tpl-tech-sharing .fnode{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;color:#1a1a1e;font-family:'JetBrains Mono',monospace}
+.tpl-tech-sharing .fnode.hl{border-color:var(--accent);color:var(--accent)}
+.tpl-tech-sharing .farr{color:var(--text-3);font-size:13px}
+.tpl-tech-sharing .two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.tpl-tech-sharing .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch}
+.tpl-tech-sharing .vs .side{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px}
+.tpl-tech-sharing .vs .side.bad{border-top:3px solid var(--accent-3)}
+.tpl-tech-sharing .vs .side.good{border-top:3px solid var(--accent)}
+.tpl-tech-sharing .vs .mid{display:flex;align-items:center;color:var(--text-3);font-size:22px;font-weight:800}
+.tpl-tech-sharing .stat-line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--border);font-size:14px}
+.tpl-tech-sharing .stat-line b{color:#1a1a1e}
+.tpl-tech-sharing .stat-line .v{font-family:'JetBrains Mono',monospace;color:var(--accent-2)}
+</style>
+</head>
+<body class="tpl-tech-sharing">
+<div class="deck">
+
+<!-- 1. Cover -->
+<section class="slide" data-title="Cover">
+  <p class="kicker">leanagent / tech report / 2026-09</p>
+  <h1 class="h1 anim-fade-up" data-anim="fade-up">LLM 自动攻破<br>真实 CTF Pwn 题：<span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">LeanAgent</span></h1>
+  <p class="lede mt-m">四阶段 Agent 管线 + 24 个专用工具 + 9 个方法论 Skill + 五层错误处理 —— <b style="color:#1a1a1e">全自动，零人工干预</b>。</p>
+  <div class="kpi-row mt-l" style="max-width:900px">
+    <div class="kpi"><div class="big-num">93.75<small>%</small></div><div class="lab">32 题通过率 (30/32)</div></div>
+    <div class="kpi"><div class="big-num">10<small>/10</small></div><div class="lab">0010 十连跑稳定性</div></div>
+    <div class="kpi"><div class="big-num">31<small>min</small></div><div class="lab">单题总耗时中位数</div></div>
+    <div class="kpi"><div class="big-num">2<small>min</small></div><div class="lab">S1+S2 平均耗时</div></div>
+  </div>
+  <div class="deck-footer"><span class="mono">#LLM-Agent #pwn #auto-exploit</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+</section>
+
+<!-- 2. 问题与挑战 -->
+<section class="slide" data-title="Challenges">
+  <p class="kicker">// problem</p>
+  <h2 class="h2">任务：给一个二进制，<br>Agent 自己拿到 shell / flag。</h2>
+  <div class="grid g4 mt-m" style="gap:14px">
+    <div class="card" style="padding:16px"><h4 style="font-size:15px">🎯 目标</h4><p class="dim" style="font-size:12.5px">32 道真实赛题：堆/格式串/ROP/MIPS/FSOP 全谱系，Full RELRO+NX+Canary+PIE+CET 全防护</p></div>
+    <div class="card" style="padding:16px"><h4 style="font-size:15px">🚫 禁止</h4><p class="dim" style="font-size:12.5px">无人工干预、无题目先验、端到端：侦察→理解→验证→利用全自动</p></div>
+    <div class="card" style="padding:16px"><h4 style="font-size:15px">⚙️ 底座</h4><p class="dim" style="font-size:12.5px">GLM-5.3 (火山网关) + deepagents/langgraph + 容器化 GDB/pwntools/angr/unicorn</p></div>
+    <div class="card" style="padding:16px"><h4 style="font-size:15px">📏 判定</h4><p class="dim" style="font-size:12.5px">pydantic 严格枚举：EXPLOIT_SUCCESS 唯一成功拼写，带证据提交</p></div>
+  </div>
+  <h3 class="mt-l" style="font-size:22px;color:var(--accent)">Agent 自身的 6 大顽疾（全部实测踩坑）</h3>
+  <div class="grid g3 mt-s" style="gap:12px">
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">① 输出失控</b><span class="dim"> — v1 单 run 179 次 GLM 调用，提交 = 0</span></p></div>
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">② 模型复读</b><span class="dim"> — 同一 GDB 命令重发 25+ 次，回复一字不差</span></p></div>
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">③ 提前放弃</b><span class="dim"> — S4 预算 4h，5 分钟就交 FAILED</span></p></div>
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">④ 路线漂移</b><span class="dim"> — 8 attempt 在 FSOP→GOT→DT_FINI 间横跳</span></p></div>
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">⑤ 归因错误</b><span class="dim"> — 一次实验失败→错推"此路全死"，锁死正解</span></p></div>
+    <div class="card" style="padding:14px 18px"><p style="font-size:13.5px"><b style="color:var(--accent-3)">⑥ 知识不用</b><span class="dim"> — skill 库有答案，6 attempt 读取 0 次</span></p></div>
+  </div>
+  <div class="deck-footer"><span class="mono">logs/ v1-v4 四代日志实证</span><span class="slide-number" data-current="2" data-total="14"></span></div>
+</section>
+
+<!-- 3. 整体架构 -->
+<section class="slide" data-title="Architecture">
+  <p class="kicker">// architecture</p>
+  <h2 class="h2">整体架构：四阶段管线 + 中间件栈</h2>
+  <div class="two mt-m">
+    <div class="arch">
+      <div class="arch-row">
+        <div class="arch-box" style="flex:2"><b>主 Agent 编排</b><span>leanagent run &lt;target&gt; · --stage N --context 分步续跑</span></div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-row">
+        <div class="arch-box"><b>S1 侦察</b><span>checksec/libc/IO</span></div>
+        <div class="farr">→</div>
+        <div class="arch-box"><b>S2 语义</b><span>漏洞+root cause</span></div>
+        <div class="farr">→</div>
+        <div class="arch-box"><b>S3 原语</b><span>PoC 实证/bug</span></div>
+        <div class="farr">→</div>
+        <div class="arch-box hl"><b>S4 利用</b><span>路线+exploit</span></div>
+      </div>
+      <div class="arch-arrow">▼ stage{N}.json（ctx_json 往返，阶段可独立重跑）</div>
+      <div class="arch-row">
+        <div class="arch-box hl" style="flex:2"><b>Middleware 栈（横切全部阶段）</b><span>RouteGate 路由 · SubmitFinal 契约 · Retry 重试 · Budget 墙钟 · Guards 守卫 · Log 事件流</span></div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-row">
+        <div class="arch-box"><b>工具层 24 个</b><span>静态 8 · 动态 5 · 执行 3 · 构造+文件 8</span></div>
+        <div class="arch-box hl"><b>Skill 库 9 个</b><span>渐进披露+强制路由</span></div>
+        <div class="arch-box"><b>GLM-5.3</b><span>火山网关 · 软超时 600s</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="card card-accent" style="padding:22px 26px">
+        <h4 style="color:var(--accent)">三条设计原则</h4>
+        <div class="mt-m" style="font-size:13.5px;line-height:2">
+          <div><b style="color:var(--accent-2)">① Contract-First</b><br><span class="dim">阶段间只传结构化 JSON，schema 校验是唯一交付标准</span></div>
+          <div class="mt-s"><b style="color:var(--accent-2)">② 逻辑全在 middleware</b><br><span class="dim">编排层只做 attempt 循环，校验/重试/守卫全部组件化</span></div>
+          <div class="mt-s"><b style="color:var(--accent-2)">③ 知识外置 skill 库</b><br><span class="dim">方法论不写死 prompt，按路线强制路由加载</span></div>
+        </div>
+      </div>
+      <div class="card mt-m" style="padding:18px 24px">
+        <h4 class="mono" style="color:var(--accent-2);font-size:14px">每阶段实测均值</h4>
+        <div class="mt-s" style="font-size:13px">
+          <div class="stat-line"><b>S1 侦察</b><span class="v">3m10s（最快 1m10s）</span></div>
+          <div class="stat-line"><b>S2 语义</b><span class="v">3m00s</span></div>
+          <div class="stat-line"><b>S3 原语验证</b><span class="v">24m20s</span></div>
+          <div class="stat-line"><b>S4 利用</b><span class="v">双峰：&lt;5min×10 题 / &gt;1h×7 题</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="deck-footer"><span class="mono">ARCHITECTURE.md</span><span class="slide-number" data-current="3" data-total="14"></span></div>
+</section>
+
+<!-- 4. 成绩总表 A -->
+<section class="slide" data-title="Results A">
+  <p class="kicker">// results · batch1</p>
+  <h2 class="h2">Batch 1（0001-0012）：<span style="color:var(--accent)">12/12 = 100%</span></h2>
+  <table class="dt mt-m">
+    <tr><th>题号</th><th>题目</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>总耗时</th><th>利用路线</th></tr>
+    <tr class="ok"><td>0001</td><td class="dim">ROP</td><td>1:21</td><td>1:06</td><td>3:31</td><td>3:21</td><td><b>9:21</b></td><td class="dim">栈溢出→ROP</td></tr>
+    <tr class="ok"><td>0002</td><td class="dim">Signature II</td><td>1:50</td><td>1:40</td><td>10:18</td><td>2:36</td><td><b>16:25</b></td><td class="dim">依赖链劫持 LD_LIBRARY_PATH+stub dlopen</td></tr>
+    <tr class="ok"><td>0003</td><td class="dim">Babyheap</td><td>3:53</td><td>3:19</td><td>32:11</td><td>3:24h</td><td><b>4:03h</b></td><td class="dim">盲注 oracle 二分泄露</td></tr>
+    <tr class="ok"><td>0004</td><td class="dim">Heap</td><td>2:07</td><td>1:28</td><td>59:44</td><td>3:47h</td><td><b>4:12h</b></td><td class="dim">House of Orange（off-by-one→FSOP）</td></tr>
+    <tr class="ok"><td>0005</td><td class="dim">Cage</td><td>6:57</td><td>2:02</td><td>1:00h</td><td>6:40</td><td><b>1:16h</b></td><td class="dim">seccomp 沙箱逃逸</td></tr>
+    <tr class="ok"><td>0006</td><td class="dim">help-you-2</td><td>6:49</td><td>6:25</td><td>20:37</td><td>7:01</td><td><b>40:53</b></td><td class="dim">栈溢出→ret2libc</td></tr>
+    <tr class="ok"><td>0007</td><td class="dim">seccomp2</td><td>1:27</td><td>1:15</td><td>4:10</td><td>4:52</td><td><b>11:46</b></td><td class="dim">seccomp+ORW ROP</td></tr>
+    <tr class="ok"><td>0008</td><td class="dim">warmup</td><td>1:10</td><td>1:07</td><td>13:39</td><td>1:38</td><td><b>17:36</b></td><td class="dim">栈溢出→ROP</td></tr>
+    <tr class="ok"><td>0009</td><td class="dim">cooldown</td><td>1:38</td><td>1:20</td><td>14:45</td><td>5:01</td><td><b>22:45</b></td><td class="dim">栈溢出→ROP</td></tr>
+    <tr class="ok"><td>0010</td><td class="dim">fortunecookie1</td><td>2:47</td><td>2:40</td><td>20:02</td><td>27:05</td><td><b>52:36</b></td><td class="dim">有符号下溢→逻辑绕过</td></tr>
+    <tr class="ok"><td>0011</td><td class="dim">fortunecookie2</td><td>1:48</td><td>5:23</td><td>31:06</td><td>17:44</td><td><b>56:02</b></td><td class="dim">未初始化变量→逻辑绕过</td></tr>
+    <tr class="ok"><td>0012</td><td class="dim">leaking</td><td>3:17</td><td>1:39</td><td>9:03</td><td>22:34</td><td><b>36:34</b></td><td class="dim">格式串泄露→ROP</td></tr>
+  </table>
+  <div class="deck-footer"><span class="mono">数据源：stage{N}.json 落盘时间</span><span class="slide-number" data-current="4" data-total="14"></span></div>
+</section>
+
+<!-- 5. 成绩总表 B -->
+<section class="slide" data-title="Results B">
+  <p class="kicker">// results · batch2</p>
+  <h2 class="h2">Batch 2（0013-0032）：<span style="color:var(--accent)">18/20</span> ｜ 全局 30/32</h2>
+  <table class="dt mt-s" style="font-size:12.5px">
+    <tr><th>题号</th><th>题目</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>总</th><th>利用路线</th><th>结果</th></tr>
+    <tr><td>0013</td><td class="dim">mastermind</td><td>1:58</td><td>7:39</td><td>45:02</td><td>4:06h</td><td>5:01h</td><td class="dim">sprintf 累积溢出+%n</td><td style="color:var(--accent-3)">❌</td></tr>
+    <tr class="ok"><td>0014-0017</td><td class="dim">positron / easyheap / seccomp1 / runner2</td><td>—</td><td>—</td><td>4~42m</td><td>2~29m</td><td>11~58m</td><td class="dim">逻辑/tcache/seccomp/shellcode</td><td>✅×4</td></tr>
+    <tr class="ok"><td>0018</td><td class="dim">wordle</td><td>5:29</td><td>4:03</td><td>52:17</td><td>1:24h</td><td><b>2:25h</b></td><td class="dim">负size下泄→线性扫描+stdin劫持</td><td>✅R5</td></tr>
+    <tr class="ok"><td>0019-0022</td><td class="dim">uaf / uaf2 / echo / echo2</td><td>—</td><td>—</td><td>24~60m</td><td>2m~2:22h</td><td>31m~2:54h</td><td class="dim">UAF堆利用 / canary泄+ROP</td><td>✅×4</td></tr>
+    <tr><td>0023</td><td class="dim">absolute-winner</td><td>3:39</td><td>2:11</td><td>33:52</td><td>4:11h</td><td>4:50h</td><td class="dim">一次性格式串+1/256暴力</td><td style="color:var(--accent-3)">❌</td></tr>
+    <tr class="ok"><td>0024-0027</td><td class="dim">mips-rop / revenge / runner3 / rev</td><td>—</td><td>—</td><td>4~31m</td><td>2~22m</td><td>22~54m</td><td class="dim">MIPS ROP+angr / ret2dlresolve</td><td>✅×4</td></tr>
+    <tr class="ok"><td>0028</td><td class="dim">black-c2</td><td>7:24</td><td>2:54</td><td>23:53</td><td>2:08h</td><td><b>2:42h</b></td><td class="dim">C2 pipe协议→canary泄+LD_PRELOAD</td><td>✅</td></tr>
+    <tr class="ok"><td>0029-0032</td><td class="dim">profix / hasher / ggt2 / ggt</td><td>—</td><td>—</td><td>5~36m</td><td>2m~1:45h</td><td>11m~2:09h</td><td class="dim">GOT泄libc / OOB格式串</td><td>✅×4</td></tr>
+  </table>
+  <div class="grid g3 mt-m" style="gap:12px">
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent-3)">0013 失败</b><span class="dim">：溢出够不到 canary，%n 无可用写目标，无官方解参照</span></p></div>
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent-3)">0023 失败</b><span class="dim">：官方解需 1/256 概率暴力思维，Agent 困于"单次调到 100%"执念</span></p></div>
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent)">0018/0021 重跑过关</b><span class="dim">：RouteGate / OOM 修复后从败转胜</span></p></div>
+  </div>
+  <div class="deck-footer"><span class="mono">全表见 PROJECT_SUMMARY.md</span><span class="slide-number" data-current="5" data-total="14"></span></span></div>
+</section>
+
+<!-- 6. 十连跑稳定性 -->
+<section class="slide" data-title="Stability">
+  <p class="kicker">// stability</p>
+  <h2 class="h2">0010 题 <span style="color:var(--accent)">十连跑 10/10</span>：稳定性进化曲线</h2>
+  <div class="two mt-m">
+    <div>
+      <div class="chart mt-l" style="height:150px">
+        <div class="bar fail" style="height:20%"></div><div class="bar fail" style="height:20%"></div><div class="bar fail" style="height:20%"></div><div class="bar pass" style="height:20%"></div><div class="bar fail" style="height:20%"></div><div class="bar pass" style="height:60%"></div><div class="bar pass" style="height:60%"></div><div class="bar pass" style="height:60%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div><div class="bar pass" style="height:100%"></div>
+      </div>
+      <div style="display:flex;gap:6px;padding:26px 4px 0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3)">
+        <span style="flex:5;text-align:center">v1 (1/5)</span><span style="flex:5;text-align:center">v2 (3/5)</span><span style="flex:10;text-align:center;color:var(--accent)">v4 final10 (10/10) ✓</span>
+      </div>
+      <p class="dim mt-m" style="font-size:13px">四代迭代（grep 实测）：v1 ✗✗✗✓✗ → v2 ✗✓✓✓✗ → v4 <b style="color:var(--accent)">✓✓✓✓✓✓✓✓✓✓</b></p>
+    </div>
+    <div>
+      <div class="card card-accent" style="padding:20px 24px">
+        <h4 style="color:var(--accent)">final10 十轮关键数据</h4>
+        <div class="mt-s" style="font-size:13px">
+          <div class="stat-line"><b>S1 平均</b><span class="v">1m45s（方差&lt;30s）</span></div>
+          <div class="stat-line"><b>S2 平均</b><span class="v">2m40s</span></div>
+          <div class="stat-line"><b>S3 平均</b><span class="v">34m42s（9m53s~67m19s）</span></div>
+          <div class="stat-line"><b>S4 平均</b><span class="v">30m48s（7m33s~60m40s）</span></div>
+          <div class="stat-line"><b>总时长</b><span class="v">28m~102m，均值 69m55s</span></div>
+          <div class="stat-line"><b>资源/轮</b><span class="v">GLM 107-389 次 · 工具 128-411 次</span></div>
+          <div class="stat-line"><b>失败</b><span class="v" style="color:var(--accent)">0</span></div>
+        </div>
+      </div>
+      <p class="dim mt-m" style="font-size:12.5px">S1/S2 极稳；S3 方差来自 bug 数量；S4 波动是利用链运气——<b style="color:#1a1a1e">但结果零失败</b>。</p>
+    </div>
+  </div>
+  <div class="deck-footer"><span class="mono">logs/final10/</span><span class="slide-number" data-current="6" data-total="14"></span></div>
+</section>
+
+<!-- 7. 亮点1: RouteGate -->
+<section class="slide" data-title="RouteGate">
+  <p class="kicker">// highlight · 1</p>
+  <h2 class="h2">RouteGate：把"应该读 skill"<br>变成<span style="color:var(--accent)">"不读就干不了"</span>。</h2>
+  <div class="vs mt-m">
+    <div class="side bad">
+      <h4 style="color:var(--accent-3)">之前：自由裁量（0018 wordle）</h4>
+      <div class="mt-s" style="font-size:13.5px;line-height:2">
+        <div class="stat-line"><span class="dim">skill 索引注入 prompt</span></div>
+        <div class="stat-line"><b>SKILL.md 读取次数</b><span class="v" style="color:var(--accent-3)">0 次</span></div>
+        <div class="stat-line"><b>6 attempt 结果</b><span class="v" style="color:var(--accent-3)">全败</span></div>
+        <div class="stat-line"><span class="dim">正确方法论就在库里，没人看</span></div>
+      </div>
+    </div>
+    <div class="mid">→</div>
+    <div class="side good">
+      <h4 style="color:var(--accent)">之后：三重闸门</h4>
+      <div class="mt-s" style="font-size:13.5px;line-height:2">
+        <div class="stat-line"><b>① 工具闸门</b><span class="v">declare_route 前只放行 read_file</span></div>
+        <div class="stat-line"><b>② 调用序核对</b><span class="v">声称读过的必须真读过</span></div>
+        <div class="stat-line"><b>③ 终检拒</b><span class="v">失败未换线 = 拒绝提交</span></div>
+        <div class="stat-line"><b>40 秒内读取</b><span class="v" style="color:var(--accent)">23 次（8 个 skill）</span></div>
+        <div class="stat-line"><b>0018 第 6 轮</b><span class="v" style="color:var(--accent)">PASS ✓</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid g3 mt-m" style="gap:12px">
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent-2)">推送去重</b><span class="dim">：已读 skill 只推一行，每 attempt 省 ~10K tokens，8 attempt 累计 <b style="color:#1a1a1e">~80K</b></span></p></div>
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent-2)">schema 强约束</b><span class="dim">：categories 枚举 + skills_read 数组 + rationale ≥20 字符（须引用 skill 内容）</span></p></div>
+    <div class="card" style="padding:12px 18px"><p style="font-size:13px"><b style="color:var(--accent-2)">0013 副效果</b><span class="dim">：终检逼换线，24 分钟投降 → 4h07m 打满 8/8 attempt</span></p></div>
+  </div>
+  <div class="deck-footer"><span class="mono">middleware/route_gate.py · ~250 行</span><span class="slide-number" data-current="7" data-total="14"></span></div>
+</section>
+
+<!-- 8. 亮点2: 输出契约+总结注入 -->
+<section class="slide" data-title="Contract">
+  <p class="kicker">// highlight · 2+3</p>
+  <h2 class="h2">输出契约 + 撞钟总结注入：<br>解决"不交卷"与"跨会话失忆"</h2>
+  <div class="two mt-m">
+    <div class="card card-accent" style="padding:22px 26px">
+      <h4 style="color:var(--accent)">submit_final_result 输出契约</h4>
+      <p class="dim mt-s" style="font-size:13px">唯一结束方式 = 调工具交 JSON</p>
+      <div class="mt-m" style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:var(--text-2)">
+        <div><span style="color:var(--accent)">1.</span> JSON 解析失败 → 字段级错误反馈</div>
+        <div><span style="color:var(--accent)">2.</span> schema 违约 → 违约点精确提示</div>
+        <div><span style="color:var(--accent)">3.</span> 违约 ×3 超限 → 抛异常转编排层</div>
+        <div><span style="color:var(--accent)">4.</span> EXPLOIT_SUCCESS 唯一成功拼写</div>
+      </div>
+      <div class="tag mt-m">v1: 179 次调用 0 提交 → v4: 10/10 稳定提交</div>
+    </div>
+    <div class="card card-accent" style="padding:22px 26px">
+      <h4 style="color:var(--accent)">attempt × 总结注入</h4>
+      <p class="dim mt-s" style="font-size:13px">撞钟 30min → 独立 LLM 浓缩历史 → 新 attempt 续命</p>
+      <div class="mt-m" style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:var(--text-2)">
+        <div><span style="color:var(--accent)">✦</span> 工具结果截断 1500 字符</div>
+        <div><span style="color:var(--accent)">✦</span> "已验证发现清单"直接复用</div>
+        <div><span style="color:var(--accent)">✦</span> 不走 agent 框架（防 retry 劫持）</div>
+      </div>
+      <div class="tag mt-m">0028: attempt5 开局 5 分钟攻克（前 4 轮积累全保留）</div>
+      <div class="tag mt-s">等效每 attempt 省 ~30 分钟重复探测</div>
+    </div>
+  </div>
+  <h3 class="mt-l" style="font-size:20px">拒绝消息铁律：<span style="color:var(--accent-2)">每次拦截都附带"怎么做"</span>——LLM 拿到拒绝的下一步就是照做，永不陷入"不知道怎么办"</h3>
+  <div class="deck-footer"><span class="mono">middleware/submit_final.py + summary.py</span><span class="slide-number" data-current="8" data-total="14"></span></div>
+</section>
+
+<!-- 9. 亮点3: 工具层 -->
+<section class="slide" data-title="Tools">
+  <p class="kicker">// highlight · 4</p>
+  <h2 class="h2">工具层：24 个专用工具，<br><span style="color:var(--accent)">专用 &gt; 裸 shell</span></h2>
+  <div class="grid g4 mt-m" style="gap:12px">
+    <div class="card" style="padding:16px">
+      <h4 style="font-size:15px;color:var(--accent-2)">静态分析 ×8</h4>
+      <p class="dim mt-s" style="font-size:12px;line-height:1.8">checksec（含 CET/SHSTK）· identify_libc <b style="color:#1a1a1e">运行时确认版本</b> · disassemble 按函数 · symbols/sections 带 max_lines 防爆炸 · libc_offsets 批量查偏移</p>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="font-size:15px;color:var(--accent-2)">动态调试 ×5</h4>
+      <p class="dim mt-s" style="font-size:12px;line-height:1.8">gdb_run <b style="color:#1a1a1e">RLIMIT 4GB+禁core</b>（OOM 根治）+ 断点未命中自动 GDB-HINT · gdb_run_crash 崩溃 JSON 化 · find_offset cyclic · <b style="color:#1a1a1e">check_byte 写前检查</b></p>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="font-size:15px;color:var(--accent-2)">执行验证 ×3</h4>
+      <p class="dim mt-s" style="font-size:12px;line-height:1.8">run_binary 泄露段自动标注 · <b style="color:#1a1a1e">run_script 输出摘要化</b>（只留标记行+Traceback）· probe_io 多步交互实测（子进程隔离）</p>
+    </div>
+    <div class="card" style="padding:16px">
+      <h4 style="font-size:15px;color:var(--accent-2)">构造+文件 ×8</h4>
+      <p class="dim mt-s" style="font-size:12px;line-height:1.8"><b style="color:#1a1a1e">make_payload 结构化二进制</b>（JSON 字符串无法表达 NUL——格式串题唯一解）· ROPgadget 封装 · 文件系统操作 workspace 限定</p>
+    </div>
+  </div>
+  <div class="grid g3 mt-m" style="gap:12px">
+    <div class="kpi" style="padding:16px 22px"><div class="big-num" style="font-size:44px">~100K</div><div class="lab">run_script 摘要化省 tokens/题（2K×50 次）</div></div>
+    <div class="kpi" style="padding:16px 22px"><div class="big-num" style="font-size:44px">15GB<small>→0</small></div><div class="lab">GDB 资源隔离根治 OOM（0021 重跑 PASS）</div></div>
+    <div class="kpi" style="padding:16px 22px"><div class="big-num" style="font-size:44px">3</div><div class="lab">统一防护：latin-1 容错 / 路径检查 / 超时提示</div></div>
+  </div>
+  <div class="deck-footer"><span class="mono">tools/bintools.py</span><span class="slide-number" data-current="9" data-total="14"></span></div>
+</section>
+
+<!-- 10. Skill 库 -->
+<section class="slide" data-title="Skills">
+  <p class="kicker">// highlight · 5</p>
+  <h2 class="h2">Skill 库：9 个方法论，<br><span style="color:var(--accent)">反模式比正模式更重要</span></h2>
+  <div class="two mt-m">
+    <div>
+      <table class="dt" style="font-size:12.5px">
+        <tr><th>Skill</th><th>覆盖</th><th>来源</th></tr>
+        <tr class="ok"><td>glibc-version-routing</td><td class="dim">版本→路线总路由表</td><td class="dim">0004</td></tr>
+        <tr class="ok"><td>fsop</td><td class="dim">House of Apple 2 全链</td><td class="dim">早期 heap</td></tr>
+        <tr class="ok"><td>tcache-poisoning</td><td class="dim">fd 篡改+版本分支</td><td class="dim">0015</td></tr>
+        <tr class="ok"><td>blind-oracle-leak</td><td class="dim">二分逐位+线性扫描双变体</td><td class="dim">0003+0018</td></tr>
+        <tr class="ok"><td>partial-brute-format-string</td><td class="dim">降维暴力+写目标铁律</td><td class="dim">0023 病理</td></tr>
+        <tr class="ok"><td>format-string / rop / got / data-only</td><td class="dim">基础路线</td><td class="dim">通用</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="card card-accent" style="padding:18px 22px">
+        <h4 style="color:var(--accent)">五条编写铁律</h4>
+        <div class="mt-s" style="font-size:13px;line-height:1.95">
+          <div><b style="color:var(--accent-2)">1</b> · 只写方法论不写题目——符号化 param X / 指针 P/Q</div>
+          <div><b style="color:var(--accent-2)">2</b> · ❌翻车点段落价值最高——"28bit 随机就放弃？你只需低 16 位的 4bit"</div>
+          <div><b style="color:var(--accent-2)">3</b> · 关键语义写到会翻车的精度——"%hn 计数全轮累计不归零"</div>
+          <div><b style="color:var(--accent-2)">4</b> · skill 间交叉引用——错误版本空转是最贵的失败</div>
+          <div><b style="color:var(--accent-2)">5</b> · 病理驱动迭代——全部来自真实失败复盘</div>
+        </div>
+      </div>
+      <div class="card mt-m" style="padding:14px 20px;border-top:3px solid var(--accent-3)">
+        <p style="font-size:13.5px"><b style="color:var(--accent-3)">最大教训</b><span class="dim">：知识在库里 ≠ 知识被用。0018 六轮零读取 → RouteGate 强制路由后 40 秒 23 次。这是整个 RouteGate 机制的诞生原因。</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="deck-footer"><span class="mono">skills/ · 渐进披露+强制路由</span><span class="slide-number" data-current="10" data-total="14"></span></div>
+</section>
+
+<!-- 11. 错误处理层级 -->
+<section class="slide" data-title="Error Layers">
+  <p class="kicker">// robustness</p>
+  <h2 class="h2">五层错误处理：<span style="color:var(--accent)">错误向上冒泡，策略向下注入</span></h2>
+  <div class="two mt-m">
+    <div class="layers">
+      <div class="layer" style="border-left:3px solid var(--accent-3)"><div class="lv">L0 基础</div><div class="body"><b>网络/容器/文件系统</b> <span>— httpx 重试 · console log 双写兜底 drvfs 吞文件</span></div></div>
+      <div class="layer" style="border-left:3px solid #d2a8ff"><div class="lv">L1 工具内建</div><div class="body"><b>单次调用健壮性</b> <span>— latin-1 replace 防崩 · isfile 检查 · RLIMIT 4GB · 超时自适应提示</span></div></div>
+      <div class="layer" style="border-left:3px solid var(--accent-2)"><div class="lv">L2 会话内</div><div class="body"><b>agent 循环健康</b> <span>— 无 submit 提醒×5 · 重复守卫&gt;5 拒 · GLM 软超时 600s · 墙钟/预算</span></div></div>
+      <div class="layer" style="border-left:3px solid var(--accent)"><div class="lv">L3 契约</div><div class="body"><b>交付质量</b> <span>— schema 字段级反馈×3 · RouteGate 终检（未声明/失败未换线拒）</span></div></div>
+      <div class="layer" style="border-left:3px solid #ffd479"><div class="lv">L4 编排</div><div class="body"><b>跨会话策略</b> <span>— 总结注入新 attempt×8 · 全用尽判负收尾</span></div></div>
+    </div>
+    <div>
+      <div class="card card-accent" style="padding:20px 24px">
+        <h4 style="color:var(--accent)">实战消灭的具体事故</h4>
+        <div class="mt-s" style="font-size:13px;line-height:2.05">
+          <div class="stat-line"><span class="dim">GLM 流式挂死</span><span class="v">9 小时 → 600s 软超时自愈</span></div>
+          <div class="stat-line"><span class="dim">主进程 OOM（15GB）</span><span class="v">RLIMIT 根治，重跑 PASS</span></div>
+          <div class="stat-line"><span class="dim">复读循环 25+ 次</span><span class="v">守卫拒绝+可执行引导</span></div>
+          <div class="stat-line"><span class="dim">GraphRecursionError 崩进程</span><span class="v">limit=工具×4+异常转总结</span></div>
+          <div class="stat-line"><span class="dim">非 latin 字符崩主进程</span><span class="v">errors=replace ×5 处</span></div>
+          <div class="stat-line"><span class="dim">路径 typo 崩主进程</span><span class="v">isfile 前置检查</span></div>
+        </div>
+      </div>
+      <div class="card mt-m" style="padding:14px 20px">
+        <p style="font-size:13.5px"><b style="color:var(--accent-2)">双保险设计</b><span class="dim">：关键约束（skill 路由）在 L2 闸门 + L3 终检各拦一次，绕过任何一层都会被另一层接住。</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="deck-footer"><span class="mono">L1-L3 异常统一以 BudgetExhausted 到达 L4</span><span class="slide-number" data-current="11" data-total="14"></span></div>
+</section>
+
+<!-- 12. S4 流程时序 -->
+<section class="slide" data-title="S4 Flow">
+  <p class="kicker">// s4 · exploit flow</p>
+  <h2 class="h2">S4 内部：一次完整利用的全流程</h2>
+  <div class="arch mt-m">
+    <div class="flowline">
+      <div class="fnode">user msg：S1+S2+S3 JSON</div><span class="farr">→</span>
+      <div class="fnode">首次工具调用被拦</div><span class="farr">→</span>
+      <div class="fnode hl">read_file ×N skill</div><span class="farr">→</span>
+      <div class="fnode hl">declare_route(类别+已读+理由)</div><span class="farr">→</span>
+      <div class="fnode">推送匹配 skill 全文</div>
+    </div>
+    <div class="flowline">
+      <div class="fnode">GDB 探栈布局</div><span class="farr">→</span>
+      <div class="fnode">构造 payload（make_payload）</div><span class="farr">→</span>
+      <div class="fnode">写 exploit.py</div><span class="farr">→</span>
+      <div class="fnode">run_script 执行</div><span class="farr">→</span>
+      <div class="fnode hl">shell/flag ✓</div><span class="farr">→</span>
+      <div class="fnode hl">submit_final_result</div>
+    </div>
+    <div class="flowline">
+      <div class="fnode" style="border-color:var(--accent-3);color:var(--accent-3)">失败：fallback 调参</div><span class="farr">→</span>
+      <div class="fnode" style="border-color:var(--accent-3);color:var(--accent-3)">路线证伪 → 重新 declare_route 换线</div><span class="farr">→</span>
+      <div class="fnode" style="border-color:var(--accent-3);color:var(--accent-3)">撞钟 30min → 总结注入 → 新 attempt（×8）</div>
+    </div>
+  </div>
+  <div class="grid g3 mt-l" style="gap:12px">
+    <div class="card" style="padding:14px 20px"><p style="font-size:13px"><b style="color:var(--accent)">路线仲裁纪律</b><span class="dim">：已验证链穷尽变体 > 开新战线；简单直接优先；排除一条路前先问结论来自读语义还是写语义实验</span></p></div>
+    <div class="card" style="padding:14px 20px"><p style="font-size:13px"><b style="color:var(--accent)">I/O 铁律</b><span class="dim">：recvrepeat(0.3)+find(marker) 定位；泄露必须 &amp;0xfff==0 且 &gt;0x10000；分级重试</span></p></div>
+    <div class="card" style="padding:14px 20px"><p style="font-size:13px"><b style="color:var(--accent)">完成即收工</b><span class="dim">：拿到 uid=/回显/LEANAGENT_SUCCESS 立即输出 JSON；竞态交给脚本内重试循环</span></p></div>
+  </div>
+  <div class="deck-footer"><span class="mono">S4 双峰实证：10 题 &lt;5min / 7 题 &gt;1h</span><span class="slide-number" data-current="12" data-total="14"></span></div>
+</section>
+
+<!-- 13. 能力边界+方法论 -->
+<section class="slide" data-title="Takeaways">
+  <p class="kicker">// takeaways</p>
+  <h2 class="h2">能力边界与五条方法论</h2>
+  <div class="card mt-m" style="padding:16px 24px;border-top:3px solid var(--accent-3)">
+    <p style="font-size:13.5px"><b style="color:var(--accent-3)">诚实的能力边界（2/32 失败）</b><span class="dim">：0023 需"单次 1/256 概率+外层循环"的概率思维——Agent 生成了正确形态的两段写 payload、验证了全部机制，但困在"单次调到 100%"的确定性执念。<b style="color:#1a1a1e">闸门保证知识被读，不保证心智模型被切换</b>。0013 无官方解参照，打满预算未突破。</span></p>
+  </div>
+  <div class="grid g5 mt-m" style="gap:12px">
+    <div class="card card-accent" style="padding:14px 16px"><h4 style="font-size:14px">① 契约&gt;提示</h4><p class="dim" style="font-size:11.5px">输出必须工具化+schema 校验，不靠 prompt 恳求</p></div>
+    <div class="card card-accent" style="padding:14px 16px"><h4 style="font-size:14px">② 路由&gt;检索</h4><p class="dim" style="font-size:11.5px">闸门+调用序核对，知识才会被用</p></div>
+    <div class="card card-accent" style="padding:14px 16px"><h4 style="font-size:14px">③ 总结&gt;长上下文</h4><p class="dim" style="font-size:11.5px">撞钟压缩记忆复用，不硬撑上下文</p></div>
+    <div class="card card-accent" style="padding:14px 16px"><h4 style="font-size:14px">④ 终检&gt;劝说</h4><p class="dim" style="font-size:11.5px">"失败必须换线"写进校验而非 prompt</p></div>
+    <div class="card card-accent" style="padding:14px 16px"><h4 style="font-size:14px">⑤ 守卫&gt;自律</h4><p class="dim" style="font-size:11.5px">资源上限+重复检测，不信任模型自觉</p></div>
+  </div>
+  <div class="card mt-m" style="padding:20px 28px;background:rgba(199,0,11,.05);border-color:rgba(199,0,11,.3)">
+    <p style="font-size:19px;text-align:center;color:#1a1a1e;font-weight:600">Agent 工程的本质不是让 LLM 更聪明，<br>而是<span style="color:var(--accent)">把"应该做"变成"不做就干不了"</span>。</p>
+  </div>
+  <div class="deck-footer"><span class="mono">PROJECT_SUMMARY.md + ARCHITECTURE.md</span><span class="slide-number" data-current="13" data-total="14"></span></div>
+</section>
+
+<!-- 14. End -->
+<section class="slide center tc" data-title="End">
+  <div>
+    <div class="mono" style="font-size:110px;color:var(--accent);font-weight:800;letter-spacing:-.04em">30/32</div>
+    <h2 class="h2">Questions?</h2>
+    <p class="lede" style="margin:12px auto">LeanAgent · LLM-driven binary exploitation</p>
+    <div class="row mt-l" style="justify-content:center;gap:10px">
+      <span class="tag">数据：PROJECT_SUMMARY.md</span>
+      <span class="tag">架构：ARCHITECTURE.md</span>
+      <span class="tag">日志：logs/ + final10/</span>
+      <span class="tag">代码：leanagent/</span>
+    </div>
+  </div>
+</section>
+
+</div>
+<script src="../assets/runtime.js"></script>
+</body></html>

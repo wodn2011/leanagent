@@ -1,0 +1,1178 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1110\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"type\":\"DYN (PIE)\",\"compiler\":\"GCC 10.2.0 (Debian 10.2.0-16)\",\"source_file\":\"fortunecookie.c\",\"buildid\":\"84dab319bf6fe22134cf0338cbd8071fd8bc06c2\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":\"none\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"shstk\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39 (Ubuntu GLIBC 2.39-0ubuntu8.8)\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":\"none\",\"runpath\":\"none\",\"ld_library_path_priority\":\"LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[\"1. Eat one cookie!!\",\"2. Make new cookie.\",\"3. Edit cookie msg.\",\"4. View cookie msg.\",\"5. exit\"],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf_lld\",\"function\":\"main\",\"type\":\"int64\"},{\"name\":\"message_length\",\"source\":\"scanf_lld\",\"function\":\"create_cookie\",\"type\":\"int64\",\"max\":256},{\"name\":\"message_data\",\"source\":\"read_0_buf_len\",\"function\":\"create_cookie\",\"type\":\"bytes\"},{\"name\":\"cookie_index_edit\",\"source\":\"scanf_llu\",\"function\":\"edit_cookie\",\"type\":\"uint64\"},{\"name\":\"new_message\",\"source\":\"read_0_msg_idx_msg_size_idx_minus_1\",\"function\":\"edit_cookie\",\"type\":\"bytes\"},{\"name\":\"cookie_index_view\",\"source\":\"scanf_llu\",\"function\":\"read_cookie\",\"type\":\"uint64\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x1110\",\"size\":\"0x891\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x266\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x3f58\",\"size\":\"0xa8\",\"flags\":\"WA\",\"writable\":false,\"executable\":false,\"readable\":true,\"note\":\"Full RELRO resolved read-only at runtime\"},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xe0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x3d58\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x3d60\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x3d68\",\"size\":\"0x1f0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x22e0\",\"size\":\"0x1e0\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x2268\",\"size\":\"0x74\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"msg\",\"address\":\"0x4060\",\"size\":256,\"section\":\".bss\",\"type\":\"pointer_array\",\"count\":32,\"element_size\":8,\"element_type\":\"char_ptr\",\"note\":\"cookie message pointer array\"},{\"name\":\"msg_size\",\"address\":\"0x4160\",\"size\":128,\"section\":\".bss\",\"type\":\"int_array\",\"count\":32,\"element_size\":4,\"element_type\":\"int32\",\"note\":\"per-cookie message size paired with msg[i]\"},{\"name\":\"urandom\",\"address\":\"0x41e0\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\",\"note\":\"fopen dev urandom result\"},{\"name\":\"cookie_num\",\"address\":\"0x41e8\",\"size\":8,\"section\":\".bss\",\"type\":\"int64\",\"note\":\"current count of cookies init 5\"},{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE_ptr\"}],\"got\":[{\"offset\":\"0x3f70\",\"symbol\":\"free\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f78\",\"symbol\":\"puts\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f80\",\"symbol\":\"fread\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f88\",\"symbol\":\"__stack_chk_fail\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f90\",\"symbol\":\"printf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3f98\",\"symbol\":\"alarm\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa0\",\"symbol\":\"read\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fa8\",\"symbol\":\"calloc\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb0\",\"symbol\":\"setvbuf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fb8\",\"symbol\":\"fopen\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc0\",\"symbol\":\"__isoc99_scanf\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fc8\",\"symbol\":\"exit\",\"type\":\"JUMP_SLOT\"},{\"offset\":\"0x3fd0\",\"symbol\":\"strdup\",\"type\":\"JUMP_SLOT\"}],\"plt\":[{\"symbol\":\"free\",\"plt_entry\":\"0x1030\"},{\"symbol\":\"puts\",\"plt_entry\":\"0x1040\"},{\"symbol\":\"strdup\",\"plt_entry\":\"0x10f0\"},{\"symbol\":\"fread\",\"plt_entry\":\"0x1050\"},{\"symbol\":\"__stack_chk_fail\",\"plt_entry\":\"0x1060\"},{\"symbol\":\"printf\",\"plt_entry\":\"0x1070\"},{\"symbol\":\"alarm\",\"plt_entry\":\"0x1080\"},{\"symbol\":\"read\",\"plt_entry\":\"0x1090\"},{\"symbol\":\"calloc\",\"plt_entry\":\"0x10a0\"},{\"symbol\":\"setvbuf\",\"plt_entry\":\"0x10b0\"},{\"symbol\":\"fopen\",\"plt_entry\":\"0x10c0\"},{\"symbol\":\"__isoc99_scanf\",\"plt_entry\":\"0x10d0\"},{\"symbol\":\"exit\",\"plt_entry\":\"0x10e0\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x187f\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"__isoc99_scanf\",\"exit\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf_lld\"}],\"checks\":[\"choice==1 eat_cookie\",\"choice==2 create_cookie\",\"choice==3 edit_cookie\",\"choice==4 read_cookie\",\"choice==5 exit\",\"default loop\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"__isoc99_scanf\",\"eat_cookie\",\"create_cookie\",\"edit_cookie\",\"read_cookie\",\"exit\"]},{\"name\":\"init\",\"address\":\"0x1232\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\",\"fopen\",\"strdup\",\"_abort\"],\"inputs\":[],\"checks\":[\"urandom==NULL abort\"],\"memory_operations\":[{\"operation\":\"WRITE\",\"destination\":\"urandom 0x41e0\",\"size\":8,\"value\":\"fopen result\"},{\"operation\":\"WRITE\",\"destination\":\"msg 0x4060 to 0x4080\",\"size\":8,\"value\":\"strdup fortune strings\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size 0x4160 to 0x416c\",\"size\":4,\"value\":\"0x50 0x30 0x18 0x38 0x40\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num 0x41e8\",\"size\":8,\"value\":\"5\"}],\"calls\":[\"setvbuf\",\"alarm\",\"fopen\",\"strdup\",\"_abort\"],\"note\":\"alarm 60 opens dev urandom pre-creates 5 fortune cookies via strdup\"},{\"name\":\"create_cookie\",\"address\":\"0x1399\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"length\",\"source\":\"scanf_lld\",\"type\":\"int64\"},{\"name\":\"message\",\"source\":\"read_0_buf_length\",\"type\":\"bytes\"}],\"checks\":[\"cookie_num > 0x1f abort Too many cookie\",\"length > 0x100 abort Too long\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"heap\",\"size\":\"length\",\"call\":\"calloc\"},{\"operation\":\"WRITE\",\"destination\":\"heap buffer\",\"size\":\"length\",\"call\":\"read\"},{\"operation\":\"WRITE\",\"destination\":\"msg cookie_num\",\"size\":8,\"value\":\"heap_ptr\"},{\"operation\":\"WRITE\",\"destination\":\"msg_size cookie_num\",\"size\":4,\"value\":\"length\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"value\":\"cookie_num+1\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"calloc\",\"read\",\"puts\",\"_abort\"],\"note\":\"length checked le 0x100 signed no negative length check\"},{\"name\":\"edit_cookie\",\"address\":\"0x1628\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"read\",\"puts\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf_llu\",\"type\":\"uint64\"},{\"name\":\"new_message\",\"source\":\"read_0_msg_index_msg_size_index_minus_1\",\"type\":\"bytes\"}],\"checks\":[\"index >= cookie_num abort Invalid index\",\"NOTE no lower-bound check on index unsigned negative wraps\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg_size index\",\"size\":4,\"address_calc\":\"msg_size + index*4\"},{\"operation\":\"WRITE\",\"destination\":\"msg index deref heap buffer\",\"size\":\"msg_size index minus 1\",\"call\":\"read\",\"address_calc\":\"msg + index*8 then dereference\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"read\",\"puts\",\"_abort\"],\"note\":\"index uint64 only upper-bound checked via jl signed compare\"},{\"name\":\"read_cookie\",\"address\":\"0x1751\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"__isoc99_scanf\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"index\",\"source\":\"scanf_llu\",\"type\":\"uint64\"}],\"checks\":[\"index >= cookie_num abort Invalid index\",\"NOTE no lower-bound check on index\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"msg index\",\"size\":8,\"address_calc\":\"msg + index*8\"},{\"operation\":\"READ\",\"destination\":\"printf\",\"source\":\"msg index deref string\",\"call\":\"printf\"}],\"calls\":[\"printf\",\"__isoc99_scanf\",\"_abort\"],\"note\":\"prints cookie message string index only upper-bound checked via jl\"},{\"name\":\"eat_cookie\",\"address\":\"0x14e1\",\"callers\":[\"main\"],\"callees\":[\"fread\",\"printf\",\"free\",\"_abort\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"random_byte\",\"source\":\"fread urandom\",\"type\":\"uint8\"}],\"checks\":[\"cookie_num==0 abort No cookie\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"urandom\",\"size\":1,\"value\":\"random byte idx rand mod cookie_num\"},{\"operation\":\"READ\",\"source\":\"msg idx\",\"size\":8},{\"operation\":\"READ\",\"destination\":\"printf\",\"source\":\"msg idx deref\",\"call\":\"printf\"},{\"operation\":\"FREE\",\"target\":\"msg idx\",\"call\":\"free\"},{\"operation\":\"READ\",\"source\":\"msg cookie_num minus 1\",\"size\":8},{\"operation\":\"WRITE\",\"destination\":\"msg idx\",\"size\":8,\"value\":\"msg last moved into freed slot\"},{\"operation\":\"READ\",\"source\":\"msg_size cookie_num minus 1\",\"size\":4},{\"operation\":\"WRITE\",\"destination\":\"msg_size idx\",\"size\":4,\"value\":\"msg_size last\"},{\"operation\":\"WRITE\",\"destination\":\"cookie_num\",\"size\":8,\"value\":\"cookie_num minus 1\"}],\"calls\":[\"fread\",\"printf\",\"free\",\"_abort\"],\"note\":\"random cookie freed last cookie pointer moved into freed slot last slot NOT cleared\"},{\"name\":\"menu\",\"address\":\"0x17fd\",\"callers\":[\"main\"],\"callees\":[\"puts\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"puts\"],\"note\":\"prints 7 menu lines\"}],\"attack_surfaces\":[{\"function\":\"edit_cookie\",\"input\":\"cookie_index scanf llu unsigned no lower-bound check\",\"operation\":\"WRITE via read 0 msg index msg_size index minus 1 index dereferences msg and msg_size arrays\",\"risk\":\"HIGH\",\"reason\":\"attacker-controlled unsigned index only checked against upper bound idx less than cookie_num via signed jl negative value wraps to large uint64 passes check enabling OOB array access msg index dereferenced as write destination msg_size index as write length\"},{\"function\":\"read_cookie\",\"input\":\"cookie_index scanf llu unsigned no lower-bound check\",\"operation\":\"READ via printf percent s msg index index dereferences msg array\",\"risk\":\"HIGH\",\"reason\":\"attacker-controlled unsigned index only upper-bound checked via signed jl OOB index reads pointer from msg and printf prints as string potential info leak arbitrary read\"},{\"function\":\"eat_cookie\",\"input\":\"random index from dev urandom\",\"operation\":\"FREE msg idx then overwrite msg idx equals msg last last slot pointer not cleared\",\"risk\":\"MEDIUM\",\"reason\":\"after moving last pointer into freed slot original last slot still holds same pointer duplicate pointer potential UAF double-free surface for S2\"},{\"function\":\"create_cookie\",\"input\":\"message_length scanf lld signed\",\"operation\":\"calloc length 1 plus read 0 buf length\",\"risk\":\"MEDIUM\",\"reason\":\"length signed int64 only checked greater than 0x100 negative length could wrap calloc size argument S2 to assess\"},{\"function\":\"init\",\"input\":\"none static\",\"operation\":\"strdup creates 5 heap cookies alarm 60\",\"risk\":\"LOW\",\"reason\":\"sets up initial state alarm limits runtime no direct attacker input\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is PIE ELF64 amd64 dynamically linked not stripped GCC 10.2.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Protections Full RELRO NX Canary PIE no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"No RPATH RUNPATH only NEEDED lib is libc.so.6 LD_LIBRARY_PATH would precede system paths\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Global layout in bss msg 32 at 0x4060 256B char ptr array msg_size 32 at 0x4160 128B int32 array urandom at 0x41e0 FILE ptr cookie_num at 0x41e8 int64\",\"source\":\"ELF\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"init pre-creates 5 cookies via strdup with sizes 0x50 0x30 0x18 0x38 0x40 sets cookie_num 5 opens dev urandom alarm 60\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"create_cookie scanf lld length checks length le 0x100 calloc length 1 read 0 buf length stores ptr in msg cookie_num and size in msg_size cookie_num cookie_num increment\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"edit_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check read 0 msg index msg_size index minus 1\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"read_cookie scanf llu index unsigned only check index ge cookie_num abort NO lower-bound check printf percent s msg index\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"eat_cookie random idx fread urandom mod cookie_num printf msg idx free msg idx msg idx equals msg cookie_num minus 1 msg_size idx equals msg_size cookie_num minus 1 cookie_num decrement last slot NOT zeroed\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"edit_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"read_cookie index read with scanf llu unsigned long long compared with jl signed less-than against cookie_num\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"create_cookie length read with scanf lld signed long long compared with jle signed le against 0x100\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"GOT is Full RELRO read-only at runtime got at 0x3f58 marked WA in ELF but RELRO segment 0x3d58 to 0x4000 makes it read-only after relocation\",\"source\":\"ELF\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"msg array 0x4060 and msg_size array 0x4160 adjacent in bss msg has 32 ptr slots 256B msg_size has 32 int slots 128B msg_size starts exactly 0x100 after msg\",\"source\":\"ELF\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"edit_cookie and read_cookie use jl signed comparison on unsigned scanf value large unsigned index e.g. 0xffffffffffffffff is negative in signed view so jl cookie_num passes check enabling OOB array access\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"DERIVED\",\"description\":\"With OOB index in edit_cookie msg index reads pointer from out-of-bounds memory and msg_size index reads a size both used to drive read attacker may control write destination and length via adjacent globals\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\"eat_cookie does not clear msg cookie_num minus 1 after copying to msg idx both slots hold same pointer until cookie_num decremented below old last index\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F019\",\"type\":\"FACT\",\"description\":\"Probe confirmed menu IO choice via scanf create asks How long is the message then Input your message view asks Which cookie 0 to N\",\"source\":\"RUNTIME\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether CET IBT SHSTK is enforced at runtime\",\"reason\":\"checksec did not report SHSTK IBT flags kernel hardware support not probed\"},{\"id\":\"U002\",\"description\":\"Whether ASLR is enabled in the execution environment\",\"reason\":\"Not confirmed at runtime PIE enabled but ASLR depends on kernel config\"},{\"id\":\"U003\",\"description\":\"Exact exploitability of signed unsigned index mismatch in edit_cookie read_cookie\",\"reason\":\"S1 records the fact jl on unsigned value S2 must determine concrete OOB reach and primitive\"},{\"id\":\"U004\",\"description\":\"Whether eat_cookie duplicate pointer leads to exploitable UAF double-free\",\"reason\":\"S1 records pointer not cleared S2 must confirm control flow allows reuse of stale slot\"},{\"id\":\"U005\",\"description\":\"Whether negative create_cookie length can cause calloc to return non-NULL with small allocation\",\"reason\":\"calloc with huge size arg likely returns NULL S2 to confirm behavior and subsequent read on NULL\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE x86-64 dyn linked interp /lib64/ld-linux-x86-64.so.2 BuildID 84dab319bf6fe22134cf0338cbd8071fd8bc06c2 not stripped source fortunecookie.c GCC 10.2.0\",\"sections\":\".text@0x1110(0x891 AX) .rodata@0x2000(0x266 A) .data@0x4000(0x10 WA) .bss@0x4020(0x1d0 WA) .got@0x3f58(0xa8 WA RELRO) .plt@0x1020(0xe0 AX) .init_array@0x3d58(0x8 WA) .fini_array@0x3d60(0x8 WA) .dynamic@0x3d68(0x1f0 WA) .eh_frame@0x22e0(0x1e0 A) .eh_frame_hdr@0x2268(0x74 A)\",\"symbols\":\"main@0x187f init@0x1232 create_cookie@0x1399 eat_cookie@0x14e1 edit_cookie@0x1628 read_cookie@0x1751 menu@0x17fd _abort@0x11f5 msg@0x4060 msg_size@0x4160 urandom@0x41e0 cookie_num@0x41e8\",\"disassembly\":\"init setvbuf x3 alarm 60 fopen dev urandom strdup x5 cookies sizes 0x50 0x30 0x18 0x38 0x40 cookie_num 5. create_cookie scanf lld len check len le 0x100 calloc len 1 read 0 buf len msg cookie_num buf msg_size cookie_num len cookie_num++. edit_cookie scanf llu idx check idx lt cookie_num jl read 0 msg idx msg_size idx minus 1. read_cookie scanf llu idx check idx lt cookie_num jl printf s msg idx. eat_cookie idx fread urandom mod cookie_num printf msg idx free msg idx msg idx msg cookie_num minus 1 msg_size idx msg_size cookie_num minus 1 cookie_num minus minus last slot not zeroed.\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":3,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":1},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"OOB_SIGNEDNESS_MISMATCH_IN_INDEX_VALIDATION\",\"root_cause\":{\"type\":\"Signedness Error\",\"description\":\"In edit_cookie and read_cookie, the cookie index is read via scanf(\\\"%llu\\\") as an unsigned 64-bit integer, but the bounds check uses a signed 'jl' (jump if less-than, signed) instruction to compare index against cookie_num. A large unsigned value such as 0xFFFFFFFFFFFFFFFF (which is -1 in signed interpretation) satisfies the signed comparison (index < cookie_num) because -1 < 5, bypassing the upper-bound check. This allows an attacker-controlled out-of-bounds index to access the msg[] and msg_size[] arrays at arbitrary offsets, including negative offsets that reach other .bss globals (stdout, stdin, stderr FILE* pointers at lower addresses).\"},\"affected_functions\":[\"edit_cookie\",\"read_cookie\"],\"affected_objects\":[\"msg (0x4060, 32-element char* pointer array)\",\"msg_size (0x4160, 32-element int32 array)\",\"stdout (0x4020)\",\"stdin (0x4030)\",\"stderr (0x4040)\"],\"attack_surface\":{\"input\":\"cookie_index via scanf(\\\"%llu\\\") — unsigned 64-bit integer from stdin\",\"entry_function\":\"main (menu choice 3 → edit_cookie, menu choice 4 → read_cookie)\",\"data_flow\":[\"Attacker sends menu choice 3 or 4 to main\",\"edit_cookie/read_cookie prompts 'Which cookie?[0-N]' and reads index via scanf(\\\"%llu\\\", &index) — index is uint64\",\"Bounds check: cmp rdx, rax (index vs cookie_num) followed by jl (signed less-than) — large unsigned value passes as negative\",\"edit_cookie: index used to compute msg_size[index] (lea rdx,[rax*4]; msg_size+rdx) → OOB read of 4-byte size value\",\"edit_cookie: index used to compute msg[index] (lea rcx,[rax*8]; msg+rcx) → OOB read of 8-byte pointer\",\"edit_cookie: read(0, msg[index], msg_size[index]-1) writes attacker-influenced length to attacker-influenced address\",\"read_cookie: printf(\\\"%s\\\", msg[index]) prints string at OOB-derived pointer address\"]},\"security_check\":{\"expected\":\"Index should be validated as 0 <= index < cookie_num using unsigned comparison (jb/jae) to reject both negative-wrapping and excessive values\",\"actual\":\"Index is compared with signed 'jl' (jump if less-than) against cookie_num. Only the upper bound is checked; there is no lower-bound check. The signed comparison treats large unsigned values as negative, allowing them to pass.\",\"missing_or_incorrect\":\"Missing lower-bound check (index >= 0) and incorrect comparison type: signed 'jl' used on an unsigned value instead of unsigned 'jb'. The scanf format %llu reads unsigned, but the comparison semantics are signed.\"},\"vulnerable_operation\":{\"operation\":\"OOB array access with dereference — edit_cookie reads msg[index] as a write-destination pointer and msg_size[index] as write length, then calls read(0, ptr, len); read_cookie reads msg[index] as pointer and passes to printf\",\"address\":\"edit_cookie: 0x1684 (jl check), 0x16a7 (msg_size[index] read), 0x16c3 (msg[index] read), 0x16de (read call); read_cookie: 0x17ad (jl check), 0x17bf (msg[index] read), 0x17e1 (printf call)\",\"expression\":\"edit_cookie: read(0, msg[index], (size_t)(msg_size[index] - 1)); read_cookie: printf(\\\"%s\\\", msg[index])\",\"target\":\"msg array at 0x4060 (8-byte stride) and msg_size array at 0x4160 (4-byte stride); negative indices reach stdout/stdin/stderr FILE* pointers in .bss below 0x4060\",\"size\":\"edit_cookie: write length = msg_size[index]-1 (OOB-derived, up to 4 bytes from msg_size OOB slot); read_cookie: reads until NUL terminator at OOB-derived pointer\"},\"impact\":[{\"type\":\"OOB_READ\",\"status\":\"CANDIDATE\",\"reason\":\"In read_cookie, a negative OOB index reads an 8-byte pointer from .bss globals (e.g., stdout/stdin/stderr FILE* at indices -8/-6/-4 relative to msg base) and printf prints the string at that address, potentially leaking libc/heap addresses. In edit_cookie, msg_size[index] reads 4 bytes OOB and msg[index] reads 8 bytes OOB before the write.\"},{\"type\":\"OOB_WRITE\",\"status\":\"CANDIDATE\",\"reason\":\"In edit_cookie, a negative OOB index causes msg[index] to read a FILE* pointer (e.g., stdout at index -8) as the write destination, and msg_size[index] reads an OOB 4-byte value as the write length. read(0, FILE_ptr, oob_size-1) then writes attacker-controlled data to the FILE structure or other memory pointed to by the OOB-derived pointer.\"},{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"The OOB write in edit_cookie can corrupt memory at the address stored in an OOB .bss slot (e.g., a FILE* structure or other pointer-valued global), as the write destination and length are both derived from OOB reads.\"},{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"read_cookie's printf(\\\"%s\\\", msg[index]) with a negative index prints the contents at a libc/heap address (e.g., stdout FILE structure), leaking runtime addresses that could defeat ASLR/PIE.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x1671\",\"description\":\"scanf(\\\"%llu\\\", &index) reads index as unsigned 64-bit at 0x1671. Format string %llu confirmed in .rodata.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x1684\",\"description\":\"Bounds check at 0x1681: 'cmp rdx, rax' (index vs cookie_num) followed by 'jl 1692' — signed less-than jump. A value like 0xFFFFFFFFFFFFFFFF (-1 signed) passes because -1 < 5 (cookie_num). No lower-bound check exists.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x16a7\",\"description\":\"OOB read of msg_size[index]: 'lea rdx,[rax*4+0x0]' then 'mov eax,DWORD PTR [rdx+rax*1]' at 0x16b6 — reads 4 bytes from msg_size + index*4 with unchecked negative index.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x16c3\",\"description\":\"OOB read of msg[index]: 'lea rcx,[rax*8+0x0]' then 'mov rax,QWORD PTR [rcx+rax*1]' at 0x16d2 — reads 8-byte pointer from msg + index*8 with unchecked negative index. This pointer is used as the destination for read(0, ptr, len) at 0x16de.\"},{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"read_cookie\",\"address\":\"0x17ad\",\"description\":\"Same signedness bug: scanf(\\\"%llu\\\") at 0x179a, then 'cmp rdx,rax' + 'jl 17bb' at 0x17aa/0x17ad — signed comparison on unsigned index. No lower-bound check.\"},{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"read_cookie\",\"address\":\"0x17bf\",\"description\":\"OOB read: 'lea rdx,[rax*8+0x0]' then 'mov rax,QWORD PTR [rdx+rax*1]' at 0x17ce — reads 8-byte pointer from msg + index*8 with unchecked negative index, passed to printf(\\\"%s\\\", ptr) at 0x17e1.\"},{\"id\":\"E007\",\"type\":\"DERIVED\",\"function\":\"edit_cookie/read_cookie\",\"address\":\"0x4060\",\"description\":\"msg array at 0x4060, msg_size at 0x4160. Below msg in .bss: stderr at 0x4040, stdin at 0x4030, stdout at 0x4020. A negative index of -8 reaches msg[-8] = 0x4060 - 64 = 0x4020 = stdout FILE* pointer. This confirms OOB access reaches meaningful pointer-valued globals.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm that a negative index value (e.g., 0xFFFFFFFFFFFFFFFF) passed to scanf(\\\"%llu\\\") is stored as-is in the 64-bit variable and passes the jl check at runtime\",\"Confirm that msg[negative_index] reads a valid pointer from .bss globals (stdout/stdin/stderr) and that read/printf operate on that address\",\"Confirm the exact OOB offset-to-global mapping at runtime with PIE base applied\"]},{\"bug_id\":\"BUG-002\",\"title\":\"NEGATIVE_LENGTH_NULL_POINTER_DEREFERENCE_IN_CREATE_COOKIE\",\"root_cause\":{\"type\":\"Signedness Error\",\"description\":\"In create_cookie, the message length is read via scanf(\\\"%lld\\\") as a signed 64-bit integer. The bounds check uses 'cmp rax, 0x100' followed by 'jle' (signed less-or-equal), so a negative length (e.g., -1) passes the check because -1 <= 0x100. The negative value is then passed to calloc(length, 1) where it is implicitly converted to size_t (unsigned), becoming a huge value (0xFFFFFFFFFFFFFFFF). calloc fails and returns NULL. The subsequent read(0, NULL, huge_len) and the post-read dereference buf[read_return_value] operate on a NULL pointer, causing a crash.\"},\"affected_functions\":[\"create_cookie\"],\"affected_objects\":[\"heap allocation via calloc (returns NULL)\",\"stack variable buf (rbp-0x10)\"],\"attack_surface\":{\"input\":\"message_length via scanf(\\\"%lld\\\") — signed 64-bit integer from stdin\",\"entry_function\":\"main (menu choice 2 → create_cookie)\",\"data_flow\":[\"Attacker sends menu choice 2 to main\",\"create_cookie prompts 'How long is the message' and reads length via scanf(\\\"%lld\\\", &length) — length is int64\",\"Bounds check: cmp rax, 0x100; jle 140a — signed comparison, negative length passes\",\"calloc(length, 1) — length implicitly converted to size_t (huge unsigned), calloc returns NULL\",\"read(0, NULL, length) — attempts to read into NULL buffer\",\"Post-read: buf[read_return_value] dereferenced — NULL + offset dereference → crash\"]},\"security_check\":{\"expected\":\"Length should be validated as 0 < length <= 0x100 using unsigned comparison, or an explicit lower-bound check (length > 0) should precede the upper-bound check\",\"actual\":\"Only signed upper-bound check: length <= 0x100 via jle. No lower-bound check. Negative values pass because they are less than 0x100 in signed comparison.\",\"missing_or_incorrect\":\"Missing lower-bound check (length > 0 or length >= 1). The signed comparison allows negative values to bypass the length validation.\"},\"vulnerable_operation\":{\"operation\":\"NULL pointer dereference — calloc returns NULL for huge size, then buf[read_retval] is dereferenced\",\"address\":\"0x13f6 (jle check), 0x1416 (calloc call), 0x1443 (read call), 0x1458 (buf[retval] dereference)\",\"expression\":\"buf = calloc(length, 1); read(0, buf, length); if (buf[read_retval] == '\\\\n') buf[read_retval] = 0;\",\"target\":\"NULL pointer (buf = NULL when calloc fails)\",\"size\":\"Dereference of NULL + read_return_value (0 or -1)\"},\"impact\":[{\"type\":\"NULL_POINTER_DEREF\",\"status\":\"CANDIDATE\",\"reason\":\"calloc with size 0xFFFFFFFFFFFFFFFF returns NULL. The code then dereferences buf[read_return_value] at 0x1458 (movzx eax, BYTE PTR [rax]) where rax = NULL + read_retval. If read returns 0, this dereferences address 0; if read returns -1, this dereferences 0xFFFFFFFFFFFFFFFF. Either case causes SIGSEGV.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"The NULL pointer dereference results in a SIGSEGV crash, causing denial of service. The alarm(60) timer also limits runtime, but the crash occurs immediately upon processing the negative length.\"}],\"evidence\":[{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x13ed\",\"description\":\"scanf(\\\"%lld\\\", &length) reads length as signed int64. Format string %lld confirmed in .rodata.\"},{\"id\":\"E009\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x13fc\",\"description\":\"Bounds check: 'cmp rax, 0x100' at 0x13f6 followed by 'jle 140a' at 0x13fc — signed less-or-equal. Negative length (e.g., -1) passes because -1 <= 0x100 in signed comparison. No lower-bound check exists.\"},{\"id\":\"E010\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x1416\",\"description\":\"calloc(length, 1) at 0x1416 — length (int64, negative) is passed as first argument (rdi). calloc interprets it as size_t (unsigned), so -1 becomes 0xFFFFFFFFFFFFFFFF. calloc with this size returns NULL.\"},{\"id\":\"E011\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"Post-read dereference: 'mov rax,QWORD PTR [rbp-0x10]' (buf=NULL) then 'add rax,rdx' (rdx = sign-extended read return value) then 'movzx eax,BYTE PTR [rax]' at 0x1458 — dereferences NULL + offset, causing SIGSEGV.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm that calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL at runtime with glibc 2.39\",\"Confirm that read(0, NULL, huge_len) returns 0 or -1 (EFAULT) rather than writing to memory\",\"Confirm the crash occurs at the dereference at 0x1458\"]},{\"bug_id\":\"BUG-003\",\"title\":\"EAT_COOKIE_DUPLICATE_POINTER_UAF_SURFACE\",\"root_cause\":{\"type\":\"Use-After-Free\",\"description\":\"In eat_cookie, after freeing msg[idx], the code copies the last active pointer into the freed slot: msg[idx] = msg[cookie_num-1]. However, the original last slot msg[cookie_num-1] is NOT cleared/zeroed. When idx == cookie_num-1 (the random index equals the last index), the freed pointer is written back into the same slot (msg[idx] = msg[idx]), leaving a dangling pointer to freed heap memory in the msg array. After cookie_num is decremented, this slot moves to index == new cookie_num, placing it at the boundary of the active range. Additionally, when idx != cookie_num-1, both msg[idx] and msg[cookie_num-1] hold the same valid pointer (duplicate), and the old last slot retains the pointer after cookie_num decrement.\"},\"affected_functions\":[\"eat_cookie\"],\"affected_objects\":[\"msg array (0x4060)\",\"msg_size array (0x4160)\",\"cookie_num (0x41e8)\",\"heap chunks freed via free(msg[idx])\"],\"attack_surface\":{\"input\":\"random_byte from /dev/urandom (fread 1 byte) — index = random_byte % cookie_num\",\"entry_function\":\"main (menu choice 1 → eat_cookie)\",\"data_flow\":[\"User selects menu choice 1 (eat_cookie)\",\"fread reads 1 random byte from /dev/urandom\",\"idx = random_byte % cookie_num (signed idiv at 0x153e)\",\"printf prints msg[idx] (the cookie message)\",\"free(msg[idx]) — frees the heap chunk at 0x158e\",\"msg[idx] = msg[cookie_num-1] — copies last pointer into freed slot at 0x15c6\",\"msg[cookie_num-1] is NOT zeroed — duplicate pointer remains\",\"msg_size[idx] = msg_size[cookie_num-1] at 0x15fc\",\"cookie_num-- at 0x160a\"]},\"security_check\":{\"expected\":\"After moving the last pointer into the freed slot, the old last slot (msg[cookie_num-1]) should be zeroed to prevent duplicate/stale pointers. Additionally, when idx == cookie_num-1, the freed pointer should not be written back to the same slot.\",\"actual\":\"No zeroing of msg[cookie_num-1] after the copy. The freed pointer may remain reachable when idx == cookie_num-1.\",\"missing_or_incorrect\":\"Missing cleanup: msg[cookie_num-1] is not set to NULL after being copied to msg[idx]. This creates a duplicate pointer and, in the idx == cookie_num-1 case, leaves a freed pointer in the array.\"},\"vulnerable_operation\":{\"operation\":\"free(msg[idx]) followed by msg[idx] = msg[cookie_num-1] without clearing the source slot\",\"address\":\"0x158e (free call), 0x15c6 (msg[idx] = msg[cookie_num-1]), 0x160a (cookie_num decrement)\",\"expression\":\"free(msg[idx]); msg[idx] = msg[cookie_num-1]; /* msg[cookie_num-1] NOT zeroed */ cookie_num--\",\"target\":\"msg[cookie_num-1] (old last slot retains pointer after copy)\",\"size\":\"8 bytes (pointer)\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"THEORETICAL\",\"reason\":\"When idx == cookie_num-1, the freed pointer remains in msg[idx]. After cookie_num--, this slot is at index == new cookie_num (boundary of active range). If a subsequent create_cookie stores a new pointer at this index, the old freed pointer is overwritten — no UAF. However, if the stale pointer at the old last slot (which holds a duplicate of a still-valid pointer) could be accessed via the OOB signedness bug (BUG-001), a double-free or UAF write could occur. The direct accessibility of the stale pointer through normal operations is limited because it ends up at an index >= cookie_num.\"}],\"evidence\":[{\"id\":\"E012\",\"type\":\"STATIC\",\"function\":\"eat_cookie\",\"address\":\"0x158e\",\"description\":\"free(msg[idx]) at 0x158e — frees the heap chunk pointed to by msg[idx].\"},{\"id\":\"E013\",\"type\":\"STATIC\",\"function\":\"eat_cookie\",\"address\":\"0x15c6\",\"description\":\"msg[idx] = msg[cookie_num-1] at 0x15c6: 'mov QWORD PTR [rcx+rdx*1],rax' where rax = msg[cookie_num-1] and the destination is msg[idx]. The source slot msg[cookie_num-1] is not subsequently zeroed.\"},{\"id\":\"E014\",\"type\":\"STATIC\",\"function\":\"eat_cookie\",\"address\":\"0x160a\",\"description\":\"cookie_num-- at 0x160a: 'mov QWORD PTR [rip+0x2bd7],rax' where rax = cookie_num-1. After this, the old last slot (index old_cookie_num-1) is at index new_cookie_num, which is >= new cookie_num, placing it outside the active range for normal edit/read operations.\"},{\"id\":\"E015\",\"type\":\"DERIVED\",\"function\":\"eat_cookie\",\"address\":\"0x15c6\",\"description\":\"When idx == cookie_num-1: free(msg[idx]) frees the chunk, then msg[idx] = msg[cookie_num-1] = msg[idx] writes the freed pointer back to the same slot. The freed pointer remains in msg[idx] and is still in the array. After cookie_num--, idx == new_cookie_num, so the slot is at the boundary. The stale pointer is not directly accessible via normal edit/read (which check index < cookie_num), but could be accessed via the BUG-001 OOB signedness bug.\"}],\"confidence\":\"LOW\",\"verification_required\":[\"Confirm whether the random index can reliably equal cookie_num-1 to trigger the freed-pointer-remains scenario\",\"Confirm whether the stale pointer at the old last slot can be accessed via the BUG-001 OOB signedness bug to create a UAF or double-free\",\"Determine if heap reuse after free(msg[idx]) could cause the duplicate pointer to reference a reallocated chunk, enabling UAF read/write\"]}],\"non_vulnerabilities\":[{\"function\":\"init\",\"description\":\"Sets up 5 fortune cookies via strdup, opens /dev/urandom, sets alarm(60), configures setvbuf. No attacker-controlled input.\",\"reason\":\"All inputs are static strings and fixed file paths. No user input reaches this function. The urandom NULL check (abort if fopen fails) is a proper error check.\"},{\"function\":\"menu\",\"description\":\"Prints 7 menu lines via puts. No input processing or memory operations.\",\"reason\":\"Pure output function with no attacker-controlled data.\"},{\"function\":\"main\",\"description\":\"Reads menu choice via scanf(\\\"%lld\\\"), dispatches to functions 1-5, loops. Choice 5 calls exit(0).\",\"reason\":\"Menu choice is a simple integer dispatch. No memory operations on the choice value itself. The dispatch logic is correct (1=eat, 2=create, 3=edit, 4=read, 5=exit).\"},{\"function\":\"_abort\",\"description\":\"Prints error message via printf and calls exit(1).\",\"reason\":\"Clean exit function, no memory operations or input processing.\"}],\"unresolved\":[{\"description\":\"Whether the eat_cookie duplicate pointer (BUG-003) can be combined with the OOB signedness bug (BUG-001) to access a stale/freed pointer at an out-of-range index\",\"reason\":\"The stale pointer from eat_cookie ends up at index >= cookie_num (out of active range). The BUG-001 OOB bug uses negative indices (wrapping to addresses below msg), not large positive indices. The interaction between these two bugs for accessing the specific stale slot requires further analysis of whether a crafted unsigned index can reach the exact stale slot offset.\",\"required_next_step\":\"S3 dynamic analysis: create a scenario where eat_cookie leaves a stale pointer, then attempt to access it via edit_cookie/read_cookie with a crafted index value to confirm or deny UAF access.\"},{\"description\":\"Whether CET (IBT/SHSTK) is enforced at runtime, which would affect the exploitability of any control-flow corruption\",\"reason\":\"S1 reported CET status as unknown. The binary has no SHSTK/IBT flags in ELF, but kernel/hardware support was not probed.\",\"required_next_step\":\"S3/S4 to probe runtime CET enforcement if control-flow exploitation is attempted.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":3,\"verified\":2,\"theoretical\":0,\"candidate\":1,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Signedness mismatch in index validation: scanf(\\\"%llu\\\") reads unsigned 64-bit index, but bounds check uses signed 'jl' (jump if less-than). Large unsigned values (e.g., 0xFFFFFFFFFFFFFFFF = -1 signed) pass the check because -1 < cookie_num(5). This allows OOB access to msg[] array at negative indices.\",\"description\":\"read_cookie uses the OOB index to read msg[index] as an 8-byte pointer and passes it to printf(\\\"%s\\\", ptr). With index -8, msg[-8] reads the stdout FILE* pointer from .bss (0x4020), and printf prints the FILE struct contents at that libc address, leaking memory. With index -11, msg[-11] reads the __dso_handle self-referencing pointer (value = own address), leaking the PIE base.\"},\"chain\":[\"BUG-001\",\"Signedness mismatch: scanf %llu + signed jl comparison\",\"Negative index passes bounds check (e.g., -8 as 0xFFFFFFFFFFFFFFFF)\",\"msg[-8] reads stdout FILE* pointer from .bss at 0x4020\",\"printf(\\\"%s\\\", stdout_FILE_ptr) prints FILE struct contents\",\"INFO_LEAK: libc FILE struct flags and PIE base leaked\"],\"controlled_element\":{\"what\":\"OOB array index (controls which .bss global is read as a pointer)\",\"how\":\"Attacker sends a large unsigned integer (e.g., 18446744073709551608 = -8) via scanf(\\\"%llu\\\") in read_cookie. The signed jl comparison treats this as -8 < 5, passing the bounds check.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can reach read_cookie function via menu choice 4\",\"necessity\":\"Provides entry point to the vulnerable code path\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Attacker can supply a large unsigned integer that wraps to negative in signed comparison (e.g., 0xFFFFFFFFFFFFFFFF = -1, 0xFFFFFFFFFFFFFFF8 = -8)\",\"necessity\":\"The signed jl check only rejects values >= cookie_num in signed interpretation; negative values pass\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The OOB index -8 maps to msg[-8] = 0x4060 - 64 = 0x4020 = stdout FILE* pointer in .bss\",\"necessity\":\"The leaked pointer must point to readable memory containing non-attacker data\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The OOB index -11 maps to msg[-11] = 0x4060 - 88 = 0x4008 = __dso_handle (self-referencing pointer, value = own address)\",\"necessity\":\"Self-referencing pointer leaks PIE base address (6 bytes before NUL terminator)\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"msg[-8] = *(uint64_t*)(0x4060 + (-8)*8) = *(uint64_t*)(0x4020) = stdout FILE*\",\"alias\":\"msg[-8] aliases stdout FILE* pointer at .bss 0x4020\",\"implication\":\"printf(\\\"%s\\\", stdout_FILE_ptr) leaks FILE struct contents (flags 0xfbad2887 as first 4 bytes)\"},{\"expression\":\"msg[-11] = *(uint64_t*)(0x4060 + (-11)*8) = *(uint64_t*)(0x4008) = __dso_handle\",\"alias\":\"msg[-11] aliases __dso_handle self-referencing pointer at .data 0x4008\",\"implication\":\"printf(\\\"%s\\\", __dso_handle_value) leaks 6 bytes of PIE address (low 48 bits before NUL), defeating ASLR/PIE\"},{\"expression\":\"msg[-6] = *(uint64_t*)(0x4060 + (-6)*8) = *(uint64_t*)(0x4030) = stdin FILE*\",\"alias\":\"msg[-6] aliases stdin FILE* pointer at .bss 0x4030\",\"implication\":\"Additional leak source: stdin FILE struct flags (0xfbad2087)\"}],\"verification_plan\":{\"method\":\"Run read_cookie with OOB index -8 (stdout) and -11 (__dso_handle), observe leaked bytes in program output\",\"environment\":\"Linux x86_64, glibc 2.39, PIE enabled, ASLR on\",\"run_command\":\"python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"expected_evidence\":[\"read_cookie(-8): stdout FILE flags 0xfbad2887 leaked as bytes 87 28 ad fb\",\"read_cookie(-11): __dso_handle self-referencing value leaked (6 bytes of PIE address)\"]},\"mitigations\":[{\"name\":\"PIE\",\"present\":true,\"primitive_impact\":\"PIE randomizes base address, but the INFO_LEAK via __dso_handle self-referencing pointer defeats it by leaking the PIE base\"},{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes libc/heap addresses, but the INFO_LEAK via stdout FILE* leaks libc address, and __dso_handle leaks PIE address\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"Full RELRO makes GOT read-only, but does not affect INFO_LEAK primitive (reads from .bss globals, not GOT)\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"read_cookie\",\"address\":\"0x17ad\",\"description\":\"Bounds check: cmp rdx,rax (index vs cookie_num) followed by jl (signed less-than). Large unsigned index passes as negative. No lower-bound check.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"read_cookie\",\"address\":\"0x17bf-0x17ce\",\"description\":\"OOB read: lea rdx,[rax*8]; lea rax,[rip+msg]; mov rax,[rdx+rax] — reads 8-byte pointer from msg+index*8 with unchecked negative index, passed to printf at 0x17e1\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"read_cookie\",\"address\":\"0x17d2\",\"description\":\"gdb confirmed: with index=-8, RAX after msg[-8] load = 0x7ffff7fa75c0 (stdout FILE struct address in libc). printf(\\\"%s\\\", 0x7ffff7fa75c0) prints FILE struct contents.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"read_cookie\",\"address\":\"runtime\",\"description\":\"Program output confirmed: read_cookie(-8) leaked bytes 87 28 ad fb (stdout FILE flags 0xfbad2887 in little-endian). read_cookie(-11) leaked 6 bytes of __dso_handle self-referencing value (PIE base).\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"0xfbad2887 (stdout FILE flags, 4 bytes: 87 28 ad fb); PIE base (6 bytes from __dso_handle)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"PRIM-001 VERIFIED: read_cookie with OOB index -8 printed stdout FILE struct flags (0xfbad2887) as raw bytes 87 28 ad fb. read_cookie with OOB index -11 printed __dso_handle self-referencing value (6 bytes of PIE address). Both confirmed via program output and gdb register inspection.\"},\"confidence\":\"HIGH\",\"notes\":\"INFO_LEAK is DIRECT: the OOB index directly selects a pointer from .bss globals, and printf prints the string at that address. Two leak sources confirmed: (1) stdout/stdin/stderr FILE* → leaks libc FILE struct contents (flags), (2) __dso_handle self-referencing pointer → leaks PIE base address (6 bytes). The PIE leak is critical for the ARB_WRITE primitive (PRIM-003).\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"RELATIVE_WRITE\",\"status\":\"CANDIDATE\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Same signedness mismatch as PRIM-001. edit_cookie uses the OOB index to read msg[index] as write destination and msg_size[index] as write length, then calls read(0, msg[index], msg_size[index]-1).\",\"description\":\"edit_cookie with OOB index -8 reads msg[-8] = stdout FILE* as write destination and msg_size[-8] as write length. msg_size[-8] = 0 (uninitialized .bss), so count = 0-1 = 0xFFFFFFFFFFFFFFFF. read(0, stdout_FILE_ptr, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) because the huge count extends beyond valid memory. The write does not execute.\"},\"chain\":[\"BUG-001\",\"Signedness mismatch: scanf %llu + signed jl comparison\",\"Negative index passes bounds check in edit_cookie\",\"msg[-8] = stdout FILE* (write destination), msg_size[-8] = 0 (write length)\",\"read(0, stdout_FILE_ptr, 0-1=0xFFFFFFFFFFFFFFFF) → EFAULT, write fails\",\"RELATIVE_WRITE: DEAD END (count too large)\"],\"controlled_element\":{\"what\":\"OOB array index (controls write destination pointer and write length)\",\"how\":\"Attacker sends large unsigned integer via scanf(\\\"%llu\\\") in edit_cookie. Index -8 selects stdout FILE* as destination and msg_size[-8]=0 as length.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can reach edit_cookie via menu choice 3\",\"necessity\":\"Provides entry point to the vulnerable write path\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"OOB index -8 maps msg[-8] to stdout FILE* (0x4020) and msg_size[-8] to 0x4140 (uninitialized, value=0)\",\"necessity\":\"Write destination must be a valid pointer and length must be reasonable\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"msg_size[-8] must be a small positive value for count to be valid\",\"necessity\":\"count = msg_size[index]-1; if msg_size[index]=0, count=0xFFFFFFFFFFFFFFFF → EFAULT\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"msg_size[-8] = *(int32_t*)(0x4160 + (-8)*4) = *(int32_t*)(0x4140) = 0\",\"alias\":\"msg_size[-8] aliases msg[26] low 4 bytes (uninitialized, =0)\",\"implication\":\"count = 0-1 = 0xFFFFFFFFFFFFFFFF → read() returns EFAULT, write does not execute. DEAD END for index -8.\"},{\"expression\":\"msg_size[-4] = *(int32_t*)(0x4160 + (-4)*4) = *(int32_t*)(0x4150) = 0\",\"alias\":\"msg_size[-4] aliases msg[30] low 4 bytes (uninitialized, =0)\",\"implication\":\"Same DEAD END for index -4 (stderr): count=0xFFFFFFFFFFFFFFFF → EFAULT\"}],\"verification_plan\":{\"method\":\"Run edit_cookie with OOB index -8, observe read() return value via gdb\",\"environment\":\"Linux x86_64, glibc 2.39, PIE enabled\",\"run_command\":\"python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"expected_evidence\":[\"gdb: RDX (count) = 0xFFFFFFFFFFFFFFFF before read() call\",\"gdb: EAX (read retval) = -1 (EFAULT) after read() call\",\"stdout FILE struct unchanged after read() (write did not execute)\"]},\"mitigations\":[{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"Not directly relevant — the write target is a FILE struct in libc, not GOT\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"Not relevant for write primitive\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x16a7-0x16bc\",\"description\":\"msg_size[index] read: lea rdx,[rax*4]; lea rax,[msg_size]; mov eax,[rdx+rax]; sub eax,1; movsxd rdx,eax — reads 4-byte size from OOB, subtracts 1, sign-extends to 64-bit\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"edit_cookie\",\"address\":\"0x16de\",\"description\":\"gdb confirmed: with index=-8, RSI (dest) = 0x7ffff7fa75c0 (stdout FILE*), RDX (count) = 0xFFFFFFFFFFFFFFFF. After read(), EAX = -1 (EFAULT). stdout FILE struct unchanged.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"PRIM-002 CANDIDATE (dead end): edit_cookie with index -8 has msg_size[-8]=0, causing count=0xFFFFFFFFFFFFFFFF. read() returns -1 (EFAULT), write does not execute. gdb confirmed RDX=0xFFFFFFFFFFFFFFFF and EAX=-1 after read(). This candidate is a dead end for indices -8/-6/-4 (FILE* pointers) because their msg_size values are all 0 (uninitialized .bss).\"},\"confidence\":\"HIGH\",\"notes\":\"DEAD END for direct FILE* write: indices -8/-6/-4 all have msg_size=0 → count=0xFFFFFFFFFFFFFFFF → EFAULT. The write to FILE structs cannot execute directly. However, the ARB_WRITE primitive (PRIM-003) overcomes this by using a different index (-11) where msg_size[-11] aliases the high 4 bytes of a heap pointer (0x00005555), providing a valid small count.\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"ARB_WRITE\",\"status\":\"VERIFIED\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Same signedness mismatch. edit_cookie with OOB index -11 reads msg[-11] = __dso_handle (self-referencing pointer at .data 0x4008, value = own address) as write destination, and msg_size[-11] = high 4 bytes of msg[26] (a heap pointer, = 0x00005555) as write length. count = 0x5555-1 = 0x5554 (valid small positive). read(0, __dso_handle_addr, 0x5554) writes attacker data to __dso_handle, changing its value to an arbitrary target address Y. A second edit_cookie(-11) then writes to Y.\",\"description\":\"Two-step write using __dso_handle self-referencing pointer: Step 1 writes target address Y to __dso_handle (write target = __dso_handle's value = its own address, which is writable .data). Step 2: msg[-11] now = Y, so read(0, Y, count) writes attacker data to Y. Verified with two different Y addresses.\"},\"chain\":[\"BUG-001\",\"Signedness mismatch: scanf %llu + signed jl comparison\",\"Index -11 passes bounds check (-11 < 5 in signed)\",\"msg[-11] = __dso_handle (self-referencing: value = own address, writable .data)\",\"msg_size[-11] = msg[26] high 4 bytes = 0x00005555 (small positive, valid count)\",\"Step 1: read(0, __dso_handle_addr, 0x5554) overwrites __dso_handle with target Y\",\"Step 2: read(0, Y, 0x5554) writes attacker data to arbitrary address Y\",\"ARB_WRITE: Write-What-Where via two-step write\"],\"controlled_element\":{\"what\":\"Write destination address (via two-step: first write sets __dso_handle to Y, second write targets Y) and write content (attacker-controlled data via stdin)\",\"how\":\"Step 1: edit_cookie(-11) sends 8 bytes = target address Y via stdin. read() writes Y to __dso_handle. Step 2: edit_cookie(-11) sends data via stdin. read() writes data to Y (now msg[-11]=Y).\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can reach edit_cookie via menu choice 3 (multiple times)\",\"necessity\":\"Two edit_cookie calls needed for two-step write\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Attacker can supply index -11 (as 0xFFFFFFFFFFFFFFF5 = 18446744073709551605) via scanf(\\\"%llu\\\")\",\"necessity\":\"Index -11 maps to __dso_handle (self-referencing pointer) and msg_size high-half alias\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"msg[26] must contain a heap pointer (high 4 bytes = 0x0000XXXX, small positive) so msg_size[-11] provides valid count\",\"necessity\":\"msg_size[-11] = msg[26] high 4 bytes. If msg[26]=0, count=0xFFFFFFFFFFFFFFFF → EFAULT. Must create 22 cookies (indices 5-26) to fill msg[26] with a heap pointer.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"__dso_handle at 0x4008 must be self-referencing (value = own address) and writable (.data segment)\",\"necessity\":\"Self-referencing property means write target = __dso_handle's own address. Writable .data allows overwriting the value.\",\"verified\":true},{\"id\":\"PC-05\",\"description\":\"Post-read code must survive: after Step 1, msg[-11] = Y. Code dereferences msg[-11]+read_retval = Y+retval. Y must be readable.\",\"necessity\":\"If Y+retval is not readable, SIGSEGV occurs before returning to menu. Y must point to readable memory (e.g., .bss).\",\"verified\":true},{\"id\":\"PC-06\",\"description\":\"PIE base must be known to compute target address Y (e.g., msg[k] address in .bss)\",\"necessity\":\"Y must be a valid writable+readable address. PIE leak via read_cookie(-11) provides the base.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"msg[-11] = *(uint64_t*)(0x4060 + (-11)*8) = *(uint64_t*)(0x4008) = __dso_handle\",\"alias\":\"msg[-11] aliases __dso_handle at .data 0x4008 (self-referencing: value = 0x4008+PIE_base = own runtime address)\",\"implication\":\"Write target in Step 1 = __dso_handle's value = its own address (writable .data). Overwriting it changes the write target for Step 2.\"},{\"expression\":\"msg_size[-11] = *(int32_t*)(0x4160 + (-11)*4) = *(int32_t*)(0x4134) = msg[26] high 4 bytes\",\"alias\":\"msg_size[-11] aliases the HIGH 4 bytes of msg[26] (8-byte heap pointer)\",\"implication\":\"Heap pointer 0x0000555555559XXX → high 4 bytes = 0x00005555 = 21813 (small positive). count = 21813-1 = 21812. Valid! This is the key alias that makes the write execute (unlike PRIM-002 where msg_size=0 → EFAULT).\"},{\"expression\":\"msg_size[-11] low-half alternative: if msg[26] low 4 bytes were used, value = 0x55559XXX (large positive) → count too large\",\"alias\":\"msg_size[-11] happens to alias the HIGH half (not low half) due to 4-byte stride vs 8-byte stride offset\",\"implication\":\"The 4-byte msg_size stride causes it to land on the high half of the 8-byte msg[26] pointer. High half of a 48-bit address is always small (0x0000XXXX), providing a valid count. This is the critical high-half alias pattern.\"}],\"verification_plan\":{\"method\":\"1. Leak PIE base via read_cookie(-11). 2. Create 22 cookies to fill msg[26]. 3. Step 1: edit_cookie(-11) writes Y1 to __dso_handle. 4. Step 2: edit_cookie(-11) writes data to Y1. 5. Repeat for Y2. 6. Verify Y2 write via read_cookie.\",\"environment\":\"Linux x86_64, glibc 2.39, PIE enabled, ASLR on\",\"run_command\":\"python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"expected_evidence\":[\"Step 1: __dso_handle overwritten from 0x555555558008 to Y1 (gdb confirmed: 0x4141414141414141)\",\"Step 2: read(0, Y1, 0x5554) writes to Y1 (msg[10])\",\"Two different Y addresses verified: Y1=msg[10], Y2=msg[11]\",\"Y2 verification: read_cookie(11) prints .rodata string at the address written to msg[11]\"]},\"mitigations\":[{\"name\":\"PIE\",\"present\":true,\"primitive_impact\":\"PIE randomizes addresses, but the INFO_LEAK (PRIM-001) via __dso_handle self-referencing pointer leaks the PIE base, defeating PIE for the ARB_WRITE target computation.\"},{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes heap addresses, but the high 4 bytes of heap pointers are always 0x0000XXXX (small positive), so msg_size[-11] always provides a valid count regardless of ASLR.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"Full RELRO makes GOT read-only, but the ARB_WRITE writes to .bss/.data targets, not GOT. RELRO does not prevent this primitive.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"Stack canary protects return addresses, but the ARB_WRITE targets .bss/.data globals, not stack. Canary does not prevent this primitive.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"NX prevents code execution on stack/heap, but does not prevent the ARB_WRITE itself (writing to data segment).\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x1684\",\"description\":\"Bounds check: cmp rdx,rax + jl (signed). Index -11 (0xFFFFFFFFFFFFFFF5) passes because -11 < 5 (cookie_num).\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x16a7-0x16de\",\"description\":\"msg_size[-11] read at 0x4134 (= msg[26] high 4 bytes), msg[-11] read at 0x4008 (= __dso_handle). read(0, __dso_handle_value, msg_size[-11]-1) at 0x16de.\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"edit_cookie\",\"address\":\"0x16de\",\"description\":\"gdb confirmed Step 1: RSI (dest) = 0x555555558008 (__dso_handle addr), RDX (count) = 0x5554 (valid small positive from msg[26] high half). After read(): __dso_handle changed from 0x0000555555558008 to 0x4141414141414141 (attacker data written).\"},{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"edit_cookie\",\"address\":\"0x1705\",\"description\":\"gdb confirmed post-read deref: after Step 1, msg[-11] = 0x4141414141414141. Code dereferences msg[-11]+retval = 0x4141414141414141+13 = 0x414141414141414e → SIGSEGV. This proves __dso_handle was overwritten (the crash occurs at the overwritten address).\"},{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"edit_cookie\",\"address\":\"runtime\",\"description\":\"PoC confirmed full two-step write: Step 1 wrote Y1=msg[10] addr to __dso_handle (survived post-read). Step 2 wrote 0x4242424242424242 to Y1. Repeated for Y2=msg[11] with .rodata string address. read_cookie(11) printed the .rodata string, confirming the write to Y2.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py\",\"written_value\":\"0x4242424242424242 (to Y1=msg[10]); 0x00005fad1d0cc00b (.rodata string addr, to Y2=msg[11])\",\"read_value\":\"\",\"fault_address\":\"0x414141414141414e (gdb: post-read deref after Step 1 with Y=0x4141414141414141, proving __dso_handle was overwritten)\",\"return_code\":0,\"details\":\"PRIM-003 VERIFIED: Two-step ARB_WRITE confirmed. Step 0: PIE leak via read_cookie(-11) → __dso_handle self-referencing value (6 bytes). Step 1: edit_cookie(-11) with 22 cookies created (msg[26] filled with heap ptr, msg_size[-11]=0x5555). read(0, __dso_handle, 0x5554) overwrites __dso_handle with target Y. Step 2: edit_cookie(-11) again, now msg[-11]=Y, read(0, Y, 0x5554) writes to Y. Verified with Y1=msg[10] (wrote 0x4242424242424242) and Y2=msg[11] (wrote .rodata addr, verified via read_cookie(11) printing the string). gdb confirmed: RSI=0x555555558008, RDX=0x5554, __dso_handle changed to 0x4141414141414141 after Step 1.\"},\"confidence\":\"HIGH\",\"notes\":\"INDIRECT primitive: two-step write via __dso_handle self-referencing pointer. The write target is not directly controlled — it requires two operations: (1) overwrite __dso_handle to set target Y, (2) write to Y. Key alias: msg_size[-11] = msg[26] high 4 bytes = 0x00005555 (small positive, valid count). This overcomes the EFAULT dead end of PRIM-002 (where msg_size=0 → count=0xFFFFFFFFFFFFFFFF). The high-half alias pattern (4-byte msg_size stride landing on high 4 bytes of 8-byte heap pointer) is the critical enabler. Post-read survival requires Y to be readable (Y+retval dereferenced). PoC uses Y=msg[k] addresses in .bss (readable+writable).\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"RELATIVE_WRITE (direct FILE struct write)\",\"source_bug\":\"BUG-001\",\"reason\":\"edit_cookie with indices -8/-6/-4 (stdout/stdin/stderr FILE*) has msg_size=0 → count=0xFFFFFFFFFFFFFFFF → read() returns EFAULT. The write to FILE structs cannot execute directly. This is a dead end, not a viable primitive. The ARB_WRITE (PRIM-003) via __dso_handle two-step write is the viable write path.\"}],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":2,\"verified\":2,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"NULL_POINTER_DEREF\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"Signedness Error in create_cookie: message length read via scanf(\\\"%lld\\\") as signed int64, bounds check uses 'cmp rax, 0x100; jle' (signed less-or-equal). Negative length (e.g., -1) passes because -1 <= 0x100 in signed comparison. calloc(-1, 1) = calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL. read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT). buf[read_retval] = *(NULL + sign_extend(-1)) = *(0xFFFFFFFFFFFFFFFF) -> SIGSEGV.\",\"description\":\"Negative length bypasses signed upper-bound check, calloc returns NULL for huge size, read fails with EFAULT returning -1, post-read dereference accesses *(NULL + (-1)) = *(0xFFFFFFFFFFFFFFFF).\"},\"chain\":[\"BUG-002\",\"Signedness mismatch: scanf %lld (signed) vs jle 0x100 (signed comparison) allows negative length\",\"calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL (buf = NULL)\",\"read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) — no bytes written\",\"buf[read_retval] dereference: *(NULL + sign_extend(-1)) = *(0xFFFFFFFFFFFFFFFF)\",\"NULL_POINTER_DEREF\"],\"controlled_element\":{\"what\":\"The message length value (signed int64 from attacker via scanf %lld). Attacker controls the length passed to calloc and read, and indirectly the read return value (-1 EFAULT) which determines the dereference address.\",\"how\":\"Attacker sends menu choice 2, then a negative length (e.g., -1) via stdin. The signed jle check passes. calloc(huge, 1) returns NULL. read(0, NULL, huge) returns -1. The dereference address = NULL + sign_extend(read_retval) = 0xFFFFFFFFFFFFFFFF.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can reach create_cookie via menu choice 2 in main loop.\",\"necessity\":\"Required to trigger the vulnerable code path.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Attacker can supply a negative length value via scanf(\\\"%lld\\\") that passes the signed jle 0x100 check. Any negative value (e.g., -1, -256) satisfies -1 <= 0x100 in signed comparison.\",\"necessity\":\"Required to bypass the length validation and cause calloc to receive a huge size_t argument.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL (glibc 2.39 behavior for impossible allocation sizes).\",\"necessity\":\"Required for buf to be NULL, which is the dereferenced pointer.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"read(0, NULL, huge_len) returns -1 (EFAULT) because the kernel rejects writes to address 0. This makes read_retval = -1, causing the dereference at *(NULL + (-1)) = *(0xFFFFFFFFFFFFFFFF).\",\"necessity\":\"Determines the exact fault address. If read returned 0, the dereference would be at *(NULL + 0) = *(0x0) instead.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"Run the target binary with stdin '2\\\\n-1\\\\nAAAA\\\\n' (menu choice 2, length -1, message data). Observe SIGSEGV crash. Use GDB to confirm: (1) calloc returns NULL (rax=0 at 0x1416), (2) read returns -1 (eax=0xFFFFFFFF at 0x1448), (3) dereference at 0x1458 accesses address 0xFFFFFFFFFFFFFFFF (rax=0xFFFFFFFFFFFFFFFF), (4) crash signal is SIGSEGV.\",\"environment\":\"Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary/PIE\",\"run_command\":\"python3 poc-BUG-002.py\",\"expected_evidence\":[\"return_code = -11 (SIGSEGV)\",\"GDB: rax=0x0 at calloc return (buf=NULL)\",\"GDB: eax=0xFFFFFFFF at read return (read_retval=-1 EFAULT)\",\"GDB: rax=0xFFFFFFFFFFFFFFFF at 0x1458 (NULL + sign_extend(-1))\",\"GDB: fault_address=0xFFFFFFFFFFFFFFFF\",\"GDB: crash at create_cookie+0xbf (0x1458 link-time offset)\"]},\"mitigations\":[{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"No impact on this primitive. The crash is a NULL/near-NULL dereference (0xFFFFFFFFFFFFFFFF) which is independent of base addresses. PIE does not prevent the crash.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact. The crash occurs before any stack buffer overflow. The canary is not relevant to this NULL deref.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"No impact. No code execution is achieved; this is purely a crash primitive.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"No impact. No GOT overwrite or RELRO-bypassing operation is involved.\"},{\"name\":\"alarm(60)\",\"present\":true,\"primitive_impact\":\"No impact. The crash occurs immediately upon processing the negative length, well before the 60-second alarm fires.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x13ed\",\"description\":\"scanf(\\\"%lld\\\", &length) reads length as signed int64. Format string %lld confirmed in .rodata at 0x2171.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x13f6\",\"description\":\"Bounds check: 'cmp rax, 0x100' at 0x13f6 followed by 'jle 140a' at 0x13fc — signed less-or-equal. Negative length (e.g., -1) passes because -1 <= 0x100 in signed comparison. No lower-bound check exists.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x1416\",\"description\":\"calloc(length, 1) at 0x1416 — length (int64, negative) passed as rdi. calloc interprets as size_t (unsigned), so -1 becomes 0xFFFFFFFFFFFFFFFF. calloc with this size returns NULL.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"Post-read dereference: 'mov rax,[rbp-0x10]' (buf=NULL) then 'add rax,rdx' (rdx=sign_extend(read_retval)) then 'movzx eax,BYTE PTR [rax]' at 0x1458 — dereferences NULL + offset.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1416\",\"description\":\"GDB breakpoint at calloc call: rdi=0xFFFFFFFFFFFFFFFF (-1 as size_t), rsi=0x1. Confirms calloc(0xFFFFFFFFFFFFFFFF, 1) is called.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1443\",\"description\":\"GDB breakpoint at read call: rax=0x0 (calloc returned NULL), rdi=0x0 (fd=stdin), rsi=0x0 (buf=NULL), rdx=0xFFFFFFFFFFFFFFFF (len=-1). Confirms read(0, NULL, 0xFFFFFFFFFFFFFFFF).\"},{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1448\",\"description\":\"GDB breakpoint after read return: eax=0xFFFFFFFF (read returned -1, EFAULT). Confirms read(0, NULL, huge) fails and returns -1 — no bytes written to memory.\"},{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"GDB at dereference: rax=0xFFFFFFFFFFFFFFFF (NULL + sign_extend(-1) = 0 + 0xFFFFFFFFFFFFFFFF = 0xFFFFFFFFFFFFFFFF). 'movzx eax,BYTE PTR [rax]' dereferences 0xFFFFFFFFFFFFFFFF -> SIGSEGV. fault_address=0xFFFFFFFFFFFFFFFF, crash at create_cookie+0xbf.\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"PoC execution: subprocess return_code=-11 (SIGSEGV). Confirms reproducible crash with input '2\\\\n-1\\\\nAAAA\\\\n'.\"},{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"Tested with length=-256: identical behavior — calloc returns NULL, read returns -1, crash at 0xFFFFFFFFFFFFFFFF. Confirms all negative lengths produce the same NULL_POINTER_DEREF primitive.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0xFFFFFFFFFFFFFFFF\",\"return_code\":-11,\"details\":\"GDB confirmed: calloc(0xFFFFFFFFFFFFFFFF,1) returns NULL (rax=0x0). read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 EFAULT (eax=0xFFFFFFFF). Dereference at 0x1458: rax = NULL + sign_extend(-1) = 0xFFFFFFFFFFFFFFFF. movzx eax,[rax] -> SIGSEGV at 0xFFFFFFFFFFFFFFFF. PoC reproduces: rc=-11 (SIGSEGV). Tested with -1 and -256: identical crash. No write occurs (read returns -1, 0 bytes written). Primitive is purely NULL_POINTER_DEREF — cannot escalate to read/write primitive.\"},\"confidence\":\"HIGH\",\"notes\":\"This is a DIRECT primitive: the NULL pointer dereference occurs directly from the calloc-returns-NULL + read-returns-EFAULT chain, with no intermediate object reuse or metadata manipulation. The primitive cannot be escalated to ARB_WRITE or ARB_READ because: (1) calloc returns NULL so there is no buffer to write to, (2) read(0, NULL, huge) returns -1 (EFAULT) and writes 0 bytes — the kernel rejects the write to address 0, (3) the only memory operation is the dereference buf[read_retval] which crashes immediately. The fault address 0xFFFFFFFFFFFFFFFF is deterministic (NULL + sign_extend(-1)) and not attacker-controllable to a useful address — read always returns -1 when buf is NULL regardless of input data.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"Same as PRIM-001: negative length bypasses signed check, calloc returns NULL, read returns -1, dereference at 0xFFFFFFFFFFFFFFFF causes SIGSEGV — resulting in denial of service (crash).\",\"description\":\"The NULL pointer dereference at 0xFFFFFFFFFFFFFFFF causes an immediate SIGSEGV, crashing the program and denying service. This is the observable effect of PRIM-001.\"},\"chain\":[\"BUG-002\",\"Signedness mismatch allows negative length\",\"calloc returns NULL, read returns -1 (EFAULT)\",\"Dereference *(0xFFFFFFFFFFFFFFFF) -> SIGSEGV\",\"CRASH (Denial of Service)\"],\"controlled_element\":{\"what\":\"The ability to crash the program at will by supplying a negative length to create_cookie.\",\"how\":\"Attacker sends menu choice 2, then any negative length (e.g., -1). The program crashes immediately with SIGSEGV.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Attacker can reach create_cookie via menu choice 2.\",\"necessity\":\"Required to trigger the vulnerable code path.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Attacker can supply a negative length that passes the signed jle 0x100 check.\",\"necessity\":\"Required to cause calloc to receive a huge size and return NULL.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"Run poc-BUG-002.py which feeds '2\\\\n-1\\\\nAAAA\\\\n' to the binary and checks for SIGSEGV (return code -11).\",\"environment\":\"Linux x86_64, glibc 2.39, PIE binary\",\"run_command\":\"python3 poc-BUG-002.py\",\"expected_evidence\":[\"return_code = -11 (SIGSEGV)\",\"Program crashes immediately after entering negative length\"]},\"mitigations\":[{\"name\":\"alarm(60)\",\"present\":true,\"primitive_impact\":\"No impact. Crash occurs immediately, well before alarm fires.\"},{\"name\":\"All mitigations (PIE/RELRO/NX/Canary)\",\"present\":true,\"primitive_impact\":\"No impact. This is a crash primitive — no memory corruption beyond the NULL deref, no control flow hijack. Mitigations are irrelevant to DoS via NULL deref.\"}],\"evidence\":[{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"PoC execution: return_code=-11 (SIGSEGV). Program crashes immediately upon processing negative length -1. Reproducible with multiple negative values (-1, -256).\"},{\"id\":\"E012\",\"type\":\"DYNAMIC\",\"function\":\"create_cookie\",\"address\":\"0x1458\",\"description\":\"GDB crash dump: signal=SIGSEGV, crash_addr=0x0000555555555458 (create_cookie+0xbf), fault address=0xFFFFFFFFFFFFFFFF. Backtrace: #0 create_cookie, #1 main.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0xFFFFFFFFFFFFFFFF\",\"return_code\":-11,\"details\":\"PoC reproduces SIGSEGV crash with return_code=-11. GDB confirms crash at create_cookie+0xbf (0x1458) with fault address 0xFFFFFFFFFFFFFFFF. The crash is immediate and deterministic — any negative length triggers it.\"},\"confidence\":\"HIGH\",\"notes\":\"This CRASH primitive is the observable effect of PRIM-001 (NULL_POINTER_DEREF). It is a DIRECT primitive — the crash results directly from the NULL dereference with no intermediate steps. The crash is reliable and immediately reproducible. It provides denial of service but no path to code execution or memory corruption beyond the single dereference.\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-002\",\"reason\":\"Cannot escalate to ARB_WRITE. calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL — there is no heap buffer to write to. read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) and writes 0 bytes — the kernel rejects writes to address 0. No memory is modified by the read call. The only memory operation is the dereference buf[read_retval] which crashes immediately. GDB confirmed: read return value = -1 (eax=0xFFFFFFFF), buf = NULL (0x0 at rbp-0x10). Dynamic evidence: E007, E008.\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"ARB_READ\",\"source_bug\":\"BUG-002\",\"reason\":\"Cannot escalate to ARB_READ. The dereference buf[read_retval] = *(0xFFFFFFFFFFFFFFFF) is a single-byte read (movzx) that immediately crashes with SIGSEGV. The address 0xFFFFFFFFFFFFFFFF is not attacker-controllable to a useful value — it is always NULL + sign_extend(read_retval) where read_retval is always -1 (EFAULT) when buf is NULL. No data is leaked to the attacker. GDB confirmed: rax=0xFFFFFFFFFFFFFFFF at dereference, crash before any output. Dynamic evidence: E008.\"},{\"primitive_id\":\"NP-003\",\"candidate_type\":\"HEAP_METADATA_CONTROL\",\"source_bug\":\"BUG-002\",\"reason\":\"No heap metadata is modified. calloc returns NULL (no allocation succeeds), so no heap chunk is created or modified. read writes 0 bytes. The crash occurs before any heap metadata could be affected.\"},{\"primitive_id\":\"NP-004\",\"candidate_type\":\"STACK_CONTROL\",\"source_bug\":\"BUG-002\",\"reason\":\"No stack corruption occurs. The negative length is stored in a stack variable (rbp-0x18) but is not used to overflow any stack buffer. The canary at rbp-0x8 is never triggered. The crash is a dereference of a NULL-derived address, not a stack buffer overflow.\"}],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-003\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-003\",\"total_primitives\":4,\"verified\":0,\"theoretical\":3,\"candidate\":1,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"HEAP_OBJECT_CONTROL\",\"status\":\"CANDIDATE\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-003\",\"root_cause\":\"eat_cookie frees msg[idx] then copies msg[cookie_num-1] into msg[idx] without clearing the source slot msg[cookie_num-1], creating a duplicate pointer to the same valid heap chunk in two msg[] slots\",\"description\":\"After eat_cookie with idx != cookie_num-1: msg[idx] = msg[cookie_num-1] (move last pointer to freed slot), but msg[cookie_num-1] is NOT zeroed. Both msg[idx] and msg[cookie_num-1] now point to the same valid heap chunk. After cookie_num--, msg[cookie_num-1] (old) is at index == cookie_num (out of active range), while msg[idx] (in range) points to valid memory.\"},\"chain\":[\"BUG-003\",\"eat_cookie: msg[idx] = msg[cookie_num-1] without clearing source\",\"Duplicate pointer: msg[idx] and msg[cookie_num-1] both point to same valid chunk\",\"After cookie_num--, duplicate at index >= cookie_num (out of range)\",\"In-range slot accesses valid memory normally - no corruption\"],\"controlled_element\":{\"what\":\"Duplicate pointer to a valid (not freed) heap chunk in msg[] array\",\"how\":\"eat_cookie's move operation (msg[idx] = msg[cookie_num-1]) copies the last pointer without zeroing the source. The random index from /dev/urandom determines which slot gets the duplicate.\",\"reach_sensitive_operation\":false},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"eat_cookie must be called with idx != cookie_num-1 (random index is not the last active slot)\",\"necessity\":\"When idx == cookie_num-1, the freed pointer is self-assigned (dangling), not a duplicate of a valid pointer. Only idx != cookie_num-1 creates a duplicate of a valid chunk.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The duplicate pointer must be accessible through a sensitive operation (edit/read/eat) to constitute HEAP_OBJECT_CONTROL\",\"necessity\":\"For HEAP_OBJECT_CONTROL, the duplicate must be used with object semantics (read/write/free through the duplicate slot). The in-range duplicate (msg[idx]) accesses valid memory normally. The out-of-range duplicate (msg[cookie_num-1] old) is inaccessible.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The duplicate must point to freed/corrupted memory (UAF) to be exploitable\",\"necessity\":\"The duplicate points to a VALID (not freed) heap chunk. The freed chunk was msg[idx]'s original value, which is overwritten by the move. No UAF.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"msg[idx] == msg[cookie_num-1] after eat_cookie move (idx != cookie_num-1)\",\"alias\":\"Duplicate pointer: two msg[] slots contain the same heap pointer\",\"implication \":\"The duplicate at msg[cookie_num-1] (old) is at index == cookie_num after decrement, which is out of active range (>= cookie_num). The in-range copy at msg[idx] accesses valid memory. No memory corruption.\"}],\"verification_plan\":{\"method\":\"gdb observation of msg[] array after eat_cookie, confirming duplicate pointer exists and points to valid (not freed) memory\",\"environment\":\"Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary\",\"run_command\":\"python3 poc-BUG-003.py\",\"expected_evidence\":[\"gdb: msg[idx] and msg[cookie_num-1] contain same pointer value after eat_cookie\",\"gdb: the pointed-to chunk is valid (not in tcache free list)\",\"gdb: after cookie_num--, duplicate at index >= cookie_num (out of range)\",\"Dynamic: 200 runs of 5x eat_cookie produce 0 crashes (no double-free)\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache double-free detection\",\"present\":true,\"primitive_impact\":\"If a double-free were attempted, glibc tcache key check would detect it and abort. However, double-free is not triggerable through normal eat_cookie operations regardless.\"},{\"name\":\"Full RELRO\",\"present\":true,\"primitive_impact\":\"GOT is read-only at runtime. Not relevant to this bug (no GOT overwrite path).\"},{\"name\":\"PIE/ASLR\",\"present\":true,\"primitive_impact\":\"Address randomization. Not relevant since no address-controlled primitive is established.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x15c6\",\"description\":\"gdb observation at eat_cookie+0xe5 (after move, before cookie_num--): msg[3]=0x555555559580 and msg[4]=0x555555559580 (duplicate). cookie_num=5, idx=3. Both slots point to the same valid heap chunk at 0x555555559580. The freed chunk was msg[3]'s original value (0x555555559540), which is now overwritten.\"},{\"id\":\"E002\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x160a\",\"description\":\"gdb observation at eat_cookie+0x129 (after cookie_num--): cookie_num=4. msg[3] (index 3 < 4, in range) = 0x555555559580 (valid). msg[4] (index 4 >= 4, out of range) = 0x555555559580 (duplicate, inaccessible).\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x158e\",\"description\":\"gdb observation at eat_cookie+0xad (after free, before move): idx=4, cookie_num=5. When idx == cookie_num-1, free(msg[4]) frees the chunk, then msg[4]=msg[4] (self-assign) leaves dangling pointer. After cookie_num--, dangling pointer at index 4 >= 4 (out of range).\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x14e1\",\"description\":\"Dynamic test: 200 runs of 5x eat_cookie produced 0 crashes. Double-free is NOT triggerable because: (1) the freed pointer is always overwritten by msg[idx]=msg[cookie_num-1], (2) eat_cookie's idx=random_byte%cookie_num < cookie_num, so the stale slot at index==cookie_num is never selected.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"gdb confirmed duplicate pointer exists (msg[3]=msg[4]=0x555555559580 after eat_cookie idx=3). However, the duplicate points to a VALID (not freed) heap chunk. The freed chunk's pointer is overwritten by the move operation. After cookie_num--, the out-of-range duplicate is inaccessible. 200 dynamic runs produced 0 crashes, confirming no double-free. Does not meet HEAP_OBJECT_CONTROL verification standard (no attacker-controlled fields used with object semantics, no memory corruption).\"},\"confidence\":\"HIGH\",\"notes\":\"The duplicate pointer is a real bug (source slot not cleared) but does not produce an exploitable primitive. The duplicate always points to valid memory (the last active chunk, not the freed one). The freed chunk's pointer is always overwritten by msg[idx]=msg[cookie_num-1]. The out-of-range duplicate at msg[cookie_num] is inaccessible through normal operations and is overwritten by create_cookie.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"HEAP_OBJECT_CONTROL\",\"status\":\"THEORETICAL\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-003\",\"root_cause\":\"When idx == cookie_num-1 in eat_cookie: free(msg[idx]) frees the chunk, then msg[idx] = msg[cookie_num-1] = msg[idx] (self-assignment) leaves the freed pointer in the slot. After cookie_num--, the dangling pointer is at index == cookie_num (out of active range).\",\"description\":\"The dangling pointer to freed heap memory exists in msg[] but is at index == cookie_num after the decrement, which is outside the active range [0, cookie_num). Normal operations (edit_cookie, read_cookie, eat_cookie) all check index < cookie_num, so the dangling pointer cannot be accessed.\"},\"chain\":[\"BUG-003\",\"eat_cookie with idx == cookie_num-1: free(msg[idx]) then msg[idx]=msg[idx] (self-assign)\",\"Dangling pointer to freed heap chunk remains in msg[idx]\",\"After cookie_num--, dangling pointer at index == cookie_num (out of range)\",\"Normal operations check index < cookie_num -> cannot access dangling pointer\",\"No UAF accessible through normal operations\"],\"controlled_element\":{\"what\":\"Dangling pointer to freed heap memory in msg[] at index == cookie_num\",\"how\":\"When eat_cookie's random index equals cookie_num-1 (the last active slot), the chunk is freed and the pointer is self-assigned back, leaving a dangling pointer. This is probabilistic (random_byte % cookie_num == cookie_num-1).\",\"reach_sensitive_operation\":false},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"eat_cookie must be called with idx == cookie_num-1 (random index equals the last active slot)\",\"necessity\":\"Only when idx == cookie_num-1 does the self-assignment leave a dangling pointer. When idx != cookie_num-1, the freed pointer is overwritten by a valid pointer.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The dangling pointer must be accessible through a sensitive operation to constitute UAF\",\"necessity\":\"For UAF, the dangling pointer must be dereferenced (read/write/free). After cookie_num--, the dangling pointer is at index == cookie_num (out of range). edit_cookie/read_cookie check index < cookie_num (via jl). eat_cookie uses idx = random % cookie_num < cookie_num. create_cookie writes to msg[cookie_num] (overwrites dangling pointer). None can access the dangling pointer as a pointer.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"No other code path must exist that can access msg[cookie_num] as a pointer after the dangling pointer is placed there\",\"necessity\":\"create_cookie writes a new calloc result to msg[cookie_num], overwriting the dangling pointer. This is the only operation that writes to msg[cookie_num], and it replaces (not dereferences) the dangling pointer.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"msg[cookie_num] after eat_cookie with idx == cookie_num-1\",\"alias\":\"Dangling pointer to freed heap chunk at out-of-range index\",\"implication\":\"The dangling pointer exists but is at index == cookie_num, which is outside the active range [0, cookie_num). All normal operations check index < cookie_num. create_cookie overwrites msg[cookie_num] with a new pointer. The dangling pointer is never dereferenced.\"}],\"verification_plan\":{\"method\":\"gdb observation confirming dangling pointer exists at msg[cookie_num] after eat_cookie with idx == cookie_num-1, and that no normal operation can access it as a pointer\",\"environment\":\"Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary\",\"run_command\":\"python3 poc-BUG-003.py\",\"expected_evidence\":[\"gdb: dangling pointer at msg[idx] when idx == cookie_num-1 (after free, before move)\",\"gdb: after cookie_num--, dangling pointer at index == cookie_num (out of range)\",\"Logic: edit/read/eat check index < cookie_num, create overwrites msg[cookie_num]\"]},\"mitigations\":[{\"name\":\"Bounds checking (index < cookie_num)\",\"present\":true,\"primitive_impact\":\"edit_cookie and read_cookie check index < cookie_num via signed jl. eat_cookie uses idx = random % cookie_num < cookie_num. The dangling pointer at index == cookie_num is never accessed as a pointer.\"},{\"name\":\"create_cookie overwrites stale slot\",\"present\":true,\"primitive_impact\":\"create_cookie writes calloc result to msg[cookie_num], replacing (not dereferencing) the dangling pointer. This destroys the dangling pointer before it can be used.\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x158e\",\"description\":\"gdb at eat_cookie+0xad (after free, before move): idx=4, cookie_num=5. When idx == cookie_num-1=4, free(msg[4]) frees the chunk. The subsequent msg[4]=msg[4] (self-assign) leaves the freed pointer. After cookie_num-- (cn=4), dangling pointer at msg[4] (index 4 >= 4, out of range).\"},{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x1684\",\"description\":\"edit_cookie checks index < cookie_num via 'cmp rdx,rax; jl 1692'. The dangling pointer at index == cookie_num fails this check (cookie_num is not < cookie_num). Cannot access dangling pointer.\"},{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"create_cookie\",\"address\":\"0x1485\",\"description\":\"create_cookie writes calloc result to msg[cookie_num] at 0x1485: 'mov QWORD PTR [rcx+rdx*1],rax' where rcx = cookie_num*8 + msg base. This overwrites the dangling pointer at msg[cookie_num] with a new valid pointer.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"gdb confirmed dangling pointer exists when idx == cookie_num-1. However, after cookie_num--, the dangling pointer is at index == cookie_num (out of active range). All normal operations (edit/read/eat) check index < cookie_num. create_cookie overwrites msg[cookie_num] with a new pointer. The dangling pointer is never dereferenced. No UAF primitive accessible.\"},\"confidence\":\"HIGH\",\"notes\":\"The dangling pointer is real but unreachable. The key insight is that cookie_num is decremented AFTER the self-assignment, placing the dangling pointer exactly at the boundary (index == cookie_num) where no normal operation can access it as a pointer. create_cookie is the only operation that writes to msg[cookie_num], and it replaces (not dereferences) the dangling pointer.\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-003\",\"root_cause\":\"Duplicate pointers from eat_cookie's uncleared source slot could theoretically lead to a double-free if a subsequent eat_cookie selects a slot whose pointer was already freed through a different slot.\",\"description\":\"Hypothesis: if eat_cookie creates a duplicate pointer (msg[idx] = msg[cookie_num-1] without clearing source), and a subsequent eat_cookie frees the chunk through one slot while another slot still holds the same pointer, a later free through the other slot would be a double-free, causing glibc to abort (SIGABRT).\"},\"chain\":[\"BUG-003\",\"eat_cookie creates duplicate pointer (msg[idx] = msg[cookie_num-1], source not cleared)\",\"Hypothesis: subsequent eat_cookie frees chunk through one slot, duplicate remains in another\",\"Hypothesis: later eat_cookie selects duplicate slot, frees already-freed chunk\",\"glibc tcache detects double-free, aborts -> CRASH (DoS)\"],\"controlled_element\":{\"what\":\"None - the random index from /dev/urandom is not attacker-controlled\",\"how\":\"eat_cookie's idx = random_byte % cookie_num is determined by /dev/urandom, not user input. The user cannot control which slot is freed.\",\"reach_sensitive_operation\":false},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"A duplicate pointer to a freed chunk must exist in an in-range slot (index < cookie_num)\",\"necessity\":\"For double-free, a slot with a pointer to an already-freed chunk must be selectable by eat_cookie (index < cookie_num).\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The freed chunk's pointer must NOT be overwritten by the move operation\",\"necessity\":\"After free(msg[idx]), the code executes msg[idx] = msg[cookie_num-1], which OVERWRITES the freed pointer with a valid pointer. The freed pointer is gone from msg[idx]. The duplicate at msg[cookie_num-1] (old) points to the VALID last chunk, not the freed one.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"freed chunk pointer vs duplicate pointer target\",\"alias\":\"The freed chunk is msg[idx]'s original value. The duplicate is of msg[cookie_num-1]'s value (the last valid chunk). These are DIFFERENT chunks. The duplicate never points to the freed chunk.\",\"implication\":\"Double-free is impossible through normal eat_cookie: the freed pointer is always overwritten, and the duplicate always points to a valid (not freed) chunk. No slot ever contains a pointer to an already-freed chunk that is in range.\"}],\"verification_plan\":{\"method\":\"Dynamic testing: run 200 trials of 5x eat_cookie, check for SIGABRT/double-free crashes\",\"environment\":\"Linux x86_64, glibc 2.39, PIE binary\",\"run_command\":\"python3 poc-BUG-003.py\",\"expected_evidence\":[\"If double-free is triggerable: crashes with 'free(): double free detected in tcache 2' and SIGABRT\",\"If not triggerable: 0 crashes across 200 runs\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache double-free detection\",\"present\":true,\"primitive_impact\":\"glibc tcache uses a key field to detect double-free. If a double-free were attempted, it would be detected and abort() called. However, double-free is not triggerable regardless.\"}],\"evidence\":[{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"eat_cookie\",\"address\":\"0x14e1\",\"description\":\"Dynamic test: 200 runs of 5x eat_cookie produced 0 crashes (0/200). Double-free is NOT triggerable because: (1) free(msg[idx]) frees chunk A, (2) msg[idx]=msg[cookie_num-1] overwrites freed pointer with valid pointer to chunk B, (3) duplicate at msg[cookie_num-1] (old) points to chunk B (valid, not freed), (4) no slot ever contains a pointer to freed chunk A after the move.\"},{\"id\":\"E009\",\"type\":\"DERIVED\",\"function\":\"eat_cookie\",\"address\":\"0x15c6\",\"description\":\"Logic proof: After eat_cookie(idx) with idx != cookie_num-1: free(original_msg[idx]) frees chunk A. msg[idx] = msg[cookie_num-1] = pointer to chunk B (valid). msg[cookie_num-1] still = pointer to chunk B (duplicate). No slot points to freed chunk A. The duplicate points to chunk B (valid). Double-free impossible.\"},{\"id\":\"E010\",\"type\":\"DERIVED\",\"function\":\"eat_cookie\",\"address\":\"0x153e\",\"description\":\"eat_cookie's idx = random_byte % cookie_num. This guarantees idx < cookie_num. The stale slot (if any) is at index == cookie_num (out of range). eat_cookie can never select the stale slot. No double-free through eat_cookie's random selection.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"200 dynamic runs of 5x eat_cookie produced 0 crashes. Double-free is NOT triggerable. The freed chunk's pointer is always overwritten by msg[idx]=msg[cookie_num-1]. The duplicate pointer always points to a valid (not freed) chunk. eat_cookie's idx=random%cookie_num < cookie_num, so stale slots at index >= cookie_num are never selected. CRASH primitive does not hold.\"},\"confidence\":\"HIGH\",\"notes\":\"Initially observed a 'double free detected in tcache 2' crash in a gdb session, but this was an artifact of gdb breakpoint interference (breakpoint set at mid-instruction address 0x160e within the cookie_num store instruction). Clean dynamic testing (200 runs without gdb) produced 0 crashes. Logic analysis confirms double-free is impossible: the freed pointer is always overwritten, and duplicates always point to valid chunks.\"},{\"primitive_id\":\"PRIM-004\",\"type\":\"RELATIVE_READ\",\"status\":\"THEORETICAL\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-003\",\"root_cause\":\"Hypothesis: BUG-001's OOB signedness bug (negative index via large unsigned value passing signed jl check) could be used to access stale/duplicate pointers left by BUG-003 at positive indices above the active range.\",\"description\":\"BUG-001 allows negative indices (large unsigned values interpreted as negative in signed comparison) to access memory below msg[]. BUG-003 leaves stale/duplicate pointers at index == cookie_num (above active range). The question is whether BUG-001's OOB can reach these positive-index stale slots.\"},\"chain\":[\"BUG-003\",\"Stale/duplicate pointer at msg[cookie_num] (positive index, above active range)\",\"BUG-001 OOB: index = large unsigned (negative signed) -> msg + negative*8 = below msg\",\"BUG-001 OOB accesses memory BELOW msg (negative offsets)\",\"Stale slots are ABOVE active range (positive offsets from msg)\",\"No overlap -> BUG-001 cannot reach BUG-003 stale slots\"],\"controlled_element\":{\"what\":\"None - BUG-001's OOB and BUG-003's stale slots occupy non-overlapping memory regions\",\"how\":\"BUG-001 uses negative indices (msg + negative*8 = addresses below msg base 0x4060). BUG-003's stale slots are at msg[cookie_num] (addresses above msg + cookie_num*8, e.g., 0x4080+). These regions do not overlap.\",\"reach_sensitive_operation\":false},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"BUG-001's OOB index must be able to reach positive indices above the active range (msg[cookie_num] and beyond)\",\"necessity\":\"For cross-bug interaction, BUG-001's OOB must access the stale slot at msg[cookie_num]. BUG-001 uses large unsigned values (e.g., 0xFFFFFFFFFFFFFFFF = -1 signed) that pass the jl check. These compute as msg + (-1)*8 = msg - 8 (BELOW msg). Positive indices (5, 6, ...) fail the jl check (5 < 5 is false). No OOB index can reach msg[cookie_num] at a positive offset.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"BUG-001 OOB index range vs BUG-003 stale slot index\",\"alias\":\"BUG-001 OOB: index < 0 (signed) -> msg + index*8 < msg (below msg base). BUG-003 stale: index == cookie_num (positive) -> msg + cookie_num*8 > msg (above active range).\",\"implication\":\"BUG-001's OOB accesses memory below msg (negative offsets). BUG-003's stale slots are above the active range (positive offsets). These regions do not overlap. No cross-bug interaction is possible.\"}],\"verification_plan\":{\"method\":\"Address calculation analysis: BUG-001 OOB indices produce addresses below msg; BUG-003 stale slots are above active range\",\"environment\":\"Linux x86_64, PIE binary\",\"run_command\":\"python3 poc-BUG-003.py\",\"expected_evidence\":[\"BUG-001: index=0xFFFFFFFFFFFFFFFF -> msg + (-1)*8 = msg-8 (below msg, in .bss globals like stdout/stdin/stderr)\",\"BUG-003 stale: at msg[cookie_num] = msg + cookie_num*8 (above active range, e.g., msg+32 for cookie_num=4)\",\"No overlap between below-msg and above-active-range regions\"]},\"mitigations\":[],\"evidence\":[{\"id\":\"E011\",\"type\":\"STATIC\",\"function\":\"edit_cookie\",\"address\":\"0x1684\",\"description\":\"BUG-001: edit_cookie checks index < cookie_num via 'cmp rdx,rax; jl 1692' (signed). A large unsigned value like 0xFFFFFFFFFFFFFFFF (-1 signed) passes because -1 < 5. The index is then used as: lea rcx,[rax*8]; mov rax,[rcx+msg]. With rax=0xFFFFFFFFFFFFFFFF, rax*8 wraps to 0xFFFFFFFFFFFFFFF8, and msg + 0xFFFFFFFFFFFFFFF8 = msg - 8 (below msg). This accesses memory BELOW msg, not above.\"},{\"id\":\"E012\",\"type\":\"DERIVED\",\"function\":\"eat_cookie/edit_cookie\",\"address\":\"0x4060\",\"description\":\"BUG-003 stale slots are at msg[cookie_num] = 0x4060 + cookie_num*8. For cookie_num=4, this is 0x4060+32=0x4080 (above active range). BUG-001 OOB accesses msg + negative*8 = addresses below 0x4060 (e.g., 0x4058, 0x4050, ... down to stdout at 0x4020). The stale slot at 0x4080 is NOT reachable via negative OOB indices.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"Address calculation confirms BUG-001 OOB uses negative indices (msg + negative*8 = below msg base 0x4060). BUG-003 stale slots are at positive indices (msg + cookie_num*8 = above active range, e.g., 0x4080). These regions do not overlap. No cross-bug interaction possible.\"},\"confidence\":\"HIGH\",\"notes\":\"BUG-001 and BUG-003 occupy non-overlapping memory regions. BUG-001's OOB goes below msg (into .bss globals like stdout/stdin/stderr). BUG-003's stale slots are above the active range (positive indices). There is no way for BUG-001's OOB to reach BUG-003's stale slots.\"}],\"non_primitives\":[{\"primitive_id\":\"PRIM-003\",\"candidate_type\":\"CRASH\",\"source_bug\":\"BUG-003\",\"reason\":\"Double-free CRASH was hypothesized but dynamically disproven. 200 runs of 5x eat_cookie produced 0 crashes. Logic analysis proves double-free is impossible: the freed pointer is always overwritten by msg[idx]=msg[cookie_num-1], and the duplicate always points to a valid (not freed) chunk. eat_cookie's idx=random%cookie_num < cookie_num, so stale slots at index >= cookie_num are never selected. The initial gdb crash observation was an artifact of breakpoint interference (mid-instruction breakpoint).\"}],\"unresolved\":[{\"description\":\"Whether BUG-003 can be combined with a future heap manipulation technique (tcache poisoning, heap shaping) to create an exploitable primitive\",\"reason\":\"BUG-003 creates duplicate pointers to valid heap chunks. While the duplicate is currently inaccessible (out of range), a sophisticated heap manipulation technique might be able to leverage the duplicate pointer's existence. However, this would require a separate exploit route (S4 territory) and does not constitute a primitive derivable from BUG-003 alone.\",\"required_next_step\":\"S4 exploit route analysis: determine if the duplicate pointer can be leveraged in combination with other bugs (BUG-001 OOB) or heap manipulation techniques to create an exploitable chain.\"}]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 3,
+        "verified": 2,
+        "theoretical": 0,
+        "candidate": 1,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Signedness mismatch in index validation: scanf(\"%llu\") reads unsigned 64-bit index, but bounds check uses signed 'jl' (jump if less-than). Large unsigned values (e.g., 0xFFFFFFFFFFFFFFFF = -1 signed) pass the check because -1 < cookie_num(5). This allows OOB access to msg[] array at negative indices.",
+            "description": "read_cookie uses the OOB index to read msg[index] as an 8-byte pointer and passes it to printf(\"%s\", ptr). With index -8, msg[-8] reads the stdout FILE* pointer from .bss (0x4020), and printf prints the FILE struct contents at that libc address, leaking memory. With index -11, msg[-11] reads the __dso_handle self-referencing pointer (value = own address), leaking the PIE base."
+          },
+          "chain": [
+            "BUG-001",
+            "Signedness mismatch: scanf %llu + signed jl comparison",
+            "Negative index passes bounds check (e.g., -8 as 0xFFFFFFFFFFFFFFFF)",
+            "msg[-8] reads stdout FILE* pointer from .bss at 0x4020",
+            "printf(\"%s\", stdout_FILE_ptr) prints FILE struct contents",
+            "INFO_LEAK: libc FILE struct flags and PIE base leaked"
+          ],
+          "controlled_element": {
+            "what": "OOB array index (controls which .bss global is read as a pointer)",
+            "how": "Attacker sends a large unsigned integer (e.g., 18446744073709551608 = -8) via scanf(\"%llu\") in read_cookie. The signed jl comparison treats this as -8 < 5, passing the bounds check.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can reach read_cookie function via menu choice 4",
+              "necessity": "Provides entry point to the vulnerable code path",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Attacker can supply a large unsigned integer that wraps to negative in signed comparison (e.g., 0xFFFFFFFFFFFFFFFF = -1, 0xFFFFFFFFFFFFFFF8 = -8)",
+              "necessity": "The signed jl check only rejects values >= cookie_num in signed interpretation; negative values pass",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The OOB index -8 maps to msg[-8] = 0x4060 - 64 = 0x4020 = stdout FILE* pointer in .bss",
+              "necessity": "The leaked pointer must point to readable memory containing non-attacker data",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The OOB index -11 maps to msg[-11] = 0x4060 - 88 = 0x4008 = __dso_handle (self-referencing pointer, value = own address)",
+              "necessity": "Self-referencing pointer leaks PIE base address (6 bytes before NUL terminator)",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "msg[-8] = *(uint64_t*)(0x4060 + (-8)*8) = *(uint64_t*)(0x4020) = stdout FILE*",
+              "alias": "msg[-8] aliases stdout FILE* pointer at .bss 0x4020",
+              "implication": "printf(\"%s\", stdout_FILE_ptr) leaks FILE struct contents (flags 0xfbad2887 as first 4 bytes)"
+            },
+            {
+              "expression": "msg[-11] = *(uint64_t*)(0x4060 + (-11)*8) = *(uint64_t*)(0x4008) = __dso_handle",
+              "alias": "msg[-11] aliases __dso_handle self-referencing pointer at .data 0x4008",
+              "implication": "printf(\"%s\", __dso_handle_value) leaks 6 bytes of PIE address (low 48 bits before NUL), defeating ASLR/PIE"
+            },
+            {
+              "expression": "msg[-6] = *(uint64_t*)(0x4060 + (-6)*8) = *(uint64_t*)(0x4030) = stdin FILE*",
+              "alias": "msg[-6] aliases stdin FILE* pointer at .bss 0x4030",
+              "implication": "Additional leak source: stdin FILE struct flags (0xfbad2087)"
+            }
+          ],
+          "verification_plan": {
+            "method": "Run read_cookie with OOB index -8 (stdout) and -11 (__dso_handle), observe leaked bytes in program output",
+            "environment": "Linux x86_64, glibc 2.39, PIE enabled, ASLR on",
+            "run_command": "python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "expected_evidence": [
+              "read_cookie(-8): stdout FILE flags 0xfbad2887 leaked as bytes 87 28 ad fb",
+              "read_cookie(-11): __dso_handle self-referencing value leaked (6 bytes of PIE address)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE",
+              "present": true,
+              "primitive_impact": "PIE randomizes base address, but the INFO_LEAK via __dso_handle self-referencing pointer defeats it by leaking the PIE base"
+            },
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes libc/heap addresses, but the INFO_LEAK via stdout FILE* leaks libc address, and __dso_handle leaks PIE address"
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "Full RELRO makes GOT read-only, but does not affect INFO_LEAK primitive (reads from .bss globals, not GOT)"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "read_cookie",
+              "address": "0x17ad",
+              "description": "Bounds check: cmp rdx,rax (index vs cookie_num) followed by jl (signed less-than). Large unsigned index passes as negative. No lower-bound check."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "read_cookie",
+              "address": "0x17bf-0x17ce",
+              "description": "OOB read: lea rdx,[rax*8]; lea rax,[rip+msg]; mov rax,[rdx+rax] — reads 8-byte pointer from msg+index*8 with unchecked negative index, passed to printf at 0x17e1"
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "read_cookie",
+              "address": "0x17d2",
+              "description": "gdb confirmed: with index=-8, RAX after msg[-8] load = 0x7ffff7fa75c0 (stdout FILE struct address in libc). printf(\"%s\", 0x7ffff7fa75c0) prints FILE struct contents."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "read_cookie",
+              "address": "runtime",
+              "description": "Program output confirmed: read_cookie(-8) leaked bytes 87 28 ad fb (stdout FILE flags 0xfbad2887 in little-endian). read_cookie(-11) leaked 6 bytes of __dso_handle self-referencing value (PIE base)."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "0xfbad2887 (stdout FILE flags, 4 bytes: 87 28 ad fb); PIE base (6 bytes from __dso_handle)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "PRIM-001 VERIFIED: read_cookie with OOB index -8 printed stdout FILE struct flags (0xfbad2887) as raw bytes 87 28 ad fb. read_cookie with OOB index -11 printed __dso_handle self-referencing value (6 bytes of PIE address). Both confirmed via program output and gdb register inspection."
+          },
+          "confidence": "HIGH",
+          "notes": "INFO_LEAK is DIRECT: the OOB index directly selects a pointer from .bss globals, and printf prints the string at that address. Two leak sources confirmed: (1) stdout/stdin/stderr FILE* → leaks libc FILE struct contents (flags), (2) __dso_handle self-referencing pointer → leaks PIE base address (6 bytes). The PIE leak is critical for the ARB_WRITE primitive (PRIM-003)."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "RELATIVE_WRITE",
+          "status": "CANDIDATE",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Same signedness mismatch as PRIM-001. edit_cookie uses the OOB index to read msg[index] as write destination and msg_size[index] as write length, then calls read(0, msg[index], msg_size[index]-1).",
+            "description": "edit_cookie with OOB index -8 reads msg[-8] = stdout FILE* as write destination and msg_size[-8] as write length. msg_size[-8] = 0 (uninitialized .bss), so count = 0-1 = 0xFFFFFFFFFFFFFFFF. read(0, stdout_FILE_ptr, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) because the huge count extends beyond valid memory. The write does not execute."
+          },
+          "chain": [
+            "BUG-001",
+            "Signedness mismatch: scanf %llu + signed jl comparison",
+            "Negative index passes bounds check in edit_cookie",
+            "msg[-8] = stdout FILE* (write destination), msg_size[-8] = 0 (write length)",
+            "read(0, stdout_FILE_ptr, 0-1=0xFFFFFFFFFFFFFFFF) → EFAULT, write fails",
+            "RELATIVE_WRITE: DEAD END (count too large)"
+          ],
+          "controlled_element": {
+            "what": "OOB array index (controls write destination pointer and write length)",
+            "how": "Attacker sends large unsigned integer via scanf(\"%llu\") in edit_cookie. Index -8 selects stdout FILE* as destination and msg_size[-8]=0 as length.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can reach edit_cookie via menu choice 3",
+              "necessity": "Provides entry point to the vulnerable write path",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "OOB index -8 maps msg[-8] to stdout FILE* (0x4020) and msg_size[-8] to 0x4140 (uninitialized, value=0)",
+              "necessity": "Write destination must be a valid pointer and length must be reasonable",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "msg_size[-8] must be a small positive value for count to be valid",
+              "necessity": "count = msg_size[index]-1; if msg_size[index]=0, count=0xFFFFFFFFFFFFFFFF → EFAULT",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "msg_size[-8] = *(int32_t*)(0x4160 + (-8)*4) = *(int32_t*)(0x4140) = 0",
+              "alias": "msg_size[-8] aliases msg[26] low 4 bytes (uninitialized, =0)",
+              "implication": "count = 0-1 = 0xFFFFFFFFFFFFFFFF → read() returns EFAULT, write does not execute. DEAD END for index -8."
+            },
+            {
+              "expression": "msg_size[-4] = *(int32_t*)(0x4160 + (-4)*4) = *(int32_t*)(0x4150) = 0",
+              "alias": "msg_size[-4] aliases msg[30] low 4 bytes (uninitialized, =0)",
+              "implication": "Same DEAD END for index -4 (stderr): count=0xFFFFFFFFFFFFFFFF → EFAULT"
+            }
+          ],
+          "verification_plan": {
+            "method": "Run edit_cookie with OOB index -8, observe read() return value via gdb",
+            "environment": "Linux x86_64, glibc 2.39, PIE enabled",
+            "run_command": "python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "expected_evidence": [
+              "gdb: RDX (count) = 0xFFFFFFFFFFFFFFFF before read() call",
+              "gdb: EAX (read retval) = -1 (EFAULT) after read() call",
+              "stdout FILE struct unchanged after read() (write did not execute)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "Not directly relevant — the write target is a FILE struct in libc, not GOT"
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "Not relevant for write primitive"
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "STATIC",
+              "function": "edit_cookie",
+              "address": "0x16a7-0x16bc",
+              "description": "msg_size[index] read: lea rdx,[rax*4]; lea rax,[msg_size]; mov eax,[rdx+rax]; sub eax,1; movsxd rdx,eax — reads 4-byte size from OOB, subtracts 1, sign-extends to 64-bit"
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "edit_cookie",
+              "address": "0x16de",
+              "description": "gdb confirmed: with index=-8, RSI (dest) = 0x7ffff7fa75c0 (stdout FILE*), RDX (count) = 0xFFFFFFFFFFFFFFFF. After read(), EAX = -1 (EFAULT). stdout FILE struct unchanged."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "PRIM-002 CANDIDATE (dead end): edit_cookie with index -8 has msg_size[-8]=0, causing count=0xFFFFFFFFFFFFFFFF. read() returns -1 (EFAULT), write does not execute. gdb confirmed RDX=0xFFFFFFFFFFFFFFFF and EAX=-1 after read(). This candidate is a dead end for indices -8/-6/-4 (FILE* pointers) because their msg_size values are all 0 (uninitialized .bss)."
+          },
+          "confidence": "HIGH",
+          "notes": "DEAD END for direct FILE* write: indices -8/-6/-4 all have msg_size=0 → count=0xFFFFFFFFFFFFFFFF → EFAULT. The write to FILE structs cannot execute directly. However, the ARB_WRITE primitive (PRIM-003) overcomes this by using a different index (-11) where msg_size[-11] aliases the high 4 bytes of a heap pointer (0x00005555), providing a valid small count."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "ARB_WRITE",
+          "status": "VERIFIED",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Same signedness mismatch. edit_cookie with OOB index -11 reads msg[-11] = __dso_handle (self-referencing pointer at .data 0x4008, value = own address) as write destination, and msg_size[-11] = high 4 bytes of msg[26] (a heap pointer, = 0x00005555) as write length. count = 0x5555-1 = 0x5554 (valid small positive). read(0, __dso_handle_addr, 0x5554) writes attacker data to __dso_handle, changing its value to an arbitrary target address Y. A second edit_cookie(-11) then writes to Y.",
+            "description": "Two-step write using __dso_handle self-referencing pointer: Step 1 writes target address Y to __dso_handle (write target = __dso_handle's value = its own address, which is writable .data). Step 2: msg[-11] now = Y, so read(0, Y, count) writes attacker data to Y. Verified with two different Y addresses."
+          },
+          "chain": [
+            "BUG-001",
+            "Signedness mismatch: scanf %llu + signed jl comparison",
+            "Index -11 passes bounds check (-11 < 5 in signed)",
+            "msg[-11] = __dso_handle (self-referencing: value = own address, writable .data)",
+            "msg_size[-11] = msg[26] high 4 bytes = 0x00005555 (small positive, valid count)",
+            "Step 1: read(0, __dso_handle_addr, 0x5554) overwrites __dso_handle with target Y",
+            "Step 2: read(0, Y, 0x5554) writes attacker data to arbitrary address Y",
+            "ARB_WRITE: Write-What-Where via two-step write"
+          ],
+          "controlled_element": {
+            "what": "Write destination address (via two-step: first write sets __dso_handle to Y, second write targets Y) and write content (attacker-controlled data via stdin)",
+            "how": "Step 1: edit_cookie(-11) sends 8 bytes = target address Y via stdin. read() writes Y to __dso_handle. Step 2: edit_cookie(-11) sends data via stdin. read() writes data to Y (now msg[-11]=Y).",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can reach edit_cookie via menu choice 3 (multiple times)",
+              "necessity": "Two edit_cookie calls needed for two-step write",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Attacker can supply index -11 (as 0xFFFFFFFFFFFFFFF5 = 18446744073709551605) via scanf(\"%llu\")",
+              "necessity": "Index -11 maps to __dso_handle (self-referencing pointer) and msg_size high-half alias",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "msg[26] must contain a heap pointer (high 4 bytes = 0x0000XXXX, small positive) so msg_size[-11] provides valid count",
+              "necessity": "msg_size[-11] = msg[26] high 4 bytes. If msg[26]=0, count=0xFFFFFFFFFFFFFFFF → EFAULT. Must create 22 cookies (indices 5-26) to fill msg[26] with a heap pointer.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "__dso_handle at 0x4008 must be self-referencing (value = own address) and writable (.data segment)",
+              "necessity": "Self-referencing property means write target = __dso_handle's own address. Writable .data allows overwriting the value.",
+              "verified": true
+            },
+            {
+              "id": "PC-05",
+              "description": "Post-read code must survive: after Step 1, msg[-11] = Y. Code dereferences msg[-11]+read_retval = Y+retval. Y must be readable.",
+              "necessity": "If Y+retval is not readable, SIGSEGV occurs before returning to menu. Y must point to readable memory (e.g., .bss).",
+              "verified": true
+            },
+            {
+              "id": "PC-06",
+              "description": "PIE base must be known to compute target address Y (e.g., msg[k] address in .bss)",
+              "necessity": "Y must be a valid writable+readable address. PIE leak via read_cookie(-11) provides the base.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "msg[-11] = *(uint64_t*)(0x4060 + (-11)*8) = *(uint64_t*)(0x4008) = __dso_handle",
+              "alias": "msg[-11] aliases __dso_handle at .data 0x4008 (self-referencing: value = 0x4008+PIE_base = own runtime address)",
+              "implication": "Write target in Step 1 = __dso_handle's value = its own address (writable .data). Overwriting it changes the write target for Step 2."
+            },
+            {
+              "expression": "msg_size[-11] = *(int32_t*)(0x4160 + (-11)*4) = *(int32_t*)(0x4134) = msg[26] high 4 bytes",
+              "alias": "msg_size[-11] aliases the HIGH 4 bytes of msg[26] (8-byte heap pointer)",
+              "implication": "Heap pointer 0x0000555555559XXX → high 4 bytes = 0x00005555 = 21813 (small positive). count = 21813-1 = 21812. Valid! This is the key alias that makes the write execute (unlike PRIM-002 where msg_size=0 → EFAULT)."
+            },
+            {
+              "expression": "msg_size[-11] low-half alternative: if msg[26] low 4 bytes were used, value = 0x55559XXX (large positive) → count too large",
+              "alias": "msg_size[-11] happens to alias the HIGH half (not low half) due to 4-byte stride vs 8-byte stride offset",
+              "implication": "The 4-byte msg_size stride causes it to land on the high half of the 8-byte msg[26] pointer. High half of a 48-bit address is always small (0x0000XXXX), providing a valid count. This is the critical high-half alias pattern."
+            }
+          ],
+          "verification_plan": {
+            "method": "1. Leak PIE base via read_cookie(-11). 2. Create 22 cookies to fill msg[26]. 3. Step 1: edit_cookie(-11) writes Y1 to __dso_handle. 4. Step 2: edit_cookie(-11) writes data to Y1. 5. Repeat for Y2. 6. Verify Y2 write via read_cookie.",
+            "environment": "Linux x86_64, glibc 2.39, PIE enabled, ASLR on",
+            "run_command": "python3 /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "expected_evidence": [
+              "Step 1: __dso_handle overwritten from 0x555555558008 to Y1 (gdb confirmed: 0x4141414141414141)",
+              "Step 2: read(0, Y1, 0x5554) writes to Y1 (msg[10])",
+              "Two different Y addresses verified: Y1=msg[10], Y2=msg[11]",
+              "Y2 verification: read_cookie(11) prints .rodata string at the address written to msg[11]"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE",
+              "present": true,
+              "primitive_impact": "PIE randomizes addresses, but the INFO_LEAK (PRIM-001) via __dso_handle self-referencing pointer leaks the PIE base, defeating PIE for the ARB_WRITE target computation."
+            },
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes heap addresses, but the high 4 bytes of heap pointers are always 0x0000XXXX (small positive), so msg_size[-11] always provides a valid count regardless of ASLR."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "Full RELRO makes GOT read-only, but the ARB_WRITE writes to .bss/.data targets, not GOT. RELRO does not prevent this primitive."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "Stack canary protects return addresses, but the ARB_WRITE targets .bss/.data globals, not stack. Canary does not prevent this primitive."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "NX prevents code execution on stack/heap, but does not prevent the ARB_WRITE itself (writing to data segment)."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E007",
+              "type": "STATIC",
+              "function": "edit_cookie",
+              "address": "0x1684",
+              "description": "Bounds check: cmp rdx,rax + jl (signed). Index -11 (0xFFFFFFFFFFFFFFF5) passes because -11 < 5 (cookie_num)."
+            },
+            {
+              "id": "E008",
+              "type": "STATIC",
+              "function": "edit_cookie",
+              "address": "0x16a7-0x16de",
+              "description": "msg_size[-11] read at 0x4134 (= msg[26] high 4 bytes), msg[-11] read at 0x4008 (= __dso_handle). read(0, __dso_handle_value, msg_size[-11]-1) at 0x16de."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "edit_cookie",
+              "address": "0x16de",
+              "description": "gdb confirmed Step 1: RSI (dest) = 0x555555558008 (__dso_handle addr), RDX (count) = 0x5554 (valid small positive from msg[26] high half). After read(): __dso_handle changed from 0x0000555555558008 to 0x4141414141414141 (attacker data written)."
+            },
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "edit_cookie",
+              "address": "0x1705",
+              "description": "gdb confirmed post-read deref: after Step 1, msg[-11] = 0x4141414141414141. Code dereferences msg[-11]+retval = 0x4141414141414141+13 = 0x414141414141414e → SIGSEGV. This proves __dso_handle was overwritten (the crash occurs at the overwritten address)."
+            },
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "edit_cookie",
+              "address": "runtime",
+              "description": "PoC confirmed full two-step write: Step 1 wrote Y1=msg[10] addr to __dso_handle (survived post-read). Step 2 wrote 0x4242424242424242 to Y1. Repeated for Y2=msg[11] with .rodata string address. read_cookie(11) printed the .rodata string, confirming the write to Y2."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-001.py",
+            "written_value": "0x4242424242424242 (to Y1=msg[10]); 0x00005fad1d0cc00b (.rodata string addr, to Y2=msg[11])",
+            "read_value": "",
+            "fault_address": "0x414141414141414e (gdb: post-read deref after Step 1 with Y=0x4141414141414141, proving __dso_handle was overwritten)",
+            "return_code": 0,
+            "details": "PRIM-003 VERIFIED: Two-step ARB_WRITE confirmed. Step 0: PIE leak via read_cookie(-11) → __dso_handle self-referencing value (6 bytes). Step 1: edit_cookie(-11) with 22 cookies created (msg[26] filled with heap ptr, msg_size[-11]=0x5555). read(0, __dso_handle, 0x5554) overwrites __dso_handle with target Y. Step 2: edit_cookie(-11) again, now msg[-11]=Y, read(0, Y, 0x5554) writes to Y. Verified with Y1=msg[10] (wrote 0x4242424242424242) and Y2=msg[11] (wrote .rodata addr, verified via read_cookie(11) printing the string). gdb confirmed: RSI=0x555555558008, RDX=0x5554, __dso_handle changed to 0x4141414141414141 after Step 1."
+          },
+          "confidence": "HIGH",
+          "notes": "INDIRECT primitive: two-step write via __dso_handle self-referencing pointer. The write target is not directly controlled — it requires two operations: (1) overwrite __dso_handle to set target Y, (2) write to Y. Key alias: msg_size[-11] = msg[26] high 4 bytes = 0x00005555 (small positive, valid count). This overcomes the EFAULT dead end of PRIM-002 (where msg_size=0 → count=0xFFFFFFFFFFFFFFFF). The high-half alias pattern (4-byte msg_size stride landing on high 4 bytes of 8-byte heap pointer) is the critical enabler. Post-read survival requires Y to be readable (Y+retval dereferenced). PoC uses Y=msg[k] addresses in .bss (readable+writable)."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "RELATIVE_WRITE (direct FILE struct write)",
+          "source_bug": "BUG-001",
+          "reason": "edit_cookie with indices -8/-6/-4 (stdout/stdin/stderr FILE*) has msg_size=0 → count=0xFFFFFFFFFFFFFFFF → read() returns EFAULT. The write to FILE structs cannot execute directly. This is a dead end, not a viable primitive. The ARB_WRITE (PRIM-003) via __dso_handle two-step write is the viable write path."
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 2,
+        "verified": 2,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "NULL_POINTER_DEREF",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "Signedness Error in create_cookie: message length read via scanf(\"%lld\") as signed int64, bounds check uses 'cmp rax, 0x100; jle' (signed less-or-equal). Negative length (e.g., -1) passes because -1 <= 0x100 in signed comparison. calloc(-1, 1) = calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL. read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT). buf[read_retval] = *(NULL + sign_extend(-1)) = *(0xFFFFFFFFFFFFFFFF) -> SIGSEGV.",
+            "description": "Negative length bypasses signed upper-bound check, calloc returns NULL for huge size, read fails with EFAULT returning -1, post-read dereference accesses *(NULL + (-1)) = *(0xFFFFFFFFFFFFFFFF)."
+          },
+          "chain": [
+            "BUG-002",
+            "Signedness mismatch: scanf %lld (signed) vs jle 0x100 (signed comparison) allows negative length",
+            "calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL (buf = NULL)",
+            "read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) — no bytes written",
+            "buf[read_retval] dereference: *(NULL + sign_extend(-1)) = *(0xFFFFFFFFFFFFFFFF)",
+            "NULL_POINTER_DEREF"
+          ],
+          "controlled_element": {
+            "what": "The message length value (signed int64 from attacker via scanf %lld). Attacker controls the length passed to calloc and read, and indirectly the read return value (-1 EFAULT) which determines the dereference address.",
+            "how": "Attacker sends menu choice 2, then a negative length (e.g., -1) via stdin. The signed jle check passes. calloc(huge, 1) returns NULL. read(0, NULL, huge) returns -1. The dereference address = NULL + sign_extend(read_retval) = 0xFFFFFFFFFFFFFFFF.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can reach create_cookie via menu choice 2 in main loop.",
+              "necessity": "Required to trigger the vulnerable code path.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Attacker can supply a negative length value via scanf(\"%lld\") that passes the signed jle 0x100 check. Any negative value (e.g., -1, -256) satisfies -1 <= 0x100 in signed comparison.",
+              "necessity": "Required to bypass the length validation and cause calloc to receive a huge size_t argument.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL (glibc 2.39 behavior for impossible allocation sizes).",
+              "necessity": "Required for buf to be NULL, which is the dereferenced pointer.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "read(0, NULL, huge_len) returns -1 (EFAULT) because the kernel rejects writes to address 0. This makes read_retval = -1, causing the dereference at *(NULL + (-1)) = *(0xFFFFFFFFFFFFFFFF).",
+              "necessity": "Determines the exact fault address. If read returned 0, the dereference would be at *(NULL + 0) = *(0x0) instead.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "Run the target binary with stdin '2\\n-1\\nAAAA\\n' (menu choice 2, length -1, message data). Observe SIGSEGV crash. Use GDB to confirm: (1) calloc returns NULL (rax=0 at 0x1416), (2) read returns -1 (eax=0xFFFFFFFF at 0x1448), (3) dereference at 0x1458 accesses address 0xFFFFFFFFFFFFFFFF (rax=0xFFFFFFFFFFFFFFFF), (4) crash signal is SIGSEGV.",
+            "environment": "Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary/PIE",
+            "run_command": "python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "return_code = -11 (SIGSEGV)",
+              "GDB: rax=0x0 at calloc return (buf=NULL)",
+              "GDB: eax=0xFFFFFFFF at read return (read_retval=-1 EFAULT)",
+              "GDB: rax=0xFFFFFFFFFFFFFFFF at 0x1458 (NULL + sign_extend(-1))",
+              "GDB: fault_address=0xFFFFFFFFFFFFFFFF",
+              "GDB: crash at create_cookie+0xbf (0x1458 link-time offset)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "No impact on this primitive. The crash is a NULL/near-NULL dereference (0xFFFFFFFFFFFFFFFF) which is independent of base addresses. PIE does not prevent the crash."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact. The crash occurs before any stack buffer overflow. The canary is not relevant to this NULL deref."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "No impact. No code execution is achieved; this is purely a crash primitive."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "No impact. No GOT overwrite or RELRO-bypassing operation is involved."
+            },
+            {
+              "name": "alarm(60)",
+              "present": true,
+              "primitive_impact": "No impact. The crash occurs immediately upon processing the negative length, well before the 60-second alarm fires."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "create_cookie",
+              "address": "0x13ed",
+              "description": "scanf(\"%lld\", &length) reads length as signed int64. Format string %lld confirmed in .rodata at 0x2171."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "create_cookie",
+              "address": "0x13f6",
+              "description": "Bounds check: 'cmp rax, 0x100' at 0x13f6 followed by 'jle 140a' at 0x13fc — signed less-or-equal. Negative length (e.g., -1) passes because -1 <= 0x100 in signed comparison. No lower-bound check exists."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "create_cookie",
+              "address": "0x1416",
+              "description": "calloc(length, 1) at 0x1416 — length (int64, negative) passed as rdi. calloc interprets as size_t (unsigned), so -1 becomes 0xFFFFFFFFFFFFFFFF. calloc with this size returns NULL."
+            },
+            {
+              "id": "E004",
+              "type": "STATIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "Post-read dereference: 'mov rax,[rbp-0x10]' (buf=NULL) then 'add rax,rdx' (rdx=sign_extend(read_retval)) then 'movzx eax,BYTE PTR [rax]' at 0x1458 — dereferences NULL + offset."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1416",
+              "description": "GDB breakpoint at calloc call: rdi=0xFFFFFFFFFFFFFFFF (-1 as size_t), rsi=0x1. Confirms calloc(0xFFFFFFFFFFFFFFFF, 1) is called."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1443",
+              "description": "GDB breakpoint at read call: rax=0x0 (calloc returned NULL), rdi=0x0 (fd=stdin), rsi=0x0 (buf=NULL), rdx=0xFFFFFFFFFFFFFFFF (len=-1). Confirms read(0, NULL, 0xFFFFFFFFFFFFFFFF)."
+            },
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1448",
+              "description": "GDB breakpoint after read return: eax=0xFFFFFFFF (read returned -1, EFAULT). Confirms read(0, NULL, huge) fails and returns -1 — no bytes written to memory."
+            },
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "GDB at dereference: rax=0xFFFFFFFFFFFFFFFF (NULL + sign_extend(-1) = 0 + 0xFFFFFFFFFFFFFFFF = 0xFFFFFFFFFFFFFFFF). 'movzx eax,BYTE PTR [rax]' dereferences 0xFFFFFFFFFFFFFFFF -> SIGSEGV. fault_address=0xFFFFFFFFFFFFFFFF, crash at create_cookie+0xbf."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "PoC execution: subprocess return_code=-11 (SIGSEGV). Confirms reproducible crash with input '2\\n-1\\nAAAA\\n'."
+            },
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "Tested with length=-256: identical behavior — calloc returns NULL, read returns -1, crash at 0xFFFFFFFFFFFFFFFF. Confirms all negative lengths produce the same NULL_POINTER_DEREF primitive."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0xFFFFFFFFFFFFFFFF",
+            "return_code": -11,
+            "details": "GDB confirmed: calloc(0xFFFFFFFFFFFFFFFF,1) returns NULL (rax=0x0). read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 EFAULT (eax=0xFFFFFFFF). Dereference at 0x1458: rax = NULL + sign_extend(-1) = 0xFFFFFFFFFFFFFFFF. movzx eax,[rax] -> SIGSEGV at 0xFFFFFFFFFFFFFFFF. PoC reproduces: rc=-11 (SIGSEGV). Tested with -1 and -256: identical crash. No write occurs (read returns -1, 0 bytes written). Primitive is purely NULL_POINTER_DEREF — cannot escalate to read/write primitive."
+          },
+          "confidence": "HIGH",
+          "notes": "This is a DIRECT primitive: the NULL pointer dereference occurs directly from the calloc-returns-NULL + read-returns-EFAULT chain, with no intermediate object reuse or metadata manipulation. The primitive cannot be escalated to ARB_WRITE or ARB_READ because: (1) calloc returns NULL so there is no buffer to write to, (2) read(0, NULL, huge) returns -1 (EFAULT) and writes 0 bytes — the kernel rejects the write to address 0, (3) the only memory operation is the dereference buf[read_retval] which crashes immediately. The fault address 0xFFFFFFFFFFFFFFFF is deterministic (NULL + sign_extend(-1)) and not attacker-controllable to a useful address — read always returns -1 when buf is NULL regardless of input data."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "Same as PRIM-001: negative length bypasses signed check, calloc returns NULL, read returns -1, dereference at 0xFFFFFFFFFFFFFFFF causes SIGSEGV — resulting in denial of service (crash).",
+            "description": "The NULL pointer dereference at 0xFFFFFFFFFFFFFFFF causes an immediate SIGSEGV, crashing the program and denying service. This is the observable effect of PRIM-001."
+          },
+          "chain": [
+            "BUG-002",
+            "Signedness mismatch allows negative length",
+            "calloc returns NULL, read returns -1 (EFAULT)",
+            "Dereference *(0xFFFFFFFFFFFFFFFF) -> SIGSEGV",
+            "CRASH (Denial of Service)"
+          ],
+          "controlled_element": {
+            "what": "The ability to crash the program at will by supplying a negative length to create_cookie.",
+            "how": "Attacker sends menu choice 2, then any negative length (e.g., -1). The program crashes immediately with SIGSEGV.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Attacker can reach create_cookie via menu choice 2.",
+              "necessity": "Required to trigger the vulnerable code path.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Attacker can supply a negative length that passes the signed jle 0x100 check.",
+              "necessity": "Required to cause calloc to receive a huge size and return NULL.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "Run poc-BUG-002.py which feeds '2\\n-1\\nAAAA\\n' to the binary and checks for SIGSEGV (return code -11).",
+            "environment": "Linux x86_64, glibc 2.39, PIE binary",
+            "run_command": "python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "return_code = -11 (SIGSEGV)",
+              "Program crashes immediately after entering negative length"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "alarm(60)",
+              "present": true,
+              "primitive_impact": "No impact. Crash occurs immediately, well before alarm fires."
+            },
+            {
+              "name": "All mitigations (PIE/RELRO/NX/Canary)",
+              "present": true,
+              "primitive_impact": "No impact. This is a crash primitive — no memory corruption beyond the NULL deref, no control flow hijack. Mitigations are irrelevant to DoS via NULL deref."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "PoC execution: return_code=-11 (SIGSEGV). Program crashes immediately upon processing negative length -1. Reproducible with multiple negative values (-1, -256)."
+            },
+            {
+              "id": "E012",
+              "type": "DYNAMIC",
+              "function": "create_cookie",
+              "address": "0x1458",
+              "description": "GDB crash dump: signal=SIGSEGV, crash_addr=0x0000555555555458 (create_cookie+0xbf), fault address=0xFFFFFFFFFFFFFFFF. Backtrace: #0 create_cookie, #1 main."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0xFFFFFFFFFFFFFFFF",
+            "return_code": -11,
+            "details": "PoC reproduces SIGSEGV crash with return_code=-11. GDB confirms crash at create_cookie+0xbf (0x1458) with fault address 0xFFFFFFFFFFFFFFFF. The crash is immediate and deterministic — any negative length triggers it."
+          },
+          "confidence": "HIGH",
+          "notes": "This CRASH primitive is the observable effect of PRIM-001 (NULL_POINTER_DEREF). It is a DIRECT primitive — the crash results directly from the NULL dereference with no intermediate steps. The crash is reliable and immediately reproducible. It provides denial of service but no path to code execution or memory corruption beyond the single dereference."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-002",
+          "reason": "Cannot escalate to ARB_WRITE. calloc(0xFFFFFFFFFFFFFFFF, 1) returns NULL — there is no heap buffer to write to. read(0, NULL, 0xFFFFFFFFFFFFFFFF) returns -1 (EFAULT) and writes 0 bytes — the kernel rejects writes to address 0. No memory is modified by the read call. The only memory operation is the dereference buf[read_retval] which crashes immediately. GDB confirmed: read return value = -1 (eax=0xFFFFFFFF), buf = NULL (0x0 at rbp-0x10). Dynamic evidence: E007, E008."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "ARB_READ",
+          "source_bug": "BUG-002",
+          "reason": "Cannot escalate to ARB_READ. The dereference buf[read_retval] = *(0xFFFFFFFFFFFFFFFF) is a single-byte read (movzx) that immediately crashes with SIGSEGV. The address 0xFFFFFFFFFFFFFFFF is not attacker-controllable to a useful value — it is always NULL + sign_extend(read_retval) where read_retval is always -1 (EFAULT) when buf is NULL. No data is leaked to the attacker. GDB confirmed: rax=0xFFFFFFFFFFFFFFFF at dereference, crash before any output. Dynamic evidence: E008."
+        },
+        {
+          "primitive_id": "NP-003",
+          "candidate_type": "HEAP_METADATA_CONTROL",
+          "source_bug": "BUG-002",
+          "reason": "No heap metadata is modified. calloc returns NULL (no allocation succeeds), so no heap chunk is created or modified. read writes 0 bytes. The crash occurs before any heap metadata could be affected."
+        },
+        {
+          "primitive_id": "NP-004",
+          "candidate_type": "STACK_CONTROL",
+          "source_bug": "BUG-002",
+          "reason": "No stack corruption occurs. The negative length is stored in a stack variable (rbp-0x18) but is not used to overflow any stack buffer. The canary at rbp-0x8 is never triggered. The crash is a dereference of a NULL-derived address, not a stack buffer overflow."
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-003",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-003",
+        "total_primitives": 4,
+        "verified": 0,
+        "theoretical": 3,
+        "candidate": 1,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "HEAP_OBJECT_CONTROL",
+          "status": "CANDIDATE",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-003",
+            "root_cause": "eat_cookie frees msg[idx] then copies msg[cookie_num-1] into msg[idx] without clearing the source slot msg[cookie_num-1], creating a duplicate pointer to the same valid heap chunk in two msg[] slots",
+            "description": "After eat_cookie with idx != cookie_num-1: msg[idx] = msg[cookie_num-1] (move last pointer to freed slot), but msg[cookie_num-1] is NOT zeroed. Both msg[idx] and msg[cookie_num-1] now point to the same valid heap chunk. After cookie_num--, msg[cookie_num-1] (old) is at index == cookie_num (out of active range), while msg[idx] (in range) points to valid memory."
+          },
+          "chain": [
+            "BUG-003",
+            "eat_cookie: msg[idx] = msg[cookie_num-1] without clearing source",
+            "Duplicate pointer: msg[idx] and msg[cookie_num-1] both point to same valid chunk",
+            "After cookie_num--, duplicate at index >= cookie_num (out of range)",
+            "In-range slot accesses valid memory normally - no corruption"
+          ],
+          "controlled_element": {
+            "what": "Duplicate pointer to a valid (not freed) heap chunk in msg[] array",
+            "how": "eat_cookie's move operation (msg[idx] = msg[cookie_num-1]) copies the last pointer without zeroing the source. The random index from /dev/urandom determines which slot gets the duplicate.",
+            "reach_sensitive_operation": false
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "eat_cookie must be called with idx != cookie_num-1 (random index is not the last active slot)",
+              "necessity": "When idx == cookie_num-1, the freed pointer is self-assigned (dangling), not a duplicate of a valid pointer. Only idx != cookie_num-1 creates a duplicate of a valid chunk.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The duplicate pointer must be accessible through a sensitive operation (edit/read/eat) to constitute HEAP_OBJECT_CONTROL",
+              "necessity": "For HEAP_OBJECT_CONTROL, the duplicate must be used with object semantics (read/write/free through the duplicate slot). The in-range duplicate (msg[idx]) accesses valid memory normally. The out-of-range duplicate (msg[cookie_num-1] old) is inaccessible.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The duplicate must point to freed/corrupted memory (UAF) to be exploitable",
+              "necessity": "The duplicate points to a VALID (not freed) heap chunk. The freed chunk was msg[idx]'s original value, which is overwritten by the move. No UAF.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "msg[idx] == msg[cookie_num-1] after eat_cookie move (idx != cookie_num-1)",
+              "alias": "Duplicate pointer: two msg[] slots contain the same heap pointer",
+              "implication ": "The duplicate at msg[cookie_num-1] (old) is at index == cookie_num after decrement, which is out of active range (>= cookie_num). The in-range copy at msg[idx] accesses valid memory. No memory corruption."
+            }
+          ],
+          "verification_plan": {
+            "method": "gdb observation of msg[] array after eat_cookie, confirming duplicate pointer exists and points to valid (not freed) memory",
+            "environment": "Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary",
+            "run_command": "python3 poc-BUG-003.py",
+            "expected_evidence": [
+              "gdb: msg[idx] and msg[cookie_num-1] contain same pointer value after eat_cookie",
+              "gdb: the pointed-to chunk is valid (not in tcache free list)",
+              "gdb: after cookie_num--, duplicate at index >= cookie_num (out of range)",
+              "Dynamic: 200 runs of 5x eat_cookie produce 0 crashes (no double-free)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache double-free detection",
+              "present": true,
+              "primitive_impact": "If a double-free were attempted, glibc tcache key check would detect it and abort. However, double-free is not triggerable through normal eat_cookie operations regardless."
+            },
+            {
+              "name": "Full RELRO",
+              "present": true,
+              "primitive_impact": "GOT is read-only at runtime. Not relevant to this bug (no GOT overwrite path)."
+            },
+            {
+              "name": "PIE/ASLR",
+              "present": true,
+              "primitive_impact": "Address randomization. Not relevant since no address-controlled primitive is established."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x15c6",
+              "description": "gdb observation at eat_cookie+0xe5 (after move, before cookie_num--): msg[3]=0x555555559580 and msg[4]=0x555555559580 (duplicate). cookie_num=5, idx=3. Both slots point to the same valid heap chunk at 0x555555559580. The freed chunk was msg[3]'s original value (0x555555559540), which is now overwritten."
+            },
+            {
+              "id": "E002",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x160a",
+              "description": "gdb observation at eat_cookie+0x129 (after cookie_num--): cookie_num=4. msg[3] (index 3 < 4, in range) = 0x555555559580 (valid). msg[4] (index 4 >= 4, out of range) = 0x555555559580 (duplicate, inaccessible)."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x158e",
+              "description": "gdb observation at eat_cookie+0xad (after free, before move): idx=4, cookie_num=5. When idx == cookie_num-1, free(msg[4]) frees the chunk, then msg[4]=msg[4] (self-assign) leaves dangling pointer. After cookie_num--, dangling pointer at index 4 >= 4 (out of range)."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x14e1",
+              "description": "Dynamic test: 200 runs of 5x eat_cookie produced 0 crashes. Double-free is NOT triggerable because: (1) the freed pointer is always overwritten by msg[idx]=msg[cookie_num-1], (2) eat_cookie's idx=random_byte%cookie_num < cookie_num, so the stale slot at index==cookie_num is never selected."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "gdb confirmed duplicate pointer exists (msg[3]=msg[4]=0x555555559580 after eat_cookie idx=3). However, the duplicate points to a VALID (not freed) heap chunk. The freed chunk's pointer is overwritten by the move operation. After cookie_num--, the out-of-range duplicate is inaccessible. 200 dynamic runs produced 0 crashes, confirming no double-free. Does not meet HEAP_OBJECT_CONTROL verification standard (no attacker-controlled fields used with object semantics, no memory corruption)."
+          },
+          "confidence": "HIGH",
+          "notes": "The duplicate pointer is a real bug (source slot not cleared) but does not produce an exploitable primitive. The duplicate always points to valid memory (the last active chunk, not the freed one). The freed chunk's pointer is always overwritten by msg[idx]=msg[cookie_num-1]. The out-of-range duplicate at msg[cookie_num] is inaccessible through normal operations and is overwritten by create_cookie."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "HEAP_OBJECT_CONTROL",
+          "status": "THEORETICAL",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-003",
+            "root_cause": "When idx == cookie_num-1 in eat_cookie: free(msg[idx]) frees the chunk, then msg[idx] = msg[cookie_num-1] = msg[idx] (self-assignment) leaves the freed pointer in the slot. After cookie_num--, the dangling pointer is at index == cookie_num (out of active range).",
+            "description": "The dangling pointer to freed heap memory exists in msg[] but is at index == cookie_num after the decrement, which is outside the active range [0, cookie_num). Normal operations (edit_cookie, read_cookie, eat_cookie) all check index < cookie_num, so the dangling pointer cannot be accessed."
+          },
+          "chain": [
+            "BUG-003",
+            "eat_cookie with idx == cookie_num-1: free(msg[idx]) then msg[idx]=msg[idx] (self-assign)",
+            "Dangling pointer to freed heap chunk remains in msg[idx]",
+            "After cookie_num--, dangling pointer at index == cookie_num (out of range)",
+            "Normal operations check index < cookie_num -> cannot access dangling pointer",
+            "No UAF accessible through normal operations"
+          ],
+          "controlled_element": {
+            "what": "Dangling pointer to freed heap memory in msg[] at index == cookie_num",
+            "how": "When eat_cookie's random index equals cookie_num-1 (the last active slot), the chunk is freed and the pointer is self-assigned back, leaving a dangling pointer. This is probabilistic (random_byte % cookie_num == cookie_num-1).",
+            "reach_sensitive_operation": false
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "eat_cookie must be called with idx == cookie_num-1 (random index equals the last active slot)",
+              "necessity": "Only when idx == cookie_num-1 does the self-assignment leave a dangling pointer. When idx != cookie_num-1, the freed pointer is overwritten by a valid pointer.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The dangling pointer must be accessible through a sensitive operation to constitute UAF",
+              "necessity": "For UAF, the dangling pointer must be dereferenced (read/write/free). After cookie_num--, the dangling pointer is at index == cookie_num (out of range). edit_cookie/read_cookie check index < cookie_num (via jl). eat_cookie uses idx = random % cookie_num < cookie_num. create_cookie writes to msg[cookie_num] (overwrites dangling pointer). None can access the dangling pointer as a pointer.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "No other code path must exist that can access msg[cookie_num] as a pointer after the dangling pointer is placed there",
+              "necessity": "create_cookie writes a new calloc result to msg[cookie_num], overwriting the dangling pointer. This is the only operation that writes to msg[cookie_num], and it replaces (not dereferences) the dangling pointer.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "msg[cookie_num] after eat_cookie with idx == cookie_num-1",
+              "alias": "Dangling pointer to freed heap chunk at out-of-range index",
+              "implication": "The dangling pointer exists but is at index == cookie_num, which is outside the active range [0, cookie_num). All normal operations check index < cookie_num. create_cookie overwrites msg[cookie_num] with a new pointer. The dangling pointer is never dereferenced."
+            }
+          ],
+          "verification_plan": {
+            "method": "gdb observation confirming dangling pointer exists at msg[cookie_num] after eat_cookie with idx == cookie_num-1, and that no normal operation can access it as a pointer",
+            "environment": "Linux x86_64, glibc 2.39, PIE binary with Full RELRO/NX/Canary",
+            "run_command": "python3 poc-BUG-003.py",
+            "expected_evidence": [
+              "gdb: dangling pointer at msg[idx] when idx == cookie_num-1 (after free, before move)",
+              "gdb: after cookie_num--, dangling pointer at index == cookie_num (out of range)",
+              "Logic: edit/read/eat check index < cookie_num, create overwrites msg[cookie_num]"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "Bounds checking (index < cookie_num)",
+              "present": true,
+              "primitive_impact": "edit_cookie and read_cookie check index < cookie_num via signed jl. eat_cookie uses idx = random % cookie_num < cookie_num. The dangling pointer at index == cookie_num is never accessed as a pointer."
+            },
+            {
+              "name": "create_cookie overwrites stale slot",
+              "present": true,
+              "primitive_impact": "create_cookie writes calloc result to msg[cookie_num], replacing (not dereferencing) the dangling pointer. This destroys the dangling pointer before it can be used."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x158e",
+              "description": "gdb at eat_cookie+0xad (after free, before move): idx=4, cookie_num=5. When idx == cookie_num-1=4, free(msg[4]) frees the chunk. The subsequent msg[4]=msg[4] (self-assign) leaves the freed pointer. After cookie_num-- (cn=4), dangling pointer at msg[4] (index 4 >= 4, out of range)."
+            },
+            {
+              "id": "E006",
+              "type": "STATIC",
+              "function": "edit_cookie",
+              "address": "0x1684",
+              "description": "edit_cookie checks index < cookie_num via 'cmp rdx,rax; jl 1692'. The dangling pointer at index == cookie_num fails this check (cookie_num is not < cookie_num). Cannot access dangling pointer."
+            },
+            {
+              "id": "E007",
+              "type": "STATIC",
+              "function": "create_cookie",
+              "address": "0x1485",
+              "description": "create_cookie writes calloc result to msg[cookie_num] at 0x1485: 'mov QWORD PTR [rcx+rdx*1],rax' where rcx = cookie_num*8 + msg base. This overwrites the dangling pointer at msg[cookie_num] with a new valid pointer."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "gdb confirmed dangling pointer exists when idx == cookie_num-1. However, after cookie_num--, the dangling pointer is at index == cookie_num (out of active range). All normal operations (edit/read/eat) check index < cookie_num. create_cookie overwrites msg[cookie_num] with a new pointer. The dangling pointer is never dereferenced. No UAF primitive accessible."
+          },
+          "confidence": "HIGH",
+          "notes": "The dangling pointer is real but unreachable. The key insight is that cookie_num is decremented AFTER the self-assignment, placing the dangling pointer exactly at the boundary (index == cookie_num) where no normal operation can access it as a pointer. create_cookie is the only operation that writes to msg[cookie_num], and it replaces (not dereferences) the dangling pointer."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "CRASH",
+          "status": "CANDIDATE",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-003",
+            "root_cause": "Duplicate pointers from eat_cookie's uncleared source slot could theoretically lead to a double-free if a subsequent eat_cookie selects a slot whose pointer was already freed through a different slot.",
+            "description": "Hypothesis: if eat_cookie creates a duplicate pointer (msg[idx] = msg[cookie_num-1] without clearing source), and a subsequent eat_cookie frees the chunk through one slot while another slot still holds the same pointer, a later free through the other slot would be a double-free, causing glibc to abort (SIGABRT)."
+          },
+          "chain": [
+            "BUG-003",
+            "eat_cookie creates duplicate pointer (msg[idx] = msg[cookie_num-1], source not cleared)",
+            "Hypothesis: subsequent eat_cookie frees chunk through one slot, duplicate remains in another",
+            "Hypothesis: later eat_cookie selects duplicate slot, frees already-freed chunk",
+            "glibc tcache detects double-free, aborts -> CRASH (DoS)"
+          ],
+          "controlled_element": {
+            "what": "None - the random index from /dev/urandom is not attacker-controlled",
+            "how": "eat_cookie's idx = random_byte % cookie_num is determined by /dev/urandom, not user input. The user cannot control which slot is freed.",
+            "reach_sensitive_operation": false
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "A duplicate pointer to a freed chunk must exist in an in-range slot (index < cookie_num)",
+              "necessity": "For double-free, a slot with a pointer to an already-freed chunk must be selectable by eat_cookie (index < cookie_num).",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The freed chunk's pointer must NOT be overwritten by the move operation",
+              "necessity": "After free(msg[idx]), the code executes msg[idx] = msg[cookie_num-1], which OVERWRITES the freed pointer with a valid pointer. The freed pointer is gone from msg[idx]. The duplicate at msg[cookie_num-1] (old) points to the VALID last chunk, not the freed one.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "freed chunk pointer vs duplicate pointer target",
+              "alias": "The freed chunk is msg[idx]'s original value. The duplicate is of msg[cookie_num-1]'s value (the last valid chunk). These are DIFFERENT chunks. The duplicate never points to the freed chunk.",
+              "implication": "Double-free is impossible through normal eat_cookie: the freed pointer is always overwritten, and the duplicate always points to a valid (not freed) chunk. No slot ever contains a pointer to an already-freed chunk that is in range."
+            }
+          ],
+          "verification_plan": {
+            "method": "Dynamic testing: run 200 trials of 5x eat_cookie, check for SIGABRT/double-free crashes",
+            "environment": "Linux x86_64, glibc 2.39, PIE binary",
+            "run_command": "python3 poc-BUG-003.py",
+            "expected_evidence": [
+              "If double-free is triggerable: crashes with 'free(): double free detected in tcache 2' and SIGABRT",
+              "If not triggerable: 0 crashes across 200 runs"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache double-free detection",
+              "present": true,
+              "primitive_impact": "glibc tcache uses a key field to detect double-free. If a double-free were attempted, it would be detected and abort() called. However, double-free is not triggerable regardless."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "eat_cookie",
+              "address": "0x14e1",
+              "description": "Dynamic test: 200 runs of 5x eat_cookie produced 0 crashes (0/200). Double-free is NOT triggerable because: (1) free(msg[idx]) frees chunk A, (2) msg[idx]=msg[cookie_num-1] overwrites freed pointer with valid pointer to chunk B, (3) duplicate at msg[cookie_num-1] (old) points to chunk B (valid, not freed), (4) no slot ever contains a pointer to freed chunk A after the move."
+            },
+            {
+              "id": "E009",
+              "type": "DERIVED",
+              "function": "eat_cookie",
+              "address": "0x15c6",
+              "description": "Logic proof: After eat_cookie(idx) with idx != cookie_num-1: free(original_msg[idx]) frees chunk A. msg[idx] = msg[cookie_num-1] = pointer to chunk B (valid). msg[cookie_num-1] still = pointer to chunk B (duplicate). No slot points to freed chunk A. The duplicate points to chunk B (valid). Double-free impossible."
+            },
+            {
+              "id": "E010",
+              "type": "DERIVED",
+              "function": "eat_cookie",
+              "address": "0x153e",
+              "description": "eat_cookie's idx = random_byte % cookie_num. This guarantees idx < cookie_num. The stale slot (if any) is at index == cookie_num (out of range). eat_cookie can never select the stale slot. No double-free through eat_cookie's random selection."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "200 dynamic runs of 5x eat_cookie produced 0 crashes. Double-free is NOT triggerable. The freed chunk's pointer is always overwritten by msg[idx]=msg[cookie_num-1]. The duplicate pointer always points to a valid (not freed) chunk. eat_cookie's idx=random%cookie_num < cookie_num, so stale slots at index >= cookie_num are never selected. CRASH primitive does not hold."
+          },
+          "confidence": "HIGH",
+          "notes": "Initially observed a 'double free detected in tcache 2' crash in a gdb session, but this was an artifact of gdb breakpoint interference (breakpoint set at mid-instruction address 0x160e within the cookie_num store instruction). Clean dynamic testing (200 runs without gdb) produced 0 crashes. Logic analysis confirms double-free is impossible: the freed pointer is always overwritten, and duplicates always point to valid chunks."
+        },
+        {
+          "primitive_id": "PRIM-004",
+          "type": "RELATIVE_READ",
+          "status": "THEORETICAL",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-003",
+            "root_cause": "Hypothesis: BUG-001's OOB signedness bug (negative index via large unsigned value passing signed jl check) could be used to access stale/duplicate pointers left by BUG-003 at positive indices above the active range.",
+            "description": "BUG-001 allows negative indices (large unsigned values interpreted as negative in signed comparison) to access memory below msg[]. BUG-003 leaves stale/duplicate pointers at index == cookie_num (above active range). The question is whether BUG-001's OOB can reach these positive-index stale slots."
+          },
+          "chain": [
+            "BUG-003",
+            "Stale/duplicate pointer at msg[cookie_num] (positive index, above active range)",
+            "BUG-001 OOB: index = large unsigned (negative signed) -> msg + negative*8 = below msg",
+            "BUG-001 OOB accesses memory BELOW msg (negative offsets)",
+            "Stale slots are ABOVE active range (positive offsets from msg)",
+            "No overlap -> BUG-001 cannot reach BUG-003 stale slots"
+          ],
+          "controlled_element": {
+            "what": "None - BUG-001's OOB and BUG-003's stale slots occupy non-overlapping memory regions",
+            "how": "BUG-001 uses negative indices (msg + negative*8 = addresses below msg base 0x4060). BUG-003's stale slots are at msg[cookie_num] (addresses above msg + cookie_num*8, e.g., 0x4080+). These regions do not overlap.",
+            "reach_sensitive_operation": false
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "BUG-001's OOB index must be able to reach positive indices above the active range (msg[cookie_num] and beyond)",
+              "necessity": "For cross-bug interaction, BUG-001's OOB must access the stale slot at msg[cookie_num]. BUG-001 uses large unsigned values (e.g., 0xFFFFFFFFFFFFFFFF = -1 signed) that pass the jl check. These compute as msg + (-1)*8 = msg - 8 (BELOW msg). Positive indices (5, 6, ...) fail the jl check (5 < 5 is false). No OOB index can reach msg[cookie_num] at a positive offset.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "BUG-001 OOB index range vs BUG-003 stale slot index",
+              "alias": "BUG-001 OOB: index < 0 (signed) -> msg + index*8 < msg (below msg base). BUG-003 stale: index == cookie_num (positive) -> msg + cookie_num*8 > msg (above active range).",
+              "implication": "BUG-001's OOB accesses memory below msg (negative offsets). BUG-003's stale slots are above the active range (positive offsets). These regions do not overlap. No cross-bug interaction is possible."
+            }
+          ],
+          "verification_plan": {
+            "method": "Address calculation analysis: BUG-001 OOB indices produce addresses below msg; BUG-003 stale slots are above active range",
+            "environment": "Linux x86_64, PIE binary",
+            "run_command": "python3 poc-BUG-003.py",
+            "expected_evidence": [
+              "BUG-001: index=0xFFFFFFFFFFFFFFFF -> msg + (-1)*8 = msg-8 (below msg, in .bss globals like stdout/stdin/stderr)",
+              "BUG-003 stale: at msg[cookie_num] = msg + cookie_num*8 (above active range, e.g., msg+32 for cookie_num=4)",
+              "No overlap between below-msg and above-active-range regions"
+            ]
+          },
+          "mitigations": [],
+          "evidence": [
+            {
+              "id": "E011",
+              "type": "STATIC",
+              "function": "edit_cookie",
+              "address": "0x1684",
+              "description": "BUG-001: edit_cookie checks index < cookie_num via 'cmp rdx,rax; jl 1692' (signed). A large unsigned value like 0xFFFFFFFFFFFFFFFF (-1 signed) passes because -1 < 5. The index is then used as: lea rcx,[rax*8]; mov rax,[rcx+msg]. With rax=0xFFFFFFFFFFFFFFFF, rax*8 wraps to 0xFFFFFFFFFFFFFFF8, and msg + 0xFFFFFFFFFFFFFFF8 = msg - 8 (below msg). This accesses memory BELOW msg, not above."
+            },
+            {
+              "id": "E012",
+              "type": "DERIVED",
+              "function": "eat_cookie/edit_cookie",
+              "address": "0x4060",
+              "description": "BUG-003 stale slots are at msg[cookie_num] = 0x4060 + cookie_num*8. For cookie_num=4, this is 0x4060+32=0x4080 (above active range). BUG-001 OOB accesses msg + negative*8 = addresses below 0x4060 (e.g., 0x4058, 0x4050, ... down to stdout at 0x4020). The stale slot at 0x4080 is NOT reachable via negative OOB indices."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/poc-BUG-003.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "Address calculation confirms BUG-001 OOB uses negative indices (msg + negative*8 = below msg base 0x4060). BUG-003 stale slots are at positive indices (msg + cookie_num*8 = above active range, e.g., 0x4080). These regions do not overlap. No cross-bug interaction possible."
+          },
+          "confidence": "HIGH",
+          "notes": "BUG-001 and BUG-003 occupy non-overlapping memory regions. BUG-001's OOB goes below msg (into .bss globals like stdout/stdin/stderr). BUG-003's stale slots are above the active range (positive indices). There is no way for BUG-001's OOB to reach BUG-003's stale slots."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "PRIM-003",
+          "candidate_type": "CRASH",
+          "source_bug": "BUG-003",
+          "reason": "Double-free CRASH was hypothesized but dynamically disproven. 200 runs of 5x eat_cookie produced 0 crashes. Logic analysis proves double-free is impossible: the freed pointer is always overwritten by msg[idx]=msg[cookie_num-1], and the duplicate always points to a valid (not freed) chunk. eat_cookie's idx=random%cookie_num < cookie_num, so stale slots at index >= cookie_num are never selected. The initial gdb crash observation was an artifact of breakpoint interference (mid-instruction breakpoint)."
+        }
+      ],
+      "unresolved": [
+        {
+          "description": "Whether BUG-003 can be combined with a future heap manipulation technique (tcache poisoning, heap shaping) to create an exploitable primitive",
+          "reason": "BUG-003 creates duplicate pointers to valid heap chunks. While the duplicate is currently inaccessible (out of range), a sophisticated heap manipulation technique might be able to leverage the duplicate pointer's existence. However, this would require a separate exploit route (S4 territory) and does not constitute a primitive derivable from BUG-003 alone.",
+          "required_next_step": "S4 exploit route analysis: determine if the duplicate pointer can be leveraged in combination with other bugs (BUG-001 OOB) or heap manipulation techniques to create an exploitable chain."
+        }
+      ]
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002"
+  ]
+}

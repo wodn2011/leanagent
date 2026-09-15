@@ -1,0 +1,711 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x401650\",\"dynamic\":false,\"stripped\":false},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"statically linked glibc (GNU/Linux 3.2.0)\",\"path\":\"builtin\",\"source\":\"STATIC\"},\"loader\":{\"path\":\"none (statically linked)\",\"source\":\"STATIC\"},\"libraries\":[]},\"interface\":{\"entry_function\":\"main (0x4018dd)\",\"input_sources\":[\"stdin\"],\"menu\":[{\"prompt\":\"\\\\nInput your shellcode here (max: 100): \",\"function\":\"main\",\"via\":\"_IO_printf\"}],\"user_controlled_inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin\",\"function\":\"main\",\"read_via\":\"__libc_read(0, mmap_buf, 99)\",\"max_size\":99,\"buffer\":\"mmap RWX region at 0x13370000\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x4011c0\",\"size\":\"0x95518\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x498000\",\"size\":\"0x1cc2c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x4c50e0\",\"size\":\"0x19e0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x4c72a0\",\"size\":\"0x5980\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x4c4f68\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x4c5000\",\"size\":\"0xd8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".data.rel.ro\",\"address\":\"0x4c17e0\",\"size\":\"0x3788\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\"__libc_IO_vtables\",\"address\":\"0x4c6b20\",\"size\":\"0x768\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x4c17d0\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x4c17d8\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"stdin\",\"address\":\"0x4c56f8\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"stdout\",\"address\":\"0x4c56f0\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"stderr\",\"address\":\"0x4c56e8\",\"size\":8,\"section\":\".data\",\"type\":\"FILE*\"},{\"name\":\"_IO_2_1_stdin_\",\"address\":\"0x4c5520\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_2_1_stdout_\",\"address\":\"0x4c5340\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_2_1_stderr_\",\"address\":\"0x4c5160\",\"section\":\".data\",\"type\":\"FILE\"},{\"name\":\"_IO_file_jumps\",\"address\":\"0x4c6fa0\",\"section\":\"__libc_IO_vtables\",\"type\":\"vtable\"}],\"got\":[],\"plt\":[]},\"functions\":[{\"name\":\"main\",\"address\":\"0x4018dd\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"__mmap64\",\"memset(0x401110)\",\"_IO_printf\",\"__libc_read\",\"is_all_upper\",\"_abort\"],\"inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin via __libc_read(0, buf, 99)\"}],\"checks\":[\"mmap return != -1\",\"read return != 0\",\"last byte == 0x0a -> replace with 0x00\",\"is_all_upper(buf) must return non-zero\"],\"memory_operations\":[{\"operation\":\"mmap\",\"destination\":\"0x13370000\",\"size\":100,\"prot\":\"RWX(7)\",\"flags\":\"MAP_PRIVATE|MAP_ANONYMOUS(0x22)\",\"comment\":\"fixed hint address 0x13370000\"},{\"operation\":\"memset\",\"destination\":\"0x13370000\",\"size\":100,\"value\":0},{\"operation\":\"read\",\"destination\":\"0x13370000\",\"size\":99,\"source\":\"stdin fd=0\"},{\"operation\":\"write\",\"destination\":\"mmap_buf[last]\",\"size\":1,\"value\":0,\"condition\":\"if last byte == 0x0a\"},{\"operation\":\"call\",\"destination\":\"0x13370000 (mmap_buf)\",\"type\":\"indirect call rax\",\"comment\":\"shellcode execution after is_all_upper passes\"}],\"calls\":[\"init\",\"__mmap64\",\"memset\",\"_IO_printf\",\"__libc_read\",\"is_all_upper\",\"_abort\"]},{\"name\":\"init\",\"address\":\"0x4017aa\",\"callers\":[\"main\"],\"callees\":[\"_IO_setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_IO_setvbuf\",\"alarm\"]},{\"name\":\"is_all_upper\",\"address\":\"0x401819\",\"callers\":[\"main\"],\"callees\":[\"__ctype_b_loc\",\"strlen\"],\"inputs\":[{\"name\":\"buf\",\"source\":\"mmap shellcode buffer\"}],\"checks\":[\"per-byte: isupper(c) via ctype 0x100\",\"per-byte: isdigit(c) via ctype 0x800\",\"per-byte: c == 0x20 (space)\",\"if none match -> return 0 (reject)\"],\"memory_operations\":[{\"operation\":\"read\",\"destination\":\"buf[i]\",\"size\":1,\"comment\":\"iterate strlen(buf) bytes\"}],\"calls\":[\"__ctype_b_loc\",\"strlen\"]},{\"name\":\"_abort\",\"address\":\"0x401775\",\"callers\":[\"main\"],\"callees\":[\"_IO_printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rodata string\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"_IO_printf\",\"exit\"]}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"shellcode via stdin\",\"operation\":\"mmap RWX + read + call rax (shellcode execution)\",\"risk\":\"HIGH\",\"reason\":\"User-controlled data is read into an RWX mmap region at fixed address 0x13370000 and then executed via call rax. The is_all_upper filter restricts bytes to {0x20, 0x30-0x39, 0x41-0x5a} (space, digits, uppercase letters) but this is a constrained shellcode challenge, not a blocked one. S2 should analyze which syscalls/instructions are achievable with the allowed byte set.\"},{\"function\":\"is_all_upper\",\"input\":\"shellcode buffer\",\"operation\":\"byte filter using ctype_b_loc (isupper 0x100 OR isdigit 0x800 OR space 0x20)\",\"risk\":\"MEDIUM\",\"reason\":\"The filter name suggests uppercase-only but actually allows digits (0x800=_ISdigit not _ISalpha). S2 should verify the exact allowed byte set and whether it enables meaningful shellcode construction.\"},{\"function\":\"main\",\"input\":\"register state printed before execution\",\"operation\":\"register values leaked via printf before call rax\",\"risk\":\"LOW\",\"reason\":\"Register state (rax,rbx,rcx,rdx,rbp,rsp,rsi,rdi,r8-r13) is printed to stdout before shellcode execution, providing runtime addresses (stack, libc data pointers) to the shellcode. This is an information leak by design.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is statically linked ELF64 x86-64, not stripped, No PIE (base 0x400000)\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary enabled, No PIE, CET (IBT+SHSTK) enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"No dynamic section, no NEEDED libraries, no RPATH/RUNPATH - fully static link\",\"source\":\"ELF\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"main (0x4018dd) calls mmap(0x13370000, 0x64, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) creating a 100-byte RWX region at fixed hint 0x13370000\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main calls memset(mmap_buf, 0, 100) then read(0, mmap_buf, 99) to read shellcode from stdin\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"If last byte of read input is 0x0a (newline), it is replaced with 0x00 (NUL)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"is_all_upper (0x401819) filters shellcode bytes: each byte must satisfy isupper (ctype 0x100) OR isdigit (ctype 0x800) OR equal 0x20 (space). Allowed bytes: {0x20, 0x30-0x39, 0x41-0x5a}\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"If is_all_upper returns 0, _abort prints 'invalid shellcode!' and exits(1)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"After filter passes, main prints all register values (rax-r13) then restores them and executes call rax (0x401b4b) jumping to shellcode at 0x13370000\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"init (0x4017aa) sets stdin/stdout/stderr to unbuffered (setvbuf _IONBF) and calls alarm(60)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"Runtime confirmed: input 'AAAA' (all uppercase) passes filter and executes (SIGSEGV on invalid instructions). Input 'aaaa' (lowercase) is rejected. Input '1234' (digits) passes filter and executes.\",\"source\":\"RUNTIME\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"Register state leaked at runtime includes stack address (rsp/rbp) and libc data segment addresses (rbx points near 0x7fff...), providing ASLR bypass info to shellcode\",\"source\":\"RUNTIME\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"No seccomp/prctl/sandbox calls found in binary - shellcode has full syscall access\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"Shellcode max size is 99 bytes (read size = mmap_size - 1 = 0x64 - 1 = 99)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"DERIVED\",\"description\":\"Allowed shellcode byte set is 37 values: {0x20, 0x30-0x39, 0x41-0x5a}. This includes x86 instructions like PUSH imm (0x68 not allowed), but 0x41-0x4f are REX prefixes, 0x50-0x5a are PUSH reg, 0x30-0x39 include XOR/CMP opcodes. S2 should analyze constructable shellcode.\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether mmap returns exactly 0x13370000 or a different address at runtime\",\"reason\":\"mmap hint is 0x13370000 but kernel may return different address; runtime probe showed rax=0x13370000 printed, suggesting hint is honored, but ASLR status unknown\"},{\"id\":\"U002\",\"description\":\"Whether CET (IBT/SHSTK) actually restricts shellcode execution at runtime\",\"reason\":\"IBT requires endbr64 at indirect call targets; the mmap region is filled with user data without endbr64 prefix. If IBT is enforced by kernel, call rax to non-endbr64 address would fault. Runtime showed SIGSEGV for 'AAAA' which could be IBT or invalid instruction - needs S2 dynamic verification\"},{\"id\":\"U003\",\"description\":\"ASLR status of the runtime environment\",\"reason\":\"Cannot confirm from static analysis; stack addresses observed at runtime differ between runs (0x7ffe... vs 0x7fff... vs 0x7ffd...) suggesting ASLR is on\"}],\"raw\":{\"elf\":\"ELF64 LSB executable, x86-64, statically linked, BuildID=c22fc68025fc661f111ab4feefce34fc2218c358, for GNU/Linux 3.2.0, not stripped. Entry=0x401650. 10 program headers. GNU_STACK=RW (NX enabled). GNU_RELRO present.\",\"sections\":\"32 sections. .text=0x4011c0 size 0x95518 (AX). .rodata=0x498000 size 0x1cc2c (A). .data=0x4c50e0 size 0x19e0 (WA). .bss=0x4c72a0 size 0x5980 (WA). .got=0x4c4f68 size 0x98 (WA). .got.plt=0x4c5000 size 0xd8 (WA). .data.rel.ro=0x4c17e0 size 0x3788 (WA). __libc_IO_vtables=0x4c6b20 size 0x768 (WA).\",\"symbols\":\"main=0x4018dd, init=0x4017aa, is_all_upper=0x401819, _abort=0x401775, __mmap64=0x450380, __libc_read=0x44f6d0, _IO_printf=0x40ba60, alarm=0x44ecc0, exit=0x40af30, __stack_chk_fail=0x452470. No PLT/GOT entries (static link, direct calls).\",\"disassembly\":\"main: endbr64; push regs; sub rsp,0x88; canary=fs:0x28; size=0x64; call init; mmap(0x13370000,0x64,7,0x22,-1,0); if(-1) abort; memset(buf,0,0x64); printf(prompt); read(0,buf,0x63); if(0) abort; if(buf[n-1]==0x0a) buf[n-1]=0; is_all_upper(buf); if(0) abort; save all regs to stack; printf(reg dump); restore all regs; call rax (0x401b4b); canary check; ret. is_all_upper: for i in 0..strlen(buf): if isupper(buf[i]) continue; if isdigit(buf[i]) continue; if buf[i]==0x20 continue; return 0; return 1. init: setvbuf(stdin,0,2,0); setvbuf(stdout,0,2,0); setvbuf(stderr,0,2,0); alarm(60). _abort: printf('%s',msg); exit(1).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":3,\"high_severity\":1,\"medium_severity\":1,\"low_severity\":1},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"SHELLCODE_FILTER_BYPASS_VIA_NUL_BYTE_AND_STRLEN\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"The is_all_upper function uses strlen(buf) as the loop bound for byte filtering. strlen stops scanning at the first NUL (0x00) byte. However, the shellcode buffer is populated by read(0, buf, 99), which performs raw binary I/O and does NOT stop at NUL bytes. An attacker can inject a NUL byte early in the input (e.g., position 1), causing strlen to return a small value (e.g., 1). The filter then only checks bytes before the NUL byte, leaving all bytes after the NUL completely unfiltered. These unfiltered bytes are still present in the RWX mmap buffer and are executed via 'call rax' at 0x401b4b. This completely bypasses the byte filter security control, allowing arbitrary shellcode (including syscall instructions 0x0f 0x05, int 0x80, etc.) to be placed after the NUL byte and executed.\"},\"affected_functions\":[\"is_all_upper\",\"main\"],\"affected_objects\":[\"mmap RWX buffer at 0x13370000 (100 bytes)\"],\"attack_surface\":{\"input\":\"shellcode via stdin (read(0, mmap_buf, 99))\",\"entry_function\":\"main\",\"data_flow\":[\"stdin -> read(0, mmap_buf, 99) at 0x4019ad\",\"read stores raw bytes including NUL (0x00) into mmap_buf\",\"newline replacement: if buf[read_ret-1]==0x0a, set to 0x00 (only last byte)\",\"is_all_upper(mmap_buf) called at 0x401a07\",\"is_all_upper loop bound = strlen(mmap_buf) at 0x4018c4\",\"strlen stops at first NUL byte in buffer\",\"only bytes [0..strlen-1] are checked against filter\",\"bytes [strlen..read_ret-1] are NOT checked\",\"main executes call rax (0x401b4b) jumping to mmap_buf\",\"entire buffer (including unfiltered bytes after NUL) is executed\"]},\"security_check\":{\"expected\":\"All bytes in the shellcode buffer (up to read_ret bytes) should be validated against the allowed byte set {0x20, 0x30-0x39, 0x41-0x5a}\",\"actual\":\"Only bytes up to the first NUL byte (as determined by strlen) are validated. Bytes after the first NUL byte are not checked at all.\",\"missing_or_incorrect\":\"The filter uses strlen(buf) as loop bound instead of the actual number of bytes read (read return value). strlen is a string function that stops at NUL, but the input is binary data from read() which can contain NUL bytes. The correct approach would be to iterate over read_ret bytes, not strlen(buf) bytes.\"},\"vulnerable_operation\":{\"operation\":\"indirect call to user-controlled RWX memory with incomplete filter\",\"address\":\"0x401b4b\",\"expression\":\"call rax (rax = mmap_buf at 0x13370000)\",\"target\":\"RWX mmap region at 0x13370000\",\"size\":\"up to 99 bytes (read size), but only strlen(buf) bytes filtered\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"Arbitrary unfiltered bytes are placed in RWX memory and executed as machine instructions. The attacker controls the instruction stream, which can include any x86-64 instruction (syscall, mov, xor, etc.) by placing them after a NUL byte. This allows arbitrary code execution within the process. No seccomp/sandbox is present (S1 F013), so the shellcode has full syscall access.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"If the filter bypass is used to inject invalid or unintended instructions, the process may crash with SIGSEGV or SIGILL. However, the attacker can also inject valid shellcode that does not crash.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"is_all_upper\",\"address\":\"0x4018c4\",\"description\":\"is_all_upper calls strlen(buf) at 0x4018c4 to determine the loop bound. The comparison at 0x4018c9 (cmp rbx, rax) checks i < strlen(buf). strlen stops at the first NUL byte, so only bytes before the first NUL are filtered.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019ad\",\"description\":\"main calls read(0, mmap_buf, 99) at 0x4019ad. read() performs raw binary I/O and does not stop at NUL bytes. The user can inject NUL (0x00) bytes anywhere in the 99-byte input.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"After is_all_upper passes, main executes 'call rax' at 0x401b4b where rax = mmap_buf (0x13370000). The entire buffer content (including unfiltered bytes after NUL) is executed as machine code.\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x40197c\",\"description\":\"main calls memset(mmap_buf, 0, 100) at 0x40197c before read. This zeroes the buffer, but read() overwrites bytes with user input including potential NUL bytes. The memset does not prevent the NUL injection bypass.\"},{\"id\":\"E005\",\"type\":\"DERIVED\",\"function\":\"is_all_upper\",\"address\":\"0x4018c4\",\"description\":\"The filter loop iterates i from 0 to strlen(buf)-1. If buf = [0x41, 0x00, 0x48, 0x31, 0xc0, 0x0f, 0x05], strlen returns 1, so only buf[0]=0x41 (uppercase A) is checked and passes. Bytes 0x00, 0x48, 0x31, 0xc0, 0x0f, 0x05 (which include 'xor eax,eax' and 'syscall') are not checked but are executed.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm that read() on stdin can receive NUL bytes (e.g., via pipe with binary data)\",\"Verify that is_all_upper returns 1 (pass) when input contains a NUL byte after a valid byte\",\"Confirm that call rax executes bytes after the NUL byte (not just up to it)\",\"Determine if CET/IBT is enforced at runtime (if enforced, call rax to non-endbr64 target may fault, but the filter bypass still exists structurally)\"]},{\"bug_id\":\"BUG-002\",\"title\":\"READ_RETURN_VALUE_INSUFFICIENT_CHECK\",\"root_cause\":{\"type\":\"Improper Input Validation\",\"description\":\"The return value of read(0, mmap_buf, 99) is checked with 'cmp DWORD PTR [rbp-0xac], 0x0; jne' at 0x4019b8-0x4019bf, which only rejects a return value of exactly 0 (EOF). A negative return value (read returns -1 on error) is non-zero and passes the check. The code then uses the return value as an index: buf[read_ret - 1]. When read_ret = -1, this computes buf[-2], which is an out-of-bounds access at mmap_buf - 2 (address 0x1336FFFE), before the mmap region. If the byte at that address happens to be 0x0a (newline), the code writes 0x00 to buf[-2], constituting an out-of-bounds write.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"mmap RWX buffer at 0x13370000\"],\"attack_surface\":{\"input\":\"read() return value (error condition on stdin)\",\"entry_function\":\"main\",\"data_flow\":[\"read(0, mmap_buf, 99) at 0x4019ad returns -1 on error\",\"return value stored as int32 at [rbp-0xac] at 0x4019b2\",\"check: cmp [rbp-0xac], 0x0; jne -> -1 != 0, passes check\",\"eax = -1 (0xFFFFFFFF) at 0x4019d0\",\"cdqe sign-extends to 0xFFFFFFFFFFFFFFFF at 0x4019d6\",\"lea rdx, [rax-1] -> rdx = -2 (0xFFFFFFFFFFFFFFFE) at 0x4019d8\",\"rax = mmap_buf + rdx = 0x13370000 - 2 = 0x1336FFFE at 0x4019e0\",\"movzx eax, BYTE PTR [rax] -> OOB read at 0x1336FFFE at 0x4019e3\",\"if byte == 0x0a: mov BYTE PTR [rax], 0x00 -> OOB write at 0x1336FFFE at 0x4019fd\"]},\"security_check\":{\"expected\":\"read() return value should be checked for <= 0 (both EOF and error) to reject negative returns\",\"actual\":\"read() return value is only checked for == 0 (EOF only). Negative returns (errors) pass the check.\",\"missing_or_incorrect\":\"Missing check for negative return value. The comparison should be 'if (read_ret <= 0) abort' instead of 'if (read_ret == 0) abort'.\"},\"vulnerable_operation\":{\"operation\":\"out-of-bounds memory access using unchecked negative read return value as index\",\"address\":\"0x4019e3 (OOB read) and 0x4019fd (potential OOB write)\",\"expression\":\"buf[read_ret - 1] where read_ret = -1 -> buf[-2]\",\"target\":\"address 0x1336FFFE (2 bytes before mmap region at 0x13370000)\",\"size\":\"1 byte\"},\"impact\":[{\"type\":\"OOB_READ\",\"status\":\"CANDIDATE\",\"reason\":\"When read() returns -1, the code reads a byte at mmap_buf - 2 (0x1336FFFE), which is outside the 100-byte mmap region. This address may be unmapped (causing SIGSEGV) or may contain data from an adjacent memory region.\"},{\"type\":\"OOB_WRITE\",\"status\":\"CANDIDATE\",\"reason\":\"If the OOB-read byte at 0x1336FFFE equals 0x0a (newline), the code writes 0x00 to that address (0x1336FFFE), which is an out-of-bounds write of 1 NUL byte before the mmap region. This could corrupt adjacent memory metadata or data.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"If address 0x1336FFFE is unmapped, the OOB read causes SIGSEGV, crashing the process.\"}],\"evidence\":[{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019b8\",\"description\":\"read return value checked with 'cmp DWORD PTR [rbp-0xac], 0x0; jne 0x4019d0'. This only rejects return value == 0 (EOF). A return value of -1 (error) is non-zero and passes the check.\"},{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019d6\",\"description\":\"After the check passes with read_ret=-1, cdqe at 0x4019d6 sign-extends eax (0xFFFFFFFF) to rax (0xFFFFFFFFFFFFFFFF). Then lea rdx, [rax-1] computes rdx = -2. Adding to mmap_buf (0x13370000) yields 0x1336FFFE, which is before the mmap region.\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019e3\",\"description\":\"movzx eax, BYTE PTR [rax] reads a byte from address 0x1336FFFE (OOB read). If this byte equals 0x0a, mov BYTE PTR [rax], 0x00 at 0x4019fd writes NUL to 0x1336FFFE (OOB write).\"}],\"confidence\":\"MEDIUM\",\"verification_required\":[\"Determine if read() on stdin can be made to return -1 in an attacker-controllable way (e.g., closing stdin, sending signal causing EINTR)\",\"Check if address 0x1336FFFE is mapped at runtime (adjacent to mmap region or unmapped)\",\"Verify whether the OOB write (if triggered) corrupts any security-relevant data\"]},{\"bug_id\":\"BUG-003\",\"title\":\"REGISTER_STATE_INFORMATION_LEAK_BEFORE_SHELLCODE_EXECUTION\",\"root_cause\":{\"type\":\"Information Leak\",\"description\":\"Before executing the user-controlled shellcode via call rax, main saves all general-purpose registers (rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8-r13) to the stack and prints them to stdout via _IO_printf at 0x401afb. This leaks runtime stack addresses (rsp, rbp) and libc data segment addresses (rbx points near libc data) to the shellcode. Since the binary has No PIE (fixed base 0x400000) but the stack and libc addresses are subject to ASLR, this information leak provides ASLR bypass information that the shellcode can use.\"},\"affected_functions\":[\"main\"],\"affected_objects\":[\"register state (rax-r13)\",\"stack addresses\",\"libc data segment addresses\"],\"attack_surface\":{\"input\":\"register state printed to stdout before shellcode execution\",\"entry_function\":\"main\",\"data_flow\":[\"main saves registers to stack at 0x401a46-0x401a85\",\"main calls _IO_printf with format string at 0x498070 to print all registers at 0x401afb\",\"register values (including rsp, rbp, rbx) are written to stdout\",\"shellcode can read stdout or the printed values are available to the attacker\",\"shellcode executes with knowledge of stack and libc addresses\"]},\"security_check\":{\"expected\":\"Register state should not be leaked to the shellcode/attacker before execution, as it provides ASLR bypass information\",\"actual\":\"All register values are printed to stdout before call rax\",\"missing_or_incorrect\":\"No attempt to hide or randomize register state before shellcode execution. The register dump is an intentional feature of the challenge but constitutes an information leak.\"},\"vulnerable_operation\":{\"operation\":\"information leak via printf of register state\",\"address\":\"0x401afb\",\"expression\":\"_IO_printf(format_string, rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8, r9, r10, r11, r12, r13)\",\"target\":\"stdout\",\"size\":\"14 register values (8 bytes each)\"},\"impact\":[{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"Stack addresses (rsp, rbp) and libc data segment addresses (rbx) are printed to stdout before shellcode execution. This provides ASLR bypass information. Combined with the filter bypass (BUG-001), the shellcode can use these addresses to construct ROP chains or direct syscalls with correct addresses.\"}],\"evidence\":[{\"id\":\"E009\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"main calls _IO_printf at 0x401afb with format string at 0x498070, printing all register values (rax through r13) to stdout before executing call rax.\"},{\"id\":\"E010\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401a46\",\"description\":\"main saves all registers to stack at 0x401a46-0x401a85, then restores them at 0x401b04-0x401b43 before call rax. The register state is available to the shellcode at execution time.\"},{\"id\":\"E011\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"S1 runtime fact F012 confirms register state leaked at runtime includes stack address (rsp/rbp) and libc data segment addresses (rbx), providing ASLR bypass info. S1 runtime fact F011 confirms different stack addresses across runs (0x7ffe... vs 0x7fff... vs 0x7ffd...) suggesting ASLR is on, making this leak significant.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm which specific register values are printed and whether they include stack and libc addresses\",\"Verify that the printed values are accurate and usable for ASLR bypass\"]}],\"non_vulnerabilities\":[{\"function\":\"init\",\"description\":\"init sets stdin/stdout/stderr to unbuffered (setvbuf _IONBF) and calls alarm(60). No security issues found.\",\"reason\":\"setvbuf with _IONBF is standard practice for CTF challenges. alarm(60) provides a timeout but is not a vulnerability.\"},{\"function\":\"_abort\",\"description\":\"_abort prints a message via printf and calls exit(1). No security issues found.\",\"reason\":\"Simple error handling function with no user-controlled format string or buffer operations.\"},{\"function\":\"main\",\"description\":\"mmap return value check: cmp [rbp-0x40], -1; jne. This correctly checks for mmap failure (returns -1 on error).\",\"reason\":\"The mmap return value is properly checked against -1 (MAP_FAILED). If mmap fails, _abort is called. This is correct error handling.\"},{\"function\":\"main\",\"description\":\"memset(mmap_buf, 0, 100) before read ensures the buffer is zero-initialized.\",\"reason\":\"The memset prevents use of uninitialized memory in the buffer. However, it does not prevent the NUL byte bypass (BUG-001) because read() overwrites the zeroed bytes with user input that can contain NUL bytes.\"},{\"function\":\"main\",\"description\":\"Stack canary check at 0x401b52-0x401b61: compares fs:0x28 with saved canary, calls __stack_chk_fail on mismatch.\",\"reason\":\"Stack canary is properly implemented. However, the primary vulnerability (BUG-001) does not involve stack buffer overflow - it involves shellcode execution in the mmap region, which is not protected by the stack canary.\"}],\"unresolved\":[{\"description\":\"CET/IBT enforcement status at runtime\",\"reason\":\"The binary has GNU property IBT,SHSTK marked in .note.gnu.property. If IBT is enforced by the kernel, 'call rax' to the mmap buffer (which does not start with endbr64) would cause a #CP fault, preventing shellcode execution. S1 runtime test showed SIGSEGV for 'AAAA' input, but this could be due to invalid instructions (0x41 0x41 0x41 0x41 = REX prefixes with no valid instruction) rather than IBT enforcement.\",\"required_next_step\":\"S3 should dynamically verify whether IBT is enforced by testing 'call rax' to a buffer starting with endbr64 (0xf3 0x0f 0x1e 0xfa) followed by a NOP sled. If IBT is enforced, the filter bypass (BUG-001) still exists structurally but shellcode execution may be blocked unless the shellcode starts with endbr64 (which requires bytes 0xf3, 0x0f, 0x1e, 0xfa - none of which are in the allowed set, but could be placed after a NUL byte via BUG-001).\"},{\"description\":\"ASLR status of the runtime environment\",\"reason\":\"S1 could not confirm ASLR status from static analysis. S1 runtime observations showed varying stack addresses across runs, suggesting ASLR is on. The binary itself has No PIE (fixed base 0x400000), but stack and libc addresses may be randomized.\",\"required_next_step\":\"S3 should confirm ASLR status. If ASLR is on, the register leak (BUG-003) provides necessary bypass information. If ASLR is off, the leak is less critical.\"},{\"description\":\"Whether mmap returns exactly 0x13370000 at runtime\",\"reason\":\"mmap is called with hint address 0x13370000. The kernel may honor or ignore this hint. S1 runtime showed rax=0x13370000 printed, suggesting the hint is honored, but this was not definitively confirmed.\",\"required_next_step\":\"S3 should verify the mmap return address is consistently 0x13370000 across runs.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":1,\"verified\":1,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"CODE_EXECUTION\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"is_all_upper() uses strlen(buf) as the loop bound for byte filtering. strlen stops at the first NUL (0x00) byte, but the shellcode buffer is populated by read(0, buf, 99) which performs raw binary I/O and does NOT stop at NUL bytes. An attacker injects a NUL byte early in the input (e.g., position 1), causing strlen to return a small value (e.g., 1). The filter then only checks bytes before the NUL byte, leaving all bytes after the NUL completely unfiltered. These unfiltered bytes are still present in the RWX mmap buffer at 0x13370000 and are executed via 'call rax' at 0x401b4b.\",\"description\":\"The is_all_upper filter is bypassed by injecting a NUL byte after a valid allowed-set byte. strlen returns 1 (stops at NUL), so only the first byte is checked. All subsequent bytes (including syscall 0x0f 0x05, xor 0x31, mov 0xb0, etc.) are unfiltered but executed as machine code in the RWX mmap region. This is a direct filter bypass leading to arbitrary code execution.\"},\"chain\":[\"BUG-001: SHELLCODE_FILTER_BYPASS_VIA_NUL_BYTE_AND_STRLEN\",\"is_all_upper uses strlen(buf) as loop bound (0x4018c4), strlen stops at first NUL\",\"read(0, mmap_buf, 99) at 0x4019ad performs raw binary I/O, does not stop at NUL\",\"Attacker injects NUL byte at position 1, strlen returns 1, only byte[0] is filtered\",\"Bytes after NUL (including 0x0f 0x05 syscall, 0x31 xor, 0xb0 mov) are unfiltered\",\"call rax at 0x401b4b executes entire buffer including unfiltered bytes as machine code\",\"CODE_EXECUTION: arbitrary shellcode execution with full syscall access (no seccomp)\"],\"controlled_element\":{\"what\":\"The attacker controls the entire instruction stream executed in the RWX mmap region at 0x13370000. By placing a NUL byte at position 1, only byte[0] is checked by the filter; all bytes from position 2 onward are arbitrary x86-64 machine code including syscall instructions (0x0f 0x05), register manipulation (xor, mov, add), and any other instruction. The attacker controls syscall number (rax), arguments (rdi, rsi, rdx, etc.), and execution flow.\",\"how\":\"Input via stdin: read(0, mmap_buf, 99) reads up to 99 raw bytes. The attacker sends a payload like: [allowed_byte] + [0x00 NUL] + [0x00 ModRM for harmless ADD] + [arbitrary shellcode]. The allowed byte (e.g., 'P'=0x50 PUSH rax) passes the filter. The NUL terminates strlen so only the first byte is checked. The second 0x00 serves as ModRM for ADD [rax],al (harmless since rax=0x13370000 writable, al=0). Then arbitrary shellcode follows.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"The attacker can send binary data (including NUL bytes 0x00) via stdin to read(0, mmap_buf, 99). read() performs raw binary I/O and does not stop at NUL bytes.\",\"necessity\":\"Required - without the ability to inject NUL bytes, strlen would scan the entire buffer and the filter would check all bytes.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The first byte of the input must be in the allowed set {0x20, 0x30-0x39, 0x41-0x5a} so that is_all_upper returns 1 (pass). A single valid byte before NUL is sufficient.\",\"necessity\":\"Required - if the first byte is not in the allowed set, is_all_upper returns 0 and _abort is called before call rax.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The NUL byte must be placed at position 1 (second byte) so strlen returns 1 and only byte[0] is checked. The NUL can also be at any later position, but position 1 maximizes the unfiltered shellcode space (97 bytes).\",\"necessity\":\"Required - the NUL byte is what causes strlen to return early, bypassing the filter for subsequent bytes.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"CET/IBT must NOT be enforced by the kernel at runtime. If IBT were enforced, 'call rax' to the mmap buffer (which does not start with endbr64) would cause a #CP fault. Dynamic verification confirmed CET/IBT is NOT enforced - call rax to non-endbr64 target executes instructions successfully.\",\"necessity\":\"Required for CODE_EXECUTION - if IBT were enforced, the shellcode would need to start with endbr64 (0xf3 0x0f 0x1e 0xfa), but these bytes are not in the allowed set. However, they could be placed after the NUL byte via this same bypass. Dynamic testing confirmed IBT is not enforced.\",\"verified\":true},{\"id\":\"PC-05\",\"description\":\"No seccomp/sandbox is present, giving the shellcode full syscall access. S1 fact F013 confirms no seccomp/prctl/sandbox calls found in binary.\",\"necessity\":\"Not strictly required for CODE_EXECUTION primitive (arbitrary instruction execution is sufficient), but amplifies the impact to full syscall access including write, execve, etc.\",\"verified\":true},{\"id\":\"PC-06\",\"description\":\"The mmap hint address 0x13370000 is honored by the kernel (mmap returns 0x13370000). This is confirmed by the register dump showing rax=0x13370000 at runtime. The fixed address makes shellcode construction easier (no need to leak the shellcode buffer address).\",\"necessity\":\"Not strictly required (register dump leaks rax=mmap_buf address anyway), but simplifies shellcode construction since the address is known and fixed.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"strlen(mmap_buf) vs read_return_value\",\"alias\":\"is_all_upper loop bound = strlen(buf) at 0x4018c4, but actual data length = read() return value stored at [rbp-0xac]\",\"implication\":\"The filter checks strlen(buf) bytes but the buffer contains read_ret bytes. Any bytes between strlen(buf) and read_ret are unfiltered. By injecting NUL at position 1, strlen=1 but read_ret can be up to 99, leaving up to 97 bytes of unfiltered shellcode.\"},{\"expression\":\"0x00 NUL byte dual role\",\"alias\":\"The NUL byte at position 1 serves two purposes: (1) terminates strlen so filter only checks byte[0], and (2) when executed as machine code, 0x00 is the opcode for ADD r/m8, r8 which needs a ModRM byte. A second 0x00 at position 2 serves as ModRM=0x00 ([rax], al) making the instruction ADD [rax], al - harmless since rax=0x13370000 (writable mmap region) and al=0.\",\"implication\":\"The NUL byte that enables the filter bypass also needs careful handling in the executed instruction stream. Using two consecutive NUL bytes (positions 1 and 2) creates a harmless 2-byte ADD instruction, after which arbitrary shellcode can begin at position 3.\"},{\"expression\":\"CET/IBT property in ELF .note.gnu.property\",\"alias\":\"Binary has GNU_PROPERTY_X86_FEATURE_1_IBT|SHSTK marked, but kernel does not enforce IBT at runtime\",\"implication\":\"call rax to non-endbr64 target (mmap buffer filled with user data) executes successfully. Dynamic verification: exit(42) shellcode without endbr64 prefix executed and returned rc=42. If IBT were enforced, a #CP fault would occur instead.\"}],\"verification_plan\":{\"method\":\"Dynamic verification via three independent PoC payloads: (1) exit(42) shellcode after NUL byte, (2) exit(99) shellcode after NUL byte (different exit code proves full control), (3) write(1, mmap_buf, 14) shellcode after NUL byte (proves arbitrary syscall execution and data exfiltration). Each payload uses the structure: [allowed_byte 0x50] + [0x00 NUL] + [0x00 ModRM] + [arbitrary shellcode].\",\"environment\":\"Linux x86-64, statically linked glibc, No PIE (base 0x400000), NX enabled, Canary enabled, Partial RELRO, CET marked but NOT enforced, no seccomp. ASLR status: on (stack/libc addresses vary across runs) but binary base is fixed and mmap hint 0x13370000 is honored.\",\"run_command\":\"cd /work/workspace/0017-2022-30-shellcode-runner2-20260908-134900 && python3 poc-BUG-001.py\",\"expected_evidence\":[\"PRIM-001: exit(42) returns rc=42 (proves syscall instruction 0x0f 0x05 executed after NUL bypass)\",\"PRIM-002: exit(99) returns rc=99 (proves attacker controls exit code value, different from PRIM-001)\",\"PRIM-003: write(1, mmap_buf, 14) causes buffer content bytes (50 00 00 31 ff...) to appear in stdout (proves arbitrary syscall execution and data exfiltration)\"]},\"mitigations\":[{\"name\":\"NX (GNU_STACK=RW)\",\"present\":true,\"primitive_impact\":\"NX is enabled for the stack, but the mmap region is explicitly created with PROT_READ|PROT_WRITE|PROT_EXEC (RWX) at 0x13370000. NX does not prevent shellcode execution in the RWX mmap region. The mitigation is ineffective against this primitive.\"},{\"name\":\"Canary (stack)\",\"present\":true,\"primitive_impact\":\"Stack canary is present and checked at 0x401b52-0x401b61. However, the shellcode executes in the mmap region, not on the stack. The canary does not prevent shellcode execution. The canary would only trigger if the shellcode corrupts the stack frame, but the shellcode can avoid stack corruption.\"},{\"name\":\"PIE (Position Independent Executable)\",\"present\":false,\"primitive_impact\":\"Binary is NOT PIE (fixed base 0x400000). This means all code and data addresses are known at compile time. Combined with the fixed mmap address (0x13370000), the attacker knows all relevant addresses without needing an info leak. ASLR only affects stack and libc addresses, but the register dump (BUG-003) leaks those.\"},{\"name\":\"CET/IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"CET/IBT is marked in the ELF .note.gnu.property but is NOT enforced by the kernel at runtime. Dynamic verification confirmed that 'call rax' to the mmap buffer (which does not start with endbr64) executes instructions successfully. If IBT were enforced, the shellcode would need to start with endbr64 (0xf3 0x0f 0x1e 0xfa), which could be placed after the NUL byte via this same bypass. The mitigation is ineffective.\"},{\"name\":\"CET/SHSTK (Shadow Stack)\",\"present\":true,\"primitive_impact\":\"Shadow stack is marked but enforcement status is unclear. The shellcode uses syscall instructions directly (not ret-based control flow), so shadow stack would not prevent the syscall execution. The exit(42) and write() shellcodes do not use ret instructions, making SHSTK irrelevant to this primitive.\"},{\"name\":\"RELRO (Partial)\",\"present\":true,\"primitive_impact\":\"Partial RELRO protects .got but not .got.plt. However, this primitive does not involve GOT overwrite - it achieves code execution directly via the RWX mmap region. RELRO is irrelevant to this primitive.\"},{\"name\":\"seccomp/sandbox\",\"present\":false,\"primitive_impact\":\"No seccomp/prctl/sandbox calls found in binary (S1 F013). The shellcode has full syscall access, amplifying CODE_EXECUTION to full system access (read, write, execve, etc.).\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"is_all_upper\",\"address\":\"0x4018c4\",\"description\":\"is_all_upper calls strlen(buf) at 0x4018c4 to determine the loop bound. The comparison at 0x4018c9 (cmp rbx, rax) checks i < strlen(buf). strlen stops at the first NUL byte, so only bytes before the first NUL are filtered.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019ad\",\"description\":\"main calls read(0, mmap_buf, 99) at 0x4019ad. read() performs raw binary I/O and does not stop at NUL bytes. The user can inject NUL (0x00) bytes anywhere in the 99-byte input.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"After is_all_upper passes, main executes 'call rax' at 0x401b4b where rax = mmap_buf (0x13370000). The entire buffer content (including unfiltered bytes after NUL) is executed as machine code.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"PRIM-001: Payload 'P\\\\x00\\\\x00\\\\x31\\\\xff\\\\x83\\\\xc7\\\\x2a\\\\x31\\\\xc0\\\\xb0\\\\x3c\\\\x0f\\\\x05' (exit(42) shellcode) passed the filter (no 'invalid shellcode!' message), executed call rax, and process exited with return_code=42. This proves: (1) NUL byte at position 1 caused strlen=1, only 'P' was filtered; (2) bytes 0x31,0xff,0x83,0xc7,0x2a,0xb0,0x3c,0x0f,0x05 (NOT in allowed set) were executed as machine code; (3) syscall instruction (0x0f 0x05) executed exit(42) successfully; (4) CET/IBT not enforced (call rax to non-endbr64 target succeeded).\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"PRIM-002: Payload 'P\\\\x00\\\\x00\\\\x31\\\\xff\\\\x83\\\\xc7\\\\x63\\\\x31\\\\xc0\\\\xb0\\\\x3c\\\\x0f\\\\x05' (exit(99) shellcode, different exit code) passed the filter and process exited with return_code=99. This proves the attacker fully controls the executed code - different shellcode produces different exit codes (42 vs 99), confirming arbitrary code execution rather than a fixed behavior.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"PRIM-003: Payload 'P\\\\x00\\\\x00\\\\x31\\\\xff\\\\x83\\\\xc7\\\\x01\\\\x31\\\\xd2\\\\xb2\\\\x0e\\\\x31\\\\xc0\\\\xb0\\\\x01\\\\x0f\\\\x05' (write(1, mmap_buf, 14) shellcode) passed the filter and the write syscall executed successfully. The buffer content bytes (50 00 00 31 ff 83 c7 01 31 d2 b2 0e 31 c0) appeared in stdout after the register dump, proving: (1) arbitrary syscall execution (write syscall #1); (2) data exfiltration from process memory to stdout; (3) the shellcode controlled rax (syscall number), rdi (fd), rsi (buffer addr), and rdx (length).\"},{\"id\":\"E007\",\"type\":\"DERIVED\",\"function\":\"main\",\"address\":\"0x401b4b\",\"description\":\"CET/IBT enforcement test: All three PoC payloads execute 'call rax' to the mmap buffer at 0x13370000 which does NOT start with endbr64 (0xf3 0x0f 0x1e 0xfa). The first byte is 0x50 ('P' = PUSH rax). If IBT were enforced, a #CP (Control Protection) fault would occur and the process would crash with SIGILL or similar before executing any shellcode. Instead, the shellcode executed successfully (exit(42), exit(99), write()), proving IBT is NOT enforced at runtime.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"50 00 00 31 ff 83 c7 01 31 d2 b2 0e 31 c0 (buffer content leaked to stdout via write(1, mmap_buf, 14) syscall)\",\"fault_address\":\"\",\"return_code\":42,\"details\":\"Three PoC payloads verified: (1) exit(42) shellcode -> rc=42; (2) exit(99) shellcode -> rc=99; (3) write(1, mmap_buf, 14) shellcode -> buffer content appeared in stdout. All payloads use the NUL byte filter bypass: [P (0x50, allowed)] + [0x00 NUL, terminates strlen] + [0x00 ModRM for harmless ADD [rax],al] + [arbitrary shellcode with syscall 0x0f 0x05]. The filter only checks byte[0]='P' (passes), bytes after NUL are unfiltered and executed. CET/IBT not enforced. No seccomp. Full syscall access confirmed.\"},\"confidence\":\"HIGH\",\"notes\":\"The CODE_EXECUTION primitive is fully verified with three independent dynamic tests. The NUL byte filter bypass is a direct primitive (no intermediate object reuse or metadata manipulation needed). The attacker controls the entire instruction stream after the NUL byte, including syscall instructions (0x0f 0x05) that are explicitly NOT in the allowed byte set {0x20, 0x30-0x39, 0x41-0x5a}. The primitive is DIRECT: BUG -> strlen-based filter bypass -> unfiltered bytes in RWX region -> call rax -> CODE_EXECUTION. No ROP chain, tcache poisoning, or other indirect techniques are needed. The mmap region is RWX at fixed address 0x13370000, and no seccomp sandbox restricts syscalls. This is the highest-severity primitive: arbitrary code execution with full syscall access.\"}],\"non_primitives\":[],\"unresolved\":[]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":2,\"verified\":1,\"theoretical\":1,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"read() return value checked with 'cmp [rbp-0xac], 0x0; jne' which only rejects return value == 0 (EOF). A negative return value (-1, error) passes the check. When read_ret=-1, cdqe sign-extends to 0xFFFFFFFFFFFFFFFF, lea rdx,[rax-1] computes -2, and rax = mmap_buf + (-2) = 0x1336FFFE (2 bytes before the mmap region). The movzx eax, BYTE PTR [rax] at 0x4019e3 reads from this unmapped address, causing SIGSEGV.\",\"description\":\"When read() returns -1 (e.g., EAGAIN on non-blocking stdin), the insufficient check (only rejecting 0) allows execution to continue. The code computes buf[read_ret - 1] = buf[-2] = 0x1336FFFE, which is outside the mmap region at 0x13370000. Since 0x1336FFFE is in an unmapped page, the OOB read causes SIGSEGV.\"},\"chain\":[\"BUG-002: read() return value insufficient check (only rejects 0, not -1)\",\"read() returns -1 (EAGAIN via non-blocking stdin, or other error condition)\",\"check 'cmp [rbp-0xac], 0x0; jne' passes because -1 != 0\",\"cdqe sign-extends -1 to 0xFFFFFFFFFFFFFFFF; lea rdx,[rax-1] = -2\",\"rax = mmap_buf(0x13370000) + (-2) = 0x1336FFFE (OOB address, unmapped)\",\"movzx eax, BYTE PTR [rax] at 0x4019e3 reads from unmapped 0x1336FFFE\",\"SIGSEGV (CRASH)\"],\"controlled_element\":{\"what\":\"read() return value (can be made -1 via non-blocking stdin with EAGAIN)\",\"how\":\"Attacker sets stdin to non-blocking mode (e.g., via a C helper that calls fcntl(0, F_SETFL, O_NONBLOCK) before execv, or by providing a non-blocking pipe as stdin). With no data available and write end open, read() returns -1 with errno=EAGAIN.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"read() must return -1 (error, not EOF). This can be achieved by setting stdin to non-blocking mode (O_NONBLOCK) with no data available and the write end of the pipe open. read() then returns -1 with errno=EAGAIN.\",\"necessity\":\"Without read() returning -1, the OOB access path is never reached. Normal read returns >0, EOF returns 0 (which is caught by the check).\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The check 'cmp [rbp-0xac], 0x0; jne' must pass with read_ret=-1. Since -1 != 0, the check passes. This is a static property of the code.\",\"necessity\":\"If the check rejected negative values (e.g., cmp <= 0), the OOB path would not be reached.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"Address 0x1336FFFE (mmap_buf - 2) must be unmapped for the crash to occur. The mmap region starts at 0x13370000 (page-aligned), so 0x1336FFFE is in the preceding page which is not mapped.\",\"necessity\":\"If 0x1336FFFE were mapped, the OOB read would succeed and the crash would not occur (but the OOB write path might be reached instead).\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"buf[read_ret - 1] where read_ret = -1\",\"alias\":\"mmap_buf + (-1 - 1) = mmap_buf - 2 = 0x13370000 - 2 = 0x1336FFFE\",\"implication\":\"The OOB access targets a fixed address 0x1336FFFE, which is 2 bytes before the mmap region. This address is in an unmapped page, causing SIGSEGV on read.\"}],\"verification_plan\":{\"method\":\"1. Direct test: Run target with non-blocking stdin (pipe with O_NONBLOCK, write end open). read() returns -1 (EAGAIN), OOB read at 0x1336FFFE causes SIGSEGV. 2. GDB simulation: Break after read(), set return value to -1, continue, observe crash at 0x4019e3 with rax=0x1336FFFE.\",\"environment\":\"Linux x86-64, statically linked binary, no PIE, no seccomp. Non-blocking stdin achievable via fcntl O_NONBLOCK or non-blocking pipe.\",\"run_command\":\"python3 poc-BUG-002.py\",\"expected_evidence\":[\"return_code = -11 (SIGSEGV)\",\"No register dump in stdout (crash occurs before shellcode execution)\",\"GDB: rax=0x1336FFFE, rip=0x4019e3, instruction=movzbl (%rax),%eax\",\"GDB: read_ret = 0xffffffff (-1) at [rbp-0xac]\",\"5/5 direct runs crash with SIGSEGV\"]},\"mitigations\":[{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"No impact on this primitive. The crash is caused by unmapped memory access, not code execution.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact. The OOB access is on the mmap buffer, not the stack. The stack canary is not involved.\"},{\"name\":\"PIE\",\"present\":false,\"primitive_impact\":\"No PIE means mmap hint 0x13370000 is a fixed address. The OOB target 0x1336FFFE is also fixed. No ASLR randomization of the mmap buffer address.\"},{\"name\":\"CET (IBT/SHSTK)\",\"present\":true,\"primitive_impact\":\"No impact on this primitive. The crash occurs before any indirect call instruction.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019b8\",\"description\":\"read() return value checked with 'cmp DWORD PTR [rbp-0xac], 0x0; jne 0x4019d0'. This only rejects return value == 0 (EOF). A return value of -1 (error) is non-zero and passes the check.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019d6\",\"description\":\"After check passes with read_ret=-1: cdqe at 0x4019d6 sign-extends eax (0xFFFFFFFF) to rax (0xFFFFFFFFFFFFFFFF). lea rdx,[rax-1] at 0x4019d8 computes rdx = -2 (0xFFFFFFFFFFFFFFFE). add rax,rdx at 0x4019e0 yields 0x13370000 + (-2) = 0x1336FFFE.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019e3\",\"description\":\"movzx eax, BYTE PTR [rax] at 0x4019e3 reads from address 0x1336FFFE (OOB read, 2 bytes before mmap region). This address is unmapped, causing SIGSEGV.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x4019e3\",\"description\":\"GDB simulation: Set read_ret=-1 at breakpoint 0x4019b2. Continue to 0x4019e3. rax=0x1336fffe, rdx=0xfffffffffffffffe (-2), rip=0x4019e3. Instruction: movzbl (%rax),%eax. SIGSEGV at 0x4019e3. Confirms OOB read at unmapped 0x1336FFFE.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x4019e3\",\"description\":\"Direct test: Non-blocking stdin (pipe with O_NONBLOCK, write end open). read() returns -1 (EAGAIN). Process crashes with SIGSEGV (rc=-11). stdout contains only the prompt 'Input your shellcode here (max: 100): ' with no register dump, confirming crash before shellcode execution. 5/5 runs crashed.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1336FFFE\",\"description\":\"GDB memory mapping confirms 0x1336fff0 is unmapped ('Cannot access memory at address 0x1336fff0'). The mmap region is 0x13370000-0x13371000 (rwxp, 4096 bytes). Address 0x1336FFFE is in the preceding unmapped page.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0x1336FFFE\",\"return_code\":-11,\"details\":\"PRIM-001 VERIFIED: When read() returns -1 (triggered by non-blocking stdin with EAGAIN), the insufficient check (only rejects 0) allows execution to continue. buf[read_ret-1] = buf[-2] = 0x1336FFFE (unmapped). movzx eax,[rax] at 0x4019e3 causes SIGSEGV. GDB confirms: rax=0x1336fffe, rdx=-2, crash at 0x4019e3. Direct test: 5/5 runs crash with rc=-11. The crash is a CRASH primitive (DoS) - the OOB read at a fixed unmapped address causes immediate SIGSEGV.\"},\"confidence\":\"HIGH\",\"notes\":\"The CRASH primitive is the primary and highest achievable primitive from BUG-002. The OOB read at 0x1336FFFE always crashes because that address is unmapped in normal operation. The crash is deterministic and reproducible. The trigger (non-blocking stdin causing EAGAIN) is achievable by an attacker who controls the process environment (e.g., via a wrapper that sets O_NONBLOCK on fd 0 before exec).\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"RESTRICTED_WRITE\",\"status\":\"THEORETICAL\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"Same as PRIM-001: read() return value insufficient check allows read_ret=-1 to pass. When the OOB-read byte at 0x1336FFFE equals 0x0a (newline), the code writes 0x00 (NUL) to that address at 0x4019fd.\",\"description\":\"After the OOB read at 0x4019e3, if the byte at 0x1336FFFE equals 0x0a (newline), the code executes 'mov BYTE PTR [rax], 0x0' at 0x4019fd, writing a single NUL byte to 0x1336FFFE. This is a restricted write: single byte, fixed target address (0x1336FFFE), fixed value (0x00).\"},\"chain\":[\"BUG-002: read() return value insufficient check (only rejects 0, not -1)\",\"read() returns -1 (error condition)\",\"check passes (-1 != 0)\",\"buf[read_ret-1] = buf[-2] = 0x1336FFFE (OOB address)\",\"movzx eax, BYTE PTR [rax] reads byte at 0x1336FFFE\",\"if byte == 0x0a: mov BYTE PTR [rax], 0x0 writes NUL to 0x1336FFFE\",\"RESTRICTED_WRITE (single NUL byte at fixed address)\"],\"controlled_element\":{\"what\":\"The write value is fixed (0x00/NUL). The target address is fixed (0x1336FFFE). The attacker controls whether the write path is reached (by triggering read()=-1), but does not control the write target or value.\",\"how\":\"If 0x1336FFFE is mapped and contains 0x0a, the NUL write occurs. The attacker cannot control the target address or the written value - both are determined by the fixed computation buf[-2] and the constant 0x00.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"read() must return -1 (same as PRIM-001 PC-01). Achievable via non-blocking stdin with EAGAIN.\",\"necessity\":\"Without read() returning -1, the OOB access path is never reached.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Address 0x1336FFFE must be mapped (readable and writable). In normal operation, this address is unmapped (it's in the page before the mmap region at 0x13370000). This precondition is NOT met in normal operation.\",\"necessity\":\"If 0x1336FFFE is unmapped, the OOB read at 0x4019e3 crashes (SIGSEGV) before the write at 0x4019fd is reached. The write is only reachable if the address is mapped.\",\"verified\":false},{\"id\":\"PC-03\",\"description\":\"The byte at 0x1336FFFE must equal 0x0a (newline) for the write to occur. If the byte is not 0x0a, the write is skipped (jne at 0x4019e8 jumps past the write).\",\"necessity\":\"The conditional write only triggers when the OOB-read byte is 0x0a. The attacker does not control the content at 0x1336FFFE (it's in unmapped memory in normal operation).\",\"verified\":false}],\"alias_key_findings\":[{\"expression\":\"buf[read_ret - 1] where read_ret = -1\",\"alias\":\"0x1336FFFE (fixed, mmap_buf - 2)\",\"implication\":\"The write target is a fixed address 0x1336FFFE. The attacker cannot control the target address - it is always mmap_buf - 2. This makes the primitive a RESTRICTED_WRITE (fixed target), not an ARB_WRITE.\"}],\"verification_plan\":{\"method\":\"GDB test: Map a page at 0x1336F000 (covering 0x1336FFFE), set byte at 0x1336FFFE to 0x0a, simulate read()=-1, continue to OOB write at 0x4019fd, verify byte changes from 0x0a to 0x00.\",\"environment\":\"GDB-controlled environment where 0x1336FFFE is artificially mapped. In normal operation, this address is unmapped.\",\"run_command\":\"python3 poc-BUG-002.py (PRIM-002 section)\",\"expected_evidence\":[\"GDB: breakpoint at 0x4019fd (OOB write) is hit\",\"GDB: byte at 0x1336FFFE changes from 0x0a to 0x00 after 'ni' past write instruction\",\"NOTE: This requires artificially mapping 0x1336FFFE which is NOT possible in normal operation\"]},\"mitigations\":[{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"No impact on this write primitive.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"No impact. The write target is the mmap buffer area, not the stack.\"},{\"name\":\"PIE\",\"present\":false,\"primitive_impact\":\"No PIE means the mmap buffer is at fixed 0x13370000, so the OOB write target 0x1336FFFE is also fixed.\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019fd\",\"description\":\"mov BYTE PTR [rax], 0x0 at 0x4019fd writes NUL to the OOB address (0x1336FFFE) if the byte at that address equals 0x0a. This is the OOB write instruction.\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x4019e6\",\"description\":\"cmp al, 0xa; jne 0x401a00 at 0x4019e6-0x4019e8. The write is conditional on the OOB-read byte being 0x0a (newline). If not 0x0a, the write is skipped.\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x4019fd\",\"description\":\"GDB test with artificially mapped page at 0x1336F000: Set byte at 0x1336FFFE to 0x0a, simulate read_ret=-1. Breakpoint at 0x4019e3 (OOB read) hit - rax=0x1336fffe, byte=0x0a. Breakpoint at 0x4019fd (OOB write) hit. After 'ni' (step past write), byte at 0x1336FFFE changed from 0x0a to 0x00. Confirms the write instruction works when the address is mapped.\"},{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x1336FFFE\",\"description\":\"In normal operation (no GDB page mapping), 0x1336FFFE is unmapped. The OOB read at 0x4019e3 crashes with SIGSEGV before the write at 0x4019fd is reached. The write is NOT reachable in normal operation.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-002.py\",\"written_value\":\"0x00 (NUL byte)\",\"read_value\":\"0x0a (byte at 0x1336FFFE before write, in GDB-mapped page)\",\"fault_address\":\"0x1336FFFE\",\"return_code\":0,\"details\":\"PRIM-002 THEORETICAL: The OOB write instruction at 0x4019fd IS reached and confirmed working in GDB (with artificially mapped page at 0x1336F000). Byte at 0x1336FFFE changes from 0x0a to 0x00. However, in normal operation 0x1336FFFE is unmapped, so the OOB read at 0x4019e3 crashes first (SIGSEGV) and the write is never reached. The write is a single NUL byte at a fixed address (0x1336FFFE) with a fixed value (0x00) - this is a RESTRICTED_WRITE, not ARB_WRITE. Status: THEORETICAL because the key precondition (0x1336FFFE mapped) is not met in normal operation.\"},\"confidence\":\"MEDIUM\",\"notes\":\"The RESTRICTED_WRITE is structurally present in the code (the write instruction at 0x4019fd exists and is reachable when 0x1336FFFE is mapped), but in normal operation the address is unmapped, making the write unreachable. The write target (0x1336FFFE) and value (0x00) are both fixed - the attacker cannot control either. Even if reachable, this would only be a RESTRICTED_WRITE (single NUL byte at fixed address), not an ARB_WRITE. The primitive is marked THEORETICAL because: (1) the write instruction is confirmed to work via GDB, but (2) the precondition (mapped 0x1336FFFE) is not achievable in normal operation, and (3) the write target and value are not attacker-controlled.\"}],\"non_primitives\":[{\"primitive_id\":\"NP-001\",\"candidate_type\":\"ARB_WRITE\",\"source_bug\":\"BUG-002\",\"reason\":\"The OOB write (PRIM-002) targets a fixed address (0x1336FFFE = mmap_buf - 2) with a fixed value (0x00/NUL). The attacker cannot control the write target address or the written value. The address is computed as mmap_buf + (read_ret - 1) where read_ret is always -1, yielding a fixed offset of -2. This does not meet the ARB_WRITE acceptance standard (target address must be attacker-controlled).\"},{\"primitive_id\":\"NP-002\",\"candidate_type\":\"RELATIVE_WRITE\",\"source_bug\":\"BUG-002\",\"reason\":\"While the write is at a relative offset from mmap_buf (-2 bytes), the target address 0x1336FFFE is unmapped in normal operation, making the write unreachable. Even if it were reachable, the write is a single NUL byte at a fixed offset, which is more accurately classified as RESTRICTED_WRITE (single byte, fixed value 0x00) rather than RELATIVE_WRITE.\"},{\"primitive_id\":\"NP-003\",\"candidate_type\":\"OOB_READ\",\"source_bug\":\"BUG-002\",\"reason\":\"The OOB read at 0x1336FFFE (movzx at 0x4019e3) reads from an unmapped address, causing immediate SIGSEGV. No data is read or leaked - the process crashes before any data can be observed. This is a CRASH, not an OOB_READ primitive. The read does not return any data to the attacker.\"}],\"unresolved\":[{\"description\":\"Whether there is any scenario in normal operation where 0x1336FFFE could be mapped\",\"reason\":\"The mmap region at 0x13370000 is page-aligned (4096 bytes). The preceding page (0x1336F000-0x13370000) is not mapped by the program. In theory, if another allocation (e.g., by the kernel or a library) mapped that page, the OOB write could become reachable. However, no such mapping was observed in any test run.\",\"required_next_step\":\"S4 could investigate if any memory layout manipulation (e.g., via mmap collisions, brk, or other allocations) could cause 0x1336FFFE to be mapped, making the RESTRICTED_WRITE reachable.\"},{\"description\":\"Whether EINTR from signals other than EAGAIN could trigger read()=-1\",\"reason\":\"The non-blocking stdin approach (EAGAIN) was confirmed to work. Other error conditions (EINTR from signals) were tested with SIGURG and SIGWINCH but did not cause read() to return -1 (the signals were caught by default handlers and read continued). The alarm(60) SIGALRM would kill the process (default handler) rather than causing EINTR.\",\"required_next_step\":\"No further action needed - EAGAIN via non-blocking stdin is a confirmed and reliable trigger.\"}]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-003\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-003\",\"total_primitives\":1,\"verified\":1,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"INFO_LEAK\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-003\",\"root_cause\":\"Information Leak via register state printf before shellcode execution. main saves all general-purpose registers (rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8-r13) to the stack and prints them to stdout via _IO_printf at 0x401afb with format string at 0x498070 before executing 'call rax' (0x401b4b). This leaks runtime stack addresses (rsp, rbp, r11) and a stack-pointer value (rbx) to the attacker, providing ASLR bypass information.\",\"description\":\"Before executing user-controlled shellcode via call rax at 0x401b4b, main prints all register values to stdout using _IO_printf at 0x401afb. The format string at 0x498070 contains 14 format specifiers (%p and %lx) that output the values of rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8, r9, r10, r11, r12, r13. Among these, rbp (frame pointer), rsp (stack pointer), r11 (stack pointer copy), and rbx (stack address pointing to envp) are stack addresses subject to ASLR randomization. The binary has No PIE (fixed base 0x400000) but stack addresses are randomized. The leak provides the attacker with exact runtime stack addresses, defeating ASLR for stack-based targets.\"},\"chain\":[\"BUG-003\",\"Register state printed to stdout via _IO_printf before shellcode execution\",\"Stack addresses (rbp, rsp, r11, rbx) leaked to stdout in plaintext\",\"Attacker reads stdout to obtain runtime stack addresses\",\"INFO_LEAK (ASLR bypass for stack addresses)\"],\"controlled_element\":{\"what\":\"Runtime stack addresses (rbp, rsp, r11, rbx) and mmap buffer address (rax=0x13370000)\",\"how\":\"The binary itself prints all register values to stdout via _IO_printf at 0x401afb before executing shellcode. The attacker simply reads the program's stdout output to obtain the leaked addresses. No special input is needed beyond a valid shellcode that passes the is_all_upper filter (e.g., 'AAAA').\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"The input must pass the is_all_upper filter so that execution reaches the printf at 0x401afb. This requires the input bytes before any NUL to be in the allowed set {0x20, 0x30-0x39, 0x41-0x5a}. A simple input like 'AAAA' satisfies this.\",\"necessity\":\"Without passing the filter, _abort is called and the register dump is never printed.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The read(0, mmap_buf, 99) must return a non-zero value so execution continues past the check at 0x4019b8. Any input of at least 1 byte satisfies this.\",\"necessity\":\"If read returns 0 (EOF), _abort is called before the register dump.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"ASLR must be enabled for the leak to be security-relevant. If ASLR is off, the stack addresses are predictable and the leak adds no new information.\",\"necessity\":\"Determines whether the leaked stack addresses provide ASLR bypass value. Verified: ASLR is ON (stack addresses vary across runs).\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"rbp (printed) == original rbp register value\",\"alias\":\"rbp is the stack frame pointer, passed as the 5th printf argument (r9 register at call site). It directly reveals the current stack frame address.\",\"implication\":\"Provides exact stack frame base address, defeating stack ASLR.\"},{\"expression\":\"rsp (printed) == original rsp register value\",\"alias\":\"rsp is the stack pointer, passed as the 6th printf argument (stack[0] at call site). It directly reveals the current stack top address.\",\"implication\":\"Provides exact stack top address. r11 also contains the same value, providing a redundant leak.\"},{\"expression\":\"rbx (printed) == original rdx register value\",\"alias\":\"rbx in the output actually corresponds to the original rdx value, which at this point in main holds a stack address (pointing to envp area on the stack, approximately rbp+0xf8).\",\"implication\":\"Provides an additional stack address offset, useful for calculating positions of environment variables and argv on the stack.\"},{\"expression\":\"rax (printed) == mmap_buf address == 0x13370000\",\"alias\":\"rax is set to the mmap buffer address at 0x401acc (mov rax, [rbp-0x40]). The mmap uses a fixed hint 0x13370000 which is honored by the kernel.\",\"implication\":\"Provides the exact address of the RWX shellcode buffer. This is a fixed address (no ASLR on mmap hint), so it is always 0x13370000.\"}],\"verification_plan\":{\"method\":\"Run the binary 3 times with input 'AAAA\\\\n' (passes is_all_upper filter). Capture stdout and parse the register dump. Verify that stack addresses (rbp, rsp, r11, rbx) are present in the output, are in the valid stack address range (0x7f0000000000-0x7fffffffffff), and vary across runs (confirming ASLR is on). Verify rbp-rsp is a reasonable stack frame distance. Verify r11==rsp (redundant leak).\",\"environment\":\"Linux x86-64, statically linked glibc, No PIE binary, ASLR enabled\",\"run_command\":\"python3 /work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-003.py\",\"expected_evidence\":[\"stdout contains 'Before running the shellcode:' followed by register dump\",\"rbp, rsp, r11 values are in range 0x7f0000000000-0x7fffffffffff (stack addresses)\",\"rbp, rsp values differ across 3 runs (ASLR confirmed)\",\"rbp - rsp = 0xb0 (176 bytes, reasonable stack frame distance)\",\"r11 == rsp (redundant stack pointer leak)\",\"rax == 0x13370000 (fixed mmap buffer address)\"]},\"mitigations\":[{\"name\":\"ASLR\",\"present\":true,\"primitive_impact\":\"ASLR randomizes stack addresses across runs. However, the register dump leak directly defeats stack ASLR by printing exact rsp/rbp values. The leak is still valuable because it provides the exact runtime stack addresses that ASLR was supposed to hide. Without this leak, an attacker would need to guess or brute-force stack addresses.\"},{\"name\":\"No PIE\",\"present\":true,\"primitive_impact\":\"The binary has No PIE (fixed base 0x400000), so code and data segment addresses are already known. The leak primarily adds value for stack addresses (which ARE randomized by ASLR). The mmap buffer at 0x13370000 is also fixed (no ASLR on the mmap hint).\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"NX prevents execution on the stack, but the shellcode is placed in an RWX mmap region (0x13370000) which is explicitly executable. NX does not affect the INFO_LEAK primitive.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"Stack canary protects against stack buffer overflows but is irrelevant to the INFO_LEAK primitive, which is a direct printf-based information disclosure.\"},{\"name\":\"CET (IBT/SHSTK)\",\"present\":true,\"primitive_impact\":\"IBT may restrict indirect call targets to those starting with endbr64. The mmap buffer does not start with endbr64, so IBT could block shellcode execution. However, the INFO_LEAK primitive itself (the printf of register values) occurs BEFORE the call rax, so the leak happens regardless of whether IBT blocks the subsequent shellcode execution. The leak is still VERIFIED as the information is disclosed to stdout.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"main calls _IO_printf at 0x401afb with format string at 0x498070. The format string contains 14 format specifiers that print rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8, r9, r10, r11, r12, r13 to stdout.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x498070\",\"description\":\"Format string at 0x498070: 'Before running the shellcode:\\\\nrax = %p\\\\nrbx = 0x%lx\\\\nrcx = 0x%lx\\\\nrdx = 0x%lx\\\\nrbp = 0x%lx\\\\nrsp = 0x%lx\\\\nrsi = 0x%lx\\\\nrdi = 0x%lx\\\\nr8 = 0x%lx\\\\nr9 = 0x%lx\\\\nr10 = 0x%lx\\\\nr11 = 0x%lx\\\\nr12 = 0x%lx\\\\nr13 = 0x%lx\\\\n' - prints all register values including stack pointers (rbp, rsp).\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"main\",\"address\":\"0x401a46\",\"description\":\"main saves all registers to stack at 0x401a46-0x401a85, then sets up printf arguments at 0x401ad0-0x401af6 (pushes registers as varargs, sets rsi=mmap_buf, rdi=format_string). The register state is fully exposed.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"Runtime execution confirmed: stdout output contains 'Before running the shellcode:' followed by register dump. Run 1: rbp=0x7ffdaa6eeb80, rsp=0x7ffdaa6eead0, r11=0x7ffdaa6eead0, rbx=0x7ffdaa6eed78. Run 2: rbp=0x7ffd8f12cf50, rsp=0x7ffd8f12cea0. Run 3: rbp=0x7ffd255120c0, rsp=0x7ffd25512010. Stack addresses vary across runs (ASLR confirmed). rax=0x13370000 (fixed mmap address) in all runs.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"GDB breakpoint at 0x401afb confirmed printf argument mapping: rsi(arg1=rax_printed)=0x13370000, rdx(arg2=rbx_printed)=stack_addr, rcx(arg3=rcx_printed)=0x3, r8(arg4=rdx_printed)=0x13370000, r9(arg5=rbp_printed)=stack_addr, stack[0](arg6=rsp_printed)=stack_addr, stack[6](arg12=r11_printed)=stack_addr. All stack addresses are in range 0x7f0000000000-0x7fffffffffff.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"main\",\"address\":\"0x401afb\",\"description\":\"ASLR bypass confirmed: rsp values across 3 runs: 0x7ffdaa6eead0, 0x7ffd8f12cea0, 0x7ffd25512010 - all different, confirming ASLR is enabled and the leak provides the exact randomized stack address each run. rbp-rsp=0xb0 (176 bytes) consistent across runs, confirming these are real stack frame addresses.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-003.py\",\"written_value\":\"\",\"read_value\":\"rbp=0x7ffdaa6eeb80, rsp=0x7ffdaa6eead0, r11=0x7ffdaa6eead0, rbx=0x7ffdaa6eed78, rax=0x13370000 (Run 1); rbp=0x7ffd8f12cf50, rsp=0x7ffd8f12cea0 (Run 2); rbp=0x7ffd255120c0, rsp=0x7ffd25512010 (Run 3)\",\"fault_address\":\"\",\"return_code\":-11,\"details\":\"PoC executed 3 runs of the binary with input 'AAAA\\\\n'. All runs produced register dumps on stdout before SIGSEGV (rc=-11 from invalid shellcode execution). Stack addresses (rbp, rsp, r11, rbx) were successfully leaked in all runs. ASLR confirmed: stack addresses differ across all 3 runs. rax=0x13370000 (fixed mmap address) consistent across runs. rbp-rsp=0xb0 (176 bytes, valid stack frame). r11==rsp (redundant stack leak). The INFO_LEAK primitive is VERIFIED: the binary discloses runtime stack addresses to stdout, defeating stack ASLR.\"},\"confidence\":\"HIGH\",\"notes\":\"This is a DIRECT INFO_LEAK primitive. The register dump is printed via a single _IO_printf call at 0x401afb - no intermediate object reuse or metadata manipulation is involved. The leak occurs before shellcode execution (call rax at 0x401b4b), so it is available regardless of whether the shellcode itself succeeds. The leaked stack addresses (rbp, rsp, r11) provide exact ASLR bypass for the stack region. The leaked rbx value provides an additional stack address (envp area). The leaked rax=0x13370000 provides the RWX shellcode buffer address (fixed, no ASLR). Note: This INFO_LEAK is most powerful when combined with BUG-001 (filter bypass), as the leaked stack addresses can be used by the shellcode to construct ROP chains or direct memory operations with correct addresses. However, S3 only verifies the primitive itself (INFO_LEAK), not the combined exploit route (S4 territory).\"}],\"non_primitives\":[],\"unresolved\":[]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 1,
+        "verified": 1,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "CODE_EXECUTION",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "is_all_upper() uses strlen(buf) as the loop bound for byte filtering. strlen stops at the first NUL (0x00) byte, but the shellcode buffer is populated by read(0, buf, 99) which performs raw binary I/O and does NOT stop at NUL bytes. An attacker injects a NUL byte early in the input (e.g., position 1), causing strlen to return a small value (e.g., 1). The filter then only checks bytes before the NUL byte, leaving all bytes after the NUL completely unfiltered. These unfiltered bytes are still present in the RWX mmap buffer at 0x13370000 and are executed via 'call rax' at 0x401b4b.",
+            "description": "The is_all_upper filter is bypassed by injecting a NUL byte after a valid allowed-set byte. strlen returns 1 (stops at NUL), so only the first byte is checked. All subsequent bytes (including syscall 0x0f 0x05, xor 0x31, mov 0xb0, etc.) are unfiltered but executed as machine code in the RWX mmap region. This is a direct filter bypass leading to arbitrary code execution."
+          },
+          "chain": [
+            "BUG-001: SHELLCODE_FILTER_BYPASS_VIA_NUL_BYTE_AND_STRLEN",
+            "is_all_upper uses strlen(buf) as loop bound (0x4018c4), strlen stops at first NUL",
+            "read(0, mmap_buf, 99) at 0x4019ad performs raw binary I/O, does not stop at NUL",
+            "Attacker injects NUL byte at position 1, strlen returns 1, only byte[0] is filtered",
+            "Bytes after NUL (including 0x0f 0x05 syscall, 0x31 xor, 0xb0 mov) are unfiltered",
+            "call rax at 0x401b4b executes entire buffer including unfiltered bytes as machine code",
+            "CODE_EXECUTION: arbitrary shellcode execution with full syscall access (no seccomp)"
+          ],
+          "controlled_element": {
+            "what": "The attacker controls the entire instruction stream executed in the RWX mmap region at 0x13370000. By placing a NUL byte at position 1, only byte[0] is checked by the filter; all bytes from position 2 onward are arbitrary x86-64 machine code including syscall instructions (0x0f 0x05), register manipulation (xor, mov, add), and any other instruction. The attacker controls syscall number (rax), arguments (rdi, rsi, rdx, etc.), and execution flow.",
+            "how": "Input via stdin: read(0, mmap_buf, 99) reads up to 99 raw bytes. The attacker sends a payload like: [allowed_byte] + [0x00 NUL] + [0x00 ModRM for harmless ADD] + [arbitrary shellcode]. The allowed byte (e.g., 'P'=0x50 PUSH rax) passes the filter. The NUL terminates strlen so only the first byte is checked. The second 0x00 serves as ModRM for ADD [rax],al (harmless since rax=0x13370000 writable, al=0). Then arbitrary shellcode follows.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "The attacker can send binary data (including NUL bytes 0x00) via stdin to read(0, mmap_buf, 99). read() performs raw binary I/O and does not stop at NUL bytes.",
+              "necessity": "Required - without the ability to inject NUL bytes, strlen would scan the entire buffer and the filter would check all bytes.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The first byte of the input must be in the allowed set {0x20, 0x30-0x39, 0x41-0x5a} so that is_all_upper returns 1 (pass). A single valid byte before NUL is sufficient.",
+              "necessity": "Required - if the first byte is not in the allowed set, is_all_upper returns 0 and _abort is called before call rax.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The NUL byte must be placed at position 1 (second byte) so strlen returns 1 and only byte[0] is checked. The NUL can also be at any later position, but position 1 maximizes the unfiltered shellcode space (97 bytes).",
+              "necessity": "Required - the NUL byte is what causes strlen to return early, bypassing the filter for subsequent bytes.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "CET/IBT must NOT be enforced by the kernel at runtime. If IBT were enforced, 'call rax' to the mmap buffer (which does not start with endbr64) would cause a #CP fault. Dynamic verification confirmed CET/IBT is NOT enforced - call rax to non-endbr64 target executes instructions successfully.",
+              "necessity": "Required for CODE_EXECUTION - if IBT were enforced, the shellcode would need to start with endbr64 (0xf3 0x0f 0x1e 0xfa), but these bytes are not in the allowed set. However, they could be placed after the NUL byte via this same bypass. Dynamic testing confirmed IBT is not enforced.",
+              "verified": true
+            },
+            {
+              "id": "PC-05",
+              "description": "No seccomp/sandbox is present, giving the shellcode full syscall access. S1 fact F013 confirms no seccomp/prctl/sandbox calls found in binary.",
+              "necessity": "Not strictly required for CODE_EXECUTION primitive (arbitrary instruction execution is sufficient), but amplifies the impact to full syscall access including write, execve, etc.",
+              "verified": true
+            },
+            {
+              "id": "PC-06",
+              "description": "The mmap hint address 0x13370000 is honored by the kernel (mmap returns 0x13370000). This is confirmed by the register dump showing rax=0x13370000 at runtime. The fixed address makes shellcode construction easier (no need to leak the shellcode buffer address).",
+              "necessity": "Not strictly required (register dump leaks rax=mmap_buf address anyway), but simplifies shellcode construction since the address is known and fixed.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "strlen(mmap_buf) vs read_return_value",
+              "alias": "is_all_upper loop bound = strlen(buf) at 0x4018c4, but actual data length = read() return value stored at [rbp-0xac]",
+              "implication": "The filter checks strlen(buf) bytes but the buffer contains read_ret bytes. Any bytes between strlen(buf) and read_ret are unfiltered. By injecting NUL at position 1, strlen=1 but read_ret can be up to 99, leaving up to 97 bytes of unfiltered shellcode."
+            },
+            {
+              "expression": "0x00 NUL byte dual role",
+              "alias": "The NUL byte at position 1 serves two purposes: (1) terminates strlen so filter only checks byte[0], and (2) when executed as machine code, 0x00 is the opcode for ADD r/m8, r8 which needs a ModRM byte. A second 0x00 at position 2 serves as ModRM=0x00 ([rax], al) making the instruction ADD [rax], al - harmless since rax=0x13370000 (writable mmap region) and al=0.",
+              "implication": "The NUL byte that enables the filter bypass also needs careful handling in the executed instruction stream. Using two consecutive NUL bytes (positions 1 and 2) creates a harmless 2-byte ADD instruction, after which arbitrary shellcode can begin at position 3."
+            },
+            {
+              "expression": "CET/IBT property in ELF .note.gnu.property",
+              "alias": "Binary has GNU_PROPERTY_X86_FEATURE_1_IBT|SHSTK marked, but kernel does not enforce IBT at runtime",
+              "implication": "call rax to non-endbr64 target (mmap buffer filled with user data) executes successfully. Dynamic verification: exit(42) shellcode without endbr64 prefix executed and returned rc=42. If IBT were enforced, a #CP fault would occur instead."
+            }
+          ],
+          "verification_plan": {
+            "method": "Dynamic verification via three independent PoC payloads: (1) exit(42) shellcode after NUL byte, (2) exit(99) shellcode after NUL byte (different exit code proves full control), (3) write(1, mmap_buf, 14) shellcode after NUL byte (proves arbitrary syscall execution and data exfiltration). Each payload uses the structure: [allowed_byte 0x50] + [0x00 NUL] + [0x00 ModRM] + [arbitrary shellcode].",
+            "environment": "Linux x86-64, statically linked glibc, No PIE (base 0x400000), NX enabled, Canary enabled, Partial RELRO, CET marked but NOT enforced, no seccomp. ASLR status: on (stack/libc addresses vary across runs) but binary base is fixed and mmap hint 0x13370000 is honored.",
+            "run_command": "cd /work/workspace/0017-2022-30-shellcode-runner2-20260908-134900 && python3 poc-BUG-001.py",
+            "expected_evidence": [
+              "PRIM-001: exit(42) returns rc=42 (proves syscall instruction 0x0f 0x05 executed after NUL bypass)",
+              "PRIM-002: exit(99) returns rc=99 (proves attacker controls exit code value, different from PRIM-001)",
+              "PRIM-003: write(1, mmap_buf, 14) causes buffer content bytes (50 00 00 31 ff...) to appear in stdout (proves arbitrary syscall execution and data exfiltration)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX (GNU_STACK=RW)",
+              "present": true,
+              "primitive_impact": "NX is enabled for the stack, but the mmap region is explicitly created with PROT_READ|PROT_WRITE|PROT_EXEC (RWX) at 0x13370000. NX does not prevent shellcode execution in the RWX mmap region. The mitigation is ineffective against this primitive."
+            },
+            {
+              "name": "Canary (stack)",
+              "present": true,
+              "primitive_impact": "Stack canary is present and checked at 0x401b52-0x401b61. However, the shellcode executes in the mmap region, not on the stack. The canary does not prevent shellcode execution. The canary would only trigger if the shellcode corrupts the stack frame, but the shellcode can avoid stack corruption."
+            },
+            {
+              "name": "PIE (Position Independent Executable)",
+              "present": false,
+              "primitive_impact": "Binary is NOT PIE (fixed base 0x400000). This means all code and data addresses are known at compile time. Combined with the fixed mmap address (0x13370000), the attacker knows all relevant addresses without needing an info leak. ASLR only affects stack and libc addresses, but the register dump (BUG-003) leaks those."
+            },
+            {
+              "name": "CET/IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "CET/IBT is marked in the ELF .note.gnu.property but is NOT enforced by the kernel at runtime. Dynamic verification confirmed that 'call rax' to the mmap buffer (which does not start with endbr64) executes instructions successfully. If IBT were enforced, the shellcode would need to start with endbr64 (0xf3 0x0f 0x1e 0xfa), which could be placed after the NUL byte via this same bypass. The mitigation is ineffective."
+            },
+            {
+              "name": "CET/SHSTK (Shadow Stack)",
+              "present": true,
+              "primitive_impact": "Shadow stack is marked but enforcement status is unclear. The shellcode uses syscall instructions directly (not ret-based control flow), so shadow stack would not prevent the syscall execution. The exit(42) and write() shellcodes do not use ret instructions, making SHSTK irrelevant to this primitive."
+            },
+            {
+              "name": "RELRO (Partial)",
+              "present": true,
+              "primitive_impact": "Partial RELRO protects .got but not .got.plt. However, this primitive does not involve GOT overwrite - it achieves code execution directly via the RWX mmap region. RELRO is irrelevant to this primitive."
+            },
+            {
+              "name": "seccomp/sandbox",
+              "present": false,
+              "primitive_impact": "No seccomp/prctl/sandbox calls found in binary (S1 F013). The shellcode has full syscall access, amplifying CODE_EXECUTION to full system access (read, write, execve, etc.)."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "is_all_upper",
+              "address": "0x4018c4",
+              "description": "is_all_upper calls strlen(buf) at 0x4018c4 to determine the loop bound. The comparison at 0x4018c9 (cmp rbx, rax) checks i < strlen(buf). strlen stops at the first NUL byte, so only bytes before the first NUL are filtered."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019ad",
+              "description": "main calls read(0, mmap_buf, 99) at 0x4019ad. read() performs raw binary I/O and does not stop at NUL bytes. The user can inject NUL (0x00) bytes anywhere in the 99-byte input."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x401b4b",
+              "description": "After is_all_upper passes, main executes 'call rax' at 0x401b4b where rax = mmap_buf (0x13370000). The entire buffer content (including unfiltered bytes after NUL) is executed as machine code."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401b4b",
+              "description": "PRIM-001: Payload 'P\\x00\\x00\\x31\\xff\\x83\\xc7\\x2a\\x31\\xc0\\xb0\\x3c\\x0f\\x05' (exit(42) shellcode) passed the filter (no 'invalid shellcode!' message), executed call rax, and process exited with return_code=42. This proves: (1) NUL byte at position 1 caused strlen=1, only 'P' was filtered; (2) bytes 0x31,0xff,0x83,0xc7,0x2a,0xb0,0x3c,0x0f,0x05 (NOT in allowed set) were executed as machine code; (3) syscall instruction (0x0f 0x05) executed exit(42) successfully; (4) CET/IBT not enforced (call rax to non-endbr64 target succeeded)."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401b4b",
+              "description": "PRIM-002: Payload 'P\\x00\\x00\\x31\\xff\\x83\\xc7\\x63\\x31\\xc0\\xb0\\x3c\\x0f\\x05' (exit(99) shellcode, different exit code) passed the filter and process exited with return_code=99. This proves the attacker fully controls the executed code - different shellcode produces different exit codes (42 vs 99), confirming arbitrary code execution rather than a fixed behavior."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401b4b",
+              "description": "PRIM-003: Payload 'P\\x00\\x00\\x31\\xff\\x83\\xc7\\x01\\x31\\xd2\\xb2\\x0e\\x31\\xc0\\xb0\\x01\\x0f\\x05' (write(1, mmap_buf, 14) shellcode) passed the filter and the write syscall executed successfully. The buffer content bytes (50 00 00 31 ff 83 c7 01 31 d2 b2 0e 31 c0) appeared in stdout after the register dump, proving: (1) arbitrary syscall execution (write syscall #1); (2) data exfiltration from process memory to stdout; (3) the shellcode controlled rax (syscall number), rdi (fd), rsi (buffer addr), and rdx (length)."
+            },
+            {
+              "id": "E007",
+              "type": "DERIVED",
+              "function": "main",
+              "address": "0x401b4b",
+              "description": "CET/IBT enforcement test: All three PoC payloads execute 'call rax' to the mmap buffer at 0x13370000 which does NOT start with endbr64 (0xf3 0x0f 0x1e 0xfa). The first byte is 0x50 ('P' = PUSH rax). If IBT were enforced, a #CP (Control Protection) fault would occur and the process would crash with SIGILL or similar before executing any shellcode. Instead, the shellcode executed successfully (exit(42), exit(99), write()), proving IBT is NOT enforced at runtime."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "50 00 00 31 ff 83 c7 01 31 d2 b2 0e 31 c0 (buffer content leaked to stdout via write(1, mmap_buf, 14) syscall)",
+            "fault_address": "",
+            "return_code": 42,
+            "details": "Three PoC payloads verified: (1) exit(42) shellcode -> rc=42; (2) exit(99) shellcode -> rc=99; (3) write(1, mmap_buf, 14) shellcode -> buffer content appeared in stdout. All payloads use the NUL byte filter bypass: [P (0x50, allowed)] + [0x00 NUL, terminates strlen] + [0x00 ModRM for harmless ADD [rax],al] + [arbitrary shellcode with syscall 0x0f 0x05]. The filter only checks byte[0]='P' (passes), bytes after NUL are unfiltered and executed. CET/IBT not enforced. No seccomp. Full syscall access confirmed."
+          },
+          "confidence": "HIGH",
+          "notes": "The CODE_EXECUTION primitive is fully verified with three independent dynamic tests. The NUL byte filter bypass is a direct primitive (no intermediate object reuse or metadata manipulation needed). The attacker controls the entire instruction stream after the NUL byte, including syscall instructions (0x0f 0x05) that are explicitly NOT in the allowed byte set {0x20, 0x30-0x39, 0x41-0x5a}. The primitive is DIRECT: BUG -> strlen-based filter bypass -> unfiltered bytes in RWX region -> call rax -> CODE_EXECUTION. No ROP chain, tcache poisoning, or other indirect techniques are needed. The mmap region is RWX at fixed address 0x13370000, and no seccomp sandbox restricts syscalls. This is the highest-severity primitive: arbitrary code execution with full syscall access."
+        }
+      ],
+      "non_primitives": [],
+      "unresolved": []
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 2,
+        "verified": 1,
+        "theoretical": 1,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "read() return value checked with 'cmp [rbp-0xac], 0x0; jne' which only rejects return value == 0 (EOF). A negative return value (-1, error) passes the check. When read_ret=-1, cdqe sign-extends to 0xFFFFFFFFFFFFFFFF, lea rdx,[rax-1] computes -2, and rax = mmap_buf + (-2) = 0x1336FFFE (2 bytes before the mmap region). The movzx eax, BYTE PTR [rax] at 0x4019e3 reads from this unmapped address, causing SIGSEGV.",
+            "description": "When read() returns -1 (e.g., EAGAIN on non-blocking stdin), the insufficient check (only rejecting 0) allows execution to continue. The code computes buf[read_ret - 1] = buf[-2] = 0x1336FFFE, which is outside the mmap region at 0x13370000. Since 0x1336FFFE is in an unmapped page, the OOB read causes SIGSEGV."
+          },
+          "chain": [
+            "BUG-002: read() return value insufficient check (only rejects 0, not -1)",
+            "read() returns -1 (EAGAIN via non-blocking stdin, or other error condition)",
+            "check 'cmp [rbp-0xac], 0x0; jne' passes because -1 != 0",
+            "cdqe sign-extends -1 to 0xFFFFFFFFFFFFFFFF; lea rdx,[rax-1] = -2",
+            "rax = mmap_buf(0x13370000) + (-2) = 0x1336FFFE (OOB address, unmapped)",
+            "movzx eax, BYTE PTR [rax] at 0x4019e3 reads from unmapped 0x1336FFFE",
+            "SIGSEGV (CRASH)"
+          ],
+          "controlled_element": {
+            "what": "read() return value (can be made -1 via non-blocking stdin with EAGAIN)",
+            "how": "Attacker sets stdin to non-blocking mode (e.g., via a C helper that calls fcntl(0, F_SETFL, O_NONBLOCK) before execv, or by providing a non-blocking pipe as stdin). With no data available and write end open, read() returns -1 with errno=EAGAIN.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "read() must return -1 (error, not EOF). This can be achieved by setting stdin to non-blocking mode (O_NONBLOCK) with no data available and the write end of the pipe open. read() then returns -1 with errno=EAGAIN.",
+              "necessity": "Without read() returning -1, the OOB access path is never reached. Normal read returns >0, EOF returns 0 (which is caught by the check).",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The check 'cmp [rbp-0xac], 0x0; jne' must pass with read_ret=-1. Since -1 != 0, the check passes. This is a static property of the code.",
+              "necessity": "If the check rejected negative values (e.g., cmp <= 0), the OOB path would not be reached.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "Address 0x1336FFFE (mmap_buf - 2) must be unmapped for the crash to occur. The mmap region starts at 0x13370000 (page-aligned), so 0x1336FFFE is in the preceding page which is not mapped.",
+              "necessity": "If 0x1336FFFE were mapped, the OOB read would succeed and the crash would not occur (but the OOB write path might be reached instead).",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "buf[read_ret - 1] where read_ret = -1",
+              "alias": "mmap_buf + (-1 - 1) = mmap_buf - 2 = 0x13370000 - 2 = 0x1336FFFE",
+              "implication": "The OOB access targets a fixed address 0x1336FFFE, which is 2 bytes before the mmap region. This address is in an unmapped page, causing SIGSEGV on read."
+            }
+          ],
+          "verification_plan": {
+            "method": "1. Direct test: Run target with non-blocking stdin (pipe with O_NONBLOCK, write end open). read() returns -1 (EAGAIN), OOB read at 0x1336FFFE causes SIGSEGV. 2. GDB simulation: Break after read(), set return value to -1, continue, observe crash at 0x4019e3 with rax=0x1336FFFE.",
+            "environment": "Linux x86-64, statically linked binary, no PIE, no seccomp. Non-blocking stdin achievable via fcntl O_NONBLOCK or non-blocking pipe.",
+            "run_command": "python3 poc-BUG-002.py",
+            "expected_evidence": [
+              "return_code = -11 (SIGSEGV)",
+              "No register dump in stdout (crash occurs before shellcode execution)",
+              "GDB: rax=0x1336FFFE, rip=0x4019e3, instruction=movzbl (%rax),%eax",
+              "GDB: read_ret = 0xffffffff (-1) at [rbp-0xac]",
+              "5/5 direct runs crash with SIGSEGV"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "No impact on this primitive. The crash is caused by unmapped memory access, not code execution."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact. The OOB access is on the mmap buffer, not the stack. The stack canary is not involved."
+            },
+            {
+              "name": "PIE",
+              "present": false,
+              "primitive_impact": "No PIE means mmap hint 0x13370000 is a fixed address. The OOB target 0x1336FFFE is also fixed. No ASLR randomization of the mmap buffer address."
+            },
+            {
+              "name": "CET (IBT/SHSTK)",
+              "present": true,
+              "primitive_impact": "No impact on this primitive. The crash occurs before any indirect call instruction."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019b8",
+              "description": "read() return value checked with 'cmp DWORD PTR [rbp-0xac], 0x0; jne 0x4019d0'. This only rejects return value == 0 (EOF). A return value of -1 (error) is non-zero and passes the check."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019d6",
+              "description": "After check passes with read_ret=-1: cdqe at 0x4019d6 sign-extends eax (0xFFFFFFFF) to rax (0xFFFFFFFFFFFFFFFF). lea rdx,[rax-1] at 0x4019d8 computes rdx = -2 (0xFFFFFFFFFFFFFFFE). add rax,rdx at 0x4019e0 yields 0x13370000 + (-2) = 0x1336FFFE."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019e3",
+              "description": "movzx eax, BYTE PTR [rax] at 0x4019e3 reads from address 0x1336FFFE (OOB read, 2 bytes before mmap region). This address is unmapped, causing SIGSEGV."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x4019e3",
+              "description": "GDB simulation: Set read_ret=-1 at breakpoint 0x4019b2. Continue to 0x4019e3. rax=0x1336fffe, rdx=0xfffffffffffffffe (-2), rip=0x4019e3. Instruction: movzbl (%rax),%eax. SIGSEGV at 0x4019e3. Confirms OOB read at unmapped 0x1336FFFE."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x4019e3",
+              "description": "Direct test: Non-blocking stdin (pipe with O_NONBLOCK, write end open). read() returns -1 (EAGAIN). Process crashes with SIGSEGV (rc=-11). stdout contains only the prompt 'Input your shellcode here (max: 100): ' with no register dump, confirming crash before shellcode execution. 5/5 runs crashed."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1336FFFE",
+              "description": "GDB memory mapping confirms 0x1336fff0 is unmapped ('Cannot access memory at address 0x1336fff0'). The mmap region is 0x13370000-0x13371000 (rwxp, 4096 bytes). Address 0x1336FFFE is in the preceding unmapped page."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0x1336FFFE",
+            "return_code": -11,
+            "details": "PRIM-001 VERIFIED: When read() returns -1 (triggered by non-blocking stdin with EAGAIN), the insufficient check (only rejects 0) allows execution to continue. buf[read_ret-1] = buf[-2] = 0x1336FFFE (unmapped). movzx eax,[rax] at 0x4019e3 causes SIGSEGV. GDB confirms: rax=0x1336fffe, rdx=-2, crash at 0x4019e3. Direct test: 5/5 runs crash with rc=-11. The crash is a CRASH primitive (DoS) - the OOB read at a fixed unmapped address causes immediate SIGSEGV."
+          },
+          "confidence": "HIGH",
+          "notes": "The CRASH primitive is the primary and highest achievable primitive from BUG-002. The OOB read at 0x1336FFFE always crashes because that address is unmapped in normal operation. The crash is deterministic and reproducible. The trigger (non-blocking stdin causing EAGAIN) is achievable by an attacker who controls the process environment (e.g., via a wrapper that sets O_NONBLOCK on fd 0 before exec)."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "RESTRICTED_WRITE",
+          "status": "THEORETICAL",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "Same as PRIM-001: read() return value insufficient check allows read_ret=-1 to pass. When the OOB-read byte at 0x1336FFFE equals 0x0a (newline), the code writes 0x00 (NUL) to that address at 0x4019fd.",
+            "description": "After the OOB read at 0x4019e3, if the byte at 0x1336FFFE equals 0x0a (newline), the code executes 'mov BYTE PTR [rax], 0x0' at 0x4019fd, writing a single NUL byte to 0x1336FFFE. This is a restricted write: single byte, fixed target address (0x1336FFFE), fixed value (0x00)."
+          },
+          "chain": [
+            "BUG-002: read() return value insufficient check (only rejects 0, not -1)",
+            "read() returns -1 (error condition)",
+            "check passes (-1 != 0)",
+            "buf[read_ret-1] = buf[-2] = 0x1336FFFE (OOB address)",
+            "movzx eax, BYTE PTR [rax] reads byte at 0x1336FFFE",
+            "if byte == 0x0a: mov BYTE PTR [rax], 0x0 writes NUL to 0x1336FFFE",
+            "RESTRICTED_WRITE (single NUL byte at fixed address)"
+          ],
+          "controlled_element": {
+            "what": "The write value is fixed (0x00/NUL). The target address is fixed (0x1336FFFE). The attacker controls whether the write path is reached (by triggering read()=-1), but does not control the write target or value.",
+            "how": "If 0x1336FFFE is mapped and contains 0x0a, the NUL write occurs. The attacker cannot control the target address or the written value - both are determined by the fixed computation buf[-2] and the constant 0x00.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "read() must return -1 (same as PRIM-001 PC-01). Achievable via non-blocking stdin with EAGAIN.",
+              "necessity": "Without read() returning -1, the OOB access path is never reached.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Address 0x1336FFFE must be mapped (readable and writable). In normal operation, this address is unmapped (it's in the page before the mmap region at 0x13370000). This precondition is NOT met in normal operation.",
+              "necessity": "If 0x1336FFFE is unmapped, the OOB read at 0x4019e3 crashes (SIGSEGV) before the write at 0x4019fd is reached. The write is only reachable if the address is mapped.",
+              "verified": false
+            },
+            {
+              "id": "PC-03",
+              "description": "The byte at 0x1336FFFE must equal 0x0a (newline) for the write to occur. If the byte is not 0x0a, the write is skipped (jne at 0x4019e8 jumps past the write).",
+              "necessity": "The conditional write only triggers when the OOB-read byte is 0x0a. The attacker does not control the content at 0x1336FFFE (it's in unmapped memory in normal operation).",
+              "verified": false
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "buf[read_ret - 1] where read_ret = -1",
+              "alias": "0x1336FFFE (fixed, mmap_buf - 2)",
+              "implication": "The write target is a fixed address 0x1336FFFE. The attacker cannot control the target address - it is always mmap_buf - 2. This makes the primitive a RESTRICTED_WRITE (fixed target), not an ARB_WRITE."
+            }
+          ],
+          "verification_plan": {
+            "method": "GDB test: Map a page at 0x1336F000 (covering 0x1336FFFE), set byte at 0x1336FFFE to 0x0a, simulate read()=-1, continue to OOB write at 0x4019fd, verify byte changes from 0x0a to 0x00.",
+            "environment": "GDB-controlled environment where 0x1336FFFE is artificially mapped. In normal operation, this address is unmapped.",
+            "run_command": "python3 poc-BUG-002.py (PRIM-002 section)",
+            "expected_evidence": [
+              "GDB: breakpoint at 0x4019fd (OOB write) is hit",
+              "GDB: byte at 0x1336FFFE changes from 0x0a to 0x00 after 'ni' past write instruction",
+              "NOTE: This requires artificially mapping 0x1336FFFE which is NOT possible in normal operation"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "No impact on this write primitive."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "No impact. The write target is the mmap buffer area, not the stack."
+            },
+            {
+              "name": "PIE",
+              "present": false,
+              "primitive_impact": "No PIE means the mmap buffer is at fixed 0x13370000, so the OOB write target 0x1336FFFE is also fixed."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E007",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019fd",
+              "description": "mov BYTE PTR [rax], 0x0 at 0x4019fd writes NUL to the OOB address (0x1336FFFE) if the byte at that address equals 0x0a. This is the OOB write instruction."
+            },
+            {
+              "id": "E008",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x4019e6",
+              "description": "cmp al, 0xa; jne 0x401a00 at 0x4019e6-0x4019e8. The write is conditional on the OOB-read byte being 0x0a (newline). If not 0x0a, the write is skipped."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x4019fd",
+              "description": "GDB test with artificially mapped page at 0x1336F000: Set byte at 0x1336FFFE to 0x0a, simulate read_ret=-1. Breakpoint at 0x4019e3 (OOB read) hit - rax=0x1336fffe, byte=0x0a. Breakpoint at 0x4019fd (OOB write) hit. After 'ni' (step past write), byte at 0x1336FFFE changed from 0x0a to 0x00. Confirms the write instruction works when the address is mapped."
+            },
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x1336FFFE",
+              "description": "In normal operation (no GDB page mapping), 0x1336FFFE is unmapped. The OOB read at 0x4019e3 crashes with SIGSEGV before the write at 0x4019fd is reached. The write is NOT reachable in normal operation."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-002.py",
+            "written_value": "0x00 (NUL byte)",
+            "read_value": "0x0a (byte at 0x1336FFFE before write, in GDB-mapped page)",
+            "fault_address": "0x1336FFFE",
+            "return_code": 0,
+            "details": "PRIM-002 THEORETICAL: The OOB write instruction at 0x4019fd IS reached and confirmed working in GDB (with artificially mapped page at 0x1336F000). Byte at 0x1336FFFE changes from 0x0a to 0x00. However, in normal operation 0x1336FFFE is unmapped, so the OOB read at 0x4019e3 crashes first (SIGSEGV) and the write is never reached. The write is a single NUL byte at a fixed address (0x1336FFFE) with a fixed value (0x00) - this is a RESTRICTED_WRITE, not ARB_WRITE. Status: THEORETICAL because the key precondition (0x1336FFFE mapped) is not met in normal operation."
+          },
+          "confidence": "MEDIUM",
+          "notes": "The RESTRICTED_WRITE is structurally present in the code (the write instruction at 0x4019fd exists and is reachable when 0x1336FFFE is mapped), but in normal operation the address is unmapped, making the write unreachable. The write target (0x1336FFFE) and value (0x00) are both fixed - the attacker cannot control either. Even if reachable, this would only be a RESTRICTED_WRITE (single NUL byte at fixed address), not an ARB_WRITE. The primitive is marked THEORETICAL because: (1) the write instruction is confirmed to work via GDB, but (2) the precondition (mapped 0x1336FFFE) is not achievable in normal operation, and (3) the write target and value are not attacker-controlled."
+        }
+      ],
+      "non_primitives": [
+        {
+          "primitive_id": "NP-001",
+          "candidate_type": "ARB_WRITE",
+          "source_bug": "BUG-002",
+          "reason": "The OOB write (PRIM-002) targets a fixed address (0x1336FFFE = mmap_buf - 2) with a fixed value (0x00/NUL). The attacker cannot control the write target address or the written value. The address is computed as mmap_buf + (read_ret - 1) where read_ret is always -1, yielding a fixed offset of -2. This does not meet the ARB_WRITE acceptance standard (target address must be attacker-controlled)."
+        },
+        {
+          "primitive_id": "NP-002",
+          "candidate_type": "RELATIVE_WRITE",
+          "source_bug": "BUG-002",
+          "reason": "While the write is at a relative offset from mmap_buf (-2 bytes), the target address 0x1336FFFE is unmapped in normal operation, making the write unreachable. Even if it were reachable, the write is a single NUL byte at a fixed offset, which is more accurately classified as RESTRICTED_WRITE (single byte, fixed value 0x00) rather than RELATIVE_WRITE."
+        },
+        {
+          "primitive_id": "NP-003",
+          "candidate_type": "OOB_READ",
+          "source_bug": "BUG-002",
+          "reason": "The OOB read at 0x1336FFFE (movzx at 0x4019e3) reads from an unmapped address, causing immediate SIGSEGV. No data is read or leaked - the process crashes before any data can be observed. This is a CRASH, not an OOB_READ primitive. The read does not return any data to the attacker."
+        }
+      ],
+      "unresolved": [
+        {
+          "description": "Whether there is any scenario in normal operation where 0x1336FFFE could be mapped",
+          "reason": "The mmap region at 0x13370000 is page-aligned (4096 bytes). The preceding page (0x1336F000-0x13370000) is not mapped by the program. In theory, if another allocation (e.g., by the kernel or a library) mapped that page, the OOB write could become reachable. However, no such mapping was observed in any test run.",
+          "required_next_step": "S4 could investigate if any memory layout manipulation (e.g., via mmap collisions, brk, or other allocations) could cause 0x1336FFFE to be mapped, making the RESTRICTED_WRITE reachable."
+        },
+        {
+          "description": "Whether EINTR from signals other than EAGAIN could trigger read()=-1",
+          "reason": "The non-blocking stdin approach (EAGAIN) was confirmed to work. Other error conditions (EINTR from signals) were tested with SIGURG and SIGWINCH but did not cause read() to return -1 (the signals were caught by default handlers and read continued). The alarm(60) SIGALRM would kill the process (default handler) rather than causing EINTR.",
+          "required_next_step": "No further action needed - EAGAIN via non-blocking stdin is a confirmed and reliable trigger."
+        }
+      ]
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-003",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-003",
+        "total_primitives": 1,
+        "verified": 1,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "INFO_LEAK",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-003",
+            "root_cause": "Information Leak via register state printf before shellcode execution. main saves all general-purpose registers (rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8-r13) to the stack and prints them to stdout via _IO_printf at 0x401afb with format string at 0x498070 before executing 'call rax' (0x401b4b). This leaks runtime stack addresses (rsp, rbp, r11) and a stack-pointer value (rbx) to the attacker, providing ASLR bypass information.",
+            "description": "Before executing user-controlled shellcode via call rax at 0x401b4b, main prints all register values to stdout using _IO_printf at 0x401afb. The format string at 0x498070 contains 14 format specifiers (%p and %lx) that output the values of rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8, r9, r10, r11, r12, r13. Among these, rbp (frame pointer), rsp (stack pointer), r11 (stack pointer copy), and rbx (stack address pointing to envp) are stack addresses subject to ASLR randomization. The binary has No PIE (fixed base 0x400000) but stack addresses are randomized. The leak provides the attacker with exact runtime stack addresses, defeating ASLR for stack-based targets."
+          },
+          "chain": [
+            "BUG-003",
+            "Register state printed to stdout via _IO_printf before shellcode execution",
+            "Stack addresses (rbp, rsp, r11, rbx) leaked to stdout in plaintext",
+            "Attacker reads stdout to obtain runtime stack addresses",
+            "INFO_LEAK (ASLR bypass for stack addresses)"
+          ],
+          "controlled_element": {
+            "what": "Runtime stack addresses (rbp, rsp, r11, rbx) and mmap buffer address (rax=0x13370000)",
+            "how": "The binary itself prints all register values to stdout via _IO_printf at 0x401afb before executing shellcode. The attacker simply reads the program's stdout output to obtain the leaked addresses. No special input is needed beyond a valid shellcode that passes the is_all_upper filter (e.g., 'AAAA').",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "The input must pass the is_all_upper filter so that execution reaches the printf at 0x401afb. This requires the input bytes before any NUL to be in the allowed set {0x20, 0x30-0x39, 0x41-0x5a}. A simple input like 'AAAA' satisfies this.",
+              "necessity": "Without passing the filter, _abort is called and the register dump is never printed.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The read(0, mmap_buf, 99) must return a non-zero value so execution continues past the check at 0x4019b8. Any input of at least 1 byte satisfies this.",
+              "necessity": "If read returns 0 (EOF), _abort is called before the register dump.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "ASLR must be enabled for the leak to be security-relevant. If ASLR is off, the stack addresses are predictable and the leak adds no new information.",
+              "necessity": "Determines whether the leaked stack addresses provide ASLR bypass value. Verified: ASLR is ON (stack addresses vary across runs).",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "rbp (printed) == original rbp register value",
+              "alias": "rbp is the stack frame pointer, passed as the 5th printf argument (r9 register at call site). It directly reveals the current stack frame address.",
+              "implication": "Provides exact stack frame base address, defeating stack ASLR."
+            },
+            {
+              "expression": "rsp (printed) == original rsp register value",
+              "alias": "rsp is the stack pointer, passed as the 6th printf argument (stack[0] at call site). It directly reveals the current stack top address.",
+              "implication": "Provides exact stack top address. r11 also contains the same value, providing a redundant leak."
+            },
+            {
+              "expression": "rbx (printed) == original rdx register value",
+              "alias": "rbx in the output actually corresponds to the original rdx value, which at this point in main holds a stack address (pointing to envp area on the stack, approximately rbp+0xf8).",
+              "implication": "Provides an additional stack address offset, useful for calculating positions of environment variables and argv on the stack."
+            },
+            {
+              "expression": "rax (printed) == mmap_buf address == 0x13370000",
+              "alias": "rax is set to the mmap buffer address at 0x401acc (mov rax, [rbp-0x40]). The mmap uses a fixed hint 0x13370000 which is honored by the kernel.",
+              "implication": "Provides the exact address of the RWX shellcode buffer. This is a fixed address (no ASLR on mmap hint), so it is always 0x13370000."
+            }
+          ],
+          "verification_plan": {
+            "method": "Run the binary 3 times with input 'AAAA\\n' (passes is_all_upper filter). Capture stdout and parse the register dump. Verify that stack addresses (rbp, rsp, r11, rbx) are present in the output, are in the valid stack address range (0x7f0000000000-0x7fffffffffff), and vary across runs (confirming ASLR is on). Verify rbp-rsp is a reasonable stack frame distance. Verify r11==rsp (redundant leak).",
+            "environment": "Linux x86-64, statically linked glibc, No PIE binary, ASLR enabled",
+            "run_command": "python3 /work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-003.py",
+            "expected_evidence": [
+              "stdout contains 'Before running the shellcode:' followed by register dump",
+              "rbp, rsp, r11 values are in range 0x7f0000000000-0x7fffffffffff (stack addresses)",
+              "rbp, rsp values differ across 3 runs (ASLR confirmed)",
+              "rbp - rsp = 0xb0 (176 bytes, reasonable stack frame distance)",
+              "r11 == rsp (redundant stack pointer leak)",
+              "rax == 0x13370000 (fixed mmap buffer address)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "ASLR",
+              "present": true,
+              "primitive_impact": "ASLR randomizes stack addresses across runs. However, the register dump leak directly defeats stack ASLR by printing exact rsp/rbp values. The leak is still valuable because it provides the exact runtime stack addresses that ASLR was supposed to hide. Without this leak, an attacker would need to guess or brute-force stack addresses."
+            },
+            {
+              "name": "No PIE",
+              "present": true,
+              "primitive_impact": "The binary has No PIE (fixed base 0x400000), so code and data segment addresses are already known. The leak primarily adds value for stack addresses (which ARE randomized by ASLR). The mmap buffer at 0x13370000 is also fixed (no ASLR on the mmap hint)."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "NX prevents execution on the stack, but the shellcode is placed in an RWX mmap region (0x13370000) which is explicitly executable. NX does not affect the INFO_LEAK primitive."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "Stack canary protects against stack buffer overflows but is irrelevant to the INFO_LEAK primitive, which is a direct printf-based information disclosure."
+            },
+            {
+              "name": "CET (IBT/SHSTK)",
+              "present": true,
+              "primitive_impact": "IBT may restrict indirect call targets to those starting with endbr64. The mmap buffer does not start with endbr64, so IBT could block shellcode execution. However, the INFO_LEAK primitive itself (the printf of register values) occurs BEFORE the call rax, so the leak happens regardless of whether IBT blocks the subsequent shellcode execution. The leak is still VERIFIED as the information is disclosed to stdout."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x401afb",
+              "description": "main calls _IO_printf at 0x401afb with format string at 0x498070. The format string contains 14 format specifiers that print rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, r8, r9, r10, r11, r12, r13 to stdout."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x498070",
+              "description": "Format string at 0x498070: 'Before running the shellcode:\\nrax = %p\\nrbx = 0x%lx\\nrcx = 0x%lx\\nrdx = 0x%lx\\nrbp = 0x%lx\\nrsp = 0x%lx\\nrsi = 0x%lx\\nrdi = 0x%lx\\nr8 = 0x%lx\\nr9 = 0x%lx\\nr10 = 0x%lx\\nr11 = 0x%lx\\nr12 = 0x%lx\\nr13 = 0x%lx\\n' - prints all register values including stack pointers (rbp, rsp)."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "main",
+              "address": "0x401a46",
+              "description": "main saves all registers to stack at 0x401a46-0x401a85, then sets up printf arguments at 0x401ad0-0x401af6 (pushes registers as varargs, sets rsi=mmap_buf, rdi=format_string). The register state is fully exposed."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401afb",
+              "description": "Runtime execution confirmed: stdout output contains 'Before running the shellcode:' followed by register dump. Run 1: rbp=0x7ffdaa6eeb80, rsp=0x7ffdaa6eead0, r11=0x7ffdaa6eead0, rbx=0x7ffdaa6eed78. Run 2: rbp=0x7ffd8f12cf50, rsp=0x7ffd8f12cea0. Run 3: rbp=0x7ffd255120c0, rsp=0x7ffd25512010. Stack addresses vary across runs (ASLR confirmed). rax=0x13370000 (fixed mmap address) in all runs."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401afb",
+              "description": "GDB breakpoint at 0x401afb confirmed printf argument mapping: rsi(arg1=rax_printed)=0x13370000, rdx(arg2=rbx_printed)=stack_addr, rcx(arg3=rcx_printed)=0x3, r8(arg4=rdx_printed)=0x13370000, r9(arg5=rbp_printed)=stack_addr, stack[0](arg6=rsp_printed)=stack_addr, stack[6](arg12=r11_printed)=stack_addr. All stack addresses are in range 0x7f0000000000-0x7fffffffffff."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "main",
+              "address": "0x401afb",
+              "description": "ASLR bypass confirmed: rsp values across 3 runs: 0x7ffdaa6eead0, 0x7ffd8f12cea0, 0x7ffd25512010 - all different, confirming ASLR is enabled and the leak provides the exact randomized stack address each run. rbp-rsp=0xb0 (176 bytes) consistent across runs, confirming these are real stack frame addresses."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0017-2022-30-shellcode-runner2-20260908-134900/poc-BUG-003.py",
+            "written_value": "",
+            "read_value": "rbp=0x7ffdaa6eeb80, rsp=0x7ffdaa6eead0, r11=0x7ffdaa6eead0, rbx=0x7ffdaa6eed78, rax=0x13370000 (Run 1); rbp=0x7ffd8f12cf50, rsp=0x7ffd8f12cea0 (Run 2); rbp=0x7ffd255120c0, rsp=0x7ffd25512010 (Run 3)",
+            "fault_address": "",
+            "return_code": -11,
+            "details": "PoC executed 3 runs of the binary with input 'AAAA\\n'. All runs produced register dumps on stdout before SIGSEGV (rc=-11 from invalid shellcode execution). Stack addresses (rbp, rsp, r11, rbx) were successfully leaked in all runs. ASLR confirmed: stack addresses differ across all 3 runs. rax=0x13370000 (fixed mmap address) consistent across runs. rbp-rsp=0xb0 (176 bytes, valid stack frame). r11==rsp (redundant stack leak). The INFO_LEAK primitive is VERIFIED: the binary discloses runtime stack addresses to stdout, defeating stack ASLR."
+          },
+          "confidence": "HIGH",
+          "notes": "This is a DIRECT INFO_LEAK primitive. The register dump is printed via a single _IO_printf call at 0x401afb - no intermediate object reuse or metadata manipulation is involved. The leak occurs before shellcode execution (call rax at 0x401b4b), so it is available regardless of whether the shellcode itself succeeds. The leaked stack addresses (rbp, rsp, r11) provide exact ASLR bypass for the stack region. The leaked rbx value provides an additional stack address (envp area). The leaked rax=0x13370000 provides the RWX shellcode buffer address (fixed, no ASLR). Note: This INFO_LEAK is most powerful when combined with BUG-001 (filter bypass), as the leaked stack addresses can be used by the shellcode to construct ROP chains or direct memory operations with correct addresses. However, S3 only verifies the primitive itself (INFO_LEAK), not the combined exploit route (S4 territory)."
+        }
+      ],
+      "non_primitives": [],
+      "unresolved": []
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002",
+    "BUG-003"
+  ]
+}

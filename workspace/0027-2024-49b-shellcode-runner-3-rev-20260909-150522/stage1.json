@@ -1,0 +1,816 @@
+{
+  "stage": 1,
+  "binary": "/work/workspace/0027-2024-49b-shellcode-runner-3-rev-20260909-150522/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0027-2024-49b-shellcode-runner-3-rev-20260909-150522/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x1160\",\"dynamic\":true,\"stripped\":false,\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)\",\"source_file\":\"shellcode_runner3.c\",\"buildid\":\"9318cc0ff9d7e63e4d877518236e877f56a836b4\",\"type\":\"DYN (PIE executable)\"},\"security\":{\"relro\":{\"value\":\"full\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":true,\"source\":\"ELF\"},\"fortify\":{\"value\":false,\"source\":\"ELF\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"seccomp\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"notes\":\"GNU_STACK is RW (not RWX) so NX applies to stack; however program explicitly mmap's an RWX region at 0x13370000 then mprotect's it to R-X before jumping in — shellcode execution region is executable by design.\"},\"runtime\":{\"libc\":{\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"version\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\",\"source\":\"RUNTIME\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"needed\":true,\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":\"none\",\"runpath\":\"none\",\"ld_library_path_priority\":\"LD_LIBRARY_PATH would take precedence over system path (no RPATH/RUNPATH present)\",\"source\":\"RUNTIME\"}],\"vdso\":\"linux-vdso.so.1\"},\"interface\":{\"entry_function\":\"main @ 0x1342\",\"input_sources\":[{\"source\":\"stdin\",\"function\":\"main\",\"mechanism\":\"read(0, mmap_buf, 0x63)\",\"max_bytes\":99,\"prompt\":\"Input your shellcode here (max: 100): \"}],\"menu\":[],\"user_controlled_inputs\":[{\"name\":\"shellcode_buffer\",\"source\":\"stdin via read()\",\"function\":\"main\",\"size\":99,\"destination\":\"mmap'd region at 0x13370000\",\"notes\":\"No newline/null termination handling observed; read() returns raw byte count into [rbp-0x1c]. Buffer is memset to 0 (0x64 bytes) before read.\"}]},\"memory\":{\"sections\":[{\"name\":\".interp\",\"address\":\"0x318\",\"size\":\"0x1c\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".note.gnu.property\",\"address\":\"0x338\",\"size\":\"0x30\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".note.gnu.build-id\",\"address\":\"0x368\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".note.ABI-tag\",\"address\":\"0x38c\",\"size\":\"0x20\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".gnu.hash\",\"address\":\"0x3b0\",\"size\":\"0x34\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".dynsym\",\"address\":\"0x3e8\",\"size\":\"0x1b0\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".dynstr\",\"address\":\"0x598\",\"size\":\"0xeb\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".gnu.version\",\"address\":\"0x684\",\"size\":\"0x24\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".gnu.version_r\",\"address\":\"0x6a8\",\"size\":\"0x40\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".rela.dyn\",\"address\":\"0x6e8\",\"size\":\"0x108\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".rela.plt\",\"address\":\"0x7f0\",\"size\":\"0xd8\",\"flags\":\"AI\",\"writable\":false,\"executable\":false},{\"name\":\".init\",\"address\":\"0x1000\",\"size\":\"0x1b\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".plt\",\"address\":\"0x1020\",\"size\":\"0xa0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".plt.got\",\"address\":\"0x10c0\",\"size\":\"0x10\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".plt.sec\",\"address\":\"0x10d0\",\"size\":\"0x90\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".text\",\"address\":\"0x1160\",\"size\":\"0x36b\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".fini\",\"address\":\"0x14cc\",\"size\":\"0xd\",\"flags\":\"AX\",\"writable\":false,\"executable\":true},{\"name\":\".rodata\",\"address\":\"0x2000\",\"size\":\"0x5b\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".eh_frame_hdr\",\"address\":\"0x205c\",\"size\":\"0x4c\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".eh_frame\",\"address\":\"0x20a8\",\"size\":\"0x108\",\"flags\":\"A\",\"writable\":false,\"executable\":false},{\"name\":\".init_array\",\"address\":\"0x3d78\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".fini_array\",\"address\":\"0x3d80\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".dynamic\",\"address\":\"0x3d88\",\"size\":\"0x1f0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".got\",\"address\":\"0x3f78\",\"size\":\"0x88\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"note\":\"Full RELRO → made read-only at runtime\"},{\"name\":\".data\",\"address\":\"0x4000\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false},{\"name\":\".bss\",\"address\":\"0x4020\",\"size\":\"0x30\",\"flags\":\"WA\",\"writable\":true,\"executable\":false}],\"globals\":[{\"name\":\"stdout\",\"address\":\"0x4020\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\",\"reloc\":\"R_X86_64_COPY\"},{\"name\":\"stdin\",\"address\":\"0x4030\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\",\"reloc\":\"R_X86_64_COPY\"},{\"name\":\"stderr\",\"address\":\"0x4040\",\"size\":8,\"section\":\".bss\",\"type\":\"FILE*\",\"reloc\":\"R_X86_64_COPY\"},{\"name\":\"completed.0\",\"address\":\"0x4048\",\"size\":1,\"section\":\".bss\",\"type\":\"guard byte\"},{\"name\":\"__dso_handle\",\"address\":\"0x4008\",\"size\":8,\"section\":\".data\",\"type\":\"pointer\",\"visibility\":\"HIDDEN\"},{\"name\":\"_IO_stdin_used\",\"address\":\"0x2000\",\"size\":4,\"section\":\".rodata\",\"type\":\"int\"},{\"name\":\"blacklist\",\"address\":\"0x12ed\",\"type\":\"function (in .text)\",\"note\":\"symbol named 'blacklist' is a function, not a data array\"}],\"got\":[{\"offset\":\"0x3fd8\",\"type\":\"GLOB_DAT\",\"symbol\":\"__libc_start_main@GLIBC_2.34\"},{\"offset\":\"0x3fe0\",\"type\":\"GLOB_DAT\",\"symbol\":\"_ITM_deregisterTMCloneTable@Base\"},{\"offset\":\"0x3fe8\",\"type\":\"GLOB_DAT\",\"symbol\":\"__gmon_start__@Base\"},{\"offset\":\"0x3ff0\",\"type\":\"GLOB_DAT\",\"symbol\":\"_ITM_registerTMCloneTable@Base\"},{\"offset\":\"0x3ff8\",\"type\":\"GLOB_DAT\",\"symbol\":\"__cxa_finalize@GLIBC_2.2.5\"},{\"offset\":\"0x3f90\",\"type\":\"JUMP_SLOT\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\"},{\"offset\":\"0x3f98\",\"type\":\"JUMP_SLOT\",\"symbol\":\"mmap@GLIBC_2.2.5\"},{\"offset\":\"0x3fa0\",\"type\":\"JUMP_SLOT\",\"symbol\":\"printf@GLIBC_2.2.5\"},{\"offset\":\"0x3fa8\",\"type\":\"JUMP_SLOT\",\"symbol\":\"memset@GLIBC_2.2.5\"},{\"offset\":\"0x3fb0\",\"type\":\"JUMP_SLOT\",\"symbol\":\"alarm@GLIBC_2.2.5\"},{\"offset\":\"0x3fb8\",\"type\":\"JUMP_SLOT\",\"symbol\":\"read@GLIBC_2.2.5\"},{\"offset\":\"0x3fc0\",\"type\":\"JUMP_SLOT\",\"symbol\":\"setvbuf@GLIBC_2.2.5\"},{\"offset\":\"0x3fc8\",\"type\":\"JUMP_SLOT\",\"symbol\":\"mprotect@GLIBC_2.2.5\"},{\"offset\":\"0x3fd0\",\"type\":\"JUMP_SLOT\",\"symbol\":\"exit@GLIBC_2.2.5\"}],\"plt\":[{\"symbol\":\"__stack_chk_fail\",\"plt_sec\":\"0x10d0\"},{\"symbol\":\"mmap\",\"plt_sec\":\"0x10e0\"},{\"symbol\":\"printf\",\"plt_sec\":\"0x10f0\"},{\"symbol\":\"memset\",\"plt_sec\":\"0x1100\"},{\"symbol\":\"alarm\",\"plt_sec\":\"0x1110\"},{\"symbol\":\"read\",\"plt_sec\":\"0x1120\"},{\"symbol\":\"setvbuf\",\"plt_sec\":\"0x1130\"},{\"symbol\":\"mprotect\",\"plt_sec\":\"0x1140\"},{\"symbol\":\"exit\",\"plt_sec\":\"0x1150\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x1342\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"mmap\",\"_abort\",\"memset\",\"printf\",\"read\",\"blacklist\",\"mprotect\"],\"inputs\":[{\"name\":\"shellcode\",\"source\":\"stdin\",\"mechanism\":\"read(0, buf, 0x63)\",\"max_len\":99}],\"checks\":[\"mmap return != -1 (MAP_FAILED check at 0x139f)\",\"read() return != 0 (at 0x13f8, empty input → _abort 'read failed!')\",\"blacklist(buf) == 0 (at 0x1419, if nonzero → _abort with blacklist-violation message)\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"0x13370000\",\"size\":100,\"prot\":\"RWX (PROT_READ|PROT_WRITE|PROT_EXEC=7)\",\"flags\":\"MAP_PRIVATE|MAP_ANONYMOUS (0x22), fd=-1, offset=0\",\"via\":\"mmap\"},{\"operation\":\"WRITE\",\"destination\":\"mmap_buf\",\"size\":100,\"value\":0,\"via\":\"memset(buf, 0, 0x64)\"},{\"operation\":\"WRITE\",\"destination\":\"mmap_buf\",\"size\":\"user_input_len (<=99)\",\"via\":\"read(0, buf, 0x63)\"},{\"operation\":\"PROT_CHANGE\",\"destination\":\"mmap_buf\",\"size\":100,\"new_prot\":\"R-X (PROT_READ|PROT_EXEC=4)\",\"via\":\"mprotect(buf, 0x64, 4)\"},{\"operation\":\"EXEC\",\"destination\":\"mmap_buf (via jmp rdi where rdi=0x13370000)\",\"via\":\"indirect jump\",\"note\":\"all GPRs (rax-r15, rsp, rbp) and XMM0-15 zeroed before jump; rdi set to 0x13370000; rsp=0 means no usable stack at entry\"}],\"calls\":[\"init\",\"mmap\",\"memset\",\"printf\",\"read\",\"blacklist\",\"mprotect\",\"_abort\"],\"behavior_summary\":\"1) init() sets stdin/stdout/stderr unbuffered + alarm(60). 2) mmap(0x13370000, 100, RWX, MAP_PRIVATE|MAP_ANON, -1, 0). 3) memset(buf,0,100). 4) printf prompt. 5) read(0,buf,99). 6) blacklist(buf) check. 7) mprotect(buf,100,R-X). 8) zero ALL registers (including rsp/rbp) except rdi=0x13370000. 9) jmp rdi → execute shellcode. Note: rsp is zeroed → shellcode has no stack until it sets one.\"},{\"name\":\"blacklist\",\"address\":\"0x12ed\",\"callers\":[\"main\"],\"callees\":[],\"inputs\":[{\"name\":\"buf\",\"source\":\"parameter (rdi)\",\"origin\":\"mmap'd shellcode buffer\"}],\"checks\":[\"for i in 0..0x63 (100 iterations, indices 0-99): if buf[i]==0x0f → return 1 (reject)\",\"if buf[i]==0xcd → return 1 (reject)\",\"if no byte matched → return 0 (accept)\"],\"memory_operations\":[{\"operation\":\"READ\",\"destination\":\"buf[i] for i=0..99\",\"size\":1,\"via\":\"movzx eax, BYTE PTR [rax+rdx]\"}],\"calls\":[],\"behavior_summary\":\"Byte-level filter scanning exactly 100 bytes (index 0 to 0x63 inclusive). Rejects if ANY byte equals 0x0f or 0xcd. 0x0f is the first byte of 'syscall' (0f 05); 0xcd is the first byte of 'int 0x80' (cd 80). This blocks the two standard Linux system-call instruction encodings. Returns 1=blacklisted/reject, 0=clean/accept.\"},{\"name\":\"init\",\"address\":\"0x127e\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"behavior_summary\":\"setvbuf(stdin, 0, 2, 0) [unbuffered]; setvbuf(stdout, 0, 2, 0); setvbuf(stderr, 0, 2, 0); alarm(60).\"},{\"name\":\"_abort\",\"address\":\"0x1249\",\"callers\":[\"main\"],\"callees\":[\"printf\",\"exit\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"parameter (rdi)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"printf\",\"exit\"],\"behavior_summary\":\"printf('%s\\\\n', msg) then exit(1). Used for mmap-failed / read-failed / blacklist-violation fatal paths.\"}],\"attack_surfaces\":[{\"function\":\"main\",\"input\":\"stdin shellcode (up to 99 bytes)\",\"operation\":\"mmap RWX region → read user bytes → blacklist filter → mprotect R-X → zero regs → jmp rdi (indirect jump to user-controlled code)\",\"risk\":\"HIGH\",\"reason\":\"Attacker fully controls the bytes that get executed. The only barrier is the blacklist() byte filter. This is a shellcode-runner challenge: the attack surface is 'craft shellcode that passes the filter and achieves the goal (likely shell/flag)'.\"},{\"function\":\"blacklist\",\"input\":\"shellcode buffer bytes\",\"operation\":\"byte-scan rejecting 0x0f and 0xcd across 100 bytes\",\"risk\":\"HIGH\",\"reason\":\"This is the sole security gate. It blocks 0x0f (syscall prefix) and 0xcd (int 0x80 prefix). S2 should analyze whether syscall/int80 can still be achieved via self-modifying shellcode (the region is RWX before mprotect, but mprotect makes it R-X before execution — however the shellcode runs with full register control and could potentially re-mprotect or use alternative syscall mechanisms). Also note rsp=0 at entry, shellcode must set up its own stack.\"},{\"function\":\"main (register state at shellcode entry)\",\"input\":\"N/A (controlled by program)\",\"operation\":\"all GPRs zeroed, rsp=0, rbp=0, rdi=0x13370000 (shellcode base), all XMM zeroed\",\"risk\":\"MEDIUM\",\"reason\":\"Shellcode entry has no stack (rsp=0) and no register leaks except rdi=shellcode_base. This constrains shellcode design but rdi provides a known absolute address (0x13370000, fixed non-PIE mmap hint). S2 should note this is both a constraint and a known address.\"},{\"function\":\"dependency resolution\",\"input\":\"N/A\",\"operation\":\"libc.so.6 loaded from system path, no RPATH/RUNPATH\",\"risk\":\"LOW\",\"reason\":\"Only libc.so.6 is NEEDED; resolved from /lib/x86_64-linux-gnu/libc.so.6. No RPATH/RUNPATH in binary. LD_LIBRARY_PATH would take precedence but no evidence of malicious library substitution in challenge context. Standard resolution.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source file shellcode_runner3.c\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Protections: Full RELRO, NX enabled, Canary, PIE, SHSTK+IBT (CET) enabled, no FORTIFY\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Only NEEDED library is libc.so.6; no RPATH/RUNPATH in dynamic section\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"main() calls mmap(0x13370000, 0x64, PROT_RWX=7, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) to allocate a 100-byte RWX shellcode buffer at fixed hint address 0x13370000\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"main() reads up to 99 bytes (0x63) of user shellcode from stdin via read(0, buf, 0x63); buffer was memset to 0 (100 bytes) beforehand\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"blacklist() scans exactly 100 bytes (index 0 through 0x63 inclusive) and returns 1 (reject) if any byte == 0x0f or == 0xcd, else returns 0 (accept)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"DERIVED\",\"description\":\"0x0f is the high byte of the 'syscall' instruction (0x0f 0x05); 0xcd is the opcode byte of 'int 0x80' (0xcd 0x80). The blacklist blocks both standard Linux syscall instruction encodings by forbidding their first/only opcode byte.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"After blacklist passes, main() calls mprotect(buf, 0x64, PROT_READ|PROT_EXEC=4) changing the region from RWX to R-X (no longer writable)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"Before jumping to shellcode, main() zeroes ALL general-purpose registers (rax,rbx,rcx,rdx,rsi,rdi,r8-r15), rsp, rbp, and all XMM registers (xmm0-xmm15). Then sets rdi=0x13370000 and executes 'jmp rdi'.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"DERIVED\",\"description\":\"At shellcode entry: rdi=0x13370000 (shellcode base, a fixed absolute address), rsp=0 (no stack), all other GPRs=0, all XMMs=0. Shellcode must set up its own stack before using push/call.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"init() sets stdin/stdout/stderr to unbuffered (setvbuf with mode _IONBF=2) and alarm(60) — process will receive SIGALRM after 60 seconds\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Runtime probe: program prints 'Input your shellcode here (max: 100): ' then reads stdin; feeding 'AAAA' (passes blacklist since no 0x0f/0xcd) results in Segmentation fault (expected: AAAA is not valid executable code)\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"mmap hint address 0x13370000 is a fixed constant compiled into the binary (mov QWORD PTR [rbp-0x18], 0x13370000); it is not ASLR-randomized (MAP_FIXED not used but hint is specific; in practice kernel honors hint when available)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"read() return value is stored in [rbp-0x1c] (int). If read returns 0 (EOF/empty), program aborts with 'read failed!'. Negative return (error) is NOT explicitly checked — it would be treated as nonzero and proceed (potential edge case for S2).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F016\",\"type\":\"FACT\",\"description\":\"blacklist scans a fixed 100 bytes regardless of actual read length; bytes beyond read length are 0 (from memset), which pass the filter\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F017\",\"type\":\"FACT\",\"description\":\"GOT is in .got at 0x3f78 (size 0x88); Full RELRO means GOT is resolved at load time and made read-only — GOT overwrite is not viable\",\"source\":\"ELF\"},{\"id\":\"F018\",\"type\":\"FACT\",\"description\":\".bss layout: stdout@0x4020, stdin@0x4030, stderr@0x4040, completed.0@0x4048; .bss ends at _end=0x4050\",\"source\":\"ELF\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Whether seccomp/sandbox is active at runtime (no seccomp-related symbols in binary, but could be applied externally)\",\"reason\":\"No prctl/seccomp symbols found in binary; cannot confirm absence of external sandbox without runtime inspection\"},{\"id\":\"U002\",\"description\":\"Whether ASLR affects the mmap hint 0x13370000 at runtime\",\"reason\":\"mmap uses a fixed hint without MAP_FIXED; kernel usually honors low hints but behavior under ASLR for this specific address needs runtime confirmation\"},{\"id\":\"U003\",\"description\":\"Whether the shellcode region remains writable at execution time despite mprotect(R-X)\",\"reason\":\"mprotect(buf, 0x64, 4) is called before jmp; region should be R-X. But shellcode could call mprotect again to re-add WRITE — S2 should analyze if this is part of intended solution path\"},{\"id\":\"U004\",\"description\":\"Exact runtime value of mmap return (whether 0x13370000 is actually granted)\",\"reason\":\"Static analysis shows hint=0x13370000; runtime probe crashed before we could dump the actual address. The 'jmp rdi' uses the stored [rbp-0x18]=0x13370000 constant, not the mmap return value [rbp-0x10], so even if mmap returns a different address, the jump target is always 0x13370000 — this is a FACT worth S2 noting\"},{\"id\":\"U005\",\"description\":\"Whether read() returning negative (error) creates an exploitable path\",\"reason\":\"Code checks 'cmp [rbp-0x1c], 0; jne' — a negative return would pass this check (nonzero) and proceed to blacklist/execute uninitialized-ish buffer. Edge case for S2.\"}],\"raw\":{\"elf\":\"ELF64 LSB PIE executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=9318cc0ff9d7e63e4d877518236e877f56a836b4, not stripped. Entry=0x1160. 13 program headers, 31 sections. LOAD segments: R(0x0-0x8c8), R-E(0x1000-0x14d9), R(0x2000-0x21b0), RW(0x3d78-0x4050). GNU_STACK=RW (NX enforced). GNU_RELRO=0x3d78-0x4000.\",\"sections\":\"31 sections. Key: .text@0x1160(0x36b,AX), .rodata@0x2000(0x5b,A), .data@0x4000(0x10,WA), .bss@0x4020(0x30,WA), .got@0x3f78(0x88,WA-RELRO), .plt.sec@0x10d0(0x90,AX), .init_array@0x3d78(0x8,WA), .fini_array@0x3d80(0x8,WA), .dynamic@0x3d88(0x1f0,WA).\",\"symbols\":\"Key symbols: main@0x1342(T), blacklist@0x12ed(T), init@0x127e(T), _abort@0x1249(T), _start@0x1160(T). BSS objects: stdout@0x4020, stdin@0x4030, stderr@0x4040 (all FILE*, R_X86_64_COPY). Imports: mmap,printf,memset,alarm,read,setvbuf,mprotect,exit,__stack_chk_fail,__cxa_finalize,__libc_start_main.\",\"disassembly\":\"main(0x1342): endbr64; push rbp; sub rsp,0x20; canary=fs:0x28→[rbp-8]; [rbp-0x1c]=0; [rbp-0x18]=0x13370000; call init; mmap(0x13370000,0x64,7,0x22,-1,0)→[rbp-0x10]; if==-1→_abort('mmap failed!'); memset(buf,0,0x64); printf('Input your shellcode here (max: 100): '); read(0,buf,0x63)→[rbp-0x1c]; if==0→_abort('read failed!'); if blacklist(buf)!=0→_abort(blacklist-msg); mprotect(buf,0x64,4); zero rax-r15+rsp+rbp+xmm0-15; rdi=[rbp-0x18]=0x13370000; jmp rdi. blacklist(0x12ed): for i=0..0x63: if buf[i]==0x0f or buf[i]==0xcd return 1; return 0. init(0x127e): setvbuf(stdin/stdout/stdout,0,2,0); alarm(60). _abort(0x1249): printf('%s',msg); exit(1).\"}},\"vulnerability_report\":null,\"primitive_reports\":[],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "recon_report": {
+    "schema": "ReconReport",
+    "version": "1.0",
+    "stage": "S1",
+    "status": "COMPLETED",
+    "binary": {
+      "path": "/work/workspace/0027-2024-49b-shellcode-runner-3-rev-20260909-150522/target",
+      "arch": "amd64",
+      "bits": 64,
+      "endianness": "little",
+      "entry": "0x1160",
+      "dynamic": true,
+      "stripped": false,
+      "interpreter": "/lib64/ld-linux-x86-64.so.2",
+      "compiler": "GCC 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)",
+      "source_file": "shellcode_runner3.c",
+      "buildid": "9318cc0ff9d7e63e4d877518236e877f56a836b4",
+      "type": "DYN (PIE executable)"
+    },
+    "security": {
+      "relro": {
+        "value": "full",
+        "source": "ELF"
+      },
+      "nx": {
+        "value": true,
+        "source": "ELF"
+      },
+      "canary": {
+        "value": true,
+        "source": "ELF"
+      },
+      "pie": {
+        "value": true,
+        "source": "ELF"
+      },
+      "fortify": {
+        "value": false,
+        "source": "ELF"
+      },
+      "cet": {
+        "ibt": {
+          "value": true,
+          "source": "ELF"
+        },
+        "shstk": {
+          "value": true,
+          "source": "ELF"
+        }
+      },
+      "aslr": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      },
+      "seccomp": {
+        "value": "unknown",
+        "source": "UNKNOWN"
+      },
+      "notes": "GNU_STACK is RW (not RWX) so NX applies to stack; however program explicitly mmap's an RWX region at 0x13370000 then mprotect's it to R-X before jumping in — shellcode execution region is executable by design."
+    },
+    "runtime": {
+      "libc": {
+        "path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "version": "GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39",
+        "source": "RUNTIME"
+      },
+      "loader": {
+        "path": "/lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      "libraries": [
+        {
+          "name": "libc.so.6",
+          "needed": true,
+          "resolved_path": "/lib/x86_64-linux-gnu/libc.so.6",
+          "rpath": "none",
+          "runpath": "none",
+          "ld_library_path_priority": "LD_LIBRARY_PATH would take precedence over system path (no RPATH/RUNPATH present)",
+          "source": "RUNTIME"
+        }
+      ],
+      "vdso": "linux-vdso.so.1"
+    },
+    "interface": {
+      "entry_function": "main @ 0x1342",
+      "input_sources": [
+        {
+          "source": "stdin",
+          "function": "main",
+          "mechanism": "read(0, mmap_buf, 0x63)",
+          "max_bytes": 99,
+          "prompt": "Input your shellcode here (max: 100): "
+        }
+      ],
+      "menu": [],
+      "user_controlled_inputs": [
+        {
+          "name": "shellcode_buffer",
+          "source": "stdin via read()",
+          "function": "main",
+          "size": 99,
+          "destination": "mmap'd region at 0x13370000",
+          "notes": "No newline/null termination handling observed; read() returns raw byte count into [rbp-0x1c]. Buffer is memset to 0 (0x64 bytes) before read."
+        }
+      ]
+    },
+    "memory": {
+      "sections": [
+        {
+          "name": ".interp",
+          "address": "0x318",
+          "size": "0x1c",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".note.gnu.property",
+          "address": "0x338",
+          "size": "0x30",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".note.gnu.build-id",
+          "address": "0x368",
+          "size": "0x24",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".note.ABI-tag",
+          "address": "0x38c",
+          "size": "0x20",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".gnu.hash",
+          "address": "0x3b0",
+          "size": "0x34",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".dynsym",
+          "address": "0x3e8",
+          "size": "0x1b0",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".dynstr",
+          "address": "0x598",
+          "size": "0xeb",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".gnu.version",
+          "address": "0x684",
+          "size": "0x24",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".gnu.version_r",
+          "address": "0x6a8",
+          "size": "0x40",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".rela.dyn",
+          "address": "0x6e8",
+          "size": "0x108",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".rela.plt",
+          "address": "0x7f0",
+          "size": "0xd8",
+          "flags": "AI",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".init",
+          "address": "0x1000",
+          "size": "0x1b",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".plt",
+          "address": "0x1020",
+          "size": "0xa0",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".plt.got",
+          "address": "0x10c0",
+          "size": "0x10",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".plt.sec",
+          "address": "0x10d0",
+          "size": "0x90",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".text",
+          "address": "0x1160",
+          "size": "0x36b",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".fini",
+          "address": "0x14cc",
+          "size": "0xd",
+          "flags": "AX",
+          "writable": false,
+          "executable": true
+        },
+        {
+          "name": ".rodata",
+          "address": "0x2000",
+          "size": "0x5b",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".eh_frame_hdr",
+          "address": "0x205c",
+          "size": "0x4c",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".eh_frame",
+          "address": "0x20a8",
+          "size": "0x108",
+          "flags": "A",
+          "writable": false,
+          "executable": false
+        },
+        {
+          "name": ".init_array",
+          "address": "0x3d78",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".fini_array",
+          "address": "0x3d80",
+          "size": "0x8",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".dynamic",
+          "address": "0x3d88",
+          "size": "0x1f0",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".got",
+          "address": "0x3f78",
+          "size": "0x88",
+          "flags": "WA",
+          "writable": true,
+          "executable": false,
+          "note": "Full RELRO → made read-only at runtime"
+        },
+        {
+          "name": ".data",
+          "address": "0x4000",
+          "size": "0x10",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        },
+        {
+          "name": ".bss",
+          "address": "0x4020",
+          "size": "0x30",
+          "flags": "WA",
+          "writable": true,
+          "executable": false
+        }
+      ],
+      "globals": [
+        {
+          "name": "stdout",
+          "address": "0x4020",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*",
+          "reloc": "R_X86_64_COPY"
+        },
+        {
+          "name": "stdin",
+          "address": "0x4030",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*",
+          "reloc": "R_X86_64_COPY"
+        },
+        {
+          "name": "stderr",
+          "address": "0x4040",
+          "size": 8,
+          "section": ".bss",
+          "type": "FILE*",
+          "reloc": "R_X86_64_COPY"
+        },
+        {
+          "name": "completed.0",
+          "address": "0x4048",
+          "size": 1,
+          "section": ".bss",
+          "type": "guard byte"
+        },
+        {
+          "name": "__dso_handle",
+          "address": "0x4008",
+          "size": 8,
+          "section": ".data",
+          "type": "pointer",
+          "visibility": "HIDDEN"
+        },
+        {
+          "name": "_IO_stdin_used",
+          "address": "0x2000",
+          "size": 4,
+          "section": ".rodata",
+          "type": "int"
+        },
+        {
+          "name": "blacklist",
+          "address": "0x12ed",
+          "type": "function (in .text)",
+          "note": "symbol named 'blacklist' is a function, not a data array"
+        }
+      ],
+      "got": [
+        {
+          "offset": "0x3fd8",
+          "type": "GLOB_DAT",
+          "symbol": "__libc_start_main@GLIBC_2.34"
+        },
+        {
+          "offset": "0x3fe0",
+          "type": "GLOB_DAT",
+          "symbol": "_ITM_deregisterTMCloneTable@Base"
+        },
+        {
+          "offset": "0x3fe8",
+          "type": "GLOB_DAT",
+          "symbol": "__gmon_start__@Base"
+        },
+        {
+          "offset": "0x3ff0",
+          "type": "GLOB_DAT",
+          "symbol": "_ITM_registerTMCloneTable@Base"
+        },
+        {
+          "offset": "0x3ff8",
+          "type": "GLOB_DAT",
+          "symbol": "__cxa_finalize@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3f90",
+          "type": "JUMP_SLOT",
+          "symbol": "__stack_chk_fail@GLIBC_2.4"
+        },
+        {
+          "offset": "0x3f98",
+          "type": "JUMP_SLOT",
+          "symbol": "mmap@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fa0",
+          "type": "JUMP_SLOT",
+          "symbol": "printf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fa8",
+          "type": "JUMP_SLOT",
+          "symbol": "memset@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fb0",
+          "type": "JUMP_SLOT",
+          "symbol": "alarm@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fb8",
+          "type": "JUMP_SLOT",
+          "symbol": "read@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fc0",
+          "type": "JUMP_SLOT",
+          "symbol": "setvbuf@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fc8",
+          "type": "JUMP_SLOT",
+          "symbol": "mprotect@GLIBC_2.2.5"
+        },
+        {
+          "offset": "0x3fd0",
+          "type": "JUMP_SLOT",
+          "symbol": "exit@GLIBC_2.2.5"
+        }
+      ],
+      "plt": [
+        {
+          "symbol": "__stack_chk_fail",
+          "plt_sec": "0x10d0"
+        },
+        {
+          "symbol": "mmap",
+          "plt_sec": "0x10e0"
+        },
+        {
+          "symbol": "printf",
+          "plt_sec": "0x10f0"
+        },
+        {
+          "symbol": "memset",
+          "plt_sec": "0x1100"
+        },
+        {
+          "symbol": "alarm",
+          "plt_sec": "0x1110"
+        },
+        {
+          "symbol": "read",
+          "plt_sec": "0x1120"
+        },
+        {
+          "symbol": "setvbuf",
+          "plt_sec": "0x1130"
+        },
+        {
+          "symbol": "mprotect",
+          "plt_sec": "0x1140"
+        },
+        {
+          "symbol": "exit",
+          "plt_sec": "0x1150"
+        }
+      ]
+    },
+    "functions": [
+      {
+        "name": "main",
+        "address": "0x1342",
+        "callers": [
+          "__libc_start_main"
+        ],
+        "callees": [
+          "init",
+          "mmap",
+          "_abort",
+          "memset",
+          "printf",
+          "read",
+          "blacklist",
+          "mprotect"
+        ],
+        "inputs": [
+          {
+            "name": "shellcode",
+            "source": "stdin",
+            "mechanism": "read(0, buf, 0x63)",
+            "max_len": 99
+          }
+        ],
+        "checks": [
+          "mmap return != -1 (MAP_FAILED check at 0x139f)",
+          "read() return != 0 (at 0x13f8, empty input → _abort 'read failed!')",
+          "blacklist(buf) == 0 (at 0x1419, if nonzero → _abort with blacklist-violation message)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "ALLOC",
+            "destination": "0x13370000",
+            "size": 100,
+            "prot": "RWX (PROT_READ|PROT_WRITE|PROT_EXEC=7)",
+            "flags": "MAP_PRIVATE|MAP_ANONYMOUS (0x22), fd=-1, offset=0",
+            "via": "mmap"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "mmap_buf",
+            "size": 100,
+            "value": 0,
+            "via": "memset(buf, 0, 0x64)"
+          },
+          {
+            "operation": "WRITE",
+            "destination": "mmap_buf",
+            "size": "user_input_len (<=99)",
+            "via": "read(0, buf, 0x63)"
+          },
+          {
+            "operation": "PROT_CHANGE",
+            "destination": "mmap_buf",
+            "size": 100,
+            "new_prot": "R-X (PROT_READ|PROT_EXEC=4)",
+            "via": "mprotect(buf, 0x64, 4)"
+          },
+          {
+            "operation": "EXEC",
+            "destination": "mmap_buf (via jmp rdi where rdi=0x13370000)",
+            "via": "indirect jump",
+            "note": "all GPRs (rax-r15, rsp, rbp) and XMM0-15 zeroed before jump; rdi set to 0x13370000; rsp=0 means no usable stack at entry"
+          }
+        ],
+        "calls": [
+          "init",
+          "mmap",
+          "memset",
+          "printf",
+          "read",
+          "blacklist",
+          "mprotect",
+          "_abort"
+        ],
+        "behavior_summary": "1) init() sets stdin/stdout/stderr unbuffered + alarm(60). 2) mmap(0x13370000, 100, RWX, MAP_PRIVATE|MAP_ANON, -1, 0). 3) memset(buf,0,100). 4) printf prompt. 5) read(0,buf,99). 6) blacklist(buf) check. 7) mprotect(buf,100,R-X). 8) zero ALL registers (including rsp/rbp) except rdi=0x13370000. 9) jmp rdi → execute shellcode. Note: rsp is zeroed → shellcode has no stack until it sets one."
+      },
+      {
+        "name": "blacklist",
+        "address": "0x12ed",
+        "callers": [
+          "main"
+        ],
+        "callees": [],
+        "inputs": [
+          {
+            "name": "buf",
+            "source": "parameter (rdi)",
+            "origin": "mmap'd shellcode buffer"
+          }
+        ],
+        "checks": [
+          "for i in 0..0x63 (100 iterations, indices 0-99): if buf[i]==0x0f → return 1 (reject)",
+          "if buf[i]==0xcd → return 1 (reject)",
+          "if no byte matched → return 0 (accept)"
+        ],
+        "memory_operations": [
+          {
+            "operation": "READ",
+            "destination": "buf[i] for i=0..99",
+            "size": 1,
+            "via": "movzx eax, BYTE PTR [rax+rdx]"
+          }
+        ],
+        "calls": [],
+        "behavior_summary": "Byte-level filter scanning exactly 100 bytes (index 0 to 0x63 inclusive). Rejects if ANY byte equals 0x0f or 0xcd. 0x0f is the first byte of 'syscall' (0f 05); 0xcd is the first byte of 'int 0x80' (cd 80). This blocks the two standard Linux system-call instruction encodings. Returns 1=blacklisted/reject, 0=clean/accept."
+      },
+      {
+        "name": "init",
+        "address": "0x127e",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "setvbuf",
+          "alarm"
+        ],
+        "inputs": [],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "setvbuf",
+          "alarm"
+        ],
+        "behavior_summary": "setvbuf(stdin, 0, 2, 0) [unbuffered]; setvbuf(stdout, 0, 2, 0); setvbuf(stderr, 0, 2, 0); alarm(60)."
+      },
+      {
+        "name": "_abort",
+        "address": "0x1249",
+        "callers": [
+          "main"
+        ],
+        "callees": [
+          "printf",
+          "exit"
+        ],
+        "inputs": [
+          {
+            "name": "msg",
+            "source": "parameter (rdi)"
+          }
+        ],
+        "checks": [],
+        "memory_operations": [],
+        "calls": [
+          "printf",
+          "exit"
+        ],
+        "behavior_summary": "printf('%s\\n', msg) then exit(1). Used for mmap-failed / read-failed / blacklist-violation fatal paths."
+      }
+    ],
+    "attack_surfaces": [
+      {
+        "function": "main",
+        "input": "stdin shellcode (up to 99 bytes)",
+        "operation": "mmap RWX region → read user bytes → blacklist filter → mprotect R-X → zero regs → jmp rdi (indirect jump to user-controlled code)",
+        "risk": "HIGH",
+        "reason": "Attacker fully controls the bytes that get executed. The only barrier is the blacklist() byte filter. This is a shellcode-runner challenge: the attack surface is 'craft shellcode that passes the filter and achieves the goal (likely shell/flag)'."
+      },
+      {
+        "function": "blacklist",
+        "input": "shellcode buffer bytes",
+        "operation": "byte-scan rejecting 0x0f and 0xcd across 100 bytes",
+        "risk": "HIGH",
+        "reason": "This is the sole security gate. It blocks 0x0f (syscall prefix) and 0xcd (int 0x80 prefix). S2 should analyze whether syscall/int80 can still be achieved via self-modifying shellcode (the region is RWX before mprotect, but mprotect makes it R-X before execution — however the shellcode runs with full register control and could potentially re-mprotect or use alternative syscall mechanisms). Also note rsp=0 at entry, shellcode must set up its own stack."
+      },
+      {
+        "function": "main (register state at shellcode entry)",
+        "input": "N/A (controlled by program)",
+        "operation": "all GPRs zeroed, rsp=0, rbp=0, rdi=0x13370000 (shellcode base), all XMM zeroed",
+        "risk": "MEDIUM",
+        "reason": "Shellcode entry has no stack (rsp=0) and no register leaks except rdi=shellcode_base. This constrains shellcode design but rdi provides a known absolute address (0x13370000, fixed non-PIE mmap hint). S2 should note this is both a constraint and a known address."
+      },
+      {
+        "function": "dependency resolution",
+        "input": "N/A",
+        "operation": "libc.so.6 loaded from system path, no RPATH/RUNPATH",
+        "risk": "LOW",
+        "reason": "Only libc.so.6 is NEEDED; resolved from /lib/x86_64-linux-gnu/libc.so.6. No RPATH/RUNPATH in binary. LD_LIBRARY_PATH would take precedence but no evidence of malicious library substitution in challenge context. Standard resolution."
+      }
+    ],
+    "facts": [
+      {
+        "id": "F001",
+        "type": "FACT",
+        "description": "Binary is ELF64 x86-64 PIE, dynamically linked, not stripped, source file shellcode_runner3.c",
+        "source": "ELF"
+      },
+      {
+        "id": "F002",
+        "type": "FACT",
+        "description": "Protections: Full RELRO, NX enabled, Canary, PIE, SHSTK+IBT (CET) enabled, no FORTIFY",
+        "source": "ELF"
+      },
+      {
+        "id": "F003",
+        "type": "FACT",
+        "description": "libc is Ubuntu GLIBC 2.39-0ubuntu8.8 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F004",
+        "type": "FACT",
+        "description": "Only NEEDED library is libc.so.6; no RPATH/RUNPATH in dynamic section",
+        "source": "ELF"
+      },
+      {
+        "id": "F005",
+        "type": "FACT",
+        "description": "main() calls mmap(0x13370000, 0x64, PROT_RWX=7, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) to allocate a 100-byte RWX shellcode buffer at fixed hint address 0x13370000",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F006",
+        "type": "FACT",
+        "description": "main() reads up to 99 bytes (0x63) of user shellcode from stdin via read(0, buf, 0x63); buffer was memset to 0 (100 bytes) beforehand",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F007",
+        "type": "FACT",
+        "description": "blacklist() scans exactly 100 bytes (index 0 through 0x63 inclusive) and returns 1 (reject) if any byte == 0x0f or == 0xcd, else returns 0 (accept)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F008",
+        "type": "DERIVED",
+        "description": "0x0f is the high byte of the 'syscall' instruction (0x0f 0x05); 0xcd is the opcode byte of 'int 0x80' (0xcd 0x80). The blacklist blocks both standard Linux syscall instruction encodings by forbidding their first/only opcode byte.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F009",
+        "type": "FACT",
+        "description": "After blacklist passes, main() calls mprotect(buf, 0x64, PROT_READ|PROT_EXEC=4) changing the region from RWX to R-X (no longer writable)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F010",
+        "type": "FACT",
+        "description": "Before jumping to shellcode, main() zeroes ALL general-purpose registers (rax,rbx,rcx,rdx,rsi,rdi,r8-r15), rsp, rbp, and all XMM registers (xmm0-xmm15). Then sets rdi=0x13370000 and executes 'jmp rdi'.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F011",
+        "type": "DERIVED",
+        "description": "At shellcode entry: rdi=0x13370000 (shellcode base, a fixed absolute address), rsp=0 (no stack), all other GPRs=0, all XMMs=0. Shellcode must set up its own stack before using push/call.",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F012",
+        "type": "FACT",
+        "description": "init() sets stdin/stdout/stderr to unbuffered (setvbuf with mode _IONBF=2) and alarm(60) — process will receive SIGALRM after 60 seconds",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F013",
+        "type": "FACT",
+        "description": "Runtime probe: program prints 'Input your shellcode here (max: 100): ' then reads stdin; feeding 'AAAA' (passes blacklist since no 0x0f/0xcd) results in Segmentation fault (expected: AAAA is not valid executable code)",
+        "source": "RUNTIME"
+      },
+      {
+        "id": "F014",
+        "type": "FACT",
+        "description": "mmap hint address 0x13370000 is a fixed constant compiled into the binary (mov QWORD PTR [rbp-0x18], 0x13370000); it is not ASLR-randomized (MAP_FIXED not used but hint is specific; in practice kernel honors hint when available)",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F015",
+        "type": "FACT",
+        "description": "read() return value is stored in [rbp-0x1c] (int). If read returns 0 (EOF/empty), program aborts with 'read failed!'. Negative return (error) is NOT explicitly checked — it would be treated as nonzero and proceed (potential edge case for S2).",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F016",
+        "type": "FACT",
+        "description": "blacklist scans a fixed 100 bytes regardless of actual read length; bytes beyond read length are 0 (from memset), which pass the filter",
+        "source": "DISASSEMBLY"
+      },
+      {
+        "id": "F017",
+        "type": "FACT",
+        "description": "GOT is in .got at 0x3f78 (size 0x88); Full RELRO means GOT is resolved at load time and made read-only — GOT overwrite is not viable",
+        "source": "ELF"
+      },
+      {
+        "id": "F018",
+        "type": "FACT",
+        "description": ".bss layout: stdout@0x4020, stdin@0x4030, stderr@0x4040, completed.0@0x4048; .bss ends at _end=0x4050",
+        "source": "ELF"
+      }
+    ],
+    "uncertainties": [
+      {
+        "id": "U001",
+        "description": "Whether seccomp/sandbox is active at runtime (no seccomp-related symbols in binary, but could be applied externally)",
+        "reason": "No prctl/seccomp symbols found in binary; cannot confirm absence of external sandbox without runtime inspection"
+      },
+      {
+        "id": "U002",
+        "description": "Whether ASLR affects the mmap hint 0x13370000 at runtime",
+        "reason": "mmap uses a fixed hint without MAP_FIXED; kernel usually honors low hints but behavior under ASLR for this specific address needs runtime confirmation"
+      },
+      {
+        "id": "U003",
+        "description": "Whether the shellcode region remains writable at execution time despite mprotect(R-X)",
+        "reason": "mprotect(buf, 0x64, 4) is called before jmp; region should be R-X. But shellcode could call mprotect again to re-add WRITE — S2 should analyze if this is part of intended solution path"
+      },
+      {
+        "id": "U004",
+        "description": "Exact runtime value of mmap return (whether 0x13370000 is actually granted)",
+        "reason": "Static analysis shows hint=0x13370000; runtime probe crashed before we could dump the actual address. The 'jmp rdi' uses the stored [rbp-0x18]=0x13370000 constant, not the mmap return value [rbp-0x10], so even if mmap returns a different address, the jump target is always 0x13370000 — this is a FACT worth S2 noting"
+      },
+      {
+        "id": "U005",
+        "description": "Whether read() returning negative (error) creates an exploitable path",
+        "reason": "Code checks 'cmp [rbp-0x1c], 0; jne' — a negative return would pass this check (nonzero) and proceed to blacklist/execute uninitialized-ish buffer. Edge case for S2."
+      }
+    ],
+    "raw": {
+      "elf": "ELF64 LSB PIE executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=9318cc0ff9d7e63e4d877518236e877f56a836b4, not stripped. Entry=0x1160. 13 program headers, 31 sections. LOAD segments: R(0x0-0x8c8), R-E(0x1000-0x14d9), R(0x2000-0x21b0), RW(0x3d78-0x4050). GNU_STACK=RW (NX enforced). GNU_RELRO=0x3d78-0x4000.",
+      "sections": "31 sections. Key: .text@0x1160(0x36b,AX), .rodata@0x2000(0x5b,A), .data@0x4000(0x10,WA), .bss@0x4020(0x30,WA), .got@0x3f78(0x88,WA-RELRO), .plt.sec@0x10d0(0x90,AX), .init_array@0x3d78(0x8,WA), .fini_array@0x3d80(0x8,WA), .dynamic@0x3d88(0x1f0,WA).",
+      "symbols": "Key symbols: main@0x1342(T), blacklist@0x12ed(T), init@0x127e(T), _abort@0x1249(T), _start@0x1160(T). BSS objects: stdout@0x4020, stdin@0x4030, stderr@0x4040 (all FILE*, R_X86_64_COPY). Imports: mmap,printf,memset,alarm,read,setvbuf,mprotect,exit,__stack_chk_fail,__cxa_finalize,__libc_start_main.",
+      "disassembly": "main(0x1342): endbr64; push rbp; sub rsp,0x20; canary=fs:0x28→[rbp-8]; [rbp-0x1c]=0; [rbp-0x18]=0x13370000; call init; mmap(0x13370000,0x64,7,0x22,-1,0)→[rbp-0x10]; if==-1→_abort('mmap failed!'); memset(buf,0,0x64); printf('Input your shellcode here (max: 100): '); read(0,buf,0x63)→[rbp-0x1c]; if==0→_abort('read failed!'); if blacklist(buf)!=0→_abort(blacklist-msg); mprotect(buf,0x64,4); zero rax-r15+rsp+rbp+xmm0-15; rdi=[rbp-0x18]=0x13370000; jmp rdi. blacklist(0x12ed): for i=0..0x63: if buf[i]==0x0f or buf[i]==0xcd return 1; return 0. init(0x127e): setvbuf(stdin/stdout/stdout,0,2,0); alarm(60). _abort(0x1249): printf('%s',msg); exit(1)."
+    }
+  }
+}

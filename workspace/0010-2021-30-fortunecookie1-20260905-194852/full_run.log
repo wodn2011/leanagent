@@ -1,0 +1,54 @@
+# [重建] 原始 full_run.log 丢失，由 console log 恢复（里程碑事件）
+
+# ===== 来源: /work/ctf/_batch_0010.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 /work/ctf/0010-2021-30-fortunecookie1/target ===
+
+19:48:52 === Task Workspace: /work/workspace/0010-2021-30-fortunecookie1-20260905-194852（target 已拷入） ===
+19:48:52 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+19:48:52 --- S1 Recon ---
+19:48:52 === recon (bug_id=-) ===
+19:51:32 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，17914 chars）
+19:51:39 [stage1] 保存 → /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/stage1.json
+19:51:39 --- S2 Semantic ---
+19:51:39 === semantic (bug_id=-) ===
+19:54:13 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，19231 chars）
+19:54:19 [stage2] 保存 → /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/stage2.json
+19:54:19 --- S3 Primitive（所有 bug） ---
+19:54:20 === impact (bug_id=BUG-001) ===
+20:04:53 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，21454 chars）
+20:05:04 === impact (bug_id=BUG-002) ===
+20:07:14 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，13993 chars）
+20:07:21 === impact (bug_id=BUG-003) ===
+20:14:13 [impact:BUG-003] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，24527 chars）
+20:14:22 [stage3] 保存 → /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/stage3.json
+20:14:22 --- S4 Exploit ---
+20:14:22 === exploit (bug_id=-) ===
+20:41:21 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，16002 chars）
+20:41:28 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+20:41:28 [stage4] 保存 → /work/workspace/0010-2021-30-fortunecookie1-20260905-194852/stage4.json
+20:41:48 📄 渗透报告：/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/report.md
+20:41:53 === 主 agent 汇总 ===
+## 分析完成 ✅
+
+对 `/work/ctf/0010-2021-30-fortunecookie1/target` 的完整 S1-S4 漏洞分析已跑完，结果如下：
+
+| 项目 | 结果 |
+|------|------|
+| **Exploit 成功** | ✅ 是 |
+| **Exploit 脚本** | `/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/exploit.py` |
+| **完整报告** | `/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/report.md` |
+| **Workspace** | `/work/workspace/0010-2021-30-fortunecookie1-20260905-194852/` |
+
+分析流程覆盖了：
+- **S1 侦察** — 二进制基本信息、保护机制、攻击面识别
+- **S2 语义** — 漏洞点定位与语义分析
+- **S3 原语验证** — 漏洞原语可利用性验证
+- **S4 Exploit** — 最终 exploit 构建并成功触发
+
+Exploit 已验证成功，完整产物（stage1-4.json / exploit.py / report.md / full_run.log）均存放在上述 workspace 目录中，可进一步查看 `report.md` 获取详细漏洞分析报告。
+
+# [补充] 十连跑稳定性测试全程日志（10 份）在本地 D:/Project/LeanAgent/logs/final10/

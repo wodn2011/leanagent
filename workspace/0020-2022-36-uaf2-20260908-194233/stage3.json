@@ -1,0 +1,926 @@
+{
+  "stage": 3,
+  "binary": "/work/workspace/0020-2022-36-uaf2-20260908-194233/target",
+  "success": true,
+  "error": null,
+  "ctx_json": "{\"recon_report\":{\"schema\":\"ReconReport\",\"version\":\"1.0\",\"stage\":\"S1\",\"status\":\"COMPLETED\",\"binary\":{\"path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/target\",\"arch\":\"amd64\",\"bits\":64,\"endianness\":\"little\",\"entry\":\"0x401190\",\"dynamic\":true,\"stripped\":false,\"file_type\":\"ELF 64-bit LSB executable, x86-64, SYSV\",\"interpreter\":\"/lib64/ld-linux-x86-64.so.2\",\"compiler\":\"GCC 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04)\",\"source_file\":\"zoo.c\",\"build_id\":\"e3bd0f41acd579b8362bbe50b427a0f7f3044ab4\"},\"security\":{\"relro\":{\"value\":\"partial\",\"source\":\"ELF\"},\"nx\":{\"value\":true,\"source\":\"ELF\"},\"canary\":{\"value\":true,\"source\":\"ELF\"},\"pie\":{\"value\":false,\"source\":\"ELF\"},\"fortify\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"},\"cet\":{\"ibt\":{\"value\":true,\"source\":\"ELF\"},\"shstk\":{\"value\":true,\"source\":\"ELF\"}},\"aslr\":{\"value\":\"unknown\",\"source\":\"UNKNOWN\"}},\"runtime\":{\"libc\":{\"version\":\"2.39\",\"path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"source\":\"RUNTIME\",\"detail\":\"GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.8) stable release version 2.39\"},\"loader\":{\"path\":\"/lib64/ld-linux-x86-64.so.2\",\"source\":\"RUNTIME\"},\"libraries\":[{\"name\":\"libc.so.6\",\"resolved_path\":\"/lib/x86_64-linux-gnu/libc.so.6\",\"rpath\":\"none\",\"runpath\":\"none\",\"ld_library_path_priority\":\"LD_LIBRARY_PATH would precede system paths (no RPATH/RUNPATH set)\",\"source\":\"RUNTIME\"}]},\"interface\":{\"entry_function\":\"main\",\"input_sources\":[\"stdin\"],\"menu\":[{\"option\":\"1\",\"label\":\"Add animal\",\"function\":\"add_animal\",\"address\":\"0x401421\"},{\"option\":\"2\",\"label\":\"Remove animal\",\"function\":\"remove_animal\",\"address\":\"0x4015ed\"},{\"option\":\"3\",\"label\":\"Report animal Name\",\"function\":\"report_name\",\"address\":\"0x401735\"},{\"option\":\"0\",\"label\":\"Exit\",\"function\":\"main_exit\",\"address\":\"0x4018b7\"}],\"user_controlled_inputs\":[{\"name\":\"menu_choice\",\"source\":\"scanf(%d)\",\"function\":\"menu\",\"detail\":\"0-4 valid, 0 exits\"},{\"name\":\"animal_type\",\"source\":\"scanf(%d)\",\"function\":\"add_animal\",\"detail\":\"1=Parrot(type=0), 2=Panda(type=1)\"},{\"name\":\"animal_name\",\"source\":\"read(0, buf, 0x18)\",\"function\":\"add_animal\",\"detail\":\"24 bytes read into heap name buffer\"},{\"name\":\"zone_index\",\"source\":\"scanf(%d)\",\"function\":\"remove_animal\",\"detail\":\"0-9 valid index\"},{\"name\":\"zone_index\",\"source\":\"scanf(%d)\",\"function\":\"report_name\",\"detail\":\"0-9 valid index\"}]},\"memory\":{\"sections\":[{\"name\":\".text\",\"address\":\"0x401190\",\"size\":\"0x745\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".rodata\",\"address\":\"0x402000\",\"size\":\"0x18a\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".data\",\"address\":\"0x404070\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".bss\",\"address\":\"0x404080\",\"size\":\"0x98\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got\",\"address\":\"0x403ff0\",\"size\":\"0x10\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".got.plt\",\"address\":\"0x404000\",\"size\":\"0x70\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".plt\",\"address\":\"0x401020\",\"size\":\"0xc0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".plt.sec\",\"address\":\"0x4010e0\",\"size\":\"0xb0\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init\",\"address\":\"0x401000\",\"size\":\"0x1b\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".fini\",\"address\":\"0x4018d8\",\"size\":\"0xd\",\"flags\":\"AX\",\"writable\":false,\"executable\":true,\"readable\":true},{\"name\":\".init_array\",\"address\":\"0x403e10\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".fini_array\",\"address\":\"0x403e18\",\"size\":\"0x8\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".dynamic\",\"address\":\"0x403e20\",\"size\":\"0x1d0\",\"flags\":\"WA\",\"writable\":true,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame\",\"address\":\"0x4021f8\",\"size\":\"0x184\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true},{\"name\":\".eh_frame_hdr\",\"address\":\"0x40218c\",\"size\":\"0x6c\",\"flags\":\"A\",\"writable\":false,\"executable\":false,\"readable\":true}],\"globals\":[{\"name\":\"zoo\",\"address\":\"0x4040c0\",\"size\":88,\"section\":\".bss\",\"layout\":\"zoo[0]=count(int32 at 0x4040c0, 4 bytes + 4 padding), zoo[1..10]=pointer slots at 0x4040c8..0x404110 (10 x 8 bytes)\",\"element_type\":\"mixed: count + pointer array\",\"count\":11,\"element_size\":8,\"detail\":\"zoo count at offset 0 (int32), 10 animal pointers at offset 8..88\"},{\"name\":\"stdout\",\"address\":\"0x404080\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"stdin\",\"address\":\"0x404090\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"stderr\",\"address\":\"0x4040a0\",\"size\":8,\"section\":\".bss\",\"element_type\":\"FILE* pointer (R_X86_64_COPY)\"},{\"name\":\"completed.0\",\"address\":\"0x4040a8\",\"size\":1,\"section\":\".bss\",\"element_type\":\"flag byte\"}],\"got\":[{\"offset\":\"0x404018\",\"type\":\"JUMP_SLOT\",\"symbol\":\"free@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404020\",\"type\":\"JUMP_SLOT\",\"symbol\":\"putchar@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404028\",\"type\":\"JUMP_SLOT\",\"symbol\":\"puts@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404030\",\"type\":\"JUMP_SLOT\",\"symbol\":\"__stack_chk_fail@GLIBC_2.4\",\"writable\":true},{\"offset\":\"0x404038\",\"type\":\"JUMP_SLOT\",\"symbol\":\"system@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404040\",\"type\":\"JUMP_SLOT\",\"symbol\":\"printf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404048\",\"type\":\"JUMP_SLOT\",\"symbol\":\"alarm@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404050\",\"type\":\"JUMP_SLOT\",\"symbol\":\"read@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404058\",\"type\":\"JUMP_SLOT\",\"symbol\":\"malloc@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404060\",\"type\":\"JUMP_SLOT\",\"symbol\":\"setvbuf@GLIBC_2.2.5\",\"writable\":true},{\"offset\":\"0x404068\",\"type\":\"JUMP_SLOT\",\"symbol\":\"__isoc99_scanf@GLIBC_2.7\",\"writable\":true},{\"offset\":\"0x403ff0\",\"type\":\"GLOB_DAT\",\"symbol\":\"__libc_start_main@GLIBC_2.34\",\"writable\":true},{\"offset\":\"0x403ff8\",\"type\":\"GLOB_DAT\",\"symbol\":\"__gmon_start__@Base\",\"writable\":true}],\"plt\":[{\"address\":\"0x4010e0\",\"symbol\":\"free@plt\"},{\"address\":\"0x4010f0\",\"symbol\":\"putchar@plt\"},{\"address\":\"0x401100\",\"symbol\":\"puts@plt\"},{\"address\":\"0x401110\",\"symbol\":\"__stack_chk_fail@plt\"},{\"address\":\"0x401120\",\"symbol\":\"system@plt\"},{\"address\":\"0x401130\",\"symbol\":\"printf@plt\"},{\"address\":\"0x401140\",\"symbol\":\"alarm@plt\"},{\"address\":\"0x401150\",\"symbol\":\"read@plt\"},{\"address\":\"0x401160\",\"symbol\":\"malloc@plt\"},{\"address\":\"0x401170\",\"symbol\":\"setvbuf@plt\"},{\"address\":\"0x401180\",\"symbol\":\"__isoc99_scanf@plt\"}]},\"functions\":[{\"name\":\"main\",\"address\":\"0x40184d\",\"callers\":[\"__libc_start_main\"],\"callees\":[\"init\",\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"putchar\"],\"inputs\":[{\"name\":\"argc\",\"source\":\"argv\"},{\"name\":\"argv\",\"source\":\"argv\"}],\"checks\":[\"menu return value compared against 1/2/3; default case sets exit flag\"],\"memory_operations\":[],\"calls\":[\"init\",\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"putchar\"],\"behavior\":\"Loop: call menu, dispatch 1->add_animal, 2->remove_animal, 3->report_name, 0->exit. putchar(0xa) after each iteration.\"},{\"name\":\"init\",\"address\":\"0x4012d2\",\"callers\":[\"main\"],\"callees\":[\"setvbuf\",\"alarm\"],\"inputs\":[],\"checks\":[],\"memory_operations\":[],\"calls\":[\"setvbuf\",\"alarm\"],\"behavior\":\"setvbuf(stdin/stdout/stderr, 0, 2, 0) to disable buffering; alarm(0x3c=60s).\"},{\"name\":\"menu\",\"address\":\"0x401341\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"putchar\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"choice\",\"source\":\"scanf(%d) into stack var [rbp-0xc]\"}],\"checks\":[\"choice >= 0 and choice <= 4, else prints error and re-prompts\"],\"memory_operations\":[],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"putchar\"],\"behavior\":\"Prints menu via print() (which calls system + printf), reads int choice, validates 0-4, returns choice in eax.\"},{\"name\":\"print\",\"address\":\"0x401276\",\"callers\":[\"menu\",\"add_animal\",\"remove_animal\",\"report_name\",\"speak\"],\"callees\":[\"system\",\"printf\"],\"inputs\":[{\"name\":\"msg\",\"source\":\"rdi argument (string pointer)\"}],\"checks\":[],\"memory_operations\":[{\"operation\":\"CALL\",\"destination\":\"system(\\\"/usr/bin/date +\\\\\\\"%Y/%m/%d %H:%M.%S\\\\\\\" | tr -d '\\\\\\\\n: '\\\")\",\"size\":0,\"destination_type\":\"hardcoded_command\"},{\"operation\":\"WRITE\",\"destination\":\"stdout via printf\",\"size\":0,\"destination_type\":\"format_string_output\"}],\"calls\":[\"system\",\"printf\"],\"behavior\":\"Calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). The system() call executes a shell command (date formatting).\"},{\"name\":\"speak\",\"address\":\"0x4012b3\",\"callers\":[\"indirect call from report_name via function pointer\"],\"callees\":[\"print\"],\"inputs\":[{\"name\":\"animal_ptr\",\"source\":\"rdi argument (animal object pointer)\"}],\"checks\":[],\"memory_operations\":[],\"calls\":[\"print\"],\"behavior\":\"Wrapper: passes its argument directly to print(). This is the default function pointer stored in animal->func_ptr (offset 0) during add_animal.\"},{\"name\":\"add_animal\",\"address\":\"0x401421\",\"callers\":[\"main\"],\"callees\":[\"print\",\"malloc\",\"printf\",\"__isoc99_scanf\",\"puts\",\"read\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"animal_type\",\"source\":\"scanf(%d) into [rbp-0x18]\"},{\"name\":\"animal_name\",\"source\":\"read(0, name_buf, 0x18) into heap buffer\"}],\"checks\":[\"zoo count (at 0x4040c0) <= 9, else 'zoo full'\",\"finds first empty slot (zoo[idx+8]==NULL) for idx 0..9\",\"animal_type==1 -> type=0(Parrot), ==2 -> type=1(Panda), else re-prompt\"],\"memory_operations\":[{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x18) -> animal object (24 bytes)\",\"size\":24,\"destination_type\":\"heap\"},{\"operation\":\"WRITE\",\"destination\":\"animal->type (offset 0x8, int32)\",\"size\":4,\"destination_type\":\"struct_field\"},{\"operation\":\"WRITE\",\"destination\":\"animal->func_ptr (offset 0x0)\",\"size\":8,\"destination_type\":\"struct_field\",\"value\":\"address of speak (0x4012b3)\"},{\"operation\":\"ALLOC\",\"destination\":\"malloc(0x18) -> name_buf (24 bytes)\",\"size\":24,\"destination_type\":\"heap\"},{\"operation\":\"WRITE\",\"destination\":\"animal->name_ptr (offset 0x10)\",\"size\":8,\"destination_type\":\"struct_field\",\"value\":\"name_buf pointer\"},{\"operation\":\"READ\",\"source\":\"stdin fd 0\",\"destination\":\"name_buf\",\"size\":24,\"source_type\":\"read()\"},{\"operation\":\"WRITE\",\"destination\":\"zoo[idx+8] (pointer slot at 0x4040c8 + idx*8)\",\"size\":8,\"destination_type\":\"global_array_element\",\"value\":\"animal object pointer\"},{\"operation\":\"WRITE\",\"destination\":\"zoo count (0x4040c0)\",\"size\":4,\"destination_type\":\"global_counter\",\"value\":\"count+1\"}],\"calls\":[\"print\",\"malloc\",\"printf\",\"__isoc99_scanf\",\"puts\",\"read\"],\"behavior\":\"Allocates 24-byte animal struct: [func_ptr(8), type(4+4pad), name_ptr(8)]. Sets func_ptr=speak. Allocates 24-byte name buffer, reads 24 bytes from stdin. Stores animal ptr in first empty zoo slot, increments count. Animal struct layout: offset0=func_ptr, offset8=type(int32), offset0x10=name_ptr.\"},{\"name\":\"remove_animal\",\"address\":\"0x4015ed\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"free\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"zone_index\",\"source\":\"scanf(%d) into [rbp-0xc]\"}],\"checks\":[\"zoo count > 0, else 'no animal'\",\"zone_index >= 0 and <= 9, else error re-prompt\",\"zoo[idx+8] != NULL, else 'no animal in this zone'\"],\"memory_operations\":[{\"operation\":\"FREE\",\"destination\":\"animal->name_ptr (zoo[idx]->offset 0x10)\",\"size\":0,\"destination_type\":\"heap_free\"},{\"operation\":\"FREE\",\"destination\":\"animal object (zoo[idx])\",\"size\":0,\"destination_type\":\"heap_free\"},{\"operation\":\"WRITE\",\"destination\":\"zoo count (0x4040c0)\",\"size\":4,\"destination_type\":\"global_counter\",\"value\":\"count-1\"}],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"free\"],\"behavior\":\"Frees name buffer first (free(animal->name_ptr)), then frees animal struct (free(animal)). Decrements zoo count. CRITICAL: does NOT set zoo[idx+8] to NULL after freeing — the dangling pointer remains in the zoo array.\"},{\"name\":\"report_name\",\"address\":\"0x401735\",\"callers\":[\"main\"],\"callees\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\",\"__stack_chk_fail\"],\"inputs\":[{\"name\":\"zone_index\",\"source\":\"scanf(%d) into [rbp-0xc]\"}],\"checks\":[\"zoo count > 0, else 'no animal'\",\"zone_index >= 0 and <= 9, else error re-prompt\",\"zoo[idx+8] != NULL, else 'no animal in this zone'\"],\"memory_operations\":[{\"operation\":\"READ\",\"source\":\"zoo[idx+8] (pointer at 0x4040c8 + idx*8)\",\"size\":8,\"source_type\":\"global_array_element\",\"destination\":\"animal pointer\"},{\"operation\":\"READ\",\"source\":\"animal->func_ptr (offset 0x0)\",\"size\":8,\"source_type\":\"struct_field\",\"destination\":\"rdx (call target)\"},{\"operation\":\"READ\",\"source\":\"animal->name_ptr (offset 0x10)\",\"size\":8,\"source_type\":\"struct_field\",\"destination\":\"rdi (call argument)\"},{\"operation\":\"CALL\",\"destination\":\"rdx (indirect call via function pointer from animal->func_ptr)\",\"size\":0,\"destination_type\":\"indirect_call\",\"argument\":\"rdi = animal->name_ptr\"}],\"calls\":[\"print\",\"printf\",\"__isoc99_scanf\",\"puts\"],\"behavior\":\"Loads animal pointer from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, then 'call rdx'. This is an indirect call through a function pointer stored in a heap object. If the animal was freed (dangling pointer in zoo), this dereferences freed memory.\"}],\"attack_surfaces\":[{\"function\":\"remove_animal\",\"input\":\"zone_index (scanf)\",\"operation\":\"FREE animal struct + name buffer without NULLing zoo[idx] pointer\",\"risk\":\"HIGH\",\"reason\":\"free(animal) and free(animal->name_ptr) are called but zoo[idx+8] pointer is NOT cleared to NULL. The dangling pointer remains accessible. report_name can later dereference this freed pointer. This is a classic use-after-free pattern: allocate -> free (no clear) -> use via report_name.\"},{\"function\":\"report_name\",\"input\":\"zone_index (scanf)\",\"operation\":\"Indirect call rdx where rdx=animal->func_ptr (offset 0) and rdi=animal->name_ptr (offset 0x10), animal pointer loaded from zoo[idx] which may be dangling\",\"risk\":\"HIGH\",\"reason\":\"After remove_animal frees an animal but leaves the zoo pointer, report_name dereferences the freed heap object: reads func_ptr (offset 0) as call target and name_ptr (offset 0x10) as argument, then 'call rdx'. If the freed chunk is reallocated and overwritten with attacker-controlled data, the attacker controls both the call target and its argument — potential code execution primitive.\"},{\"function\":\"add_animal\",\"input\":\"animal_name (read 0x18 bytes)\",\"operation\":\"READ 24 bytes from stdin into 24-byte heap name buffer (malloc(0x18))\",\"risk\":\"MEDIUM\",\"reason\":\"read(0, name_buf, 0x18) reads exactly 24 bytes into a 24-byte buffer — no overflow here, but the name buffer is the same size (0x18) as the animal struct, meaning a freed animal struct can be reallocated as a name buffer (or vice versa), enabling heap object aliasing for UAF exploitation.\"},{\"function\":\"print\",\"input\":\"msg (rdi argument)\",\"operation\":\"CALL system() with hardcoded date command, then printf('%s', msg)\",\"risk\":\"MEDIUM\",\"reason\":\"print() calls system() — while the command is hardcoded (not attacker-controlled), system@plt is in the GOT at 0x404038 (writable, Partial RELRO). If a function pointer in a freed/reused animal object is overwritten to point to system or a controlled target, the indirect call in report_name could redirect control flow.\"},{\"function\":\"report_name\",\"input\":\"zone_index\",\"operation\":\"READ animal->name_ptr (offset 0x10) and pass to indirect call as rdi argument, then the called function (print/speak) passes it to printf('%s')\",\"risk\":\"MEDIUM\",\"reason\":\"If animal->name_ptr is controlled (via UAF heap reuse), it becomes the argument to the indirect call and is ultimately printed via printf('%s', ptr) — potential arbitrary read if the name_ptr field is overwritten with an arbitrary address.\"}],\"facts\":[{\"id\":\"F001\",\"type\":\"FACT\",\"description\":\"Binary is ELF64 x86-64, dynamically linked, not stripped, No PIE (base 0x400000), source file zoo.c, compiled with GCC 11.3.0\",\"source\":\"ELF\"},{\"id\":\"F002\",\"type\":\"FACT\",\"description\":\"Security: Partial RELRO, NX enabled, Canary found, No PIE, SHSTK enabled, IBT enabled\",\"source\":\"ELF\"},{\"id\":\"F003\",\"type\":\"FACT\",\"description\":\"libc is glibc 2.39 at /lib/x86_64-linux-gnu/libc.so.6; loader /lib64/ld-linux-x86-64.so.2; only NEEDED dependency is libc.so.6; no RPATH/RUNPATH set\",\"source\":\"RUNTIME\"},{\"id\":\"F004\",\"type\":\"FACT\",\"description\":\"Global variable zoo at 0x4040c0, size 88 bytes in .bss. Layout: offset 0 = count (int32, 4 bytes + 4 padding), offset 8 = 10 pointer slots (8 bytes each) at 0x4040c8..0x404110\",\"source\":\"ELF\"},{\"id\":\"F005\",\"type\":\"FACT\",\"description\":\"Animal struct is 24 bytes (malloc(0x18)): offset 0x0 = func_ptr (8 bytes, set to speak=0x4012b3), offset 0x8 = type (int32, 0=Parrot/1=Panda), offset 0x10 = name_ptr (8 bytes, pointer to 24-byte name buffer)\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F006\",\"type\":\"FACT\",\"description\":\"add_animal allocates two 0x18-byte chunks: animal struct and name buffer. Both are same size (24 bytes), enabling tcache bin aliasing.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F007\",\"type\":\"FACT\",\"description\":\"remove_animal calls free(animal->name_ptr) then free(animal), decrements zoo count, but does NOT set zoo[idx+8] to NULL — dangling pointer remains in zoo array\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F008\",\"type\":\"FACT\",\"description\":\"report_name loads animal ptr from zoo[idx+8], reads func_ptr from animal->offset0 into rdx, reads name_ptr from animal->offset0x10 into rdi, executes 'call rdx' — indirect call through heap-stored function pointer\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F009\",\"type\":\"FACT\",\"description\":\"print() at 0x401276 calls system() with hardcoded date command string at 0x402008, then printf('%s', msg). system@plt is at 0x401120, system GOT entry at 0x404038 (writable, Partial RELRO).\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F010\",\"type\":\"FACT\",\"description\":\"speak() at 0x4012b3 is a wrapper that passes its argument to print(). It is the default func_ptr stored in every animal object at offset 0.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F011\",\"type\":\"FACT\",\"description\":\"init() sets stdin/stdout/stderr to unbuffered (setvbuf with mode 2) and sets alarm(60) — 60 second timeout\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F012\",\"type\":\"FACT\",\"description\":\"menu reads choice via scanf(%d), validates 0-4, returns choice. Options: 1=add, 2=remove, 3=report, 0=exit.\",\"source\":\"DISASSEMBLY\"},{\"id\":\"F013\",\"type\":\"FACT\",\"description\":\"Runtime confirmed: program prints date-prefixed menu, add flow works (type 1=Parrot, name read), report on zone 0 outputs the animal name via the speak->print->printf chain\",\"source\":\"RUNTIME\"},{\"id\":\"F014\",\"type\":\"FACT\",\"description\":\"GOT is writable (Partial RELRO): .got.plt at 0x404000 (size 0x70) and .got at 0x403ff0 (size 0x10) are in RW LOAD segment. system@GOT at 0x404038, free@GOT at 0x404018, malloc@GOT at 0x404058.\",\"source\":\"ELF\"},{\"id\":\"F015\",\"type\":\"FACT\",\"description\":\"No RPATH/RUNPATH in binary; only NEEDED library is libc.so.6 resolved to /lib/x86_64-linux-gnu/libc.so.6. LD_LIBRARY_PATH (if set) would precede system paths in search order.\",\"source\":\"RUNTIME\"},{\"id\":\"F016\",\"type\":\"DERIVED\",\"description\":\"Since animal struct (0x18) and name buffer (0x18) are the same malloc size, after remove_animal frees both, a subsequent add_animal's name buffer malloc(0x18) can reuse the freed animal struct chunk (same tcache bin), allowing attacker to write 24 bytes of name data that overlaps the animal struct fields (func_ptr at offset 0, type at offset 8, name_ptr at offset 0x10).\",\"source\":\"DISASSEMBLY\"}],\"uncertainties\":[{\"id\":\"U001\",\"description\":\"Exact glibc tcache behavior and chunk alignment at runtime for 0x18-size allocations (24 bytes user data, 0x20 chunk size with header)\",\"reason\":\"Cannot fully determine runtime heap layout without dynamic debugging; glibc 2.39 tcache semantics assumed standard\"},{\"id\":\"U002\",\"description\":\"Whether ASLR is enabled in the target execution environment\",\"reason\":\"No PIE so binary base is fixed at 0x400000, but libc base is randomized if ASLR is on; cannot confirm from static analysis alone\"},{\"id\":\"U003\",\"description\":\"Whether FORTIFY_SOURCE is enabled\",\"reason\":\"checksec did not report FORTIFY; no __*_chk variants of read/printf observed in PLT, suggesting FORTIFY is likely not enabled, but not definitively confirmed\"},{\"id\":\"U004\",\"description\":\"Whether the freed animal pointer in zoo[idx] can survive multiple alloc/free cycles and be reliably aliased\",\"reason\":\"Requires dynamic heap state analysis to confirm tcache reuse ordering\"}],\"raw\":{\"elf\":\"ELF64 LSB executable, x86-64, SYSV, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID=e3bd0f41acd579b8362bbe50b427a0f7f3044ab4, not stripped. Entry=0x401190. 13 program headers, 31 sections. LOAD segments: R(0x400000), RX(0x401000), R(0x402000), RW(0x403e10). GNU_STACK=RW (NX). GNU_RELRO=0x403e10 (Partial).\",\"sections\":\"Key sections: .text@0x401190(0x745,X), .rodata@0x402000(0x18a,R), .data@0x404070(0x10,RW), .bss@0x404080(0x98,RW), .got@0x403ff0(0x10,RW), .got.plt@0x404000(0x70,RW), .plt@0x401020(0xc0,X), .plt.sec@0x4010e0(0xb0,X), .init_array@0x403e10(8,RW), .fini_array@0x403e18(8,RW), .dynamic@0x403e20(0x1d0,RW), .eh_frame@0x4021f8(0x184,R), .eh_frame_hdr@0x40218c(0x6c,R).\",\"symbols\":\"Key symbols: main@0x40184d, init@0x4012d2, menu@0x401341, print@0x401276, speak@0x4012b3, add_animal@0x401421, remove_animal@0x4015ed, report_name@0x401735. Globals: zoo@0x4040c0(88B), stdout@0x404080, stdin@0x404090, stderr@0x4040a0. Imports: free,putchar,puts,__stack_chk_fail,system,printf,alarm,read,malloc,setvbuf,__isoc99_scanf.\",\"disassembly\":\"add_animal(0x401421): malloc(0x18)->animal, scanf type, animal->func_ptr=speak(0x4012b3), animal->type=0/1, malloc(0x18)->name_buf, read(0,name_buf,0x18), zoo[idx+8]=animal, zoo[0]++. remove_animal(0x4015ed): scanf idx(0-9), free(zoo[idx]->name_ptr@0x10), free(zoo[idx]), zoo[0]--, NO NULL of zoo[idx+8]. report_name(0x401735): scanf idx(0-9), rdx=zoo[idx]->func_ptr@0, rdi=zoo[idx]->name_ptr@0x10, call rdx. print(0x401276): system(date_cmd@0x402008), printf('%s',msg). speak(0x4012b3): call print(arg).\"}},\"vulnerability_report\":{\"schema\":\"VulnerabilityReport\",\"version\":\"1.0\",\"status\":\"COMPLETED\",\"summary\":{\"total_bugs\":2,\"high_severity\":2,\"medium_severity\":0,\"low_severity\":0},\"vulnerabilities\":[{\"bug_id\":\"BUG-001\",\"title\":\"HEAP_USE_AFTER_FREE_via_dangling_zoo_pointer\",\"root_cause\":{\"type\":\"Use-After-Free\",\"description\":\"remove_animal frees both the animal struct (free(zoo[idx])) and its name buffer (free(zoo[idx]->name_ptr)) but does NOT set the zoo[idx+8] pointer slot to NULL afterward. The dangling pointer remains in the global zoo array. report_name later loads this dangling pointer, reads func_ptr (offset 0) and name_ptr (offset 0x10) from the freed heap object, and performs an indirect call 'call rdx' where rdx=animal->func_ptr and rdi=animal->name_ptr. This dereferences freed heap memory. Because the animal struct (0x18 bytes) and the name buffer (0x18 bytes) are the same malloc size, a subsequent add_animal's name buffer malloc(0x18) can reuse the freed animal struct chunk (same tcache bin in glibc 2.39), allowing attacker-controlled name data (24 bytes from read()) to overwrite the animal struct fields including func_ptr at offset 0 and name_ptr at offset 0x10. The freed-then-reused object is then dereferenced via report_name's indirect call.\"},\"affected_functions\":[\"remove_animal\",\"report_name\",\"add_animal\"],\"affected_objects\":[\"zoo array (global at 0x4040c0, 10 pointer slots at 0x4040c8-0x404110)\",\"animal struct (heap, 0x18 bytes: func_ptr@0x0, type@0x8, name_ptr@0x10)\",\"name buffer (heap, 0x18 bytes)\"],\"attack_surface\":{\"input\":\"zone_index via scanf(%d) in remove_animal and report_name; animal_name via read(0, buf, 0x18) in add_animal\",\"entry_function\":\"main\",\"data_flow\":[\"1. Attacker calls add_animal (menu option 1): allocates animal struct (malloc(0x18)) and name buffer (malloc(0x18)), stores animal ptr in zoo[idx+8]\",\"2. Attacker calls remove_animal (menu option 2) with the same index: free(animal->name_ptr) at 0x4016d2, free(animal) at 0x4016f2, count-- at 0x401716 — but zoo[idx+8] is NOT set to NULL, dangling pointer remains\",\"3. Attacker calls add_animal (menu option 1) again: malloc(0x18) for new name buffer reuses the freed animal struct chunk (same tcache bin, same 0x18 size); attacker writes 24 bytes of controlled data via read(0, name_buf, 0x18) at 0x40158e, overwriting offset 0 (func_ptr) and offset 0x10 (name_ptr) of the old animal struct\",\"4. Attacker calls report_name (menu option 3) with the original index: loads dangling zoo[idx+8] pointer at 0x40180f, reads func_ptr from offset 0 into rdx at 0x401813, reads name_ptr from offset 0x10 into rdi at 0x40182e, executes 'call rdx' at 0x401835 — dereferences the freed/reused heap object with attacker-controlled func_ptr and name_ptr\"]},\"security_check\":{\"expected\":\"After freeing an animal object, the zoo[idx+8] pointer slot should be set to NULL to prevent any subsequent access to the freed memory. Additionally, report_name should validate that the animal object is still live before dereferencing it.\",\"actual\":\"remove_animal checks zoo[idx+8] != NULL before freeing (0x40169d), frees the object, decrements count, but never writes NULL to zoo[idx+8]. report_name checks zoo[idx+8] != NULL (0x4017e5) and count > 0 (0x401756), but both checks pass for a dangling pointer since the slot was never cleared and count may still be positive.\",\"missing_or_incorrect\":\"Missing NULL assignment to zoo[idx+8] after free in remove_animal. The pointer invalidation step is entirely absent — no memset, no NULL store, no flag marking the slot as freed.\"},\"vulnerable_operation\":{\"operation\":\"Indirect call through function pointer read from freed heap object\",\"address\":\"0x401835 (call rdx in report_name)\",\"expression\":\"rdx = *(zoo[idx+8] + 0x0) [func_ptr from freed animal]; rdi = *(zoo[idx+8] + 0x10) [name_ptr from freed animal]; call rdx\",\"target\":\"freed animal struct heap chunk (0x18 bytes), potentially reallocated as name buffer with attacker-controlled content\",\"size\":\"8 bytes for func_ptr (offset 0), 8 bytes for name_ptr (offset 0x10)\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"report_name dereferences a freed heap object (UAF). If the freed chunk is reallocated as a name buffer via add_animal, attacker-controlled data overwrites the animal struct fields. The indirect call at 0x401835 uses the attacker-influenced func_ptr (offset 0) as call target and name_ptr (offset 0x10) as argument, corrupting the control flow through freed memory.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"If the freed animal chunk is not reallocated or is overwritten with non-addressable data, the indirect call 'call rdx' at 0x401835 dereferences an invalid or uninitialized func_ptr, causing SIGSEGV.\"},{\"type\":\"INFO_LEAK\",\"status\":\"CANDIDATE\",\"reason\":\"If the freed animal chunk retains stale heap metadata (e.g., tcache fd/bk pointers from glibc 2.39), report_name reads func_ptr (offset 0) and name_ptr (offset 0x10) from the freed chunk. The name_ptr value is passed as rdi to the called function (speak->print->printf('%s', msg)), which prints it as a string — potentially leaking heap pointers or other memory content.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016f2\",\"description\":\"free(zoo[idx]) is called at 0x4016f2 (mov rdi,rax; call free@plt). The function then decrements zoo count at 0x401716 (sub eax,0x1; mov [rip+0x29a1],eax) and returns. There is NO instruction between 0x4016f2 and 0x401733 that writes NULL to zoo[idx+8] — the dangling pointer remains.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016d2-0x4016f2\",\"description\":\"Two free calls: free(animal->name_ptr) at 0x4016d2 (mov rax,[rax+0x10]; mov rdi,rax; call free@plt) and free(animal) at 0x4016f2. Both chunks are 0x18 bytes (same tcache bin), but neither zoo slot is cleared.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"report_name\",\"address\":\"0x401813-0x401835\",\"description\":\"report_name loads animal ptr from zoo[idx+8] at 0x40180f (mov rax,[rdx+rax*1]), reads func_ptr from [rax+0x0] into rdx at 0x401813 (mov rdx,[rax]), reads name_ptr from [rax+0x10] into rdi at 0x40182e (mov rax,[rax+0x10]; mov rdi,rax), then executes 'call rdx' at 0x401835. This dereferences the animal object which may be freed (dangling pointer from zoo).\"},{\"id\":\"E004\",\"type\":\"STATIC\",\"function\":\"add_animal\",\"address\":\"0x40148e-0x40158e\",\"description\":\"add_animal allocates animal struct via malloc(0x18) at 0x401493 and name buffer via malloc(0x18) at 0x401546 — both are the same size (0x18=24 bytes). read(0, name_buf, 0x18) at 0x40158e writes 24 bytes of attacker-controlled data into the name buffer. Since both allocations are the same size, a freed animal struct chunk can be reused as a name buffer, allowing the 24-byte read to overwrite func_ptr (offset 0), type (offset 8), and name_ptr (offset 0x10) of the old animal struct.\"},{\"id\":\"E005\",\"type\":\"DERIVED\",\"function\":\"remove_animal + add_animal + report_name\",\"address\":\"0x4016f2 + 0x401546 + 0x401835\",\"description\":\"Complete UAF chain: remove_animal frees animal struct without clearing zoo slot (E001) → add_animal's name buffer malloc(0x18) reuses the freed animal chunk (same tcache bin, E004) → attacker's 24-byte read data overwrites func_ptr and name_ptr → report_name dereferences the reused chunk via 'call rdx' (E003). The freed object's lifetime has ended but the stale zoo pointer makes it reachable, and the same-size reallocation makes it attacker-writable.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm glibc 2.39 tcache reuse ordering: verify that a freed 0x18-byte animal struct chunk is returned by a subsequent malloc(0x18) for the name buffer (LIFO tcache behavior)\",\"Verify that the zoo count check (count > 0) in report_name passes when a dangling pointer exists (count may still be positive if other animals were added/removed)\",\"Confirm whether the indirect call 'call rdx' at 0x401835 is protected by CET/IBT (endbr64 target requirement) — speak() at 0x4012b3 has endbr64, but an attacker-controlled target may not, potentially blocking indirect call under IBT\"]},{\"bug_id\":\"BUG-002\",\"title\":\"HEAP_DOUBLE_FREE_via_repeated_remove_animal_on_uncleared_slot\",\"root_cause\":{\"type\":\"Double Free\",\"description\":\"Because remove_animal does not set zoo[idx+8] to NULL after freeing the animal struct and name buffer, the same index can be passed to remove_animal again. The non-NULL check at 0x40169d (test rax,rax; jne) passes for the dangling pointer, and the function proceeds to free(animal->name_ptr) and free(animal) again — freeing already-freed heap chunks. This is a double-free on both the name buffer and the animal struct. In glibc 2.39, tcache has a double-free detection (key check), but the name_ptr read from the freed chunk may be stale/corrupted, potentially causing a free on an arbitrary address (invalid free) if the freed chunk's offset 0x10 has been overwritten.\"},\"affected_functions\":[\"remove_animal\"],\"affected_objects\":[\"animal struct (heap, 0x18 bytes)\",\"name buffer (heap, 0x18 bytes)\",\"zoo array pointer slots (0x4040c8-0x404110)\"],\"attack_surface\":{\"input\":\"zone_index via scanf(%d) in remove_animal, called twice with the same index\",\"entry_function\":\"main\",\"data_flow\":[\"1. Attacker calls add_animal (menu option 1): allocates animal + name buffer, stores animal ptr in zoo[idx+8]\",\"2. Attacker calls remove_animal (menu option 2) with index: free(name_ptr), free(animal), count--, zoo[idx+8] NOT cleared\",\"3. Attacker calls remove_animal (menu option 2) again with the SAME index: zoo[idx+8] still non-NULL (dangling), passes check at 0x40169d, reads animal->name_ptr from freed chunk at 0x4016cb (mov rax,[rax+0x10]), calls free on it again at 0x4016d2, then calls free on the animal struct again at 0x4016f2 — double free on both chunks\"]},\"security_check\":{\"expected\":\"After freeing, the zoo[idx+8] slot should be set to NULL so that a subsequent remove_animal on the same index sees an empty slot and refuses to free again.\",\"actual\":\"remove_animal checks zoo[idx+8] != NULL (0x40169d) but since the slot is never cleared after free, the check passes for a dangling pointer, allowing a second free on the same chunks.\",\"missing_or_incorrect\":\"Missing NULL assignment to zoo[idx+8] after free — same root cause as BUG-001, but the immediate consequence here is double-free rather than use-after-free. The non-NULL guard is ineffective because it tests the stale pointer.\"},\"vulnerable_operation\":{\"operation\":\"Double free of animal struct and name buffer\",\"address\":\"0x4016d2 (free name_ptr) and 0x4016f2 (free animal) on second call\",\"expression\":\"Second remove_animal(idx): rax = zoo[idx+8] (dangling, non-NULL); free(*(rax+0x10)) [name_ptr from freed chunk]; free(rax) [animal struct, already freed]\",\"target\":\"already-freed heap chunks (animal struct 0x18 and name buffer 0x18)\",\"size\":\"0x18 bytes each\"},\"impact\":[{\"type\":\"MEMORY_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"Double-free corrupts the tcache metadata in glibc 2.39. A double-freed chunk appears twice in the tcache free list, allowing subsequent malloc calls to return the same chunk twice, leading to overlapping heap allocations and heap metadata corruption.\"},{\"type\":\"CRASH\",\"status\":\"CANDIDATE\",\"reason\":\"glibc 2.39 tcache has a double-free detection mechanism (tcache_key check). If triggered, the program aborts with a heap corruption error, causing a crash. Additionally, if the freed chunk's offset 0x10 (name_ptr) has been overwritten by tcache metadata or reallocation, free() is called on an arbitrary/corrupted address, potentially causing SIGSEGV.\"},{\"type\":\"DATA_CORRUPTION\",\"status\":\"CANDIDATE\",\"reason\":\"If the freed animal chunk's offset 0x10 (name_ptr field) has been overwritten (e.g., by tcache fd pointer after first free, or by reallocation), the second remove_animal reads this corrupted value as name_ptr and calls free() on it — an invalid free on a potentially arbitrary address, corrupting heap state.\"}],\"evidence\":[{\"id\":\"E006\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x401699-0x4016a0\",\"description\":\"The non-NULL check at 0x401699-0x4016a0 (mov rax,[rdx+rax*1]; test rax,rax; jne 0x4016b3) tests zoo[idx+8]. Since the slot is never cleared after free, this check passes for a dangling pointer, allowing the function to proceed to the second free.\"},{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016cb-0x4016d2\",\"description\":\"On second call, the code reads animal->name_ptr from the freed chunk: mov rax,[rax+0x10] at 0x4016cb, then calls free(rax) at 0x4016d2. This frees the name_ptr value read from freed memory — which may be the original name buffer (double free) or a corrupted/arbitrary value if the chunk was reused.\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016eb-0x4016f2\",\"description\":\"On second call, the code loads zoo[idx+8] again (dangling pointer) at 0x4016eb and calls free(rax) at 0x4016f2 — freeing the already-freed animal struct chunk a second time. This is a textbook double-free.\"}],\"confidence\":\"HIGH\",\"verification_required\":[\"Confirm glibc 2.39 tcache double-free detection behavior: whether the tcache_key check aborts the process or can be bypassed\",\"Verify whether the name_ptr read from the freed chunk (offset 0x10) on the second remove_animal call still points to the original name buffer or has been corrupted by tcache metadata\",\"Determine if the zoo count check (count > 0 at 0x40160e) blocks the second remove_animal — count was decremented on first remove, so if only one animal existed, count becomes 0 and the second remove is blocked. Precondition: at least 2 animals must exist, or count must be manipulated.\"]}],\"non_vulnerabilities\":[{\"function\":\"add_animal\",\"description\":\"read(0, name_buf, 0x18) reads exactly 24 bytes into a 24-byte (0x18) heap buffer allocated by malloc(0x18). The read size matches the buffer size — no heap buffer overflow.\",\"reason\":\"The size argument to read() is hardcoded as 0x18 (at 0x401581: mov edx,0x18), and the buffer was allocated with malloc(0x18) at 0x401546. No overflow occurs. The same-size property is relevant to UAF aliasing (BUG-001) but is not itself a buffer overflow.\"},{\"function\":\"menu\",\"description\":\"menu reads choice via scanf(%d) into a stack int [rbp-0xc] and validates 0 <= choice <= 4 using signed comparison (test eax,eax; js for lower bound, cmp eax,0x9; jle for upper bound).\",\"reason\":\"The choice is a signed int validated with js (jump if sign/negative) and jle (jump if <= 9). Negative values are rejected by js, values > 9 are rejected by jle. No signedness mismatch — the comparison correctly bounds the 0-4 range. Stack canary protects against overflow of the int-sized scanf target.\"},{\"function\":\"remove_animal / report_name\",\"description\":\"zone_index is validated with test eax,eax; js (rejects negative) and cmp eax,0x9; jle (accepts <= 9). The index is then sign-extended via cdqe and used as [rax*8] offset into zoo+0x8.\",\"reason\":\"The lower bound check uses js (jump-if-sign) which correctly rejects negative values before the cdqe sign-extension. The upper bound uses jle (signed <= 9). Since negative values are already rejected, cdqe does not produce a negative index. No OOB via index signedness mismatch. The index range 0-9 correctly maps to zoo slots 0x4040c8-0x404110 (10 slots).\"},{\"function\":\"print\",\"description\":\"print() calls system() with a hardcoded command string at 0x402008 ('/usr/bin/date +\\\"%Y/%m/%d %H:%M.%S\\\" | tr -d \\\"\\\\n: \\\"') and then printf('%s', msg) with a format string at 0x402037.\",\"reason\":\"The system() command is a hardcoded string literal in .rodata, not attacker-controlled. The printf uses '%s' format with the msg argument — no format string vulnerability since the format is a constant '%s', not user input. The msg pointer comes from the caller's argument, which in the UAF scenario (BUG-001) is the animal->name_ptr — but this is a consequence of the UAF, not an independent format string bug.\"}],\"unresolved\":[{\"description\":\"CET/IBT (Indirect Branch Tracking) impact on the UAF indirect call at 0x401835\",\"reason\":\"The binary has IBT enabled (SHSTK and IBT both true per S1). The 'call rdx' at 0x401835 requires rdx to point to a valid endbr64 instruction. speak() at 0x4012b3 has endbr64, so the normal path works. If an attacker overwrites func_ptr with an arbitrary address via UAF, the target may lack endbr64, causing a #CP exception (CET violation) instead of executing the attacker's target. This may limit the UAF's control-flow impact to crashes rather than arbitrary code execution, but the memory corruption (reading/writing freed heap) still occurs before the call.\",\"required_next_step\":\"S3/S4 should verify whether IBT is enforced at runtime and whether any valid endbr64 gadgets exist that could serve as alternative call targets. Also check if SHSTK (shadow stack) affects the call return address.\"},{\"description\":\"glibc 2.39 tcache double-free detection for BUG-002\",\"reason\":\"glibc 2.39 tcache includes a double-free detection mechanism using a tcache_key field. When a chunk is freed into tcache, a key is written to the chunk. On subsequent free, if the key matches, glibc detects the double-free and aborts. This may prevent the double-free in BUG-002 from corrupting the heap, instead causing an abort/crash. However, if the chunk is reallocated between the two frees (clearing the key), the double-free detection is bypassed.\",\"required_next_step\":\"S3 should dynamically verify whether the double-free in remove_animal triggers glibc's tcache double-free abort or succeeds in corrupting the free list.\"},{\"description\":\"Zoo count manipulation for BUG-002 precondition\",\"reason\":\"remove_animal checks zoo count > 0 at 0x40160e. After one remove, count is decremented. If only one animal existed, count becomes 0 and the second remove_animal is blocked by the count check (not the slot check). The double-free requires count > 0 at the time of the second remove, meaning at least 2 animals must exist, or the count must be manipulated via add/remove sequences.\",\"required_next_step\":\"S3 should confirm the minimal sequence of add/remove operations that maintains count > 0 while leaving a dangling pointer for the double-free.\"}]},\"primitive_reports\":[{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-001\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-001\",\"total_primitives\":4,\"verified\":2,\"theoretical\":0,\"candidate\":2,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"remove_animal frees animal struct and name buffer but does NOT set zoo[idx+8] to NULL, leaving a dangling pointer in the global zoo array. report_name later dereferences this dangling pointer, reading func_ptr (offset 0) and name_ptr (offset 0x10) from the freed heap object and performing an indirect call 'call rdx' where rdx=animal->func_ptr.\",\"description\":\"After remove_animal frees the animal struct, the freed chunk's offset 0 (func_ptr) is overwritten by glibc 2.39 tcache fd (safe-linking XOR'd pointer). report_name reads this tcache fd as the call target (rdx) and executes 'call rdx', causing SIGSEGV at the invalid tcache fd address.\"},\"chain\":[\"BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]\",\"Dangling pointer remains in zoo array (zoo[0]=0x4052a0 after free)\",\"report_name loads dangling zoo[0], reads func_ptr from freed chunk offset 0\",\"func_ptr = tcache fd (0x4056c5, safe-linking XOR'd) instead of speak (0x4012b3)\",\"call rdx (0x4056c5) -> SIGSEGV at invalid address\"],\"controlled_element\":{\"what\":\"func_ptr field (offset 0) of freed animal struct\",\"how\":\"After free, glibc tcache overwrites offset 0 with fd pointer (safe-linking XOR'd). This is heap metadata, not attacker-controlled data. The crash target (0x4056c5) is determined by tcache state, not attacker input.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one animal. report_name checks count > 0 at 0x401756.\",\"necessity\":\"If count becomes 0 after remove, report_name prints 'no animal' and returns without dereferencing the dangling pointer.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The freed animal chunk must not be reallocated before report_name dereferences it. If reallocated by add_animal, the chunk contains valid animal struct fields (func_ptr=speak) and no crash occurs.\",\"necessity\":\"The crash requires the freed chunk to contain tcache metadata (invalid func_ptr). If the chunk is reallocated, func_ptr is set to speak (0x4012b3) by add_animal, and report_name calls speak normally.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"zoo[idx+8] must remain non-NULL after remove_animal (the bug itself). report_name checks zoo[idx+8] != NULL at 0x4017e5.\",\"necessity\":\"If zoo[idx+8] were NULL'd, report_name would print 'no animal in this zone' and return.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12)\",\"alias\":\"func_ptr field (offset 0) aliases tcache fd pointer after free\",\"implication\":\"After free, the func_ptr field is overwritten by tcache fd (safe-linking XOR'd). This is not attacker-controlled but proves the freed object's fields are being used with non-original content.\"},{\"expression\":\"freed_chunk[0x10] = original_name_ptr\",\"alias\":\"name_ptr field (offset 0x10) is NOT overwritten by tcache metadata\",\"implication\":\"tcache only writes fd (offset 0) and key (offset 8). The name_ptr at offset 0x10 retains its original value (0x4052c0), which is still a valid heap pointer. This means rdi in the indirect call is a valid pointer.\"}],\"verification_plan\":{\"method\":\"Run target with stdin sequence: add 2 animals (menu 1, type 1, name), remove animal 0 (menu 2, idx 0), report_name(0) (menu 3, idx 0). Observe SIGSEGV (return code -11). Use gdb to verify zoo[0] is dangling, freed chunk contains tcache fd at offset 0, and crash occurs at call rdx.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE (base 0x400000), Partial RELRO, NX, Canary, IBT+SHSTK enabled in ELF but IBT NOT enforced at runtime\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"expected_evidence\":[\"return_code = -11 (SIGSEGV)\",\"gdb: zoo[0] = 0x4052a0 (dangling, non-NULL after free)\",\"gdb: freed chunk offset 0 = 0x4056c5 (tcache fd, not speak=0x4012b3)\",\"gdb: rdx = 0x4056c5, rip = 0x4056c5 after call rdx\",\"gdb: zoo count = 1 (passes count > 0 check)\"]},\"mitigations\":[{\"name\":\"IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"IBT is enabled in the ELF binary but NOT enforced at runtime. The crash is a regular SIGSEGV (executing code at 0x4056c5), not a CET violation (#CP exception). This means call rdx can target any address without endbr64 requirement. If IBT were enforced, the crash would be a CET violation instead, but the UAF dereference would still occur.\"},{\"name\":\"SHSTK (Shadow Stack)\",\"present\":true,\"primitive_impact\":\"SHSTK protects return addresses on the shadow stack. It does not prevent the UAF dereference or the indirect call itself. It would only matter if the attacker controlled the return address, which is not the case for this primitive.\"},{\"name\":\"Canary\",\"present\":true,\"primitive_impact\":\"Stack canary protects against stack buffer overflows. Not relevant to this heap UAF primitive.\"},{\"name\":\"NX\",\"present\":true,\"primitive_impact\":\"NX prevents execution of code on the heap/stack. The crash target (0x4056c5) is in heap memory, so even if execution continued, shellcode on the heap would not execute.\"},{\"name\":\"Partial RELRO\",\"present\":true,\"primitive_impact\":\"GOT is writable. If the attacker could control func_ptr to point to a valid function (e.g., via cross-aliasing), they could redirect control flow. But cross-aliasing is not achievable with standard tcache LIFO.\"},{\"name\":\"No PIE\",\"present\":true,\"primitive_impact\":\"Binary base is fixed at 0x400000. All function addresses (speak=0x4012b3, print=0x401276, system@plt=0x401120) are known. If func_ptr could be controlled, the attacker could redirect to any known function address.\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016f2\",\"description\":\"free(zoo[idx]) called at 0x4016f2. No instruction between 0x4016f2 and 0x401733 writes NULL to zoo[idx+8]. The dangling pointer remains.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"call rdx at 0x401835 where rdx = [zoo[idx+8]+0x0] (func_ptr from animal object). If zoo[idx+8] is dangling, this dereferences freed heap memory.\"},{\"id\":\"E003\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"gdb: After add(2 animals) + remove(0) + report_name(0): zoo[0]=0x4052a0 (dangling), freed chunk offset 0 = 0x4056c5 (tcache fd), rdx=0x4056c5, call rdx -> SIGSEGV at 0x4056c5. zoo count=1 (passes count>0 check).\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"PoC execution: return_code=-11 (SIGSEGV). Confirms UAF crash is reproducible.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"0x4056c5\",\"return_code\":-11,\"details\":\"gdb: zoo[0]=0x4052a0 (dangling), freed chunk func_ptr=0x4056c5 (tcache fd), rdx=0x4056c5, call rdx -> SIGSEGV at 0x4056c5. zoo count=1. IBT not enforced (regular SIGSEGV, not CET violation).\"},\"confidence\":\"HIGH\",\"notes\":\"CRASH primitive is directly verified via PoC (rc=-11) and gdb (fault_address=0x4056c5). The crash is caused by UAF dereference of tcache fd as func_ptr. The freed chunk's func_ptr (offset 0) is overwritten by glibc 2.39 tcache fd (safe-linking XOR'd pointer 0x4056c5 = 0x4052c0 XOR (0x4052a0 >> 12)).\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"HEAP_OBJECT_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"remove_animal frees animal struct without NULLing zoo[idx+8]. The freed chunk's fields (func_ptr@0x0, name_ptr@0x10) are later read by report_name and used as call target and argument.\",\"description\":\"After free, glibc 2.39 tcache overwrites the freed chunk's offset 0 (func_ptr) with fd pointer and offset 8 with tcache key. The name_ptr at offset 0x10 retains its original value. report_name reads these modified fields and uses them: func_ptr -> rdx (call target), name_ptr -> rdi (call argument). This proves the freed object's fields are being used with non-original content (tcache metadata), which is indirect heap object control.\"},\"chain\":[\"BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]\",\"Dangling pointer in zoo[0] = 0x4052a0 (freed chunk address)\",\"glibc tcache overwrites freed chunk: offset 0 = fd (0x4056c5), offset 8 = key\",\"report_name reads freed chunk fields: func_ptr=0x4056c5 (tcache fd), name_ptr=0x4052c0 (original)\",\"Freed object's fields used as func_ptr (call target) and name_ptr (call argument) -> HEAP_OBJECT_CONTROL (indirect)\"],\"controlled_element\":{\"what\":\"func_ptr (offset 0) and name_ptr (offset 0x10) of freed animal struct\",\"how\":\"func_ptr is overwritten by tcache fd (heap metadata, not attacker-controlled). name_ptr retains original value. The fields are used by report_name as call target and argument. This is indirect control: the object's fields are modified by heap metadata, not by attacker input.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one.\",\"necessity\":\"report_name checks count > 0 at 0x401756. If count=0, it returns without dereferencing.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The freed animal chunk must not be reallocated before report_name dereferences it.\",\"necessity\":\"If reallocated, the chunk contains valid animal struct fields (func_ptr=speak) set by add_animal, and the fields are no longer tcache metadata.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"zoo[idx+8] must remain non-NULL after remove_animal (the bug itself).\",\"necessity\":\"report_name checks zoo[idx+8] != NULL at 0x4017e5.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12) = 0x4052c0 XOR 0x405 = 0x4056c5\",\"alias\":\"func_ptr field (offset 0) aliases tcache fd after free (safe-linking XOR)\",\"implication\":\"The func_ptr field is overwritten by tcache fd. This is heap metadata, proving the freed object's fields are modified and used. The value is not attacker-controlled but demonstrates indirect heap object control.\"},{\"expression\":\"freed_chunk[0x8] = tcache_key (random per-thread value)\",\"alias\":\"type field (offset 8) aliases tcache key after free\",\"implication\":\"The type field is overwritten by tcache key. Not directly used by report_name but demonstrates tcache metadata overwriting struct fields.\"},{\"expression\":\"freed_chunk[0x10] = original_name_ptr (0x4052c0, unchanged)\",\"alias\":\"name_ptr field (offset 0x10) is NOT overwritten by tcache\",\"implication\":\"tcache only writes fd (offset 0) and key (offset 8). name_ptr at offset 0x10 retains original value. This means rdi in the indirect call is a valid pointer to the freed name buffer.\"}],\"verification_plan\":{\"method\":\"Use gdb to set breakpoint at call rdx (0x401835), examine freed chunk contents and register values. Verify func_ptr (offset 0) is tcache fd (not speak), name_ptr (offset 0x10) is original value.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE, gdb\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"expected_evidence\":[\"gdb: freed chunk offset 0 = 0x4056c5 (tcache fd, not speak=0x4012b3)\",\"gdb: freed chunk offset 8 = tcache key (random value)\",\"gdb: freed chunk offset 0x10 = 0x4052c0 (original name_ptr)\",\"gdb: rdx = 0x4056c5 (from freed chunk func_ptr)\",\"gdb: rdi = 0x4052c0 (from freed chunk name_ptr)\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache safe-linking\",\"present\":true,\"primitive_impact\":\"Safe-linking XORs the fd pointer with (chunk_addr >> 12), making the raw fd value (0x4056c5) different from the actual next pointer (0x4052c0). This obscures the tcache chain but does not prevent the UAF dereference.\"},{\"name\":\"glibc 2.39 tcache key\",\"present\":true,\"primitive_impact\":\"tcache writes a key to offset 8 of freed chunks. This overwrites the type field but does not prevent the UAF. The key is used for double-free detection, not for preventing UAF dereference.\"}],\"evidence\":[{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"gdb: freed chunk at 0x4052a0: offset 0 = 0x4056c5 (tcache fd, NOT speak=0x4012b3), offset 8 = 0x1262065fdf20fa58 (tcache key), offset 0x10 = 0x4052c0 (original name_ptr). rdx=0x4056c5, rdi=0x4052c0. Proves freed object fields are modified by tcache metadata and used by report_name.\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401813\",\"description\":\"gdb: mov rdx,[rax] at 0x401813 reads func_ptr from freed chunk (rax=0x4052a0) into rdx. rdx=0x4056c5 (tcache fd). This is the dereference of freed memory.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"0x4056c5 (tcache fd at offset 0), 0x4052c0 (original name_ptr at offset 0x10)\",\"fault_address\":\"0x4056c5\",\"return_code\":-11,\"details\":\"gdb: freed chunk at 0x4052a0: func_ptr=0x4056c5 (tcache fd), name_ptr=0x4052c0 (original). rdx=0x4056c5, rdi=0x4052c0. Freed object fields modified by tcache metadata and used by report_name as call target and argument. Indirect HEAP_OBJECT_CONTROL verified.\"},\"confidence\":\"HIGH\",\"notes\":\"HEAP_OBJECT_CONTROL is indirect: the freed object's fields are modified by glibc tcache metadata (fd, key), not by attacker-controlled input. The func_ptr field (offset 0) is overwritten by tcache fd (safe-linking XOR'd), and the name_ptr field (offset 0x10) retains its original value. report_name reads these modified fields and uses them as call target and argument. This proves the freed object is being used with non-original content, but the content is heap metadata, not attacker data. Direct HEAP_OBJECT_CONTROL (with attacker-controlled data) would require cross-aliasing (name buffer reusing animal struct), which is not achievable with standard tcache LIFO (see PRIM-004).\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"FUNCTION_POINTER_CONTROL\",\"status\":\"CANDIDATE\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"remove_animal frees animal struct without NULLing zoo[idx+8]. The freed chunk's func_ptr (offset 0) is overwritten by tcache fd. report_name reads this as the call target (rdx) and executes 'call rdx'.\",\"description\":\"The func_ptr field (offset 0) of the freed animal struct is overwritten by tcache fd after free. report_name reads this as the call target (rdx) and executes 'call rdx'. This is indirect function pointer control: the call target is controlled by heap metadata (tcache fd), not by attacker input. IBT is NOT enforced at runtime, so call rdx can target any address. If cross-aliasing were achievable (name buffer reusing animal struct), the attacker could write arbitrary func_ptr via read(0, name_buf, 0x18), achieving direct FUNCTION_POINTER_CONTROL with attacker-controlled target.\"},\"chain\":[\"BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]\",\"tcache overwrites func_ptr (offset 0) with fd pointer\",\"report_name reads func_ptr from freed chunk into rdx\",\"call rdx executes with tcache fd as target (indirect control)\",\"FUNCTION_POINTER_CONTROL (indirect, tcache metadata controls call target)\"],\"controlled_element\":{\"what\":\"Call target (rdx) of indirect call at 0x401835\",\"how\":\"rdx = func_ptr from freed animal struct (offset 0). After free, this is tcache fd (heap metadata). Not attacker-controlled. If cross-aliasing were achievable, attacker could write arbitrary func_ptr via read(0, name_buf, 0x18), making rdx attacker-controlled.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one.\",\"necessity\":\"report_name checks count > 0 at 0x401756.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The freed animal chunk must not be reallocated before report_name dereferences it.\",\"necessity\":\"If reallocated, func_ptr is set to speak (0x4012b3) by add_animal, and the call target is valid.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"zoo[idx+8] must remain non-NULL after remove_animal (the bug itself).\",\"necessity\":\"report_name checks zoo[idx+8] != NULL at 0x4017e5.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"For DIRECT FUNCTION_POINTER_CONTROL: cross-aliasing (name buffer reusing animal struct) must be achievable, allowing attacker to write arbitrary func_ptr via read(0, name_buf, 0x18).\",\"necessity\":\"Without cross-aliasing, the call target is tcache fd (heap metadata), not attacker-controlled. Cross-aliasing would allow the attacker's 24-byte name data to overwrite func_ptr (offset 0) with an arbitrary address.\",\"verified\":false}],\"alias_key_findings\":[{\"expression\":\"call_target = freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12)\",\"alias\":\"Call target (rdx) aliases tcache fd after free\",\"implication\":\"The call target is determined by tcache state, not attacker input. This is indirect function pointer control. For direct control, the attacker would need to overwrite offset 0 with an arbitrary address, which requires cross-aliasing (name buffer reusing animal struct).\"},{\"expression\":\"Cross-aliasing: name_buf malloc returns freed animal struct chunk\",\"alias\":\"Not achievable with standard tcache LIFO\",\"implication\":\"Free order (name first, animal second) matches malloc order (animal first, name second). tcache LIFO: animal chunk always on top -> animal malloc gets animal chunk, name malloc gets name chunk. No cross-reuse. Direct FUNCTION_POINTER_CONTROL not achievable without tcache manipulation (e.g., filling tcache to force fastbin, or tcache poisoning via BUG-002 double-free).\"}],\"verification_plan\":{\"method\":\"Use gdb to verify call target (rdx) is tcache fd (not speak). Verify IBT is not enforced (regular SIGSEGV, not CET violation). Test cross-aliasing feasibility (negative result expected).\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE, gdb\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"expected_evidence\":[\"gdb: rdx = 0x4056c5 (tcache fd, not speak=0x4012b3)\",\"gdb: crash is SIGSEGV (not CET violation) -> IBT not enforced\",\"Cross-aliasing test: name malloc always returns freed name chunk, not animal chunk\"]},\"mitigations\":[{\"name\":\"IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"IBT is enabled in ELF but NOT enforced at runtime. The crash is regular SIGSEGV (executing at 0x4056c5), not CET violation. If IBT were enforced, call rdx would require endbr64 at target, limiting control flow hijacking to endbr64 gadgets. But the UAF dereference would still occur.\"},{\"name\":\"No PIE\",\"present\":true,\"primitive_impact\":\"Binary base is fixed at 0x400000. All function addresses are known (speak=0x4012b3, print=0x401276, system@plt=0x401120). If func_ptr could be controlled, the attacker could redirect to any known function.\"},{\"name\":\"Partial RELRO\",\"present\":true,\"primitive_impact\":\"GOT is writable. system@GOT at 0x404038 is writable. If the attacker could control func_ptr and redirect to a function that writes to GOT, they could achieve arbitrary code execution. But this requires direct FUNCTION_POINTER_CONTROL, which is not achievable without cross-aliasing.\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"gdb: rdx=0x4056c5 (tcache fd from freed chunk func_ptr), call rdx -> SIGSEGV at 0x4056c5. The call target is tcache fd (heap metadata), not attacker-controlled. This is indirect function pointer control.\"},{\"id\":\"E008\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401835\",\"description\":\"gdb: Crash is regular SIGSEGV (rip=0x4056c5), not CET/IBT violation. This proves IBT is NOT enforced at runtime, meaning call rdx can target any address without endbr64 requirement.\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"add_animal + remove_animal\",\"address\":\"0x401493 + 0x4016f2\",\"description\":\"Cross-aliasing test: gdb shows that after remove(0), tcache=[animal_chunk, name_chunk]. add_animal: malloc(animal) returns animal_chunk, malloc(name) returns name_chunk. No cross-reuse. Name buffer does NOT reuse freed animal struct. Direct FUNCTION_POINTER_CONTROL not achievable with standard tcache LIFO.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"0x4056c5 (tcache fd as call target)\",\"fault_address\":\"0x4056c5\",\"return_code\":-11,\"details\":\"gdb: rdx=0x4056c5 (tcache fd), call rdx -> SIGSEGV. IBT not enforced (regular SIGSEGV). Call target is tcache fd (heap metadata), not attacker-controlled. Cross-aliasing not achievable: free(name) then free(animal) -> tcache=[animal, name]; malloc(animal) then malloc(name) -> animal gets animal, name gets name. Direct FUNCTION_POINTER_CONTROL requires cross-aliasing or tcache manipulation.\"},\"confidence\":\"MEDIUM\",\"notes\":\"FUNCTION_POINTER_CONTROL is CANDIDATE (indirect). The call target (rdx) is controlled by tcache fd (heap metadata), not by attacker input. IBT is NOT enforced at runtime, so if the attacker could control func_ptr, they could redirect call rdx to any address. However, direct control requires cross-aliasing (name buffer reusing animal struct), which is not achievable with standard tcache LIFO because free order (name first, animal second) matches malloc order (animal first, name second). Direct FUNCTION_POINTER_CONTROL could potentially be achieved via tcache poisoning (using BUG-002 double-free) or by filling the tcache to force fastbin allocation, but these are out of scope for BUG-001.\"},{\"primitive_id\":\"PRIM-004\",\"type\":\"HEAP_OBJECT_CONTROL\",\"status\":\"CANDIDATE\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-001\",\"root_cause\":\"Cross-aliasing test: determine if name buffer malloc(0x18) can reuse freed animal struct chunk (same tcache bin), allowing attacker-controlled 24-byte name data to overwrite animal struct fields (func_ptr@0x0, name_ptr@0x10).\",\"description\":\"Cross-aliasing (name buffer reusing freed animal struct) is NOT achievable with standard glibc 2.39 tcache LIFO. The free order in remove_animal (free(name_ptr) FIRST, then free(animal)) matches the malloc order in add_animal (malloc(animal) FIRST, then malloc(name)). tcache LIFO: animal chunk is always on top of the free list, so animal malloc gets the animal chunk, and name malloc gets the name chunk. No cross-reuse occurs. This means the attacker cannot directly overwrite the freed animal struct's func_ptr with arbitrary data via the name buffer read().\"},\"chain\":[\"BUG-001: remove_animal frees name_ptr FIRST, then animal struct\",\"tcache LIFO: animal chunk on top, name chunk below\",\"add_animal: malloc(animal) FIRST gets animal chunk (top), malloc(name) gets name chunk (below)\",\"No cross-reuse: name buffer does NOT reuse freed animal struct\",\"Cross-aliasing NOT achievable -> direct HEAP_OBJECT_CONTROL with attacker data NOT achievable\"],\"controlled_element\":{\"what\":\"None (negative result)\",\"how\":\"Cross-aliasing is not achievable. The attacker cannot write arbitrary data to the freed animal struct via the name buffer read() because the name buffer malloc always returns the freed name chunk, not the freed animal struct chunk.\",\"reach_sensitive_operation\":false},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"For cross-aliasing: name buffer malloc must return freed animal struct chunk. This requires the animal struct chunk to be below the name chunk in the tcache free list.\",\"necessity\":\"Without this, the name buffer read() writes to the name chunk, not the animal struct. The attacker's data does not overwrite func_ptr or name_ptr.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The free order (name first, animal second) must NOT match the malloc order (animal first, name second).\",\"necessity\":\"If free order matches malloc order (as in this case), tcache LIFO ensures animal gets animal and name gets name. No cross-reuse.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"tcache_free_list = [animal_chunk, name_chunk] (LIFO: animal on top)\",\"alias\":\"Free order: free(name_ptr) then free(animal) -> animal on top\",\"implication\":\"animal chunk is always on top of tcache free list after remove_animal. malloc(animal) in add_animal gets the top (animal chunk). malloc(name) gets the next (name chunk). No cross-reuse.\"},{\"expression\":\"malloc_order = [animal, name] (animal first, name second)\",\"alias\":\"Malloc order: malloc(animal) then malloc(name) in add_animal\",\"implication\":\"animal malloc consumes the top of tcache (animal chunk). name malloc consumes the next (name chunk). The order matches the free order, preventing cross-reuse.\"},{\"expression\":\"Dynamic test: add(2) + remove(0) + remove(1) + add(1) -> zoo[0]=0x4052a0 still in tcache\",\"alias\":\"After 2 removes and 1 add, zoo[0] chunk remains in tcache (not consumed)\",\"implication\":\"The add consumed the top 2 chunks (from remove(1)), not the chunks from remove(0). zoo[0]=0x4052a0 remains freed with tcache metadata. This confirms the LIFO behavior and the impossibility of cross-aliasing with standard tcache.\"}],\"verification_plan\":{\"method\":\"Use gdb to trace malloc/free addresses during add/remove sequences. Verify that name buffer malloc always returns the freed name chunk, not the freed animal struct chunk.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE, gdb\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"expected_evidence\":[\"gdb: After remove(0), tcache = [animal_chunk, name_chunk]\",\"gdb: add_animal: malloc(animal) returns animal_chunk, malloc(name) returns name_chunk\",\"gdb: No cross-reuse observed in any tested sequence\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache LIFO\",\"present\":true,\"primitive_impact\":\"tcache LIFO ensures that the last-freed chunk is the first-allocated. Since remove_animal frees name first and animal second, animal is on top. add_animal allocates animal first (gets top=animal chunk) and name second (gets next=name chunk). This prevents cross-aliasing.\"}],\"evidence\":[{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"add_animal + remove_animal\",\"address\":\"0x401493 + 0x401546 + 0x4016d2 + 0x4016f2\",\"description\":\"gdb: add(A0): animal=0x4052a0, name=0x4052c0. remove(0): free(name=0x4052c0), free(animal=0x4052a0) -> tcache=[0x4052a0, 0x4052c0]. add(A1): malloc(animal)=0x4052a0 (animal chunk), malloc(name)=0x4052c0 (name chunk). No cross-reuse.\"},{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"add_animal + remove_animal\",\"address\":\"0x401493 + 0x401546 + 0x4016d2 + 0x4016f2\",\"description\":\"gdb: add(A0)+add(A1): A0=(0x4052a0, 0x4052c0), A1=(0x4052e0, 0x405300). remove(0)+remove(1): tcache=[0x4052e0, 0x405300, 0x4052a0, 0x4052c0]. add(A2): malloc(animal)=0x4052e0 (A1's animal), malloc(name)=0x405300 (A1's name). zoo[0]=0x4052a0 still in tcache. No cross-reuse.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"Cross-aliasing NOT achievable. Dynamic evidence: free(name) then free(animal) -> tcache=[animal, name]. malloc(animal) then malloc(name) -> animal gets animal chunk, name gets name chunk. Tested with multiple sequences (add 1 + remove 1 + add 1, add 2 + remove 2 + add 1, add 4 + remove 4 + add 1). In all cases, name buffer malloc returns freed name chunk, not freed animal struct chunk. Direct HEAP_OBJECT_CONTROL with attacker data not achievable with standard tcache LIFO.\"},\"confidence\":\"HIGH\",\"notes\":\"Negative result: cross-aliasing (name buffer reusing freed animal struct) is NOT achievable with standard glibc 2.39 tcache LIFO. The free order in remove_animal (name first, animal second) matches the malloc order in add_animal (animal first, name second), so tcache LIFO ensures animal always reuses animal and name always reuses name. This means the S2-proposed UAF chain (add -> remove -> add with name buffer overwriting animal struct -> report_name with controlled func_ptr) is NOT directly achievable. Direct HEAP_OBJECT_CONTROL with attacker-controlled data would require tcache manipulation (e.g., tcache poisoning via BUG-002 double-free, or filling tcache to force fastbin allocation with different reuse ordering). This is a negative finding with dynamic evidence.\"}],\"non_primitives\":[],\"unresolved\":[{\"description\":\"Direct HEAP_OBJECT_CONTROL with attacker-controlled data (cross-aliasing name buffer with animal struct)\",\"reason\":\"Cross-aliasing is not achievable with standard glibc 2.39 tcache LIFO because free order (name first, animal second) matches malloc order (animal first, name second). Dynamic evidence confirms no cross-reuse in tested sequences.\",\"required_next_step\":\"S4 could explore tcache manipulation techniques (e.g., tcache poisoning via BUG-002 double-free, or filling tcache to force fastbin allocation) to achieve cross-aliasing and direct HEAP_OBJECT_CONTROL with attacker-controlled func_ptr.\"},{\"description\":\"Direct FUNCTION_POINTER_CONTROL with attacker-controlled call target\",\"reason\":\"Requires cross-aliasing (name buffer overwriting animal struct func_ptr) which is not achievable with standard tcache LIFO. The current call target is tcache fd (heap metadata), not attacker-controlled.\",\"required_next_step\":\"S4 could explore tcache manipulation to achieve cross-aliasing, then use read(0, name_buf, 0x18) to write arbitrary func_ptr (e.g., system@plt=0x401120 or print=0x401276) and control the call target.\"},{\"description\":\"INFO_LEAK via UAF (reading stale name_ptr and printing via printf)\",\"reason\":\"If the freed animal chunk's func_ptr (offset 0) happened to point to a valid endbr64 function (e.g., speak=0x4012b3), report_name would call speak(name_ptr) -> print(name_ptr) -> printf('%s', name_ptr). If name_ptr points to freed name buffer containing tcache metadata, this would leak heap pointers. But in practice, func_ptr is tcache fd (invalid address), causing SIGSEGV before any printf occurs.\",\"required_next_step\":\"S4 could explore whether tcache fd can be manipulated to point to a valid function (e.g., via tcache poisoning), enabling the INFO_LEAK path.\"}]},{\"schema\":\"PrimitiveReport\",\"version\":\"1.0\",\"stage\":\"S3\",\"target_bug_id\":\"BUG-002\",\"status\":\"COMPLETED\",\"summary\":{\"analyzed_bug_id\":\"BUG-002\",\"total_primitives\":3,\"verified\":3,\"theoretical\":0,\"candidate\":0,\"unknown\":0},\"primitives\":[{\"primitive_id\":\"PRIM-001\",\"type\":\"CRASH\",\"status\":\"VERIFIED\",\"kind\":\"DIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"remove_animal frees animal struct and name buffer but does NOT set zoo[idx+8] to NULL. The dangling pointer remains in the zoo array. A second remove_animal(idx) passes the count>0 check (count still positive if >=2 animals exist) and the non-NULL slot check (zoo[idx+8] is dangling, non-NULL), then calls free() on the already-freed animal struct chunk.\",\"description\":\"Direct double-free: remove_animal(idx) called twice with same index. First call frees animal struct at 0x4052a0. Second call: zoo[idx+8] still = 0x4052a0 (non-NULL, dangling), count>0, so free(0x4052a0) is called again. glibc 2.39 tcache double-free detection triggers, aborting with SIGABRT.\"},\"chain\":[\"BUG-002\",\"remove_animal does not NULL zoo[idx+8] after free\",\"dangling pointer remains in zoo array\",\"second remove_animal(idx) passes count>0 and non-NULL checks\",\"free() called on already-freed animal struct chunk\",\"glibc tcache double-free detection -> SIGABRT\",\"CRASH\"],\"controlled_element\":{\"what\":\"zone_index (same index passed to remove_animal twice)\",\"how\":\"Attacker calls remove_animal with the same zone_index twice. The first call frees the chunk; the second call re-frees it because the zoo slot was never NULLed.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 2 animals must exist in the zoo before the double-free. remove_animal checks count>0 at 0x40160e. After the first remove, count is decremented by 1. If only 1 animal existed, count becomes 0 and the second remove is blocked by the count check.\",\"necessity\":\"Without count>0 at the time of the second remove_animal, the function returns early with 'no animal' message and never reaches the free() call.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The zoo[idx+8] slot must still be non-NULL (dangling pointer) when the second remove_animal is called. This is guaranteed by the bug: remove_animal never sets zoo[idx+8] to NULL after freeing.\",\"necessity\":\"The non-NULL check at 0x40169d (test rax,rax; jne) must pass for the function to proceed to the free() calls.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"The freed chunk must still be in the tcache free list (not yet reallocated) for glibc's double-free detection to trigger. If the chunk was reallocated between the two frees, the tcache key is cleared and the double-free succeeds silently (see PRIM-002).\",\"necessity\":\"For the CRASH primitive (direct double-free without reallocation), the chunk must remain in tcache so glibc detects the double-free.\",\"verified\":true}],\"alias_key_findings\":[],\"verification_plan\":{\"method\":\"Add 2 animals (zones 0 and 1). Call remove_animal(0) to free animal0. Call remove_animal(0) again — count=1>0 (pass), zoo[0]=0x4052a0 non-NULL (pass), free(0x4052a0) called again -> glibc tcache double-free detection -> SIGABRT.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"expected_evidence\":[\"Return code -6 (SIGABRT)\",\"glibc message 'free(): double free detected in tcache 2' in stderr\",\"gdb: first free(animal) at 0x4016f2 with rdi=0x4052a0 succeeds\",\"gdb: second free(animal) at 0x4016f2 with rdi=0x4052a0 triggers abort\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache double-free detection (tcache_key)\",\"present\":true,\"primitive_impact\":\"When the freed chunk is still in tcache (not reallocated between frees), glibc detects the double-free via the tcache_key field and aborts with SIGABRT. This converts the double-free into a CRASH rather than silent heap corruption. However, this detection can be bypassed by reallocating the chunk between the two frees (clearing the tcache_key), as demonstrated in PRIM-002.\"},{\"name\":\"CET/IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"IBT requires indirect call targets to have endbr64. This does not affect the double-free primitive itself (which is a free() call, not an indirect call). IBT would affect any subsequent control-flow hijacking via the corrupted heap, but the CRASH primitive is unaffected.\"},{\"name\":\"CET/SHSTK (Shadow Stack)\",\"present\":true,\"primitive_impact\":\"Shadow stack protects return addresses. Does not affect the double-free primitive (which corrupts heap metadata, not return addresses).\"}],\"evidence\":[{\"id\":\"E001\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016f2\",\"description\":\"free(zoo[idx]) is called at 0x4016f2. No instruction between 0x4016f2 and 0x401733 writes NULL to zoo[idx+8] — the dangling pointer remains.\"},{\"id\":\"E002\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x40160e-0x401610\",\"description\":\"Count check: test eax,eax; jg 0x401626. After first remove, count is decremented. If >=2 animals existed, count>0 still holds for the second remove.\"},{\"id\":\"E003\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x401699-0x4016a0\",\"description\":\"Non-NULL slot check: mov rax,[rdx+rax*1]; test rax,rax; jne 0x4016b3. Since zoo[idx+8] is never cleared, this passes for the dangling pointer.\"},{\"id\":\"E004\",\"type\":\"DYNAMIC\",\"function\":\"remove_animal\",\"address\":\"0x4016f2\",\"description\":\"gdb breakpoint at 0x4016f2 (free(animal)): First hit rdi=0x4052a0 (success). Second hit rdi=0x4052a0 (same address, double-free) -> SIGABRT with 'free(): double free detected in tcache 2'.\"},{\"id\":\"E005\",\"type\":\"DYNAMIC\",\"function\":\"remove_animal\",\"address\":\"0x401699\",\"description\":\"gdb breakpoint at 0x401699 (zoo[idx] load): First remove(0): zoo[0]=0x4052a0 (non-NULL, passes check). Second remove(0): zoo[0]=0x4052a0 (still non-NULL, dangling, passes check). count=1 at second remove (passes count>0 check).\"},{\"id\":\"E006\",\"type\":\"DYNAMIC\",\"function\":\"remove_animal\",\"address\":\"N/A\",\"description\":\"PoC execution: rc=-6 (SIGABRT). Output contains 'free(): double free detected in tcache 2'. Confirms glibc tcache double-free detection triggered.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"\",\"fault_address\":\"\",\"return_code\":-6,\"details\":\"Direct double-free: add 2 animals, remove(0) frees animal0 at 0x4052a0, remove(0) again passes count=1>0 and zoo[0]=0x4052a0 non-NULL checks, calls free(0x4052a0) again. glibc 2.39 tcache double-free detection triggers: 'free(): double free detected in tcache 2' -> SIGABRT (rc=-6). gdb confirmed: first free rdi=0x4052a0 (success), second free rdi=0x4052a0 (abort).\"},\"confidence\":\"HIGH\",\"notes\":\"The CRASH primitive is the direct, immediate consequence of the double-free bug when no reallocation occurs between the two free() calls. glibc 2.39's tcache_key detection converts this into an abort rather than silent corruption. The CRASH is reliably reproducible.\"},{\"primitive_id\":\"PRIM-002\",\"type\":\"HEAP_METADATA_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"remove_animal does not NULL zoo[idx+8] after free. The dangling pointer allows a second remove_animal(idx) to call free() on the same chunk again. By reallocating the chunk between the two frees (via add_animal's malloc(0x18)), the tcache_key is cleared, bypassing glibc's double-free detection. The chunk is freed twice (with key cleared between), causing it to appear twice in the tcache free list — corrupting tcache metadata.\",\"description\":\"Indirect tcache metadata corruption: (1) remove(0) frees animal0 chunk at 0x4052a0 into tcache. (2) add_animal (zone 3) calls malloc(0x18) which returns 0x4052a0 from tcache, clearing the tcache_key. zoo[3]=0x4052a0. (3) remove(0) again: zoo[0]=0x4052a0 (dangling, non-NULL), count>0, free(0x4052a0) succeeds (key was cleared) — chunk re-enters tcache free list. Now 0x4052a0 is in tcache AND pointed to by zoo[3]. (4) add_animal (zone 4) calls malloc(0x18) which returns 0x4052a0 again — zoo[4]=0x4052a0. Now zoo[3] and zoo[4] both point to the same chunk.\"},\"chain\":[\"BUG-002\",\"remove_animal does not NULL zoo[idx+8] after free\",\"dangling pointer allows second free on same chunk\",\"realloc chunk between frees to clear tcache_key (bypass detection)\",\"chunk freed twice with key cleared between -> appears twice in tcache free list\",\"subsequent malloc returns same chunk to two different allocations\",\"tcache free list metadata corrupted (HEAP_METADATA_CONTROL)\",\"HEAP_METADATA_CONTROL\"],\"controlled_element\":{\"what\":\"tcache free list metadata — the chunk 0x4052a0 is freed twice (with tcache_key cleared between frees via reallocation), causing it to appear in the tcache free list multiple times. Subsequent malloc(0x18) calls return the same chunk to different callers.\",\"how\":\"Attacker controls the sequence of add/remove operations: (1) add 3 animals, (2) remove(0) to free chunk, (3) add animal to reallocate and clear tcache_key, (4) remove(0) again to double-free with key bypass, (5) add animal to get overlapping allocation. The attacker controls which chunks are freed and when reallocation happens.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"At least 3 animals must exist: 2 for count>0 after first remove (PC-01 from PRIM-001), plus 1 additional to ensure count>0 after the second remove. After remove(0) [count 3->2], add(zone3) [count 2->3], remove(0) [count 3->2], count=2>0 for any subsequent operations.\",\"necessity\":\"The count>0 check in remove_animal must pass for both the first and second remove calls. With 3 initial animals, count goes 3->2 (first remove), 2->3 (add zone3), 3->2 (second remove), maintaining count>0 throughout.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"The freed animal struct chunk (0x18 bytes, 0x20 with header) and the name buffer chunk (same size) must be in the same tcache bin. This is guaranteed because both use malloc(0x18).\",\"necessity\":\"For the reallocation to return the same chunk, both must be in the same tcache bin (0x20 size class).\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"An add_animal must occur between the two remove_animal(idx) calls to reallocate the freed chunk, clearing the tcache_key. Without this, glibc detects the double-free (PRIM-001 CRASH).\",\"necessity\":\"The tcache_key bypass requires the chunk to be allocated (clearing the key) between the two free() calls. add_animal's malloc(0x18) for the animal struct returns the freed chunk from tcache, clearing the key.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"The add_animal between the two removes must allocate the animal struct (not just the name buffer) from the same tcache bin as the freed animal struct. Since both animal struct and name buffer use malloc(0x18), the first malloc(0x18) in add_animal returns the freed animal struct chunk.\",\"necessity\":\"The animal struct malloc(0x18) at 0x401493 is called before the name buffer malloc(0x18) at 0x401546. With LIFO tcache, the first malloc returns the most recently freed chunk (the animal struct), clearing its tcache_key.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"zoo[0] == zoo[3] == 0x4052a0 (after step 2)\",\"alias\":\"zoo[0] (dangling) and zoo[3] (live) both point to the same heap chunk at 0x4052a0\",\"implication\":\"After add(zone3) reuses the freed animal0 chunk, zoo[0] (dangling) and zoo[3] (live) are aliases to the same memory. The second remove(0) frees this chunk again while zoo[3] still references it.\"},{\"expression\":\"zoo[3] == zoo[4] == 0x4052a0 (after step 4)\",\"alias\":\"zoo[3] and zoo[4] both point to the same heap chunk at 0x4052a0\",\"implication\":\"After the double-free bypass and subsequent add(zone4), both zoo[3] and zoo[4] reference the same chunk. Any write to one affects the other — overlapping heap object control.\"}],\"verification_plan\":{\"method\":\"Add 3 animals (zones 0,1,2). Remove(0) to free animal0. Add animal (zone 3) to reallocate chunk and clear tcache_key. Remove(0) again — double-free with key bypass succeeds. Add animal (zone 4) to get overlapping allocation. Report(3) should print zone 4's name, proving zoo[3] and zoo[4] share the same chunk.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"expected_evidence\":[\"Second remove(0) succeeds (no abort) — tcache_key bypass confirmed\",\"report(3) prints zone 4's name (EEEE) — overlapping allocation confirmed\",\"gdb: zoo[3]=0x4052a0 and zoo[4]=0x4052a0 (same chunk)\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache double-free detection (tcache_key)\",\"present\":true,\"primitive_impact\":\"The tcache_key check is bypassed by reallocating the chunk between the two frees. When the chunk is allocated via malloc, the tcache_key field is overwritten with user data, clearing the detection marker. The subsequent free() does not detect the double-free because the key no longer matches. This is a known limitation of glibc's tcache double-free detection — it only catches consecutive frees without intervening allocation.\"},{\"name\":\"CET/IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"Does not affect heap metadata corruption. IBT only restricts indirect call targets.\"},{\"name\":\"CET/SHSTK (Shadow Stack)\",\"present\":true,\"primitive_impact\":\"Does not affect heap metadata corruption. Shadow stack only protects return addresses.\"}],\"evidence\":[{\"id\":\"E007\",\"type\":\"STATIC\",\"function\":\"remove_animal\",\"address\":\"0x4016f2\",\"description\":\"free(zoo[idx]) at 0x4016f2 — no NULL assignment to zoo[idx+8] follows, enabling the second free on the same pointer.\"},{\"id\":\"E008\",\"type\":\"STATIC\",\"function\":\"add_animal\",\"address\":\"0x401493\",\"description\":\"malloc(0x18) at 0x401493 allocates the animal struct. This is the same size as the freed animal struct chunk, so tcache returns the freed chunk, clearing the tcache_key.\"},{\"id\":\"E009\",\"type\":\"DYNAMIC\",\"function\":\"remove_animal\",\"address\":\"0x401699\",\"description\":\"gdb: After add(zone3) reuses chunk 0x4052a0, second remove(0) hits breakpoint at 0x401699: zoo[0]=0x4052a0 (dangling, non-NULL), count=3>0. Both checks pass. free(0x4052a0) succeeds (tcache_key was cleared by realloc). No abort.\"},{\"id\":\"E010\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401813\",\"description\":\"gdb: After double-free bypass and add(zone4), report(3) hits breakpoint at 0x401813: $rax=0x4052a0 (same chunk as zoo[4]). func_ptr at [0x4052a0]=0x4012b3 (speak, set by add zone4). report(3) prints 'EEEE...' (zone 4's name), proving zoo[3] and zoo[4] share the same chunk.\"},{\"id\":\"E011\",\"type\":\"DYNAMIC\",\"function\":\"add_animal + remove_animal\",\"address\":\"N/A\",\"description\":\"PoC execution: Second remove(0) after realloc succeeds (no SIGABRT). report(3) output contains 'EEEE' (zone 4's name). Confirms tcache free list corrupted — chunk 0x4052a0 allocated to both zoo[3] and zoo[4].\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"written_value\":\"\",\"read_value\":\"EEEE (zone 4's name read via report(3), proving zoo[3] and zoo[4] share chunk 0x4052a0)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"tcache double-free bypass: add 3 animals, remove(0) frees 0x4052a0, add(zone3) reallocates 0x4052a0 (clears tcache_key), remove(0) again frees 0x4052a0 (key bypass, no abort), add(zone4) reallocates 0x4052a0 again. Now zoo[3]=zoo[4]=0x4052a0. report(3) prints zone 4's name 'EEEE', confirming overlapping allocation via corrupted tcache free list. gdb confirmed: zoo[0]=0x4052a0 (dangling after first remove), zoo[3]=0x4052a0 (after realloc), second remove(0) succeeds, zoo[4]=0x4052a0 (after second realloc).\"},\"confidence\":\"HIGH\",\"notes\":\"This is an INDIRECT primitive: the tcache metadata corruption requires an intermediate reallocation step to bypass glibc's tcache_key double-free detection. The reallocation clears the key, allowing the second free to succeed silently. The result is a corrupted tcache free list where the same chunk appears twice, leading to overlapping allocations.\"},{\"primitive_id\":\"PRIM-003\",\"type\":\"HEAP_OBJECT_CONTROL\",\"status\":\"VERIFIED\",\"kind\":\"INDIRECT\",\"source\":{\"bug_id\":\"BUG-002\",\"root_cause\":\"Same as PRIM-002: double-free with tcache_key bypass via reallocation. After the bypass, two zoo slots (zoo[3] and zoo[4]) point to the same heap chunk (0x4052a0). The attacker controls the content written to this chunk via add_animal's read(0, name_buf, 0x18), which writes 24 bytes that overlap the animal struct fields (func_ptr@0, type@8, name_ptr@0x10).\",\"description\":\"After the tcache double-free bypass (PRIM-002), zoo[3] and zoo[4] both point to chunk 0x4052a0. When add_animal(zone 4) writes 24 bytes of name data to this chunk (via read(0, name_buf, 0x18)), it overwrites the animal struct fields that zoo[3] references. report(3) then dereferences the attacker-controlled func_ptr (offset 0) and name_ptr (offset 0x10) from this chunk. The attacker controls the overlapping object content.\"},\"chain\":[\"BUG-002\",\"remove_animal does not NULL zoo[idx+8] after free\",\"double-free with tcache_key bypass via reallocation (PRIM-002)\",\"zoo[3] and zoo[4] both point to same chunk 0x4052a0\",\"add_animal(zone 4) writes 24 bytes of attacker-controlled name data to chunk\",\"name data overlaps animal struct fields (func_ptr@0, type@8, name_ptr@0x10) of zoo[3]\",\"report(3) dereferences attacker-controlled func_ptr and name_ptr\",\"HEAP_OBJECT_CONTROL\"],\"controlled_element\":{\"what\":\"The animal struct fields at chunk 0x4052a0: func_ptr (offset 0, 8 bytes), type (offset 8, 4 bytes), name_ptr (offset 0x10, 8 bytes). When add_animal(zone 4) writes name data to this chunk, the 24 bytes of name data overlap these fields. However, note that add_animal also sets func_ptr=speak and name_ptr=name_buf before the read, so the attacker's 24 bytes of name data go into the name_buf, not directly into the animal struct. The overlapping control is that zoo[3] and zoo[4] share the same animal struct — writing zone 4's animal struct (by add_animal) controls what zoo[3] sees.\",\"how\":\"After the double-free bypass, zoo[3] and zoo[4] point to the same chunk. add_animal(zone 4) sets func_ptr=speak(0x4012b3), type, and name_ptr (pointing to zone 4's name buffer). When report(3) is called, it reads these fields from the shared chunk and calls func_ptr(name_ptr) = speak(zone4_name_ptr), printing zone 4's name. The attacker controls which name is written to zone 4, and thus what report(3) outputs.\",\"reach_sensitive_operation\":true},\"preconditions\":[{\"id\":\"PC-01\",\"description\":\"Same as PRIM-002 PC-01: at least 3 animals must exist to maintain count>0 throughout the double-free bypass sequence.\",\"necessity\":\"Count must remain >0 for both remove_animal calls.\",\"verified\":true},{\"id\":\"PC-02\",\"description\":\"Same as PRIM-002 PC-03: an add_animal must occur between the two remove_animal calls to clear the tcache_key.\",\"necessity\":\"Required for tcache double-free bypass.\",\"verified\":true},{\"id\":\"PC-03\",\"description\":\"After the double-free bypass, a second add_animal must be called to allocate the overlapping chunk (zone 4). This sets the animal struct fields (func_ptr, name_ptr) that zoo[3] will later dereference.\",\"necessity\":\"The overlapping allocation is what gives the attacker control over the shared chunk's content. Without this step, zoo[3] points to freed memory with stale/tcache metadata.\",\"verified\":true},{\"id\":\"PC-04\",\"description\":\"report_name must be called with idx=3 (the stale zoo slot) to dereference the shared chunk. The count>0 check must pass (count=2 after the sequence).\",\"necessity\":\"report_name is the function that dereferences the controlled animal struct fields (func_ptr, name_ptr) and triggers the indirect call.\",\"verified\":true}],\"alias_key_findings\":[{\"expression\":\"zoo[3] == zoo[4] == 0x4052a0\",\"alias\":\"zoo[3] and zoo[4] are aliases to the same heap chunk\",\"implication\":\"Any write to the chunk via zoo[4] (add_animal setting func_ptr, name_ptr) is visible through zoo[3] (report_name reading func_ptr, name_ptr). This is the overlapping object control.\"}],\"verification_plan\":{\"method\":\"Same setup as PRIM-002. After double-free bypass and add(zone4), call report(3) and report(4). Both should print zone 4's name ('OWNED_BY_4'), proving zoo[3] and zoo[4] share the same chunk and the attacker controls the overlapping content.\",\"environment\":\"Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled\",\"run_command\":\"python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"expected_evidence\":[\"report(3) prints 'OWNED_BY_4' (zone 4's name) — overlapping object confirmed\",\"report(4) prints 'OWNED_BY_4' (zone 4's name) — same chunk confirmed\",\"gdb: zoo[3]=0x4052a0 and zoo[4]=0x4052a0 (same chunk)\"]},\"mitigations\":[{\"name\":\"glibc 2.39 tcache double-free detection (tcache_key)\",\"present\":true,\"primitive_impact\":\"Bypassed via reallocation between frees (same as PRIM-002). The tcache_key check does not prevent the overlapping allocation.\"},{\"name\":\"CET/IBT (Indirect Branch Tracking)\",\"present\":true,\"primitive_impact\":\"IBT requires the indirect call target (func_ptr) to have endbr64. In the current PoC, func_ptr=speak(0x4012b3) which has endbr64, so the call succeeds. If an attacker overwrites func_ptr with an arbitrary address lacking endbr64, IBT would block the call with a #CP exception. This limits the HEAP_OBJECT_CONTROL primitive's ability to hijack control flow to arbitrary addresses, but the overlapping object content control itself is unaffected.\"},{\"name\":\"CET/SHSTK (Shadow Stack)\",\"present\":true,\"primitive_impact\":\"Does not affect heap object control. Shadow stack protects return addresses, not heap data.\"}],\"evidence\":[{\"id\":\"E012\",\"type\":\"STATIC\",\"function\":\"report_name\",\"address\":\"0x401813-0x401835\",\"description\":\"report_name reads func_ptr from [animal+0x0] into rdx at 0x401813, reads name_ptr from [animal+0x10] into rdi at 0x40182e, then 'call rdx' at 0x401835. When animal is the shared chunk (zoo[3]=zoo[4]=0x4052a0), these fields are controlled by whichever add_animal last wrote to the chunk.\"},{\"id\":\"E013\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"0x401813\",\"description\":\"gdb: report(3) hits breakpoint at 0x401813: $rax=0x4052a0 (same chunk as zoo[4]). func_ptr at [0x4052a0]=0x4012b3 (speak, set by add zone4). report(3) prints 'EEEE...' (zone 4's name), proving zoo[3] accesses chunk written by add(zone4).\"},{\"id\":\"E014\",\"type\":\"DYNAMIC\",\"function\":\"report_name\",\"address\":\"N/A\",\"description\":\"PoC execution: report(3) output contains 'OWNED_BY_4' (zone 4's name). report(4) output also contains 'OWNED_BY_4'. Both zoo[3] and zoo[4] access the same chunk 0x4052a0, confirming overlapping heap object control.\"}],\"verification_result\":{\"executed\":true,\"poc_path\":\"/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py\",\"written_value\":\"OWNED_BY_4 (zone 4's name written to shared chunk via add_animal)\",\"read_value\":\"OWNED_BY_4 (read via report(3) from the same chunk, proving overlapping control)\",\"fault_address\":\"\",\"return_code\":0,\"details\":\"After double-free bypass (PRIM-002), zoo[3] and zoo[4] both point to 0x4052a0. add_animal(zone 4) writes name 'OWNED_BY_4' and sets func_ptr=speak, name_ptr=zone4_name_buf. report(3) reads these fields from the shared chunk and prints 'OWNED_BY_4' (zone 4's name). report(4) also prints 'OWNED_BY_4'. gdb confirmed: report(3) at 0x401813, $rax=0x4052a0, func_ptr=0x4012b3 (speak). This proves the attacker controls the overlapping heap object content — writes via zoo[4] are visible through zoo[3].\"},\"confidence\":\"HIGH\",\"notes\":\"This is an INDIRECT primitive: it depends on the tcache double-free bypass (PRIM-002) to create the overlapping allocation. The attacker controls which data is written to the shared chunk via add_animal's name read, and the overlapping zoo[3] slot dereferences this data via report_name's indirect call. IBT limits arbitrary control-flow hijacking but does not prevent the overlapping object content control itself.\"}],\"non_primitives\":[],\"unresolved\":[]}],\"target_bug\":\"\",\"final_exploit_path\":\"\",\"final_report\":{}}",
+  "primitive_reports": [
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-001",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-001",
+        "total_primitives": 4,
+        "verified": 2,
+        "theoretical": 0,
+        "candidate": 2,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "remove_animal frees animal struct and name buffer but does NOT set zoo[idx+8] to NULL, leaving a dangling pointer in the global zoo array. report_name later dereferences this dangling pointer, reading func_ptr (offset 0) and name_ptr (offset 0x10) from the freed heap object and performing an indirect call 'call rdx' where rdx=animal->func_ptr.",
+            "description": "After remove_animal frees the animal struct, the freed chunk's offset 0 (func_ptr) is overwritten by glibc 2.39 tcache fd (safe-linking XOR'd pointer). report_name reads this tcache fd as the call target (rdx) and executes 'call rdx', causing SIGSEGV at the invalid tcache fd address."
+          },
+          "chain": [
+            "BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]",
+            "Dangling pointer remains in zoo array (zoo[0]=0x4052a0 after free)",
+            "report_name loads dangling zoo[0], reads func_ptr from freed chunk offset 0",
+            "func_ptr = tcache fd (0x4056c5, safe-linking XOR'd) instead of speak (0x4012b3)",
+            "call rdx (0x4056c5) -> SIGSEGV at invalid address"
+          ],
+          "controlled_element": {
+            "what": "func_ptr field (offset 0) of freed animal struct",
+            "how": "After free, glibc tcache overwrites offset 0 with fd pointer (safe-linking XOR'd). This is heap metadata, not attacker-controlled data. The crash target (0x4056c5) is determined by tcache state, not attacker input.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one animal. report_name checks count > 0 at 0x401756.",
+              "necessity": "If count becomes 0 after remove, report_name prints 'no animal' and returns without dereferencing the dangling pointer.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The freed animal chunk must not be reallocated before report_name dereferences it. If reallocated by add_animal, the chunk contains valid animal struct fields (func_ptr=speak) and no crash occurs.",
+              "necessity": "The crash requires the freed chunk to contain tcache metadata (invalid func_ptr). If the chunk is reallocated, func_ptr is set to speak (0x4012b3) by add_animal, and report_name calls speak normally.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "zoo[idx+8] must remain non-NULL after remove_animal (the bug itself). report_name checks zoo[idx+8] != NULL at 0x4017e5.",
+              "necessity": "If zoo[idx+8] were NULL'd, report_name would print 'no animal in this zone' and return.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12)",
+              "alias": "func_ptr field (offset 0) aliases tcache fd pointer after free",
+              "implication": "After free, the func_ptr field is overwritten by tcache fd (safe-linking XOR'd). This is not attacker-controlled but proves the freed object's fields are being used with non-original content."
+            },
+            {
+              "expression": "freed_chunk[0x10] = original_name_ptr",
+              "alias": "name_ptr field (offset 0x10) is NOT overwritten by tcache metadata",
+              "implication": "tcache only writes fd (offset 0) and key (offset 8). The name_ptr at offset 0x10 retains its original value (0x4052c0), which is still a valid heap pointer. This means rdi in the indirect call is a valid pointer."
+            }
+          ],
+          "verification_plan": {
+            "method": "Run target with stdin sequence: add 2 animals (menu 1, type 1, name), remove animal 0 (menu 2, idx 0), report_name(0) (menu 3, idx 0). Observe SIGSEGV (return code -11). Use gdb to verify zoo[0] is dangling, freed chunk contains tcache fd at offset 0, and crash occurs at call rdx.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE (base 0x400000), Partial RELRO, NX, Canary, IBT+SHSTK enabled in ELF but IBT NOT enforced at runtime",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "expected_evidence": [
+              "return_code = -11 (SIGSEGV)",
+              "gdb: zoo[0] = 0x4052a0 (dangling, non-NULL after free)",
+              "gdb: freed chunk offset 0 = 0x4056c5 (tcache fd, not speak=0x4012b3)",
+              "gdb: rdx = 0x4056c5, rip = 0x4056c5 after call rdx",
+              "gdb: zoo count = 1 (passes count > 0 check)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "IBT is enabled in the ELF binary but NOT enforced at runtime. The crash is a regular SIGSEGV (executing code at 0x4056c5), not a CET violation (#CP exception). This means call rdx can target any address without endbr64 requirement. If IBT were enforced, the crash would be a CET violation instead, but the UAF dereference would still occur."
+            },
+            {
+              "name": "SHSTK (Shadow Stack)",
+              "present": true,
+              "primitive_impact": "SHSTK protects return addresses on the shadow stack. It does not prevent the UAF dereference or the indirect call itself. It would only matter if the attacker controlled the return address, which is not the case for this primitive."
+            },
+            {
+              "name": "Canary",
+              "present": true,
+              "primitive_impact": "Stack canary protects against stack buffer overflows. Not relevant to this heap UAF primitive."
+            },
+            {
+              "name": "NX",
+              "present": true,
+              "primitive_impact": "NX prevents execution of code on the heap/stack. The crash target (0x4056c5) is in heap memory, so even if execution continued, shellcode on the heap would not execute."
+            },
+            {
+              "name": "Partial RELRO",
+              "present": true,
+              "primitive_impact": "GOT is writable. If the attacker could control func_ptr to point to a valid function (e.g., via cross-aliasing), they could redirect control flow. But cross-aliasing is not achievable with standard tcache LIFO."
+            },
+            {
+              "name": "No PIE",
+              "present": true,
+              "primitive_impact": "Binary base is fixed at 0x400000. All function addresses (speak=0x4012b3, print=0x401276, system@plt=0x401120) are known. If func_ptr could be controlled, the attacker could redirect to any known function address."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "remove_animal",
+              "address": "0x4016f2",
+              "description": "free(zoo[idx]) called at 0x4016f2. No instruction between 0x4016f2 and 0x401733 writes NULL to zoo[idx+8]. The dangling pointer remains."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "call rdx at 0x401835 where rdx = [zoo[idx+8]+0x0] (func_ptr from animal object). If zoo[idx+8] is dangling, this dereferences freed heap memory."
+            },
+            {
+              "id": "E003",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "gdb: After add(2 animals) + remove(0) + report_name(0): zoo[0]=0x4052a0 (dangling), freed chunk offset 0 = 0x4056c5 (tcache fd), rdx=0x4056c5, call rdx -> SIGSEGV at 0x4056c5. zoo count=1 (passes count>0 check)."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "PoC execution: return_code=-11 (SIGSEGV). Confirms UAF crash is reproducible."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "0x4056c5",
+            "return_code": -11,
+            "details": "gdb: zoo[0]=0x4052a0 (dangling), freed chunk func_ptr=0x4056c5 (tcache fd), rdx=0x4056c5, call rdx -> SIGSEGV at 0x4056c5. zoo count=1. IBT not enforced (regular SIGSEGV, not CET violation)."
+          },
+          "confidence": "HIGH",
+          "notes": "CRASH primitive is directly verified via PoC (rc=-11) and gdb (fault_address=0x4056c5). The crash is caused by UAF dereference of tcache fd as func_ptr. The freed chunk's func_ptr (offset 0) is overwritten by glibc 2.39 tcache fd (safe-linking XOR'd pointer 0x4056c5 = 0x4052c0 XOR (0x4052a0 >> 12))."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "HEAP_OBJECT_CONTROL",
+          "status": "VERIFIED",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "remove_animal frees animal struct without NULLing zoo[idx+8]. The freed chunk's fields (func_ptr@0x0, name_ptr@0x10) are later read by report_name and used as call target and argument.",
+            "description": "After free, glibc 2.39 tcache overwrites the freed chunk's offset 0 (func_ptr) with fd pointer and offset 8 with tcache key. The name_ptr at offset 0x10 retains its original value. report_name reads these modified fields and uses them: func_ptr -> rdx (call target), name_ptr -> rdi (call argument). This proves the freed object's fields are being used with non-original content (tcache metadata), which is indirect heap object control."
+          },
+          "chain": [
+            "BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]",
+            "Dangling pointer in zoo[0] = 0x4052a0 (freed chunk address)",
+            "glibc tcache overwrites freed chunk: offset 0 = fd (0x4056c5), offset 8 = key",
+            "report_name reads freed chunk fields: func_ptr=0x4056c5 (tcache fd), name_ptr=0x4052c0 (original)",
+            "Freed object's fields used as func_ptr (call target) and name_ptr (call argument) -> HEAP_OBJECT_CONTROL (indirect)"
+          ],
+          "controlled_element": {
+            "what": "func_ptr (offset 0) and name_ptr (offset 0x10) of freed animal struct",
+            "how": "func_ptr is overwritten by tcache fd (heap metadata, not attacker-controlled). name_ptr retains original value. The fields are used by report_name as call target and argument. This is indirect control: the object's fields are modified by heap metadata, not by attacker input.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one.",
+              "necessity": "report_name checks count > 0 at 0x401756. If count=0, it returns without dereferencing.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The freed animal chunk must not be reallocated before report_name dereferences it.",
+              "necessity": "If reallocated, the chunk contains valid animal struct fields (func_ptr=speak) set by add_animal, and the fields are no longer tcache metadata.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "zoo[idx+8] must remain non-NULL after remove_animal (the bug itself).",
+              "necessity": "report_name checks zoo[idx+8] != NULL at 0x4017e5.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12) = 0x4052c0 XOR 0x405 = 0x4056c5",
+              "alias": "func_ptr field (offset 0) aliases tcache fd after free (safe-linking XOR)",
+              "implication": "The func_ptr field is overwritten by tcache fd. This is heap metadata, proving the freed object's fields are modified and used. The value is not attacker-controlled but demonstrates indirect heap object control."
+            },
+            {
+              "expression": "freed_chunk[0x8] = tcache_key (random per-thread value)",
+              "alias": "type field (offset 8) aliases tcache key after free",
+              "implication": "The type field is overwritten by tcache key. Not directly used by report_name but demonstrates tcache metadata overwriting struct fields."
+            },
+            {
+              "expression": "freed_chunk[0x10] = original_name_ptr (0x4052c0, unchanged)",
+              "alias": "name_ptr field (offset 0x10) is NOT overwritten by tcache",
+              "implication": "tcache only writes fd (offset 0) and key (offset 8). name_ptr at offset 0x10 retains original value. This means rdi in the indirect call is a valid pointer to the freed name buffer."
+            }
+          ],
+          "verification_plan": {
+            "method": "Use gdb to set breakpoint at call rdx (0x401835), examine freed chunk contents and register values. Verify func_ptr (offset 0) is tcache fd (not speak), name_ptr (offset 0x10) is original value.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE, gdb",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "expected_evidence": [
+              "gdb: freed chunk offset 0 = 0x4056c5 (tcache fd, not speak=0x4012b3)",
+              "gdb: freed chunk offset 8 = tcache key (random value)",
+              "gdb: freed chunk offset 0x10 = 0x4052c0 (original name_ptr)",
+              "gdb: rdx = 0x4056c5 (from freed chunk func_ptr)",
+              "gdb: rdi = 0x4052c0 (from freed chunk name_ptr)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache safe-linking",
+              "present": true,
+              "primitive_impact": "Safe-linking XORs the fd pointer with (chunk_addr >> 12), making the raw fd value (0x4056c5) different from the actual next pointer (0x4052c0). This obscures the tcache chain but does not prevent the UAF dereference."
+            },
+            {
+              "name": "glibc 2.39 tcache key",
+              "present": true,
+              "primitive_impact": "tcache writes a key to offset 8 of freed chunks. This overwrites the type field but does not prevent the UAF. The key is used for double-free detection, not for preventing UAF dereference."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "gdb: freed chunk at 0x4052a0: offset 0 = 0x4056c5 (tcache fd, NOT speak=0x4012b3), offset 8 = 0x1262065fdf20fa58 (tcache key), offset 0x10 = 0x4052c0 (original name_ptr). rdx=0x4056c5, rdi=0x4052c0. Proves freed object fields are modified by tcache metadata and used by report_name."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401813",
+              "description": "gdb: mov rdx,[rax] at 0x401813 reads func_ptr from freed chunk (rax=0x4052a0) into rdx. rdx=0x4056c5 (tcache fd). This is the dereference of freed memory."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "0x4056c5 (tcache fd at offset 0), 0x4052c0 (original name_ptr at offset 0x10)",
+            "fault_address": "0x4056c5",
+            "return_code": -11,
+            "details": "gdb: freed chunk at 0x4052a0: func_ptr=0x4056c5 (tcache fd), name_ptr=0x4052c0 (original). rdx=0x4056c5, rdi=0x4052c0. Freed object fields modified by tcache metadata and used by report_name as call target and argument. Indirect HEAP_OBJECT_CONTROL verified."
+          },
+          "confidence": "HIGH",
+          "notes": "HEAP_OBJECT_CONTROL is indirect: the freed object's fields are modified by glibc tcache metadata (fd, key), not by attacker-controlled input. The func_ptr field (offset 0) is overwritten by tcache fd (safe-linking XOR'd), and the name_ptr field (offset 0x10) retains its original value. report_name reads these modified fields and uses them as call target and argument. This proves the freed object is being used with non-original content, but the content is heap metadata, not attacker data. Direct HEAP_OBJECT_CONTROL (with attacker-controlled data) would require cross-aliasing (name buffer reusing animal struct), which is not achievable with standard tcache LIFO (see PRIM-004)."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "FUNCTION_POINTER_CONTROL",
+          "status": "CANDIDATE",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "remove_animal frees animal struct without NULLing zoo[idx+8]. The freed chunk's func_ptr (offset 0) is overwritten by tcache fd. report_name reads this as the call target (rdx) and executes 'call rdx'.",
+            "description": "The func_ptr field (offset 0) of the freed animal struct is overwritten by tcache fd after free. report_name reads this as the call target (rdx) and executes 'call rdx'. This is indirect function pointer control: the call target is controlled by heap metadata (tcache fd), not by attacker input. IBT is NOT enforced at runtime, so call rdx can target any address. If cross-aliasing were achievable (name buffer reusing animal struct), the attacker could write arbitrary func_ptr via read(0, name_buf, 0x18), achieving direct FUNCTION_POINTER_CONTROL with attacker-controlled target."
+          },
+          "chain": [
+            "BUG-001: remove_animal frees animal struct without NULLing zoo[idx+8]",
+            "tcache overwrites func_ptr (offset 0) with fd pointer",
+            "report_name reads func_ptr from freed chunk into rdx",
+            "call rdx executes with tcache fd as target (indirect control)",
+            "FUNCTION_POINTER_CONTROL (indirect, tcache metadata controls call target)"
+          ],
+          "controlled_element": {
+            "what": "Call target (rdx) of indirect call at 0x401835",
+            "how": "rdx = func_ptr from freed animal struct (offset 0). After free, this is tcache fd (heap metadata). Not attacker-controlled. If cross-aliasing were achievable, attacker could write arbitrary func_ptr via read(0, name_buf, 0x18), making rdx attacker-controlled.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 2 animals must exist before remove_animal, so zoo count > 0 after removing one.",
+              "necessity": "report_name checks count > 0 at 0x401756.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The freed animal chunk must not be reallocated before report_name dereferences it.",
+              "necessity": "If reallocated, func_ptr is set to speak (0x4012b3) by add_animal, and the call target is valid.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "zoo[idx+8] must remain non-NULL after remove_animal (the bug itself).",
+              "necessity": "report_name checks zoo[idx+8] != NULL at 0x4017e5.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "For DIRECT FUNCTION_POINTER_CONTROL: cross-aliasing (name buffer reusing animal struct) must be achievable, allowing attacker to write arbitrary func_ptr via read(0, name_buf, 0x18).",
+              "necessity": "Without cross-aliasing, the call target is tcache fd (heap metadata), not attacker-controlled. Cross-aliasing would allow the attacker's 24-byte name data to overwrite func_ptr (offset 0) with an arbitrary address.",
+              "verified": false
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "call_target = freed_chunk[0x0] = tcache_fd XOR (chunk_addr >> 12)",
+              "alias": "Call target (rdx) aliases tcache fd after free",
+              "implication": "The call target is determined by tcache state, not attacker input. This is indirect function pointer control. For direct control, the attacker would need to overwrite offset 0 with an arbitrary address, which requires cross-aliasing (name buffer reusing animal struct)."
+            },
+            {
+              "expression": "Cross-aliasing: name_buf malloc returns freed animal struct chunk",
+              "alias": "Not achievable with standard tcache LIFO",
+              "implication": "Free order (name first, animal second) matches malloc order (animal first, name second). tcache LIFO: animal chunk always on top -> animal malloc gets animal chunk, name malloc gets name chunk. No cross-reuse. Direct FUNCTION_POINTER_CONTROL not achievable without tcache manipulation (e.g., filling tcache to force fastbin, or tcache poisoning via BUG-002 double-free)."
+            }
+          ],
+          "verification_plan": {
+            "method": "Use gdb to verify call target (rdx) is tcache fd (not speak). Verify IBT is not enforced (regular SIGSEGV, not CET violation). Test cross-aliasing feasibility (negative result expected).",
+            "environment": "Linux x86-64, glibc 2.39, No PIE, gdb",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "expected_evidence": [
+              "gdb: rdx = 0x4056c5 (tcache fd, not speak=0x4012b3)",
+              "gdb: crash is SIGSEGV (not CET violation) -> IBT not enforced",
+              "Cross-aliasing test: name malloc always returns freed name chunk, not animal chunk"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "IBT is enabled in ELF but NOT enforced at runtime. The crash is regular SIGSEGV (executing at 0x4056c5), not CET violation. If IBT were enforced, call rdx would require endbr64 at target, limiting control flow hijacking to endbr64 gadgets. But the UAF dereference would still occur."
+            },
+            {
+              "name": "No PIE",
+              "present": true,
+              "primitive_impact": "Binary base is fixed at 0x400000. All function addresses are known (speak=0x4012b3, print=0x401276, system@plt=0x401120). If func_ptr could be controlled, the attacker could redirect to any known function."
+            },
+            {
+              "name": "Partial RELRO",
+              "present": true,
+              "primitive_impact": "GOT is writable. system@GOT at 0x404038 is writable. If the attacker could control func_ptr and redirect to a function that writes to GOT, they could achieve arbitrary code execution. But this requires direct FUNCTION_POINTER_CONTROL, which is not achievable without cross-aliasing."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E007",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "gdb: rdx=0x4056c5 (tcache fd from freed chunk func_ptr), call rdx -> SIGSEGV at 0x4056c5. The call target is tcache fd (heap metadata), not attacker-controlled. This is indirect function pointer control."
+            },
+            {
+              "id": "E008",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401835",
+              "description": "gdb: Crash is regular SIGSEGV (rip=0x4056c5), not CET/IBT violation. This proves IBT is NOT enforced at runtime, meaning call rdx can target any address without endbr64 requirement."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "add_animal + remove_animal",
+              "address": "0x401493 + 0x4016f2",
+              "description": "Cross-aliasing test: gdb shows that after remove(0), tcache=[animal_chunk, name_chunk]. add_animal: malloc(animal) returns animal_chunk, malloc(name) returns name_chunk. No cross-reuse. Name buffer does NOT reuse freed animal struct. Direct FUNCTION_POINTER_CONTROL not achievable with standard tcache LIFO."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "0x4056c5 (tcache fd as call target)",
+            "fault_address": "0x4056c5",
+            "return_code": -11,
+            "details": "gdb: rdx=0x4056c5 (tcache fd), call rdx -> SIGSEGV. IBT not enforced (regular SIGSEGV). Call target is tcache fd (heap metadata), not attacker-controlled. Cross-aliasing not achievable: free(name) then free(animal) -> tcache=[animal, name]; malloc(animal) then malloc(name) -> animal gets animal, name gets name. Direct FUNCTION_POINTER_CONTROL requires cross-aliasing or tcache manipulation."
+          },
+          "confidence": "MEDIUM",
+          "notes": "FUNCTION_POINTER_CONTROL is CANDIDATE (indirect). The call target (rdx) is controlled by tcache fd (heap metadata), not by attacker input. IBT is NOT enforced at runtime, so if the attacker could control func_ptr, they could redirect call rdx to any address. However, direct control requires cross-aliasing (name buffer reusing animal struct), which is not achievable with standard tcache LIFO because free order (name first, animal second) matches malloc order (animal first, name second). Direct FUNCTION_POINTER_CONTROL could potentially be achieved via tcache poisoning (using BUG-002 double-free) or by filling the tcache to force fastbin allocation, but these are out of scope for BUG-001."
+        },
+        {
+          "primitive_id": "PRIM-004",
+          "type": "HEAP_OBJECT_CONTROL",
+          "status": "CANDIDATE",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-001",
+            "root_cause": "Cross-aliasing test: determine if name buffer malloc(0x18) can reuse freed animal struct chunk (same tcache bin), allowing attacker-controlled 24-byte name data to overwrite animal struct fields (func_ptr@0x0, name_ptr@0x10).",
+            "description": "Cross-aliasing (name buffer reusing freed animal struct) is NOT achievable with standard glibc 2.39 tcache LIFO. The free order in remove_animal (free(name_ptr) FIRST, then free(animal)) matches the malloc order in add_animal (malloc(animal) FIRST, then malloc(name)). tcache LIFO: animal chunk is always on top of the free list, so animal malloc gets the animal chunk, and name malloc gets the name chunk. No cross-reuse occurs. This means the attacker cannot directly overwrite the freed animal struct's func_ptr with arbitrary data via the name buffer read()."
+          },
+          "chain": [
+            "BUG-001: remove_animal frees name_ptr FIRST, then animal struct",
+            "tcache LIFO: animal chunk on top, name chunk below",
+            "add_animal: malloc(animal) FIRST gets animal chunk (top), malloc(name) gets name chunk (below)",
+            "No cross-reuse: name buffer does NOT reuse freed animal struct",
+            "Cross-aliasing NOT achievable -> direct HEAP_OBJECT_CONTROL with attacker data NOT achievable"
+          ],
+          "controlled_element": {
+            "what": "None (negative result)",
+            "how": "Cross-aliasing is not achievable. The attacker cannot write arbitrary data to the freed animal struct via the name buffer read() because the name buffer malloc always returns the freed name chunk, not the freed animal struct chunk.",
+            "reach_sensitive_operation": false
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "For cross-aliasing: name buffer malloc must return freed animal struct chunk. This requires the animal struct chunk to be below the name chunk in the tcache free list.",
+              "necessity": "Without this, the name buffer read() writes to the name chunk, not the animal struct. The attacker's data does not overwrite func_ptr or name_ptr.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The free order (name first, animal second) must NOT match the malloc order (animal first, name second).",
+              "necessity": "If free order matches malloc order (as in this case), tcache LIFO ensures animal gets animal and name gets name. No cross-reuse.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "tcache_free_list = [animal_chunk, name_chunk] (LIFO: animal on top)",
+              "alias": "Free order: free(name_ptr) then free(animal) -> animal on top",
+              "implication": "animal chunk is always on top of tcache free list after remove_animal. malloc(animal) in add_animal gets the top (animal chunk). malloc(name) gets the next (name chunk). No cross-reuse."
+            },
+            {
+              "expression": "malloc_order = [animal, name] (animal first, name second)",
+              "alias": "Malloc order: malloc(animal) then malloc(name) in add_animal",
+              "implication": "animal malloc consumes the top of tcache (animal chunk). name malloc consumes the next (name chunk). The order matches the free order, preventing cross-reuse."
+            },
+            {
+              "expression": "Dynamic test: add(2) + remove(0) + remove(1) + add(1) -> zoo[0]=0x4052a0 still in tcache",
+              "alias": "After 2 removes and 1 add, zoo[0] chunk remains in tcache (not consumed)",
+              "implication": "The add consumed the top 2 chunks (from remove(1)), not the chunks from remove(0). zoo[0]=0x4052a0 remains freed with tcache metadata. This confirms the LIFO behavior and the impossibility of cross-aliasing with standard tcache."
+            }
+          ],
+          "verification_plan": {
+            "method": "Use gdb to trace malloc/free addresses during add/remove sequences. Verify that name buffer malloc always returns the freed name chunk, not the freed animal struct chunk.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE, gdb",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "expected_evidence": [
+              "gdb: After remove(0), tcache = [animal_chunk, name_chunk]",
+              "gdb: add_animal: malloc(animal) returns animal_chunk, malloc(name) returns name_chunk",
+              "gdb: No cross-reuse observed in any tested sequence"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache LIFO",
+              "present": true,
+              "primitive_impact": "tcache LIFO ensures that the last-freed chunk is the first-allocated. Since remove_animal frees name first and animal second, animal is on top. add_animal allocates animal first (gets top=animal chunk) and name second (gets next=name chunk). This prevents cross-aliasing."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "add_animal + remove_animal",
+              "address": "0x401493 + 0x401546 + 0x4016d2 + 0x4016f2",
+              "description": "gdb: add(A0): animal=0x4052a0, name=0x4052c0. remove(0): free(name=0x4052c0), free(animal=0x4052a0) -> tcache=[0x4052a0, 0x4052c0]. add(A1): malloc(animal)=0x4052a0 (animal chunk), malloc(name)=0x4052c0 (name chunk). No cross-reuse."
+            },
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "add_animal + remove_animal",
+              "address": "0x401493 + 0x401546 + 0x4016d2 + 0x4016f2",
+              "description": "gdb: add(A0)+add(A1): A0=(0x4052a0, 0x4052c0), A1=(0x4052e0, 0x405300). remove(0)+remove(1): tcache=[0x4052e0, 0x405300, 0x4052a0, 0x4052c0]. add(A2): malloc(animal)=0x4052e0 (A1's animal), malloc(name)=0x405300 (A1's name). zoo[0]=0x4052a0 still in tcache. No cross-reuse."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-001.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "Cross-aliasing NOT achievable. Dynamic evidence: free(name) then free(animal) -> tcache=[animal, name]. malloc(animal) then malloc(name) -> animal gets animal chunk, name gets name chunk. Tested with multiple sequences (add 1 + remove 1 + add 1, add 2 + remove 2 + add 1, add 4 + remove 4 + add 1). In all cases, name buffer malloc returns freed name chunk, not freed animal struct chunk. Direct HEAP_OBJECT_CONTROL with attacker data not achievable with standard tcache LIFO."
+          },
+          "confidence": "HIGH",
+          "notes": "Negative result: cross-aliasing (name buffer reusing freed animal struct) is NOT achievable with standard glibc 2.39 tcache LIFO. The free order in remove_animal (name first, animal second) matches the malloc order in add_animal (animal first, name second), so tcache LIFO ensures animal always reuses animal and name always reuses name. This means the S2-proposed UAF chain (add -> remove -> add with name buffer overwriting animal struct -> report_name with controlled func_ptr) is NOT directly achievable. Direct HEAP_OBJECT_CONTROL with attacker-controlled data would require tcache manipulation (e.g., tcache poisoning via BUG-002 double-free, or filling tcache to force fastbin allocation with different reuse ordering). This is a negative finding with dynamic evidence."
+        }
+      ],
+      "non_primitives": [],
+      "unresolved": [
+        {
+          "description": "Direct HEAP_OBJECT_CONTROL with attacker-controlled data (cross-aliasing name buffer with animal struct)",
+          "reason": "Cross-aliasing is not achievable with standard glibc 2.39 tcache LIFO because free order (name first, animal second) matches malloc order (animal first, name second). Dynamic evidence confirms no cross-reuse in tested sequences.",
+          "required_next_step": "S4 could explore tcache manipulation techniques (e.g., tcache poisoning via BUG-002 double-free, or filling tcache to force fastbin allocation) to achieve cross-aliasing and direct HEAP_OBJECT_CONTROL with attacker-controlled func_ptr."
+        },
+        {
+          "description": "Direct FUNCTION_POINTER_CONTROL with attacker-controlled call target",
+          "reason": "Requires cross-aliasing (name buffer overwriting animal struct func_ptr) which is not achievable with standard tcache LIFO. The current call target is tcache fd (heap metadata), not attacker-controlled.",
+          "required_next_step": "S4 could explore tcache manipulation to achieve cross-aliasing, then use read(0, name_buf, 0x18) to write arbitrary func_ptr (e.g., system@plt=0x401120 or print=0x401276) and control the call target."
+        },
+        {
+          "description": "INFO_LEAK via UAF (reading stale name_ptr and printing via printf)",
+          "reason": "If the freed animal chunk's func_ptr (offset 0) happened to point to a valid endbr64 function (e.g., speak=0x4012b3), report_name would call speak(name_ptr) -> print(name_ptr) -> printf('%s', name_ptr). If name_ptr points to freed name buffer containing tcache metadata, this would leak heap pointers. But in practice, func_ptr is tcache fd (invalid address), causing SIGSEGV before any printf occurs.",
+          "required_next_step": "S4 could explore whether tcache fd can be manipulated to point to a valid function (e.g., via tcache poisoning), enabling the INFO_LEAK path."
+        }
+      ]
+    },
+    {
+      "schema": "PrimitiveReport",
+      "version": "1.0",
+      "stage": "S3",
+      "target_bug_id": "BUG-002",
+      "status": "COMPLETED",
+      "summary": {
+        "analyzed_bug_id": "BUG-002",
+        "total_primitives": 3,
+        "verified": 3,
+        "theoretical": 0,
+        "candidate": 0,
+        "unknown": 0
+      },
+      "primitives": [
+        {
+          "primitive_id": "PRIM-001",
+          "type": "CRASH",
+          "status": "VERIFIED",
+          "kind": "DIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "remove_animal frees animal struct and name buffer but does NOT set zoo[idx+8] to NULL. The dangling pointer remains in the zoo array. A second remove_animal(idx) passes the count>0 check (count still positive if >=2 animals exist) and the non-NULL slot check (zoo[idx+8] is dangling, non-NULL), then calls free() on the already-freed animal struct chunk.",
+            "description": "Direct double-free: remove_animal(idx) called twice with same index. First call frees animal struct at 0x4052a0. Second call: zoo[idx+8] still = 0x4052a0 (non-NULL, dangling), count>0, so free(0x4052a0) is called again. glibc 2.39 tcache double-free detection triggers, aborting with SIGABRT."
+          },
+          "chain": [
+            "BUG-002",
+            "remove_animal does not NULL zoo[idx+8] after free",
+            "dangling pointer remains in zoo array",
+            "second remove_animal(idx) passes count>0 and non-NULL checks",
+            "free() called on already-freed animal struct chunk",
+            "glibc tcache double-free detection -> SIGABRT",
+            "CRASH"
+          ],
+          "controlled_element": {
+            "what": "zone_index (same index passed to remove_animal twice)",
+            "how": "Attacker calls remove_animal with the same zone_index twice. The first call frees the chunk; the second call re-frees it because the zoo slot was never NULLed.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 2 animals must exist in the zoo before the double-free. remove_animal checks count>0 at 0x40160e. After the first remove, count is decremented by 1. If only 1 animal existed, count becomes 0 and the second remove is blocked by the count check.",
+              "necessity": "Without count>0 at the time of the second remove_animal, the function returns early with 'no animal' message and never reaches the free() call.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The zoo[idx+8] slot must still be non-NULL (dangling pointer) when the second remove_animal is called. This is guaranteed by the bug: remove_animal never sets zoo[idx+8] to NULL after freeing.",
+              "necessity": "The non-NULL check at 0x40169d (test rax,rax; jne) must pass for the function to proceed to the free() calls.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "The freed chunk must still be in the tcache free list (not yet reallocated) for glibc's double-free detection to trigger. If the chunk was reallocated between the two frees, the tcache key is cleared and the double-free succeeds silently (see PRIM-002).",
+              "necessity": "For the CRASH primitive (direct double-free without reallocation), the chunk must remain in tcache so glibc detects the double-free.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [],
+          "verification_plan": {
+            "method": "Add 2 animals (zones 0 and 1). Call remove_animal(0) to free animal0. Call remove_animal(0) again — count=1>0 (pass), zoo[0]=0x4052a0 non-NULL (pass), free(0x4052a0) called again -> glibc tcache double-free detection -> SIGABRT.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "expected_evidence": [
+              "Return code -6 (SIGABRT)",
+              "glibc message 'free(): double free detected in tcache 2' in stderr",
+              "gdb: first free(animal) at 0x4016f2 with rdi=0x4052a0 succeeds",
+              "gdb: second free(animal) at 0x4016f2 with rdi=0x4052a0 triggers abort"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache double-free detection (tcache_key)",
+              "present": true,
+              "primitive_impact": "When the freed chunk is still in tcache (not reallocated between frees), glibc detects the double-free via the tcache_key field and aborts with SIGABRT. This converts the double-free into a CRASH rather than silent heap corruption. However, this detection can be bypassed by reallocating the chunk between the two frees (clearing the tcache_key), as demonstrated in PRIM-002."
+            },
+            {
+              "name": "CET/IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "IBT requires indirect call targets to have endbr64. This does not affect the double-free primitive itself (which is a free() call, not an indirect call). IBT would affect any subsequent control-flow hijacking via the corrupted heap, but the CRASH primitive is unaffected."
+            },
+            {
+              "name": "CET/SHSTK (Shadow Stack)",
+              "present": true,
+              "primitive_impact": "Shadow stack protects return addresses. Does not affect the double-free primitive (which corrupts heap metadata, not return addresses)."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E001",
+              "type": "STATIC",
+              "function": "remove_animal",
+              "address": "0x4016f2",
+              "description": "free(zoo[idx]) is called at 0x4016f2. No instruction between 0x4016f2 and 0x401733 writes NULL to zoo[idx+8] — the dangling pointer remains."
+            },
+            {
+              "id": "E002",
+              "type": "STATIC",
+              "function": "remove_animal",
+              "address": "0x40160e-0x401610",
+              "description": "Count check: test eax,eax; jg 0x401626. After first remove, count is decremented. If >=2 animals existed, count>0 still holds for the second remove."
+            },
+            {
+              "id": "E003",
+              "type": "STATIC",
+              "function": "remove_animal",
+              "address": "0x401699-0x4016a0",
+              "description": "Non-NULL slot check: mov rax,[rdx+rax*1]; test rax,rax; jne 0x4016b3. Since zoo[idx+8] is never cleared, this passes for the dangling pointer."
+            },
+            {
+              "id": "E004",
+              "type": "DYNAMIC",
+              "function": "remove_animal",
+              "address": "0x4016f2",
+              "description": "gdb breakpoint at 0x4016f2 (free(animal)): First hit rdi=0x4052a0 (success). Second hit rdi=0x4052a0 (same address, double-free) -> SIGABRT with 'free(): double free detected in tcache 2'."
+            },
+            {
+              "id": "E005",
+              "type": "DYNAMIC",
+              "function": "remove_animal",
+              "address": "0x401699",
+              "description": "gdb breakpoint at 0x401699 (zoo[idx] load): First remove(0): zoo[0]=0x4052a0 (non-NULL, passes check). Second remove(0): zoo[0]=0x4052a0 (still non-NULL, dangling, passes check). count=1 at second remove (passes count>0 check)."
+            },
+            {
+              "id": "E006",
+              "type": "DYNAMIC",
+              "function": "remove_animal",
+              "address": "N/A",
+              "description": "PoC execution: rc=-6 (SIGABRT). Output contains 'free(): double free detected in tcache 2'. Confirms glibc tcache double-free detection triggered."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "",
+            "fault_address": "",
+            "return_code": -6,
+            "details": "Direct double-free: add 2 animals, remove(0) frees animal0 at 0x4052a0, remove(0) again passes count=1>0 and zoo[0]=0x4052a0 non-NULL checks, calls free(0x4052a0) again. glibc 2.39 tcache double-free detection triggers: 'free(): double free detected in tcache 2' -> SIGABRT (rc=-6). gdb confirmed: first free rdi=0x4052a0 (success), second free rdi=0x4052a0 (abort)."
+          },
+          "confidence": "HIGH",
+          "notes": "The CRASH primitive is the direct, immediate consequence of the double-free bug when no reallocation occurs between the two free() calls. glibc 2.39's tcache_key detection converts this into an abort rather than silent corruption. The CRASH is reliably reproducible."
+        },
+        {
+          "primitive_id": "PRIM-002",
+          "type": "HEAP_METADATA_CONTROL",
+          "status": "VERIFIED",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "remove_animal does not NULL zoo[idx+8] after free. The dangling pointer allows a second remove_animal(idx) to call free() on the same chunk again. By reallocating the chunk between the two frees (via add_animal's malloc(0x18)), the tcache_key is cleared, bypassing glibc's double-free detection. The chunk is freed twice (with key cleared between), causing it to appear twice in the tcache free list — corrupting tcache metadata.",
+            "description": "Indirect tcache metadata corruption: (1) remove(0) frees animal0 chunk at 0x4052a0 into tcache. (2) add_animal (zone 3) calls malloc(0x18) which returns 0x4052a0 from tcache, clearing the tcache_key. zoo[3]=0x4052a0. (3) remove(0) again: zoo[0]=0x4052a0 (dangling, non-NULL), count>0, free(0x4052a0) succeeds (key was cleared) — chunk re-enters tcache free list. Now 0x4052a0 is in tcache AND pointed to by zoo[3]. (4) add_animal (zone 4) calls malloc(0x18) which returns 0x4052a0 again — zoo[4]=0x4052a0. Now zoo[3] and zoo[4] both point to the same chunk."
+          },
+          "chain": [
+            "BUG-002",
+            "remove_animal does not NULL zoo[idx+8] after free",
+            "dangling pointer allows second free on same chunk",
+            "realloc chunk between frees to clear tcache_key (bypass detection)",
+            "chunk freed twice with key cleared between -> appears twice in tcache free list",
+            "subsequent malloc returns same chunk to two different allocations",
+            "tcache free list metadata corrupted (HEAP_METADATA_CONTROL)",
+            "HEAP_METADATA_CONTROL"
+          ],
+          "controlled_element": {
+            "what": "tcache free list metadata — the chunk 0x4052a0 is freed twice (with tcache_key cleared between frees via reallocation), causing it to appear in the tcache free list multiple times. Subsequent malloc(0x18) calls return the same chunk to different callers.",
+            "how": "Attacker controls the sequence of add/remove operations: (1) add 3 animals, (2) remove(0) to free chunk, (3) add animal to reallocate and clear tcache_key, (4) remove(0) again to double-free with key bypass, (5) add animal to get overlapping allocation. The attacker controls which chunks are freed and when reallocation happens.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "At least 3 animals must exist: 2 for count>0 after first remove (PC-01 from PRIM-001), plus 1 additional to ensure count>0 after the second remove. After remove(0) [count 3->2], add(zone3) [count 2->3], remove(0) [count 3->2], count=2>0 for any subsequent operations.",
+              "necessity": "The count>0 check in remove_animal must pass for both the first and second remove calls. With 3 initial animals, count goes 3->2 (first remove), 2->3 (add zone3), 3->2 (second remove), maintaining count>0 throughout.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "The freed animal struct chunk (0x18 bytes, 0x20 with header) and the name buffer chunk (same size) must be in the same tcache bin. This is guaranteed because both use malloc(0x18).",
+              "necessity": "For the reallocation to return the same chunk, both must be in the same tcache bin (0x20 size class).",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "An add_animal must occur between the two remove_animal(idx) calls to reallocate the freed chunk, clearing the tcache_key. Without this, glibc detects the double-free (PRIM-001 CRASH).",
+              "necessity": "The tcache_key bypass requires the chunk to be allocated (clearing the key) between the two free() calls. add_animal's malloc(0x18) for the animal struct returns the freed chunk from tcache, clearing the key.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "The add_animal between the two removes must allocate the animal struct (not just the name buffer) from the same tcache bin as the freed animal struct. Since both animal struct and name buffer use malloc(0x18), the first malloc(0x18) in add_animal returns the freed animal struct chunk.",
+              "necessity": "The animal struct malloc(0x18) at 0x401493 is called before the name buffer malloc(0x18) at 0x401546. With LIFO tcache, the first malloc returns the most recently freed chunk (the animal struct), clearing its tcache_key.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "zoo[0] == zoo[3] == 0x4052a0 (after step 2)",
+              "alias": "zoo[0] (dangling) and zoo[3] (live) both point to the same heap chunk at 0x4052a0",
+              "implication": "After add(zone3) reuses the freed animal0 chunk, zoo[0] (dangling) and zoo[3] (live) are aliases to the same memory. The second remove(0) frees this chunk again while zoo[3] still references it."
+            },
+            {
+              "expression": "zoo[3] == zoo[4] == 0x4052a0 (after step 4)",
+              "alias": "zoo[3] and zoo[4] both point to the same heap chunk at 0x4052a0",
+              "implication": "After the double-free bypass and subsequent add(zone4), both zoo[3] and zoo[4] reference the same chunk. Any write to one affects the other — overlapping heap object control."
+            }
+          ],
+          "verification_plan": {
+            "method": "Add 3 animals (zones 0,1,2). Remove(0) to free animal0. Add animal (zone 3) to reallocate chunk and clear tcache_key. Remove(0) again — double-free with key bypass succeeds. Add animal (zone 4) to get overlapping allocation. Report(3) should print zone 4's name, proving zoo[3] and zoo[4] share the same chunk.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "expected_evidence": [
+              "Second remove(0) succeeds (no abort) — tcache_key bypass confirmed",
+              "report(3) prints zone 4's name (EEEE) — overlapping allocation confirmed",
+              "gdb: zoo[3]=0x4052a0 and zoo[4]=0x4052a0 (same chunk)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache double-free detection (tcache_key)",
+              "present": true,
+              "primitive_impact": "The tcache_key check is bypassed by reallocating the chunk between the two frees. When the chunk is allocated via malloc, the tcache_key field is overwritten with user data, clearing the detection marker. The subsequent free() does not detect the double-free because the key no longer matches. This is a known limitation of glibc's tcache double-free detection — it only catches consecutive frees without intervening allocation."
+            },
+            {
+              "name": "CET/IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "Does not affect heap metadata corruption. IBT only restricts indirect call targets."
+            },
+            {
+              "name": "CET/SHSTK (Shadow Stack)",
+              "present": true,
+              "primitive_impact": "Does not affect heap metadata corruption. Shadow stack only protects return addresses."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E007",
+              "type": "STATIC",
+              "function": "remove_animal",
+              "address": "0x4016f2",
+              "description": "free(zoo[idx]) at 0x4016f2 — no NULL assignment to zoo[idx+8] follows, enabling the second free on the same pointer."
+            },
+            {
+              "id": "E008",
+              "type": "STATIC",
+              "function": "add_animal",
+              "address": "0x401493",
+              "description": "malloc(0x18) at 0x401493 allocates the animal struct. This is the same size as the freed animal struct chunk, so tcache returns the freed chunk, clearing the tcache_key."
+            },
+            {
+              "id": "E009",
+              "type": "DYNAMIC",
+              "function": "remove_animal",
+              "address": "0x401699",
+              "description": "gdb: After add(zone3) reuses chunk 0x4052a0, second remove(0) hits breakpoint at 0x401699: zoo[0]=0x4052a0 (dangling, non-NULL), count=3>0. Both checks pass. free(0x4052a0) succeeds (tcache_key was cleared by realloc). No abort."
+            },
+            {
+              "id": "E010",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401813",
+              "description": "gdb: After double-free bypass and add(zone4), report(3) hits breakpoint at 0x401813: $rax=0x4052a0 (same chunk as zoo[4]). func_ptr at [0x4052a0]=0x4012b3 (speak, set by add zone4). report(3) prints 'EEEE...' (zone 4's name), proving zoo[3] and zoo[4] share the same chunk."
+            },
+            {
+              "id": "E011",
+              "type": "DYNAMIC",
+              "function": "add_animal + remove_animal",
+              "address": "N/A",
+              "description": "PoC execution: Second remove(0) after realloc succeeds (no SIGABRT). report(3) output contains 'EEEE' (zone 4's name). Confirms tcache free list corrupted — chunk 0x4052a0 allocated to both zoo[3] and zoo[4]."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "written_value": "",
+            "read_value": "EEEE (zone 4's name read via report(3), proving zoo[3] and zoo[4] share chunk 0x4052a0)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "tcache double-free bypass: add 3 animals, remove(0) frees 0x4052a0, add(zone3) reallocates 0x4052a0 (clears tcache_key), remove(0) again frees 0x4052a0 (key bypass, no abort), add(zone4) reallocates 0x4052a0 again. Now zoo[3]=zoo[4]=0x4052a0. report(3) prints zone 4's name 'EEEE', confirming overlapping allocation via corrupted tcache free list. gdb confirmed: zoo[0]=0x4052a0 (dangling after first remove), zoo[3]=0x4052a0 (after realloc), second remove(0) succeeds, zoo[4]=0x4052a0 (after second realloc)."
+          },
+          "confidence": "HIGH",
+          "notes": "This is an INDIRECT primitive: the tcache metadata corruption requires an intermediate reallocation step to bypass glibc's tcache_key double-free detection. The reallocation clears the key, allowing the second free to succeed silently. The result is a corrupted tcache free list where the same chunk appears twice, leading to overlapping allocations."
+        },
+        {
+          "primitive_id": "PRIM-003",
+          "type": "HEAP_OBJECT_CONTROL",
+          "status": "VERIFIED",
+          "kind": "INDIRECT",
+          "source": {
+            "bug_id": "BUG-002",
+            "root_cause": "Same as PRIM-002: double-free with tcache_key bypass via reallocation. After the bypass, two zoo slots (zoo[3] and zoo[4]) point to the same heap chunk (0x4052a0). The attacker controls the content written to this chunk via add_animal's read(0, name_buf, 0x18), which writes 24 bytes that overlap the animal struct fields (func_ptr@0, type@8, name_ptr@0x10).",
+            "description": "After the tcache double-free bypass (PRIM-002), zoo[3] and zoo[4] both point to chunk 0x4052a0. When add_animal(zone 4) writes 24 bytes of name data to this chunk (via read(0, name_buf, 0x18)), it overwrites the animal struct fields that zoo[3] references. report(3) then dereferences the attacker-controlled func_ptr (offset 0) and name_ptr (offset 0x10) from this chunk. The attacker controls the overlapping object content."
+          },
+          "chain": [
+            "BUG-002",
+            "remove_animal does not NULL zoo[idx+8] after free",
+            "double-free with tcache_key bypass via reallocation (PRIM-002)",
+            "zoo[3] and zoo[4] both point to same chunk 0x4052a0",
+            "add_animal(zone 4) writes 24 bytes of attacker-controlled name data to chunk",
+            "name data overlaps animal struct fields (func_ptr@0, type@8, name_ptr@0x10) of zoo[3]",
+            "report(3) dereferences attacker-controlled func_ptr and name_ptr",
+            "HEAP_OBJECT_CONTROL"
+          ],
+          "controlled_element": {
+            "what": "The animal struct fields at chunk 0x4052a0: func_ptr (offset 0, 8 bytes), type (offset 8, 4 bytes), name_ptr (offset 0x10, 8 bytes). When add_animal(zone 4) writes name data to this chunk, the 24 bytes of name data overlap these fields. However, note that add_animal also sets func_ptr=speak and name_ptr=name_buf before the read, so the attacker's 24 bytes of name data go into the name_buf, not directly into the animal struct. The overlapping control is that zoo[3] and zoo[4] share the same animal struct — writing zone 4's animal struct (by add_animal) controls what zoo[3] sees.",
+            "how": "After the double-free bypass, zoo[3] and zoo[4] point to the same chunk. add_animal(zone 4) sets func_ptr=speak(0x4012b3), type, and name_ptr (pointing to zone 4's name buffer). When report(3) is called, it reads these fields from the shared chunk and calls func_ptr(name_ptr) = speak(zone4_name_ptr), printing zone 4's name. The attacker controls which name is written to zone 4, and thus what report(3) outputs.",
+            "reach_sensitive_operation": true
+          },
+          "preconditions": [
+            {
+              "id": "PC-01",
+              "description": "Same as PRIM-002 PC-01: at least 3 animals must exist to maintain count>0 throughout the double-free bypass sequence.",
+              "necessity": "Count must remain >0 for both remove_animal calls.",
+              "verified": true
+            },
+            {
+              "id": "PC-02",
+              "description": "Same as PRIM-002 PC-03: an add_animal must occur between the two remove_animal calls to clear the tcache_key.",
+              "necessity": "Required for tcache double-free bypass.",
+              "verified": true
+            },
+            {
+              "id": "PC-03",
+              "description": "After the double-free bypass, a second add_animal must be called to allocate the overlapping chunk (zone 4). This sets the animal struct fields (func_ptr, name_ptr) that zoo[3] will later dereference.",
+              "necessity": "The overlapping allocation is what gives the attacker control over the shared chunk's content. Without this step, zoo[3] points to freed memory with stale/tcache metadata.",
+              "verified": true
+            },
+            {
+              "id": "PC-04",
+              "description": "report_name must be called with idx=3 (the stale zoo slot) to dereference the shared chunk. The count>0 check must pass (count=2 after the sequence).",
+              "necessity": "report_name is the function that dereferences the controlled animal struct fields (func_ptr, name_ptr) and triggers the indirect call.",
+              "verified": true
+            }
+          ],
+          "alias_key_findings": [
+            {
+              "expression": "zoo[3] == zoo[4] == 0x4052a0",
+              "alias": "zoo[3] and zoo[4] are aliases to the same heap chunk",
+              "implication": "Any write to the chunk via zoo[4] (add_animal setting func_ptr, name_ptr) is visible through zoo[3] (report_name reading func_ptr, name_ptr). This is the overlapping object control."
+            }
+          ],
+          "verification_plan": {
+            "method": "Same setup as PRIM-002. After double-free bypass and add(zone4), call report(3) and report(4). Both should print zone 4's name ('OWNED_BY_4'), proving zoo[3] and zoo[4] share the same chunk and the attacker controls the overlapping content.",
+            "environment": "Linux x86-64, glibc 2.39, No PIE binary, NX enabled, Canary, Partial RELRO, SHSTK+IBT enabled",
+            "run_command": "python3 /work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "expected_evidence": [
+              "report(3) prints 'OWNED_BY_4' (zone 4's name) — overlapping object confirmed",
+              "report(4) prints 'OWNED_BY_4' (zone 4's name) — same chunk confirmed",
+              "gdb: zoo[3]=0x4052a0 and zoo[4]=0x4052a0 (same chunk)"
+            ]
+          },
+          "mitigations": [
+            {
+              "name": "glibc 2.39 tcache double-free detection (tcache_key)",
+              "present": true,
+              "primitive_impact": "Bypassed via reallocation between frees (same as PRIM-002). The tcache_key check does not prevent the overlapping allocation."
+            },
+            {
+              "name": "CET/IBT (Indirect Branch Tracking)",
+              "present": true,
+              "primitive_impact": "IBT requires the indirect call target (func_ptr) to have endbr64. In the current PoC, func_ptr=speak(0x4012b3) which has endbr64, so the call succeeds. If an attacker overwrites func_ptr with an arbitrary address lacking endbr64, IBT would block the call with a #CP exception. This limits the HEAP_OBJECT_CONTROL primitive's ability to hijack control flow to arbitrary addresses, but the overlapping object content control itself is unaffected."
+            },
+            {
+              "name": "CET/SHSTK (Shadow Stack)",
+              "present": true,
+              "primitive_impact": "Does not affect heap object control. Shadow stack protects return addresses, not heap data."
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E012",
+              "type": "STATIC",
+              "function": "report_name",
+              "address": "0x401813-0x401835",
+              "description": "report_name reads func_ptr from [animal+0x0] into rdx at 0x401813, reads name_ptr from [animal+0x10] into rdi at 0x40182e, then 'call rdx' at 0x401835. When animal is the shared chunk (zoo[3]=zoo[4]=0x4052a0), these fields are controlled by whichever add_animal last wrote to the chunk."
+            },
+            {
+              "id": "E013",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "0x401813",
+              "description": "gdb: report(3) hits breakpoint at 0x401813: $rax=0x4052a0 (same chunk as zoo[4]). func_ptr at [0x4052a0]=0x4012b3 (speak, set by add zone4). report(3) prints 'EEEE...' (zone 4's name), proving zoo[3] accesses chunk written by add(zone4)."
+            },
+            {
+              "id": "E014",
+              "type": "DYNAMIC",
+              "function": "report_name",
+              "address": "N/A",
+              "description": "PoC execution: report(3) output contains 'OWNED_BY_4' (zone 4's name). report(4) output also contains 'OWNED_BY_4'. Both zoo[3] and zoo[4] access the same chunk 0x4052a0, confirming overlapping heap object control."
+            }
+          ],
+          "verification_result": {
+            "executed": true,
+            "poc_path": "/work/workspace/0020-2022-36-uaf2-20260908-194233/poc-BUG-002.py",
+            "written_value": "OWNED_BY_4 (zone 4's name written to shared chunk via add_animal)",
+            "read_value": "OWNED_BY_4 (read via report(3) from the same chunk, proving overlapping control)",
+            "fault_address": "",
+            "return_code": 0,
+            "details": "After double-free bypass (PRIM-002), zoo[3] and zoo[4] both point to 0x4052a0. add_animal(zone 4) writes name 'OWNED_BY_4' and sets func_ptr=speak, name_ptr=zone4_name_buf. report(3) reads these fields from the shared chunk and prints 'OWNED_BY_4' (zone 4's name). report(4) also prints 'OWNED_BY_4'. gdb confirmed: report(3) at 0x401813, $rax=0x4052a0, func_ptr=0x4012b3 (speak). This proves the attacker controls the overlapping heap object content — writes via zoo[4] are visible through zoo[3]."
+          },
+          "confidence": "HIGH",
+          "notes": "This is an INDIRECT primitive: it depends on the tcache double-free bypass (PRIM-002) to create the overlapping allocation. The attacker controls which data is written to the shared chunk via add_animal's name read, and the overlapping zoo[3] slot dereferences this data via report_name's indirect call. IBT limits arbitrary control-flow hijacking but does not prevent the overlapping object content control itself."
+        }
+      ],
+      "non_primitives": [],
+      "unresolved": []
+    }
+  ],
+  "verified_bug_ids": [
+    "BUG-001",
+    "BUG-002"
+  ]
+}

@@ -1,0 +1,111 @@
+# [重建] 原始 full_run.log 丢失，由 console log 恢复（里程碑事件）
+
+# ===== 来源: /work/ctf2/_run_0029.log =====
+Warning: _curses.error: setupterm: could not find terminfo database
+
+Terminal features will not be available.  Consider setting TERM variable to your current terminal name (or xterm).
+=== LeanAgent 主 agent：分析 ./target ===
+
+18:50:30 === Task Workspace: /work/workspace/0029-2024-54-profix-calc-20260909-185030（target 已拷入） ===
+18:50:30 === Full Run: S1 → S2 → S3（所有 bug） → S4 ===
+
+18:50:30 --- S1 Recon ---
+18:50:30 === recon (bug_id=-) ===
+18:52:32 [recon] ✓ submit_final_result 收到最终报告（ReconReport 校验通过，20038 chars）
+18:52:46 [stage1] 保存 → /work/workspace/0029-2024-54-profix-calc-20260909-185030/stage1.json
+18:52:46 --- S2 Semantic ---
+18:52:46 === semantic (bug_id=-) ===
+18:55:54 [semantic] ✓ submit_final_result 收到最终报告（VulnerabilityReport 校验通过，21579 chars）
+18:56:05 [stage2] 保存 → /work/workspace/0029-2024-54-profix-calc-20260909-185030/stage2.json
+18:56:05 --- S3 Primitive（所有 bug） ---
+18:56:05 === impact (bug_id=BUG-001) ===
+19:17:10 ⚠ 墙钟超限(1200s)。
+19:17:10 [impact:BUG-001] ⚠ wallclock(1265s)，转总结轮
+19:17:10 [impact:BUG-001] → 基于历史记录请求总结...
+19:17:38 [impact:BUG-001] ← LLM 总结完成 (3136 chars)
+19:17:38 [impact] ⚠ BudgetExhausted（总结全文）:
+wallclock(1265s)
+基于以上完整的操作记录，以下是本次 S3 Primitive 分析与验证的总结：
+
+### 1. 已完成的进度与验证结果
+
+**BUG-001: 无界栈指针下溢**
+目标二进制是一个后缀表达式计算器，`push` 和 `pop` 函数直接操作全局指针 `stack_top` (位于 `.bss` 0x4070)，且没有任何边界检查。初始 `stack_top` 指向 0x40c0 (`stack` 数组)。空栈时使用运算符会导致 `stack_top` 向低地址下溢。
+
+**PRIM-001: INFO_LEAK (libc FILE* 指针) - VERIFIED**
+- **原理**: 空栈上使用 `+` 运算符，每次净效果是 `stack_top -= 8`。由于下溢区域初始值为 0，`0 + value = value`，`+` 运算相当于恒等函数，能将原始值原样保留并最终通过 `eval_expr` 末尾的 `pop` 返回给 `printf` 打印。
+- **验证**: 
+  - 3 个 `+` 运算符下溢到 0x40a0 (`stderr` FILE*)，成功泄露 libc 地址 `0x7ffff7fa74e0`。
+  - 5 个 `+` 运算符下溢到 0x4090 (`stdin` FILE*)，成功泄露 libc 地址 `0x7ffff7fa68e0`。
+- **限制**: 7 个 `+` 运算符下溢到 0x4080 (`stdout`)，由于 `+` 会累加上方非零值，导致 `stdout` 被破坏，后续 `printf` 触发 SIGSEGV。
+
+**PRIM-002: INFO_LEAK (PIE 基址) - VERIFIED**
+- **原理**: 交替使用 `+` 和 `*` 运算符 (`+*+*+*+*+`)。`*` 运算符用于将下溢区域中的 padding (值为 0) 清零，防止 `+` 运算符累加。这样 `+` 运算符能原样保留非零的敏感值。
+- **验证**: 9 个运算符 (`+*+*+*+*+`) 下溢到 0x4070 (`stack_top` 全局变量本身)。由于 `push` 写入 `*(0x4070)` 时修改了 `stack_top` 的值，使其指向自身 (0x555555558070)。最终 `pop` 读取并打印该值。
+- **关键数值**: 泄露值为 `0x555555558070`，减去偏移 0x4070 得到 PIE 基址 `0x555555554000` (页对齐，验证成功)。
+
+**PRIM-003: RELATIVE_WRITE (stderr 槽位覆写) - VERIFIED**
+- **原理**: 3 个运算符下溢到 0x40a0 (`stderr`)，然后输入数字 `3735928559` (0xdeadbeef)。`push` 将该数字写入 `*(0x40a0)`。
+- **验证**: GDB 断点确认 `0x5555555580a0 <stderr>` 的值被成功修改为 `0x00000000deadbeef`。程序未崩溃 (因为后续 `printf` 用的是 `stdout`)。
+
+### 2. 失败的尝试和原因
+
+**PRIM-004: ARB_WRITE (GOT 表任意写) - FAILED**
+- **尝试**: 尝试通过 10 个运算符下溢到 0x4070，然后 `push` 目标 GOT 地址 (如 `puts@GOT` = 0x4018) 来劫持 `stack_top`，再 `push` 任意值实现 GOT 覆写。
+- **失败原因**: 
+  1. **`stack_top` 自引用问题**: 当 `stack_top` 下溢到 0x4070 时，`push` 操作写入 `*(0x4070)` 会直接修改 `stack_top` 全局变量的值。这导致后续 `push` 的递增逻辑 (`stack_top += 8`) 基于被篡改的新值，而不是原来的 0x4070。
+  2. **下溢深度计算错误**: 10 个运算符实际将 `stack_top` 下溢到了 0x4068 (`__dso_handle`)，而不是 0x4070。因为第 9 个运算符的 `push` 已经将 `stack_top` 修改为自引用值，第 10 个运算符的 `pop` 和 `push` 行为基于新值，导致指针偏移。
+  3. **GOT 破坏导致崩溃**: 尝试越过 `stack_top` 继续下溢到 GOT 区域时，会破坏 `__ctype_b_loc@GOT` (用于 `isspace`) 或 `printf@GOT`，导致程序在解析输入或输出结果时崩溃。
+
+### 3. 下次该试什么方向
+
+1. **修正下溢深度与 `stack_top` 劫持逻辑**:
+   - 重新精确追踪 9 个运算符后 `stack_top` 的状态。确认在第 9 个运算符执行后，`stack_top` 是否稳定在 0x4070 (自引用)。
+   - 如果 `stack_top` 稳定在 0x4070，直接 `push` 目标地址 Y。此时 `stack_top` 变为 Y，然后 `push` 任意值 V 会写入 `*(Y)`。但要注意 `push` 内部会执行 `stack_top = Y + 8`，导致最终 `pop` 读取 `*(Y+8-8) = *(Y) = V`。如果 Y 是 `puts@GOT` (0x4018)，写入 `*(0x4018)` 不会影响 `printf@GOT` (0x4028)，理论上可以正常打印结果。
+   - **关键验证点**: 用 GDB 单步跟踪 `push` 函数在 `stack_top=0x4070` 时的行为，确认 `stack_top` 被覆写后的确切值。
+
+2. **避免破坏关键 GOT 表项**:
+   - 如果要覆写 `puts@GOT` (0x4018)，下溢路径会经过 `printf@GOT` (0x4028)。需要设计运算符序列，确保经过 `printf@GOT` 时使用 `*` 将其清零或用 `+` 保留原值，避免破坏。
+   - 考虑使用 `0` 作为操作数：先 `push 0` 填充下溢区域，再使用运算符，这样可以控制 `+` 和 `*` 的结果。
+
+3. **探索不经过 `stdout` 的下溢路径**:
+   - 当前下溢路径必须经过 `stdout` (0x4080)。可以尝试先 `push` 多个 0 抬高 `stack_top`，再使用运算符下溢，使得下溢区域落在 `stack` 数组内部，避免直接接触 `stdout`。
+
+### 4. 已落盘的关键文件清单
+
+- `/work/workspace/0029-2024-54-profix-calc-20260909-185030/poc-BUG-001.py`
+  - **状态**: 包含 PRIM-001 到 PRIM-004 的自动化验证脚本。
+  - **验证结果**: PRIM-001 (VERIFIED), PRIM-002 (VERIFIED), PRIM-003 (VERIFIED), PRIM-004 (FAILED)。
+  - **下次优先**: 读取此文件，修正 PRIM-004 的下溢深度计算和 `stack_top` 劫持逻辑，重新验证 GOT 表任意写。
+19:17:38 === impact (bug_id=BUG-001) attempt 2/3 ===
+19:22:49 [retry] 无 submit（1/5），原地重试...
+19:28:07 [impact:BUG-001] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，27229 chars）
+19:28:14 === impact (bug_id=BUG-002) ===
+19:31:46 [impact:BUG-002] ✓ submit_final_result 收到最终报告（PrimitiveReport 校验通过，11031 chars）
+19:31:54 [stage3] 保存 → /work/workspace/0029-2024-54-profix-calc-20260909-185030/stage3.json
+19:31:54 --- S4 Exploit ---
+19:31:54 === exploit (bug_id=-) ===
+19:49:41 [exploit] ✓ submit_final_result 收到最终报告（ExploitReport 校验通过，12807 chars）
+19:49:50 ✅ Exploit 成功（status=COMPLETED, result_status=EXPLOIT_SUCCESS）。
+19:49:50 [stage4] 保存 → /work/workspace/0029-2024-54-profix-calc-20260909-185030/stage4.json
+19:50:07 📄 渗透报告：/work/workspace/0029-2024-54-profix-calc-20260909-185030/report.md
+19:50:12 === 主 agent 汇总 ===
+## 分析完成 ✅
+
+对 `./target` 的完整 S1-S4 漏洞分析已跑完，结果如下：
+
+| 项目 | 结果 |
+|------|------|
+| **Exploit 是否成功** | ✅ 成功 |
+| **二进制路径** | `/work/workspace/0029-2024-54-profix-calc-20260909-185030/target` |
+| **Exploit 脚本** | `/work/workspace/0029-2024-54-profix-calc-20260909-185030/exploit.py` |
+| **完整报告** | `/work/workspace/0029-2024-54-profix-calc-20260909-185030/report.md` |
+| **Workspace** | `/work/workspace/0029-2024-54-profix-calc-20260909-185030/` |
+
+分析流程覆盖了：
+- **S1 侦察** — 二进制基本信息、保护机制、攻击面识别
+- **S2 语义** — 漏洞点语义分析、可控输入路径
+- **S3 原语验证** — 漏洞原语（如溢出/格式化字符串/UAF 等）可利用性验证
+- **S4 Exploit** — 最终 exploit 构建并成功触发
+
+Exploit 已验证成功，完整产物（stage1-4.json / exploit.py / report.md / full_run.log）均存放在上述 workspace 目录中，可随时查阅。
