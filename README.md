@@ -8,8 +8,6 @@
 
 ```mermaid
 flowchart TB
-    CF["🧱 Contract First —— 结构化输出契约层<br/>ReconReport · VulnerabilityReport · PrimitiveReport · ExploitReport<br/>（pydantic 严格校验 · submit_final_result 唯一交付通道 · stage{N}.json 落盘）"]
-
     subgraph PIPE["四阶段管线（每阶段独立 subagent · 结构化 JSON 上下文往返）"]
         direction LR
         S1["S1 侦察 Recon<br/>━━━━━━━━━━<br/>解决：这个二进制是什么、<br/>有什么保护、怎么交互？<br/><br/>· checksec 全防护识别（含 CET）<br/>· libc 运行时版本确认<br/>· 菜单/IO 时序实测（probe_io）<br/>· 攻击面清单 + 依赖链检查"]
@@ -18,7 +16,11 @@ flowchart TB
         S4["S4 利用 Exploit<br/>━━━━━━━━━━<br/>解决：怎么拿到 shell/flag？<br/><br/>· RouteGate 强制 skill 路由<br/>· 路线仲裁纪律<br/>· exploit.py 编写+执行<br/>· 失败必须换线再试"]
     end
 
-    CF --- PIPE
+    CF["🧱 Contract First —— 结构化输出契约基座<br/>ReconReport · VulnerabilityReport · PrimitiveReport · ExploitReport<br/>（pydantic 严格校验 · submit_final_result 唯一交付通道 · stage{N}.json 落盘）"]
+
+    PIPE --> CF
+
+    style CF fill:#fff3f3,stroke:#c7000b,stroke-width:2px
 ```
 
 ## Agent Harness 设计：三层异常处理体系
