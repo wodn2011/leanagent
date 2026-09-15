@@ -1,8 +1,93 @@
 # LeanAgent
 
-基于 deepagents 的**二进制漏洞全自动利用** Agent（S1 侦察 → S2 语义 → S3 原语验证 → S4 Exploit）。
+基于 deepagents 的**二进制漏洞全自动利用** Agent（全程 GLM-5.2 驱动）。
 32 题真实 CTF pwn 题实测 **30/32 = 93.75%**，十连跑稳定性 10/10。
 架构详见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
+
+## 编排总览：Contract-First 四阶段管线
+
+```mermaid
+flowchart TB
+    CF["🧱 Contract First —— 结构化输出契约层<br/>ReconReport · VulnerabilityReport · PrimitiveReport · ExploitReport<br/>（pydantic 严格校验 · submit_final_result 唯一交付通道 · stage{N}.json 落盘）"]
+
+    subgraph PIPE["四阶段管线（每阶段独立 subagent · 结构化 JSON 上下文往返）"]
+        direction LR
+        S1["S1 侦察 Recon<br/>━━━━━━━━━━<br/>解决：这个二进制是什么、<br/>有什么保护、怎么交互？<br/><br/>· checksec 全防护识别（含 CET）<br/>· libc 运行时版本确认<br/>· 菜单/IO 时序实测（probe_io）<br/>· 攻击面清单 + 依赖链检查"]
+        S2["S2 语义 Semantic<br/>━━━━━━━━━━<br/>解决：漏洞在哪、<br/>为什么是漏洞？<br/><br/>· root cause 语义分析<br/>· 跨边界调用审查原则<br/>· 每 bug 带独立 bug_id<br/>· 继承 S1 事实不重复侦察"]
+        S3["S3 原语验证 Primitive<br/>━━━━━━━━━━<br/>解决：漏洞能实际利用到<br/>什么程度？<br/><br/>· per-bug PoC 生成+执行<br/>· VERIFIED/CANDIDATE 判定<br/>· 两级完成模型（半成品不收）<br/>· INFO_LEAK/ARB_WRITE 等实证"]
+        S4["S4 利用 Exploit<br/>━━━━━━━━━━<br/>解决：怎么拿到 shell/flag？<br/><br/>· RouteGate 强制 skill 路由<br/>· 路线仲裁纪律<br/>· exploit.py 编写+执行<br/>· 失败必须换线再试"]
+    end
+
+    CF --- PIPE
+```
+
+## Agent Harness 设计：三层异常处理体系
+
+```mermaid
+flowchart TB
+    subgraph L4["④ 编排层（orchestrator）—— 跨会话策略"]
+        A1["attempt 循环 ×8（S4 30min/attempt）"]
+        A2["BudgetExhausted 捕获<br/>→ 独立 LLM 总结（历史压缩，工具结果截断 1500 字符）<br/>→ '已验证发现清单' 注入新 attempt 续命"]
+        A3["全 attempt 用尽 → 判负收尾（失败也是结构化结论）"]
+    end
+
+    subgraph MW["③ Middleware 层 —— 会话内自愈（横切所有阶段）"]
+        direction LR
+        M1["SubmitFinal<br/>schema 违约 →<br/>字段级反馈重调 ×3"]
+        M2["Retry<br/>无 submit 提醒<br/>jump_to ×5"]
+        M3["Budget<br/>墙钟/工具预算<br/>同参重复 >5 拒"]
+        M4["RouteGate<br/>未声明/失败未换线<br/>→ 拒绝提交"]
+        M5["GLM 软超时<br/>600s 强制中断<br/>（9 小时挂死 → 自愈）"]
+    end
+
+    subgraph TL["② 工具层 —— 单次调用健壮性"]
+        direction LR
+        T1["latin-1 replace<br/>防非 latin 崩进程"]
+        T2["isfile 前置检查<br/>防路径 typo"]
+        T3["子进程 RLIMIT 4GB<br/>+ 禁 core（OOM 根治）"]
+        T4["超时 + 自适应提示<br/>rc=-124 → 指引查 recv"]
+    end
+
+    subgraph IL["① 基础设施层"]
+        direction LR
+        I1["httpx 连接重试"]
+        I2["容器隔离<br/>target 崩溃不连带"]
+        I3["console log 双写<br/>drvfs 吞文件兜底"]
+    end
+
+    TL -->|"异常统一冒泡<br/>BudgetExhausted"| MW
+    MW -->|"超限上抛"| L4
+    IL --> TL
+
+    style L4 fill:#fff3f3,stroke:#c7000b
+    style MW fill:#f0f7ff,stroke:#007dff
+    style TL fill:#f5f5f7,stroke:#8a8b90
+    style IL fill:#fafafa,stroke:#c0c0c0
+```
+
+**设计核心**：错误向上冒泡、策略向下注入；每层拒绝消息都附带"怎么做"（可执行指引）；
+关键约束双保险（RouteGate 在工具闸门 + submit 终检各拦一次）。
+
+## 工具设计原则与特色
+
+### 设计原则：专用工具 > 裸 shell
+
+LLM 拼 shell 命令是最大失败源（引号错误 / 输出爆炸 / 路径 typo 崩主进程）。
+24 个专用工具统一处理三件事：**输出裁剪**（防上下文爆炸）、**编码容错**（latin-1
+errors=replace）、**资源隔离**（子进程 RLIMIT）。
+
+### 特色设计（如何提升调用准确性与效率）
+
+| 特色 | 机制 | 对准确性的贡献 |
+|---|---|---|
+| **结构化输出** | `gdb_run_crash` 把崩溃解析成 JSON（signal/addr/bt），不吐原始 GDB 输出 | LLM 直接拿到结构化字段，零解析错误 |
+| **make_payload** | `parts` 数组构造二进制：`[["A",48],["%p",1],["\x00",1]]` | JSON 字符串无法表达 NUL——格式串/ROP 题的唯一正确通道 |
+| **自适应提示** | 断点未命中自动附 GDB-HINT（查 stdin 序列）；rc=-124 附"查 recv 同步点" | 把常见失败的排查方向直接喂给 LLM，省 3-5 轮盲试 |
+| **输出摘要化** | `run_script` 只留标记行 + Traceback | 单次省 ~2K tokens，50 次/题 = **~100K tokens/题** |
+| **写前检查** | `check_byte` 读目标地址既有字节（含 NUL/换行检测+警告） | "写后检查"翻车点的预防工具，写大 payload 前必查 |
+| **批量查询** | `libc_offsets` 一次查 N 个符号偏移 | 替代 LLM 手写 readelf 管道，一次调用省 5+ 轮 |
+| **max_lines 防爆** | symbols/sections/strings 全部带过滤器 + 行数上限 | 防单次工具输出撑爆上下文 |
+| **交互实测** | `probe_io` 多步 recv_until/send 序列 + 子进程隔离 | 菜单时序靠实测不靠猜，target 崩溃不连带 agent |
 
 ---
 
